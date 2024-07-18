@@ -1,8 +1,12 @@
 ﻿Public Class Form1
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Debug.WriteLine("Form1 Load")
+        AppInitModule.InitializeMainApp()
+
         Navigate_Url_TextBox.Text = "https://www.facebook.com/"
         NavigateTo_Url_Button.Enabled = False
+
     End Sub
 
     Private Async Sub Active_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
@@ -35,5 +39,20 @@
             MsgBox("關閉失敗")
         End Try
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Debug.WriteLine("test update profile items")
+        MainFormController.UpdateWebviewProfileCheckListBox()
+    End Sub
+
+    Private Sub CreateProfileFolderButton_Click(sender As Object, e As EventArgs) Handles CreateProfileFolderButton.Click
+        Dim folderName = ProfileFolderName_TextBox.Text
+        MainFormController.CreateProfileFolder(folderName)
+    End Sub
+
+    Private Sub DeleteSelectedProfileFolderButton_Click(sender As Object, e As EventArgs) Handles DeleteSelectedProfileFolderButton.Click
+        Dim folderName = WebviewProfile_CheckedListBox.SelectedItem
+        DeleteProfileFolder(folderName)
     End Sub
 End Class

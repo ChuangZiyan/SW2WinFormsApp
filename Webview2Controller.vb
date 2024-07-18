@@ -7,7 +7,7 @@ Module Webview2Controller
     Private webview2_environment As CoreWebView2Environment
 
     Public Async Function InitializeWebView2(debugPort) As Task
-        webview2_environment = Await CoreWebView2Environment.CreateAsync(Nothing, Nothing, New CoreWebView2EnvironmentOptions("--remote-debugging-port=" & debugPort))
+        webview2_environment = Await CoreWebView2Environment.CreateAsync(Nothing, "usrdata", New CoreWebView2EnvironmentOptions("--remote-debugging-port=" & debugPort))
         Await Form1.Main_WebView2.EnsureCoreWebView2Async(webview2_environment)
     End Function
 
@@ -23,7 +23,7 @@ Module Webview2Controller
             options.DebuggerAddress = "localhost:" & debugPort
 
             Dim serv As EdgeDriverService = EdgeDriverService.CreateDefaultService
-            serv.HideCommandPromptWindow = True 'hide cmd
+            serv.HideCommandPromptWindow = True
 
             Threading.Thread.Sleep(500)
             edgeDriver = New EdgeDriver(serv, options)
