@@ -7,23 +7,23 @@ Module MainFormController
         MessageBox.Show(message, "訊息")
     End Sub
 
-    Public Sub UpdateWebviewProfileCheckListBox()
-        Form1.WebviewProfile_CheckedListBox.Items.Clear()
-        Dim dirs As String() = Directory.GetDirectories(AppInitModule.webivewProfileDirectory)
+    Public Sub UpdateWebviewUserDataCheckListBox()
+        Form1.WebviewUserDataFolder_CheckedListBox.Items.Clear()
+        Dim dirs As String() = Directory.GetDirectories(AppInitModule.webivewUserDataDirectory)
         For Each dir As String In dirs
-            Form1.WebviewProfile_CheckedListBox.Items.Add(Path.GetFileName(dir))
+            Form1.WebviewUserDataFolder_CheckedListBox.Items.Add(Path.GetFileName(dir))
         Next
 
     End Sub
 
-    Public Sub CreateProfileFolder(folderName As String)
+    Public Sub CreateUserDataFolder(folderName As String)
         Try
-            Dim folderPath = Path.Combine(AppInitModule.webivewProfileDirectory, folderName)
+            Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName)
 
             If Not Directory.Exists(folderPath) Then
                 Directory.CreateDirectory(folderPath)
-                UpdateWebviewProfileCheckListBox()
-                Form1.ProfileFolderName_TextBox.Clear()
+                UpdateWebviewUserDataCheckListBox()
+                Form1.UserDataFolderName_TextBox.Clear()
                 MsgBox("新增成功")
             Else
                 MsgBox("無法使用此名稱")
@@ -34,7 +34,7 @@ Module MainFormController
 
     End Sub
 
-    Public Sub DeleteProfileFolder(folderName As String)
+    Public Sub DeleteUserDataFolder(folderName As String)
 
         Try
             If folderName = "" Then
@@ -42,13 +42,13 @@ Module MainFormController
                 Exit Sub
             End If
 
-            Dim folderPath = Path.Combine(AppInitModule.webivewProfileDirectory, folderName)
+            Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName)
 
             If Directory.Exists(folderPath) Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除此資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     Directory.Delete(folderPath, True)
-                    UpdateWebviewProfileCheckListBox()
+                    UpdateWebviewUserDataCheckListBox()
                     MsgBox("資料夾已成功刪除")
                 End If
             Else

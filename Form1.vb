@@ -1,25 +1,33 @@
-﻿Public Class Form1
+﻿Imports System.IO
+
+Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Debug.WriteLine("Form1 Load")
         AppInitModule.InitializeMainApp()
-
+        Me.Text = "MainWebview2Form - 完成"
         Navigate_Url_TextBox.Text = "https://www.facebook.com/"
-        NavigateTo_Url_Button.Enabled = False
-
+        'NavigateTo_Url_Button.Enabled = False
     End Sub
 
-    Private Async Sub Active_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
+    Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Me.Text = "MainWebview2Form - 關閉中..."
+        If Webview2Controller.edgeDriver IsNot Nothing Then
+            Webview2Controller.edgeDriver.Quit()
+        End If
+    End Sub
+
+    Private Sub Active_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
         Try
-            Activate_WebviewEdge_Button.Enabled = False
+            Dim userDataFolder = Nothing
+            Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
+            If folderName <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName)
+            End If
             Dim debugPort = Webview_Edge_Debug_Port_NumericUpDown.Value
-            Await Webview2Controller.InitializeWebView2(debugPort)
-            Await Webview2Controller.InitializeEdgeDriver_Task(debugPort)
-            MsgBox("初始化Webview2 Edge完成")
-            NavigateTo_Url_Button.Enabled = True
+            RestartMainWebView2(userDataFolder, debugPort)
         Catch ex As Exception
             Debug.WriteLine(ex)
-            MsgBox("初始化失敗")
+            'MsgBox("初始化失敗")
         End Try
 
 
@@ -41,18 +49,33 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Debug.WriteLine("test update profile items")
-        MainFormController.UpdateWebviewProfileCheckListBox()
+    Private Sub CreateUserDataFolderButton_Click(sender As Object, e As EventArgs) Handles CreateUserDataFolderButton.Click
+        Dim folderName = UserDataFolderName_TextBox.Text
+        MainFormController.CreateUserDataFolder(folderName)
     End Sub
 
-    Private Sub CreateProfileFolderButton_Click(sender As Object, e As EventArgs) Handles CreateProfileFolderButton.Click
-        Dim folderName = ProfileFolderName_TextBox.Text
-        MainFormController.CreateProfileFolder(folderName)
+    Private Sub DeleteSelectedUserDataFolderButton_Click(sender As Object, e As EventArgs) Handles DeleteSelectedUserDataFolderButton.Click
+        Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
+        MainFormController.DeleteUserDataFolder(folderName)
     End Sub
 
-    Private Sub DeleteSelectedProfileFolderButton_Click(sender As Object, e As EventArgs) Handles DeleteSelectedProfileFolderButton.Click
-        Dim folderName = WebviewProfile_CheckedListBox.SelectedItem
-        DeleteProfileFolder(folderName)
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles RestartWebview_Button.Click
+        Webview2Controller.RestartMainWebView2(Nothing, 9222)
     End Sub
+
+    Private Sub WebviewUserDataFolder_CheckedListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.DoubleClick
+        Try
+            Dim userDataFolder = Nothing
+            Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
+            If folderName <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName)
+            End If
+            Dim debugPort = Webview_Edge_Debug_Port_NumericUpDown.Value
+            RestartMainWebView2(userDataFolder, debugPort)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            'MsgBox("初始化失敗")
+        End Try
+    End Sub
+
 End Class

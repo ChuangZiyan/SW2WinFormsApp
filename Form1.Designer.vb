@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
-        WebviewProfile_CheckedListBox = New CheckedListBox()
+        WebviewUserDataFolder_CheckedListBox = New CheckedListBox()
         Webview_Edge_Debug_Port_NumericUpDown = New NumericUpDown()
         Activate_WebviewEdge_Button = New Button()
         Quit_EdgeDriver_Button = New Button()
@@ -31,35 +31,42 @@ Partial Class Form1
         NavigateTo_Url_Button = New Button()
         UserInfo_GroupBox = New GroupBox()
         Button1 = New Button()
-        ProfileFolderName_TextBox = New TextBox()
-        CreateProfileFolderButton = New Button()
-        DeleteSelectedProfileFolderButton = New Button()
+        UserDataFolderName_TextBox = New TextBox()
+        CreateUserDataFolderButton = New Button()
+        DeleteSelectedUserDataFolderButton = New Button()
+        RestartWebview_Button = New Button()
+        UserDataFoldListFilter_GroupBox = New GroupBox()
+        CheckBox2 = New CheckBox()
+        CheckBox1 = New CheckBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         CType(Webview_Edge_Debug_Port_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        UserDataFoldListFilter_GroupBox.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
         ' 
         Main_WebView2.AllowExternalDrop = True
+        Main_WebView2.BackColor = Color.White
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
-        Main_WebView2.Location = New Point(243, 12)
+        Main_WebView2.ForeColor = Color.Black
+        Main_WebView2.Location = New Point(226, 12)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(834, 622)
+        Main_WebView2.Size = New Size(851, 613)
         Main_WebView2.TabIndex = 0
         Main_WebView2.ZoomFactor = 1R
         ' 
-        ' WebviewProfile_CheckedListBox
+        ' WebviewUserDataFolder_CheckedListBox
         ' 
-        WebviewProfile_CheckedListBox.FormattingEnabled = True
-        WebviewProfile_CheckedListBox.Location = New Point(12, 12)
-        WebviewProfile_CheckedListBox.Name = "WebviewProfile_CheckedListBox"
-        WebviewProfile_CheckedListBox.Size = New Size(225, 554)
-        WebviewProfile_CheckedListBox.TabIndex = 1
+        WebviewUserDataFolder_CheckedListBox.FormattingEnabled = True
+        WebviewUserDataFolder_CheckedListBox.Location = New Point(12, 12)
+        WebviewUserDataFolder_CheckedListBox.Name = "WebviewUserDataFolder_CheckedListBox"
+        WebviewUserDataFolder_CheckedListBox.Size = New Size(208, 444)
+        WebviewUserDataFolder_CheckedListBox.TabIndex = 1
         ' 
         ' Webview_Edge_Debug_Port_NumericUpDown
         ' 
-        Webview_Edge_Debug_Port_NumericUpDown.Location = New Point(243, 640)
+        Webview_Edge_Debug_Port_NumericUpDown.Location = New Point(226, 631)
         Webview_Edge_Debug_Port_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         Webview_Edge_Debug_Port_NumericUpDown.Minimum = New Decimal(New Integer() {9222, 0, 0, 0})
         Webview_Edge_Debug_Port_NumericUpDown.Name = "Webview_Edge_Debug_Port_NumericUpDown"
@@ -69,32 +76,32 @@ Partial Class Form1
         ' 
         ' Activate_WebviewEdge_Button
         ' 
-        Activate_WebviewEdge_Button.Location = New Point(399, 640)
+        Activate_WebviewEdge_Button.Location = New Point(382, 631)
         Activate_WebviewEdge_Button.Name = "Activate_WebviewEdge_Button"
         Activate_WebviewEdge_Button.Size = New Size(158, 29)
         Activate_WebviewEdge_Button.TabIndex = 3
-        Activate_WebviewEdge_Button.Text = "啟動edge"
+        Activate_WebviewEdge_Button.Text = "啟動edge - 測試用"
         Activate_WebviewEdge_Button.UseVisualStyleBackColor = True
         ' 
         ' Quit_EdgeDriver_Button
         ' 
-        Quit_EdgeDriver_Button.Location = New Point(399, 675)
+        Quit_EdgeDriver_Button.Location = New Point(382, 666)
         Quit_EdgeDriver_Button.Name = "Quit_EdgeDriver_Button"
         Quit_EdgeDriver_Button.Size = New Size(158, 29)
         Quit_EdgeDriver_Button.TabIndex = 4
-        Quit_EdgeDriver_Button.Text = "關閉"
+        Quit_EdgeDriver_Button.Text = "關閉 - 測試用"
         Quit_EdgeDriver_Button.UseVisualStyleBackColor = True
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(563, 642)
+        Navigate_Url_TextBox.Location = New Point(546, 633)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(414, 27)
+        Navigate_Url_TextBox.Size = New Size(431, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(983, 640)
+        NavigateTo_Url_Button.Location = New Point(983, 633)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -105,53 +112,95 @@ Partial Class Form1
         ' 
         UserInfo_GroupBox.Location = New Point(1083, 12)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(327, 598)
+        UserInfo_GroupBox.Size = New Size(249, 613)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(12, 681)
+        Button1.Location = New Point(226, 666)
         Button1.Name = "Button1"
-        Button1.Size = New Size(225, 29)
+        Button1.Size = New Size(150, 29)
         Button1.TabIndex = 8
-        Button1.Text = "更新-測試"
+        Button1.Text = "更新-測試用"
         Button1.UseVisualStyleBackColor = True
         ' 
-        ' ProfileFolderName_TextBox
+        ' UserDataFolderName_TextBox
         ' 
-        ProfileFolderName_TextBox.Location = New Point(12, 570)
-        ProfileFolderName_TextBox.Name = "ProfileFolderName_TextBox"
-        ProfileFolderName_TextBox.Size = New Size(125, 27)
-        ProfileFolderName_TextBox.TabIndex = 9
+        UserDataFolderName_TextBox.Location = New Point(12, 561)
+        UserDataFolderName_TextBox.Name = "UserDataFolderName_TextBox"
+        UserDataFolderName_TextBox.Size = New Size(108, 27)
+        UserDataFolderName_TextBox.TabIndex = 9
         ' 
-        ' CreateProfileFolderButton
+        ' CreateUserDataFolderButton
         ' 
-        CreateProfileFolderButton.Location = New Point(143, 570)
-        CreateProfileFolderButton.Name = "CreateProfileFolderButton"
-        CreateProfileFolderButton.Size = New Size(94, 29)
-        CreateProfileFolderButton.TabIndex = 10
-        CreateProfileFolderButton.Text = "新增"
-        CreateProfileFolderButton.UseVisualStyleBackColor = True
+        CreateUserDataFolderButton.Location = New Point(126, 561)
+        CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
+        CreateUserDataFolderButton.Size = New Size(94, 29)
+        CreateUserDataFolderButton.TabIndex = 10
+        CreateUserDataFolderButton.Text = "新增"
+        CreateUserDataFolderButton.UseVisualStyleBackColor = True
         ' 
-        ' DeleteSelectedProfileFolderButton
+        ' DeleteSelectedUserDataFolderButton
         ' 
-        DeleteSelectedProfileFolderButton.Location = New Point(143, 605)
-        DeleteSelectedProfileFolderButton.Name = "DeleteSelectedProfileFolderButton"
-        DeleteSelectedProfileFolderButton.Size = New Size(94, 29)
-        DeleteSelectedProfileFolderButton.TabIndex = 11
-        DeleteSelectedProfileFolderButton.Text = "刪除所選"
-        DeleteSelectedProfileFolderButton.UseVisualStyleBackColor = True
+        DeleteSelectedUserDataFolderButton.Location = New Point(126, 596)
+        DeleteSelectedUserDataFolderButton.Name = "DeleteSelectedUserDataFolderButton"
+        DeleteSelectedUserDataFolderButton.Size = New Size(94, 29)
+        DeleteSelectedUserDataFolderButton.TabIndex = 11
+        DeleteSelectedUserDataFolderButton.Text = "刪除所選"
+        DeleteSelectedUserDataFolderButton.UseVisualStyleBackColor = True
+        ' 
+        ' RestartWebview_Button
+        ' 
+        RestartWebview_Button.Location = New Point(546, 666)
+        RestartWebview_Button.Name = "RestartWebview_Button"
+        RestartWebview_Button.Size = New Size(118, 29)
+        RestartWebview_Button.TabIndex = 12
+        RestartWebview_Button.Text = "重啟 - 測試用"
+        RestartWebview_Button.UseVisualStyleBackColor = True
+        ' 
+        ' UserDataFoldListFilter_GroupBox
+        ' 
+        UserDataFoldListFilter_GroupBox.Controls.Add(CheckBox2)
+        UserDataFoldListFilter_GroupBox.Controls.Add(CheckBox1)
+        UserDataFoldListFilter_GroupBox.Location = New Point(12, 462)
+        UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
+        UserDataFoldListFilter_GroupBox.Size = New Size(208, 93)
+        UserDataFoldListFilter_GroupBox.TabIndex = 13
+        UserDataFoldListFilter_GroupBox.TabStop = False
+        UserDataFoldListFilter_GroupBox.Text = "顯示"
+        ' 
+        ' CheckBox2
+        ' 
+        CheckBox2.AutoSize = True
+        CheckBox2.Location = New Point(6, 55)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(61, 23)
+        CheckBox2.TabIndex = 1
+        CheckBox2.Text = "無效"
+        CheckBox2.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox1
+        ' 
+        CheckBox1.AutoSize = True
+        CheckBox1.Location = New Point(6, 26)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(61, 23)
+        CheckBox1.TabIndex = 0
+        CheckBox1.Text = "可用"
+        CheckBox1.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1422, 722)
-        Controls.Add(DeleteSelectedProfileFolderButton)
-        Controls.Add(CreateProfileFolderButton)
-        Controls.Add(ProfileFolderName_TextBox)
+        ClientSize = New Size(1353, 722)
+        Controls.Add(UserDataFoldListFilter_GroupBox)
+        Controls.Add(RestartWebview_Button)
+        Controls.Add(DeleteSelectedUserDataFolderButton)
+        Controls.Add(CreateUserDataFolderButton)
+        Controls.Add(UserDataFolderName_TextBox)
         Controls.Add(Button1)
         Controls.Add(UserInfo_GroupBox)
         Controls.Add(NavigateTo_Url_Button)
@@ -159,18 +208,20 @@ Partial Class Form1
         Controls.Add(Quit_EdgeDriver_Button)
         Controls.Add(Activate_WebviewEdge_Button)
         Controls.Add(Webview_Edge_Debug_Port_NumericUpDown)
-        Controls.Add(WebviewProfile_CheckedListBox)
+        Controls.Add(WebviewUserDataFolder_CheckedListBox)
         Controls.Add(Main_WebView2)
         Name = "Form1"
         Text = "Form1"
         CType(Main_WebView2, ComponentModel.ISupportInitialize).EndInit()
         CType(Webview_Edge_Debug_Port_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        UserDataFoldListFilter_GroupBox.ResumeLayout(False)
+        UserDataFoldListFilter_GroupBox.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents Main_WebView2 As Microsoft.Web.WebView2.WinForms.WebView2
-    Friend WithEvents WebviewProfile_CheckedListBox As CheckedListBox
+    Friend WithEvents WebviewUserDataFolder_CheckedListBox As CheckedListBox
     Friend WithEvents Webview_Edge_Debug_Port_NumericUpDown As NumericUpDown
     Friend WithEvents Activate_WebviewEdge_Button As Button
     Friend WithEvents Quit_EdgeDriver_Button As Button
@@ -178,8 +229,12 @@ Partial Class Form1
     Friend WithEvents NavigateTo_Url_Button As Button
     Friend WithEvents UserInfo_GroupBox As GroupBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents ProfileFolderName_TextBox As TextBox
-    Friend WithEvents CreateProfileFolderButton As Button
-    Friend WithEvents DeleteSelectedProfileFolderButton As Button
+    Friend WithEvents UserDataFolderName_TextBox As TextBox
+    Friend WithEvents CreateUserDataFolderButton As Button
+    Friend WithEvents DeleteSelectedUserDataFolderButton As Button
+    Friend WithEvents RestartWebview_Button As Button
+    Friend WithEvents UserDataFoldListFilter_GroupBox As GroupBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
 
 End Class
