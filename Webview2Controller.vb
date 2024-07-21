@@ -39,33 +39,8 @@ Module Webview2Controller
 
         Try
             Form1.Text = "MainWebview2Form - 載入中..."
-            ' reset edgeDriver
-            If edgeDriver IsNot Nothing Then
-                edgeDriver.Quit()
-            End If
 
-            ' reset webview
-            Dim webViewLocation As Point = Point.Empty
-            Dim webViewSize As Size = Size.Empty
-
-            If Form1.Main_WebView2 IsNot Nothing Then
-                ' save location and size 
-                webViewLocation = Form1.Main_WebView2.Location
-                webViewSize = Form1.Main_WebView2.Size
-
-                ' release WebView2 
-                Form1.Main_WebView2.Dispose()
-                Form1.Controls.Remove(Form1.Main_WebView2)
-                Form1.Main_WebView2 = Nothing
-            End If
-
-            ' create new webview2 and restore location and size
-            Form1.Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2() With {
-            .Location = webViewLocation,
-            .Size = webViewSize
-        }
-            Form1.Controls.Add(Form1.Main_WebView2)
-
+            ResetWebview2()
             Await Webview2Controller.InitializeWebView2(userDataFolder, debugPort)
             Await Webview2Controller.InitializeEdgeDriver_Task(debugPort)
 
@@ -78,11 +53,38 @@ Module Webview2Controller
 
     End Sub
 
+    Public Sub ResetWebview2()
+        ' reset edgeDriver
+        If edgeDriver IsNot Nothing Then
+            edgeDriver.Quit()
+        End If
 
+        ' reset webview
+        Dim webViewLocation As Point = Point.Empty
+        Dim webViewSize As Size = Size.Empty
 
+        If Form1.Main_WebView2 IsNot Nothing Then
+            ' save location and size 
+            webViewLocation = Form1.Main_WebView2.Location
+            webViewSize = Form1.Main_WebView2.Size
 
+            ' release WebView2 
+            Form1.Main_WebView2.Dispose()
+            Form1.Controls.Remove(Form1.Main_WebView2)
+            Form1.Main_WebView2 = Nothing
+        End If
 
+        ' create new webview2 and restore location and size
+        Form1.Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2() With {
+            .Location = webViewLocation,
+            .Size = webViewSize
+        }
+        Form1.Controls.Add(Form1.Main_WebView2)
+    End Sub
 
+    Public Async Function Delay_msec(msec As Integer) As Task
+        Await Task.Delay(msec)
+    End Function
 
 
     Public Function Navigate_GoToUrl_Task(url) As Task(Of Boolean)
