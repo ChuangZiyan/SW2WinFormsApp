@@ -2,6 +2,8 @@
 
 Public Class Form1
 
+    Public ActivedWebview2UserData As String
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppInitModule.InitializeMainApp()
         MainFormController.SetForm1TitleStatus("完成")
@@ -16,7 +18,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Active_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
+    Private Sub Activate_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
         Try
             Dim userDataFolder = Nothing
             Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
@@ -55,8 +57,12 @@ Public Class Form1
     End Sub
 
     Private Sub DeleteSelectedUserDataFolderButton_Click(sender As Object, e As EventArgs) Handles DeleteSelectedUserDataFolderButton.Click
-        Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
-        MainFormController.DeleteUserDataFolder(folderName)
+
+
+        MainFormController.DeleteUserDataFolders()
+
+        'Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
+        'MainFormController.DeleteUserDataFolder(folderName)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles RestartWebview_Button.Click
@@ -73,6 +79,7 @@ Public Class Form1
             End If
             Dim debugPort = Webview_Edge_Debug_Port_NumericUpDown.Value
             RestartMainWebView2(userDataFolder, debugPort)
+            ActivedWebview2UserData = WebviewUserDataFolder_CheckedListBox.SelectedItem
         Catch ex As Exception
             Debug.WriteLine(ex)
             'MsgBox("初始化失敗")
@@ -92,7 +99,7 @@ Public Class Form1
     End Sub
 
     Private Sub Move_UserDataFolder_Button_Click(sender As Object, e As EventArgs) Handles Move_UserDataFolder_Button.Click
-        MainFormController.MoveUserDataFolder(WebviewUserDataFolder_CheckedListBox.SelectedItem)
+        MainFormController.MoveUserDataFolder()
     End Sub
 
     Private Sub RevealFBPasswordText_Button_Click(sender As Object, e As EventArgs) Handles RevealFBPasswordText_Button.Click

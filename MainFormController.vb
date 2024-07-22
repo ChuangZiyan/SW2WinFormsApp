@@ -36,7 +36,7 @@ Module MainFormController
                 Directory.CreateDirectory(folderPath)
                 UpdateWebviewUserDataCheckListBox()
                 Form1.UserDataFolderName_TextBox.Clear()
-                MsgBox("新增成功")
+                'MsgBox("新增成功")
             Else
                 MsgBox("無法使用此名稱")
             End If
@@ -46,30 +46,31 @@ Module MainFormController
 
     End Sub
 
-    Public Async Sub DeleteUserDataFolder(folderName As String)
+    Public Async Sub DeleteUserDataFolders()
 
         Try
-            If folderName = "" Then
-                MsgBox("未選擇資料夾")
-                Exit Sub
-            End If
-            Dim myFolders = Split(folderName, "\")
-            Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
-
-            If Directory.Exists(folderPath) Then
-                Dim result As DialogResult = MessageBox.Show("確定要刪除此資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems.Count <> 0 Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
-                    SetForm1TitleStatus("刪除中...")
-                    ResetWebview2()
-                    Await Delay_msec(500)
-                    Directory.Delete(folderPath, True)
+                    MainFormController.SetForm1TitleStatus("刪除中...")
+                    For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
+                        Debug.WriteLine("item : " & item)
+                        If item = Form1.ActivedWebview2UserData Then
+                            ResetWebview2()
+                            Await Delay_msec(500)
+                        End If
+                        Dim myFolders = Split(item, "\")
+                        Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
+                        Directory.Delete(folderPath, True)
+                    Next
                     UpdateWebviewUserDataCheckListBox()
-                    SetForm1TitleStatus("完成")
-                    MsgBox("資料夾已成功刪除")
+                    MainFormController.SetForm1TitleStatus("完成")
+                    MsgBox("刪除完成")
                 End If
             Else
-                MsgBox("資料夾不存在")
+                MsgBox("未選擇任何資料夾")
             End If
+
         Catch ex As Exception
             Debug.WriteLine(ex)
             MsgBox("刪除資料夾失敗")
@@ -109,26 +110,33 @@ Module MainFormController
     End Sub
 
 
-    Public Sub MoveUserDataFolder(FolderName)
+    Public Async Sub MoveUserDataFolder()
         Try
+            If Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems.Count <> 0 Then
 
-            If FolderName = "" Then
-                MsgBox("未選擇資料夾")
-                Exit Sub
+                For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
+                    'Debug.WriteLine("item : " & item)
+                    If item = Form1.ActivedWebview2UserData Then
+                        ResetWebview2()
+                        Await Delay_msec(500)
+                    End If
+
+                    Dim myFolders = Split(item, "\")
+                    Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
+                    If myFolders(0) = "available" Then ' move to unavailable
+                        Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "unavailable", myFolders(1))
+                        Directory.Move(folderPath, destinationPath)
+                    ElseIf myFolders(0) = "unavailable" Then ' move to unavailable
+                        Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "available", myFolders(1))
+                        Directory.Move(folderPath, destinationPath)
+                    End If
+                Next
+                UpdateWebviewUserDataCheckListBox()
+
+            Else
+                MsgBox("未選擇任何資料夾")
             End If
 
-            Dim myFolder() = Split(FolderName, "\")
-            Dim FolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolder(0), myFolder(1))
-
-            If myFolder(0) = "available" Then ' move to unavailable
-                Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "unavailable", myFolder(1))
-                Directory.Move(FolderPath, destinationPath)
-            ElseIf myFolder(0) = "unavailable" Then ' move to unavailable
-                Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "available", myFolder(1))
-                Directory.Move(FolderPath, destinationPath)
-            End If
-
-            UpdateWebviewUserDataCheckListBox()
         Catch ex As Exception
             Debug.WriteLine(ex)
             MsgBox("移動失敗")
@@ -143,13 +151,13 @@ Module MainFormController
 
         Dim userDataJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "myUserData.json")
 
-        Debug.WriteLine(userDataJsonFilePath)
+        'Debug.WriteLine(userDataJsonFilePath)
 
         If File.Exists(userDataJsonFilePath) Then
             Dim jsonString As String = File.ReadAllText(userDataJsonFilePath)
 
             Dim userDataJson As UserDataStruct = JsonConvert.DeserializeObject(Of UserDataStruct)(jsonString)
-            Debug.WriteLine(userDataJson.Remark)
+            'Debug.WriteLine(userDataJson.Remark)
             Form1.FBAccount_TextBox.Text = userDataJson.FBAccount
             Form1.FBPassword_TextBox.Text = userDataJson.FBPassword
             Form1.FB2FA_TextBox.Text = userDataJson.FB2FA

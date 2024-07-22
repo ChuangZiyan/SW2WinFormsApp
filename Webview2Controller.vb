@@ -80,6 +80,7 @@ Module Webview2Controller
             .Size = webViewSize
         }
         Form1.Controls.Add(Form1.Main_WebView2)
+        Form1.ActivedWebview2UserData = ""
     End Sub
 
     Public Async Function Delay_msec(msec As Integer) As Task

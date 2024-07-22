@@ -79,6 +79,7 @@ Partial Class Form1
         ' 
         ' WebviewUserDataFolder_CheckedListBox
         ' 
+        WebviewUserDataFolder_CheckedListBox.CheckOnClick = True
         WebviewUserDataFolder_CheckedListBox.FormattingEnabled = True
         WebviewUserDataFolder_CheckedListBox.Location = New Point(12, 12)
         WebviewUserDataFolder_CheckedListBox.Name = "WebviewUserDataFolder_CheckedListBox"
