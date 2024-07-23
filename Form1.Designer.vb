@@ -24,15 +24,12 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         WebviewUserDataFolder_CheckedListBox = New CheckedListBox()
-        Webview_Edge_Debug_Port_NumericUpDown = New NumericUpDown()
-        Activate_WebviewEdge_Button = New Button()
-        Quit_EdgeDriver_Button = New Button()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
         UserInfo_GroupBox = New GroupBox()
         SaveUserData_Button = New Button()
         Remark_RichTextBox = New RichTextBox()
-        Button5 = New Button()
+        SetCookie_Button = New Button()
         ReadCookie_Button = New Button()
         Label7 = New Label()
         FBCookie_RichTextBox = New RichTextBox()
@@ -49,17 +46,16 @@ Partial Class Form1
         Label2 = New Label()
         FBAccount_TextBox = New TextBox()
         Label1 = New Label()
-        Button1 = New Button()
         UserDataFolderName_TextBox = New TextBox()
         CreateUserDataFolderButton = New Button()
         DeleteSelectedUserDataFolderButton = New Button()
-        RestartWebview_Button = New Button()
         UserDataFoldListFilter_GroupBox = New GroupBox()
         FilterUnavailableUserData_CheckBox = New CheckBox()
         FilterAvailableUserData_CheckBox = New CheckBox()
         Move_UserDataFolder_Button = New Button()
+        SetSeletedFBLanguageTo_zhTW_Button = New Button()
+        ShowDebugPanel_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
-        CType(Webview_Edge_Debug_Port_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
         SuspendLayout()
@@ -86,34 +82,6 @@ Partial Class Form1
         WebviewUserDataFolder_CheckedListBox.Size = New Size(208, 466)
         WebviewUserDataFolder_CheckedListBox.TabIndex = 1
         ' 
-        ' Webview_Edge_Debug_Port_NumericUpDown
-        ' 
-        Webview_Edge_Debug_Port_NumericUpDown.Location = New Point(226, 648)
-        Webview_Edge_Debug_Port_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        Webview_Edge_Debug_Port_NumericUpDown.Minimum = New Decimal(New Integer() {9222, 0, 0, 0})
-        Webview_Edge_Debug_Port_NumericUpDown.Name = "Webview_Edge_Debug_Port_NumericUpDown"
-        Webview_Edge_Debug_Port_NumericUpDown.Size = New Size(150, 27)
-        Webview_Edge_Debug_Port_NumericUpDown.TabIndex = 2
-        Webview_Edge_Debug_Port_NumericUpDown.Value = New Decimal(New Integer() {9222, 0, 0, 0})
-        ' 
-        ' Activate_WebviewEdge_Button
-        ' 
-        Activate_WebviewEdge_Button.Location = New Point(382, 648)
-        Activate_WebviewEdge_Button.Name = "Activate_WebviewEdge_Button"
-        Activate_WebviewEdge_Button.Size = New Size(158, 29)
-        Activate_WebviewEdge_Button.TabIndex = 3
-        Activate_WebviewEdge_Button.Text = "啟動edge - 測試用"
-        Activate_WebviewEdge_Button.UseVisualStyleBackColor = True
-        ' 
-        ' Quit_EdgeDriver_Button
-        ' 
-        Quit_EdgeDriver_Button.Location = New Point(382, 683)
-        Quit_EdgeDriver_Button.Name = "Quit_EdgeDriver_Button"
-        Quit_EdgeDriver_Button.Size = New Size(158, 29)
-        Quit_EdgeDriver_Button.TabIndex = 4
-        Quit_EdgeDriver_Button.Text = "關閉 - 測試用"
-        Quit_EdgeDriver_Button.UseVisualStyleBackColor = True
-        ' 
         ' Navigate_Url_TextBox
         ' 
         Navigate_Url_TextBox.Location = New Point(546, 650)
@@ -134,7 +102,7 @@ Partial Class Form1
         ' 
         UserInfo_GroupBox.Controls.Add(SaveUserData_Button)
         UserInfo_GroupBox.Controls.Add(Remark_RichTextBox)
-        UserInfo_GroupBox.Controls.Add(Button5)
+        UserInfo_GroupBox.Controls.Add(SetCookie_Button)
         UserInfo_GroupBox.Controls.Add(ReadCookie_Button)
         UserInfo_GroupBox.Controls.Add(Label7)
         UserInfo_GroupBox.Controls.Add(FBCookie_RichTextBox)
@@ -153,14 +121,14 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label1)
         UserInfo_GroupBox.Location = New Point(226, 12)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(314, 630)
+        UserInfo_GroupBox.Size = New Size(314, 665)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
         ' 
         ' SaveUserData_Button
         ' 
-        SaveUserData_Button.Location = New Point(6, 595)
+        SaveUserData_Button.Location = New Point(6, 630)
         SaveUserData_Button.Name = "SaveUserData_Button"
         SaveUserData_Button.Size = New Size(302, 29)
         SaveUserData_Button.TabIndex = 18
@@ -171,18 +139,18 @@ Partial Class Form1
         ' 
         Remark_RichTextBox.Location = New Point(6, 491)
         Remark_RichTextBox.Name = "Remark_RichTextBox"
-        Remark_RichTextBox.Size = New Size(302, 98)
+        Remark_RichTextBox.Size = New Size(302, 133)
         Remark_RichTextBox.TabIndex = 17
         Remark_RichTextBox.Text = ""
         ' 
-        ' Button5
+        ' SetCookie_Button
         ' 
-        Button5.Location = New Point(175, 437)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(133, 29)
-        Button5.TabIndex = 16
-        Button5.Text = "Cookie登入"
-        Button5.UseVisualStyleBackColor = True
+        SetCookie_Button.Location = New Point(175, 437)
+        SetCookie_Button.Name = "SetCookie_Button"
+        SetCookie_Button.Size = New Size(133, 29)
+        SetCookie_Button.TabIndex = 16
+        SetCookie_Button.Text = "Cookie登入"
+        SetCookie_Button.UseVisualStyleBackColor = True
         ' 
         ' ReadCookie_Button
         ' 
@@ -319,15 +287,6 @@ Partial Class Form1
         Label1.TabIndex = 0
         Label1.Text = "Fackbook帳號"
         ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(226, 683)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(150, 29)
-        Button1.TabIndex = 8
-        Button1.Text = "更新-測試用"
-        Button1.UseVisualStyleBackColor = True
-        ' 
         ' UserDataFolderName_TextBox
         ' 
         UserDataFolderName_TextBox.Location = New Point(12, 582)
@@ -352,15 +311,6 @@ Partial Class Form1
         DeleteSelectedUserDataFolderButton.TabIndex = 11
         DeleteSelectedUserDataFolderButton.Text = "刪除所選"
         DeleteSelectedUserDataFolderButton.UseVisualStyleBackColor = True
-        ' 
-        ' RestartWebview_Button
-        ' 
-        RestartWebview_Button.Location = New Point(546, 683)
-        RestartWebview_Button.Name = "RestartWebview_Button"
-        RestartWebview_Button.Size = New Size(118, 29)
-        RestartWebview_Button.TabIndex = 12
-        RestartWebview_Button.Text = "重啟 - 測試用"
-        RestartWebview_Button.UseVisualStyleBackColor = True
         ' 
         ' UserDataFoldListFilter_GroupBox
         ' 
@@ -404,30 +354,44 @@ Partial Class Form1
         Move_UserDataFolder_Button.Text = "移動所選"
         Move_UserDataFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' SetSeletedFBLanguageTo_zhTW_Button
+        ' 
+        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 650)
+        SetSeletedFBLanguageTo_zhTW_Button.Name = "SetSeletedFBLanguageTo_zhTW_Button"
+        SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(208, 29)
+        SetSeletedFBLanguageTo_zhTW_Button.TabIndex = 15
+        SetSeletedFBLanguageTo_zhTW_Button.Text = "設定中文台灣"
+        SetSeletedFBLanguageTo_zhTW_Button.UseVisualStyleBackColor = True
+        ' 
+        ' ShowDebugPanel_Button
+        ' 
+        ShowDebugPanel_Button.Location = New Point(1247, 681)
+        ShowDebugPanel_Button.Name = "ShowDebugPanel_Button"
+        ShowDebugPanel_Button.Size = New Size(94, 29)
+        ShowDebugPanel_Button.TabIndex = 16
+        ShowDebugPanel_Button.Text = "debug"
+        ShowDebugPanel_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1353, 722)
+        Controls.Add(ShowDebugPanel_Button)
+        Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
         Controls.Add(Move_UserDataFolder_Button)
         Controls.Add(UserDataFoldListFilter_GroupBox)
-        Controls.Add(RestartWebview_Button)
         Controls.Add(DeleteSelectedUserDataFolderButton)
         Controls.Add(CreateUserDataFolderButton)
         Controls.Add(UserDataFolderName_TextBox)
-        Controls.Add(Button1)
         Controls.Add(UserInfo_GroupBox)
         Controls.Add(NavigateTo_Url_Button)
         Controls.Add(Navigate_Url_TextBox)
-        Controls.Add(Quit_EdgeDriver_Button)
-        Controls.Add(Activate_WebviewEdge_Button)
-        Controls.Add(Webview_Edge_Debug_Port_NumericUpDown)
         Controls.Add(WebviewUserDataFolder_CheckedListBox)
         Controls.Add(Main_WebView2)
         Name = "Form1"
         Text = "Form1"
         CType(Main_WebView2, ComponentModel.ISupportInitialize).EndInit()
-        CType(Webview_Edge_Debug_Port_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         UserInfo_GroupBox.ResumeLayout(False)
         UserInfo_GroupBox.PerformLayout()
         UserDataFoldListFilter_GroupBox.ResumeLayout(False)
@@ -438,17 +402,12 @@ Partial Class Form1
 
     Friend WithEvents Main_WebView2 As Microsoft.Web.WebView2.WinForms.WebView2
     Friend WithEvents WebviewUserDataFolder_CheckedListBox As CheckedListBox
-    Friend WithEvents Webview_Edge_Debug_Port_NumericUpDown As NumericUpDown
-    Friend WithEvents Activate_WebviewEdge_Button As Button
-    Friend WithEvents Quit_EdgeDriver_Button As Button
     Friend WithEvents Navigate_Url_TextBox As TextBox
     Friend WithEvents NavigateTo_Url_Button As Button
     Friend WithEvents UserInfo_GroupBox As GroupBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents UserDataFolderName_TextBox As TextBox
     Friend WithEvents CreateUserDataFolderButton As Button
     Friend WithEvents DeleteSelectedUserDataFolderButton As Button
-    Friend WithEvents RestartWebview_Button As Button
     Friend WithEvents UserDataFoldListFilter_GroupBox As GroupBox
     Friend WithEvents FilterAvailableUserData_CheckBox As CheckBox
     Friend WithEvents FilterUnavailableUserData_CheckBox As CheckBox
@@ -467,10 +426,12 @@ Partial Class Form1
     Friend WithEvents FBPassword_TextBox As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Remark_RichTextBox As RichTextBox
-    Friend WithEvents Button5 As Button
+    Friend WithEvents SetCookie_Button As Button
     Friend WithEvents ReadCookie_Button As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents SaveUserData_Button As Button
     Friend WithEvents Move_UserDataFolder_Button As Button
+    Friend WithEvents SetSeletedFBLanguageTo_zhTW_Button As Button
+    Friend WithEvents ShowDebugPanel_Button As Button
 
 End Class

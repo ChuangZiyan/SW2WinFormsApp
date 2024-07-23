@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports Newtonsoft.Json
 
 Public Class Form1
 
@@ -18,38 +19,11 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Activate_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
-        Try
-            Dim userDataFolder = Nothing
-            Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
-            If folderName <> "" Then
-                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName)
-            End If
-            Dim debugPort = Webview_Edge_Debug_Port_NumericUpDown.Value
-            RestartMainWebView2(userDataFolder, debugPort)
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            'MsgBox("初始化失敗")
-        End Try
-
-
-    End Sub
-
     Private Async Sub NavigateTo_Url_Button_Click(sender As Object, e As EventArgs) Handles NavigateTo_Url_Button.Click
         Dim myUrl = Navigate_Url_TextBox.Text
         Await Navigate_GoToUrl_Task(myUrl)
     End Sub
 
-
-    Private Sub Quit_EdgeDriver_Button_Click(sender As Object, e As EventArgs) Handles Quit_EdgeDriver_Button.Click
-        Try
-            Webview2Controller.edgeDriver.Quit()
-            MsgBox("關閉成功")
-        Catch ex As Exception
-            MsgBox("關閉失敗")
-        End Try
-
-    End Sub
 
     Private Sub CreateUserDataFolderButton_Click(sender As Object, e As EventArgs) Handles CreateUserDataFolderButton.Click
         Dim folderName = UserDataFolderName_TextBox.Text
@@ -58,15 +32,10 @@ Public Class Form1
 
     Private Sub DeleteSelectedUserDataFolderButton_Click(sender As Object, e As EventArgs) Handles DeleteSelectedUserDataFolderButton.Click
 
-
         MainFormController.DeleteUserDataFolders()
 
         'Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
         'MainFormController.DeleteUserDataFolder(folderName)
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles RestartWebview_Button.Click
-        Webview2Controller.RestartMainWebView2(Nothing, 9222)
     End Sub
 
     Private Sub WebviewUserDataFolder_CheckedListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.DoubleClick
@@ -77,7 +46,10 @@ Public Class Form1
             If folderName(1) <> "" Then
                 userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
             End If
-            Dim debugPort = Webview_Edge_Debug_Port_NumericUpDown.Value
+            ' need to auto detect debug port
+            ' use 9222 for development
+            Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
+            'Dim debugPort = 9222
             RestartMainWebView2(userDataFolder, debugPort)
             ActivedWebview2UserData = WebviewUserDataFolder_CheckedListBox.SelectedItem
         Catch ex As Exception
@@ -89,7 +61,6 @@ Public Class Form1
     Private Sub SaveUserData_Button_Click(sender As Object, e As EventArgs) Handles SaveUserData_Button.Click
         MainFormController.SaveUserData(WebviewUserDataFolder_CheckedListBox.SelectedItem)
     End Sub
-
 
     Private Sub FilterAvailableUserData_CheckBox_Click(sender As Object, e As EventArgs) Handles FilterAvailableUserData_CheckBox.Click
         MainFormController.UpdateWebviewUserDataCheckListBox()
@@ -127,4 +98,23 @@ Public Class Form1
         DisplayUserData(WebviewUserDataFolder_CheckedListBox.SelectedItem)
     End Sub
 
+    Private Sub ReadCookie_Button_Click(sender As Object, e As EventArgs) Handles ReadCookie_Button.Click
+        ReadCookie()
+        ' save to user data after read cookie
+        ' ... to be ddd
+
+    End Sub
+
+    Private Sub ShowDebugPanel_Button_Click(sender As Object, e As EventArgs) Handles ShowDebugPanel_Button.Click
+        If DebugForm.Visible = False Then
+            DebugForm.Show()
+        Else
+            DebugForm.Hide()
+        End If
+
+    End Sub
+
+    Private Sub SetCookie_Button_Click(sender As Object, e As EventArgs) Handles SetCookie_Button.Click
+        SetCookie()
+    End Sub
 End Class

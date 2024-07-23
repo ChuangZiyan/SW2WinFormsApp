@@ -1,4 +1,6 @@
-﻿Imports Microsoft.Web.WebView2.Core
+﻿Imports System.Collections.ObjectModel
+Imports Microsoft.Web.WebView2.Core
+Imports Newtonsoft.Json
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Edge
 
@@ -124,5 +126,80 @@ Module Webview2Controller
         End Try
     End Function
 
+
+    Public Sub ReadCookie()
+        Try
+            'Debug.WriteLine("Read Cookie")
+            If Form1.ActivedWebview2UserData = "" Then
+                MsgBox("未偵測到啟用的Webview2")
+                Exit Sub
+            End If
+
+
+            Dim cookies As ReadOnlyCollection(Of OpenQA.Selenium.Cookie) = edgeDriver.Manage().Cookies.AllCookies
+            Dim cookieList As New List(Of myCookie)
+
+            ' 顯示每個 cookie 的相關信息
+            For Each cookie As OpenQA.Selenium.Cookie In cookies
+                Debug.WriteLine($"Cookie Name: {cookie.Name}, Value: {cookie.Value}")
+                Dim myCookieObj As New myCookie With {
+                    .Name = cookie.Name,
+                    .Value = cookie.Value,
+                    .Domain = cookie.Domain,
+                    .Path = cookie.Path
+                }
+                cookieList.Add(myCookieObj)
+            Next
+
+            Dim jsonStr As String = JsonConvert.SerializeObject(cookieList, Formatting.Indented)
+
+            Form1.FBCookie_RichTextBox.Text = jsonStr
+
+            MainFormController.SaveUserData(Form1.WebviewUserDataFolder_CheckedListBox.SelectedItem)
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub SetCookie()
+        Try
+            If Form1.ActivedWebview2UserData = "" Then
+                MsgBox("未偵測到啟用的Webview2")
+                Exit Sub
+            End If
+
+            Dim JsonText = Form1.FBCookie_RichTextBox.Text
+            Dim CookieList As List(Of myCookie) = JsonConvert.DeserializeObject(Of List(Of myCookie))(JsonText)
+
+            If CookieList Is Nothing Then
+                MsgBox("Cookie格式錯誤")
+                Exit Sub
+            End If
+
+            For Each ck In CookieList
+                Debug.WriteLine("#### " + ck.Domain + " " + ck.Name + " " + ck.Value)
+                Dim cookie As New OpenQA.Selenium.Cookie(ck.Name, ck.Value, ck.Domain, ck.Path, DateTime.Now.AddDays(365))
+                edgeDriver.Manage.Cookies.AddCookie(cookie)
+            Next
+
+            'MsgBox("設定成功")
+            'Me.DialogResult = System.Windows.Forms.DialogResult.OK
+            'Me.Close()
+            'CookieRichTextBox.Clear()
+            ' edgeDriver.Navigate.Refresh()
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("Cookie設定失敗")
+        End Try
+    End Sub
+
+    Public Class myCookie
+        Public Property Domain As String
+        Public Property Name As String
+        Public Property Value As String
+        Public Property Path As String
+
+    End Class
 
 End Module
