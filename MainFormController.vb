@@ -55,7 +55,7 @@ Module MainFormController
                     MainFormController.SetForm1TitleStatus("刪除中...")
                     For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
                         Debug.WriteLine("item : " & item)
-                        If item = Form1.ActivedWebview2UserData Then
+                        If item = Webview2Controller.ActivedWebview2UserData Then
                             ResetWebview2()
                             Await Delay_msec(500)
                         End If
@@ -116,7 +116,7 @@ Module MainFormController
 
                 For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
                     'Debug.WriteLine("item : " & item)
-                    If item = Form1.ActivedWebview2UserData Then
+                    If item = Webview2Controller.ActivedWebview2UserData Then
                         ResetWebview2()
                         Await Delay_msec(500)
                     End If
@@ -178,9 +178,9 @@ Module MainFormController
     End Sub
 
 
-
     Public Sub SetForm1TitleStatus(status As String)
-        Form1.Text = "MainWebview2Form - " & status
+        Dim myUserData = Webview2Controller.ActivedWebview2UserData
+        Form1.Text = "UserData - " & myUserData & "    " & status & " - MainWebview2Form"
     End Sub
 
 

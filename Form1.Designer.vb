@@ -55,6 +55,7 @@ Partial Class Form1
         Move_UserDataFolder_Button = New Button()
         SetSeletedFBLanguageTo_zhTW_Button = New Button()
         ShowDebugPanel_Button = New Button()
+        TurnOnSetSeleteKeyboardShortcuts_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -149,7 +150,7 @@ Partial Class Form1
         SetCookie_Button.Name = "SetCookie_Button"
         SetCookie_Button.Size = New Size(133, 29)
         SetCookie_Button.TabIndex = 16
-        SetCookie_Button.Text = "Cookie登入"
+        SetCookie_Button.Text = "設定Cookie"
         SetCookie_Button.UseVisualStyleBackColor = True
         ' 
         ' ReadCookie_Button
@@ -372,11 +373,21 @@ Partial Class Form1
         ShowDebugPanel_Button.Text = "debug"
         ShowDebugPanel_Button.UseVisualStyleBackColor = True
         ' 
+        ' TurnOnSetSeleteKeyboardShortcuts_Button
+        ' 
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(12, 685)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
+        TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(208, 29)
+        TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
+        TurnOnSetSeleteKeyboardShortcuts_Button.Text = "設定快捷鍵"
+        TurnOnSetSeleteKeyboardShortcuts_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1353, 722)
+        Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
         Controls.Add(ShowDebugPanel_Button)
         Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
         Controls.Add(Move_UserDataFolder_Button)
@@ -433,5 +444,6 @@ Partial Class Form1
     Friend WithEvents Move_UserDataFolder_Button As Button
     Friend WithEvents SetSeletedFBLanguageTo_zhTW_Button As Button
     Friend WithEvents ShowDebugPanel_Button As Button
+    Friend WithEvents TurnOnSetSeleteKeyboardShortcuts_Button As Button
 
 End Class

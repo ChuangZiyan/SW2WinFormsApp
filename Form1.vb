@@ -3,8 +3,6 @@ Imports Newtonsoft.Json
 
 Public Class Form1
 
-    Public ActivedWebview2UserData As String
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppInitModule.InitializeMainApp()
         MainFormController.SetForm1TitleStatus("完成")
@@ -38,7 +36,7 @@ Public Class Form1
         'MainFormController.DeleteUserDataFolder(folderName)
     End Sub
 
-    Private Sub WebviewUserDataFolder_CheckedListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.DoubleClick
+    Private Async Sub WebviewUserDataFolder_CheckedListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.DoubleClick
         Try
             Dim userDataFolder = Nothing
             Dim folderName() As String = Split(WebviewUserDataFolder_CheckedListBox.SelectedItem, "\")
@@ -50,8 +48,9 @@ Public Class Form1
             ' use 9222 for development
             Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
             'Dim debugPort = 9222
-            RestartMainWebView2(userDataFolder, debugPort)
-            ActivedWebview2UserData = WebviewUserDataFolder_CheckedListBox.SelectedItem
+            Await RestartMainWebView2(userDataFolder, debugPort)
+
+
         Catch ex As Exception
             Debug.WriteLine(ex)
             'MsgBox("初始化失敗")
@@ -65,6 +64,7 @@ Public Class Form1
     Private Sub FilterAvailableUserData_CheckBox_Click(sender As Object, e As EventArgs) Handles FilterAvailableUserData_CheckBox.Click
         MainFormController.UpdateWebviewUserDataCheckListBox()
     End Sub
+
     Private Sub FilterUnavailableUserData_CheckBox_Click(sender As Object, e As EventArgs) Handles FilterUnavailableUserData_CheckBox.Click
         MainFormController.UpdateWebviewUserDataCheckListBox()
     End Sub
@@ -117,4 +117,47 @@ Public Class Form1
     Private Sub SetCookie_Button_Click(sender As Object, e As EventArgs) Handles SetCookie_Button.Click
         SetCookie()
     End Sub
+
+    Private Async Sub TurnOnSetSeleteKeyboardShortcuts_Button_Click(sender As Object, e As EventArgs) Handles TurnOnSetSeleteKeyboardShortcuts_Button.Click
+        For Each item As String In WebviewUserDataFolder_CheckedListBox.CheckedItems
+
+            Dim userDataFolder = Nothing
+            Dim folderName() As String = Split(item, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+
+                Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
+                Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+                Await Webview2Controller.Delay_msec(1000)
+                Await Webview2Controller.TurnOnFBKeyboardShortcuts_Task()
+                Await Webview2Controller.Delay_msec(1000)
+                'Debug.WriteLine("EOF")
+            End If
+        Next
+    End Sub
+
+    Private Async Sub SetSeletedFBLanguageTo_zhTW_Button_Click(sender As Object, e As EventArgs) Handles SetSeletedFBLanguageTo_zhTW_Button.Click
+
+        For Each item As String In WebviewUserDataFolder_CheckedListBox.CheckedItems
+            'Debug.WriteLine("item : " & item)
+
+            Dim userDataFolder = Nothing
+            Dim folderName() As String = Split(item, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+            End If
+
+            Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
+            Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+            Await Webview2Controller.Delay_msec(1000)
+
+            Await SetFBLanguageTo_zhTW_Task()
+            Await Webview2Controller.Delay_msec(1000)
+            'Debug.WriteLine("EOF")
+        Next
+
+    End Sub
+
 End Class

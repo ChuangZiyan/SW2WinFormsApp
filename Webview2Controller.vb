@@ -3,10 +3,13 @@ Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft.Json
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Edge
+Imports OpenQA.Selenium.Support.UI
 
 Module Webview2Controller
     Public edgeDriver As IWebDriver
     Private webview2_environment As CoreWebView2Environment
+
+    Public ActivedWebview2UserData = ""
 
     Public Async Function InitializeWebView2(userDataFolder As String, debugPort As Integer) As Task
         webview2_environment = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder, New CoreWebView2EnvironmentOptions("--remote-debugging-port=" & debugPort))
@@ -37,23 +40,27 @@ Module Webview2Controller
 
     End Function
 
-    Public Async Sub RestartMainWebView2(userDataFolder As String, debugPort As Integer)
+    Public Async Function RestartMainWebView2(userDataFolder As String, debugPort As Integer) As Task(Of Boolean)
 
         Try
-            Form1.Text = "MainWebview2Form - 載入中..."
+            SetForm1TitleStatus("載入中...")
 
             ResetWebview2()
             Await Webview2Controller.InitializeWebView2(userDataFolder, debugPort)
             Await Webview2Controller.InitializeEdgeDriver_Task(debugPort)
 
             Await Navigate_GoToUrl_Task("https://www.facebook.com/")
-            Form1.Text = "MainWebview2Form - 完成"
+            Dim folderName = Split(userDataFolder, "\")
+            ActivedWebview2UserData = folderName(UBound(folderName))
+            SetForm1TitleStatus("完成")
+            Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
-            MsgBox("重啟失敗")
+            'MsgBox("重啟失敗")
+            Return False
         End Try
 
-    End Sub
+    End Function
 
     Public Sub ResetWebview2()
         ' reset edgeDriver
@@ -82,7 +89,7 @@ Module Webview2Controller
             .Size = webViewSize
         }
         Form1.Controls.Add(Form1.Main_WebView2)
-        Form1.ActivedWebview2UserData = ""
+        ActivedWebview2UserData = ""
     End Sub
 
     Public Async Function Delay_msec(msec As Integer) As Task
@@ -107,6 +114,7 @@ Module Webview2Controller
         End Try
 
     End Function
+
     Private Async Function IsAlertPresentAsync() As Task(Of Boolean)
         Try
             Dim alert As IAlert = Await Task.Run(
@@ -127,19 +135,38 @@ Module Webview2Controller
     End Function
 
 
+    Private Function ClickByCssSelector(CssSelector)
+        Try
+            edgeDriver.FindElement(By.CssSelector(CssSelector)).Click()
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+    Private Sub ClickByCssSelectorWaitUntil(cssSelector As String, TimeSpanSec As Integer)
+        Try
+            Dim wait As WebDriverWait = New WebDriverWait(edgeDriver, TimeSpan.FromSeconds(TimeSpanSec))
+            Dim element As IWebElement = wait.Until(Function(d) d.FindElement(By.CssSelector(cssSelector)))
+            element.Click()
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
     Public Sub ReadCookie()
         Try
             'Debug.WriteLine("Read Cookie")
-            If Form1.ActivedWebview2UserData = "" Then
+            If ActivedWebview2UserData = "" Then
                 MsgBox("未偵測到啟用的Webview2")
                 Exit Sub
             End If
 
-
             Dim cookies As ReadOnlyCollection(Of OpenQA.Selenium.Cookie) = edgeDriver.Manage().Cookies.AllCookies
             Dim cookieList As New List(Of myCookie)
 
-            ' 顯示每個 cookie 的相關信息
             For Each cookie As OpenQA.Selenium.Cookie In cookies
                 Debug.WriteLine($"Cookie Name: {cookie.Name}, Value: {cookie.Value}")
                 Dim myCookieObj As New myCookie With {
@@ -162,9 +189,9 @@ Module Webview2Controller
         End Try
     End Sub
 
-    Public Sub SetCookie()
+    Public Async Sub SetCookie()
         Try
-            If Form1.ActivedWebview2UserData = "" Then
+            If ActivedWebview2UserData = "" Then
                 MsgBox("未偵測到啟用的Webview2")
                 Exit Sub
             End If
@@ -178,21 +205,79 @@ Module Webview2Controller
             End If
 
             For Each ck In CookieList
-                Debug.WriteLine("#### " + ck.Domain + " " + ck.Name + " " + ck.Value)
+                'Debug.WriteLine("#### " + ck.Domain + " " + ck.Name + " " + ck.Value)
                 Dim cookie As New OpenQA.Selenium.Cookie(ck.Name, ck.Value, ck.Domain, ck.Path, DateTime.Now.AddDays(365))
                 edgeDriver.Manage.Cookies.AddCookie(cookie)
             Next
-
             'MsgBox("設定成功")
-            'Me.DialogResult = System.Windows.Forms.DialogResult.OK
-            'Me.Close()
-            'CookieRichTextBox.Clear()
-            ' edgeDriver.Navigate.Refresh()
+            Await Delay_msec(500)
+            Await Navigate_GoToUrl_Task(edgeDriver.Url)
+            'Debug.WriteLine("EOF")
         Catch ex As Exception
             Debug.WriteLine(ex)
             MsgBox("Cookie設定失敗")
         End Try
     End Sub
+
+
+    Public Function TurnOnFBKeyboardShortcuts_Task() As Task(Of Boolean)
+        Return Task.Run(Function() TurnOnFBKeyboardShortcuts())
+    End Function
+
+    Private Async Function TurnOnFBKeyboardShortcuts() As Task(Of Boolean)
+        Try
+            ClickByCssSelector("div.x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1o1ewxj.x3x9cwd.x1e5q0jg.x13rtm0m.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.xzsf02u.x1rg5ohu")
+            Await Delay_msec(500)
+            ClickByCssSelector("div.x1iorvi4.x4uap5.xwib8y2.xkhd6sd > div > div:nth-child(3) > div")
+            Await Delay_msec(500)
+            ClickByCssSelector("div.x1uvtmcs.x4k7w5x.x1h91t0o.x1beo9mf.xaigb6o.x12ejxvf.x3igimt.xarpa2k.xedcshv.x1lytzrv.x1t2pt76.x7ja8zs.x1n2onr6.x1qrby5j.x1jfb8zj > div > div > div > div > div > div > div > div > div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div > div")
+            Await Delay_msec(500)
+            ClickByCssSelector("div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div:nth-child(3) > div > div:nth-child(2) > label > div > div > div > div")
+            Await Delay_msec(500)
+
+
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+
+    Public Function SetFBLanguageTo_zhTW_Task() As Task(Of Boolean)
+        Return Task.Run(Function() SetFBLanguageTo_zhTW())
+    End Function
+
+    Private Async Function SetFBLanguageTo_zhTW() As Task(Of Boolean)
+        Try
+            Await Navigate_GoToUrl_Task("https://www.facebook.com/settings?tab=language")
+            Await Delay_msec(500)
+            Dim lang_span = edgeDriver.FindElement(By.CssSelector("div:nth-child(2) > div > div > div:nth-child(2) > div > div > div > div > div > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x78zum5 > div > div > div > div.x6s0dn4.x78zum5.xl56j7k.x1608yet.xljgi0e.x1e0frkt > div > span > span")).GetAttribute("innerHTML")
+
+            If lang_span <> "中文(台灣)" Then ' if language is not zh-TW
+                Debug.WriteLine("set lang")
+                ClickByCssSelector("div:nth-child(2) > div > div > div:nth-child(2) > div > div > div > div > div > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x78zum5 > div > div")
+                Await Delay_msec(1000)
+                Dim LanguageSearch_Input = edgeDriver.FindElement(By.CssSelector("div.x78zum5.xdt5ytf.x1t2pt76 > div > label > input"))
+                LanguageSearch_Input.SendKeys("Taiwan")
+                Await Delay_msec(1000)
+                ClickByCssSelectorWaitUntil("div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6.xaci4zi.x129vozr > div > div > div:nth-child(2) > div", 5)
+                Await Delay_msec(1000)
+                ClickByCssSelector("div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1ey2m1c.x1jx94hy.x190bdop.xp3hrpj.x13xjmei.xv7j57z.xh8yej3 > div > div > div > div > div:nth-child(1) > div")
+                Await Delay_msec(1000)
+            End If
+
+
+
+            'LanguageSearch_Input.SendKeys("Taiwan")
+            'Await Delay_msec(1000)
+            'ClickByCssSelectorWaitUntil("#zh_TWRECENT > div > div", 5)
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
 
     Public Class myCookie
         Public Property Domain As String
