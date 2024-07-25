@@ -54,8 +54,9 @@ Module MainFormController
                 If result = DialogResult.Yes Then
                     MainFormController.SetForm1TitleStatus("刪除中...")
                     For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
-                        Debug.WriteLine("item : " & item)
-                        If item = Webview2Controller.ActivedWebview2UserData Then
+                        'Debug.WriteLine("item : " & item)
+                        'Debug.WriteLine("curr : " & Webview2Controller.ActivedWebview2UserData)
+                        If Split(item, "\")(1) = Webview2Controller.ActivedWebview2UserData Then
                             ResetWebview2()
                             Await Delay_msec(500)
                         End If

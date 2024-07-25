@@ -28,6 +28,7 @@ Partial Class DebugForm
         Webview_Edge_Debug_Port_NumericUpDown = New NumericUpDown()
         UpdateCheckedListBox_Button = New Button()
         Label1 = New Label()
+        ResetWebview2_Button = New Button()
         CType(Webview_Edge_Debug_Port_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -86,11 +87,21 @@ Partial Class DebugForm
         Label1.TabIndex = 19
         Label1.Text = "DebugPort :"
         ' 
+        ' ResetWebview2_Button
+        ' 
+        ResetWebview2_Button.Location = New Point(266, 75)
+        ResetWebview2_Button.Name = "ResetWebview2_Button"
+        ResetWebview2_Button.Size = New Size(220, 29)
+        ResetWebview2_Button.TabIndex = 20
+        ResetWebview2_Button.Text = "Reset Weview2"
+        ResetWebview2_Button.UseVisualStyleBackColor = True
+        ' 
         ' DebugForm
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(498, 186)
+        Controls.Add(ResetWebview2_Button)
         Controls.Add(Label1)
         Controls.Add(UpdateCheckedListBox_Button)
         Controls.Add(Activate_WebviewEdge_Button)
@@ -110,4 +121,5 @@ Partial Class DebugForm
     Friend WithEvents Webview_Edge_Debug_Port_NumericUpDown As NumericUpDown
     Friend WithEvents UpdateCheckedListBox_Button As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents ResetWebview2_Button As Button
 End Class

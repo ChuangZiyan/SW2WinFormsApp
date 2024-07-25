@@ -270,16 +270,16 @@ Module Webview2Controller
             Await Delay_msec(500)
             ClickByCssSelector("div.x1y1aw1k.x4uap5.xwxc41k.xkhd6sd > div > div:nth-child(2) > div")
             Await Delay_msec(500)
-            Dim Lang_span = edgeDriver.FindElement(By.CssSelector("div.x1y1aw1k.x4uap5.xwxc41k.xkhd6sd > div > div:nth-child(2) > div > div.x6s0dn4.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.xeuugli.x18d9i69.x1sxyh0.xurb0ha.xexx8yu.x1n2onr6.x1ja2u2z.x1gg8mnh > div.x6s0dn4.xkh2ocl.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x18d9i69.x4uap5.xkhd6sd.xexx8yu.x1n2onr6.x1ja2u2z > div.x1qjc9v5.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1r8uery.xdt5ytf.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x4uap5.xkhd6sd.x1n2onr6.x1ja2u2z.x1y1aw1k.xwib8y2 > div > div > div:nth-child(2) > span")).GetAttribute("innerHTML")
-            Debug.WriteLine("lang:" & Lang_span)
-            If Lang_span.Trim <> "繁體中文（台灣）" Then
-                ClickByCssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div.x1y1aw1k.x4uap5.xwxc41k.xkhd6sd > div > div:nth-child(2) > div")
-                Await Delay_msec(500)
-                Dim LanguageSearch_Input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.x1qughib.x1qjc9v5.xozqiw3.x1q0g3np.x1sxyh0.xurb0ha.x1l90r2v.xexx8yu.xykv574.xbmpl8g.x4cne27.xifccgj > div > div > div:nth-child(1) > div > div > label > input"))
-                LanguageSearch_Input.SendKeys("Taiwan")
-                Await Delay_msec(1000)
-                ClickByCssSelectorWaitUntil("#zh_TWRECENT > div > div", 5)
-            End If
+            'Dim Lang_span = edgeDriver.FindElement(By.CssSelector("div.x1y1aw1k.x4uap5.xwxc41k.xkhd6sd > div > div:nth-child(2) > div > div.x6s0dn4.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.xeuugli.x18d9i69.x1sxyh0.xurb0ha.xexx8yu.x1n2onr6.x1ja2u2z.x1gg8mnh > div.x6s0dn4.xkh2ocl.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x18d9i69.x4uap5.xkhd6sd.xexx8yu.x1n2onr6.x1ja2u2z > div.x1qjc9v5.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1r8uery.xdt5ytf.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x4uap5.xkhd6sd.x1n2onr6.x1ja2u2z.x1y1aw1k.xwib8y2 > div > div > div:nth-child(2) > span")).GetAttribute("innerHTML")
+            'Debug.WriteLine("lang:" & Lang_span)
+            'If Lang_span.Trim <> "繁體中文（台灣）" Then
+            ClickByCssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div.x1y1aw1k.x4uap5.xwxc41k.xkhd6sd > div > div:nth-child(2) > div")
+            Await Delay_msec(500)
+            Dim LanguageSearch_Input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.x1qughib.x1qjc9v5.xozqiw3.x1q0g3np.x1sxyh0.xurb0ha.x1l90r2v.xexx8yu.xykv574.xbmpl8g.x4cne27.xifccgj > div > div > div:nth-child(1) > div > div > label > input"))
+            LanguageSearch_Input.SendKeys("Taiwan")
+            Await Delay_msec(1000)
+            ClickByCssSelectorWaitUntil("#zh_TWRECENT > div > div", 5)
+            'End If
             Await Delay_msec(500)
             Return True
         Catch ex As Exception
