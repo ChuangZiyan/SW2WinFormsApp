@@ -38,6 +38,13 @@ Public Class Form1
 
     Private Async Sub WebviewUserDataFolder_CheckedListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.DoubleClick
         Try
+            'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
+
+            If Webview2Controller.IsWebview2Lock = True Then
+                MsgBox("Webview2載入中，請稍後")
+                Exit Sub
+            End If
+
             Dim userDataFolder = Nothing
             Dim folderName() As String = Split(WebviewUserDataFolder_CheckedListBox.SelectedItem, "\")
 
@@ -49,8 +56,6 @@ Public Class Form1
             Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
             'Dim debugPort = 9222
             Await RestartMainWebView2(userDataFolder, debugPort)
-
-
         Catch ex As Exception
             Debug.WriteLine(ex)
             'MsgBox("初始化失敗")
@@ -100,9 +105,6 @@ Public Class Form1
 
     Private Sub ReadCookie_Button_Click(sender As Object, e As EventArgs) Handles ReadCookie_Button.Click
         ReadCookie()
-        ' save to user data after read cookie
-        ' ... to be ddd
-
     End Sub
 
     Private Sub ShowDebugPanel_Button_Click(sender As Object, e As EventArgs) Handles ShowDebugPanel_Button.Click
@@ -119,7 +121,13 @@ Public Class Form1
     End Sub
 
     Private Async Sub TurnOnSetSeleteKeyboardShortcuts_Button_Click(sender As Object, e As EventArgs) Handles TurnOnSetSeleteKeyboardShortcuts_Button.Click
-        For Each item As String In WebviewUserDataFolder_CheckedListBox.CheckedItems
+
+        Dim WebviewUserDataFolders As New List(Of String)()
+        For Each item In WebviewUserDataFolder_CheckedListBox.CheckedItems
+            WebviewUserDataFolders.Add(item.ToString)
+        Next
+
+        For Each item As String In WebviewUserDataFolders
 
             Dim userDataFolder = Nothing
             Dim folderName() As String = Split(item, "\")
@@ -139,7 +147,12 @@ Public Class Form1
 
     Private Async Sub SetSeletedFBLanguageTo_zhTW_Button_Click(sender As Object, e As EventArgs) Handles SetSeletedFBLanguageTo_zhTW_Button.Click
 
-        For Each item As String In WebviewUserDataFolder_CheckedListBox.CheckedItems
+        Dim WebviewUserDataFolders As New List(Of String)()
+        For Each item In WebviewUserDataFolder_CheckedListBox.CheckedItems
+            WebviewUserDataFolders.Add(item.ToString)
+        Next
+
+        For Each item As String In WebviewUserDataFolders
             'Debug.WriteLine("item : " & item)
 
             Dim userDataFolder = Nothing
@@ -159,5 +172,6 @@ Public Class Form1
         Next
 
     End Sub
+
 
 End Class
