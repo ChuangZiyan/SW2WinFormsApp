@@ -9,19 +9,19 @@ Module MainFormController
     End Sub
 
     Public Sub UpdateWebviewUserDataCheckListBox()
-        Form1.WebviewUserDataFolder_CheckedListBox.Items.Clear()
+        Form1.WebviewUserDataFolder_ListBox.Items.Clear()
 
         If Form1.FilterAvailableUserData_CheckBox.Checked = True Then
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.availableUserDataDirectory)
             For Each dir As String In dirs
-                Form1.WebviewUserDataFolder_CheckedListBox.Items.Add("available" & "\" & Path.GetFileName(dir))
+                Form1.WebviewUserDataFolder_ListBox.Items.Add("available" & "\" & Path.GetFileName(dir))
             Next
         End If
 
         If Form1.FilterUnavailableUserData_CheckBox.Checked = True Then
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.unavailableUserDataDirectory)
             For Each dir As String In dirs
-                Form1.WebviewUserDataFolder_CheckedListBox.Items.Add("unavailable" & "\" & Path.GetFileName(dir))
+                Form1.WebviewUserDataFolder_ListBox.Items.Add("unavailable" & "\" & Path.GetFileName(dir))
             Next
         End If
 
@@ -49,15 +49,16 @@ Module MainFormController
     Public Async Sub DeleteUserDataFolders()
 
         Try
-            If Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems.Count <> 0 Then
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItems.Count <> 0 Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     MainFormController.SetForm1TitleStatus("刪除中...")
-                    For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
+                    For Each item As String In Form1.WebviewUserDataFolder_ListBox.SelectedItems
                         'Debug.WriteLine("item : " & item)
                         'Debug.WriteLine("curr : " & Webview2Controller.ActivedWebview2UserData)
                         If Split(item, "\")(1) = Webview2Controller.ActivedWebview2UserData Then
-                            ResetWebview2()
+                            Await ResetWebview2()
+                            Debug.WriteLine("after reset")
                             Await Delay_msec(500)
                         End If
                         Dim myFolders = Split(item, "\")
@@ -113,12 +114,13 @@ Module MainFormController
 
     Public Async Sub MoveUserDataFolder()
         Try
-            If Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems.Count <> 0 Then
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItems.Count <> 0 Then
 
-                For Each item As String In Form1.WebviewUserDataFolder_CheckedListBox.CheckedItems
+                For Each item As String In Form1.WebviewUserDataFolder_ListBox.SelectedItems
                     'Debug.WriteLine("item : " & item)
                     If item = Webview2Controller.ActivedWebview2UserData Then
-                        ResetWebview2()
+                        Await ResetWebview2()
+                        Debug.WriteLine("after reset")
                         Await Delay_msec(500)
                     End If
 
@@ -181,7 +183,7 @@ Module MainFormController
 
     Public Sub SetForm1TitleStatus(status As String)
         Dim myUserData = Webview2Controller.ActivedWebview2UserData
-        Form1.Text = "UserData - " & myUserData & "    " & status & " - MainWebview2Form"
+        Form1.Text = "UserData: " & myUserData & "    Port: " & Webview2Controller.DebugPortInUse & "    |    " & status & "    - MainWebview2Form"
     End Sub
 
 

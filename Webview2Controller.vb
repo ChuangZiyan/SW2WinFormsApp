@@ -4,12 +4,16 @@ Imports Newtonsoft.Json
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Edge
 Imports OpenQA.Selenium.Support.UI
+Imports System.Net
+Imports System.Net.Sockets
+Imports System.Net.NetworkInformation
 
 Module Webview2Controller
     Public edgeDriver As IWebDriver
     Private webview2_environment As CoreWebView2Environment
 
-    Public ActivedWebview2UserData = ""
+    Public ActivedWebview2UserData = "N/A"
+    Public DebugPortInUse As Integer = 0
 
     Public IsWebview2Lock As Boolean = False
 
@@ -32,7 +36,7 @@ Module Webview2Controller
             Dim serv As EdgeDriverService = EdgeDriverService.CreateDefaultService
             serv.HideCommandPromptWindow = True
 
-            Threading.Thread.Sleep(500)
+            'Threading.Thread.Sleep(500)
             edgeDriver = New EdgeDriver(serv, options)
             'Debug.WriteLine("init port " & debugPort)
             Return True
@@ -50,16 +54,18 @@ Module Webview2Controller
             Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
             SetForm1TitleStatus("載入中...")
 
-            ResetWebview2()
-            Await Webview2Controller.InitializeWebView2(userDataFolder, debugPort)
-            Await Webview2Controller.InitializeEdgeDriver_Task(debugPort)
-
+            Dim RandomDebugPort = GetAvailablePort(9200, 9999)
+            Debug.WriteLine("Use Port : " & RandomDebugPort)
+            Await ResetWebview2()
+            Await Webview2Controller.InitializeWebView2(userDataFolder, RandomDebugPort)
+            Await Webview2Controller.InitializeEdgeDriver_Task(RandomDebugPort)
+            DebugPortInUse = RandomDebugPort
             Await Navigate_GoToUrl_Task("https://www.facebook.com/")
             Dim folderName = Split(userDataFolder, "\")
             ActivedWebview2UserData = folderName(UBound(folderName))
             SetForm1TitleStatus("完成")
             IsWebview2Lock = False
-            Debug.WriteLine("EOF")
+            'Debug.WriteLine("EOF")
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -70,7 +76,7 @@ Module Webview2Controller
 
     End Function
 
-    Public Sub ResetWebview2()
+    Public Async Function ResetWebview2() As Task
         Try
             ' reset edgeDriver
             If edgeDriver IsNot Nothing Then
@@ -98,12 +104,47 @@ Module Webview2Controller
                 .Size = webViewSize
             }
             Form1.Controls.Add(Form1.Main_WebView2)
-            ActivedWebview2UserData = ""
+            ActivedWebview2UserData = "N/A"
+            DebugPortInUse = 0
+            Await Delay_msec(100)
+            Debug.WriteLine("reset webview2 EOF")
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
 
-    End Sub
+    End Function
+
+
+    Function GetAvailablePort(minPort As Integer, maxPort As Integer) As Integer
+        Dim rnd As New Random()
+        Dim port As Integer
+
+        For i As Integer = 1 To 100 ' try 100 times
+            port = rnd.Next(minPort, maxPort + 1)
+            If Not IsPortInUse(port) Then
+                Return port
+            End If
+        Next
+
+        Return -1 ' return -1 if not found
+    End Function
+
+    Function IsPortInUse(port As Integer) As Boolean
+        Dim isAvailable As Boolean = True
+
+        Dim ipGlobalProperties As IPGlobalProperties = IPGlobalProperties.GetIPGlobalProperties
+        Dim tcpConnInfoArray = ipGlobalProperties.GetActiveTcpListeners()
+
+        For Each endpoint In tcpConnInfoArray
+            If endpoint.Port = port Then
+                isAvailable = False
+                Exit For
+            End If
+        Next
+
+        Return Not isAvailable
+    End Function
+
 
     Public Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
@@ -172,7 +213,7 @@ Module Webview2Controller
     Public Sub ReadCookie()
         Try
             'Debug.WriteLine("Read Cookie")
-            If ActivedWebview2UserData = "" Then
+            If ActivedWebview2UserData = "N/A" Then
                 MsgBox("未偵測到啟用的Webview2")
                 Exit Sub
             End If
@@ -195,7 +236,8 @@ Module Webview2Controller
 
             Form1.FBCookie_RichTextBox.Text = jsonStr
 
-            MainFormController.SaveUserData(Form1.WebviewUserDataFolder_CheckedListBox.SelectedItem)
+            ' to be edit
+            'MainFormController.SaveUserData(Form1.WebviewUserDataFolder_CheckedListBox.SelectedItem)
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -204,7 +246,7 @@ Module Webview2Controller
 
     Public Async Sub SetCookie()
         Try
-            If ActivedWebview2UserData = "" Then
+            If ActivedWebview2UserData = "N/A" Then
                 MsgBox("未偵測到啟用的Webview2")
                 Exit Sub
             End If
@@ -247,7 +289,6 @@ Module Webview2Controller
             Await Delay_msec(500)
             ClickByCssSelector("div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div:nth-child(3) > div > div:nth-child(2) > label > div > div > div > div")
             Await Delay_msec(500)
-
 
             Return True
         Catch ex As Exception

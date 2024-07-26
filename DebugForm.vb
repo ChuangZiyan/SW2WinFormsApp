@@ -4,7 +4,7 @@ Public Class DebugForm
     Private Async Sub Activate_WebviewEdge_Button_Click(sender As Object, e As EventArgs) Handles Activate_WebviewEdge_Button.Click
         Try
             Dim userDataFolder = Nothing
-            Dim folderName = Form1.WebviewUserDataFolder_CheckedListBox.SelectedItem
+            Dim folderName = Form1.WebviewUserDataFolder_ListBox.SelectedItem
             If folderName <> "" Then
                 userDataFolder = Path.Combine(webivewUserDataDirectory, folderName)
             End If

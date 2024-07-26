@@ -36,20 +36,20 @@ Public Class Form1
         'MainFormController.DeleteUserDataFolder(folderName)
     End Sub
 
-    Private Async Sub WebviewUserDataFolder_CheckedListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.DoubleClick
+    Private Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_ListBox.DoubleClick
         Try
             'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
 
-            If Webview2Controller.IsWebview2Lock = True Then
+            If IsWebview2Lock = True Then
                 MsgBox("Webview2載入中，請稍後")
                 Exit Sub
             End If
 
             Dim userDataFolder = Nothing
-            Dim folderName() As String = Split(WebviewUserDataFolder_CheckedListBox.SelectedItem, "\")
+            Dim folderName = Split(WebviewUserDataFolder_ListBox.SelectedItem, "\")
 
             If folderName(1) <> "" Then
-                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+                userDataFolder = Path.Combine(webivewUserDataDirectory, folderName(0), folderName(1))
             End If
             ' need to auto detect debug port
             ' use 9222 for development
@@ -63,7 +63,7 @@ Public Class Form1
     End Sub
 
     Private Sub SaveUserData_Button_Click(sender As Object, e As EventArgs) Handles SaveUserData_Button.Click
-        MainFormController.SaveUserData(WebviewUserDataFolder_CheckedListBox.SelectedItem)
+        MainFormController.SaveUserData(WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
 
     Private Sub FilterAvailableUserData_CheckBox_Click(sender As Object, e As EventArgs) Handles FilterAvailableUserData_CheckBox.Click
@@ -99,8 +99,8 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub WebviewUserDataFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_CheckedListBox.SelectedIndexChanged
-        DisplayUserData(WebviewUserDataFolder_CheckedListBox.SelectedItem)
+    Private Sub WebviewUserDataFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_ListBox.SelectedIndexChanged
+        DisplayUserData(WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
 
     Private Sub ReadCookie_Button_Click(sender As Object, e As EventArgs) Handles ReadCookie_Button.Click
@@ -123,7 +123,7 @@ Public Class Form1
     Private Async Sub TurnOnSetSeleteKeyboardShortcuts_Button_Click(sender As Object, e As EventArgs) Handles TurnOnSetSeleteKeyboardShortcuts_Button.Click
 
         Dim WebviewUserDataFolders As New List(Of String)()
-        For Each item In WebviewUserDataFolder_CheckedListBox.CheckedItems
+        For Each item In WebviewUserDataFolder_ListBox.SelectedItems
             WebviewUserDataFolders.Add(item.ToString)
         Next
 
@@ -148,7 +148,7 @@ Public Class Form1
     Private Async Sub SetSeletedFBLanguageTo_zhTW_Button_Click(sender As Object, e As EventArgs) Handles SetSeletedFBLanguageTo_zhTW_Button.Click
 
         Dim WebviewUserDataFolders As New List(Of String)()
-        For Each item In WebviewUserDataFolder_CheckedListBox.CheckedItems
+        For Each item In WebviewUserDataFolder_ListBox.SelectedItems
             WebviewUserDataFolders.Add(item.ToString)
         Next
 
@@ -173,5 +173,13 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Debug.WriteLine("selected item: " & WebviewUserDataFolder_ListBox.SelectedItem)
+
+        For Each item In WebviewUserDataFolder_ListBox.SelectedItems
+            Debug.WriteLine("items: " & item)
+        Next
+
+    End Sub
 
 End Class

@@ -23,7 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
-        WebviewUserDataFolder_CheckedListBox = New CheckedListBox()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
         UserInfo_GroupBox = New GroupBox()
@@ -56,6 +55,8 @@ Partial Class Form1
         SetSeletedFBLanguageTo_zhTW_Button = New Button()
         ShowDebugPanel_Button = New Button()
         TurnOnSetSeleteKeyboardShortcuts_Button = New Button()
+        WebviewUserDataFolder_ListBox = New ListBox()
+        Button1 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -73,15 +74,6 @@ Partial Class Form1
         Main_WebView2.Size = New Size(795, 632)
         Main_WebView2.TabIndex = 0
         Main_WebView2.ZoomFactor = 1R
-        ' 
-        ' WebviewUserDataFolder_CheckedListBox
-        ' 
-        WebviewUserDataFolder_CheckedListBox.CheckOnClick = True
-        WebviewUserDataFolder_CheckedListBox.FormattingEnabled = True
-        WebviewUserDataFolder_CheckedListBox.Location = New Point(12, 12)
-        WebviewUserDataFolder_CheckedListBox.Name = "WebviewUserDataFolder_CheckedListBox"
-        WebviewUserDataFolder_CheckedListBox.Size = New Size(208, 466)
-        WebviewUserDataFolder_CheckedListBox.TabIndex = 1
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -382,11 +374,32 @@ Partial Class Form1
         TurnOnSetSeleteKeyboardShortcuts_Button.Text = "設定快捷鍵"
         TurnOnSetSeleteKeyboardShortcuts_Button.UseVisualStyleBackColor = True
         ' 
+        ' WebviewUserDataFolder_ListBox
+        ' 
+        WebviewUserDataFolder_ListBox.FormattingEnabled = True
+        WebviewUserDataFolder_ListBox.ItemHeight = 19
+        WebviewUserDataFolder_ListBox.Location = New Point(12, 12)
+        WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
+        WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        WebviewUserDataFolder_ListBox.Size = New Size(208, 460)
+        WebviewUserDataFolder_ListBox.TabIndex = 18
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(562, 683)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 19
+        Button1.Text = "Button1"
+        Button1.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1353, 722)
+        Controls.Add(Button1)
+        Controls.Add(WebviewUserDataFolder_ListBox)
         Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
         Controls.Add(ShowDebugPanel_Button)
         Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
@@ -398,7 +411,6 @@ Partial Class Form1
         Controls.Add(UserInfo_GroupBox)
         Controls.Add(NavigateTo_Url_Button)
         Controls.Add(Navigate_Url_TextBox)
-        Controls.Add(WebviewUserDataFolder_CheckedListBox)
         Controls.Add(Main_WebView2)
         Name = "Form1"
         Text = "Form1"
@@ -412,7 +424,6 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents Main_WebView2 As Microsoft.Web.WebView2.WinForms.WebView2
-    Friend WithEvents WebviewUserDataFolder_CheckedListBox As CheckedListBox
     Friend WithEvents Navigate_Url_TextBox As TextBox
     Friend WithEvents NavigateTo_Url_Button As Button
     Friend WithEvents UserInfo_GroupBox As GroupBox
@@ -445,5 +456,7 @@ Partial Class Form1
     Friend WithEvents SetSeletedFBLanguageTo_zhTW_Button As Button
     Friend WithEvents ShowDebugPanel_Button As Button
     Friend WithEvents TurnOnSetSeleteKeyboardShortcuts_Button As Button
+    Friend WithEvents WebviewUserDataFolder_ListBox As ListBox
+    Friend WithEvents Button1 As Button
 
 End Class
