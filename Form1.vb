@@ -173,13 +173,32 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Debug.WriteLine("selected item: " & WebviewUserDataFolder_ListBox.SelectedItem)
-
+    Private Async Sub RequestFriend_Button_Click(sender As Object, e As EventArgs) Handles RequestFriend_Button.Click
+        Dim WebviewUserDataFolders As New List(Of String)()
         For Each item In WebviewUserDataFolder_ListBox.SelectedItems
-            Debug.WriteLine("items: " & item)
+            WebviewUserDataFolders.Add(item.ToString)
         Next
 
-    End Sub
+        For Each item As String In WebviewUserDataFolders
+            'Debug.WriteLine("item : " & item)
 
+            Dim userDataFolder = Nothing
+            Dim folderName() As String = Split(item, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+            End If
+
+            Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
+            Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+            Await Webview2Controller.Delay_msec(1000)
+
+            Await Navigate_GoToUrl_Task(Navigate_Url_TextBox.Text)
+
+            Await FBRquestFrient()
+
+            Await Webview2Controller.Delay_msec(1000)
+            'Debug.WriteLine("EOF")
+        Next
+    End Sub
 End Class

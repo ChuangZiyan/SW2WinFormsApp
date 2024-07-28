@@ -59,7 +59,7 @@ Module MainFormController
                         If Split(item, "\")(1) = Webview2Controller.ActivedWebview2UserData Then
                             Await ResetWebview2()
                             Debug.WriteLine("after reset")
-                            Await Delay_msec(500)
+                            Await Delay_msec(200)
                         End If
                         Dim myFolders = Split(item, "\")
                         Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
@@ -118,14 +118,14 @@ Module MainFormController
 
                 For Each item As String In Form1.WebviewUserDataFolder_ListBox.SelectedItems
                     'Debug.WriteLine("item : " & item)
-                    If item = Webview2Controller.ActivedWebview2UserData Then
-                        Await ResetWebview2()
-                        Debug.WriteLine("after reset")
-                        Await Delay_msec(500)
-                    End If
-
                     Dim myFolders = Split(item, "\")
                     Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
+                    If myFolders(1) = Webview2Controller.ActivedWebview2UserData Then
+                        Await ResetWebview2()
+                        Debug.WriteLine("after reset")
+                        Await Delay_msec(200)
+                    End If
+
                     If myFolders(0) = "available" Then ' move to unavailable
                         Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "unavailable", myFolders(1))
                         Directory.Move(folderPath, destinationPath)

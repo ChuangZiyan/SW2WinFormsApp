@@ -5,8 +5,9 @@ Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Edge
 Imports OpenQA.Selenium.Support.UI
 Imports System.Net
-Imports System.Net.Sockets
 Imports System.Net.NetworkInformation
+Imports OpenQA.Selenium.Chrome
+Imports OpenQA.Selenium.Internal
 
 Module Webview2Controller
     Public edgeDriver As IWebDriver
@@ -29,6 +30,9 @@ Module Webview2Controller
 
     Public Function InitializeEdgeDriver(debugPort As Integer) As Boolean
         Try
+            'Dim driverManager = New DriverManager()
+            'driverManager.SetUpDriver(New EdgeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+
             Dim options As EdgeOptions = New EdgeOptions()
             options.AddArguments("--disable-dev-shm-usage", "--no-sandbox")
             options.DebuggerAddress = "localhost:" & debugPort
@@ -54,7 +58,7 @@ Module Webview2Controller
             Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
             SetForm1TitleStatus("載入中...")
 
-            Dim RandomDebugPort = GetAvailablePort(9200, 9999)
+            Dim RandomDebugPort = GetAvailablePort(50000, 65000)
             Debug.WriteLine("Use Port : " & RandomDebugPort)
             Await ResetWebview2()
             Await Webview2Controller.InitializeWebView2(userDataFolder, RandomDebugPort)
@@ -106,7 +110,7 @@ Module Webview2Controller
             Form1.Controls.Add(Form1.Main_WebView2)
             ActivedWebview2UserData = "N/A"
             DebugPortInUse = 0
-            Await Delay_msec(100)
+            Await Delay_msec(500)
             Debug.WriteLine("reset webview2 EOF")
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -204,6 +208,18 @@ Module Webview2Controller
             Dim wait As WebDriverWait = New WebDriverWait(edgeDriver, TimeSpan.FromSeconds(TimeSpanSec))
             Dim element As IWebElement = wait.Until(Function(d) d.FindElement(By.CssSelector(cssSelector)))
             element.Click()
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Private Async Sub ClickByAriaLable(text As String)
+        Try
+            edgeDriver.FindElement(By.CssSelector("div[aria-label$='" + text + "']")).Click()
+            Await Delay_msec(500)
+
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
@@ -359,6 +375,33 @@ Module Webview2Controller
             Return False
         End Try
     End Function
+
+
+
+
+    Public Async Function FBRquestFrient() As Task
+
+        Await Task.Run(Function()
+                           Try
+                               Dim span_text_css = "div.x1ifrov1.x1i1uccp.x1stjdt1.x1yaem6q.x4ckvhe.x2k3zez.xjbssrd.x1ltux0g.xit7rg8.xc9uqle.x17quhge > div > div > div:nth-child(1) > div > div > div > div.x6s0dn4.x78zum5.xl56j7k.x1608yet.xljgi0e.x1e0frkt > div:nth-child(2) > span > span"
+                               Dim request_friend_span = edgeDriver.FindElement(By.CssSelector(span_text_css))
+
+                               If request_friend_span.GetAttribute("innerHTML") = "加朋友" Then
+                                   request_friend_span.Click()
+                               End If
+
+                               'Debug.WriteLine("innerHTML: " & span_text)
+                               'ClickByCssSelector("div.x6s0dn4.x78zum5.xvrxa7q.x9w375v.xxfedj9.x1roke11.x1es02x0 > div.x1ifrov1.x1i1uccp.x1stjdt1.x1yaem6q.x4ckvhe.x2k3zez.xjbssrd.x1ltux0g.xit7rg8.xc9uqle.x17quhge > div > div > div:nth-child(1) > div > div")
+                               Return True
+                           Catch ex As Exception
+                               Debug.WriteLine(ex)
+                               Return False
+                           End Try
+                       End Function)
+        Await Delay_msec(500)
+
+    End Function
+
 
     Public Class myCookie
         Public Property Domain As String

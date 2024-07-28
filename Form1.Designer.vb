@@ -56,7 +56,7 @@ Partial Class Form1
         ShowDebugPanel_Button = New Button()
         TurnOnSetSeleteKeyboardShortcuts_Button = New Button()
         WebviewUserDataFolder_ListBox = New ListBox()
-        Button1 = New Button()
+        RequestFriend_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -351,9 +351,9 @@ Partial Class Form1
         ' 
         SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 650)
         SetSeletedFBLanguageTo_zhTW_Button.Name = "SetSeletedFBLanguageTo_zhTW_Button"
-        SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(208, 29)
+        SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(94, 29)
         SetSeletedFBLanguageTo_zhTW_Button.TabIndex = 15
-        SetSeletedFBLanguageTo_zhTW_Button.Text = "設定中文台灣"
+        SetSeletedFBLanguageTo_zhTW_Button.Text = "設定中文"
         SetSeletedFBLanguageTo_zhTW_Button.UseVisualStyleBackColor = True
         ' 
         ' ShowDebugPanel_Button
@@ -367,9 +367,9 @@ Partial Class Form1
         ' 
         ' TurnOnSetSeleteKeyboardShortcuts_Button
         ' 
-        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(12, 685)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(126, 652)
         TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
-        TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(208, 29)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(94, 29)
         TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
         TurnOnSetSeleteKeyboardShortcuts_Button.Text = "設定快捷鍵"
         TurnOnSetSeleteKeyboardShortcuts_Button.UseVisualStyleBackColor = True
@@ -384,21 +384,21 @@ Partial Class Form1
         WebviewUserDataFolder_ListBox.Size = New Size(208, 460)
         WebviewUserDataFolder_ListBox.TabIndex = 18
         ' 
-        ' Button1
+        ' RequestFriend_Button
         ' 
-        Button1.Location = New Point(562, 683)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 19
-        Button1.Text = "Button1"
-        Button1.UseVisualStyleBackColor = True
+        RequestFriend_Button.Location = New Point(12, 685)
+        RequestFriend_Button.Name = "RequestFriend_Button"
+        RequestFriend_Button.Size = New Size(94, 29)
+        RequestFriend_Button.TabIndex = 19
+        RequestFriend_Button.Text = "加好友"
+        RequestFriend_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1353, 722)
-        Controls.Add(Button1)
+        ClientSize = New Size(1563, 824)
+        Controls.Add(RequestFriend_Button)
         Controls.Add(WebviewUserDataFolder_ListBox)
         Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
         Controls.Add(ShowDebugPanel_Button)
@@ -457,6 +457,6 @@ Partial Class Form1
     Friend WithEvents ShowDebugPanel_Button As Button
     Friend WithEvents TurnOnSetSeleteKeyboardShortcuts_Button As Button
     Friend WithEvents WebviewUserDataFolder_ListBox As ListBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents RequestFriend_Button As Button
 
 End Class
