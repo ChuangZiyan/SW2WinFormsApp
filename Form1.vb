@@ -146,6 +146,7 @@ Public Class Form1
 
                 Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
                 Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
                 Await Webview2Controller.Delay_msec(1000)
                 Await Webview2Controller.TurnOnFBKeyboardShortcuts_Task()
                 Await Webview2Controller.Delay_msec(1000)
@@ -201,7 +202,6 @@ Public Class Form1
 
             Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
             Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
-            Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
             Await Webview2Controller.Delay_msec(1000)
 
             Await Navigate_GoToUrl_Task(Navigate_Url_TextBox.Text)
