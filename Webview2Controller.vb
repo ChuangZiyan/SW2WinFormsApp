@@ -260,11 +260,11 @@ Module Webview2Controller
             End If
 
             Dim cookies As ReadOnlyCollection(Of OpenQA.Selenium.Cookie) = edgeDriver.Manage().Cookies.AllCookies
-            Dim cookieList As New List(Of myCookie)
+            Dim cookieList As New List(Of MyCookie)
 
             For Each cookie As OpenQA.Selenium.Cookie In cookies
                 Debug.WriteLine($"Cookie Name: {cookie.Name}, Value: {cookie.Value}")
-                Dim myCookieObj As New myCookie With {
+                Dim myCookieObj As New MyCookie With {
                     .Name = cookie.Name,
                     .Value = cookie.Value,
                     .Domain = cookie.Domain,
@@ -293,7 +293,7 @@ Module Webview2Controller
             End If
 
             Dim JsonText = Form1.FBCookie_RichTextBox.Text
-            Dim CookieList As List(Of myCookie) = JsonConvert.DeserializeObject(Of List(Of myCookie))(JsonText)
+            Dim CookieList As List(Of MyCookie) = JsonConvert.DeserializeObject(Of List(Of MyCookie))(JsonText)
 
             If CookieList Is Nothing Then
                 MsgBox("Cookie格式錯誤")
@@ -434,7 +434,7 @@ Module Webview2Controller
     End Function
 
 
-    Public Class myCookie
+    Public Class MyCookie
         Public Property Domain As String
         Public Property Name As String
         Public Property Value As String
