@@ -1,13 +1,18 @@
 ﻿Imports System.IO
+Imports System.Security.Policy
 Imports Newtonsoft.Json
 
 Public Class Form1
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
         MainFormController.SetForm1TitleStatus("完成")
         Navigate_Url_TextBox.Text = "https://www.facebook.com/"
         'NavigateTo_Url_Button.Enabled = False
+        Await Webview2Controller.GetWebview2EdgeVersion()
+        Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
+
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -39,6 +44,9 @@ Public Class Form1
     Private Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_ListBox.DoubleClick
         Try
             'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
+            If WebviewUserDataFolder_ListBox.SelectedItem = "" Then
+                Exit Sub
+            End If
 
             If IsWebview2Lock = True Then
                 MsgBox("Webview2載入中，請稍後")
@@ -56,6 +64,7 @@ Public Class Form1
             Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
             'Dim debugPort = 9222
             Await RestartMainWebView2(userDataFolder, debugPort)
+            Await Navigate_GoToUrl_Task(Navigate_Url_TextBox.Text)
         Catch ex As Exception
             Debug.WriteLine(ex)
             'MsgBox("初始化失敗")
@@ -201,4 +210,15 @@ Public Class Form1
             'Debug.WriteLine("EOF")
         Next
     End Sub
+
+    Private Sub GetCurrentUrl_Button_Click(sender As Object, e As EventArgs) Handles GetCurrentUrl_Button.Click
+        Try
+            Navigate_Url_TextBox.Text = Webview2Controller.edgeDriver.Url
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("未偵測到Edge driver")
+        End Try
+
+    End Sub
+
 End Class

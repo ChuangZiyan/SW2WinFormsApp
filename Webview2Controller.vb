@@ -6,17 +6,22 @@ Imports OpenQA.Selenium.Edge
 Imports OpenQA.Selenium.Support.UI
 Imports System.Net
 Imports System.Net.NetworkInformation
-Imports OpenQA.Selenium.Chrome
-Imports OpenQA.Selenium.Internal
+Imports WebDriverManager.Helpers
+Imports WebDriverManager
+Imports WebDriverManager.DriverConfigs.Impl
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Module Webview2Controller
     Public edgeDriver As IWebDriver
+    Private driverManager = New DriverManager()
     Private webview2_environment As CoreWebView2Environment
 
     Public ActivedWebview2UserData = "N/A"
     Public DebugPortInUse As Integer = 0
 
     Public IsWebview2Lock As Boolean = False
+
+    Public Webview2EdgeVersion As String
 
 
     Public Async Function InitializeWebView2(userDataFolder As String, debugPort As Integer) As Task
@@ -32,6 +37,7 @@ Module Webview2Controller
         Try
             'Dim driverManager = New DriverManager()
             'driverManager.SetUpDriver(New EdgeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+            driverManager.SetUpDriver(New EdgeConfig(), Webview2EdgeVersion) 'Use specify version.
 
             Dim options As EdgeOptions = New EdgeOptions()
             options.AddArguments("--disable-dev-shm-usage", "--no-sandbox")
@@ -64,7 +70,7 @@ Module Webview2Controller
             Await Webview2Controller.InitializeWebView2(userDataFolder, RandomDebugPort)
             Await Webview2Controller.InitializeEdgeDriver_Task(RandomDebugPort)
             DebugPortInUse = RandomDebugPort
-            Await Navigate_GoToUrl_Task("https://www.facebook.com/")
+            'Await Navigate_GoToUrl_Task("https://www.facebook.com/")
             Dim folderName = Split(userDataFolder, "\")
             ActivedWebview2UserData = folderName(UBound(folderName))
             SetForm1TitleStatus("完成")
@@ -79,6 +85,25 @@ Module Webview2Controller
         End Try
 
     End Function
+
+
+    Public Async Function GetWebview2EdgeVersion() As Task
+        Await Form1.Main_WebView2.EnsureCoreWebView2Async(Nothing)
+        If Form1.Main_WebView2.CoreWebView2 IsNot Nothing Then
+            Webview2EdgeVersion = Form1.Main_WebView2.CoreWebView2.Environment.BrowserVersionString
+        End If
+    End Function
+
+
+    Public Sub SyncWebdriverVersion()
+        Try
+            driverManager.SetUpDriver(New EdgeConfig(), Webview2EdgeVersion)
+            MsgBox("同步成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("同步失敗")
+        End Try
+    End Sub
 
     Public Async Function ResetWebview2() As Task
         Try
@@ -383,16 +408,22 @@ Module Webview2Controller
 
         Await Task.Run(Function()
                            Try
-                               Dim span_text_css = "div.x1ifrov1.x1i1uccp.x1stjdt1.x1yaem6q.x4ckvhe.x2k3zez.xjbssrd.x1ltux0g.xit7rg8.xc9uqle.x17quhge > div > div > div:nth-child(1) > div > div > div > div.x6s0dn4.x78zum5.xl56j7k.x1608yet.xljgi0e.x1e0frkt > div:nth-child(2) > span > span"
-                               Dim request_friend_span = edgeDriver.FindElement(By.CssSelector(span_text_css))
+                               Dim div_eles = edgeDriver.FindElements(By.CssSelector("div.x1ifrov1.x1i1uccp.x1stjdt1.x1yaem6q.x4ckvhe.x2k3zez.xjbssrd.x1ltux0g.xit7rg8.xc9uqle.x17quhge > div > div > div"))
 
-                               If request_friend_span.GetAttribute("innerHTML") = "加朋友" Then
-                                   request_friend_span.Click()
-                               End If
+                               For Each ele In div_eles
+                                   Try
+                                       Dim target_ele = ele.FindElement(By.CssSelector("[aria-label='加朋友']"))
+                                       target_ele.Click()
+                                       Exit For
+                                       'Debug.WriteLine("aria-lbl: " & target_ele.GetAttribute("aria-label"))
+                                   Catch ex As Exception
+                                       'Debug.WriteLine(ex)
+                                   End Try
 
-                               'Debug.WriteLine("innerHTML: " & span_text)
-                               'ClickByCssSelector("div.x6s0dn4.x78zum5.xvrxa7q.x9w375v.xxfedj9.x1roke11.x1es02x0 > div.x1ifrov1.x1i1uccp.x1stjdt1.x1yaem6q.x4ckvhe.x2k3zez.xjbssrd.x1ltux0g.xit7rg8.xc9uqle.x17quhge > div > div > div:nth-child(1) > div > div")
+                               Next
+
                                Return True
+
                            Catch ex As Exception
                                Debug.WriteLine(ex)
                                Return False

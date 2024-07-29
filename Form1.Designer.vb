@@ -57,6 +57,9 @@ Partial Class Form1
         TurnOnSetSeleteKeyboardShortcuts_Button = New Button()
         WebviewUserDataFolder_ListBox = New ListBox()
         RequestFriend_Button = New Button()
+        GetCurrentUrl_Button = New Button()
+        Webview2EdgeVersion_TextBox = New TextBox()
+        Label8 = New Label()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -79,12 +82,12 @@ Partial Class Form1
         ' 
         Navigate_Url_TextBox.Location = New Point(546, 650)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(431, 27)
+        Navigate_Url_TextBox.Size = New Size(595, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(983, 650)
+        NavigateTo_Url_Button.Location = New Point(1147, 650)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -114,14 +117,14 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label1)
         UserInfo_GroupBox.Location = New Point(226, 12)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(314, 665)
+        UserInfo_GroupBox.Size = New Size(314, 678)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
         ' 
         ' SaveUserData_Button
         ' 
-        SaveUserData_Button.Location = New Point(6, 630)
+        SaveUserData_Button.Location = New Point(6, 636)
         SaveUserData_Button.Name = "SaveUserData_Button"
         SaveUserData_Button.Size = New Size(302, 29)
         SaveUserData_Button.TabIndex = 18
@@ -132,7 +135,7 @@ Partial Class Form1
         ' 
         Remark_RichTextBox.Location = New Point(6, 491)
         Remark_RichTextBox.Name = "Remark_RichTextBox"
-        Remark_RichTextBox.Size = New Size(302, 133)
+        Remark_RichTextBox.Size = New Size(302, 139)
         Remark_RichTextBox.TabIndex = 17
         Remark_RichTextBox.Text = ""
         ' 
@@ -282,14 +285,14 @@ Partial Class Form1
         ' 
         ' UserDataFolderName_TextBox
         ' 
-        UserDataFolderName_TextBox.Location = New Point(12, 582)
+        UserDataFolderName_TextBox.Location = New Point(12, 558)
         UserDataFolderName_TextBox.Name = "UserDataFolderName_TextBox"
         UserDataFolderName_TextBox.Size = New Size(94, 27)
         UserDataFolderName_TextBox.TabIndex = 9
         ' 
         ' CreateUserDataFolderButton
         ' 
-        CreateUserDataFolderButton.Location = New Point(126, 582)
+        CreateUserDataFolderButton.Location = New Point(126, 558)
         CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
         CreateUserDataFolderButton.Size = New Size(94, 29)
         CreateUserDataFolderButton.TabIndex = 10
@@ -298,7 +301,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedUserDataFolderButton
         ' 
-        DeleteSelectedUserDataFolderButton.Location = New Point(126, 617)
+        DeleteSelectedUserDataFolderButton.Location = New Point(126, 593)
         DeleteSelectedUserDataFolderButton.Name = "DeleteSelectedUserDataFolderButton"
         DeleteSelectedUserDataFolderButton.Size = New Size(94, 29)
         DeleteSelectedUserDataFolderButton.TabIndex = 11
@@ -309,7 +312,7 @@ Partial Class Form1
         ' 
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterUnavailableUserData_CheckBox)
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterAvailableUserData_CheckBox)
-        UserDataFoldListFilter_GroupBox.Location = New Point(12, 483)
+        UserDataFoldListFilter_GroupBox.Location = New Point(12, 459)
         UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
         UserDataFoldListFilter_GroupBox.Size = New Size(208, 93)
         UserDataFoldListFilter_GroupBox.TabIndex = 13
@@ -340,7 +343,7 @@ Partial Class Form1
         ' 
         ' Move_UserDataFolder_Button
         ' 
-        Move_UserDataFolder_Button.Location = New Point(12, 615)
+        Move_UserDataFolder_Button.Location = New Point(12, 591)
         Move_UserDataFolder_Button.Name = "Move_UserDataFolder_Button"
         Move_UserDataFolder_Button.Size = New Size(94, 29)
         Move_UserDataFolder_Button.TabIndex = 14
@@ -349,7 +352,7 @@ Partial Class Form1
         ' 
         ' SetSeletedFBLanguageTo_zhTW_Button
         ' 
-        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 650)
+        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 626)
         SetSeletedFBLanguageTo_zhTW_Button.Name = "SetSeletedFBLanguageTo_zhTW_Button"
         SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(94, 29)
         SetSeletedFBLanguageTo_zhTW_Button.TabIndex = 15
@@ -358,7 +361,7 @@ Partial Class Form1
         ' 
         ' ShowDebugPanel_Button
         ' 
-        ShowDebugPanel_Button.Location = New Point(1247, 681)
+        ShowDebugPanel_Button.Location = New Point(1261, 731)
         ShowDebugPanel_Button.Name = "ShowDebugPanel_Button"
         ShowDebugPanel_Button.Size = New Size(94, 29)
         ShowDebugPanel_Button.TabIndex = 16
@@ -367,7 +370,7 @@ Partial Class Form1
         ' 
         ' TurnOnSetSeleteKeyboardShortcuts_Button
         ' 
-        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(126, 652)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(126, 628)
         TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
         TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(94, 29)
         TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
@@ -381,23 +384,51 @@ Partial Class Form1
         WebviewUserDataFolder_ListBox.Location = New Point(12, 12)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
-        WebviewUserDataFolder_ListBox.Size = New Size(208, 460)
+        WebviewUserDataFolder_ListBox.Size = New Size(208, 441)
         WebviewUserDataFolder_ListBox.TabIndex = 18
         ' 
         ' RequestFriend_Button
         ' 
-        RequestFriend_Button.Location = New Point(12, 685)
+        RequestFriend_Button.Location = New Point(12, 661)
         RequestFriend_Button.Name = "RequestFriend_Button"
         RequestFriend_Button.Size = New Size(94, 29)
         RequestFriend_Button.TabIndex = 19
         RequestFriend_Button.Text = "加好友"
         RequestFriend_Button.UseVisualStyleBackColor = True
         ' 
+        ' GetCurrentUrl_Button
+        ' 
+        GetCurrentUrl_Button.Location = New Point(1247, 650)
+        GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
+        GetCurrentUrl_Button.Size = New Size(94, 29)
+        GetCurrentUrl_Button.TabIndex = 20
+        GetCurrentUrl_Button.Text = "取得網址"
+        GetCurrentUrl_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Webview2EdgeVersion_TextBox
+        ' 
+        Webview2EdgeVersion_TextBox.Location = New Point(1073, 731)
+        Webview2EdgeVersion_TextBox.Name = "Webview2EdgeVersion_TextBox"
+        Webview2EdgeVersion_TextBox.Size = New Size(182, 27)
+        Webview2EdgeVersion_TextBox.TabIndex = 21
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(985, 736)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(82, 19)
+        Label8.TabIndex = 22
+        Label8.Text = "Edge版本: "
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1563, 824)
+        ClientSize = New Size(1367, 770)
+        Controls.Add(Label8)
+        Controls.Add(Webview2EdgeVersion_TextBox)
+        Controls.Add(GetCurrentUrl_Button)
         Controls.Add(RequestFriend_Button)
         Controls.Add(WebviewUserDataFolder_ListBox)
         Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
@@ -458,5 +489,8 @@ Partial Class Form1
     Friend WithEvents TurnOnSetSeleteKeyboardShortcuts_Button As Button
     Friend WithEvents WebviewUserDataFolder_ListBox As ListBox
     Friend WithEvents RequestFriend_Button As Button
+    Friend WithEvents GetCurrentUrl_Button As Button
+    Friend WithEvents Webview2EdgeVersion_TextBox As TextBox
+    Friend WithEvents Label8 As Label
 
 End Class

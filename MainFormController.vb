@@ -151,6 +151,9 @@ Module MainFormController
 
 
     Public Sub DisplayUserData(FolderName)
+        If FolderName = "" Then
+            Exit Sub
+        End If
 
         Dim userDataJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "myUserData.json")
 
