@@ -22,6 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"222222", "item"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"111112", "dsgdfg"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -60,9 +62,17 @@ Partial Class Form1
         GetCurrentUrl_Button = New Button()
         Webview2EdgeVersion_TextBox = New TextBox()
         Label8 = New Label()
+        FBData_TabControl = New TabControl()
+        FBGroups_TabPage = New TabPage()
+        FBGroups_ListView = New ListView()
+        ColumnHeader1 = New ColumnHeader()
+        ColumnHeader2 = New ColumnHeader()
+        TabPage2 = New TabPage()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
+        FBData_TabControl.SuspendLayout()
+        FBGroups_TabPage.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -72,22 +82,22 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(546, 12)
+        Main_WebView2.Location = New Point(876, 12)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(795, 632)
+        Main_WebView2.Size = New Size(588, 496)
         Main_WebView2.TabIndex = 0
         Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(546, 650)
+        Navigate_Url_TextBox.Location = New Point(876, 514)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(595, 27)
+        Navigate_Url_TextBox.Size = New Size(388, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1147, 650)
+        NavigateTo_Url_Button.Location = New Point(1270, 514)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -115,9 +125,9 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label2)
         UserInfo_GroupBox.Controls.Add(FBAccount_TextBox)
         UserInfo_GroupBox.Controls.Add(Label1)
-        UserInfo_GroupBox.Location = New Point(226, 12)
+        UserInfo_GroupBox.Location = New Point(212, 12)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(314, 678)
+        UserInfo_GroupBox.Size = New Size(223, 678)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
@@ -126,7 +136,7 @@ Partial Class Form1
         ' 
         SaveUserData_Button.Location = New Point(6, 636)
         SaveUserData_Button.Name = "SaveUserData_Button"
-        SaveUserData_Button.Size = New Size(302, 29)
+        SaveUserData_Button.Size = New Size(206, 29)
         SaveUserData_Button.TabIndex = 18
         SaveUserData_Button.Text = "儲存"
         SaveUserData_Button.UseVisualStyleBackColor = True
@@ -135,15 +145,15 @@ Partial Class Form1
         ' 
         Remark_RichTextBox.Location = New Point(6, 491)
         Remark_RichTextBox.Name = "Remark_RichTextBox"
-        Remark_RichTextBox.Size = New Size(302, 139)
+        Remark_RichTextBox.Size = New Size(206, 139)
         Remark_RichTextBox.TabIndex = 17
         Remark_RichTextBox.Text = ""
         ' 
         ' SetCookie_Button
         ' 
-        SetCookie_Button.Location = New Point(175, 437)
+        SetCookie_Button.Location = New Point(117, 437)
         SetCookie_Button.Name = "SetCookie_Button"
-        SetCookie_Button.Size = New Size(133, 29)
+        SetCookie_Button.Size = New Size(95, 29)
         SetCookie_Button.TabIndex = 16
         SetCookie_Button.Text = "設定Cookie"
         SetCookie_Button.UseVisualStyleBackColor = True
@@ -152,7 +162,7 @@ Partial Class Form1
         ' 
         ReadCookie_Button.Location = New Point(6, 437)
         ReadCookie_Button.Name = "ReadCookie_Button"
-        ReadCookie_Button.Size = New Size(144, 29)
+        ReadCookie_Button.Size = New Size(105, 29)
         ReadCookie_Button.TabIndex = 15
         ReadCookie_Button.Text = "讀取Cookie"
         ReadCookie_Button.UseVisualStyleBackColor = True
@@ -170,7 +180,7 @@ Partial Class Form1
         ' 
         FBCookie_RichTextBox.Location = New Point(6, 305)
         FBCookie_RichTextBox.Name = "FBCookie_RichTextBox"
-        FBCookie_RichTextBox.Size = New Size(302, 126)
+        FBCookie_RichTextBox.Size = New Size(206, 126)
         FBCookie_RichTextBox.TabIndex = 13
         FBCookie_RichTextBox.Text = ""
         ' 
@@ -187,7 +197,7 @@ Partial Class Form1
         ' 
         FB2FA_TextBox.Location = New Point(6, 253)
         FB2FA_TextBox.Name = "FB2FA_TextBox"
-        FB2FA_TextBox.Size = New Size(302, 27)
+        FB2FA_TextBox.Size = New Size(206, 27)
         FB2FA_TextBox.TabIndex = 11
         ' 
         ' Label5
@@ -201,7 +211,7 @@ Partial Class Form1
         ' 
         ' RevealEmailPasswordText_Button
         ' 
-        RevealEmailPasswordText_Button.Location = New Point(258, 199)
+        RevealEmailPasswordText_Button.Location = New Point(162, 201)
         RevealEmailPasswordText_Button.Name = "RevealEmailPasswordText_Button"
         RevealEmailPasswordText_Button.Size = New Size(50, 29)
         RevealEmailPasswordText_Button.TabIndex = 9
@@ -213,7 +223,7 @@ Partial Class Form1
         EmailPassword_TextBox.Location = New Point(6, 201)
         EmailPassword_TextBox.Name = "EmailPassword_TextBox"
         EmailPassword_TextBox.PasswordChar = "*"c
-        EmailPassword_TextBox.Size = New Size(246, 27)
+        EmailPassword_TextBox.Size = New Size(150, 27)
         EmailPassword_TextBox.TabIndex = 8
         ' 
         ' Label3
@@ -229,7 +239,7 @@ Partial Class Form1
         ' 
         EmailAccount_TextBox.Location = New Point(6, 149)
         EmailAccount_TextBox.Name = "EmailAccount_TextBox"
-        EmailAccount_TextBox.Size = New Size(302, 27)
+        EmailAccount_TextBox.Size = New Size(206, 27)
         EmailAccount_TextBox.TabIndex = 6
         ' 
         ' Label4
@@ -243,7 +253,7 @@ Partial Class Form1
         ' 
         ' RevealFBPasswordText_Button
         ' 
-        RevealFBPasswordText_Button.Location = New Point(258, 95)
+        RevealFBPasswordText_Button.Location = New Point(162, 97)
         RevealFBPasswordText_Button.Name = "RevealFBPasswordText_Button"
         RevealFBPasswordText_Button.Size = New Size(50, 29)
         RevealFBPasswordText_Button.TabIndex = 4
@@ -255,7 +265,7 @@ Partial Class Form1
         FBPassword_TextBox.Location = New Point(6, 97)
         FBPassword_TextBox.Name = "FBPassword_TextBox"
         FBPassword_TextBox.PasswordChar = "*"c
-        FBPassword_TextBox.Size = New Size(246, 27)
+        FBPassword_TextBox.Size = New Size(150, 27)
         FBPassword_TextBox.TabIndex = 3
         ' 
         ' Label2
@@ -271,7 +281,7 @@ Partial Class Form1
         ' 
         FBAccount_TextBox.Location = New Point(6, 45)
         FBAccount_TextBox.Name = "FBAccount_TextBox"
-        FBAccount_TextBox.Size = New Size(302, 27)
+        FBAccount_TextBox.Size = New Size(206, 27)
         FBAccount_TextBox.TabIndex = 1
         ' 
         ' Label1
@@ -292,7 +302,7 @@ Partial Class Form1
         ' 
         ' CreateUserDataFolderButton
         ' 
-        CreateUserDataFolderButton.Location = New Point(126, 558)
+        CreateUserDataFolderButton.Location = New Point(112, 558)
         CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
         CreateUserDataFolderButton.Size = New Size(94, 29)
         CreateUserDataFolderButton.TabIndex = 10
@@ -301,7 +311,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedUserDataFolderButton
         ' 
-        DeleteSelectedUserDataFolderButton.Location = New Point(126, 593)
+        DeleteSelectedUserDataFolderButton.Location = New Point(112, 593)
         DeleteSelectedUserDataFolderButton.Name = "DeleteSelectedUserDataFolderButton"
         DeleteSelectedUserDataFolderButton.Size = New Size(94, 29)
         DeleteSelectedUserDataFolderButton.TabIndex = 11
@@ -314,7 +324,7 @@ Partial Class Form1
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterAvailableUserData_CheckBox)
         UserDataFoldListFilter_GroupBox.Location = New Point(12, 459)
         UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
-        UserDataFoldListFilter_GroupBox.Size = New Size(208, 93)
+        UserDataFoldListFilter_GroupBox.Size = New Size(194, 93)
         UserDataFoldListFilter_GroupBox.TabIndex = 13
         UserDataFoldListFilter_GroupBox.TabStop = False
         UserDataFoldListFilter_GroupBox.Text = "顯示"
@@ -370,7 +380,7 @@ Partial Class Form1
         ' 
         ' TurnOnSetSeleteKeyboardShortcuts_Button
         ' 
-        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(126, 628)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(112, 628)
         TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
         TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(94, 29)
         TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
@@ -384,7 +394,7 @@ Partial Class Form1
         WebviewUserDataFolder_ListBox.Location = New Point(12, 12)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
-        WebviewUserDataFolder_ListBox.Size = New Size(208, 441)
+        WebviewUserDataFolder_ListBox.Size = New Size(194, 441)
         WebviewUserDataFolder_ListBox.TabIndex = 18
         ' 
         ' RequestFriend_Button
@@ -398,7 +408,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1247, 650)
+        GetCurrentUrl_Button.Location = New Point(1370, 514)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -421,11 +431,64 @@ Partial Class Form1
         Label8.TabIndex = 22
         Label8.Text = "Edge版本: "
         ' 
+        ' FBData_TabControl
+        ' 
+        FBData_TabControl.Controls.Add(FBGroups_TabPage)
+        FBData_TabControl.Controls.Add(TabPage2)
+        FBData_TabControl.Location = New Point(441, 13)
+        FBData_TabControl.Name = "FBData_TabControl"
+        FBData_TabControl.SelectedIndex = 0
+        FBData_TabControl.Size = New Size(429, 677)
+        FBData_TabControl.TabIndex = 23
+        ' 
+        ' FBGroups_TabPage
+        ' 
+        FBGroups_TabPage.Controls.Add(FBGroups_ListView)
+        FBGroups_TabPage.Location = New Point(4, 28)
+        FBGroups_TabPage.Name = "FBGroups_TabPage"
+        FBGroups_TabPage.Padding = New Padding(3)
+        FBGroups_TabPage.Size = New Size(421, 645)
+        FBGroups_TabPage.TabIndex = 0
+        FBGroups_TabPage.Text = "社團"
+        FBGroups_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' FBGroups_ListView
+        ' 
+        FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Location = New Point(6, 130)
+        FBGroups_ListView.Name = "FBGroups_ListView"
+        FBGroups_ListView.Size = New Size(409, 337)
+        FBGroups_ListView.TabIndex = 0
+        FBGroups_ListView.UseCompatibleStateImageBehavior = False
+        FBGroups_ListView.View = View.Details
+        ' 
+        ' ColumnHeader1
+        ' 
+        ColumnHeader1.Text = "社團名稱"
+        ColumnHeader1.Width = 200
+        ' 
+        ' ColumnHeader2
+        ' 
+        ColumnHeader2.Text = "社團網址"
+        ColumnHeader2.Width = 200
+        ' 
+        ' TabPage2
+        ' 
+        TabPage2.Location = New Point(4, 28)
+        TabPage2.Name = "TabPage2"
+        TabPage2.Padding = New Padding(3)
+        TabPage2.Size = New Size(421, 645)
+        TabPage2.TabIndex = 1
+        TabPage2.Text = "TabPage2"
+        TabPage2.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1367, 770)
+        ClientSize = New Size(1482, 770)
+        Controls.Add(FBData_TabControl)
         Controls.Add(Label8)
         Controls.Add(Webview2EdgeVersion_TextBox)
         Controls.Add(GetCurrentUrl_Button)
@@ -450,6 +513,8 @@ Partial Class Form1
         UserInfo_GroupBox.PerformLayout()
         UserDataFoldListFilter_GroupBox.ResumeLayout(False)
         UserDataFoldListFilter_GroupBox.PerformLayout()
+        FBData_TabControl.ResumeLayout(False)
+        FBGroups_TabPage.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -492,5 +557,11 @@ Partial Class Form1
     Friend WithEvents GetCurrentUrl_Button As Button
     Friend WithEvents Webview2EdgeVersion_TextBox As TextBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents FBData_TabControl As TabControl
+    Friend WithEvents FBGroups_TabPage As TabPage
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents FBGroups_ListView As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
 
 End Class
