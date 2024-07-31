@@ -572,6 +572,7 @@ Partial Class Form1
         ' FBGroups_ListView
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
+        FBGroups_ListView.FullRowSelect = True
         FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
