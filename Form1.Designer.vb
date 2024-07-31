@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"222222", "item"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"111112", "dsgdfg"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"item1", "subitem1"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"item2", "subitem"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -64,6 +64,17 @@ Partial Class Form1
         Label8 = New Label()
         FBData_TabControl = New TabControl()
         FBGroups_TabPage = New TabPage()
+        DeleteSelectedGroup_Button = New Button()
+        SaveListviewGroupList_Button = New Button()
+        GetFBGroupList_Button = New Button()
+        Button4 = New Button()
+        Button3 = New Button()
+        Button2 = New Button()
+        NavigateToSelectedGroup_Button = New Button()
+        FBGroupUrl_TextBox = New TextBox()
+        FBGroupName_TextBox = New TextBox()
+        Label10 = New Label()
+        Label9 = New Label()
         FBGroups_ListView = New ListView()
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
@@ -443,6 +454,17 @@ Partial Class Form1
         ' 
         ' FBGroups_TabPage
         ' 
+        FBGroups_TabPage.Controls.Add(DeleteSelectedGroup_Button)
+        FBGroups_TabPage.Controls.Add(SaveListviewGroupList_Button)
+        FBGroups_TabPage.Controls.Add(GetFBGroupList_Button)
+        FBGroups_TabPage.Controls.Add(Button4)
+        FBGroups_TabPage.Controls.Add(Button3)
+        FBGroups_TabPage.Controls.Add(Button2)
+        FBGroups_TabPage.Controls.Add(NavigateToSelectedGroup_Button)
+        FBGroups_TabPage.Controls.Add(FBGroupUrl_TextBox)
+        FBGroups_TabPage.Controls.Add(FBGroupName_TextBox)
+        FBGroups_TabPage.Controls.Add(Label10)
+        FBGroups_TabPage.Controls.Add(Label9)
         FBGroups_TabPage.Controls.Add(FBGroups_ListView)
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
@@ -452,13 +474,108 @@ Partial Class Form1
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
+        ' DeleteSelectedGroup_Button
+        ' 
+        DeleteSelectedGroup_Button.Location = New Point(321, 332)
+        DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
+        DeleteSelectedGroup_Button.Size = New Size(94, 29)
+        DeleteSelectedGroup_Button.TabIndex = 11
+        DeleteSelectedGroup_Button.Text = "刪除"
+        DeleteSelectedGroup_Button.UseVisualStyleBackColor = True
+        ' 
+        ' SaveListviewGroupList_Button
+        ' 
+        SaveListviewGroupList_Button.Location = New Point(221, 332)
+        SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
+        SaveListviewGroupList_Button.Size = New Size(94, 29)
+        SaveListviewGroupList_Button.TabIndex = 10
+        SaveListviewGroupList_Button.Text = "儲存"
+        SaveListviewGroupList_Button.UseVisualStyleBackColor = True
+        ' 
+        ' GetFBGroupList_Button
+        ' 
+        GetFBGroupList_Button.Location = New Point(121, 332)
+        GetFBGroupList_Button.Name = "GetFBGroupList_Button"
+        GetFBGroupList_Button.Size = New Size(94, 29)
+        GetFBGroupList_Button.TabIndex = 9
+        GetFBGroupList_Button.Text = "讀取群組"
+        GetFBGroupList_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(306, 72)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 8
+        Button4.Text = "刪除"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(206, 72)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(94, 29)
+        Button3.TabIndex = 7
+        Button3.Text = "儲存"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(106, 72)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 6
+        Button2.Text = "取得網址"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' NavigateToSelectedGroup_Button
+        ' 
+        NavigateToSelectedGroup_Button.Location = New Point(6, 72)
+        NavigateToSelectedGroup_Button.Name = "NavigateToSelectedGroup_Button"
+        NavigateToSelectedGroup_Button.Size = New Size(94, 29)
+        NavigateToSelectedGroup_Button.TabIndex = 5
+        NavigateToSelectedGroup_Button.Text = "前往"
+        NavigateToSelectedGroup_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBGroupUrl_TextBox
+        ' 
+        FBGroupUrl_TextBox.Location = New Point(62, 39)
+        FBGroupUrl_TextBox.Name = "FBGroupUrl_TextBox"
+        FBGroupUrl_TextBox.Size = New Size(353, 27)
+        FBGroupUrl_TextBox.TabIndex = 4
+        ' 
+        ' FBGroupName_TextBox
+        ' 
+        FBGroupName_TextBox.Location = New Point(62, 6)
+        FBGroupName_TextBox.Name = "FBGroupName_TextBox"
+        FBGroupName_TextBox.Size = New Size(353, 27)
+        FBGroupName_TextBox.TabIndex = 3
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(6, 42)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(50, 19)
+        Label10.TabIndex = 2
+        Label10.Text = "網址 : "
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Location = New Point(6, 9)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(50, 19)
+        Label9.TabIndex = 1
+        Label9.Text = "名稱 : "
+        ' 
         ' FBGroups_ListView
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
-        FBGroups_ListView.Location = New Point(6, 130)
+        FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(409, 337)
+        FBGroups_ListView.Size = New Size(409, 219)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -515,6 +632,7 @@ Partial Class Form1
         UserDataFoldListFilter_GroupBox.PerformLayout()
         FBData_TabControl.ResumeLayout(False)
         FBGroups_TabPage.ResumeLayout(False)
+        FBGroups_TabPage.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -563,5 +681,16 @@ Partial Class Form1
     Friend WithEvents FBGroups_ListView As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents FBGroupUrl_TextBox As TextBox
+    Friend WithEvents FBGroupName_TextBox As TextBox
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents NavigateToSelectedGroup_Button As Button
+    Friend WithEvents DeleteSelectedGroup_Button As Button
+    Friend WithEvents SaveListviewGroupList_Button As Button
+    Friend WithEvents GetFBGroupList_Button As Button
 
 End Class

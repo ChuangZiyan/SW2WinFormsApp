@@ -9,6 +9,7 @@ Module AppInitModule
     Public ReadOnly unavailableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "unavailable")
 
 
+
     Public Sub InitializeMainApp()
         InitializeDataDirectory()
         UpdateWebviewUserDataCheckListBox()

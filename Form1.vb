@@ -4,6 +4,8 @@ Imports Newtonsoft.Json
 
 Public Class Form1
 
+    ' Private eventHandlers As New EventHandlers()
+
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
@@ -13,6 +15,9 @@ Public Class Form1
         Await Webview2Controller.GetWebview2EdgeVersion()
         Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
 
+
+        ' eventhandler example
+        ' AddHandler GetFBGroupList_Button.Click, AddressOf eventHandlers.Test_btn_click
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -221,6 +226,14 @@ Public Class Form1
             MsgBox("未偵測到Edge driver")
         End Try
 
+    End Sub
+
+    Private Sub GetFBGroupList_Button_Click(sender As Object, e As EventArgs) Handles GetFBGroupList_Button.Click
+        Webview2Controller.GetFBGroupList()
+    End Sub
+
+    Private Sub SaveListviewGroupList_Button_Click(sender As Object, e As EventArgs) Handles SaveListviewGroupList_Button.Click
+        MainFormController.SaveGroupListviewData()
     End Sub
 
 End Class

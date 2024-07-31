@@ -190,6 +190,50 @@ Module MainFormController
     End Sub
 
 
+    Public Sub SaveGroupListviewData()
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                MsgBox("未選擇使用者")
+                Exit Sub
+            End If
+
+            Debug.WriteLine("save data")
+            Dim items As New List(Of GroupListviewDataStruct)()
+
+            For Each item As ListViewItem In Form1.FBGroups_ListView.Items
+
+                'Debug.WriteLine("item: " & item.Text)
+                'Debug.WriteLine("itemsub: " & item.SubItems(1).Text)
+
+                Dim listViewItemData As New GroupListviewDataStruct With {
+                    .Name = item.Text,
+                    .Url = item.SubItems(1).Text
+                }
+                items.Add(listViewItemData)
+            Next
+
+            Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
+
+            'Debug.WriteLine(jsonStr)
+            Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBGroupList.json")
+            'Debug.WriteLine(filePath)
+            'Debug.WriteLine(Webview2Controller.ActivedUserDataFolderPath)
+            File.WriteAllText(filePath, jsonStr)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+
+
+    End Sub
+
+
+    Public Class GroupListviewDataStruct
+        Public Property Name As String
+        Public Property Url As String
+
+    End Class
 
     Public Class UserDataStruct
         Public Property FBAccount As String

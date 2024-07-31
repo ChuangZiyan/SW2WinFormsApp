@@ -10,13 +10,17 @@ Imports WebDriverManager.Helpers
 Imports WebDriverManager
 Imports WebDriverManager.DriverConfigs.Impl
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
+Imports OpenQA.Selenium.Support.Extensions
 
 Module Webview2Controller
-    Public edgeDriver As IWebDriver
+    Public edgeDriver As EdgeDriver
     Private driverManager = New DriverManager()
     Private webview2_environment As CoreWebView2Environment
 
     Public ActivedWebview2UserData = "N/A"
+    Public ActivedUserDataFolderPath As String
+
     Public DebugPortInUse As Integer = 0
 
     Public IsWebview2Lock As Boolean = False
@@ -69,6 +73,7 @@ Module Webview2Controller
             Await ResetWebview2()
             Await Webview2Controller.InitializeWebView2(userDataFolder, RandomDebugPort)
             Await Webview2Controller.InitializeEdgeDriver_Task(RandomDebugPort)
+            ActivedUserDataFolderPath = userDataFolder
             DebugPortInUse = RandomDebugPort
             'Await Navigate_GoToUrl_Task("https://www.facebook.com/")
             Dim folderName = Split(userDataFolder, "\")
@@ -134,6 +139,7 @@ Module Webview2Controller
             }
             Form1.Controls.Add(Form1.Main_WebView2)
             ActivedWebview2UserData = "N/A"
+            ActivedUserDataFolderPath = Nothing
             DebugPortInUse = 0
             Await Delay_msec(500)
             Debug.WriteLine("reset webview2 EOF")
@@ -401,9 +407,6 @@ Module Webview2Controller
         End Try
     End Function
 
-
-
-
     Public Async Function FBRquestFrient() As Task
 
         Await Task.Run(Function()
@@ -432,6 +435,64 @@ Module Webview2Controller
         Await Delay_msec(500)
 
     End Function
+
+
+    Public Async Sub GetFBGroupList()
+        If ActivedUserDataFolderPath Is Nothing Then
+            MsgBox("未偵測到啟用的edgedriver")
+            Exit Sub
+        End If
+        'Await Navigate_GoToUrl_Task("https://www.facebook.com/groups/joins/?nav_source=tab&ordering=viewer_added")
+        Debug.WriteLine("GetFBGroupList")
+        Dim items = Await Task.Run(Async Function()
+                                       Dim itemList As New List(Of ListViewItem)()
+                                       Try
+
+                                           edgeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/joins/?nav_source=tab&ordering=viewer_added")
+                                           Dim lastHeight As Long = 0
+                                           Dim newHeight As Long = 0
+
+                                           Dim default_wait_msec = 2000
+
+                                           Do
+                                               Await Delay_msec(default_wait_msec)
+                                               edgeDriver.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);")
+
+                                               Await Delay_msec(default_wait_msec)
+
+                                               newHeight = Convert.ToInt64(edgeDriver.ExecuteScript("return document.body.scrollHeight"))
+
+                                               If newHeight = lastHeight Then
+                                                   Exit Do
+                                               End If
+
+                                               lastHeight = newHeight
+                                           Loop
+
+                                           Await Delay_msec(default_wait_msec)
+
+                                           Dim elements = edgeDriver.FindElements(By.CssSelector("div.x1cy8zhl.x78zum5.xdt5ytf.x1iyjqo2.x1a02dak.x1sy10c2.x1pi30zi > div > div:nth-child(1) > span > span > div > a"))
+                                           For Each elm In elements
+                                               Dim name = elm.GetAttribute("innerHTML")
+                                               Dim url = elm.GetAttribute("href")
+
+                                               Dim item As New ListViewItem(name)
+                                               item.SubItems.Add(url)
+                                               itemList.Add(item)
+                                           Next
+
+                                           Return itemList
+                                       Catch ex As Exception
+                                           Debug.WriteLine(ex)
+                                           Return itemList
+                                       End Try
+                                   End Function)
+
+        For Each item In items
+            Form1.FBGroups_ListView.Items.Add(item)
+        Next
+
+    End Sub
 
 
     Public Class MyCookie
