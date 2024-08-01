@@ -1,5 +1,9 @@
 ﻿Imports System.IO
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
+Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Module MainFormController
 
@@ -184,6 +188,40 @@ Module MainFormController
     End Sub
 
 
+    Public Sub DisplayGroupList(FolderName)
+        If FolderName = "" Then
+            Exit Sub
+        End If
+        Form1.FBGroups_ListView.Items.Clear()
+
+        Dim groupListJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "FBGroupList.json")
+
+        'Debug.WriteLine(userDataJsonFilePath)
+
+        If File.Exists(groupListJsonFilePath) Then
+            Dim jsonString As String = File.ReadAllText(groupListJsonFilePath)
+
+            'Dim groupListDataJson As GroupListviewDataStruct = JsonConvert.DeserializeObject(Of GroupListviewDataStruct)(jsonString)
+            'Debug.WriteLine(userDataJson.Remark)
+
+            Dim jsonArray As JArray = JArray.Parse(jsonString)
+
+            ' 使用 For Each 迴圈逐個處理每個項目
+            For Each item As JObject In jsonArray
+                Dim name As String = item("Name").ToString()
+                Dim url As String = item("Url").ToString()
+
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBGroups_ListView.Items.Add(newItem)
+
+            Next
+
+        End If
+
+    End Sub
+
+
     Public Sub SetForm1TitleStatus(status As String)
         Dim myUserData = Webview2Controller.ActivedWebview2UserData
         Form1.Text = "UserData: " & myUserData & "    Port: " & Webview2Controller.DebugPortInUse & "    |    " & status & "    - MainWebview2Form"
@@ -227,6 +265,102 @@ Module MainFormController
 
 
     End Sub
+
+    Public Sub DisplaySelectedGroup()
+        Try
+            If Form1.FBGroups_ListView.SelectedItems.Count > 0 Then
+                'Debug.WriteLine(Form1.FBGroups_ListView.SelectedItems(0).Text)
+                Dim selectedItem = Form1.FBGroups_ListView.SelectedItems(0)
+                Form1.FBGroupName_TextBox.Text = selectedItem.Text
+                Form1.FBGroupUrl_TextBox.Text = selectedItem.SubItems(1).Text
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub AddNewGroupDataToGroupListview()
+        Try
+            Dim name = Form1.FBGroupName_TextBox.Text
+            Dim url = Form1.FBGroupUrl_TextBox.Text
+
+            If name <> "" And url <> "" Then
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBGroups_ListView.Items.Insert(0, newItem)
+            Else
+                MsgBox("欄位不得為空")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+
+    End Sub
+
+
+    Public Sub EditSelectedGroupListviewItem()
+        Try
+            If Form1.FBGroups_ListView.SelectedItems.Count > 0 Then
+                Dim name = Form1.FBGroupName_TextBox.Text
+                Dim url = Form1.FBGroupUrl_TextBox.Text
+                If name <> "" And url <> "" Then
+                    Dim selectedItem = Form1.FBGroups_ListView.SelectedItems(0)
+                    selectedItem.Text = name
+                    selectedItem.SubItems(1).Text = url
+
+                Else
+                    MsgBox("欄位不得為空")
+                End If
+            Else
+                MsgBox("未選擇欄位")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub DeleteSelectedGroupList()
+        Try
+            Dim selectedItems = Form1.FBGroups_ListView.SelectedItems
+            If selectedItems.Count > 0 Then
+                For i As Integer = selectedItems.Count - 1 To 0 Step -1
+                    Form1.FBGroups_ListView.Items.Remove(selectedItems(i))
+                Next
+            Else
+
+
+                If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                    MsgBox("未選擇使用者")
+                    Exit Sub
+                End If
+
+                Dim result As DialogResult = MessageBox.Show("確定要刪除社團列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBGroupList.json")
+
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                        Form1.FBGroups_ListView.Items.Clear()
+                        MsgBox("刪除完成")
+                    Else
+                        MsgBox("檔案不存在")
+                    End If
+
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox("刪除失敗")
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
 
 
     Public Class GroupListviewDataStruct

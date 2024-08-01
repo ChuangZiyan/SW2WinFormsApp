@@ -114,7 +114,8 @@ Public Class Form1
     End Sub
 
     Private Sub WebviewUserDataFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_ListBox.SelectedIndexChanged
-        DisplayUserData(WebviewUserDataFolder_ListBox.SelectedItem)
+        MainFormController.DisplayUserData(WebviewUserDataFolder_ListBox.SelectedItem)
+        MainFormController.DisplayGroupList(WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
 
     Private Sub ReadCookie_Button_Click(sender As Object, e As EventArgs) Handles ReadCookie_Button.Click
@@ -236,4 +237,45 @@ Public Class Form1
         MainFormController.SaveGroupListviewData()
     End Sub
 
+    Private Sub FBGroups_ListView_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FBGroups_ListView.SelectedIndexChanged
+        MainFormController.DisplaySelectedGroup()
+    End Sub
+
+    Private Async Sub NavigateToSelectedGroup_Button_Click(sender As Object, e As EventArgs) Handles NavigateToSelectedGroup_Button.Click
+        Try
+            If edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task(FBGroupUrl_TextBox.Text)
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Private Sub DisplayCurrUrlToGroupUrl_Button_Click(sender As Object, e As EventArgs) Handles DisplayCurrUrlToGroupUrl_Button.Click
+        Try
+            If edgeDriver IsNot Nothing Then
+                FBGroupUrl_TextBox.Text = edgeDriver.Url
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Private Sub AddGroupDataToGroupListview_Button_Click(sender As Object, e As EventArgs) Handles AddGroupDataToGroupListview_Button.Click
+        MainFormController.AddNewGroupDataToGroupListview()
+    End Sub
+
+    Private Sub EditSelectedGroupListviewItem_Button_Click(sender As Object, e As EventArgs) Handles EditSelectedGroupListviewItem_Button.Click
+        MainFormController.EditSelectedGroupListviewItem()
+    End Sub
+
+    Private Sub DeleteSelectedGroup_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedGroup_Button.Click
+        MainFormController.DeleteSelectedGroupList()
+    End Sub
 End Class

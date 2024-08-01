@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"item1", "subitem1"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"item2", "subitem"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -67,9 +67,9 @@ Partial Class Form1
         DeleteSelectedGroup_Button = New Button()
         SaveListviewGroupList_Button = New Button()
         GetFBGroupList_Button = New Button()
-        Button4 = New Button()
-        Button3 = New Button()
-        Button2 = New Button()
+        EditSelectedGroupListviewItem_Button = New Button()
+        AddGroupDataToGroupListview_Button = New Button()
+        DisplayCurrUrlToGroupUrl_Button = New Button()
         NavigateToSelectedGroup_Button = New Button()
         FBGroupUrl_TextBox = New TextBox()
         FBGroupName_TextBox = New TextBox()
@@ -457,9 +457,9 @@ Partial Class Form1
         FBGroups_TabPage.Controls.Add(DeleteSelectedGroup_Button)
         FBGroups_TabPage.Controls.Add(SaveListviewGroupList_Button)
         FBGroups_TabPage.Controls.Add(GetFBGroupList_Button)
-        FBGroups_TabPage.Controls.Add(Button4)
-        FBGroups_TabPage.Controls.Add(Button3)
-        FBGroups_TabPage.Controls.Add(Button2)
+        FBGroups_TabPage.Controls.Add(EditSelectedGroupListviewItem_Button)
+        FBGroups_TabPage.Controls.Add(AddGroupDataToGroupListview_Button)
+        FBGroups_TabPage.Controls.Add(DisplayCurrUrlToGroupUrl_Button)
         FBGroups_TabPage.Controls.Add(NavigateToSelectedGroup_Button)
         FBGroups_TabPage.Controls.Add(FBGroupUrl_TextBox)
         FBGroups_TabPage.Controls.Add(FBGroupName_TextBox)
@@ -476,7 +476,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(321, 332)
+        DeleteSelectedGroup_Button.Location = New Point(206, 332)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -485,7 +485,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(221, 332)
+        SaveListviewGroupList_Button.Location = New Point(106, 332)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -494,39 +494,39 @@ Partial Class Form1
         ' 
         ' GetFBGroupList_Button
         ' 
-        GetFBGroupList_Button.Location = New Point(121, 332)
+        GetFBGroupList_Button.Location = New Point(6, 332)
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
         GetFBGroupList_Button.Text = "讀取群組"
         GetFBGroupList_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' EditSelectedGroupListviewItem_Button
         ' 
-        Button4.Location = New Point(306, 72)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 8
-        Button4.Text = "刪除"
-        Button4.UseVisualStyleBackColor = True
+        EditSelectedGroupListviewItem_Button.Location = New Point(306, 72)
+        EditSelectedGroupListviewItem_Button.Name = "EditSelectedGroupListviewItem_Button"
+        EditSelectedGroupListviewItem_Button.Size = New Size(94, 29)
+        EditSelectedGroupListviewItem_Button.TabIndex = 8
+        EditSelectedGroupListviewItem_Button.Text = "修改"
+        EditSelectedGroupListviewItem_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' AddGroupDataToGroupListview_Button
         ' 
-        Button3.Location = New Point(206, 72)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 7
-        Button3.Text = "儲存"
-        Button3.UseVisualStyleBackColor = True
+        AddGroupDataToGroupListview_Button.Location = New Point(206, 72)
+        AddGroupDataToGroupListview_Button.Name = "AddGroupDataToGroupListview_Button"
+        AddGroupDataToGroupListview_Button.Size = New Size(94, 29)
+        AddGroupDataToGroupListview_Button.TabIndex = 7
+        AddGroupDataToGroupListview_Button.Text = "增加"
+        AddGroupDataToGroupListview_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' DisplayCurrUrlToGroupUrl_Button
         ' 
-        Button2.Location = New Point(106, 72)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 6
-        Button2.Text = "取得網址"
-        Button2.UseVisualStyleBackColor = True
+        DisplayCurrUrlToGroupUrl_Button.Location = New Point(106, 72)
+        DisplayCurrUrlToGroupUrl_Button.Name = "DisplayCurrUrlToGroupUrl_Button"
+        DisplayCurrUrlToGroupUrl_Button.Size = New Size(94, 29)
+        DisplayCurrUrlToGroupUrl_Button.TabIndex = 6
+        DisplayCurrUrlToGroupUrl_Button.Text = "取得網址"
+        DisplayCurrUrlToGroupUrl_Button.UseVisualStyleBackColor = True
         ' 
         ' NavigateToSelectedGroup_Button
         ' 
@@ -584,12 +584,12 @@ Partial Class Form1
         ' ColumnHeader1
         ' 
         ColumnHeader1.Text = "社團名稱"
-        ColumnHeader1.Width = 200
+        ColumnHeader1.Width = 150
         ' 
         ' ColumnHeader2
         ' 
         ColumnHeader2.Text = "社團網址"
-        ColumnHeader2.Width = 200
+        ColumnHeader2.Width = 250
         ' 
         ' TabPage2
         ' 
@@ -686,9 +686,9 @@ Partial Class Form1
     Friend WithEvents Label9 As Label
     Friend WithEvents FBGroupUrl_TextBox As TextBox
     Friend WithEvents FBGroupName_TextBox As TextBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents EditSelectedGroupListviewItem_Button As Button
+    Friend WithEvents AddGroupDataToGroupListview_Button As Button
+    Friend WithEvents DisplayCurrUrlToGroupUrl_Button As Button
     Friend WithEvents NavigateToSelectedGroup_Button As Button
     Friend WithEvents DeleteSelectedGroup_Button As Button
     Friend WithEvents SaveListviewGroupList_Button As Button
