@@ -192,7 +192,11 @@ Module MainFormController
         If FolderName = "" Then
             Exit Sub
         End If
+
         Form1.FBGroups_ListView.Items.Clear()
+
+        Form1.FBGroupName_TextBox.Text = ""
+        Form1.FBGroupUrl_TextBox.Text = ""
 
         Dim groupListJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "FBGroupList.json")
 

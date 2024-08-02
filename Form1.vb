@@ -278,4 +278,8 @@ Public Class Form1
     Private Sub DeleteSelectedGroup_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedGroup_Button.Click
         MainFormController.DeleteSelectedGroupList()
     End Sub
+
+    Private Sub GetJoinedGroupList_Button_Click(sender As Object, e As EventArgs) Handles GetJoinedGroupList_Button.Click
+        Webview2Controller.GetJoinedGroupList()
+    End Sub
 End Class

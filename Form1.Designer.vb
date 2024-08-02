@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -79,6 +79,7 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         TabPage2 = New TabPage()
+        GetJoinedGroupList_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -454,6 +455,7 @@ Partial Class Form1
         ' 
         ' FBGroups_TabPage
         ' 
+        FBGroups_TabPage.Controls.Add(GetJoinedGroupList_Button)
         FBGroups_TabPage.Controls.Add(DeleteSelectedGroup_Button)
         FBGroups_TabPage.Controls.Add(SaveListviewGroupList_Button)
         FBGroups_TabPage.Controls.Add(GetFBGroupList_Button)
@@ -476,7 +478,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(206, 332)
+        DeleteSelectedGroup_Button.Location = New Point(321, 332)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -485,7 +487,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(106, 332)
+        SaveListviewGroupList_Button.Location = New Point(221, 332)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -498,7 +500,7 @@ Partial Class Form1
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
-        GetFBGroupList_Button.Text = "讀取群組"
+        GetFBGroupList_Button.Text = "讀取社團"
         GetFBGroupList_Button.UseVisualStyleBackColor = True
         ' 
         ' EditSelectedGroupListviewItem_Button
@@ -573,7 +575,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(409, 219)
@@ -600,6 +602,15 @@ Partial Class Form1
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
+        ' 
+        ' GetJoinedGroupList_Button
+        ' 
+        GetJoinedGroupList_Button.Location = New Point(106, 332)
+        GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
+        GetJoinedGroupList_Button.Size = New Size(109, 29)
+        GetJoinedGroupList_Button.TabIndex = 12
+        GetJoinedGroupList_Button.Text = "讀取加入社團"
+        GetJoinedGroupList_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -693,5 +704,6 @@ Partial Class Form1
     Friend WithEvents DeleteSelectedGroup_Button As Button
     Friend WithEvents SaveListviewGroupList_Button As Button
     Friend WithEvents GetFBGroupList_Button As Button
+    Friend WithEvents GetJoinedGroupList_Button As Button
 
 End Class
