@@ -64,6 +64,7 @@ Partial Class Form1
         Label8 = New Label()
         FBData_TabControl = New TabControl()
         FBGroups_TabPage = New TabPage()
+        GetJoinedGroupList_Button = New Button()
         DeleteSelectedGroup_Button = New Button()
         SaveListviewGroupList_Button = New Button()
         GetFBGroupList_Button = New Button()
@@ -79,12 +80,33 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         TabPage2 = New TabPage()
-        GetJoinedGroupList_Button = New Button()
+        ListView1 = New ListView()
+        TabControl1 = New TabControl()
+        TabPage1 = New TabPage()
+        Button9 = New Button()
+        Button8 = New Button()
+        Button7 = New Button()
+        Button6 = New Button()
+        Button5 = New Button()
+        DeleteSelectedAssetFolder_Button = New Button()
+        NewAssetFolderName_TextBox = New TextBox()
+        MediaPreview_PictureBox = New PictureBox()
+        PreviewTextFile_RichTextBox = New RichTextBox()
+        MediaSelector_CheckedListBox = New CheckedListBox()
+        CreateNewAssetFolder_Button = New Button()
+        TextFileSelector_CheckedListBox = New CheckedListBox()
+        MyAssetsFolder_CheckedListBox = New CheckedListBox()
+        TabPage3 = New TabPage()
+        Button1 = New Button()
+        Button2 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
         FBData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
+        TabControl1.SuspendLayout()
+        TabPage1.SuspendLayout()
+        CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -94,22 +116,22 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(876, 12)
+        Main_WebView2.Location = New Point(441, 12)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(588, 496)
+        Main_WebView2.Size = New Size(500, 400)
         Main_WebView2.TabIndex = 0
         Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(876, 514)
+        Navigate_Url_TextBox.Location = New Point(441, 418)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(388, 27)
+        Navigate_Url_TextBox.Size = New Size(300, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1270, 514)
+        NavigateTo_Url_Button.Location = New Point(747, 418)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -383,7 +405,7 @@ Partial Class Form1
         ' 
         ' ShowDebugPanel_Button
         ' 
-        ShowDebugPanel_Button.Location = New Point(1261, 731)
+        ShowDebugPanel_Button.Location = New Point(288, 785)
         ShowDebugPanel_Button.Name = "ShowDebugPanel_Button"
         ShowDebugPanel_Button.Size = New Size(94, 29)
         ShowDebugPanel_Button.TabIndex = 16
@@ -420,7 +442,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1370, 514)
+        GetCurrentUrl_Button.Location = New Point(847, 418)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -429,7 +451,7 @@ Partial Class Form1
         ' 
         ' Webview2EdgeVersion_TextBox
         ' 
-        Webview2EdgeVersion_TextBox.Location = New Point(1073, 731)
+        Webview2EdgeVersion_TextBox.Location = New Point(100, 785)
         Webview2EdgeVersion_TextBox.Name = "Webview2EdgeVersion_TextBox"
         Webview2EdgeVersion_TextBox.Size = New Size(182, 27)
         Webview2EdgeVersion_TextBox.TabIndex = 21
@@ -437,7 +459,7 @@ Partial Class Form1
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Location = New Point(985, 736)
+        Label8.Location = New Point(12, 790)
         Label8.Name = "Label8"
         Label8.Size = New Size(82, 19)
         Label8.TabIndex = 22
@@ -447,10 +469,10 @@ Partial Class Form1
         ' 
         FBData_TabControl.Controls.Add(FBGroups_TabPage)
         FBData_TabControl.Controls.Add(TabPage2)
-        FBData_TabControl.Location = New Point(441, 13)
+        FBData_TabControl.Location = New Point(947, 12)
         FBData_TabControl.Name = "FBData_TabControl"
         FBData_TabControl.SelectedIndex = 0
-        FBData_TabControl.Size = New Size(429, 677)
+        FBData_TabControl.Size = New Size(653, 433)
         FBData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -471,14 +493,23 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(421, 645)
+        FBGroups_TabPage.Size = New Size(645, 401)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
+        ' GetJoinedGroupList_Button
+        ' 
+        GetJoinedGroupList_Button.Location = New Point(106, 366)
+        GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
+        GetJoinedGroupList_Button.Size = New Size(109, 29)
+        GetJoinedGroupList_Button.TabIndex = 12
+        GetJoinedGroupList_Button.Text = "讀取加入社團"
+        GetJoinedGroupList_Button.UseVisualStyleBackColor = True
+        ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(321, 332)
+        DeleteSelectedGroup_Button.Location = New Point(321, 366)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -487,7 +518,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(221, 332)
+        SaveListviewGroupList_Button.Location = New Point(221, 366)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -496,7 +527,7 @@ Partial Class Form1
         ' 
         ' GetFBGroupList_Button
         ' 
-        GetFBGroupList_Button.Location = New Point(6, 332)
+        GetFBGroupList_Button.Location = New Point(6, 366)
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
@@ -578,7 +609,7 @@ Partial Class Form1
         FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(409, 219)
+        FBGroups_ListView.Size = New Size(409, 253)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -598,25 +629,201 @@ Partial Class Form1
         TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(421, 645)
+        TabPage2.Size = New Size(645, 401)
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
         ' 
-        ' GetJoinedGroupList_Button
+        ' ListView1
         ' 
-        GetJoinedGroupList_Button.Location = New Point(106, 332)
-        GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
-        GetJoinedGroupList_Button.Size = New Size(109, 29)
-        GetJoinedGroupList_Button.TabIndex = 12
-        GetJoinedGroupList_Button.Text = "讀取加入社團"
-        GetJoinedGroupList_Button.UseVisualStyleBackColor = True
+        ListView1.Location = New Point(441, 453)
+        ListView1.Name = "ListView1"
+        ListView1.Size = New Size(500, 418)
+        ListView1.TabIndex = 24
+        ListView1.UseCompatibleStateImageBehavior = False
+        ' 
+        ' TabControl1
+        ' 
+        TabControl1.Controls.Add(TabPage1)
+        TabControl1.Controls.Add(TabPage3)
+        TabControl1.Location = New Point(947, 451)
+        TabControl1.Name = "TabControl1"
+        TabControl1.SelectedIndex = 0
+        TabControl1.Size = New Size(653, 593)
+        TabControl1.TabIndex = 25
+        ' 
+        ' TabPage1
+        ' 
+        TabPage1.Controls.Add(Button9)
+        TabPage1.Controls.Add(Button8)
+        TabPage1.Controls.Add(Button7)
+        TabPage1.Controls.Add(Button6)
+        TabPage1.Controls.Add(Button5)
+        TabPage1.Controls.Add(DeleteSelectedAssetFolder_Button)
+        TabPage1.Controls.Add(NewAssetFolderName_TextBox)
+        TabPage1.Controls.Add(MediaPreview_PictureBox)
+        TabPage1.Controls.Add(PreviewTextFile_RichTextBox)
+        TabPage1.Controls.Add(MediaSelector_CheckedListBox)
+        TabPage1.Controls.Add(CreateNewAssetFolder_Button)
+        TabPage1.Controls.Add(TextFileSelector_CheckedListBox)
+        TabPage1.Controls.Add(MyAssetsFolder_CheckedListBox)
+        TabPage1.Location = New Point(4, 28)
+        TabPage1.Name = "TabPage1"
+        TabPage1.Padding = New Padding(3)
+        TabPage1.Size = New Size(645, 561)
+        TabPage1.TabIndex = 0
+        TabPage1.Text = "發帖"
+        TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' Button9
+        ' 
+        Button9.Location = New Point(382, 195)
+        Button9.Name = "Button9"
+        Button9.Size = New Size(94, 29)
+        Button9.TabIndex = 12
+        Button9.Text = "Button9"
+        Button9.UseVisualStyleBackColor = True
+        ' 
+        ' Button8
+        ' 
+        Button8.Location = New Point(282, 195)
+        Button8.Name = "Button8"
+        Button8.Size = New Size(94, 29)
+        Button8.TabIndex = 11
+        Button8.Text = "Button8"
+        Button8.UseVisualStyleBackColor = True
+        ' 
+        ' Button7
+        ' 
+        Button7.Location = New Point(182, 195)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(94, 29)
+        Button7.TabIndex = 10
+        Button7.Text = "Button7"
+        Button7.UseVisualStyleBackColor = True
+        ' 
+        ' Button6
+        ' 
+        Button6.Location = New Point(6, 462)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(170, 29)
+        Button6.TabIndex = 9
+        Button6.Text = "Button6"
+        Button6.UseVisualStyleBackColor = True
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(6, 427)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(170, 29)
+        Button5.TabIndex = 8
+        Button5.Text = "Button5"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' DeleteSelectedAssetFolder_Button
+        ' 
+        DeleteSelectedAssetFolder_Button.Location = New Point(6, 392)
+        DeleteSelectedAssetFolder_Button.Name = "DeleteSelectedAssetFolder_Button"
+        DeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        DeleteSelectedAssetFolder_Button.TabIndex = 7
+        DeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        DeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' NewAssetFolderName_TextBox
+        ' 
+        NewAssetFolderName_TextBox.Location = New Point(6, 324)
+        NewAssetFolderName_TextBox.Name = "NewAssetFolderName_TextBox"
+        NewAssetFolderName_TextBox.Size = New Size(170, 27)
+        NewAssetFolderName_TextBox.TabIndex = 6
+        ' 
+        ' MediaPreview_PictureBox
+        ' 
+        MediaPreview_PictureBox.Location = New Point(343, 247)
+        MediaPreview_PictureBox.Name = "MediaPreview_PictureBox"
+        MediaPreview_PictureBox.Size = New Size(289, 246)
+        MediaPreview_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        MediaPreview_PictureBox.TabIndex = 5
+        MediaPreview_PictureBox.TabStop = False
+        ' 
+        ' PreviewTextFile_RichTextBox
+        ' 
+        PreviewTextFile_RichTextBox.Location = New Point(382, 6)
+        PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
+        PreviewTextFile_RichTextBox.Size = New Size(250, 183)
+        PreviewTextFile_RichTextBox.TabIndex = 4
+        PreviewTextFile_RichTextBox.Text = ""
+        ' 
+        ' MediaSelector_CheckedListBox
+        ' 
+        MediaSelector_CheckedListBox.FormattingEnabled = True
+        MediaSelector_CheckedListBox.Location = New Point(182, 247)
+        MediaSelector_CheckedListBox.Name = "MediaSelector_CheckedListBox"
+        MediaSelector_CheckedListBox.Size = New Size(155, 246)
+        MediaSelector_CheckedListBox.TabIndex = 3
+        ' 
+        ' CreateNewAssetFolder_Button
+        ' 
+        CreateNewAssetFolder_Button.Location = New Point(6, 357)
+        CreateNewAssetFolder_Button.Name = "CreateNewAssetFolder_Button"
+        CreateNewAssetFolder_Button.Size = New Size(170, 29)
+        CreateNewAssetFolder_Button.TabIndex = 2
+        CreateNewAssetFolder_Button.Text = "建立"
+        CreateNewAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' TextFileSelector_CheckedListBox
+        ' 
+        TextFileSelector_CheckedListBox.FormattingEnabled = True
+        TextFileSelector_CheckedListBox.Location = New Point(182, 9)
+        TextFileSelector_CheckedListBox.Name = "TextFileSelector_CheckedListBox"
+        TextFileSelector_CheckedListBox.Size = New Size(194, 180)
+        TextFileSelector_CheckedListBox.TabIndex = 1
+        ' 
+        ' MyAssetsFolder_CheckedListBox
+        ' 
+        MyAssetsFolder_CheckedListBox.CheckOnClick = True
+        MyAssetsFolder_CheckedListBox.FormattingEnabled = True
+        MyAssetsFolder_CheckedListBox.Location = New Point(6, 6)
+        MyAssetsFolder_CheckedListBox.Name = "MyAssetsFolder_CheckedListBox"
+        MyAssetsFolder_CheckedListBox.Size = New Size(170, 312)
+        MyAssetsFolder_CheckedListBox.TabIndex = 0
+        ' 
+        ' TabPage3
+        ' 
+        TabPage3.Location = New Point(4, 28)
+        TabPage3.Name = "TabPage3"
+        TabPage3.Padding = New Padding(3)
+        TabPage3.Size = New Size(645, 561)
+        TabPage3.TabIndex = 1
+        TabPage3.Text = "TabPage3"
+        TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(847, 877)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 26
+        Button1.Text = "Button1"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(747, 877)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 27
+        Button2.Text = "Button2"
+        Button2.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1482, 770)
+        ClientSize = New Size(1610, 1056)
+        Controls.Add(Button2)
+        Controls.Add(Button1)
+        Controls.Add(TabControl1)
+        Controls.Add(ListView1)
         Controls.Add(FBData_TabControl)
         Controls.Add(Label8)
         Controls.Add(Webview2EdgeVersion_TextBox)
@@ -645,6 +852,10 @@ Partial Class Form1
         FBData_TabControl.ResumeLayout(False)
         FBGroups_TabPage.ResumeLayout(False)
         FBGroups_TabPage.PerformLayout()
+        TabControl1.ResumeLayout(False)
+        TabPage1.ResumeLayout(False)
+        TabPage1.PerformLayout()
+        CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -705,5 +916,24 @@ Partial Class Form1
     Friend WithEvents SaveListviewGroupList_Button As Button
     Friend WithEvents GetFBGroupList_Button As Button
     Friend WithEvents GetJoinedGroupList_Button As Button
+    Friend WithEvents ListView1 As ListView
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TextFileSelector_CheckedListBox As CheckedListBox
+    Friend WithEvents MyAssetsFolder_CheckedListBox As CheckedListBox
+    Friend WithEvents MediaPreview_PictureBox As PictureBox
+    Friend WithEvents PreviewTextFile_RichTextBox As RichTextBox
+    Friend WithEvents MediaSelector_CheckedListBox As CheckedListBox
+    Friend WithEvents CreateNewAssetFolder_Button As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents DeleteSelectedAssetFolder_Button As Button
+    Friend WithEvents NewAssetFolderName_TextBox As TextBox
+    Friend WithEvents Button9 As Button
 
 End Class

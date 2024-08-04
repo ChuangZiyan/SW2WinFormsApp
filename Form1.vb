@@ -282,4 +282,42 @@ Public Class Form1
     Private Sub GetJoinedGroupList_Button_Click(sender As Object, e As EventArgs) Handles GetJoinedGroupList_Button.Click
         Webview2Controller.GetJoinedGroupList()
     End Sub
+
+    Private Sub CreateNewAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles CreateNewAssetFolder_Button.Click
+        MainFormController.CreateNewAssetFolder(NewAssetFolderName_TextBox.Text)
+    End Sub
+
+    Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
+        Dim selectedItem = MyAssetsFolder_CheckedListBox.SelectedItem()
+        If selectedItem IsNot Nothing Then
+            MainFormController.DeletedSelectedAssetFolder(selectedItem)
+        Else
+            MsgBox("未選擇資料夾")
+        End If
+
+    End Sub
+
+    Private Sub MyAssetsFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_CheckedListBox.SelectedIndexChanged
+        Dim selectedItem = MyAssetsFolder_CheckedListBox.SelectedItem()
+        If selectedItem IsNot Nothing Then
+            DisplayAllAssets(selectedItem)
+        End If
+
+    End Sub
+
+    Private Sub MediaSelector_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MediaSelector_CheckedListBox.SelectedIndexChanged
+        Dim selectedItem = MediaSelector_CheckedListBox.SelectedItem
+        If selectedItem IsNot Nothing Then
+            MainFormController.PreviewMediaToPictureBox(selectedItem)
+        End If
+
+
+    End Sub
+
+    Private Sub TextFileSelector_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TextFileSelector_CheckedListBox.SelectedIndexChanged
+        Dim selectedItem = TextFileSelector_CheckedListBox.SelectedItem
+        If selectedItem IsNot Nothing Then
+            MainFormController.PreviewTextFileToRichTextBox(selectedItem)
+        End If
+    End Sub
 End Class

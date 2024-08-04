@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Security.Permissions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports Microsoft.Web.WebView2.Core
@@ -360,6 +361,124 @@ Module MainFormController
             End If
         Catch ex As Exception
             MsgBox("刪除失敗")
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+
+    Public Sub UpdateAssetsFolderCheckedListBox()
+        Try
+            Form1.MyAssetsFolder_CheckedListBox.Items.Clear()
+
+            Dim dirs As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
+            For Each dir As String In dirs
+                Form1.MyAssetsFolder_CheckedListBox.Items.Add(Path.GetFileName(dir))
+            Next
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Sub CreateNewAssetFolder(folderName As String)
+        Try
+            Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, folderName)
+
+            If Not Directory.Exists(folderPath) Then
+                Directory.CreateDirectory(folderPath)
+                UpdateAssetsFolderCheckedListBox()
+                Form1.NewAssetFolderName_TextBox.Clear()
+                'MsgBox("新增成功")
+            Else
+                MsgBox("無法使用此名稱")
+            End If
+        Catch ex As Exception
+            MsgBox(ex)
+        End Try
+    End Sub
+
+
+    Public Sub DeletedSelectedAssetFolder(folderName As String)
+        Try
+
+            Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, folderName)
+            Debug.WriteLine("path : " & folderPath)
+
+            If Directory.Exists(folderPath) Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Directory.Delete(folderPath)
+                    UpdateAssetsFolderCheckedListBox()
+                    MsgBox("刪除完成")
+                End If
+            Else
+                MsgBox("檔案不存在")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("刪除失敗")
+        End Try
+
+    End Sub
+
+
+    Public Sub DisplayAllAssets(folderName As String)
+        Try
+            Form1.TextFileSelector_CheckedListBox.Items.Clear()
+            Form1.MediaSelector_CheckedListBox.Items.Clear()
+
+            Dim textFileFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "textFiles")
+            If Directory.Exists(textFileFolder) Then
+                Dim textFiles As String() = Directory.GetFiles(textFileFolder, "*.txt")
+                For Each file As String In textFiles
+                    Form1.TextFileSelector_CheckedListBox.Items.Add(Path.GetFileName(file))
+                Next
+            End If
+
+            Dim mediaFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "media")
+            If Directory.Exists(mediaFolder) Then
+                Dim allowedExtension As String() = {".jpg", ".jpeg", ".png"}
+                Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
+                For Each file As String In mediaFiles
+                    If allowedExtension.Contains(Path.GetExtension(file)) Then
+                        Form1.MediaSelector_CheckedListBox.Items.Add(Path.GetFileName(file))
+                    End If
+
+                Next
+            End If
+
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+
+    End Sub
+
+    Public Sub PreviewTextFileToRichTextBox(fileName As String)
+
+        Try
+            Form1.PreviewTextFile_RichTextBox.Clear()
+            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_CheckedListBox.SelectedItem, "textFiles", fileName)
+
+            Dim text = File.ReadAllText(filePath)
+            Form1.PreviewTextFile_RichTextBox.Text = text
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Sub PreviewMediaToPictureBox(fileName As String)
+        Try
+            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_CheckedListBox.SelectedItem, "media", fileName)
+            Debug.WriteLine("img" & filePath)
+            Form1.MediaPreview_PictureBox.ImageLocation = filePath
+        Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
 

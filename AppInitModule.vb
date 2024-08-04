@@ -2,32 +2,40 @@
 
 Module AppInitModule
 
-
+    ' user data
     Public ReadOnly appBaseDirectory As String = AppDomain.CurrentDomain.BaseDirectory
+
     Public ReadOnly webivewUserDataDirectory As String = Path.Combine(appBaseDirectory, "WebviewUserData")
     Public ReadOnly availableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "available")
     Public ReadOnly unavailableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "unavailable")
+
+    ' assets
+    Public ReadOnly myAssetsDirectory As String = Path.Combine(appBaseDirectory, "myAssets")
 
 
 
     Public Sub InitializeMainApp()
         InitializeDataDirectory()
         UpdateWebviewUserDataCheckListBox()
+        UpdateAssetsFolderCheckedListBox()
     End Sub
 
 
     Public Sub InitializeDataDirectory()
-        If Not Directory.Exists(webivewUserDataDirectory) Then
-            Directory.CreateDirectory(webivewUserDataDirectory)
-        End If
 
-        If Not Directory.Exists(availableUserDataDirectory) Then
-            Directory.CreateDirectory(availableUserDataDirectory)
-        End If
+        Dim myDirectories() As String = {
+                webivewUserDataDirectory,
+                availableUserDataDirectory,
+                unavailableUserDataDirectory,
+                myAssetsDirectory
+        }
 
-        If Not Directory.Exists(unavailableUserDataDirectory) Then
-            Directory.CreateDirectory(unavailableUserDataDirectory)
-        End If
+        For Each myDir In myDirectories
+            If Not Directory.Exists(myDir) Then
+                Directory.CreateDirectory(myDir)
+            End If
+        Next
+
     End Sub
 
 
