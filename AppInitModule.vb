@@ -17,7 +17,7 @@ Module AppInitModule
     Public Sub InitializeMainApp()
         InitializeDataDirectory()
         UpdateWebviewUserDataCheckListBox()
-        UpdateAssetsFolderCheckedListBox()
+        UpdateAssetsFolderListBox()
     End Sub
 
 

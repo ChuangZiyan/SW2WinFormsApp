@@ -288,7 +288,7 @@ Public Class Form1
     End Sub
 
     Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
-        Dim selectedItem = MyAssetsFolder_CheckedListBox.SelectedItem()
+        Dim selectedItem = MyAssetsFolder_ListBox.SelectedItem()
         If selectedItem IsNot Nothing Then
             MainFormController.DeletedSelectedAssetFolder(selectedItem)
         Else
@@ -296,28 +296,33 @@ Public Class Form1
         End If
 
     End Sub
-
-    Private Sub MyAssetsFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_CheckedListBox.SelectedIndexChanged
-        Dim selectedItem = MyAssetsFolder_CheckedListBox.SelectedItem()
+    Private Sub MyAssetsFolder_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_ListBox.SelectedIndexChanged
+        Dim selectedItem = MyAssetsFolder_ListBox.SelectedItem
         If selectedItem IsNot Nothing Then
-            DisplayAllAssets(selectedItem)
+            MainFormController.UpdateTextFileSelectorListBoxItems(selectedItem)
+            MainFormController.UpdateMediaSelectorListBoxItems(selectedItem)
         End If
+    End Sub
+
+    Private Sub MediaSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MediaSelector_ListBox.SelectedIndexChanged
+        Dim selectedItem = MediaSelector_ListBox.SelectedItem
+        If selectedItem IsNot Nothing Then
+            PreviewMediaToPictureBox(selectedItem)
+        End If
+
 
     End Sub
 
-    Private Sub MediaSelector_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MediaSelector_CheckedListBox.SelectedIndexChanged
-        Dim selectedItem = MediaSelector_CheckedListBox.SelectedItem
+    Private Sub TextFileSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TextFileSelector_ListBox.SelectedIndexChanged
+        Dim selectedItem = TextFileSelector_ListBox.SelectedItem
         If selectedItem IsNot Nothing Then
-            MainFormController.PreviewMediaToPictureBox(selectedItem)
-        End If
-
-
-    End Sub
-
-    Private Sub TextFileSelector_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TextFileSelector_CheckedListBox.SelectedIndexChanged
-        Dim selectedItem = TextFileSelector_CheckedListBox.SelectedItem
-        If selectedItem IsNot Nothing Then
-            MainFormController.PreviewTextFileToRichTextBox(selectedItem)
+            PreviewTextFileToRichTextBox(selectedItem)
         End If
     End Sub
+
+    Private Sub CreateNewTextFile_Button_Click(sender As Object, e As EventArgs) Handles CreateNewTextFile_Button.Click
+        Dim fileName = NewTextFileName_TextBox.Text
+        MainFormController.CreateNewTextFile(fileName)
+    End Sub
+
 End Class

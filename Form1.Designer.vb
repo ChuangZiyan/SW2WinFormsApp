@@ -83,22 +83,22 @@ Partial Class Form1
         ListView1 = New ListView()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
-        Button9 = New Button()
-        Button8 = New Button()
-        Button7 = New Button()
+        MediaSelector_ListBox = New ListBox()
+        TextFileSelector_ListBox = New ListBox()
+        MyAssetsFolder_ListBox = New ListBox()
+        SaveEditedTextFile_Button = New Button()
+        CreateNewTextFile_Button = New Button()
         Button6 = New Button()
         Button5 = New Button()
         DeleteSelectedAssetFolder_Button = New Button()
         NewAssetFolderName_TextBox = New TextBox()
         MediaPreview_PictureBox = New PictureBox()
         PreviewTextFile_RichTextBox = New RichTextBox()
-        MediaSelector_CheckedListBox = New CheckedListBox()
         CreateNewAssetFolder_Button = New Button()
-        TextFileSelector_CheckedListBox = New CheckedListBox()
-        MyAssetsFolder_CheckedListBox = New CheckedListBox()
         TabPage3 = New TabPage()
         Button1 = New Button()
         Button2 = New Button()
+        NewTextFileName_TextBox = New TextBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -654,19 +654,19 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
-        TabPage1.Controls.Add(Button9)
-        TabPage1.Controls.Add(Button8)
-        TabPage1.Controls.Add(Button7)
+        TabPage1.Controls.Add(NewTextFileName_TextBox)
+        TabPage1.Controls.Add(MediaSelector_ListBox)
+        TabPage1.Controls.Add(TextFileSelector_ListBox)
+        TabPage1.Controls.Add(MyAssetsFolder_ListBox)
+        TabPage1.Controls.Add(SaveEditedTextFile_Button)
+        TabPage1.Controls.Add(CreateNewTextFile_Button)
         TabPage1.Controls.Add(Button6)
         TabPage1.Controls.Add(Button5)
         TabPage1.Controls.Add(DeleteSelectedAssetFolder_Button)
         TabPage1.Controls.Add(NewAssetFolderName_TextBox)
         TabPage1.Controls.Add(MediaPreview_PictureBox)
         TabPage1.Controls.Add(PreviewTextFile_RichTextBox)
-        TabPage1.Controls.Add(MediaSelector_CheckedListBox)
         TabPage1.Controls.Add(CreateNewAssetFolder_Button)
-        TabPage1.Controls.Add(TextFileSelector_CheckedListBox)
-        TabPage1.Controls.Add(MyAssetsFolder_CheckedListBox)
         TabPage1.Location = New Point(4, 28)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
@@ -675,32 +675,50 @@ Partial Class Form1
         TabPage1.Text = "發帖"
         TabPage1.UseVisualStyleBackColor = True
         ' 
-        ' Button9
+        ' MediaSelector_ListBox
         ' 
-        Button9.Location = New Point(382, 195)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(94, 29)
-        Button9.TabIndex = 12
-        Button9.Text = "Button9"
-        Button9.UseVisualStyleBackColor = True
+        MediaSelector_ListBox.FormattingEnabled = True
+        MediaSelector_ListBox.ItemHeight = 19
+        MediaSelector_ListBox.Location = New Point(182, 230)
+        MediaSelector_ListBox.Name = "MediaSelector_ListBox"
+        MediaSelector_ListBox.Size = New Size(155, 251)
+        MediaSelector_ListBox.TabIndex = 15
         ' 
-        ' Button8
+        ' TextFileSelector_ListBox
         ' 
-        Button8.Location = New Point(282, 195)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(94, 29)
-        Button8.TabIndex = 11
-        Button8.Text = "Button8"
-        Button8.UseVisualStyleBackColor = True
+        TextFileSelector_ListBox.FormattingEnabled = True
+        TextFileSelector_ListBox.ItemHeight = 19
+        TextFileSelector_ListBox.Location = New Point(182, 6)
+        TextFileSelector_ListBox.Name = "TextFileSelector_ListBox"
+        TextFileSelector_ListBox.Size = New Size(194, 175)
+        TextFileSelector_ListBox.TabIndex = 14
         ' 
-        ' Button7
+        ' MyAssetsFolder_ListBox
         ' 
-        Button7.Location = New Point(182, 195)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(94, 29)
-        Button7.TabIndex = 10
-        Button7.Text = "Button7"
-        Button7.UseVisualStyleBackColor = True
+        MyAssetsFolder_ListBox.FormattingEnabled = True
+        MyAssetsFolder_ListBox.ItemHeight = 19
+        MyAssetsFolder_ListBox.Location = New Point(6, 6)
+        MyAssetsFolder_ListBox.Name = "MyAssetsFolder_ListBox"
+        MyAssetsFolder_ListBox.Size = New Size(170, 308)
+        MyAssetsFolder_ListBox.TabIndex = 13
+        ' 
+        ' SaveEditedTextFile_Button
+        ' 
+        SaveEditedTextFile_Button.Location = New Point(538, 187)
+        SaveEditedTextFile_Button.Name = "SaveEditedTextFile_Button"
+        SaveEditedTextFile_Button.Size = New Size(94, 29)
+        SaveEditedTextFile_Button.TabIndex = 12
+        SaveEditedTextFile_Button.Text = "儲存修改"
+        SaveEditedTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' CreateNewTextFile_Button
+        ' 
+        CreateNewTextFile_Button.Location = New Point(382, 187)
+        CreateNewTextFile_Button.Name = "CreateNewTextFile_Button"
+        CreateNewTextFile_Button.Size = New Size(94, 29)
+        CreateNewTextFile_Button.TabIndex = 11
+        CreateNewTextFile_Button.Text = "新增文字檔"
+        CreateNewTextFile_Button.UseVisualStyleBackColor = True
         ' 
         ' Button6
         ' 
@@ -749,17 +767,9 @@ Partial Class Form1
         ' 
         PreviewTextFile_RichTextBox.Location = New Point(382, 6)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(250, 183)
+        PreviewTextFile_RichTextBox.Size = New Size(250, 175)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
-        ' 
-        ' MediaSelector_CheckedListBox
-        ' 
-        MediaSelector_CheckedListBox.FormattingEnabled = True
-        MediaSelector_CheckedListBox.Location = New Point(182, 247)
-        MediaSelector_CheckedListBox.Name = "MediaSelector_CheckedListBox"
-        MediaSelector_CheckedListBox.Size = New Size(155, 246)
-        MediaSelector_CheckedListBox.TabIndex = 3
         ' 
         ' CreateNewAssetFolder_Button
         ' 
@@ -769,23 +779,6 @@ Partial Class Form1
         CreateNewAssetFolder_Button.TabIndex = 2
         CreateNewAssetFolder_Button.Text = "建立"
         CreateNewAssetFolder_Button.UseVisualStyleBackColor = True
-        ' 
-        ' TextFileSelector_CheckedListBox
-        ' 
-        TextFileSelector_CheckedListBox.FormattingEnabled = True
-        TextFileSelector_CheckedListBox.Location = New Point(182, 9)
-        TextFileSelector_CheckedListBox.Name = "TextFileSelector_CheckedListBox"
-        TextFileSelector_CheckedListBox.Size = New Size(194, 180)
-        TextFileSelector_CheckedListBox.TabIndex = 1
-        ' 
-        ' MyAssetsFolder_CheckedListBox
-        ' 
-        MyAssetsFolder_CheckedListBox.CheckOnClick = True
-        MyAssetsFolder_CheckedListBox.FormattingEnabled = True
-        MyAssetsFolder_CheckedListBox.Location = New Point(6, 6)
-        MyAssetsFolder_CheckedListBox.Name = "MyAssetsFolder_CheckedListBox"
-        MyAssetsFolder_CheckedListBox.Size = New Size(170, 312)
-        MyAssetsFolder_CheckedListBox.TabIndex = 0
         ' 
         ' TabPage3
         ' 
@@ -814,6 +807,13 @@ Partial Class Form1
         Button2.TabIndex = 27
         Button2.Text = "Button2"
         Button2.UseVisualStyleBackColor = True
+        ' 
+        ' NewTextFileName_TextBox
+        ' 
+        NewTextFileName_TextBox.Location = New Point(182, 187)
+        NewTextFileName_TextBox.Name = "NewTextFileName_TextBox"
+        NewTextFileName_TextBox.Size = New Size(194, 27)
+        NewTextFileName_TextBox.TabIndex = 16
         ' 
         ' Form1
         ' 
@@ -922,18 +922,18 @@ Partial Class Form1
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
-    Friend WithEvents TextFileSelector_CheckedListBox As CheckedListBox
-    Friend WithEvents MyAssetsFolder_CheckedListBox As CheckedListBox
     Friend WithEvents MediaPreview_PictureBox As PictureBox
     Friend WithEvents PreviewTextFile_RichTextBox As RichTextBox
-    Friend WithEvents MediaSelector_CheckedListBox As CheckedListBox
     Friend WithEvents CreateNewAssetFolder_Button As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button7 As Button
+    Friend WithEvents CreateNewTextFile_Button As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents DeleteSelectedAssetFolder_Button As Button
     Friend WithEvents NewAssetFolderName_TextBox As TextBox
-    Friend WithEvents Button9 As Button
+    Friend WithEvents SaveEditedTextFile_Button As Button
+    Friend WithEvents MyAssetsFolder_ListBox As ListBox
+    Friend WithEvents TextFileSelector_ListBox As ListBox
+    Friend WithEvents MediaSelector_ListBox As ListBox
+    Friend WithEvents NewTextFileName_TextBox As TextBox
 
 End Class

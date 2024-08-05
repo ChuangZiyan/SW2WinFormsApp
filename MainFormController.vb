@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Reflection.Metadata
 Imports System.Security.Permissions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
@@ -368,14 +369,19 @@ Module MainFormController
 
 
 
-    Public Sub UpdateAssetsFolderCheckedListBox()
+    Public Sub UpdateAssetsFolderListBox()
         Try
-            Form1.MyAssetsFolder_CheckedListBox.Items.Clear()
+            Form1.MyAssetsFolder_ListBox.Items.Clear()
 
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
             For Each dir As String In dirs
-                Form1.MyAssetsFolder_CheckedListBox.Items.Add(Path.GetFileName(dir))
+                Form1.MyAssetsFolder_ListBox.Items.Add(Path.GetFileName(dir))
             Next
+            Form1.MediaSelector_ListBox.Items.Clear()
+            Form1.TextFileSelector_ListBox.Items.Clear()
+            Form1.NewAssetFolderName_TextBox.Clear()
+            Form1.PreviewTextFile_RichTextBox.Clear()
+            Form1.MediaPreview_PictureBox.ImageLocation = Nothing
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -389,8 +395,10 @@ Module MainFormController
 
             If Not Directory.Exists(folderPath) Then
                 Directory.CreateDirectory(folderPath)
-                UpdateAssetsFolderCheckedListBox()
-                Form1.NewAssetFolderName_TextBox.Clear()
+                Directory.CreateDirectory(Path.Combine(folderPath, "textFiles"))
+                Directory.CreateDirectory(Path.Combine(folderPath, "media"))
+
+                UpdateAssetsFolderListBox()
                 'MsgBox("新增成功")
             Else
                 MsgBox("無法使用此名稱")
@@ -410,8 +418,8 @@ Module MainFormController
             If Directory.Exists(folderPath) Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
-                    Directory.Delete(folderPath)
-                    UpdateAssetsFolderCheckedListBox()
+                    Directory.Delete(folderPath, True)
+                    UpdateAssetsFolderListBox()
                     MsgBox("刪除完成")
                 End If
             Else
@@ -426,44 +434,52 @@ Module MainFormController
     End Sub
 
 
-    Public Sub DisplayAllAssets(folderName As String)
+    Public Sub UpdateTextFileSelectorListBoxItems(folderName As String)
         Try
-            Form1.TextFileSelector_CheckedListBox.Items.Clear()
-            Form1.MediaSelector_CheckedListBox.Items.Clear()
-
+            Form1.TextFileSelector_ListBox.Items.Clear()
+            Form1.PreviewTextFile_RichTextBox.Clear()
             Dim textFileFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "textFiles")
             If Directory.Exists(textFileFolder) Then
                 Dim textFiles As String() = Directory.GetFiles(textFileFolder, "*.txt")
                 For Each file As String In textFiles
-                    Form1.TextFileSelector_CheckedListBox.Items.Add(Path.GetFileName(file))
+                    Form1.TextFileSelector_ListBox.Items.Add(Path.GetFileName(file))
                 Next
             End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
 
+    End Sub
+
+
+    Public Sub UpdateMediaSelectorListBoxItems(folderName As String)
+        Try
+            Form1.MediaSelector_ListBox.Items.Clear()
+            Form1.MediaPreview_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
                 Dim allowedExtension As String() = {".jpg", ".jpeg", ".png"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
                 For Each file As String In mediaFiles
                     If allowedExtension.Contains(Path.GetExtension(file)) Then
-                        Form1.MediaSelector_CheckedListBox.Items.Add(Path.GetFileName(file))
+                        Form1.MediaSelector_ListBox.Items.Add(Path.GetFileName(file))
                     End If
 
                 Next
             End If
-
-
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
 
-
     End Sub
+
+
 
     Public Sub PreviewTextFileToRichTextBox(fileName As String)
 
         Try
             Form1.PreviewTextFile_RichTextBox.Clear()
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_CheckedListBox.SelectedItem, "textFiles", fileName)
+            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName)
 
             Dim text = File.ReadAllText(filePath)
             Form1.PreviewTextFile_RichTextBox.Text = text
@@ -475,7 +491,7 @@ Module MainFormController
 
     Public Sub PreviewMediaToPictureBox(fileName As String)
         Try
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_CheckedListBox.SelectedItem, "media", fileName)
+            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", fileName)
             Debug.WriteLine("img" & filePath)
             Form1.MediaPreview_PictureBox.ImageLocation = filePath
         Catch ex As Exception
@@ -485,6 +501,35 @@ Module MainFormController
     End Sub
 
 
+
+    Public Sub CreateNewTextFile(fileName As String)
+        Try
+            Debug.WriteLine("filename : " & fileName)
+            Debug.WriteLine("Form1.MyAssetsFolder_ListBox.SelectedItem:" & Form1.MyAssetsFolder_ListBox.SelectedItem)
+            If Form1.MyAssetsFolder_ListBox.SelectedItem IsNot Nothing Then
+                Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName & ".txt")
+
+                If File.Exists(filePath) Then
+                    MsgBox("已有相同檔案名稱")
+                    Exit Sub
+                End If
+
+                Debug.WriteLine("path : " & filePath)
+                Using writer As New StreamWriter(filePath)
+                    writer.WriteLine(Form1.PreviewTextFile_RichTextBox.Text)
+                End Using
+
+                UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
+            Else
+                MsgBox("未選擇資料夾")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("建立文字檔失敗，檔名也許不合法")
+        End Try
+
+
+    End Sub
 
     Public Class GroupListviewDataStruct
         Public Property Name As String
