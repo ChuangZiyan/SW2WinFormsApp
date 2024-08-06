@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -83,13 +83,15 @@ Partial Class Form1
         ListView1 = New ListView()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        DeleteSelectedTextFiles_Button = New Button()
+        NewTextFileName_TextBox = New TextBox()
         MediaSelector_ListBox = New ListBox()
         TextFileSelector_ListBox = New ListBox()
         MyAssetsFolder_ListBox = New ListBox()
         SaveEditedTextFile_Button = New Button()
         CreateNewTextFile_Button = New Button()
-        Button6 = New Button()
-        Button5 = New Button()
+        DeleteSelectedMedia_Button = New Button()
+        RevealMediaFoldesrInFileExplorer_Button = New Button()
         DeleteSelectedAssetFolder_Button = New Button()
         NewAssetFolderName_TextBox = New TextBox()
         MediaPreview_PictureBox = New PictureBox()
@@ -98,7 +100,6 @@ Partial Class Form1
         TabPage3 = New TabPage()
         Button1 = New Button()
         Button2 = New Button()
-        NewTextFileName_TextBox = New TextBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -606,7 +607,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(409, 253)
@@ -649,19 +650,20 @@ Partial Class Form1
         TabControl1.Location = New Point(947, 451)
         TabControl1.Name = "TabControl1"
         TabControl1.SelectedIndex = 0
-        TabControl1.Size = New Size(653, 593)
+        TabControl1.Size = New Size(673, 508)
         TabControl1.TabIndex = 25
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(DeleteSelectedTextFiles_Button)
         TabPage1.Controls.Add(NewTextFileName_TextBox)
         TabPage1.Controls.Add(MediaSelector_ListBox)
         TabPage1.Controls.Add(TextFileSelector_ListBox)
         TabPage1.Controls.Add(MyAssetsFolder_ListBox)
         TabPage1.Controls.Add(SaveEditedTextFile_Button)
         TabPage1.Controls.Add(CreateNewTextFile_Button)
-        TabPage1.Controls.Add(Button6)
-        TabPage1.Controls.Add(Button5)
+        TabPage1.Controls.Add(DeleteSelectedMedia_Button)
+        TabPage1.Controls.Add(RevealMediaFoldesrInFileExplorer_Button)
         TabPage1.Controls.Add(DeleteSelectedAssetFolder_Button)
         TabPage1.Controls.Add(NewAssetFolderName_TextBox)
         TabPage1.Controls.Add(MediaPreview_PictureBox)
@@ -670,18 +672,35 @@ Partial Class Form1
         TabPage1.Location = New Point(4, 28)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(645, 561)
+        TabPage1.Size = New Size(665, 476)
         TabPage1.TabIndex = 0
         TabPage1.Text = "發帖"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' DeleteSelectedTextFiles_Button
+        ' 
+        DeleteSelectedTextFiles_Button.Location = New Point(451, 187)
+        DeleteSelectedTextFiles_Button.Name = "DeleteSelectedTextFiles_Button"
+        DeleteSelectedTextFiles_Button.Size = New Size(94, 29)
+        DeleteSelectedTextFiles_Button.TabIndex = 17
+        DeleteSelectedTextFiles_Button.Text = "刪除所選"
+        DeleteSelectedTextFiles_Button.UseVisualStyleBackColor = True
+        ' 
+        ' NewTextFileName_TextBox
+        ' 
+        NewTextFileName_TextBox.Location = New Point(182, 187)
+        NewTextFileName_TextBox.Name = "NewTextFileName_TextBox"
+        NewTextFileName_TextBox.Size = New Size(163, 27)
+        NewTextFileName_TextBox.TabIndex = 16
         ' 
         ' MediaSelector_ListBox
         ' 
         MediaSelector_ListBox.FormattingEnabled = True
         MediaSelector_ListBox.ItemHeight = 19
-        MediaSelector_ListBox.Location = New Point(182, 230)
+        MediaSelector_ListBox.Location = New Point(182, 222)
         MediaSelector_ListBox.Name = "MediaSelector_ListBox"
-        MediaSelector_ListBox.Size = New Size(155, 251)
+        MediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        MediaSelector_ListBox.Size = New Size(163, 156)
         MediaSelector_ListBox.TabIndex = 15
         ' 
         ' TextFileSelector_ListBox
@@ -690,7 +709,8 @@ Partial Class Form1
         TextFileSelector_ListBox.ItemHeight = 19
         TextFileSelector_ListBox.Location = New Point(182, 6)
         TextFileSelector_ListBox.Name = "TextFileSelector_ListBox"
-        TextFileSelector_ListBox.Size = New Size(194, 175)
+        TextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        TextFileSelector_ListBox.Size = New Size(163, 175)
         TextFileSelector_ListBox.TabIndex = 14
         ' 
         ' MyAssetsFolder_ListBox
@@ -699,12 +719,13 @@ Partial Class Form1
         MyAssetsFolder_ListBox.ItemHeight = 19
         MyAssetsFolder_ListBox.Location = New Point(6, 6)
         MyAssetsFolder_ListBox.Name = "MyAssetsFolder_ListBox"
-        MyAssetsFolder_ListBox.Size = New Size(170, 308)
+        MyAssetsFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        MyAssetsFolder_ListBox.Size = New Size(170, 346)
         MyAssetsFolder_ListBox.TabIndex = 13
         ' 
         ' SaveEditedTextFile_Button
         ' 
-        SaveEditedTextFile_Button.Location = New Point(538, 187)
+        SaveEditedTextFile_Button.Location = New Point(551, 187)
         SaveEditedTextFile_Button.Name = "SaveEditedTextFile_Button"
         SaveEditedTextFile_Button.Size = New Size(94, 29)
         SaveEditedTextFile_Button.TabIndex = 12
@@ -713,34 +734,34 @@ Partial Class Form1
         ' 
         ' CreateNewTextFile_Button
         ' 
-        CreateNewTextFile_Button.Location = New Point(382, 187)
+        CreateNewTextFile_Button.Location = New Point(351, 187)
         CreateNewTextFile_Button.Name = "CreateNewTextFile_Button"
         CreateNewTextFile_Button.Size = New Size(94, 29)
         CreateNewTextFile_Button.TabIndex = 11
         CreateNewTextFile_Button.Text = "新增文字檔"
         CreateNewTextFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button6
+        ' DeleteSelectedMedia_Button
         ' 
-        Button6.Location = New Point(6, 462)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(170, 29)
-        Button6.TabIndex = 9
-        Button6.Text = "Button6"
-        Button6.UseVisualStyleBackColor = True
+        DeleteSelectedMedia_Button.Location = New Point(182, 427)
+        DeleteSelectedMedia_Button.Name = "DeleteSelectedMedia_Button"
+        DeleteSelectedMedia_Button.Size = New Size(163, 29)
+        DeleteSelectedMedia_Button.TabIndex = 9
+        DeleteSelectedMedia_Button.Text = "刪除所選"
+        DeleteSelectedMedia_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button5
+        ' RevealMediaFoldesrInFileExplorer_Button
         ' 
-        Button5.Location = New Point(6, 427)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(170, 29)
-        Button5.TabIndex = 8
-        Button5.Text = "Button5"
-        Button5.UseVisualStyleBackColor = True
+        RevealMediaFoldesrInFileExplorer_Button.Location = New Point(182, 392)
+        RevealMediaFoldesrInFileExplorer_Button.Name = "RevealMediaFoldesrInFileExplorer_Button"
+        RevealMediaFoldesrInFileExplorer_Button.Size = New Size(163, 29)
+        RevealMediaFoldesrInFileExplorer_Button.TabIndex = 8
+        RevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
+        RevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
         ' 
         ' DeleteSelectedAssetFolder_Button
         ' 
-        DeleteSelectedAssetFolder_Button.Location = New Point(6, 392)
+        DeleteSelectedAssetFolder_Button.Location = New Point(6, 427)
         DeleteSelectedAssetFolder_Button.Name = "DeleteSelectedAssetFolder_Button"
         DeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
         DeleteSelectedAssetFolder_Button.TabIndex = 7
@@ -749,31 +770,31 @@ Partial Class Form1
         ' 
         ' NewAssetFolderName_TextBox
         ' 
-        NewAssetFolderName_TextBox.Location = New Point(6, 324)
+        NewAssetFolderName_TextBox.Location = New Point(6, 359)
         NewAssetFolderName_TextBox.Name = "NewAssetFolderName_TextBox"
         NewAssetFolderName_TextBox.Size = New Size(170, 27)
         NewAssetFolderName_TextBox.TabIndex = 6
         ' 
         ' MediaPreview_PictureBox
         ' 
-        MediaPreview_PictureBox.Location = New Point(343, 247)
+        MediaPreview_PictureBox.Location = New Point(351, 222)
         MediaPreview_PictureBox.Name = "MediaPreview_PictureBox"
-        MediaPreview_PictureBox.Size = New Size(289, 246)
+        MediaPreview_PictureBox.Size = New Size(294, 234)
         MediaPreview_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
         MediaPreview_PictureBox.TabIndex = 5
         MediaPreview_PictureBox.TabStop = False
         ' 
         ' PreviewTextFile_RichTextBox
         ' 
-        PreviewTextFile_RichTextBox.Location = New Point(382, 6)
+        PreviewTextFile_RichTextBox.Location = New Point(351, 6)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(250, 175)
+        PreviewTextFile_RichTextBox.Size = New Size(294, 175)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
         ' 
         ' CreateNewAssetFolder_Button
         ' 
-        CreateNewAssetFolder_Button.Location = New Point(6, 357)
+        CreateNewAssetFolder_Button.Location = New Point(6, 392)
         CreateNewAssetFolder_Button.Name = "CreateNewAssetFolder_Button"
         CreateNewAssetFolder_Button.Size = New Size(170, 29)
         CreateNewAssetFolder_Button.TabIndex = 2
@@ -785,7 +806,7 @@ Partial Class Form1
         TabPage3.Location = New Point(4, 28)
         TabPage3.Name = "TabPage3"
         TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(645, 561)
+        TabPage3.Size = New Size(665, 476)
         TabPage3.TabIndex = 1
         TabPage3.Text = "TabPage3"
         TabPage3.UseVisualStyleBackColor = True
@@ -808,18 +829,11 @@ Partial Class Form1
         Button2.Text = "Button2"
         Button2.UseVisualStyleBackColor = True
         ' 
-        ' NewTextFileName_TextBox
-        ' 
-        NewTextFileName_TextBox.Location = New Point(182, 187)
-        NewTextFileName_TextBox.Name = "NewTextFileName_TextBox"
-        NewTextFileName_TextBox.Size = New Size(194, 27)
-        NewTextFileName_TextBox.TabIndex = 16
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1610, 1056)
+        ClientSize = New Size(1632, 986)
         Controls.Add(Button2)
         Controls.Add(Button1)
         Controls.Add(TabControl1)
@@ -926,8 +940,8 @@ Partial Class Form1
     Friend WithEvents PreviewTextFile_RichTextBox As RichTextBox
     Friend WithEvents CreateNewAssetFolder_Button As Button
     Friend WithEvents CreateNewTextFile_Button As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents DeleteSelectedMedia_Button As Button
+    Friend WithEvents RevealMediaFoldesrInFileExplorer_Button As Button
     Friend WithEvents DeleteSelectedAssetFolder_Button As Button
     Friend WithEvents NewAssetFolderName_TextBox As TextBox
     Friend WithEvents SaveEditedTextFile_Button As Button
@@ -935,5 +949,6 @@ Partial Class Form1
     Friend WithEvents TextFileSelector_ListBox As ListBox
     Friend WithEvents MediaSelector_ListBox As ListBox
     Friend WithEvents NewTextFileName_TextBox As TextBox
+    Friend WithEvents DeleteSelectedTextFiles_Button As Button
 
 End Class

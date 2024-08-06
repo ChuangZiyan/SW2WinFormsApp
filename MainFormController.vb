@@ -409,22 +409,27 @@ Module MainFormController
     End Sub
 
 
-    Public Sub DeletedSelectedAssetFolder(folderName As String)
+    Public Sub DeletedSelectedAssetFolders()
         Try
 
-            Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, folderName)
-            Debug.WriteLine("path : " & folderPath)
+            Dim selectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
 
-            If Directory.Exists(folderPath) Then
+            If selectedItems.Count > 0 Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
-                    Directory.Delete(folderPath, True)
+
+                    For Each item In selectedItems
+                        Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item)
+                        Directory.Delete(folderPath, True)
+                    Next
+
                     UpdateAssetsFolderListBox()
                     MsgBox("刪除完成")
                 End If
             Else
-                MsgBox("檔案不存在")
+                MsgBox("未選擇要刪除的資料夾")
             End If
+
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -504,22 +509,22 @@ Module MainFormController
 
     Public Sub CreateNewTextFile(fileName As String)
         Try
-            Debug.WriteLine("filename : " & fileName)
-            Debug.WriteLine("Form1.MyAssetsFolder_ListBox.SelectedItem:" & Form1.MyAssetsFolder_ListBox.SelectedItem)
+            'Debug.WriteLine("filename : " & fileName)
+            'Debug.WriteLine("Form1.MyAssetsFolder_ListBox.SelectedItem:" & Form1.MyAssetsFolder_ListBox.SelectedItem)
+            If String.IsNullOrEmpty(fileName) Then
+                MsgBox("不合法檔案名稱")
+                Exit Sub
+            End If
             If Form1.MyAssetsFolder_ListBox.SelectedItem IsNot Nothing Then
                 Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName & ".txt")
-
                 If File.Exists(filePath) Then
                     MsgBox("已有相同檔案名稱")
                     Exit Sub
                 End If
-
-                Debug.WriteLine("path : " & filePath)
-                Using writer As New StreamWriter(filePath)
-                    writer.WriteLine(Form1.PreviewTextFile_RichTextBox.Text)
-                End Using
-
+                MyWriteFile(filePath)
+                Form1.NewTextFileName_TextBox.Clear()
                 UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
+
             Else
                 MsgBox("未選擇資料夾")
             End If
@@ -528,7 +533,100 @@ Module MainFormController
             MsgBox("建立文字檔失敗，檔名也許不合法")
         End Try
 
+    End Sub
 
+    Public Sub DeleteSelectedTextFiles()
+        Try
+            Dim selectedItems = Form1.TextFileSelector_ListBox.SelectedItems
+
+
+            If selectedItems.Count > 0 Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除社團列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    For Each item In selectedItems
+                        Debug.WriteLine("itm : " & item)
+                        Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
+                        File.Delete(textFilePath)
+                    Next
+                End If
+                UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
+            Else
+                MsgBox("未選擇要刪除的檔案")
+            End If
+
+
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub SaveEditedTextFile(fileName As String)
+        Try
+            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName)
+            MyWriteFile(filePath)
+            MsgBox("修改成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Private Sub MyWriteFile(filePath As String)
+        Try
+            Debug.WriteLine("path : " & filePath)
+            Using writer As New StreamWriter(filePath)
+                writer.Write(Form1.PreviewTextFile_RichTextBox.Text)
+            End Using
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub RevealMediaFoldersInFileExplorer()
+        Try
+            Dim selectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
+
+            If selectedItems.Count > 0 Then
+                For Each item In selectedItems
+                    Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item, "media")
+                    Process.Start("explorer.exe", folderPath)
+                Next
+            Else
+                MsgBox("未選擇資料夾")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub DeleteSelectedMediaFile()
+        Try
+            Dim selectedItems = Form1.MediaSelector_ListBox.SelectedItems
+
+            If selectedItems.Count > 0 Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    For Each item In selectedItems
+                        'Debug.WriteLine("itm : " & item)
+                        Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
+                        File.Delete(filePath)
+                    Next
+                End If
+                UpdateMediaSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
+            Else
+                MsgBox("未選擇要刪除的檔案")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
     End Sub
 
     Public Class GroupListviewDataStruct

@@ -4,8 +4,7 @@ Imports Newtonsoft.Json
 
 Public Class Form1
 
-    ' Private eventHandlers As New EventHandlers()
-
+    'Private eventHandlers As New EventHandlers()
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
@@ -288,13 +287,8 @@ Public Class Form1
     End Sub
 
     Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
-        Dim selectedItem = MyAssetsFolder_ListBox.SelectedItem()
-        If selectedItem IsNot Nothing Then
-            MainFormController.DeletedSelectedAssetFolder(selectedItem)
-        Else
-            MsgBox("未選擇資料夾")
-        End If
 
+        MainFormController.DeletedSelectedAssetFolders()
     End Sub
     Private Sub MyAssetsFolder_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_ListBox.SelectedIndexChanged
         Dim selectedItem = MyAssetsFolder_ListBox.SelectedItem
@@ -307,7 +301,7 @@ Public Class Form1
     Private Sub MediaSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MediaSelector_ListBox.SelectedIndexChanged
         Dim selectedItem = MediaSelector_ListBox.SelectedItem
         If selectedItem IsNot Nothing Then
-            PreviewMediaToPictureBox(selectedItem)
+            MainFormController.PreviewMediaToPictureBox(selectedItem)
         End If
 
 
@@ -316,13 +310,35 @@ Public Class Form1
     Private Sub TextFileSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TextFileSelector_ListBox.SelectedIndexChanged
         Dim selectedItem = TextFileSelector_ListBox.SelectedItem
         If selectedItem IsNot Nothing Then
-            PreviewTextFileToRichTextBox(selectedItem)
+            MainFormController.PreviewTextFileToRichTextBox(selectedItem)
         End If
     End Sub
 
     Private Sub CreateNewTextFile_Button_Click(sender As Object, e As EventArgs) Handles CreateNewTextFile_Button.Click
         Dim fileName = NewTextFileName_TextBox.Text
         MainFormController.CreateNewTextFile(fileName)
+    End Sub
+
+    Private Sub SaveEditedTextFile_Button_Click(sender As Object, e As EventArgs) Handles SaveEditedTextFile_Button.Click
+        Dim selectedItem = TextFileSelector_ListBox.SelectedItem
+        If selectedItem IsNot Nothing Then
+            MainFormController.SaveEditedTextFile(selectedItem)
+        Else
+            MsgBox("未選擇檔案")
+        End If
+
+    End Sub
+
+    Private Sub DeleteSelectedTextFiles_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedTextFiles_Button.Click
+        MainFormController.DeleteSelectedTextFiles()
+    End Sub
+
+    Private Sub RevealMediaFoldersInFileExplorer_Button_Click(sender As Object, e As EventArgs) Handles RevealMediaFoldesrInFileExplorer_Button.Click
+        MainFormController.RevealMediaFoldersInFileExplorer()
+    End Sub
+
+    Private Sub DeleteSelectedMedia_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedMedia_Button.Click
+        MainFormController.DeleteSelectedMediaFile()
     End Sub
 
 End Class
