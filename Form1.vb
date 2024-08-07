@@ -4,7 +4,8 @@ Imports Newtonsoft.Json
 
 Public Class Form1
 
-    'Private eventHandlers As New EventHandlers()
+    Private mainFormEventHandlers As New MainFormEventHandlers()
+
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
@@ -15,9 +16,21 @@ Public Class Form1
         Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
 
 
-        ' eventhandler example
-        ' AddHandler GetFBGroupList_Button.Click, AddressOf eventHandlers.Test_btn_click
+        ' Register to event Event Handlers
+        AddHandler MyAssetsFolder_ListBox.DoubleClick, AddressOf mainFormEventHandlers.RevealAssetFolderInFileExplorer_DoubleClick
+        AddHandler DeleteSelectedTextFiles_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedTextFiles_Button_Click
+        AddHandler RevealMediaFoldesrInFileExplorer_Button.Click, AddressOf mainFormEventHandlers.RevealMediaFoldersInFileExplorer_Button_Click
+        AddHandler DeleteSelectedMedia_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedMediaFile_Button_Click
+        AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
+        AddHandler FilterAvailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
+        AddHandler FilterUnavailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
+        AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.EditSelectedTextFileWithNotepad
+
+        AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
     End Sub
+
+
+
 
     Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         MainFormController.SetForm1TitleStatus("關閉中...")
@@ -37,13 +50,14 @@ Public Class Form1
         MainFormController.CreateUserDataFolder(folderName)
     End Sub
 
-    Private Sub DeleteSelectedUserDataFolderButton_Click(sender As Object, e As EventArgs) Handles DeleteSelectedUserDataFolderButton.Click
-
-        MainFormController.DeleteUserDataFolders()
-
-        'Dim folderName = WebviewUserDataFolder_CheckedListBox.SelectedItem
-        'MainFormController.DeleteUserDataFolder(folderName)
+    Private Sub SaveUserData_Button_Click(sender As Object, e As EventArgs) Handles SaveUserData_Button.Click
+        MainFormController.SaveUserData(WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
+
+    Private Sub Move_UserDataFolder_Button_Click(sender As Object, e As EventArgs) Handles Move_UserDataFolder_Button.Click
+        MainFormController.MoveUserDataFolder()
+    End Sub
+
 
     Private Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs) Handles WebviewUserDataFolder_ListBox.DoubleClick
         Try
@@ -75,21 +89,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub SaveUserData_Button_Click(sender As Object, e As EventArgs) Handles SaveUserData_Button.Click
-        MainFormController.SaveUserData(WebviewUserDataFolder_ListBox.SelectedItem)
-    End Sub
 
-    Private Sub FilterAvailableUserData_CheckBox_Click(sender As Object, e As EventArgs) Handles FilterAvailableUserData_CheckBox.Click
-        MainFormController.UpdateWebviewUserDataCheckListBox()
-    End Sub
-
-    Private Sub FilterUnavailableUserData_CheckBox_Click(sender As Object, e As EventArgs) Handles FilterUnavailableUserData_CheckBox.Click
-        MainFormController.UpdateWebviewUserDataCheckListBox()
-    End Sub
-
-    Private Sub Move_UserDataFolder_Button_Click(sender As Object, e As EventArgs) Handles Move_UserDataFolder_Button.Click
-        MainFormController.MoveUserDataFolder()
-    End Sub
 
     Private Sub RevealFBPasswordText_Button_Click(sender As Object, e As EventArgs) Handles RevealFBPasswordText_Button.Click
         If FBPassword_TextBox.PasswordChar = "*" Then
@@ -329,16 +329,5 @@ Public Class Form1
 
     End Sub
 
-    Private Sub DeleteSelectedTextFiles_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedTextFiles_Button.Click
-        MainFormController.DeleteSelectedTextFiles()
-    End Sub
-
-    Private Sub RevealMediaFoldersInFileExplorer_Button_Click(sender As Object, e As EventArgs) Handles RevealMediaFoldesrInFileExplorer_Button.Click
-        MainFormController.RevealMediaFoldersInFileExplorer()
-    End Sub
-
-    Private Sub DeleteSelectedMedia_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedMedia_Button.Click
-        MainFormController.DeleteSelectedMediaFile()
-    End Sub
 
 End Class

@@ -575,14 +575,14 @@ Partial Class Form1
         ' 
         FBGroupUrl_TextBox.Location = New Point(62, 39)
         FBGroupUrl_TextBox.Name = "FBGroupUrl_TextBox"
-        FBGroupUrl_TextBox.Size = New Size(353, 27)
+        FBGroupUrl_TextBox.Size = New Size(577, 27)
         FBGroupUrl_TextBox.TabIndex = 4
         ' 
         ' FBGroupName_TextBox
         ' 
         FBGroupName_TextBox.Location = New Point(62, 6)
         FBGroupName_TextBox.Name = "FBGroupName_TextBox"
-        FBGroupName_TextBox.Size = New Size(353, 27)
+        FBGroupName_TextBox.Size = New Size(577, 27)
         FBGroupName_TextBox.TabIndex = 3
         ' 
         ' Label10
@@ -610,7 +610,7 @@ Partial Class Form1
         FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(409, 253)
+        FBGroups_ListView.Size = New Size(633, 253)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -618,12 +618,12 @@ Partial Class Form1
         ' ColumnHeader1
         ' 
         ColumnHeader1.Text = "社團名稱"
-        ColumnHeader1.Width = 150
+        ColumnHeader1.Width = 170
         ' 
         ' ColumnHeader2
         ' 
         ColumnHeader2.Text = "社團網址"
-        ColumnHeader2.Width = 250
+        ColumnHeader2.Width = 450
         ' 
         ' TabPage2
         ' 

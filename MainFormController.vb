@@ -34,6 +34,7 @@ Module MainFormController
 
     End Sub
 
+
     Public Sub CreateUserDataFolder(folderName As String)
         Try
             Dim folderPath = Path.Combine(AppInitModule.availableUserDataDirectory, folderName)
@@ -52,39 +53,6 @@ Module MainFormController
 
     End Sub
 
-    Public Async Sub DeleteUserDataFolders()
-
-        Try
-            If Form1.WebviewUserDataFolder_ListBox.SelectedItems.Count <> 0 Then
-                Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    MainFormController.SetForm1TitleStatus("刪除中...")
-                    For Each item As String In Form1.WebviewUserDataFolder_ListBox.SelectedItems
-                        'Debug.WriteLine("item : " & item)
-                        'Debug.WriteLine("curr : " & Webview2Controller.ActivedWebview2UserData)
-                        If Split(item, "\")(1) = Webview2Controller.ActivedWebview2UserData Then
-                            Await ResetWebview2()
-                            Debug.WriteLine("after reset")
-                            Await Delay_msec(200)
-                        End If
-                        Dim myFolders = Split(item, "\")
-                        Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
-                        Directory.Delete(folderPath, True)
-                    Next
-                    UpdateWebviewUserDataCheckListBox()
-                    MainFormController.SetForm1TitleStatus("完成")
-                    MsgBox("刪除完成")
-                End If
-            Else
-                MsgBox("未選擇任何資料夾")
-            End If
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("刪除資料夾失敗")
-        End Try
-
-    End Sub
 
 
     Public Sub SaveUserData(folderName As String)
@@ -463,7 +431,7 @@ Module MainFormController
             Form1.MediaPreview_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
-                Dim allowedExtension As String() = {".jpg", ".jpeg", ".png"}
+                Dim allowedExtension As String() = {".jpg", ".jpeg", ".png", ".mp4"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
                 For Each file As String In mediaFiles
                     If allowedExtension.Contains(Path.GetExtension(file)) Then
@@ -535,31 +503,7 @@ Module MainFormController
 
     End Sub
 
-    Public Sub DeleteSelectedTextFiles()
-        Try
-            Dim selectedItems = Form1.TextFileSelector_ListBox.SelectedItems
 
-
-            If selectedItems.Count > 0 Then
-                Dim result As DialogResult = MessageBox.Show("確定要刪除社團列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In selectedItems
-                        Debug.WriteLine("itm : " & item)
-                        Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
-                        File.Delete(textFilePath)
-                    Next
-                End If
-                UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
-            Else
-                MsgBox("未選擇要刪除的檔案")
-            End If
-
-
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-    End Sub
 
     Public Sub SaveEditedTextFile(fileName As String)
         Try
@@ -586,48 +530,7 @@ Module MainFormController
     End Sub
 
 
-    Public Sub RevealMediaFoldersInFileExplorer()
-        Try
-            Dim selectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
 
-            If selectedItems.Count > 0 Then
-                For Each item In selectedItems
-                    Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item, "media")
-                    Process.Start("explorer.exe", folderPath)
-                Next
-            Else
-                MsgBox("未選擇資料夾")
-            End If
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-
-    Public Sub DeleteSelectedMediaFile()
-        Try
-            Dim selectedItems = Form1.MediaSelector_ListBox.SelectedItems
-
-            If selectedItems.Count > 0 Then
-                Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In selectedItems
-                        'Debug.WriteLine("itm : " & item)
-                        Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
-                        File.Delete(filePath)
-                    Next
-                End If
-                UpdateMediaSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
-            Else
-                MsgBox("未選擇要刪除的檔案")
-            End If
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-    End Sub
 
     Public Class GroupListviewDataStruct
         Public Property Name As String
