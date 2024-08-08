@@ -13,7 +13,7 @@ Public Class Form1
         Navigate_Url_TextBox.Text = "https://www.facebook.com/"
         'NavigateTo_Url_Button.Enabled = False
         Await Webview2Controller.GetWebview2EdgeVersion()
-        Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
+        'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
 
 
         ' Register to event Event Handlers
@@ -79,9 +79,9 @@ Public Class Form1
             End If
             ' need to auto detect debug port
             ' use 9222 for development
-            Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
+            'Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
             'Dim debugPort = 9222
-            Await RestartMainWebView2(userDataFolder, debugPort)
+            Await RestartMainWebView2(userDataFolder)
             Await Navigate_GoToUrl_Task(Navigate_Url_TextBox.Text)
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -121,14 +121,6 @@ Public Class Form1
         ReadCookie()
     End Sub
 
-    Private Sub ShowDebugPanel_Button_Click(sender As Object, e As EventArgs) Handles ShowDebugPanel_Button.Click
-        If DebugForm.Visible = False Then
-            DebugForm.Show()
-        Else
-            DebugForm.Hide()
-        End If
-
-    End Sub
 
     Private Sub SetCookie_Button_Click(sender As Object, e As EventArgs) Handles SetCookie_Button.Click
         SetCookie()
@@ -149,8 +141,7 @@ Public Class Form1
             If folderName(1) <> "" Then
                 userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
 
-                Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
-                Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+                Await Webview2Controller.RestartMainWebView2(userDataFolder)
                 Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
                 Await Webview2Controller.Delay_msec(1000)
                 Await Webview2Controller.TurnOnFBKeyboardShortcuts_Task()
@@ -177,8 +168,7 @@ Public Class Form1
                 userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
             End If
 
-            Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
-            Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+            Await Webview2Controller.RestartMainWebView2(userDataFolder)
             Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
             Await Webview2Controller.Delay_msec(1000)
 
@@ -205,8 +195,7 @@ Public Class Form1
                 userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
             End If
 
-            Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
-            Await Webview2Controller.RestartMainWebView2(userDataFolder, debugPort)
+            Await Webview2Controller.RestartMainWebView2(userDataFolder)
             Await Webview2Controller.Delay_msec(1000)
 
             Await Navigate_GoToUrl_Task(Navigate_Url_TextBox.Text)

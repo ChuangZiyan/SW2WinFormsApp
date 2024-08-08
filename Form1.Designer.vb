@@ -55,13 +55,10 @@ Partial Class Form1
         FilterAvailableUserData_CheckBox = New CheckBox()
         Move_UserDataFolder_Button = New Button()
         SetSeletedFBLanguageTo_zhTW_Button = New Button()
-        ShowDebugPanel_Button = New Button()
         TurnOnSetSeleteKeyboardShortcuts_Button = New Button()
         WebviewUserDataFolder_ListBox = New ListBox()
         RequestFriend_Button = New Button()
         GetCurrentUrl_Button = New Button()
-        Webview2EdgeVersion_TextBox = New TextBox()
-        Label8 = New Label()
         FBData_TabControl = New TabControl()
         FBGroups_TabPage = New TabPage()
         GetJoinedGroupList_Button = New Button()
@@ -81,6 +78,10 @@ Partial Class Form1
         ColumnHeader2 = New ColumnHeader()
         TabPage2 = New TabPage()
         ListView1 = New ListView()
+        ColumnHeader3 = New ColumnHeader()
+        ColumnHeader4 = New ColumnHeader()
+        ColumnHeader5 = New ColumnHeader()
+        ColumnHeader6 = New ColumnHeader()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         DeleteSelectedTextFiles_Button = New Button()
@@ -98,8 +99,15 @@ Partial Class Form1
         PreviewTextFile_RichTextBox = New RichTextBox()
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
-        Button1 = New Button()
+        ScriptTask_GroupBox = New GroupBox()
         Button2 = New Button()
+        Button1 = New Button()
+        Label13 = New Label()
+        NumericUpDown1 = New NumericUpDown()
+        DateTimePicker1 = New DateTimePicker()
+        Label12 = New Label()
+        Label11 = New Label()
+        Label8 = New Label()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -108,6 +116,8 @@ Partial Class Form1
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        ScriptTask_GroupBox.SuspendLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -117,22 +127,22 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(441, 12)
+        Main_WebView2.Location = New Point(1096, 607)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(500, 400)
+        Main_WebView2.Size = New Size(647, 396)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1R
+        Main_WebView2.ZoomFactor = 1.0R
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(441, 418)
+        Navigate_Url_TextBox.Location = New Point(1096, 1014)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(300, 27)
+        Navigate_Url_TextBox.Size = New Size(424, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(747, 418)
+        NavigateTo_Url_Button.Location = New Point(1526, 1012)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -162,14 +172,14 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label1)
         UserInfo_GroupBox.Location = New Point(212, 12)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(223, 678)
+        UserInfo_GroupBox.Size = New Size(223, 589)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
         ' 
         ' SaveUserData_Button
         ' 
-        SaveUserData_Button.Location = New Point(6, 636)
+        SaveUserData_Button.Location = New Point(6, 554)
         SaveUserData_Button.Name = "SaveUserData_Button"
         SaveUserData_Button.Size = New Size(206, 29)
         SaveUserData_Button.TabIndex = 18
@@ -178,15 +188,15 @@ Partial Class Form1
         ' 
         ' Remark_RichTextBox
         ' 
-        Remark_RichTextBox.Location = New Point(6, 491)
+        Remark_RichTextBox.Location = New Point(6, 429)
         Remark_RichTextBox.Name = "Remark_RichTextBox"
-        Remark_RichTextBox.Size = New Size(206, 139)
+        Remark_RichTextBox.Size = New Size(206, 119)
         Remark_RichTextBox.TabIndex = 17
         Remark_RichTextBox.Text = ""
         ' 
         ' SetCookie_Button
         ' 
-        SetCookie_Button.Location = New Point(117, 437)
+        SetCookie_Button.Location = New Point(117, 373)
         SetCookie_Button.Name = "SetCookie_Button"
         SetCookie_Button.Size = New Size(95, 29)
         SetCookie_Button.TabIndex = 16
@@ -195,7 +205,7 @@ Partial Class Form1
         ' 
         ' ReadCookie_Button
         ' 
-        ReadCookie_Button.Location = New Point(6, 437)
+        ReadCookie_Button.Location = New Point(6, 373)
         ReadCookie_Button.Name = "ReadCookie_Button"
         ReadCookie_Button.Size = New Size(105, 29)
         ReadCookie_Button.TabIndex = 15
@@ -205,7 +215,7 @@ Partial Class Form1
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(6, 469)
+        Label7.Location = New Point(6, 407)
         Label7.Name = "Label7"
         Label7.Size = New Size(39, 19)
         Label7.TabIndex = 14
@@ -215,7 +225,7 @@ Partial Class Form1
         ' 
         FBCookie_RichTextBox.Location = New Point(6, 305)
         FBCookie_RichTextBox.Name = "FBCookie_RichTextBox"
-        FBCookie_RichTextBox.Size = New Size(206, 126)
+        FBCookie_RichTextBox.Size = New Size(206, 62)
         FBCookie_RichTextBox.TabIndex = 13
         FBCookie_RichTextBox.Text = ""
         ' 
@@ -330,14 +340,14 @@ Partial Class Form1
         ' 
         ' UserDataFolderName_TextBox
         ' 
-        UserDataFolderName_TextBox.Location = New Point(12, 558)
+        UserDataFolderName_TextBox.Location = New Point(12, 463)
         UserDataFolderName_TextBox.Name = "UserDataFolderName_TextBox"
         UserDataFolderName_TextBox.Size = New Size(94, 27)
         UserDataFolderName_TextBox.TabIndex = 9
         ' 
         ' CreateUserDataFolderButton
         ' 
-        CreateUserDataFolderButton.Location = New Point(112, 558)
+        CreateUserDataFolderButton.Location = New Point(112, 463)
         CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
         CreateUserDataFolderButton.Size = New Size(94, 29)
         CreateUserDataFolderButton.TabIndex = 10
@@ -346,7 +356,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedUserDataFolderButton
         ' 
-        DeleteSelectedUserDataFolderButton.Location = New Point(112, 593)
+        DeleteSelectedUserDataFolderButton.Location = New Point(112, 498)
         DeleteSelectedUserDataFolderButton.Name = "DeleteSelectedUserDataFolderButton"
         DeleteSelectedUserDataFolderButton.Size = New Size(94, 29)
         DeleteSelectedUserDataFolderButton.TabIndex = 11
@@ -357,7 +367,7 @@ Partial Class Form1
         ' 
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterUnavailableUserData_CheckBox)
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterAvailableUserData_CheckBox)
-        UserDataFoldListFilter_GroupBox.Location = New Point(12, 459)
+        UserDataFoldListFilter_GroupBox.Location = New Point(12, 363)
         UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
         UserDataFoldListFilter_GroupBox.Size = New Size(194, 93)
         UserDataFoldListFilter_GroupBox.TabIndex = 13
@@ -388,7 +398,7 @@ Partial Class Form1
         ' 
         ' Move_UserDataFolder_Button
         ' 
-        Move_UserDataFolder_Button.Location = New Point(12, 591)
+        Move_UserDataFolder_Button.Location = New Point(12, 496)
         Move_UserDataFolder_Button.Name = "Move_UserDataFolder_Button"
         Move_UserDataFolder_Button.Size = New Size(94, 29)
         Move_UserDataFolder_Button.TabIndex = 14
@@ -397,25 +407,16 @@ Partial Class Form1
         ' 
         ' SetSeletedFBLanguageTo_zhTW_Button
         ' 
-        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 626)
+        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 531)
         SetSeletedFBLanguageTo_zhTW_Button.Name = "SetSeletedFBLanguageTo_zhTW_Button"
         SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(94, 29)
         SetSeletedFBLanguageTo_zhTW_Button.TabIndex = 15
         SetSeletedFBLanguageTo_zhTW_Button.Text = "設定中文"
         SetSeletedFBLanguageTo_zhTW_Button.UseVisualStyleBackColor = True
         ' 
-        ' ShowDebugPanel_Button
-        ' 
-        ShowDebugPanel_Button.Location = New Point(288, 785)
-        ShowDebugPanel_Button.Name = "ShowDebugPanel_Button"
-        ShowDebugPanel_Button.Size = New Size(94, 29)
-        ShowDebugPanel_Button.TabIndex = 16
-        ShowDebugPanel_Button.Text = "debug"
-        ShowDebugPanel_Button.UseVisualStyleBackColor = True
-        ' 
         ' TurnOnSetSeleteKeyboardShortcuts_Button
         ' 
-        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(112, 628)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(112, 533)
         TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
         TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(94, 29)
         TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
@@ -429,12 +430,12 @@ Partial Class Form1
         WebviewUserDataFolder_ListBox.Location = New Point(12, 12)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
-        WebviewUserDataFolder_ListBox.Size = New Size(194, 441)
+        WebviewUserDataFolder_ListBox.Size = New Size(194, 346)
         WebviewUserDataFolder_ListBox.TabIndex = 18
         ' 
         ' RequestFriend_Button
         ' 
-        RequestFriend_Button.Location = New Point(12, 661)
+        RequestFriend_Button.Location = New Point(12, 566)
         RequestFriend_Button.Name = "RequestFriend_Button"
         RequestFriend_Button.Size = New Size(94, 29)
         RequestFriend_Button.TabIndex = 19
@@ -443,37 +444,21 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(847, 418)
+        GetCurrentUrl_Button.Location = New Point(1626, 1009)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
         GetCurrentUrl_Button.Text = "取得網址"
         GetCurrentUrl_Button.UseVisualStyleBackColor = True
         ' 
-        ' Webview2EdgeVersion_TextBox
-        ' 
-        Webview2EdgeVersion_TextBox.Location = New Point(100, 785)
-        Webview2EdgeVersion_TextBox.Name = "Webview2EdgeVersion_TextBox"
-        Webview2EdgeVersion_TextBox.Size = New Size(182, 27)
-        Webview2EdgeVersion_TextBox.TabIndex = 21
-        ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Location = New Point(12, 790)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(82, 19)
-        Label8.TabIndex = 22
-        Label8.Text = "Edge版本: "
-        ' 
         ' FBData_TabControl
         ' 
         FBData_TabControl.Controls.Add(FBGroups_TabPage)
         FBData_TabControl.Controls.Add(TabPage2)
-        FBData_TabControl.Location = New Point(947, 12)
+        FBData_TabControl.Location = New Point(441, 12)
         FBData_TabControl.Name = "FBData_TabControl"
         FBData_TabControl.SelectedIndex = 0
-        FBData_TabControl.Size = New Size(653, 433)
+        FBData_TabControl.Size = New Size(649, 429)
         FBData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -494,14 +479,14 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(645, 401)
+        FBGroups_TabPage.Size = New Size(641, 397)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
         ' GetJoinedGroupList_Button
         ' 
-        GetJoinedGroupList_Button.Location = New Point(106, 366)
+        GetJoinedGroupList_Button.Location = New Point(106, 356)
         GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
         GetJoinedGroupList_Button.Size = New Size(109, 29)
         GetJoinedGroupList_Button.TabIndex = 12
@@ -510,7 +495,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(321, 366)
+        DeleteSelectedGroup_Button.Location = New Point(321, 356)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -519,7 +504,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(221, 366)
+        SaveListviewGroupList_Button.Location = New Point(221, 356)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -528,7 +513,7 @@ Partial Class Form1
         ' 
         ' GetFBGroupList_Button
         ' 
-        GetFBGroupList_Button.Location = New Point(6, 366)
+        GetFBGroupList_Button.Location = New Point(6, 356)
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
@@ -575,14 +560,14 @@ Partial Class Form1
         ' 
         FBGroupUrl_TextBox.Location = New Point(62, 39)
         FBGroupUrl_TextBox.Name = "FBGroupUrl_TextBox"
-        FBGroupUrl_TextBox.Size = New Size(577, 27)
+        FBGroupUrl_TextBox.Size = New Size(573, 27)
         FBGroupUrl_TextBox.TabIndex = 4
         ' 
         ' FBGroupName_TextBox
         ' 
         FBGroupName_TextBox.Location = New Point(62, 6)
         FBGroupName_TextBox.Name = "FBGroupName_TextBox"
-        FBGroupName_TextBox.Size = New Size(577, 27)
+        FBGroupName_TextBox.Size = New Size(573, 27)
         FBGroupName_TextBox.TabIndex = 3
         ' 
         ' Label10
@@ -610,7 +595,7 @@ Partial Class Form1
         FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(633, 253)
+        FBGroups_ListView.Size = New Size(629, 243)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -630,27 +615,49 @@ Partial Class Form1
         TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(645, 401)
+        TabPage2.Size = New Size(641, 397)
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
         ' 
         ' ListView1
         ' 
-        ListView1.Location = New Point(441, 453)
+        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader5, ColumnHeader6})
+        ListView1.Location = New Point(12, 607)
         ListView1.Name = "ListView1"
-        ListView1.Size = New Size(500, 418)
+        ListView1.Size = New Size(1074, 434)
         ListView1.TabIndex = 24
         ListView1.UseCompatibleStateImageBehavior = False
+        ListView1.View = View.Details
+        ' 
+        ' ColumnHeader3
+        ' 
+        ColumnHeader3.Text = "執行帳號"
+        ColumnHeader3.Width = 80
+        ' 
+        ' ColumnHeader4
+        ' 
+        ColumnHeader4.Text = "執行時間"
+        ColumnHeader4.Width = 100
+        ' 
+        ' ColumnHeader5
+        ' 
+        ColumnHeader5.Text = "名稱"
+        ColumnHeader5.Width = 100
+        ' 
+        ' ColumnHeader6
+        ' 
+        ColumnHeader6.Text = "網址"
+        ColumnHeader6.Width = 150
         ' 
         ' TabControl1
         ' 
         TabControl1.Controls.Add(TabPage1)
         TabControl1.Controls.Add(TabPage3)
-        TabControl1.Location = New Point(947, 451)
+        TabControl1.Location = New Point(1096, 12)
         TabControl1.Name = "TabControl1"
         TabControl1.SelectedIndex = 0
-        TabControl1.Size = New Size(673, 508)
+        TabControl1.Size = New Size(673, 499)
         TabControl1.TabIndex = 25
         ' 
         ' TabPage1
@@ -672,7 +679,7 @@ Partial Class Form1
         TabPage1.Location = New Point(4, 28)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(665, 476)
+        TabPage1.Size = New Size(665, 467)
         TabPage1.TabIndex = 0
         TabPage1.Text = "發帖"
         TabPage1.UseVisualStyleBackColor = True
@@ -806,46 +813,111 @@ Partial Class Form1
         TabPage3.Location = New Point(4, 28)
         TabPage3.Name = "TabPage3"
         TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(665, 476)
+        TabPage3.Size = New Size(665, 467)
         TabPage3.TabIndex = 1
         TabPage3.Text = "TabPage3"
         TabPage3.UseVisualStyleBackColor = True
         ' 
-        ' Button1
+        ' ScriptTask_GroupBox
         ' 
-        Button1.Location = New Point(847, 877)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 26
-        Button1.Text = "Button1"
-        Button1.UseVisualStyleBackColor = True
+        ScriptTask_GroupBox.Controls.Add(Button2)
+        ScriptTask_GroupBox.Controls.Add(Button1)
+        ScriptTask_GroupBox.Controls.Add(Label13)
+        ScriptTask_GroupBox.Controls.Add(NumericUpDown1)
+        ScriptTask_GroupBox.Controls.Add(DateTimePicker1)
+        ScriptTask_GroupBox.Controls.Add(Label12)
+        ScriptTask_GroupBox.Controls.Add(Label11)
+        ScriptTask_GroupBox.Controls.Add(Label8)
+        ScriptTask_GroupBox.Location = New Point(441, 447)
+        ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
+        ScriptTask_GroupBox.Size = New Size(645, 154)
+        ScriptTask_GroupBox.TabIndex = 26
+        ScriptTask_GroupBox.TabStop = False
+        ScriptTask_GroupBox.Text = "腳本任務"
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(747, 877)
+        Button2.Location = New Point(528, 22)
         Button2.Name = "Button2"
         Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 27
-        Button2.Text = "Button2"
+        Button2.TabIndex = 7
+        Button2.Text = "修改"
         Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(428, 22)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 6
+        Button1.Text = "插入"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Location = New Point(398, 30)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(24, 19)
+        Label13.TabIndex = 5
+        Label13.Text = "秒"
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(325, 24)
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(67, 27)
+        NumericUpDown1.TabIndex = 4
+        ' 
+        ' DateTimePicker1
+        ' 
+        DateTimePicker1.Format = DateTimePickerFormat.Time
+        DateTimePicker1.Location = New Point(88, 24)
+        DateTimePicker1.Name = "DateTimePicker1"
+        DateTimePicker1.ShowUpDown = True
+        DateTimePicker1.Size = New Size(150, 27)
+        DateTimePicker1.TabIndex = 3
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(6, 108)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(76, 19)
+        Label12.TabIndex = 2
+        Label12.Text = "等待時間 :"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(244, 30)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(76, 19)
+        Label11.TabIndex = 1
+        Label11.Text = "相隔時間 :"
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(6, 30)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(76, 19)
+        Label8.TabIndex = 0
+        Label8.Text = "執行時間 :"
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9F, 19F)
+        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1632, 986)
-        Controls.Add(Button2)
-        Controls.Add(Button1)
+        ClientSize = New Size(1782, 1053)
+        Controls.Add(ScriptTask_GroupBox)
         Controls.Add(TabControl1)
         Controls.Add(ListView1)
         Controls.Add(FBData_TabControl)
-        Controls.Add(Label8)
-        Controls.Add(Webview2EdgeVersion_TextBox)
         Controls.Add(GetCurrentUrl_Button)
         Controls.Add(RequestFriend_Button)
         Controls.Add(WebviewUserDataFolder_ListBox)
         Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
-        Controls.Add(ShowDebugPanel_Button)
         Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
         Controls.Add(Move_UserDataFolder_Button)
         Controls.Add(UserDataFoldListFilter_GroupBox)
@@ -870,6 +942,9 @@ Partial Class Form1
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        ScriptTask_GroupBox.ResumeLayout(False)
+        ScriptTask_GroupBox.PerformLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -905,13 +980,10 @@ Partial Class Form1
     Friend WithEvents SaveUserData_Button As Button
     Friend WithEvents Move_UserDataFolder_Button As Button
     Friend WithEvents SetSeletedFBLanguageTo_zhTW_Button As Button
-    Friend WithEvents ShowDebugPanel_Button As Button
     Friend WithEvents TurnOnSetSeleteKeyboardShortcuts_Button As Button
     Friend WithEvents WebviewUserDataFolder_ListBox As ListBox
     Friend WithEvents RequestFriend_Button As Button
     Friend WithEvents GetCurrentUrl_Button As Button
-    Friend WithEvents Webview2EdgeVersion_TextBox As TextBox
-    Friend WithEvents Label8 As Label
     Friend WithEvents FBData_TabControl As TabControl
     Friend WithEvents FBGroups_TabPage As TabPage
     Friend WithEvents TabPage2 As TabPage
@@ -934,8 +1006,6 @@ Partial Class Form1
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
     Friend WithEvents MediaPreview_PictureBox As PictureBox
     Friend WithEvents PreviewTextFile_RichTextBox As RichTextBox
     Friend WithEvents CreateNewAssetFolder_Button As Button
@@ -950,5 +1020,18 @@ Partial Class Form1
     Friend WithEvents MediaSelector_ListBox As ListBox
     Friend WithEvents NewTextFileName_TextBox As TextBox
     Friend WithEvents DeleteSelectedTextFiles_Button As Button
+    Friend WithEvents ColumnHeader3 As ColumnHeader
+    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents ScriptTask_GroupBox As GroupBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents Label13 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
 
 End Class

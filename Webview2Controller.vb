@@ -61,7 +61,7 @@ Module Webview2Controller
 
     End Function
 
-    Public Async Function RestartMainWebView2(userDataFolder As String, debugPort As Integer) As Task(Of Boolean)
+    Public Async Function RestartMainWebView2(userDataFolder As String, Optional debugPort As String = Nothing) As Task(Of Boolean)
 
         Try
             IsWebview2Lock = True
