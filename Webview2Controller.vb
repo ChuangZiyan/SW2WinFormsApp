@@ -27,7 +27,6 @@ Module Webview2Controller
 
     Public Webview2EdgeVersion As String
 
-
     Public Async Function InitializeWebView2(userDataFolder As String, debugPort As Integer) As Task
         webview2_environment = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder, New CoreWebView2EnvironmentOptions("--remote-debugging-port=" & debugPort))
         Await Form1.Main_WebView2.EnsureCoreWebView2Async(webview2_environment)

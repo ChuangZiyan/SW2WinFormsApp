@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -77,11 +77,15 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         TabPage2 = New TabPage()
-        ListView1 = New ListView()
+        ScriptQueue_ListView = New ListView()
         ColumnHeader3 = New ColumnHeader()
         ColumnHeader4 = New ColumnHeader()
         ColumnHeader5 = New ColumnHeader()
         ColumnHeader6 = New ColumnHeader()
+        ColumnHeader7 = New ColumnHeader()
+        ColumnHeader8 = New ColumnHeader()
+        ColumnHeader10 = New ColumnHeader()
+        ColumnHeader9 = New ColumnHeader()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         DeleteSelectedTextFiles_Button = New Button()
@@ -100,6 +104,8 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        InsertToQueueListview_Button = New Button()
+        DateTimePicker2 = New DateTimePicker()
         Button2 = New Button()
         Button1 = New Button()
         Label13 = New Label()
@@ -592,7 +598,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 243)
@@ -620,15 +626,15 @@ Partial Class Form1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
         ' 
-        ' ListView1
+        ' ScriptQueue_ListView
         ' 
-        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader5, ColumnHeader6})
-        ListView1.Location = New Point(12, 607)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(1074, 434)
-        ListView1.TabIndex = 24
-        ListView1.UseCompatibleStateImageBehavior = False
-        ListView1.View = View.Details
+        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader5, ColumnHeader6, ColumnHeader7, ColumnHeader8, ColumnHeader10, ColumnHeader9})
+        ScriptQueue_ListView.Location = New Point(12, 607)
+        ScriptQueue_ListView.Name = "ScriptQueue_ListView"
+        ScriptQueue_ListView.Size = New Size(1074, 396)
+        ScriptQueue_ListView.TabIndex = 24
+        ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
+        ScriptQueue_ListView.View = View.Details
         ' 
         ' ColumnHeader3
         ' 
@@ -638,17 +644,37 @@ Partial Class Form1
         ' ColumnHeader4
         ' 
         ColumnHeader4.Text = "執行時間"
-        ColumnHeader4.Width = 100
+        ColumnHeader4.Width = 80
         ' 
         ' ColumnHeader5
         ' 
-        ColumnHeader5.Text = "名稱"
-        ColumnHeader5.Width = 100
+        ColumnHeader5.Text = "執行動作"
+        ColumnHeader5.Width = 80
         ' 
         ' ColumnHeader6
         ' 
-        ColumnHeader6.Text = "網址"
-        ColumnHeader6.Width = 150
+        ColumnHeader6.Text = "目標網址"
+        ColumnHeader6.Width = 250
+        ' 
+        ' ColumnHeader7
+        ' 
+        ColumnHeader7.Text = "網址名稱"
+        ColumnHeader7.Width = 200
+        ' 
+        ' ColumnHeader8
+        ' 
+        ColumnHeader8.Text = "執行內容"
+        ColumnHeader8.Width = 200
+        ' 
+        ' ColumnHeader10
+        ' 
+        ColumnHeader10.Text = "等待時間"
+        ColumnHeader10.Width = 80
+        ' 
+        ' ColumnHeader9
+        ' 
+        ColumnHeader9.Text = "執行結果"
+        ColumnHeader9.Width = 80
         ' 
         ' TabControl1
         ' 
@@ -820,6 +846,8 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(InsertToQueueListview_Button)
+        ScriptTask_GroupBox.Controls.Add(DateTimePicker2)
         ScriptTask_GroupBox.Controls.Add(Button2)
         ScriptTask_GroupBox.Controls.Add(Button1)
         ScriptTask_GroupBox.Controls.Add(Label13)
@@ -834,6 +862,26 @@ Partial Class Form1
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' InsertToQueueListview_Button
+        ' 
+        InsertToQueueListview_Button.Location = New Point(528, 103)
+        InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
+        InsertToQueueListview_Button.Size = New Size(94, 29)
+        InsertToQueueListview_Button.TabIndex = 9
+        InsertToQueueListview_Button.Text = "插入"
+        InsertToQueueListview_Button.UseVisualStyleBackColor = True
+        ' 
+        ' DateTimePicker2
+        ' 
+        DateTimePicker2.CustomFormat = "HH:mm:ss"
+        DateTimePicker2.Format = DateTimePickerFormat.Custom
+        DateTimePicker2.Location = New Point(88, 102)
+        DateTimePicker2.Name = "DateTimePicker2"
+        DateTimePicker2.ShowUpDown = True
+        DateTimePicker2.Size = New Size(150, 27)
+        DateTimePicker2.TabIndex = 8
+        DateTimePicker2.Value = New Date(2024, 8, 9, 0, 0, 0, 0)
         ' 
         ' Button2
         ' 
@@ -912,7 +960,7 @@ Partial Class Form1
         ClientSize = New Size(1782, 1053)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(TabControl1)
-        Controls.Add(ListView1)
+        Controls.Add(ScriptQueue_ListView)
         Controls.Add(FBData_TabControl)
         Controls.Add(GetCurrentUrl_Button)
         Controls.Add(RequestFriend_Button)
@@ -1002,7 +1050,7 @@ Partial Class Form1
     Friend WithEvents SaveListviewGroupList_Button As Button
     Friend WithEvents GetFBGroupList_Button As Button
     Friend WithEvents GetJoinedGroupList_Button As Button
-    Friend WithEvents ListView1 As ListView
+    Friend WithEvents ScriptQueue_ListView As ListView
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage3 As TabPage
@@ -1033,5 +1081,11 @@ Partial Class Form1
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents ColumnHeader9 As ColumnHeader
+    Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents DateTimePicker2 As DateTimePicker
+    Friend WithEvents InsertToQueueListview_Button As Button
 
 End Class

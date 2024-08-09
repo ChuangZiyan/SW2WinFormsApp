@@ -465,14 +465,13 @@ Module MainFormController
     Public Sub PreviewMediaToPictureBox(fileName As String)
         Try
             Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", fileName)
-            Debug.WriteLine("img" & filePath)
+            'Debug.WriteLine("img" & filePath)
             Form1.MediaPreview_PictureBox.ImageLocation = filePath
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
 
     End Sub
-
 
 
     Public Sub CreateNewTextFile(fileName As String)
