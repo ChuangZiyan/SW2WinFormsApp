@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -80,13 +80,13 @@ Partial Class Form1
         ScriptQueue_ListView = New ListView()
         ColumnHeader3 = New ColumnHeader()
         ColumnHeader4 = New ColumnHeader()
-        ColumnHeader5 = New ColumnHeader()
-        ColumnHeader6 = New ColumnHeader()
         ColumnHeader7 = New ColumnHeader()
+        ColumnHeader6 = New ColumnHeader()
         ColumnHeader8 = New ColumnHeader()
-        ColumnHeader10 = New ColumnHeader()
+        ColumnHeader5 = New ColumnHeader()
         ColumnHeader9 = New ColumnHeader()
-        TabControl1 = New TabControl()
+        ColumnHeader10 = New ColumnHeader()
+        Action_TabControl = New TabControl()
         TabPage1 = New TabPage()
         DeleteSelectedTextFiles_Button = New Button()
         NewTextFileName_TextBox = New TextBox()
@@ -119,7 +119,7 @@ Partial Class Form1
         UserDataFoldListFilter_GroupBox.SuspendLayout()
         FBData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
-        TabControl1.SuspendLayout()
+        Action_TabControl.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
@@ -137,7 +137,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(647, 396)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1.0R
+        Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -598,7 +598,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 243)
@@ -628,7 +628,7 @@ Partial Class Form1
         ' 
         ' ScriptQueue_ListView
         ' 
-        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader5, ColumnHeader6, ColumnHeader7, ColumnHeader8, ColumnHeader10, ColumnHeader9})
+        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader10})
         ScriptQueue_ListView.Location = New Point(12, 607)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
         ScriptQueue_ListView.Size = New Size(1074, 396)
@@ -639,52 +639,52 @@ Partial Class Form1
         ' ColumnHeader3
         ' 
         ColumnHeader3.Text = "執行帳號"
-        ColumnHeader3.Width = 80
+        ColumnHeader3.Width = 150
         ' 
         ' ColumnHeader4
         ' 
         ColumnHeader4.Text = "執行時間"
         ColumnHeader4.Width = 80
         ' 
-        ' ColumnHeader5
-        ' 
-        ColumnHeader5.Text = "執行動作"
-        ColumnHeader5.Width = 80
-        ' 
-        ' ColumnHeader6
-        ' 
-        ColumnHeader6.Text = "目標網址"
-        ColumnHeader6.Width = 250
-        ' 
         ' ColumnHeader7
         ' 
         ColumnHeader7.Text = "網址名稱"
         ColumnHeader7.Width = 200
+        ' 
+        ' ColumnHeader6
+        ' 
+        ColumnHeader6.Text = "目標網址"
+        ColumnHeader6.Width = 200
         ' 
         ' ColumnHeader8
         ' 
         ColumnHeader8.Text = "執行內容"
         ColumnHeader8.Width = 200
         ' 
-        ' ColumnHeader10
+        ' ColumnHeader5
         ' 
-        ColumnHeader10.Text = "等待時間"
-        ColumnHeader10.Width = 80
+        ColumnHeader5.Text = "執行動作"
+        ColumnHeader5.Width = 80
         ' 
         ' ColumnHeader9
         ' 
         ColumnHeader9.Text = "執行結果"
         ColumnHeader9.Width = 80
         ' 
-        ' TabControl1
+        ' ColumnHeader10
         ' 
-        TabControl1.Controls.Add(TabPage1)
-        TabControl1.Controls.Add(TabPage3)
-        TabControl1.Location = New Point(1096, 12)
-        TabControl1.Name = "TabControl1"
-        TabControl1.SelectedIndex = 0
-        TabControl1.Size = New Size(673, 499)
-        TabControl1.TabIndex = 25
+        ColumnHeader10.Text = "等待時間"
+        ColumnHeader10.Width = 80
+        ' 
+        ' Action_TabControl
+        ' 
+        Action_TabControl.Controls.Add(TabPage1)
+        Action_TabControl.Controls.Add(TabPage3)
+        Action_TabControl.Location = New Point(1096, 12)
+        Action_TabControl.Name = "Action_TabControl"
+        Action_TabControl.SelectedIndex = 0
+        Action_TabControl.Size = New Size(673, 499)
+        Action_TabControl.TabIndex = 25
         ' 
         ' TabPage1
         ' 
@@ -955,11 +955,11 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
+        AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1782, 1053)
         Controls.Add(ScriptTask_GroupBox)
-        Controls.Add(TabControl1)
+        Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueue_ListView)
         Controls.Add(FBData_TabControl)
         Controls.Add(GetCurrentUrl_Button)
@@ -986,7 +986,7 @@ Partial Class Form1
         FBData_TabControl.ResumeLayout(False)
         FBGroups_TabPage.ResumeLayout(False)
         FBGroups_TabPage.PerformLayout()
-        TabControl1.ResumeLayout(False)
+        Action_TabControl.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
@@ -1051,7 +1051,7 @@ Partial Class Form1
     Friend WithEvents GetFBGroupList_Button As Button
     Friend WithEvents GetJoinedGroupList_Button As Button
     Friend WithEvents ScriptQueue_ListView As ListView
-    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents Action_TabControl As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents MediaPreview_PictureBox As PictureBox

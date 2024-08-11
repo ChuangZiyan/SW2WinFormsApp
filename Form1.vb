@@ -27,6 +27,7 @@ Public Class Form1
         AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.EditSelectedTextFileWithNotepad
 
         AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
+        AddHandler InsertToQueueListview_Button.Click, AddressOf mainFormEventHandlers.InsertToQueueListview_Button_Click
     End Sub
 
 
@@ -317,6 +318,7 @@ Public Class Form1
         End If
 
     End Sub
+
 
 
 End Class

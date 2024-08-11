@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
+Imports Microsoft.Web.WebView2.WinForms
 
 Public Class MainFormEventHandlers
 
@@ -149,6 +151,94 @@ Public Class MainFormEventHandlers
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
+
+    End Sub
+
+
+    Public Sub InsertToQueueListview_Button_Click(sender As Object, e As EventArgs)
+        Debug.WriteLine("click")
+        Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
+        Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
+
+        Dim excutionTime = "NULL"
+        Dim selectedGroupName = "NULL"
+        Dim selectedGroupUrl = "NULL"
+
+
+        Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
+        Dim content = ""
+
+        Dim delayTime = "NULL"
+
+
+
+
+
+        If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
+            content += "資料夾="
+            For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+                content += item + "&"
+            Next
+            content = content.TrimEnd("&")
+        Else
+            content += "資料夾=隨機"
+        End If
+
+
+        If selectedGroupItems.Count > 0 Then
+            Dim selectedItem = Form1.FBGroups_ListView.SelectedItems(0)
+            selectedGroupName = selectedItem.Text
+            selectedGroupUrl = selectedItem.SubItems(1).Text
+
+        End If
+
+
+        If Form1.TextFileSelector_ListBox.SelectedItems.Count > 0 Then
+
+        End If
+
+        For Each selectedUserData In selectedUserDataFolderItems
+
+            Dim scriptQueueItem As New ListViewItem(selectedUserData.ToString)
+
+            '執行時間
+            scriptQueueItem.SubItems.Add(excutionTime)
+
+            '網址名稱
+            scriptQueueItem.SubItems.Add(selectedGroupName)
+
+            '目標網址
+            scriptQueueItem.SubItems.Add(selectedGroupUrl)
+
+            '執行內容
+            scriptQueueItem.SubItems.Add(content)
+
+            '執行動作
+            scriptQueueItem.SubItems.Add(selecteAction)
+
+            '執行結果
+            scriptQueueItem.SubItems.Add("NULL")
+
+            '等待時間
+            scriptQueueItem.SubItems.Add(delayTime)
+
+
+            Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
+
+
+
+
+        Next
+
+
+
+
+
+
+
+
+
+
 
     End Sub
 
