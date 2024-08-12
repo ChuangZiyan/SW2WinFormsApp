@@ -28,6 +28,7 @@ Public Class Form1
 
         AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
         AddHandler InsertToQueueListview_Button.Click, AddressOf mainFormEventHandlers.InsertToQueueListview_Button_Click
+        AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf mainFormEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
     End Sub
 
 

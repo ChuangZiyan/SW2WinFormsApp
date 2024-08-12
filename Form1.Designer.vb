@@ -88,6 +88,7 @@ Partial Class Form1
         ColumnHeader10 = New ColumnHeader()
         Action_TabControl = New TabControl()
         TabPage1 = New TabPage()
+        DeselectAllMyAssetFolderListboxItems_Button = New Button()
         DeleteSelectedTextFiles_Button = New Button()
         NewTextFileName_TextBox = New TextBox()
         MediaSelector_ListBox = New ListBox()
@@ -104,6 +105,15 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        Label18 = New Label()
+        ExecutionWaitRandomSeconds_NumericUpDown = New NumericUpDown()
+        Label17 = New Label()
+        Label16 = New Label()
+        Label15 = New Label()
+        Label14 = New Label()
+        ExecutionWaitMinutes_NumericUpDown = New NumericUpDown()
+        ExecutionWaitHours_NumericUpDown = New NumericUpDown()
+        ExecutionWaitSeconds_NumericUpDown = New NumericUpDown()
         InsertToQueueListview_Button = New Button()
         Button2 = New Button()
         Button1 = New Button()
@@ -113,7 +123,6 @@ Partial Class Form1
         Label12 = New Label()
         Label11 = New Label()
         Label8 = New Label()
-        ExecutionWaitSeconds_NumericUpDown = New NumericUpDown()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -123,8 +132,11 @@ Partial Class Form1
         TabPage1.SuspendLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -138,7 +150,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(647, 396)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1.0R
+        Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -630,6 +642,7 @@ Partial Class Form1
         ' ScriptQueue_ListView
         ' 
         ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader10})
+        ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 607)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
         ScriptQueue_ListView.Size = New Size(1074, 396)
@@ -650,12 +663,12 @@ Partial Class Form1
         ' ColumnHeader7
         ' 
         ColumnHeader7.Text = "網址名稱"
-        ColumnHeader7.Width = 200
+        ColumnHeader7.Width = 150
         ' 
         ' ColumnHeader6
         ' 
         ColumnHeader6.Text = "目標網址"
-        ColumnHeader6.Width = 200
+        ColumnHeader6.Width = 240
         ' 
         ' ColumnHeader8
         ' 
@@ -675,7 +688,7 @@ Partial Class Form1
         ' ColumnHeader10
         ' 
         ColumnHeader10.Text = "等待時間"
-        ColumnHeader10.Width = 80
+        ColumnHeader10.Width = 90
         ' 
         ' Action_TabControl
         ' 
@@ -689,6 +702,7 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
         TabPage1.Controls.Add(DeleteSelectedTextFiles_Button)
         TabPage1.Controls.Add(NewTextFileName_TextBox)
         TabPage1.Controls.Add(MediaSelector_ListBox)
@@ -710,6 +724,15 @@ Partial Class Form1
         TabPage1.TabIndex = 0
         TabPage1.Text = "發帖"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' DeselectAllMyAssetFolderListboxItems_Button
+        ' 
+        DeselectAllMyAssetFolderListboxItems_Button.Location = New Point(6, 324)
+        DeselectAllMyAssetFolderListboxItems_Button.Name = "DeselectAllMyAssetFolderListboxItems_Button"
+        DeselectAllMyAssetFolderListboxItems_Button.Size = New Size(170, 29)
+        DeselectAllMyAssetFolderListboxItems_Button.TabIndex = 18
+        DeselectAllMyAssetFolderListboxItems_Button.Text = "取消選擇"
+        DeselectAllMyAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
         ' 
         ' DeleteSelectedTextFiles_Button
         ' 
@@ -754,7 +777,7 @@ Partial Class Form1
         MyAssetsFolder_ListBox.Location = New Point(6, 6)
         MyAssetsFolder_ListBox.Name = "MyAssetsFolder_ListBox"
         MyAssetsFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
-        MyAssetsFolder_ListBox.Size = New Size(170, 346)
+        MyAssetsFolder_ListBox.Size = New Size(170, 308)
         MyAssetsFolder_ListBox.TabIndex = 13
         ' 
         ' SaveEditedTextFile_Button
@@ -847,6 +870,14 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(Label18)
+        ScriptTask_GroupBox.Controls.Add(ExecutionWaitRandomSeconds_NumericUpDown)
+        ScriptTask_GroupBox.Controls.Add(Label17)
+        ScriptTask_GroupBox.Controls.Add(Label16)
+        ScriptTask_GroupBox.Controls.Add(Label15)
+        ScriptTask_GroupBox.Controls.Add(Label14)
+        ScriptTask_GroupBox.Controls.Add(ExecutionWaitMinutes_NumericUpDown)
+        ScriptTask_GroupBox.Controls.Add(ExecutionWaitHours_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(ExecutionWaitSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(InsertToQueueListview_Button)
         ScriptTask_GroupBox.Controls.Add(Button2)
@@ -863,6 +894,82 @@ Partial Class Form1
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Location = New Point(346, 108)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(50, 19)
+        Label18.TabIndex = 18
+        Label18.Text = "隨機±"
+        ' 
+        ' ExecutionWaitRandomSeconds_NumericUpDown
+        ' 
+        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(402, 103)
+        ExecutionWaitRandomSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        ExecutionWaitRandomSeconds_NumericUpDown.Name = "ExecutionWaitRandomSeconds_NumericUpDown"
+        ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(50, 27)
+        ExecutionWaitRandomSeconds_NumericUpDown.TabIndex = 17
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Location = New Point(458, 108)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(24, 19)
+        Label17.TabIndex = 16
+        Label17.Text = "秒"
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Location = New Point(316, 108)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(24, 19)
+        Label16.TabIndex = 15
+        Label16.Text = "秒"
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Location = New Point(230, 108)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(24, 19)
+        Label15.TabIndex = 14
+        Label15.Text = "分"
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Location = New Point(144, 108)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(24, 19)
+        Label14.TabIndex = 13
+        Label14.Text = "時"
+        ' 
+        ' ExecutionWaitMinutes_NumericUpDown
+        ' 
+        ExecutionWaitMinutes_NumericUpDown.Location = New Point(174, 103)
+        ExecutionWaitMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        ExecutionWaitMinutes_NumericUpDown.Name = "ExecutionWaitMinutes_NumericUpDown"
+        ExecutionWaitMinutes_NumericUpDown.Size = New Size(50, 27)
+        ExecutionWaitMinutes_NumericUpDown.TabIndex = 12
+        ' 
+        ' ExecutionWaitHours_NumericUpDown
+        ' 
+        ExecutionWaitHours_NumericUpDown.Location = New Point(88, 103)
+        ExecutionWaitHours_NumericUpDown.Name = "ExecutionWaitHours_NumericUpDown"
+        ExecutionWaitHours_NumericUpDown.Size = New Size(50, 27)
+        ExecutionWaitHours_NumericUpDown.TabIndex = 11
+        ' 
+        ' ExecutionWaitSeconds_NumericUpDown
+        ' 
+        ExecutionWaitSeconds_NumericUpDown.Location = New Point(260, 103)
+        ExecutionWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        ExecutionWaitSeconds_NumericUpDown.Name = "ExecutionWaitSeconds_NumericUpDown"
+        ExecutionWaitSeconds_NumericUpDown.Size = New Size(50, 27)
+        ExecutionWaitSeconds_NumericUpDown.TabIndex = 10
         ' 
         ' InsertToQueueListview_Button
         ' 
@@ -943,17 +1050,9 @@ Partial Class Form1
         Label8.TabIndex = 0
         Label8.Text = "執行時間 :"
         ' 
-        ' ExecutionWaitSeconds_NumericUpDown
-        ' 
-        ExecutionWaitSeconds_NumericUpDown.Location = New Point(88, 103)
-        ExecutionWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        ExecutionWaitSeconds_NumericUpDown.Name = "ExecutionWaitSeconds_NumericUpDown"
-        ExecutionWaitSeconds_NumericUpDown.Size = New Size(84, 27)
-        ExecutionWaitSeconds_NumericUpDown.TabIndex = 10
-        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
+        AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1782, 1053)
         Controls.Add(ScriptTask_GroupBox)
@@ -990,8 +1089,11 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -1086,5 +1188,14 @@ Partial Class Form1
     Friend WithEvents ColumnHeader10 As ColumnHeader
     Friend WithEvents InsertToQueueListview_Button As Button
     Friend WithEvents ExecutionWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents ExecutionWaitMinutes_NumericUpDown As NumericUpDown
+    Friend WithEvents ExecutionWaitHours_NumericUpDown As NumericUpDown
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents ExecutionWaitRandomSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents Label17 As Label
+    Friend WithEvents DeselectAllMyAssetFolderListboxItems_Button As Button
 
 End Class

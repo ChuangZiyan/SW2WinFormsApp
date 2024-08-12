@@ -10,6 +10,15 @@ Public Class MainFormEventHandlers
         MainFormController.UpdateWebviewUserDataCheckListBox()
     End Sub
 
+
+    Public Sub DeselectAllMyAssetFolderListboxItems_Button_Click(sender As Object, e As EventArgs)
+        Form1.MyAssetsFolder_ListBox.ClearSelected()
+        Form1.MediaSelector_ListBox.Items.Clear()
+        Form1.TextFileSelector_ListBox.Items.Clear()
+        Form1.PreviewTextFile_RichTextBox.Clear()
+        Form1.MediaPreview_PictureBox.ImageLocation = Nothing
+    End Sub
+
     Public Async Sub DeleteUserDataFolders_Button_Click()
 
         Try
@@ -161,7 +170,7 @@ Public Class MainFormEventHandlers
         Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
 
         Dim executionTime = "NULL"
-        Dim executionWaitSeconds As Integer = Form1.ExecutionWaitSeconds_NumericUpDown.Value
+        Dim executionWaitSeconds = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
         Dim selectedGroupName = "NULL"
         Dim selectedGroupUrl = "NULL"
 
@@ -193,32 +202,8 @@ Public Class MainFormEventHandlers
                 content += item + "&"
             Next
             content = content.TrimEnd("&")
-
-            ' Text File
-            If Form1.TextFileSelector_ListBox.SelectedItems.Count > 0 Then
-                content += ";文字檔="
-                For Each item In Form1.TextFileSelector_ListBox.SelectedItems
-                    content += item + "&"
-                Next
-                content = content.TrimEnd("&")
-            Else
-                content += ";文字檔=隨機"
-            End If
-
-            ' Media File
-            If Form1.MediaSelector_ListBox.SelectedItems.Count > 0 Then
-                content += ";媒體檔="
-                For Each item In Form1.MediaSelector_ListBox.SelectedItems
-                    content += item + "&"
-                Next
-                content = content.TrimEnd("&")
-            Else
-                content += ";媒體檔=隨機"
-            End If
-
-
         Else
-            content += "資料夾=隨機;文字檔=隨機;媒體檔=隨機"
+            content += "資料夾=隨機"
         End If
 
 
@@ -240,7 +225,7 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Private Sub AddScriptQueueItem(userData As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As Integer, excutionTime As String)
+    Private Sub AddScriptQueueItem(userData As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String, excutionTime As String)
         Dim scriptQueueItem As New ListViewItem(userData)
 
         ' 執行時間
