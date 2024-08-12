@@ -105,7 +105,6 @@ Partial Class Form1
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
         InsertToQueueListview_Button = New Button()
-        DateTimePicker2 = New DateTimePicker()
         Button2 = New Button()
         Button1 = New Button()
         Label13 = New Label()
@@ -114,6 +113,7 @@ Partial Class Form1
         Label12 = New Label()
         Label11 = New Label()
         Label8 = New Label()
+        ExecutionWaitSeconds_NumericUpDown = New NumericUpDown()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -124,6 +124,7 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -137,7 +138,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(647, 396)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1R
+        Main_WebView2.ZoomFactor = 1.0R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -846,8 +847,8 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(ExecutionWaitSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(InsertToQueueListview_Button)
-        ScriptTask_GroupBox.Controls.Add(DateTimePicker2)
         ScriptTask_GroupBox.Controls.Add(Button2)
         ScriptTask_GroupBox.Controls.Add(Button1)
         ScriptTask_GroupBox.Controls.Add(Label13)
@@ -871,17 +872,6 @@ Partial Class Form1
         InsertToQueueListview_Button.TabIndex = 9
         InsertToQueueListview_Button.Text = "插入"
         InsertToQueueListview_Button.UseVisualStyleBackColor = True
-        ' 
-        ' DateTimePicker2
-        ' 
-        DateTimePicker2.CustomFormat = "HH:mm:ss"
-        DateTimePicker2.Format = DateTimePickerFormat.Custom
-        DateTimePicker2.Location = New Point(88, 102)
-        DateTimePicker2.Name = "DateTimePicker2"
-        DateTimePicker2.ShowUpDown = True
-        DateTimePicker2.Size = New Size(150, 27)
-        DateTimePicker2.TabIndex = 8
-        DateTimePicker2.Value = New Date(2024, 8, 9, 0, 0, 0, 0)
         ' 
         ' Button2
         ' 
@@ -953,9 +943,17 @@ Partial Class Form1
         Label8.TabIndex = 0
         Label8.Text = "執行時間 :"
         ' 
+        ' ExecutionWaitSeconds_NumericUpDown
+        ' 
+        ExecutionWaitSeconds_NumericUpDown.Location = New Point(88, 103)
+        ExecutionWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        ExecutionWaitSeconds_NumericUpDown.Name = "ExecutionWaitSeconds_NumericUpDown"
+        ExecutionWaitSeconds_NumericUpDown.Size = New Size(84, 27)
+        ExecutionWaitSeconds_NumericUpDown.TabIndex = 10
+        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9F, 19F)
+        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1782, 1053)
         Controls.Add(ScriptTask_GroupBox)
@@ -993,6 +991,7 @@ Partial Class Form1
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -1085,7 +1084,7 @@ Partial Class Form1
     Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents ColumnHeader9 As ColumnHeader
     Friend WithEvents ColumnHeader10 As ColumnHeader
-    Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents InsertToQueueListview_Button As Button
+    Friend WithEvents ExecutionWaitSeconds_NumericUpDown As NumericUpDown
 
 End Class

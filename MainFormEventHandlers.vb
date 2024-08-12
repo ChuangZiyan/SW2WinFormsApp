@@ -156,11 +156,12 @@ Public Class MainFormEventHandlers
 
 
     Public Sub InsertToQueueListview_Button_Click(sender As Object, e As EventArgs)
-        Debug.WriteLine("click")
+        'Debug.WriteLine("click")
         Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
         Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
 
-        Dim excutionTime = "NULL"
+        Dim executionTime = "NULL"
+        Dim executionWaitSeconds As Integer = Form1.ExecutionWaitSeconds_NumericUpDown.Value
         Dim selectedGroupName = "NULL"
         Dim selectedGroupUrl = "NULL"
 
@@ -168,78 +169,102 @@ Public Class MainFormEventHandlers
         Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
         Dim content = ""
 
-        Dim delayTime = "NULL"
+
+        Dim selectedUserDataFolder = "NULL"
 
 
+        ' 第一個選擇的UserDataFolder
+        For Each selectedUserData In selectedUserDataFolderItems
+            selectedUserDataFolder = selectedUserData.ToString()
+        Next
+
+        ' 第一個選擇的Group
+        If selectedGroupItems.Count > 0 Then
+            Dim selectedItem = selectedGroupItems(0)
+            selectedGroupName = selectedItem.Text
+            selectedGroupUrl = selectedItem.SubItems(1).Text
+        End If
 
 
-
+        ' UserData
         If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
             content += "資料夾="
             For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
                 content += item + "&"
             Next
             content = content.TrimEnd("&")
+
+            ' Text File
+            If Form1.TextFileSelector_ListBox.SelectedItems.Count > 0 Then
+                content += ";文字檔="
+                For Each item In Form1.TextFileSelector_ListBox.SelectedItems
+                    content += item + "&"
+                Next
+                content = content.TrimEnd("&")
+            Else
+                content += ";文字檔=隨機"
+            End If
+
+            ' Media File
+            If Form1.MediaSelector_ListBox.SelectedItems.Count > 0 Then
+                content += ";媒體檔="
+                For Each item In Form1.MediaSelector_ListBox.SelectedItems
+                    content += item + "&"
+                Next
+                content = content.TrimEnd("&")
+            Else
+                content += ";媒體檔=隨機"
+            End If
+
+
         Else
-            content += "資料夾=隨機"
+            content += "資料夾=隨機;文字檔=隨機;媒體檔=隨機"
         End If
 
 
-        If selectedGroupItems.Count > 0 Then
-            Dim selectedItem = Form1.FBGroups_ListView.SelectedItems(0)
-            selectedGroupName = selectedItem.Text
-            selectedGroupUrl = selectedItem.SubItems(1).Text
 
+
+
+
+        If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
+            For Each selectedUserData In selectedUserDataFolderItems
+                AddScriptQueueItem(selectedUserData.ToString(), selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds, executionTime)
+            Next
+        Else ' 一帳號對多社團
+            For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                AddScriptQueueItem(selectedUserDataFolder, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds, executionTime)
+            Next
         End If
 
 
-        If Form1.TextFileSelector_ListBox.SelectedItems.Count > 0 Then
-
-        End If
-
-        For Each selectedUserData In selectedUserDataFolderItems
-
-            Dim scriptQueueItem As New ListViewItem(selectedUserData.ToString)
-
-            '執行時間
-            scriptQueueItem.SubItems.Add(excutionTime)
-
-            '網址名稱
-            scriptQueueItem.SubItems.Add(selectedGroupName)
-
-            '目標網址
-            scriptQueueItem.SubItems.Add(selectedGroupUrl)
-
-            '執行內容
-            scriptQueueItem.SubItems.Add(content)
-
-            '執行動作
-            scriptQueueItem.SubItems.Add(selecteAction)
-
-            '執行結果
-            scriptQueueItem.SubItems.Add("NULL")
-
-            '等待時間
-            scriptQueueItem.SubItems.Add(delayTime)
+    End Sub
 
 
-            Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
+    Private Sub AddScriptQueueItem(userData As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As Integer, excutionTime As String)
+        Dim scriptQueueItem As New ListViewItem(userData)
 
+        ' 執行時間
+        scriptQueueItem.SubItems.Add(excutionTime)
 
+        ' 網址名稱
+        scriptQueueItem.SubItems.Add(groupName)
 
+        ' 目標網址
+        scriptQueueItem.SubItems.Add(groupUrl)
 
-        Next
+        ' 執行內容
+        scriptQueueItem.SubItems.Add(content)
 
+        ' 執行動作
+        scriptQueueItem.SubItems.Add(action)
 
+        ' 執行結果
+        scriptQueueItem.SubItems.Add("NULL")
 
+        ' 等待時間
+        scriptQueueItem.SubItems.Add(waitTime)
 
-
-
-
-
-
-
-
+        Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
     End Sub
 
 End Class
