@@ -431,7 +431,7 @@ Module MainFormController
             Form1.MediaPreview_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
-                Dim allowedExtension As String() = {".jpg", ".jpeg", ".png", ".mp4"}
+                Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
                 For Each file As String In mediaFiles
                     If allowedExtension.Contains(Path.GetExtension(file)) Then
@@ -529,6 +529,16 @@ Module MainFormController
     End Sub
 
 
+
+    Public Sub ResetScriptQueueListviewItemsBackgroundColor()
+
+        For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+            item.BackColor = Color.White
+            item.ForeColor = Color.Black
+        Next
+
+
+    End Sub
 
 
     Public Class GroupListviewDataStruct

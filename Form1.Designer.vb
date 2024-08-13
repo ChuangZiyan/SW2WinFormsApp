@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -105,6 +105,13 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        Button5 = New Button()
+        Button4 = New Button()
+        Button3 = New Button()
+        Label20 = New Label()
+        NumericUpDown2 = New NumericUpDown()
+        Label19 = New Label()
+        ExecutionScriptQueue_Button = New Button()
         Label18 = New Label()
         ExecutionWaitRandomSeconds_NumericUpDown = New NumericUpDown()
         Label17 = New Label()
@@ -132,6 +139,7 @@ Partial Class Form1
         TabPage1.SuspendLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -477,7 +485,7 @@ Partial Class Form1
         FBData_TabControl.Location = New Point(441, 12)
         FBData_TabControl.Name = "FBData_TabControl"
         FBData_TabControl.SelectedIndex = 0
-        FBData_TabControl.Size = New Size(649, 429)
+        FBData_TabControl.Size = New Size(649, 423)
         FBData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -498,14 +506,14 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(641, 397)
+        FBGroups_TabPage.Size = New Size(641, 391)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
         ' GetJoinedGroupList_Button
         ' 
-        GetJoinedGroupList_Button.Location = New Point(106, 356)
+        GetJoinedGroupList_Button.Location = New Point(106, 349)
         GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
         GetJoinedGroupList_Button.Size = New Size(109, 29)
         GetJoinedGroupList_Button.TabIndex = 12
@@ -514,7 +522,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(321, 356)
+        DeleteSelectedGroup_Button.Location = New Point(321, 349)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -523,7 +531,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(221, 356)
+        SaveListviewGroupList_Button.Location = New Point(221, 349)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -532,7 +540,7 @@ Partial Class Form1
         ' 
         ' GetFBGroupList_Button
         ' 
-        GetFBGroupList_Button.Location = New Point(6, 356)
+        GetFBGroupList_Button.Location = New Point(6, 349)
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
@@ -611,10 +619,10 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(629, 243)
+        FBGroups_ListView.Size = New Size(629, 236)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -634,7 +642,7 @@ Partial Class Form1
         TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(641, 397)
+        TabPage2.Size = New Size(641, 349)
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
@@ -870,6 +878,13 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(Button5)
+        ScriptTask_GroupBox.Controls.Add(Button4)
+        ScriptTask_GroupBox.Controls.Add(Button3)
+        ScriptTask_GroupBox.Controls.Add(Label20)
+        ScriptTask_GroupBox.Controls.Add(NumericUpDown2)
+        ScriptTask_GroupBox.Controls.Add(Label19)
+        ScriptTask_GroupBox.Controls.Add(ExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(Label18)
         ScriptTask_GroupBox.Controls.Add(ExecutionWaitRandomSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(Label17)
@@ -888,17 +903,79 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
         ScriptTask_GroupBox.Controls.Add(Label8)
-        ScriptTask_GroupBox.Location = New Point(441, 447)
+        ScriptTask_GroupBox.Location = New Point(441, 441)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(645, 154)
+        ScriptTask_GroupBox.Size = New Size(645, 160)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(524, 105)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(94, 29)
+        Button5.TabIndex = 25
+        Button5.Text = "繼續"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(424, 105)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 24
+        Button4.Text = "暫停"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(558, 63)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(60, 29)
+        Button3.TabIndex = 23
+        Button3.Text = "修改"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Label20
+        ' 
+        Label20.AutoSize = True
+        Label20.Location = New Point(148, 112)
+        Label20.Name = "Label20"
+        Label20.Size = New Size(24, 19)
+        Label20.TabIndex = 22
+        Label20.Text = "次"
+        ' 
+        ' NumericUpDown2
+        ' 
+        NumericUpDown2.Location = New Point(92, 105)
+        NumericUpDown2.Name = "NumericUpDown2"
+        NumericUpDown2.Size = New Size(50, 27)
+        NumericUpDown2.TabIndex = 21
+        ' 
+        ' Label19
+        ' 
+        Label19.AutoSize = True
+        Label19.Location = New Point(10, 110)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(76, 19)
+        Label19.TabIndex = 20
+        Label19.Text = "執行次數 :"
+        ' 
+        ' ExecutionScriptQueue_Button
+        ' 
+        ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
+        ExecutionScriptQueue_Button.Location = New Point(178, 105)
+        ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
+        ExecutionScriptQueue_Button.Size = New Size(240, 29)
+        ExecutionScriptQueue_Button.TabIndex = 19
+        ExecutionScriptQueue_Button.Text = "執行腳本"
+        ExecutionScriptQueue_Button.UseVisualStyleBackColor = False
+        ' 
         ' Label18
         ' 
         Label18.AutoSize = True
-        Label18.Location = New Point(346, 108)
+        Label18.Location = New Point(350, 71)
         Label18.Name = "Label18"
         Label18.Size = New Size(50, 19)
         Label18.TabIndex = 18
@@ -906,7 +983,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitRandomSeconds_NumericUpDown
         ' 
-        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(402, 103)
+        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(406, 66)
         ExecutionWaitRandomSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitRandomSeconds_NumericUpDown.Name = "ExecutionWaitRandomSeconds_NumericUpDown"
         ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(50, 27)
@@ -915,7 +992,7 @@ Partial Class Form1
         ' Label17
         ' 
         Label17.AutoSize = True
-        Label17.Location = New Point(458, 108)
+        Label17.Location = New Point(462, 71)
         Label17.Name = "Label17"
         Label17.Size = New Size(24, 19)
         Label17.TabIndex = 16
@@ -924,7 +1001,7 @@ Partial Class Form1
         ' Label16
         ' 
         Label16.AutoSize = True
-        Label16.Location = New Point(316, 108)
+        Label16.Location = New Point(320, 71)
         Label16.Name = "Label16"
         Label16.Size = New Size(24, 19)
         Label16.TabIndex = 15
@@ -933,7 +1010,7 @@ Partial Class Form1
         ' Label15
         ' 
         Label15.AutoSize = True
-        Label15.Location = New Point(230, 108)
+        Label15.Location = New Point(234, 71)
         Label15.Name = "Label15"
         Label15.Size = New Size(24, 19)
         Label15.TabIndex = 14
@@ -942,7 +1019,7 @@ Partial Class Form1
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(144, 108)
+        Label14.Location = New Point(148, 71)
         Label14.Name = "Label14"
         Label14.Size = New Size(24, 19)
         Label14.TabIndex = 13
@@ -950,7 +1027,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitMinutes_NumericUpDown
         ' 
-        ExecutionWaitMinutes_NumericUpDown.Location = New Point(174, 103)
+        ExecutionWaitMinutes_NumericUpDown.Location = New Point(178, 66)
         ExecutionWaitMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitMinutes_NumericUpDown.Name = "ExecutionWaitMinutes_NumericUpDown"
         ExecutionWaitMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -958,14 +1035,14 @@ Partial Class Form1
         ' 
         ' ExecutionWaitHours_NumericUpDown
         ' 
-        ExecutionWaitHours_NumericUpDown.Location = New Point(88, 103)
+        ExecutionWaitHours_NumericUpDown.Location = New Point(92, 66)
         ExecutionWaitHours_NumericUpDown.Name = "ExecutionWaitHours_NumericUpDown"
         ExecutionWaitHours_NumericUpDown.Size = New Size(50, 27)
         ExecutionWaitHours_NumericUpDown.TabIndex = 11
         ' 
         ' ExecutionWaitSeconds_NumericUpDown
         ' 
-        ExecutionWaitSeconds_NumericUpDown.Location = New Point(260, 103)
+        ExecutionWaitSeconds_NumericUpDown.Location = New Point(264, 66)
         ExecutionWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitSeconds_NumericUpDown.Name = "ExecutionWaitSeconds_NumericUpDown"
         ExecutionWaitSeconds_NumericUpDown.Size = New Size(50, 27)
@@ -973,16 +1050,16 @@ Partial Class Form1
         ' 
         ' InsertToQueueListview_Button
         ' 
-        InsertToQueueListview_Button.Location = New Point(528, 103)
+        InsertToQueueListview_Button.Location = New Point(492, 63)
         InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
-        InsertToQueueListview_Button.Size = New Size(94, 29)
+        InsertToQueueListview_Button.Size = New Size(60, 29)
         InsertToQueueListview_Button.TabIndex = 9
         InsertToQueueListview_Button.Text = "插入"
         InsertToQueueListview_Button.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(528, 22)
+        Button2.Location = New Point(532, 28)
         Button2.Name = "Button2"
         Button2.Size = New Size(94, 29)
         Button2.TabIndex = 7
@@ -991,7 +1068,7 @@ Partial Class Form1
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(428, 22)
+        Button1.Location = New Point(432, 28)
         Button1.Name = "Button1"
         Button1.Size = New Size(94, 29)
         Button1.TabIndex = 6
@@ -1001,7 +1078,7 @@ Partial Class Form1
         ' Label13
         ' 
         Label13.AutoSize = True
-        Label13.Location = New Point(398, 30)
+        Label13.Location = New Point(402, 36)
         Label13.Name = "Label13"
         Label13.Size = New Size(24, 19)
         Label13.TabIndex = 5
@@ -1009,7 +1086,7 @@ Partial Class Form1
         ' 
         ' NumericUpDown1
         ' 
-        NumericUpDown1.Location = New Point(325, 24)
+        NumericUpDown1.Location = New Point(329, 30)
         NumericUpDown1.Name = "NumericUpDown1"
         NumericUpDown1.Size = New Size(67, 27)
         NumericUpDown1.TabIndex = 4
@@ -1017,7 +1094,7 @@ Partial Class Form1
         ' DateTimePicker1
         ' 
         DateTimePicker1.Format = DateTimePickerFormat.Time
-        DateTimePicker1.Location = New Point(88, 24)
+        DateTimePicker1.Location = New Point(92, 30)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.ShowUpDown = True
         DateTimePicker1.Size = New Size(150, 27)
@@ -1026,7 +1103,7 @@ Partial Class Form1
         ' Label12
         ' 
         Label12.AutoSize = True
-        Label12.Location = New Point(6, 108)
+        Label12.Location = New Point(10, 71)
         Label12.Name = "Label12"
         Label12.Size = New Size(76, 19)
         Label12.TabIndex = 2
@@ -1035,7 +1112,7 @@ Partial Class Form1
         ' Label11
         ' 
         Label11.AutoSize = True
-        Label11.Location = New Point(244, 30)
+        Label11.Location = New Point(248, 36)
         Label11.Name = "Label11"
         Label11.Size = New Size(76, 19)
         Label11.TabIndex = 1
@@ -1044,7 +1121,7 @@ Partial Class Form1
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Location = New Point(6, 30)
+        Label8.Location = New Point(10, 36)
         Label8.Name = "Label8"
         Label8.Size = New Size(76, 19)
         Label8.TabIndex = 0
@@ -1054,7 +1131,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1782, 1053)
+        ClientSize = New Size(1932, 1053)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueue_ListView)
@@ -1089,6 +1166,7 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -1197,5 +1275,12 @@ Partial Class Form1
     Friend WithEvents ExecutionWaitRandomSeconds_NumericUpDown As NumericUpDown
     Friend WithEvents Label17 As Label
     Friend WithEvents DeselectAllMyAssetFolderListboxItems_Button As Button
+    Friend WithEvents ExecutionScriptQueue_Button As Button
+    Friend WithEvents Label19 As Label
+    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button4 As Button
 
 End Class

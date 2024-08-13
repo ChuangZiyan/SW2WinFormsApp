@@ -320,6 +320,34 @@ Public Class Form1
 
     End Sub
 
+    Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
+        For Each item As ListViewItem In ScriptQueue_ListView.Items
+            MainFormController.ResetScriptQueueListviewItemsBackgroundColor()
+            item.BackColor = Color.SteelBlue
+            item.ForeColor = Color.White
+            Dim userData As String = item.SubItems(0).Text
+            Dim executionTime As String = item.SubItems(1).Text
+            Dim myUrlName As String = item.SubItems(2).Text
+            Dim myUrl As String = item.SubItems(3).Text
+            Dim content As String = item.SubItems(4).Text
+            Dim action As String = item.SubItems(5).Text
+            Dim executionResult As String = item.SubItems(6).Text
+            Dim waitSecond As String = item.SubItems(7).Text
 
+            'Debug.WriteLine("############## Run #################")
+            'Debug.WriteLine("userData: " & userData)
+            'Debug.WriteLine("executionTime: " & executionTime)
+            'Debug.WriteLine("myUrlName: " & myUrlName)
+            'Debug.WriteLine("myUrl: " & myUrl)
+            'Debug.WriteLine("content: " & content)
+            'Debug.WriteLine("executionResult: " & executionResult)
+            'Debug.WriteLine("waitSecond: " & waitSecond)
+
+            Await Delay_msec(2000)
+
+        Next
+
+
+    End Sub
 
 End Class
