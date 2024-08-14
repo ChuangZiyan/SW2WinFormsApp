@@ -361,6 +361,8 @@ Public Class Form1
                     item.SubItems(7).Text = i.ToString()
                     Await Delay_msec(1000)
                 Next
+            Else
+                item.SubItems(7).Text = "0"
             End If
 
             While PAUSE
@@ -372,18 +374,20 @@ Public Class Form1
 
 
 
+            'Main Routing 
 
             Debug.WriteLine("#######")
+            Dim result = False
 
-            'Main Routing 
             Await Delay_msec(1000)
             Select Case action
                 Case "發帖"
                     Debug.WriteLine("發帖")
-                    Webview2Controller.WritePostOnFacebook()
+                    result = Webview2Controller.WritePostOnFacebook()
             End Select
 
-
+            item.SubItems(6).Text = If(result, "成功", "失敗")
+            item.SubItems(7).Text = waitSecond
             item.BackColor = Color.White
             item.ForeColor = Color.Black
         Next

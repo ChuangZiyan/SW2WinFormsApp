@@ -539,14 +539,15 @@ Module Webview2Controller
     End Sub
 
 
-    Public Sub WritePostOnFacebook()
+    Public Function WritePostOnFacebook() As Boolean
         Try
             Debug.WriteLine("WritePostOnFacebook")
-
+            Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
+            Return False
         End Try
-    End Sub
+    End Function
 
     Public Class MyCookie
         Public Property Domain As String
