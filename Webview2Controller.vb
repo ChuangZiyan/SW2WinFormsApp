@@ -67,7 +67,7 @@ Module Webview2Controller
             Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
             SetForm1TitleStatus("載入中...")
 
-            Dim RandomDebugPort = GetAvailablePort(50000, 65000)
+            Dim RandomDebugPort = UtilsModule.GetAvailablePort(50000, 65000)
             Debug.WriteLine("Use Port : " & RandomDebugPort)
             Await ResetWebview2()
             Await Webview2Controller.InitializeWebView2(userDataFolder, RandomDebugPort)
@@ -149,35 +149,6 @@ Module Webview2Controller
     End Function
 
 
-    Function GetAvailablePort(minPort As Integer, maxPort As Integer) As Integer
-        Dim rnd As New Random()
-        Dim port As Integer
-
-        For i As Integer = 1 To 100 ' try 100 times
-            port = rnd.Next(minPort, maxPort + 1)
-            If Not IsPortInUse(port) Then
-                Return port
-            End If
-        Next
-
-        Return -1 ' return -1 if not found
-    End Function
-
-    Function IsPortInUse(port As Integer) As Boolean
-        Dim isAvailable As Boolean = True
-
-        Dim ipGlobalProperties As IPGlobalProperties = IPGlobalProperties.GetIPGlobalProperties
-        Dim tcpConnInfoArray = ipGlobalProperties.GetActiveTcpListeners()
-
-        For Each endpoint In tcpConnInfoArray
-            If endpoint.Port = port Then
-                isAvailable = False
-                Exit For
-            End If
-        Next
-
-        Return Not isAvailable
-    End Function
 
 
     Public Async Function Delay_msec(msec As Integer) As Task
@@ -565,6 +536,16 @@ Module Webview2Controller
         For Each item In items
             Form1.FBGroups_ListView.Items.Add(item)
         Next
+    End Sub
+
+
+    Public Sub WritePostOnFacebook()
+        Try
+            Debug.WriteLine("WritePostOnFacebook")
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
     End Sub
 
     Public Class MyCookie

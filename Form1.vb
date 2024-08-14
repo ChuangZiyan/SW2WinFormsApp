@@ -29,9 +29,9 @@ Public Class Form1
         AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
         AddHandler InsertToQueueListview_Button.Click, AddressOf mainFormEventHandlers.InsertToQueueListview_Button_Click
         AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf mainFormEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
+        AddHandler PauseScriptExecution_Button.Click, AddressOf mainFormEventHandlers.PauseScriptExecution_Button_Click
+        AddHandler ContinueScriptExecution_Button.Click, AddressOf mainFormEventHandlers.ContinueScriptExecution_Button_Click
     End Sub
-
-
 
 
     Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -320,11 +320,13 @@ Public Class Form1
 
     End Sub
 
+
+    Public PAUSE As Boolean = False
+
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
+        PAUSE = False
         For Each item As ListViewItem In ScriptQueue_ListView.Items
-            MainFormController.ResetScriptQueueListviewItemsBackgroundColor()
-            item.BackColor = Color.SteelBlue
-            item.ForeColor = Color.White
+
             Dim userData As String = item.SubItems(0).Text
             Dim executionTime As String = item.SubItems(1).Text
             Dim myUrlName As String = item.SubItems(2).Text
@@ -343,11 +345,51 @@ Public Class Form1
             'Debug.WriteLine("executionResult: " & executionResult)
             'Debug.WriteLine("waitSecond: " & waitSecond)
 
-            Await Delay_msec(2000)
 
+            item.BackColor = Color.SteelBlue
+            item.ForeColor = Color.White
+
+            '計算隨機秒數總和
+            Dim splitedWaitSecond = waitSecond.Split("±")
+            Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
+
+            If myWaitSecs > 0 Then
+                For i As Integer = myWaitSecs To 0 Step -1
+                    While PAUSE
+                        Await Delay_msec(1000)
+                    End While
+                    item.SubItems(7).Text = i.ToString()
+                    Await Delay_msec(1000)
+                Next
+            End If
+
+            While PAUSE
+                Await Delay_msec(1000)
+            End While
+
+
+
+
+
+
+
+            Debug.WriteLine("#######")
+
+            'Main Routing 
+            Await Delay_msec(1000)
+            Select Case action
+                Case "發帖"
+                    Debug.WriteLine("發帖")
+                    Webview2Controller.WritePostOnFacebook()
+            End Select
+
+
+            item.BackColor = Color.White
+            item.ForeColor = Color.Black
         Next
 
 
     End Sub
+
 
 End Class

@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -105,8 +105,8 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
-        Button5 = New Button()
-        Button4 = New Button()
+        ContinueScriptExecution_Button = New Button()
+        PauseScriptExecution_Button = New Button()
         Button3 = New Button()
         Label20 = New Label()
         NumericUpDown2 = New NumericUpDown()
@@ -619,7 +619,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 236)
@@ -642,7 +642,7 @@ Partial Class Form1
         TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(641, 349)
+        TabPage2.Size = New Size(641, 391)
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
@@ -878,8 +878,8 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
-        ScriptTask_GroupBox.Controls.Add(Button5)
-        ScriptTask_GroupBox.Controls.Add(Button4)
+        ScriptTask_GroupBox.Controls.Add(ContinueScriptExecution_Button)
+        ScriptTask_GroupBox.Controls.Add(PauseScriptExecution_Button)
         ScriptTask_GroupBox.Controls.Add(Button3)
         ScriptTask_GroupBox.Controls.Add(Label20)
         ScriptTask_GroupBox.Controls.Add(NumericUpDown2)
@@ -910,23 +910,23 @@ Partial Class Form1
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
-        ' Button5
+        ' ContinueScriptExecution_Button
         ' 
-        Button5.Location = New Point(524, 105)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(94, 29)
-        Button5.TabIndex = 25
-        Button5.Text = "繼續"
-        Button5.UseVisualStyleBackColor = True
+        ContinueScriptExecution_Button.Location = New Point(524, 105)
+        ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
+        ContinueScriptExecution_Button.Size = New Size(94, 29)
+        ContinueScriptExecution_Button.TabIndex = 25
+        ContinueScriptExecution_Button.Text = "繼續"
+        ContinueScriptExecution_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' PauseScriptExecution_Button
         ' 
-        Button4.Location = New Point(424, 105)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 24
-        Button4.Text = "暫停"
-        Button4.UseVisualStyleBackColor = True
+        PauseScriptExecution_Button.Location = New Point(424, 105)
+        PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
+        PauseScriptExecution_Button.Size = New Size(94, 29)
+        PauseScriptExecution_Button.TabIndex = 24
+        PauseScriptExecution_Button.Text = "暫停"
+        PauseScriptExecution_Button.UseVisualStyleBackColor = True
         ' 
         ' Button3
         ' 
@@ -1280,7 +1280,7 @@ Partial Class Form1
     Friend WithEvents NumericUpDown2 As NumericUpDown
     Friend WithEvents Button3 As Button
     Friend WithEvents Label20 As Label
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents ContinueScriptExecution_Button As Button
+    Friend WithEvents PauseScriptExecution_Button As Button
 
 End Class

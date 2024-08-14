@@ -252,4 +252,12 @@ Public Class MainFormEventHandlers
         Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
     End Sub
 
+    Public Sub PauseScriptExecution_Button_Click(sender As Object, e As EventArgs)
+        Form1.PAUSE = True
+    End Sub
+
+    Public Sub ContinueScriptExecution_Button_Click(sender As Object, e As EventArgs)
+        Form1.PAUSE = False
+    End Sub
+
 End Class
