@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -156,20 +156,20 @@ Partial Class Form1
         Main_WebView2.ForeColor = Color.Black
         Main_WebView2.Location = New Point(1096, 607)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(647, 396)
+        Main_WebView2.Size = New Size(669, 439)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1R
+        Main_WebView2.ZoomFactor = 1.0R
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(1096, 1014)
+        Navigate_Url_TextBox.Location = New Point(1096, 574)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
         Navigate_Url_TextBox.Size = New Size(424, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1526, 1012)
+        NavigateTo_Url_Button.Location = New Point(1526, 574)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -471,7 +471,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1626, 1009)
+        GetCurrentUrl_Button.Location = New Point(1626, 574)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -619,7 +619,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 236)
@@ -653,7 +653,7 @@ Partial Class Form1
         ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 607)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
-        ScriptQueue_ListView.Size = New Size(1074, 396)
+        ScriptQueue_ListView.Size = New Size(1074, 439)
         ScriptQueue_ListView.TabIndex = 24
         ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
         ScriptQueue_ListView.View = View.Details
@@ -1129,9 +1129,9 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9F, 19F)
+        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1932, 1053)
+        ClientSize = New Size(1782, 1053)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueue_ListView)

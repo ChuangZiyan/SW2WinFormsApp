@@ -12,6 +12,7 @@ Imports WebDriverManager.DriverConfigs.Impl
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports OpenQA.Selenium.Support.Extensions
+Imports AngleSharp.Dom
 
 Module Webview2Controller
     Public edgeDriver As EdgeDriver
@@ -538,11 +539,74 @@ Module Webview2Controller
         Next
     End Sub
 
+    '1. 關閉瀏覽器
+    '2. 開啟瀏覽器,直接到群組畫面
+    '3. 送出1個ESC鍵 (必需要,很多時會彈出一個窗口,被人舉報說什麼什麼違規)
+    '4. 按下討論區 (討論區的位置不固定的, 要跟加好友的寫法一樣) 如果按不列討論區直接顯示失敗
+    '5. 按下"留個言吧..."，如果按不到直接顯示失敗
+    '6. 抽出資料夾,抽出txt檔,送出txt檔內容
+    '7. 送出全部圖片影片
+    '8. 送出帖文(如果有影片，網頁一直會處於送出狀態(上載中)，所以我把關閉瀏覽器放在第1. ，我自己增加等待時間就可以，無需判斷是否送出，因為影片可以卡很久的。
 
-    Public Function WritePostOnFacebook() As Boolean
+    Public Async Function WritePostOnFacebook(myUrl As String) As Task(Of Boolean)
         Try
             Debug.WriteLine("WritePostOnFacebook")
-            Return True
+
+            Return Await Task.Run(Async Function() As Task(Of Boolean)
+                                      Try
+                                          Await Navigate_GoToUrl(myUrl)
+
+                                          Await Delay_msec(300)
+                                          '送出1個ESC鍵
+                                          Dim bodyElement As IWebElement = edgeDriver.FindElement(By.TagName("body"))
+                                          bodyElement.SendKeys(Keys.Escape)
+
+                                          Await Delay_msec(1000)
+                                          '按下"留個言吧..."，如果按不到直接顯示失敗
+                                          edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
+
+                                          Await Delay_msec(1000)
+
+                                          Dim discussion_spanElements = edgeDriver.FindElements(By.CssSelector("div.x1ey2m1c.x9f619.xds687c.x10l6tqk.x17qophe.x13vifvy > a"))
+                                          For Each elm In discussion_spanElements
+                                              Debug.WriteLine("#################")
+                                              Dim span_innerHTML = elm.FindElement(By.CssSelector("span")).GetAttribute("innerHTML")
+
+                                              If span_innerHTML.Trim = "討論區" Then
+                                                  Debug.WriteLine("有討論區")
+                                                  elm.Click()
+                                                  Exit For
+                                              End If
+
+                                              'Dim inner_html = elm.FindElement(By.CssSelector("div > span")).GetAttribute("innerHTML")
+                                              'Debug.WriteLine("inner_html : " & inner_html)
+
+                                          Next
+
+                                          'Await Delay_msec(300)
+                                          'edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
+                                          'Await Delay_msec(3000)
+
+                                          'Dim spanElement As IWebElement = edgeDriver.FindElement(By.XPath("//span[normalize-space(text())='留個言吧……']"))
+                                          'spanElement.Click()
+
+                                          Dim wait As WebDriverWait = New WebDriverWait(edgeDriver, TimeSpan.FromSeconds(10))
+                                          Dim myelement = wait.Until(Function(d) d.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")))
+                                          myelement.Click()
+                                          'ClickByCssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")
+
+                                          'ClickByCssSelectorWaitUntil()
+
+
+                                          Await Delay_msec(300)
+
+                                          Debug.WriteLine("EOF")
+                                          Return True
+                                      Catch ex As Exception
+                                          Debug.WriteLine(ex)
+                                          Return False
+                                      End Try
+                                  End Function)
         Catch ex As Exception
             Debug.WriteLine(ex)
             Return False

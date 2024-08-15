@@ -372,19 +372,27 @@ Public Class Form1
 
 
 
+            'Init webivew
 
+            Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
+            Debug.WriteLine("usr data : " & userDataFolderPath)
+            Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
+
+            'Exit Sub
 
             'Main Routing 
 
             Debug.WriteLine("#######")
             Dim result = False
-
             Await Delay_msec(1000)
             Select Case action
                 Case "發帖"
                     Debug.WriteLine("發帖")
-                    result = Webview2Controller.WritePostOnFacebook()
+                    result = Await Webview2Controller.WritePostOnFacebook(myUrl)
             End Select
+
+
+            Debug.WriteLine("result : " & result)
 
             item.SubItems(6).Text = If(result, "成功", "失敗")
             item.SubItems(7).Text = waitSecond
