@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Reflection.Metadata
 Imports System.Security.Permissions
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports Microsoft.Web.WebView2.Core
@@ -520,7 +521,14 @@ Module MainFormController
         Try
             Debug.WriteLine("path : " & filePath)
             Using writer As New StreamWriter(filePath)
-                writer.Write(Form1.PreviewTextFile_RichTextBox.Text)
+
+                ' BMP pattern
+                Dim pattern_BMP As String = "[\uD800-\uDBFF][\uDC00-\uDFFF]"
+                ' remove non BMP char
+                Dim inputString = Form1.PreviewTextFile_RichTextBox.Text
+                Dim resultString As String = Regex.Replace(inputString, pattern_BMP, "")
+                writer.Write(resultString)
+                Form1.PreviewTextFile_RichTextBox.Text = resultString
             End Using
         Catch ex As Exception
             Debug.WriteLine(ex)

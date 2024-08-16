@@ -13,6 +13,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports OpenQA.Selenium.Support.Extensions
 Imports AngleSharp.Dom
+Imports System.IO
 
 Module Webview2Controller
     Public edgeDriver As EdgeDriver
@@ -31,6 +32,7 @@ Module Webview2Controller
     Public Async Function InitializeWebView2(userDataFolder As String, debugPort As Integer) As Task
         webview2_environment = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder, New CoreWebView2EnvironmentOptions("--remote-debugging-port=" & debugPort))
         Await Form1.Main_WebView2.EnsureCoreWebView2Async(webview2_environment)
+        Form1.Main_WebView2.ZoomFactor = 0.75
     End Function
 
     Public Function InitializeEdgeDriver_Task(debugPort As Integer) As Task(Of Boolean)
@@ -517,9 +519,6 @@ Module Webview2Controller
                                                Dim name = elm.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x1qjc9v5.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli.x1sxyh0.xurb0ha.xwib8y2.x1y1aw1k.xykv574.xbmpl8g.x4vbgl9.x1rdy4ex.x1wiwyrm > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span")).GetAttribute("innerHTML")
                                                Dim url = elm.GetAttribute("href")
 
-                                               'Debug.WriteLine("usrl " & url)
-                                               'Debug.WriteLine("name " & name)
-
                                                Dim item As New ListViewItem(name)
                                                item.SubItems.Add(url)
                                                itemList.Add(item)
@@ -548,12 +547,14 @@ Module Webview2Controller
     '7. 送出全部圖片影片
     '8. 送出帖文(如果有影片，網頁一直會處於送出狀態(上載中)，所以我把關閉瀏覽器放在第1. ，我自己增加等待時間就可以，無需判斷是否送出，因為影片可以卡很久的。
 
-    Public Async Function WritePostOnFacebook(myUrl As String) As Task(Of Boolean)
+    Public Async Function WritePostOnFacebook(myUrl As String, content As String) As Task(Of Boolean)
         Try
-            Debug.WriteLine("WritePostOnFacebook")
+            'Debug.WriteLine("WritePostOnFacebook")
 
             Return Await Task.Run(Async Function() As Task(Of Boolean)
                                       Try
+
+
                                           Await Navigate_GoToUrl(myUrl)
 
                                           Await Delay_msec(300)
@@ -563,42 +564,94 @@ Module Webview2Controller
 
                                           Await Delay_msec(1000)
                                           '按下"留個言吧..."，如果按不到直接顯示失敗
-                                          edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
+                                          edgeDriver.ExecuteScript("window.scrollTo(0, 250);")
 
                                           Await Delay_msec(1000)
 
                                           Dim discussion_spanElements = edgeDriver.FindElements(By.CssSelector("div.x1ey2m1c.x9f619.xds687c.x10l6tqk.x17qophe.x13vifvy > a"))
                                           For Each elm In discussion_spanElements
-                                              Debug.WriteLine("#################")
+                                              'Debug.WriteLine("#################")
                                               Dim span_innerHTML = elm.FindElement(By.CssSelector("span")).GetAttribute("innerHTML")
 
-                                              If span_innerHTML.Trim = "討論區" Then
-                                                  Debug.WriteLine("有討論區")
+                                              If span_innerHTML.Trim() = "討論區" Or span_innerHTML.Trim() = "討論" Then
+                                                  'Debug.WriteLine("有討論區")
                                                   elm.Click()
                                                   Exit For
                                               End If
 
                                               'Dim inner_html = elm.FindElement(By.CssSelector("div > span")).GetAttribute("innerHTML")
                                               'Debug.WriteLine("inner_html : " & inner_html)
-
                                           Next
 
-                                          'Await Delay_msec(300)
+                                          Await Delay_msec(1000)
                                           'edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
                                           'Await Delay_msec(3000)
 
                                           'Dim spanElement As IWebElement = edgeDriver.FindElement(By.XPath("//span[normalize-space(text())='留個言吧……']"))
                                           'spanElement.Click()
 
-                                          Dim wait As WebDriverWait = New WebDriverWait(edgeDriver, TimeSpan.FromSeconds(10))
-                                          Dim myelement = wait.Until(Function(d) d.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")))
-                                          myelement.Click()
+                                          'Dim wait As WebDriverWait = New WebDriverWait(edgeDriver, TimeSpan.FromSeconds(10))
+                                          'Dim myelement = wait.Until(Function(d) d.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")))
+                                          'myelement.Click()
                                           'ClickByCssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")
 
-                                          'ClickByCssSelectorWaitUntil()
+                                          ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
 
+                                          Await Delay_msec(1000)
+
+                                          Dim text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1pi30zi.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x1t1ogtf > div > div > div > div > div._5rpb > div"))
+
+                                          'Debug.WriteLine("Content : " & content)
 
                                           Await Delay_msec(300)
+
+                                          content = content.Replace("資料夾=", "")
+                                          Dim myAssetFolderPath = Nothing
+                                          Dim myText As String = ""
+
+                                          If content = "隨機" Then
+                                              Dim directoryPath As String = Path.Combine()
+
+                                              ' 獲取目錄下所有的子資料夾
+                                              Dim directories As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
+                                              If directories.Length > 0 Then
+                                                  Dim rand As New Random()
+
+                                                  Dim randomIndex As Integer = rand.Next(0, directories.Length)
+                                                  myAssetFolderPath = directories(randomIndex)
+
+                                                  Debug.WriteLine("隨機選取的資料夾: " & myAssetFolderPath)
+                                              Else
+                                                  Debug.WriteLine("該目錄下沒有資料夾")
+                                              End If
+
+
+                                          Else
+                                              myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, content.Replace("資料夾=", ""))
+                                              Debug.WriteLine("asset folder path : " & myAssetFolderPath)
+                                          End If
+
+                                          Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "TextFiles")
+                                          Dim textFiles As String() = Directory.GetFiles(textFileFolderPath, "*.txt")
+
+                                          If textFiles.Length > 0 Then
+
+                                              If Directory.Exists(textFileFolderPath) Then
+
+                                                  Dim rand As New Random()
+                                                  Dim randomIndex As Integer = rand.Next(0, textFiles.Length)
+                                                  Dim randomTextFile As String = textFiles(randomIndex)
+                                                  myText = File.ReadAllText(randomTextFile)
+                                                  Debug.WriteLine("Textfile : " & randomTextFile)
+                                                  text_input.SendKeys(myText)
+                                              End If
+                                          Else
+                                              Debug.WriteLine("資料夾內無文字檔")
+                                          End If
+
+
+                                          ' 如果你要發佈貼文就取消註解下面那行
+                                          'ClickByCssSelectorWaitUntil("div.x1l90r2v.xyamay9.x1n2onr6 > div:nth-child(3) > div > div", 5) ' 點發佈
 
                                           Debug.WriteLine("EOF")
                                           Return True

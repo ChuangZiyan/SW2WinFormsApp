@@ -154,22 +154,22 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(1096, 607)
+        Main_WebView2.Location = New Point(1092, 517)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(669, 439)
+        Main_WebView2.Size = New Size(673, 541)
         Main_WebView2.TabIndex = 0
         Main_WebView2.ZoomFactor = 1.0R
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(1096, 574)
+        Navigate_Url_TextBox.Location = New Point(1092, 1064)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(424, 27)
+        Navigate_Url_TextBox.Size = New Size(473, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1526, 574)
+        NavigateTo_Url_Button.Location = New Point(1571, 1064)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -471,7 +471,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1626, 574)
+        GetCurrentUrl_Button.Location = New Point(1671, 1064)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -653,7 +653,7 @@ Partial Class Form1
         ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 607)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
-        ScriptQueue_ListView.Size = New Size(1074, 439)
+        ScriptQueue_ListView.Size = New Size(1074, 484)
         ScriptQueue_ListView.TabIndex = 24
         ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
         ScriptQueue_ListView.View = View.Details
@@ -702,7 +702,7 @@ Partial Class Form1
         ' 
         Action_TabControl.Controls.Add(TabPage1)
         Action_TabControl.Controls.Add(TabPage3)
-        Action_TabControl.Location = New Point(1096, 12)
+        Action_TabControl.Location = New Point(1092, 12)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
         Action_TabControl.Size = New Size(673, 499)
@@ -1129,9 +1129,9 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
+        AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1782, 1053)
+        ClientSize = New Size(1782, 1103)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueue_ListView)

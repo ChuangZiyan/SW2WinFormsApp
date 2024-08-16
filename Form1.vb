@@ -346,10 +346,35 @@ Public Class Form1
             'Debug.WriteLine("waitSecond: " & waitSecond)
 
 
+            ' 執行的那行要變色
             item.BackColor = Color.SteelBlue
             item.ForeColor = Color.White
 
-            '計算隨機秒數總和
+
+            '用選的userData 初始化webview
+            Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
+            'Debug.WriteLine("usr data : " & userDataFolderPath)
+
+            Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
+
+
+            'Main Routing 主要路由在這
+
+            'Debug.WriteLine("#######")
+            Dim result = False
+            Await Delay_msec(1000)
+            Select Case action
+                Case "發帖"
+                    'Debug.WriteLine("發帖")
+                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, content)
+            End Select
+
+
+            Debug.WriteLine("result : " & result)
+            item.SubItems(6).Text = If(result, "成功", "失敗")
+
+
+            '跑完腳本後等待
             Dim splitedWaitSecond = waitSecond.Split("±")
             Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
 
@@ -370,34 +395,11 @@ Public Class Form1
             End While
 
 
-
-
-            'Init webivew
-
-            Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
-            Debug.WriteLine("usr data : " & userDataFolderPath)
-            Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
-
-            'Exit Sub
-
-            'Main Routing 
-
-            Debug.WriteLine("#######")
-            Dim result = False
-            Await Delay_msec(1000)
-            Select Case action
-                Case "發帖"
-                    Debug.WriteLine("發帖")
-                    result = Await Webview2Controller.WritePostOnFacebook(myUrl)
-            End Select
-
-
-            Debug.WriteLine("result : " & result)
-
-            item.SubItems(6).Text = If(result, "成功", "失敗")
+            ' 等待完後重設
             item.SubItems(7).Text = waitSecond
             item.BackColor = Color.White
             item.ForeColor = Color.Black
+
         Next
 
 
