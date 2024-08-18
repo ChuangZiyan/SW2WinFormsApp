@@ -85,6 +85,7 @@ Partial Class Form1
         ColumnHeader8 = New ColumnHeader()
         ColumnHeader5 = New ColumnHeader()
         ColumnHeader9 = New ColumnHeader()
+        ColumnHeader11 = New ColumnHeader()
         ColumnHeader10 = New ColumnHeader()
         Action_TabControl = New TabControl()
         TabPage1 = New TabPage()
@@ -130,6 +131,12 @@ Partial Class Form1
         Label12 = New Label()
         Label11 = New Label()
         Label8 = New Label()
+        userData_ComboBox = New ComboBox()
+        MarkUserDataToSkip_Button = New Button()
+        UnmarkUserDataToSkip_Button_Button = New Button()
+        SveScriptListViewToCSVFile_Button = New Button()
+        MarkSelectedScriptListviewItem_Button = New Button()
+        UnmarkSelectedScriptListviewItem_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -158,7 +165,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(673, 541)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1.0R
+        Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -649,11 +656,11 @@ Partial Class Form1
         ' 
         ' ScriptQueue_ListView
         ' 
-        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader10})
+        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader11, ColumnHeader10})
         ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 607)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
-        ScriptQueue_ListView.Size = New Size(1074, 484)
+        ScriptQueue_ListView.Size = New Size(1074, 451)
         ScriptQueue_ListView.TabIndex = 24
         ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
         ScriptQueue_ListView.View = View.Details
@@ -676,12 +683,12 @@ Partial Class Form1
         ' ColumnHeader6
         ' 
         ColumnHeader6.Text = "目標網址"
-        ColumnHeader6.Width = 240
+        ColumnHeader6.Width = 250
         ' 
         ' ColumnHeader8
         ' 
         ColumnHeader8.Text = "執行內容"
-        ColumnHeader8.Width = 200
+        ColumnHeader8.Width = 170
         ' 
         ' ColumnHeader5
         ' 
@@ -690,8 +697,13 @@ Partial Class Form1
         ' 
         ' ColumnHeader9
         ' 
-        ColumnHeader9.Text = "執行結果"
-        ColumnHeader9.Width = 80
+        ColumnHeader9.Text = "成功"
+        ColumnHeader9.Width = 50
+        ' 
+        ' ColumnHeader11
+        ' 
+        ColumnHeader11.Text = "失敗"
+        ColumnHeader11.Width = 50
         ' 
         ' ColumnHeader10
         ' 
@@ -1127,11 +1139,70 @@ Partial Class Form1
         Label8.TabIndex = 0
         Label8.Text = "執行時間 :"
         ' 
+        ' userData_ComboBox
+        ' 
+        userData_ComboBox.FormattingEnabled = True
+        userData_ComboBox.Location = New Point(12, 1064)
+        userData_ComboBox.Name = "userData_ComboBox"
+        userData_ComboBox.Size = New Size(385, 27)
+        userData_ComboBox.TabIndex = 27
+        ' 
+        ' MarkUserDataToSkip_Button
+        ' 
+        MarkUserDataToSkip_Button.Location = New Point(403, 1064)
+        MarkUserDataToSkip_Button.Name = "MarkUserDataToSkip_Button"
+        MarkUserDataToSkip_Button.Size = New Size(94, 29)
+        MarkUserDataToSkip_Button.TabIndex = 28
+        MarkUserDataToSkip_Button.Text = "帳號標註"
+        MarkUserDataToSkip_Button.UseVisualStyleBackColor = True
+        ' 
+        ' UnmarkUserDataToSkip_Button_Button
+        ' 
+        UnmarkUserDataToSkip_Button_Button.Location = New Point(503, 1064)
+        UnmarkUserDataToSkip_Button_Button.Name = "UnmarkUserDataToSkip_Button_Button"
+        UnmarkUserDataToSkip_Button_Button.Size = New Size(94, 29)
+        UnmarkUserDataToSkip_Button_Button.TabIndex = 29
+        UnmarkUserDataToSkip_Button_Button.Text = "取消標註"
+        UnmarkUserDataToSkip_Button_Button.UseVisualStyleBackColor = True
+        ' 
+        ' SveScriptListViewToCSVFile_Button
+        ' 
+        SveScriptListViewToCSVFile_Button.Location = New Point(992, 1064)
+        SveScriptListViewToCSVFile_Button.Name = "SveScriptListViewToCSVFile_Button"
+        SveScriptListViewToCSVFile_Button.Size = New Size(94, 29)
+        SveScriptListViewToCSVFile_Button.TabIndex = 30
+        SveScriptListViewToCSVFile_Button.Text = "儲存腳本"
+        SveScriptListViewToCSVFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' MarkSelectedScriptListviewItem_Button
+        ' 
+        MarkSelectedScriptListviewItem_Button.Location = New Point(603, 1064)
+        MarkSelectedScriptListviewItem_Button.Name = "MarkSelectedScriptListviewItem_Button"
+        MarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
+        MarkSelectedScriptListviewItem_Button.TabIndex = 31
+        MarkSelectedScriptListviewItem_Button.Text = "標註所選"
+        MarkSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
+        ' 
+        ' UnmarkSelectedScriptListviewItem_Button
+        ' 
+        UnmarkSelectedScriptListviewItem_Button.Location = New Point(703, 1064)
+        UnmarkSelectedScriptListviewItem_Button.Name = "UnmarkSelectedScriptListviewItem_Button"
+        UnmarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
+        UnmarkSelectedScriptListviewItem_Button.TabIndex = 32
+        UnmarkSelectedScriptListviewItem_Button.Text = "取消標註"
+        UnmarkSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1782, 1103)
+        Controls.Add(UnmarkSelectedScriptListviewItem_Button)
+        Controls.Add(MarkSelectedScriptListviewItem_Button)
+        Controls.Add(SveScriptListViewToCSVFile_Button)
+        Controls.Add(UnmarkUserDataToSkip_Button_Button)
+        Controls.Add(MarkUserDataToSkip_Button)
+        Controls.Add(userData_ComboBox)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueue_ListView)
@@ -1282,5 +1353,12 @@ Partial Class Form1
     Friend WithEvents Label20 As Label
     Friend WithEvents ContinueScriptExecution_Button As Button
     Friend WithEvents PauseScriptExecution_Button As Button
+    Friend WithEvents userData_ComboBox As ComboBox
+    Friend WithEvents MarkUserDataToSkip_Button As Button
+    Friend WithEvents UnmarkUserDataToSkip_Button_Button As Button
+    Friend WithEvents ColumnHeader11 As ColumnHeader
+    Friend WithEvents SveScriptListViewToCSVFile_Button As Button
+    Friend WithEvents MarkSelectedScriptListviewItem_Button As Button
+    Friend WithEvents UnmarkSelectedScriptListviewItem_Button As Button
 
 End Class

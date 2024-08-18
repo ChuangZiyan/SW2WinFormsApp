@@ -4,41 +4,14 @@ Imports Newtonsoft.Json
 
 Public Class Form1
 
-    Private mainFormEventHandlers As New MainFormEventHandlers()
-
-    Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Main_WebView2.Source = New Uri("about:blank")
-        AppInitModule.InitializeMainApp()
-        MainFormController.SetForm1TitleStatus("完成")
-        Navigate_Url_TextBox.Text = "https://www.facebook.com/"
-        'NavigateTo_Url_Button.Enabled = False
-        Await Webview2Controller.GetWebview2EdgeVersion()
-        'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
-
-
-        ' Register to event Event Handlers
-        AddHandler MyAssetsFolder_ListBox.DoubleClick, AddressOf mainFormEventHandlers.RevealAssetFolderInFileExplorer_DoubleClick
-        AddHandler DeleteSelectedTextFiles_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedTextFiles_Button_Click
-        AddHandler RevealMediaFoldesrInFileExplorer_Button.Click, AddressOf mainFormEventHandlers.RevealMediaFoldersInFileExplorer_Button_Click
-        AddHandler DeleteSelectedMedia_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedMediaFile_Button_Click
-        AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
-        AddHandler FilterAvailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
-        AddHandler FilterUnavailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
-        AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.EditSelectedTextFileWithNotepad
-
-        AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
-        AddHandler InsertToQueueListview_Button.Click, AddressOf mainFormEventHandlers.InsertToQueueListview_Button_Click
-        AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf mainFormEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
-        AddHandler PauseScriptExecution_Button.Click, AddressOf mainFormEventHandlers.PauseScriptExecution_Button_Click
-        AddHandler ContinueScriptExecution_Button.Click, AddressOf mainFormEventHandlers.ContinueScriptExecution_Button_Click
-    End Sub
-
 
     Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         MainFormController.SetForm1TitleStatus("關閉中...")
         If Webview2Controller.edgeDriver IsNot Nothing Then
             Webview2Controller.edgeDriver.Quit()
         End If
+
+
     End Sub
 
     Private Async Sub NavigateTo_Url_Button_Click(sender As Object, e As EventArgs) Handles NavigateTo_Url_Button.Click
@@ -333,8 +306,9 @@ Public Class Form1
             Dim myUrl As String = item.SubItems(3).Text
             Dim content As String = item.SubItems(4).Text
             Dim action As String = item.SubItems(5).Text
-            Dim executionResult As String = item.SubItems(6).Text
-            Dim waitSecond As String = item.SubItems(7).Text
+            Dim executionSuccessResultCount As String = item.SubItems(6).Text
+            Dim executionFailResultCount As String = item.SubItems(7).Text
+            Dim waitSecond As String = item.SubItems(8).Text
 
             'Debug.WriteLine("############## Run #################")
             'Debug.WriteLine("userData: " & userData)
@@ -344,6 +318,13 @@ Public Class Form1
             'Debug.WriteLine("content: " & content)
             'Debug.WriteLine("executionResult: " & executionResult)
             'Debug.WriteLine("waitSecond: " & waitSecond)
+
+
+            ' 先判斷下顏色
+            If item.ForeColor = Color.LightGray Then
+                ' 有被標記變色就跳過
+                Continue For
+            End If
 
 
             ' 執行的那行要變色
@@ -370,8 +351,15 @@ Public Class Form1
             End Select
 
 
-            Debug.WriteLine("result : " & result)
-            item.SubItems(6).Text = If(result, "成功", "失敗")
+            'Debug.WriteLine("result : " & result)
+
+            ' 增加成功或者失敗的次數
+            If result Then
+                item.SubItems(6).Text = (CInt(item.SubItems(6).Text) + 1).ToString
+            ElseIf Not result Then
+                item.SubItems(7).Text = (CInt(item.SubItems(7).Text) + 1).ToString
+            End If
+
 
 
             '跑完腳本後等待
@@ -383,11 +371,11 @@ Public Class Form1
                     While PAUSE
                         Await Delay_msec(1000)
                     End While
-                    item.SubItems(7).Text = i.ToString()
+                    item.SubItems(8).Text = i.ToString()
                     Await Delay_msec(1000)
                 Next
             Else
-                item.SubItems(7).Text = "0"
+                item.SubItems(8).Text = "0"
             End If
 
             While PAUSE
@@ -396,11 +384,50 @@ Public Class Form1
 
 
             ' 等待完後重設
-            item.SubItems(7).Text = waitSecond
+            item.SubItems(8).Text = waitSecond
             item.BackColor = Color.White
             item.ForeColor = Color.Black
 
         Next
+
+
+    End Sub
+
+
+    Private mainFormEventHandlers As New MainFormEventHandlers()
+
+    Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Main_WebView2.Source = New Uri("about:blank")
+        AppInitModule.InitializeMainApp()
+        MainFormController.LoadCSVFileToScriptListview()
+        MainFormController.SetForm1TitleStatus("完成")
+        Navigate_Url_TextBox.Text = "https://www.facebook.com/"
+        'NavigateTo_Url_Button.Enabled = False
+        Await Webview2Controller.GetWebview2EdgeVersion()
+        'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
+
+        ' Auto load script listview 
+
+
+        ' Register to event Event Handlers
+        AddHandler MyAssetsFolder_ListBox.DoubleClick, AddressOf mainFormEventHandlers.RevealAssetFolderInFileExplorer_DoubleClick
+        AddHandler DeleteSelectedTextFiles_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedTextFiles_Button_Click
+        AddHandler RevealMediaFoldesrInFileExplorer_Button.Click, AddressOf mainFormEventHandlers.RevealMediaFoldersInFileExplorer_Button_Click
+        AddHandler DeleteSelectedMedia_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedMediaFile_Button_Click
+        AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
+        AddHandler FilterAvailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
+        AddHandler FilterUnavailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
+        AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.EditSelectedTextFileWithNotepad
+        AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
+        AddHandler InsertToQueueListview_Button.Click, AddressOf mainFormEventHandlers.InsertToQueueListview_Button_Click
+        AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf mainFormEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
+        AddHandler PauseScriptExecution_Button.Click, AddressOf mainFormEventHandlers.PauseScriptExecution_Button_Click
+        AddHandler ContinueScriptExecution_Button.Click, AddressOf mainFormEventHandlers.ContinueScriptExecution_Button_Click
+        AddHandler MarkUserDataToSkip_Button.Click, AddressOf mainFormEventHandlers.MarkUserDataToSkip_Button_Click
+        AddHandler UnmarkUserDataToSkip_Button_Button.Click, AddressOf mainFormEventHandlers.UnmarkUserDataToSkip_Button_Button_Click
+        AddHandler SveScriptListViewToCSVFile_Button.Click, AddressOf mainFormEventHandlers.SaveScriptListViewToCSVFile_Button_Click
+        AddHandler MarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.MarkSelectedScriptListviewItem_Button_Click
+        AddHandler UnmarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.UnmarkSelectedScriptListviewItem_Button_Click
 
 
     End Sub

@@ -22,6 +22,9 @@ Module MainFormController
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.availableUserDataDirectory)
             For Each dir As String In dirs
                 Form1.WebviewUserDataFolder_ListBox.Items.Add("available" & "\" & Path.GetFileName(dir))
+                '順便更新下面的userdata combox
+                Form1.userData_ComboBox.Items.Add("available" & "\" & Path.GetFileName(dir))
+
             Next
         End If
 
@@ -29,6 +32,8 @@ Module MainFormController
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.unavailableUserDataDirectory)
             For Each dir As String In dirs
                 Form1.WebviewUserDataFolder_ListBox.Items.Add("unavailable" & "\" & Path.GetFileName(dir))
+                '順便更新下面的userdata combox
+                Form1.userData_ComboBox.Items.Add("unavailable" & "\" & Path.GetFileName(dir))
             Next
         End If
 
@@ -504,7 +509,6 @@ Module MainFormController
     End Sub
 
 
-
     Public Sub SaveEditedTextFile(fileName As String)
         Try
             Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName)
@@ -545,6 +549,49 @@ Module MainFormController
             item.ForeColor = Color.Black
         Next
 
+    End Sub
+
+
+
+    Public Sub SaveScriptListViewToCSVFile()
+
+        Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "AutoSaveListviewScript.csv")
+        Using writer As New StreamWriter(filePath)
+            For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+                Dim line As String = String.Join(",", item.SubItems.Cast(Of ListViewItem.ListViewSubItem).Select(Function(subItem) subItem.Text))
+                writer.WriteLine(line)
+            Next
+        End Using
+    End Sub
+
+    Public Sub LoadCSVFileToScriptListview()
+        Try
+            Form1.ScriptQueue_ListView.Items.Clear()
+
+            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "AutoSaveListviewScript.csv")
+
+            If File.Exists(filePath) Then
+                ' 如果檔案是空的就跳過
+                If New FileInfo(filePath).Length = 0 Then
+                    Return
+                End If
+
+                Using reader As New StreamReader(filePath)
+                    While Not reader.EndOfStream
+                        Dim line As String = reader.ReadLine()
+                        Dim values As String() = line.Split(","c)
+                        Dim listViewItem As New ListViewItem(values(0))
+                        For i As Integer = 1 To values.Length - 1
+                            listViewItem.SubItems.Add(values(i))
+                        Next
+                        '加回去listview
+                        Form1.ScriptQueue_ListView.Items.Add(listViewItem)
+                    End While
+                End Using
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
 
     End Sub
 

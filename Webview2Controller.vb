@@ -555,6 +555,7 @@ Module Webview2Controller
                                       Try
 
 
+
                                           Await Navigate_GoToUrl(myUrl)
 
                                           Await Delay_msec(300)
@@ -584,26 +585,18 @@ Module Webview2Controller
                                           Next
 
                                           Await Delay_msec(1000)
-                                          'edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
-                                          'Await Delay_msec(3000)
 
-                                          'Dim spanElement As IWebElement = edgeDriver.FindElement(By.XPath("//span[normalize-space(text())='留個言吧……']"))
-                                          'spanElement.Click()
-
-                                          'Dim wait As WebDriverWait = New WebDriverWait(edgeDriver, TimeSpan.FromSeconds(10))
-                                          'Dim myelement = wait.Until(Function(d) d.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")))
-                                          'myelement.Click()
-                                          'ClickByCssSelector("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div")
-
-                                          ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
+                                          'ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
+                                          edgeDriver.FindElement(By.XPath("//span[normalize-space(text())='相片／影片']")).Click()
 
                                           Await Delay_msec(1000)
 
-                                          Dim text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1pi30zi.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x1t1ogtf > div > div > div > div > div._5rpb > div"))
+                                          Dim text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x11eofan > div > div > div > div > div._5rpb > div"))
 
                                           'Debug.WriteLine("Content : " & content)
 
                                           Await Delay_msec(300)
+
 
                                           content = content.Replace("資料夾=", "")
                                           Dim myAssetFolderPath = Nothing
@@ -631,6 +624,8 @@ Module Webview2Controller
                                               Debug.WriteLine("asset folder path : " & myAssetFolderPath)
                                           End If
 
+
+
                                           Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "TextFiles")
                                           Dim textFiles As String() = Directory.GetFiles(textFileFolderPath, "*.txt")
 
@@ -650,8 +645,36 @@ Module Webview2Controller
                                           End If
 
 
+                                          ' upload media files
+                                          Dim mediaFileList As New List(Of String)
+                                          Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
+                                          Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
+                                          Dim myFiles As String() = Directory.GetFiles(mediaFileFolderPath)
+                                          For Each file As String In myFiles
+                                              If allowedExtension.Contains(Path.GetExtension(file)) Then
+                                                  'Debug.WriteLine("file" & Path.GetFileName(file))
+                                                  mediaFileList.Add(file)
+                                              End If
+                                          Next
+
+                                          Await Delay_msec(1000)
+
+
+                                          Dim media_input = edgeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1y1aw1k.xwib8y2 > div > div:nth-child(1) > input"))
+
+
+                                          If mediaFileList.Count > 0 Then
+                                              media_input.SendKeys(String.Join(vbLf, mediaFileList))
+                                          End If
+
+                                          ' 這邊要等待上傳完成，目前先用秒數取代，之後要判斷甚麼時候上傳完
+                                          Await Delay_msec(3000)
+
                                           ' 如果你要發佈貼文就取消註解下面那行
-                                          'ClickByCssSelectorWaitUntil("div.x1l90r2v.xyamay9.x1n2onr6 > div:nth-child(3) > div > div", 5) ' 點發佈
+                                          'ClickByAriaLable("發佈")
+
+                                          '發布之後最好等個幾秒
+                                          Await Delay_msec(3000)
 
                                           Debug.WriteLine("EOF")
                                           Return True

@@ -207,10 +207,6 @@ Public Class MainFormEventHandlers
         End If
 
 
-
-
-
-
         If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
             For Each selectedUserData In selectedUserDataFolderItems
                 AddScriptQueueItem(selectedUserData.ToString(), selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds, executionTime)
@@ -243,8 +239,11 @@ Public Class MainFormEventHandlers
         ' 執行動作
         scriptQueueItem.SubItems.Add(action)
 
-        ' 執行結果
-        scriptQueueItem.SubItems.Add("NULL")
+        ' 執行成功次數
+        scriptQueueItem.SubItems.Add(0)
+
+        ' 執行失敗次數
+        scriptQueueItem.SubItems.Add(0)
 
         ' 等待時間
         scriptQueueItem.SubItems.Add(waitTime)
@@ -258,6 +257,82 @@ Public Class MainFormEventHandlers
 
     Public Sub ContinueScriptExecution_Button_Click(sender As Object, e As EventArgs)
         Form1.PAUSE = False
+    End Sub
+
+
+    Public Sub MarkUserDataToSkip_Button_Click(sender As Object, e As EventArgs)
+
+        Dim markUserdata = Form1.userData_ComboBox.Text
+        For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+            If item.SubItems(0).Text = markUserdata Then
+                item.ForeColor = Color.LightGray
+                'item.BackColor = Color.LightGray
+            End If
+        Next
+
+        Form1.ScriptQueue_ListView.SelectedItems.Clear()
+        Form1.ScriptQueue_ListView.Refresh()
+    End Sub
+
+
+    Public Sub UnmarkUserDataToSkip_Button_Button_Click(sender As Object, e As EventArgs)
+
+        Dim markUserdata = Form1.userData_ComboBox.Text
+        For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+            If item.SubItems(0).Text = markUserdata Then
+                item.ForeColor = Color.Black
+                'item.BackColor = Color.LightGray
+            End If
+        Next
+        Form1.ScriptQueue_ListView.SelectedItems.Clear()
+        Form1.ScriptQueue_ListView.Refresh()
+    End Sub
+
+    Public Sub SaveScriptListViewToCSVFile_Button_Click(sender As Object, e As EventArgs)
+        Try
+            MainFormController.SaveScriptListViewToCSVFile()
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+
+    End Sub
+
+    Public Sub MarkSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs)
+
+        Dim scriptListviewSelectedItems = Form1.ScriptQueue_ListView.SelectedItems
+
+        If scriptListviewSelectedItems.Count > 0 Then
+
+            For Each item As ListViewItem In scriptListviewSelectedItems
+                item.ForeColor = Color.LightGray
+            Next
+
+
+            Form1.ScriptQueue_ListView.SelectedItems.Clear()
+            Form1.ScriptQueue_ListView.Refresh()
+
+        End If
+
+
+    End Sub
+
+
+    Public Sub UnmarkSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs)
+        Dim scriptListviewSelectedItems = Form1.ScriptQueue_ListView.SelectedItems
+
+        If scriptListviewSelectedItems.Count > 0 Then
+
+            For Each item As ListViewItem In scriptListviewSelectedItems
+                item.ForeColor = Color.Black
+            Next
+
+            Form1.ScriptQueue_ListView.SelectedItems.Clear()
+            Form1.ScriptQueue_ListView.Refresh()
+
+        End If
+
     End Sub
 
 End Class
