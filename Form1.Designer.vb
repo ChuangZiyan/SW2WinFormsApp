@@ -87,6 +87,7 @@ Partial Class Form1
         ColumnHeader9 = New ColumnHeader()
         ColumnHeader11 = New ColumnHeader()
         ColumnHeader10 = New ColumnHeader()
+        ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
         TabPage1 = New TabPage()
         DeselectAllMyAssetFolderListboxItems_Button = New Button()
@@ -110,7 +111,7 @@ Partial Class Form1
         PauseScriptExecution_Button = New Button()
         Button3 = New Button()
         Label20 = New Label()
-        NumericUpDown2 = New NumericUpDown()
+        ScriptExecutionCount_NumericUpDown = New NumericUpDown()
         Label19 = New Label()
         ExecutionScriptQueue_Button = New Button()
         Label18 = New Label()
@@ -137,6 +138,7 @@ Partial Class Form1
         SveScriptListViewToCSVFile_Button = New Button()
         MarkSelectedScriptListviewItem_Button = New Button()
         UnmarkSelectedScriptListviewItem_Button = New Button()
+        Button4 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -146,7 +148,7 @@ Partial Class Form1
         TabPage1.SuspendLayout()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ScriptExecutionCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -165,7 +167,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(673, 541)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1R
+        Main_WebView2.ZoomFactor = 1.0R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -656,7 +658,7 @@ Partial Class Form1
         ' 
         ' ScriptQueue_ListView
         ' 
-        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader11, ColumnHeader10})
+        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
         ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 607)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
@@ -709,6 +711,10 @@ Partial Class Form1
         ' 
         ColumnHeader10.Text = "等待時間"
         ColumnHeader10.Width = 90
+        ' 
+        ' ColumnHeader12
+        ' 
+        ColumnHeader12.Text = "備註"
         ' 
         ' Action_TabControl
         ' 
@@ -894,7 +900,7 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(PauseScriptExecution_Button)
         ScriptTask_GroupBox.Controls.Add(Button3)
         ScriptTask_GroupBox.Controls.Add(Label20)
-        ScriptTask_GroupBox.Controls.Add(NumericUpDown2)
+        ScriptTask_GroupBox.Controls.Add(ScriptExecutionCount_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(Label19)
         ScriptTask_GroupBox.Controls.Add(ExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(Label18)
@@ -958,12 +964,14 @@ Partial Class Form1
         Label20.TabIndex = 22
         Label20.Text = "次"
         ' 
-        ' NumericUpDown2
+        ' ScriptExecutionCount_NumericUpDown
         ' 
-        NumericUpDown2.Location = New Point(92, 105)
-        NumericUpDown2.Name = "NumericUpDown2"
-        NumericUpDown2.Size = New Size(50, 27)
-        NumericUpDown2.TabIndex = 21
+        ScriptExecutionCount_NumericUpDown.Location = New Point(92, 105)
+        ScriptExecutionCount_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        ScriptExecutionCount_NumericUpDown.Name = "ScriptExecutionCount_NumericUpDown"
+        ScriptExecutionCount_NumericUpDown.Size = New Size(50, 27)
+        ScriptExecutionCount_NumericUpDown.TabIndex = 21
+        ScriptExecutionCount_NumericUpDown.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
         ' Label19
         ' 
@@ -1144,12 +1152,12 @@ Partial Class Form1
         userData_ComboBox.FormattingEnabled = True
         userData_ComboBox.Location = New Point(12, 1064)
         userData_ComboBox.Name = "userData_ComboBox"
-        userData_ComboBox.Size = New Size(385, 27)
+        userData_ComboBox.Size = New Size(162, 27)
         userData_ComboBox.TabIndex = 27
         ' 
         ' MarkUserDataToSkip_Button
         ' 
-        MarkUserDataToSkip_Button.Location = New Point(403, 1064)
+        MarkUserDataToSkip_Button.Location = New Point(180, 1064)
         MarkUserDataToSkip_Button.Name = "MarkUserDataToSkip_Button"
         MarkUserDataToSkip_Button.Size = New Size(94, 29)
         MarkUserDataToSkip_Button.TabIndex = 28
@@ -1158,7 +1166,7 @@ Partial Class Form1
         ' 
         ' UnmarkUserDataToSkip_Button_Button
         ' 
-        UnmarkUserDataToSkip_Button_Button.Location = New Point(503, 1064)
+        UnmarkUserDataToSkip_Button_Button.Location = New Point(280, 1064)
         UnmarkUserDataToSkip_Button_Button.Name = "UnmarkUserDataToSkip_Button_Button"
         UnmarkUserDataToSkip_Button_Button.Size = New Size(94, 29)
         UnmarkUserDataToSkip_Button_Button.TabIndex = 29
@@ -1176,7 +1184,7 @@ Partial Class Form1
         ' 
         ' MarkSelectedScriptListviewItem_Button
         ' 
-        MarkSelectedScriptListviewItem_Button.Location = New Point(603, 1064)
+        MarkSelectedScriptListviewItem_Button.Location = New Point(380, 1064)
         MarkSelectedScriptListviewItem_Button.Name = "MarkSelectedScriptListviewItem_Button"
         MarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         MarkSelectedScriptListviewItem_Button.TabIndex = 31
@@ -1185,18 +1193,28 @@ Partial Class Form1
         ' 
         ' UnmarkSelectedScriptListviewItem_Button
         ' 
-        UnmarkSelectedScriptListviewItem_Button.Location = New Point(703, 1064)
+        UnmarkSelectedScriptListviewItem_Button.Location = New Point(480, 1064)
         UnmarkSelectedScriptListviewItem_Button.Name = "UnmarkSelectedScriptListviewItem_Button"
         UnmarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         UnmarkSelectedScriptListviewItem_Button.TabIndex = 32
         UnmarkSelectedScriptListviewItem_Button.Text = "取消標註"
         UnmarkSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
         ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(580, 1064)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 33
+        Button4.Text = "修改所選"
+        Button4.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9F, 19F)
+        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1782, 1103)
+        Controls.Add(Button4)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
         Controls.Add(MarkSelectedScriptListviewItem_Button)
         Controls.Add(SveScriptListViewToCSVFile_Button)
@@ -1237,7 +1255,7 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
+        CType(ScriptExecutionCount_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -1348,7 +1366,7 @@ Partial Class Form1
     Friend WithEvents DeselectAllMyAssetFolderListboxItems_Button As Button
     Friend WithEvents ExecutionScriptQueue_Button As Button
     Friend WithEvents Label19 As Label
-    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents ScriptExecutionCount_NumericUpDown As NumericUpDown
     Friend WithEvents Button3 As Button
     Friend WithEvents Label20 As Label
     Friend WithEvents ContinueScriptExecution_Button As Button
@@ -1360,5 +1378,7 @@ Partial Class Form1
     Friend WithEvents SveScriptListViewToCSVFile_Button As Button
     Friend WithEvents MarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents UnmarkSelectedScriptListviewItem_Button As Button
+    Friend WithEvents ColumnHeader12 As ColumnHeader
+    Friend WithEvents Button4 As Button
 
 End Class

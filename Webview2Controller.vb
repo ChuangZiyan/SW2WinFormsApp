@@ -67,11 +67,11 @@ Module Webview2Controller
 
         Try
             IsWebview2Lock = True
-            Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
+            'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
             SetForm1TitleStatus("載入中...")
 
             Dim RandomDebugPort = UtilsModule.GetAvailablePort(50000, 65000)
-            Debug.WriteLine("Use Port : " & RandomDebugPort)
+            'Debug.WriteLine("Use Port : " & RandomDebugPort)
             Await ResetWebview2()
             Await Webview2Controller.InitializeWebView2(userDataFolder, RandomDebugPort)
             Await Webview2Controller.InitializeEdgeDriver_Task(RandomDebugPort)
@@ -144,7 +144,7 @@ Module Webview2Controller
             ActivedUserDataFolderPath = Nothing
             DebugPortInUse = 0
             Await Delay_msec(500)
-            Debug.WriteLine("reset webview2 EOF")
+            'Debug.WriteLine("reset webview2 EOF")
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
@@ -589,19 +589,13 @@ Module Webview2Controller
                                               Dim span_innerHTML = elm.FindElement(By.CssSelector("span")).GetAttribute("innerHTML")
 
                                               If span_innerHTML.Trim() = "討論區" Or span_innerHTML.Trim() = "討論" Then
-                                                  'Debug.WriteLine("有討論區")
                                                   elm.Click()
                                                   Exit For
                                               End If
 
-                                              'Dim inner_html = elm.FindElement(By.CssSelector("div > span")).GetAttribute("innerHTML")
-                                              'Debug.WriteLine("inner_html : " & inner_html)
                                           Next
 
-                                          'edgeDriver.FindElement(By.XPath("//span[normalize-space(text())='相片／影片']")).Click()
-
-                                          Await Delay_msec(300)
-
+                                          Await Delay_msec(1000)
 
                                           content = content.Replace("資料夾=", "")
                                           Dim myAssetFolderPath = Nothing
@@ -618,7 +612,7 @@ Module Webview2Controller
                                                   Dim randomIndex As Integer = rand.Next(0, directories.Length)
                                                   myAssetFolderPath = directories(randomIndex)
 
-                                                  Debug.WriteLine("隨機選取的資料夾: " & myAssetFolderPath)
+                                                  'Debug.WriteLine("隨機選取的資料夾: " & myAssetFolderPath)
                                               Else
                                                   Debug.WriteLine("該目錄下沒有資料夾")
                                               End If
@@ -626,7 +620,7 @@ Module Webview2Controller
 
                                           Else
                                               myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, content.Replace("資料夾=", ""))
-                                              Debug.WriteLine("asset folder path : " & myAssetFolderPath)
+                                              'Debug.WriteLine("asset folder path : " & myAssetFolderPath)
                                           End If
 
 
@@ -689,7 +683,7 @@ Module Webview2Controller
                                                   Dim randomIndex As Integer = rand.Next(0, textFiles.Length)
                                                   Dim randomTextFile As String = textFiles(randomIndex)
                                                   myText = File.ReadAllText(randomTextFile)
-                                                  Debug.WriteLine("Textfile : " & randomTextFile)
+                                                  'Debug.WriteLine("Textfile : " & randomTextFile)
                                                   text_input.SendKeys(myText)
                                               End If
                                           Else

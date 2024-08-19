@@ -17,6 +17,7 @@ Module MainFormController
 
     Public Sub UpdateWebviewUserDataCheckListBox()
         Form1.WebviewUserDataFolder_ListBox.Items.Clear()
+        Form1.userData_ComboBox.Items.Clear()
 
         If Form1.FilterAvailableUserData_CheckBox.Checked = True Then
             Dim dirs As String() = Directory.GetDirectories(AppInitModule.availableUserDataDirectory)
@@ -102,7 +103,7 @@ Module MainFormController
                     Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
                     If myFolders(1) = Webview2Controller.ActivedWebview2UserData Then
                         Await ResetWebview2()
-                        Debug.WriteLine("after reset")
+                        'Debug.WriteLine("after reset")
                         Await Delay_msec(200)
                     End If
 
@@ -215,7 +216,6 @@ Module MainFormController
                 Exit Sub
             End If
 
-            Debug.WriteLine("save data")
             Dim items As New List(Of GroupListviewDataStruct)()
 
             For Each item As ListViewItem In Form1.FBGroups_ListView.Items
@@ -553,22 +553,29 @@ Module MainFormController
 
 
 
-    Public Sub SaveScriptListViewToCSVFile()
+    Public Sub SaveScriptListViewToFile()
 
-        Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "AutoSaveListviewScript.csv")
+        Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
         Using writer As New StreamWriter(filePath)
             For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
-                Dim line As String = String.Join(",", item.SubItems.Cast(Of ListViewItem.ListViewSubItem).Select(Function(subItem) subItem.Text))
+                item.SubItems(6).Text = "0"
+                item.SubItems(7).Text = "0"
+                Dim subItemTexts As New List(Of String)()
+                For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
+                    subItemTexts.Add(subItem.Text)
+                Next
+                Dim line As String = String.Join("&nbsp;", subItemTexts)
+                'Dim line As String = String.Join("&nbsp;", item.SubItems.Cast(Of ListViewItem.ListViewSubItem).Select(Function(subItem) subItem.Text))
                 writer.WriteLine(line)
             Next
         End Using
     End Sub
 
-    Public Sub LoadCSVFileToScriptListview()
+    Public Sub LoadFileToScriptListview()
         Try
             Form1.ScriptQueue_ListView.Items.Clear()
 
-            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "AutoSaveListviewScript.csv")
+            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
 
             If File.Exists(filePath) Then
                 ' 如果檔案是空的就跳過
@@ -579,16 +586,24 @@ Module MainFormController
                 Using reader As New StreamReader(filePath)
                     While Not reader.EndOfStream
                         Dim line As String = reader.ReadLine()
-                        Dim values As String() = line.Split(","c)
+                        Dim values As String() = line.Split("&nbsp;")
                         Dim listViewItem As New ListViewItem(values(0))
                         For i As Integer = 1 To values.Length - 1
                             listViewItem.SubItems.Add(values(i))
                         Next
+
                         '加回去listview
                         Form1.ScriptQueue_ListView.Items.Add(listViewItem)
                     End While
                 End Using
             End If
+
+            For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+                If item.SubItems(9).Text = "略過" Then
+                    item.ForeColor = Color.LightGray
+                End If
+            Next
+
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try

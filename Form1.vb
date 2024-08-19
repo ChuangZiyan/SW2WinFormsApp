@@ -297,6 +297,21 @@ Public Class Form1
     Public PAUSE As Boolean = False
 
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
+
+
+        Dim executionCount As Integer = ScriptExecutionCount_NumericUpDown.Value
+
+        For run = 1 To executionCount Step 1
+
+            Await ExecutionListviewScript()
+        Next
+
+    End Sub
+
+
+
+    ' 這個是主要執行腳本的功能區段
+    Private Async Function ExecutionListviewScript() As Task
         PAUSE = False
         For Each item As ListViewItem In ScriptQueue_ListView.Items
 
@@ -319,10 +334,8 @@ Public Class Form1
             'Debug.WriteLine("executionResult: " & executionResult)
             'Debug.WriteLine("waitSecond: " & waitSecond)
 
-
-            ' 先判斷下顏色
-            If item.ForeColor = Color.LightGray Then
-                ' 有被標記變色就跳過
+            ' 判斷略過
+            If item.SubItems(9).Text = "略過" Then
                 Continue For
             End If
 
@@ -351,7 +364,6 @@ Public Class Form1
             End Select
 
 
-            'Debug.WriteLine("result : " & result)
 
             ' 增加成功或者失敗的次數
             If result Then
@@ -390,8 +402,9 @@ Public Class Form1
 
         Next
 
+    End Function
 
-    End Sub
+
 
 
     Private mainFormEventHandlers As New MainFormEventHandlers()
@@ -399,14 +412,12 @@ Public Class Form1
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
-        MainFormController.LoadCSVFileToScriptListview()
-        MainFormController.SetForm1TitleStatus("完成")
+        MainFormController.LoadFileToScriptListview()
+
         Navigate_Url_TextBox.Text = "https://www.facebook.com/"
         'NavigateTo_Url_Button.Enabled = False
         Await Webview2Controller.GetWebview2EdgeVersion()
         'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
-
-        ' Auto load script listview 
 
 
         ' Register to event Event Handlers
@@ -425,12 +436,15 @@ Public Class Form1
         AddHandler ContinueScriptExecution_Button.Click, AddressOf mainFormEventHandlers.ContinueScriptExecution_Button_Click
         AddHandler MarkUserDataToSkip_Button.Click, AddressOf mainFormEventHandlers.MarkUserDataToSkip_Button_Click
         AddHandler UnmarkUserDataToSkip_Button_Button.Click, AddressOf mainFormEventHandlers.UnmarkUserDataToSkip_Button_Button_Click
-        AddHandler SveScriptListViewToCSVFile_Button.Click, AddressOf mainFormEventHandlers.SaveScriptListViewToCSVFile_Button_Click
+        AddHandler SveScriptListViewToCSVFile_Button.Click, AddressOf mainFormEventHandlers.SaveScriptListViewToFile_Button_Click
         AddHandler MarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.MarkSelectedScriptListviewItem_Button_Click
         AddHandler UnmarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.UnmarkSelectedScriptListviewItem_Button_Click
 
+        AddHandler ScriptQueue_ListView.SelectedIndexChanged, AddressOf mainFormEventHandlers.ScriptQueue_ListView_SelectedIndexChanged
 
+
+
+        MainFormController.SetForm1TitleStatus("完成")
     End Sub
-
 
 End Class

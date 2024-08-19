@@ -31,7 +31,6 @@ Public Class MainFormEventHandlers
                         'Debug.WriteLine("curr : " & Webview2Controller.ActivedWebview2UserData)
                         If Split(item, "\")(1) = Webview2Controller.ActivedWebview2UserData Then
                             Await ResetWebview2()
-                            Debug.WriteLine("after reset")
                             Await Delay_msec(200)
                         End If
                         Dim myFolders = Split(item, "\")
@@ -105,7 +104,6 @@ Public Class MainFormEventHandlers
                 Dim result As DialogResult = MessageBox.Show("確定要刪除社團列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     For Each item In selectedItems
-                        Debug.WriteLine("itm : " & item)
                         Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
                         File.Delete(textFilePath)
                     Next
@@ -140,7 +138,6 @@ Public Class MainFormEventHandlers
         Try
 
             Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "TextFiles", Form1.TextFileSelector_ListBox.SelectedItem)
-            Debug.WriteLine("filepath" & filePath)
             If File.Exists(filePath) Then
                 Process.Start("notepad.exe", filePath)
             End If
@@ -153,7 +150,6 @@ Public Class MainFormEventHandlers
         Try
 
             Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "Media", Form1.MediaSelector_ListBox.SelectedItem)
-            Debug.WriteLine("filepath" & filePath)
             If File.Exists(filePath) Then
                 Process.Start("Explorer", filePath)
             End If
@@ -248,6 +244,9 @@ Public Class MainFormEventHandlers
         ' 等待時間
         scriptQueueItem.SubItems.Add(waitTime)
 
+        ' 備註
+        scriptQueueItem.SubItems.Add("")
+
         Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
     End Sub
 
@@ -266,6 +265,7 @@ Public Class MainFormEventHandlers
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
             If item.SubItems(0).Text = markUserdata Then
                 item.ForeColor = Color.LightGray
+                item.SubItems(9).Text = "略過"
                 'item.BackColor = Color.LightGray
             End If
         Next
@@ -281,6 +281,7 @@ Public Class MainFormEventHandlers
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
             If item.SubItems(0).Text = markUserdata Then
                 item.ForeColor = Color.Black
+                item.SubItems(9).Text = ""
                 'item.BackColor = Color.LightGray
             End If
         Next
@@ -288,9 +289,9 @@ Public Class MainFormEventHandlers
         Form1.ScriptQueue_ListView.Refresh()
     End Sub
 
-    Public Sub SaveScriptListViewToCSVFile_Button_Click(sender As Object, e As EventArgs)
+    Public Sub SaveScriptListViewToFile_Button_Click(sender As Object, e As EventArgs)
         Try
-            MainFormController.SaveScriptListViewToCSVFile()
+            MainFormController.SaveScriptListViewToFile()
             MsgBox("儲存成功")
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -307,6 +308,7 @@ Public Class MainFormEventHandlers
 
             For Each item As ListViewItem In scriptListviewSelectedItems
                 item.ForeColor = Color.LightGray
+                item.SubItems(9).Text = "略過"
             Next
 
 
@@ -326,6 +328,7 @@ Public Class MainFormEventHandlers
 
             For Each item As ListViewItem In scriptListviewSelectedItems
                 item.ForeColor = Color.Black
+                item.SubItems(9).Text = ""
             Next
 
             Form1.ScriptQueue_ListView.SelectedItems.Clear()
@@ -334,5 +337,19 @@ Public Class MainFormEventHandlers
         End If
 
     End Sub
+
+
+    Public Sub ScriptQueue_ListView_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Dim scriptListviewSelectedItems = Form1.ScriptQueue_ListView.SelectedItems
+
+        If scriptListviewSelectedItems.Count > 0 Then
+
+            Dim url As String = scriptListviewSelectedItems(0).SubItems(3).Text
+            Form1.Navigate_Url_TextBox.Text = url
+
+        End If
+
+    End Sub
+
 
 End Class
