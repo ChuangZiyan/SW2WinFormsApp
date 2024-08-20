@@ -626,6 +626,9 @@ Module Webview2Controller
 
 
                                           Dim media_input As IWebElement
+                                          Dim text_input As IWebElement
+
+                                          'div.x9f619.x1iyjqo2.xg7h5cd.x1pi30zi.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x1t1ogtf > div > div > div > div > div._5rpb > div
 
 
                                           ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
@@ -635,11 +638,12 @@ Module Webview2Controller
                                           If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
 
                                               media_input = edgeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
-
+                                              text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1pi30zi.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x1t1ogtf > div > div > div > div > div._5rpb > div"))
                                           Else
                                               ClickByAriaLable("相片／影片")
                                               Await Delay_msec(1000)
                                               media_input = edgeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1y1aw1k.xwib8y2 > div > div:nth-child(1) > input"))
+                                              text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x11eofan > div > div > div > div > div._5rpb > div"))
                                           End If
 
 
@@ -655,19 +659,10 @@ Module Webview2Controller
                                               End If
                                           Next
 
-                                          Await Delay_msec(1000)
-
-
-
-                                          If mediaFileList.Count > 0 Then
-                                              media_input.SendKeys(String.Join(vbLf, mediaFileList))
-                                          End If
-
 
                                           ' 上傳文字
                                           Await Delay_msec(1000)
 
-                                          Dim text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x11eofan > div > div > div > div > div._5rpb > div"))
 
                                           'Debug.WriteLine("Content : " & content)
 
@@ -688,6 +683,13 @@ Module Webview2Controller
                                               End If
                                           Else
                                               Debug.WriteLine("資料夾內無文字檔")
+                                          End If
+
+                                          Await Delay_msec(1000)
+
+
+                                          If mediaFileList.Count > 0 Then
+                                              media_input.SendKeys(String.Join(vbLf, mediaFileList))
                                           End If
 
                                           ' 這邊要等待上傳完成，目前先用秒數取代，之後要判斷甚麼時候上傳完
