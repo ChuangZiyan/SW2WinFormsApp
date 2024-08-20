@@ -217,6 +217,55 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+
+    Public Sub ModifySelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs)
+        'Debug.WriteLine("click")
+        Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
+        Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
+
+        Dim executionTime = "NULL"
+        Dim executionWaitSeconds = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
+        Dim selectedGroupName = "NULL"
+        Dim selectedGroupUrl = "NULL"
+
+
+        Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
+        Dim content = ""
+
+
+        Dim selectedUserDataFolder = "NULL"
+
+
+        ' 第一個選擇的UserDataFolder
+        For Each selectedUserData In selectedUserDataFolderItems
+            selectedUserDataFolder = selectedUserData.ToString()
+        Next
+
+        ' 第一個選擇的Group
+        If selectedGroupItems.Count > 0 Then
+            Dim selectedItem = selectedGroupItems(0)
+            selectedGroupName = selectedItem.Text
+            selectedGroupUrl = selectedItem.SubItems(1).Text
+        End If
+
+
+        ' UserData
+        If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
+            content += "資料夾="
+            For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+                content += item + "&"
+            Next
+            content = content.TrimEnd("&")
+        Else
+            content += "資料夾=隨機"
+        End If
+
+        If selectedUserDataFolderItems.Count > 0 Then ' 如果你選擇超過一個帳號，多帳號對一社團
+            ModifySelectedScriptQueueListviewItem(selectedUserDataFolderItems(0).ToString(), selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds, executionTime)
+        End If
+
+    End Sub
+
     Private Sub AddScriptQueueItem(userData As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String, excutionTime As String)
         Dim scriptQueueItem As New ListViewItem(userData)
 
@@ -249,6 +298,30 @@ Public Class MainFormEventHandlers
 
         Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
     End Sub
+
+    Private Sub ModifySelectedScriptQueueListviewItem(userData As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String, executionTime As String)
+        Dim selectedListviewItems = Form1.ScriptQueue_ListView.SelectedItems
+        If selectedListviewItems.Count > 0 Then
+            For Each item As ListViewItem In selectedListviewItems
+                With item.SubItems
+                    .Item(0).Text = userData
+                    .Item(1).Text = executionTime
+                    .Item(2).Text = groupName
+                    .Item(3).Text = groupUrl
+                    .Item(4).Text = content
+                    .Item(5).Text = action
+                    .Item(6).Text = "0"
+                    .Item(7).Text = "0"
+                    .Item(8).Text = waitTime
+                    .Item(9).Text = ""
+                End With
+            Next
+        End If
+
+    End Sub
+
+
+
 
     Public Sub PauseScriptExecution_Button_Click(sender As Object, e As EventArgs)
         Form1.PAUSE = True
@@ -351,5 +424,29 @@ Public Class MainFormEventHandlers
 
     End Sub
 
+
+    Public Sub DeleteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs)
+        Dim scriptListviewSelectedItems = Form1.ScriptQueue_ListView.SelectedItems
+        If scriptListviewSelectedItems.Count > 0 Then
+            For Each item As ListViewItem In scriptListviewSelectedItems
+                Form1.ScriptQueue_ListView.Items.Remove(item)
+            Next
+        End If
+    End Sub
+
+
+    Public Sub DeleteScriptListviewItemByUserData_Button_Click(sender As Object, e As EventArgs)
+
+        If Form1.userData_ComboBox.Text <> "" Then
+            For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+
+                If item.SubItems(0).Text = Form1.userData_ComboBox.Text Then
+                    Form1.ScriptQueue_ListView.Items.Remove(item)
+                End If
+
+            Next
+        End If
+
+    End Sub
 
 End Class

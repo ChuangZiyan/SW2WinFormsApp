@@ -297,15 +297,15 @@ Public Class Form1
     Public PAUSE As Boolean = False
 
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
-
-
         Dim executionCount As Integer = ScriptExecutionCount_NumericUpDown.Value
-
+        ExecutionScriptQueue_Button.Enabled = False
         For run = 1 To executionCount Step 1
-
+            ExecutionScriptQueue_Button.Text = "剩餘次數 : " & executionCount - run
             Await ExecutionListviewScript()
         Next
 
+        ExecutionScriptQueue_Button.Enabled = True
+        ExecutionScriptQueue_Button.Text = "執行腳本"
     End Sub
 
 
@@ -442,9 +442,17 @@ Public Class Form1
 
         AddHandler ScriptQueue_ListView.SelectedIndexChanged, AddressOf mainFormEventHandlers.ScriptQueue_ListView_SelectedIndexChanged
 
+        AddHandler DeleteSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedScriptListviewItem_Button_Click
+
+        AddHandler DeleteScriptListviewItemByUserData_Button.Click, AddressOf mainFormEventHandlers.DeleteScriptListviewItemByUserData_Button_Click
+
+
+        AddHandler ModifySelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewItem_Button_Click
 
 
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
+
+
 
 End Class

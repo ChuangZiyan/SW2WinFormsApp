@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -138,7 +138,9 @@ Partial Class Form1
         SveScriptListViewToCSVFile_Button = New Button()
         MarkSelectedScriptListviewItem_Button = New Button()
         UnmarkSelectedScriptListviewItem_Button = New Button()
-        Button4 = New Button()
+        ModifySelectedScriptListviewItem_Button = New Button()
+        DeleteSelectedScriptListviewItem_Button = New Button()
+        DeleteScriptListviewItemByUserData_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -167,7 +169,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(673, 541)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1.0R
+        Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -628,7 +630,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 236)
@@ -1184,7 +1186,7 @@ Partial Class Form1
         ' 
         ' MarkSelectedScriptListviewItem_Button
         ' 
-        MarkSelectedScriptListviewItem_Button.Location = New Point(380, 1064)
+        MarkSelectedScriptListviewItem_Button.Location = New Point(551, 1064)
         MarkSelectedScriptListviewItem_Button.Name = "MarkSelectedScriptListviewItem_Button"
         MarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         MarkSelectedScriptListviewItem_Button.TabIndex = 31
@@ -1193,28 +1195,48 @@ Partial Class Form1
         ' 
         ' UnmarkSelectedScriptListviewItem_Button
         ' 
-        UnmarkSelectedScriptListviewItem_Button.Location = New Point(480, 1064)
+        UnmarkSelectedScriptListviewItem_Button.Location = New Point(651, 1064)
         UnmarkSelectedScriptListviewItem_Button.Name = "UnmarkSelectedScriptListviewItem_Button"
         UnmarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         UnmarkSelectedScriptListviewItem_Button.TabIndex = 32
         UnmarkSelectedScriptListviewItem_Button.Text = "取消標註"
         UnmarkSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' ModifySelectedScriptListviewItem_Button
         ' 
-        Button4.Location = New Point(580, 1064)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 33
-        Button4.Text = "修改所選"
-        Button4.UseVisualStyleBackColor = True
+        ModifySelectedScriptListviewItem_Button.Location = New Point(851, 1064)
+        ModifySelectedScriptListviewItem_Button.Name = "ModifySelectedScriptListviewItem_Button"
+        ModifySelectedScriptListviewItem_Button.Size = New Size(94, 29)
+        ModifySelectedScriptListviewItem_Button.TabIndex = 33
+        ModifySelectedScriptListviewItem_Button.Text = "修改所選"
+        ModifySelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
+        ' 
+        ' DeleteSelectedScriptListviewItem_Button
+        ' 
+        DeleteSelectedScriptListviewItem_Button.Location = New Point(751, 1064)
+        DeleteSelectedScriptListviewItem_Button.Name = "DeleteSelectedScriptListviewItem_Button"
+        DeleteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
+        DeleteSelectedScriptListviewItem_Button.TabIndex = 34
+        DeleteSelectedScriptListviewItem_Button.Text = "刪除所選"
+        DeleteSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
+        ' 
+        ' DeleteScriptListviewItemByUserData_Button
+        ' 
+        DeleteScriptListviewItemByUserData_Button.Location = New Point(380, 1064)
+        DeleteScriptListviewItemByUserData_Button.Name = "DeleteScriptListviewItemByUserData_Button"
+        DeleteScriptListviewItemByUserData_Button.Size = New Size(94, 29)
+        DeleteScriptListviewItemByUserData_Button.TabIndex = 35
+        DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
+        DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
+        AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1782, 1103)
-        Controls.Add(Button4)
+        Controls.Add(DeleteScriptListviewItemByUserData_Button)
+        Controls.Add(DeleteSelectedScriptListviewItem_Button)
+        Controls.Add(ModifySelectedScriptListviewItem_Button)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
         Controls.Add(MarkSelectedScriptListviewItem_Button)
         Controls.Add(SveScriptListViewToCSVFile_Button)
@@ -1379,6 +1401,8 @@ Partial Class Form1
     Friend WithEvents MarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents UnmarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents ColumnHeader12 As ColumnHeader
-    Friend WithEvents Button4 As Button
+    Friend WithEvents ModifySelectedScriptListviewItem_Button As Button
+    Friend WithEvents DeleteSelectedScriptListviewItem_Button As Button
+    Friend WithEvents DeleteScriptListviewItemByUserData_Button As Button
 
 End Class
