@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -109,7 +109,7 @@ Partial Class Form1
         ScriptTask_GroupBox = New GroupBox()
         ContinueScriptExecution_Button = New Button()
         PauseScriptExecution_Button = New Button()
-        Button3 = New Button()
+        ModifySelectedScriptListviewWaitTime_Button = New Button()
         Label20 = New Label()
         ScriptExecutionCount_NumericUpDown = New NumericUpDown()
         Label19 = New Label()
@@ -138,9 +138,9 @@ Partial Class Form1
         SveScriptListViewToCSVFile_Button = New Button()
         MarkSelectedScriptListviewItem_Button = New Button()
         UnmarkSelectedScriptListviewItem_Button = New Button()
-        ModifySelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
+        ModifySelectedScriptListviewAsset_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -630,7 +630,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 236)
@@ -662,9 +662,9 @@ Partial Class Form1
         ' 
         ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
         ScriptQueue_ListView.FullRowSelect = True
-        ScriptQueue_ListView.Location = New Point(12, 607)
+        ScriptQueue_ListView.Location = New Point(12, 635)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
-        ScriptQueue_ListView.Size = New Size(1074, 451)
+        ScriptQueue_ListView.Size = New Size(1074, 423)
         ScriptQueue_ListView.TabIndex = 24
         ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
         ScriptQueue_ListView.View = View.Details
@@ -898,9 +898,10 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(ModifySelectedScriptListviewAsset_Button)
         ScriptTask_GroupBox.Controls.Add(ContinueScriptExecution_Button)
         ScriptTask_GroupBox.Controls.Add(PauseScriptExecution_Button)
-        ScriptTask_GroupBox.Controls.Add(Button3)
+        ScriptTask_GroupBox.Controls.Add(ModifySelectedScriptListviewWaitTime_Button)
         ScriptTask_GroupBox.Controls.Add(Label20)
         ScriptTask_GroupBox.Controls.Add(ScriptExecutionCount_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(Label19)
@@ -925,14 +926,14 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label8)
         ScriptTask_GroupBox.Location = New Point(441, 441)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(645, 160)
+        ScriptTask_GroupBox.Size = New Size(645, 188)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(524, 105)
+        ContinueScriptExecution_Button.Location = New Point(524, 146)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(94, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -941,26 +942,26 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(424, 105)
+        PauseScriptExecution_Button.Location = New Point(424, 146)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(94, 29)
         PauseScriptExecution_Button.TabIndex = 24
         PauseScriptExecution_Button.Text = "暫停"
         PauseScriptExecution_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' ModifySelectedScriptListviewWaitTime_Button
         ' 
-        Button3.Location = New Point(558, 63)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(60, 29)
-        Button3.TabIndex = 23
-        Button3.Text = "修改"
-        Button3.UseVisualStyleBackColor = True
+        ModifySelectedScriptListviewWaitTime_Button.Location = New Point(10, 103)
+        ModifySelectedScriptListviewWaitTime_Button.Name = "ModifySelectedScriptListviewWaitTime_Button"
+        ModifySelectedScriptListviewWaitTime_Button.Size = New Size(94, 29)
+        ModifySelectedScriptListviewWaitTime_Button.TabIndex = 23
+        ModifySelectedScriptListviewWaitTime_Button.Text = "修改時間"
+        ModifySelectedScriptListviewWaitTime_Button.UseVisualStyleBackColor = True
         ' 
         ' Label20
         ' 
         Label20.AutoSize = True
-        Label20.Location = New Point(148, 112)
+        Label20.Location = New Point(148, 153)
         Label20.Name = "Label20"
         Label20.Size = New Size(24, 19)
         Label20.TabIndex = 22
@@ -968,7 +969,7 @@ Partial Class Form1
         ' 
         ' ScriptExecutionCount_NumericUpDown
         ' 
-        ScriptExecutionCount_NumericUpDown.Location = New Point(92, 105)
+        ScriptExecutionCount_NumericUpDown.Location = New Point(92, 146)
         ScriptExecutionCount_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         ScriptExecutionCount_NumericUpDown.Name = "ScriptExecutionCount_NumericUpDown"
         ScriptExecutionCount_NumericUpDown.Size = New Size(50, 27)
@@ -978,7 +979,7 @@ Partial Class Form1
         ' Label19
         ' 
         Label19.AutoSize = True
-        Label19.Location = New Point(10, 110)
+        Label19.Location = New Point(10, 151)
         Label19.Name = "Label19"
         Label19.Size = New Size(76, 19)
         Label19.TabIndex = 20
@@ -987,7 +988,7 @@ Partial Class Form1
         ' ExecutionScriptQueue_Button
         ' 
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
-        ExecutionScriptQueue_Button.Location = New Point(178, 105)
+        ExecutionScriptQueue_Button.Location = New Point(178, 146)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
         ExecutionScriptQueue_Button.Size = New Size(240, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
@@ -1072,16 +1073,16 @@ Partial Class Form1
         ' 
         ' InsertToQueueListview_Button
         ' 
-        InsertToQueueListview_Button.Location = New Point(492, 63)
+        InsertToQueueListview_Button.Location = New Point(543, 64)
         InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
-        InsertToQueueListview_Button.Size = New Size(60, 29)
+        InsertToQueueListview_Button.Size = New Size(94, 29)
         InsertToQueueListview_Button.TabIndex = 9
         InsertToQueueListview_Button.Text = "插入"
         InsertToQueueListview_Button.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(532, 28)
+        Button2.Location = New Point(543, 29)
         Button2.Name = "Button2"
         Button2.Size = New Size(94, 29)
         Button2.TabIndex = 7
@@ -1202,15 +1203,6 @@ Partial Class Form1
         UnmarkSelectedScriptListviewItem_Button.Text = "取消標註"
         UnmarkSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
         ' 
-        ' ModifySelectedScriptListviewItem_Button
-        ' 
-        ModifySelectedScriptListviewItem_Button.Location = New Point(851, 1064)
-        ModifySelectedScriptListviewItem_Button.Name = "ModifySelectedScriptListviewItem_Button"
-        ModifySelectedScriptListviewItem_Button.Size = New Size(94, 29)
-        ModifySelectedScriptListviewItem_Button.TabIndex = 33
-        ModifySelectedScriptListviewItem_Button.Text = "修改所選"
-        ModifySelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
-        ' 
         ' DeleteSelectedScriptListviewItem_Button
         ' 
         DeleteSelectedScriptListviewItem_Button.Location = New Point(751, 1064)
@@ -1229,6 +1221,15 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
+        ' ModifySelectedScriptListviewAsset_Button
+        ' 
+        ModifySelectedScriptListviewAsset_Button.Location = New Point(112, 103)
+        ModifySelectedScriptListviewAsset_Button.Name = "ModifySelectedScriptListviewAsset_Button"
+        ModifySelectedScriptListviewAsset_Button.Size = New Size(94, 29)
+        ModifySelectedScriptListviewAsset_Button.TabIndex = 26
+        ModifySelectedScriptListviewAsset_Button.Text = "修改資料夾"
+        ModifySelectedScriptListviewAsset_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -1236,7 +1237,6 @@ Partial Class Form1
         ClientSize = New Size(1782, 1103)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
         Controls.Add(DeleteSelectedScriptListviewItem_Button)
-        Controls.Add(ModifySelectedScriptListviewItem_Button)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
         Controls.Add(MarkSelectedScriptListviewItem_Button)
         Controls.Add(SveScriptListViewToCSVFile_Button)
@@ -1389,7 +1389,6 @@ Partial Class Form1
     Friend WithEvents ExecutionScriptQueue_Button As Button
     Friend WithEvents Label19 As Label
     Friend WithEvents ScriptExecutionCount_NumericUpDown As NumericUpDown
-    Friend WithEvents Button3 As Button
     Friend WithEvents Label20 As Label
     Friend WithEvents ContinueScriptExecution_Button As Button
     Friend WithEvents PauseScriptExecution_Button As Button
@@ -1401,8 +1400,9 @@ Partial Class Form1
     Friend WithEvents MarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents UnmarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents ColumnHeader12 As ColumnHeader
-    Friend WithEvents ModifySelectedScriptListviewItem_Button As Button
     Friend WithEvents DeleteSelectedScriptListviewItem_Button As Button
     Friend WithEvents DeleteScriptListviewItemByUserData_Button As Button
+    Friend WithEvents ModifySelectedScriptListviewWaitTime_Button As Button
+    Friend WithEvents ModifySelectedScriptListviewAsset_Button As Button
 
 End Class

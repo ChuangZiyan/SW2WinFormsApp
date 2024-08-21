@@ -447,12 +447,10 @@ Public Class Form1
         AddHandler DeleteScriptListviewItemByUserData_Button.Click, AddressOf mainFormEventHandlers.DeleteScriptListviewItemByUserData_Button_Click
 
 
-        AddHandler ModifySelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewItem_Button_Click
-
+        AddHandler ModifySelectedScriptListviewWaitTime_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewWaitTime
+        AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
 
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
-
-
 
 End Class
