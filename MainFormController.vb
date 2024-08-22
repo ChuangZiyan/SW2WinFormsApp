@@ -610,6 +610,39 @@ Module MainFormController
 
     End Sub
 
+    Public Function GetRandomAssetFolder(content As String)
+
+        Try
+            Dim myAssetFolderPath As String = Nothing
+            content = content.Replace("資料夾=", "")
+            If content = "隨機" Then
+                Dim directoryPath As String = Path.Combine()
+
+                ' 獲取目錄下所有的子資料夾
+                Dim directories As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
+                If directories.Length > 0 Then
+                    Dim rand As New Random()
+
+                    Dim randomIndex As Integer = rand.Next(0, directories.Length)
+                    myAssetFolderPath = directories(randomIndex)
+
+                    'Debug.WriteLine("隨機選取的資料夾: " & myAssetFolderPath)
+                Else
+                    Debug.WriteLine("該目錄下沒有資料夾")
+                End If
+
+            Else
+                myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, content.Replace("資料夾=", ""))
+                'Debug.WriteLine("asset folder path : " & myAssetFolderPath)
+            End If
+
+            Return myAssetFolderPath
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
 
     Public Class GroupListviewDataStruct
         Public Property Name As String

@@ -435,4 +435,13 @@ Public Class MainFormEventHandlers
 
     End Sub
 
+
+    Public Async Sub ResetScript_Button_Click(sender As Object, e As EventArgs)
+        Await Webview2Controller.ResetWebview2()
+        Dim appPath As String = Application.ExecutablePath
+        System.Diagnostics.Process.Start(appPath)
+        Application.Exit()
+
+    End Sub
+
 End Class

@@ -347,8 +347,7 @@ Public Class Form1
 
             '用選的userData 初始化webview
             Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
-            'Debug.WriteLine("usr data : " & userDataFolderPath)
-
+            ' 初始化webivew
             Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
 
@@ -360,10 +359,12 @@ Public Class Form1
             Select Case action
                 Case "發帖"
                     'Debug.WriteLine("發帖")
-                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, content)
+                    Dim assetFolderPath = GetRandomAssetFolder(content)
+                    item.SubItems(4).Text = "資料夾->" & Path.GetFileName(assetFolderPath)
+                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath)
+
+                    item.SubItems(4).Text = content
             End Select
-
-
 
             ' 增加成功或者失敗的次數
             If result Then
@@ -449,7 +450,7 @@ Public Class Form1
 
         AddHandler ModifySelectedScriptListviewWaitTime_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewWaitTime
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
-
+        AddHandler ResetScript_Button.Click, AddressOf mainFormEventHandlers.ResetScript_Button_Click
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
 

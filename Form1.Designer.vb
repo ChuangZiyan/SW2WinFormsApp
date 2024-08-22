@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -107,6 +107,8 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        ResetScript_Button = New Button()
+        ModifySelectedScriptListviewAsset_Button = New Button()
         ContinueScriptExecution_Button = New Button()
         PauseScriptExecution_Button = New Button()
         ModifySelectedScriptListviewWaitTime_Button = New Button()
@@ -140,7 +142,6 @@ Partial Class Form1
         UnmarkSelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
-        ModifySelectedScriptListviewAsset_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -630,7 +631,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(629, 236)
@@ -898,6 +899,7 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(ResetScript_Button)
         ScriptTask_GroupBox.Controls.Add(ModifySelectedScriptListviewAsset_Button)
         ScriptTask_GroupBox.Controls.Add(ContinueScriptExecution_Button)
         ScriptTask_GroupBox.Controls.Add(PauseScriptExecution_Button)
@@ -931,9 +933,27 @@ Partial Class Form1
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
+        ' ResetScript_Button
+        ' 
+        ResetScript_Button.Location = New Point(520, 146)
+        ResetScript_Button.Name = "ResetScript_Button"
+        ResetScript_Button.Size = New Size(94, 29)
+        ResetScript_Button.TabIndex = 27
+        ResetScript_Button.Text = "重置程式"
+        ResetScript_Button.UseVisualStyleBackColor = True
+        ' 
+        ' ModifySelectedScriptListviewAsset_Button
+        ' 
+        ModifySelectedScriptListviewAsset_Button.Location = New Point(112, 103)
+        ModifySelectedScriptListviewAsset_Button.Name = "ModifySelectedScriptListviewAsset_Button"
+        ModifySelectedScriptListviewAsset_Button.Size = New Size(94, 29)
+        ModifySelectedScriptListviewAsset_Button.TabIndex = 26
+        ModifySelectedScriptListviewAsset_Button.Text = "修改資料夾"
+        ModifySelectedScriptListviewAsset_Button.UseVisualStyleBackColor = True
+        ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(524, 146)
+        ContinueScriptExecution_Button.Location = New Point(420, 146)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(94, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -942,7 +962,7 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(424, 146)
+        PauseScriptExecution_Button.Location = New Point(320, 146)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(94, 29)
         PauseScriptExecution_Button.TabIndex = 24
@@ -990,7 +1010,7 @@ Partial Class Form1
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
         ExecutionScriptQueue_Button.Location = New Point(178, 146)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
-        ExecutionScriptQueue_Button.Size = New Size(240, 29)
+        ExecutionScriptQueue_Button.Size = New Size(136, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
         ExecutionScriptQueue_Button.Text = "執行腳本"
         ExecutionScriptQueue_Button.UseVisualStyleBackColor = False
@@ -1221,15 +1241,6 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
-        ' ModifySelectedScriptListviewAsset_Button
-        ' 
-        ModifySelectedScriptListviewAsset_Button.Location = New Point(112, 103)
-        ModifySelectedScriptListviewAsset_Button.Name = "ModifySelectedScriptListviewAsset_Button"
-        ModifySelectedScriptListviewAsset_Button.Size = New Size(94, 29)
-        ModifySelectedScriptListviewAsset_Button.TabIndex = 26
-        ModifySelectedScriptListviewAsset_Button.Text = "修改資料夾"
-        ModifySelectedScriptListviewAsset_Button.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -1404,5 +1415,6 @@ Partial Class Form1
     Friend WithEvents DeleteScriptListviewItemByUserData_Button As Button
     Friend WithEvents ModifySelectedScriptListviewWaitTime_Button As Button
     Friend WithEvents ModifySelectedScriptListviewAsset_Button As Button
+    Friend WithEvents ResetScript_Button As Button
 
 End Class

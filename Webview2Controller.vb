@@ -561,7 +561,7 @@ Module Webview2Controller
     '7. 送出全部圖片影片
     '8. 送出帖文(如果有影片，網頁一直會處於送出狀態(上載中)，所以我把關閉瀏覽器放在第1. ，我自己增加等待時間就可以，無需判斷是否送出，因為影片可以卡很久的。
 
-    Public Async Function WritePostOnFacebook(myUrl As String, content As String) As Task(Of Boolean)
+    Public Async Function WritePostOnFacebook(myUrl As String, myAssetFolderPath As String) As Task(Of Boolean)
         Try
             'Debug.WriteLine("WritePostOnFacebook")
 
@@ -597,34 +597,9 @@ Module Webview2Controller
 
                                           Await Delay_msec(1000)
 
-                                          content = content.Replace("資料夾=", "")
-                                          Dim myAssetFolderPath = Nothing
+
+
                                           Dim myText As String = ""
-
-                                          If content = "隨機" Then
-                                              Dim directoryPath As String = Path.Combine()
-
-                                              ' 獲取目錄下所有的子資料夾
-                                              Dim directories As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
-                                              If directories.Length > 0 Then
-                                                  Dim rand As New Random()
-
-                                                  Dim randomIndex As Integer = rand.Next(0, directories.Length)
-                                                  myAssetFolderPath = directories(randomIndex)
-
-                                                  'Debug.WriteLine("隨機選取的資料夾: " & myAssetFolderPath)
-                                              Else
-                                                  Debug.WriteLine("該目錄下沒有資料夾")
-                                              End If
-
-
-                                          Else
-                                              myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, content.Replace("資料夾=", ""))
-                                              'Debug.WriteLine("asset folder path : " & myAssetFolderPath)
-                                          End If
-
-
-
                                           Dim media_input As IWebElement
                                           Dim text_input As IWebElement
 
