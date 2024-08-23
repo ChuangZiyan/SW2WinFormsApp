@@ -82,14 +82,21 @@ Partial Class Form1
         ColumnHeader4 = New ColumnHeader()
         ColumnHeader7 = New ColumnHeader()
         ColumnHeader6 = New ColumnHeader()
-        ColumnHeader8 = New ColumnHeader()
         ColumnHeader5 = New ColumnHeader()
+        ColumnHeader8 = New ColumnHeader()
+        ColumnHeader13 = New ColumnHeader()
+        ColumnHeader14 = New ColumnHeader()
         ColumnHeader9 = New ColumnHeader()
         ColumnHeader11 = New ColumnHeader()
         ColumnHeader10 = New ColumnHeader()
         ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
         TabPage1 = New TabPage()
+        Label22 = New Label()
+        Button3 = New Button()
+        Label21 = New Label()
+        NumericUpDown3 = New NumericUpDown()
+        NumericUpDown2 = New NumericUpDown()
         DeselectAllMyAssetFolderListboxItems_Button = New Button()
         DeleteSelectedTextFiles_Button = New Button()
         NewTextFileName_TextBox = New TextBox()
@@ -142,6 +149,7 @@ Partial Class Form1
         UnmarkSelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
+        Label23 = New Label()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -149,6 +157,8 @@ Partial Class Form1
         FBGroups_TabPage.SuspendLayout()
         Action_TabControl.SuspendLayout()
         TabPage1.SuspendLayout()
+        CType(NumericUpDown3, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScriptExecutionCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -166,22 +176,22 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(1092, 517)
+        Main_WebView2.Location = New Point(1147, 517)
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(673, 541)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1R
+        Main_WebView2.ZoomFactor = 1.0R
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(1092, 1064)
+        Navigate_Url_TextBox.Location = New Point(1147, 1064)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
         Navigate_Url_TextBox.Size = New Size(473, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1571, 1064)
+        NavigateTo_Url_Button.Location = New Point(1626, 1064)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -483,7 +493,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1671, 1064)
+        GetCurrentUrl_Button.Location = New Point(1726, 1064)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -497,7 +507,7 @@ Partial Class Form1
         FBData_TabControl.Location = New Point(441, 12)
         FBData_TabControl.Name = "FBData_TabControl"
         FBData_TabControl.SelectedIndex = 0
-        FBData_TabControl.Size = New Size(649, 423)
+        FBData_TabControl.Size = New Size(700, 423)
         FBData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -518,7 +528,7 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(641, 391)
+        FBGroups_TabPage.Size = New Size(692, 391)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
@@ -534,7 +544,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(321, 349)
+        DeleteSelectedGroup_Button.Location = New Point(592, 349)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -599,14 +609,14 @@ Partial Class Form1
         ' 
         FBGroupUrl_TextBox.Location = New Point(62, 39)
         FBGroupUrl_TextBox.Name = "FBGroupUrl_TextBox"
-        FBGroupUrl_TextBox.Size = New Size(573, 27)
+        FBGroupUrl_TextBox.Size = New Size(624, 27)
         FBGroupUrl_TextBox.TabIndex = 4
         ' 
         ' FBGroupName_TextBox
         ' 
         FBGroupName_TextBox.Location = New Point(62, 6)
         FBGroupName_TextBox.Name = "FBGroupName_TextBox"
-        FBGroupName_TextBox.Size = New Size(573, 27)
+        FBGroupName_TextBox.Size = New Size(624, 27)
         FBGroupName_TextBox.TabIndex = 3
         ' 
         ' Label10
@@ -634,7 +644,7 @@ Partial Class Form1
         FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(629, 236)
+        FBGroups_ListView.Size = New Size(680, 236)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -642,30 +652,30 @@ Partial Class Form1
         ' ColumnHeader1
         ' 
         ColumnHeader1.Text = "社團名稱"
-        ColumnHeader1.Width = 170
+        ColumnHeader1.Width = 200
         ' 
         ' ColumnHeader2
         ' 
         ColumnHeader2.Text = "社團網址"
-        ColumnHeader2.Width = 450
+        ColumnHeader2.Width = 470
         ' 
         ' TabPage2
         ' 
         TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(641, 391)
+        TabPage2.Size = New Size(692, 391)
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
         ' 
         ' ScriptQueue_ListView
         ' 
-        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader8, ColumnHeader5, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
+        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader5, ColumnHeader8, ColumnHeader13, ColumnHeader14, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
         ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 635)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
-        ScriptQueue_ListView.Size = New Size(1074, 423)
+        ScriptQueue_ListView.Size = New Size(1129, 423)
         ScriptQueue_ListView.TabIndex = 24
         ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
         ScriptQueue_ListView.View = View.Details
@@ -673,7 +683,7 @@ Partial Class Form1
         ' ColumnHeader3
         ' 
         ColumnHeader3.Text = "執行帳號"
-        ColumnHeader3.Width = 150
+        ColumnHeader3.Width = 100
         ' 
         ' ColumnHeader4
         ' 
@@ -688,17 +698,27 @@ Partial Class Form1
         ' ColumnHeader6
         ' 
         ColumnHeader6.Text = "目標網址"
-        ColumnHeader6.Width = 250
+        ColumnHeader6.Width = 200
+        ' 
+        ' ColumnHeader5
+        ' 
+        ColumnHeader5.Text = "執行動作"
+        ColumnHeader5.Width = 80
         ' 
         ' ColumnHeader8
         ' 
         ColumnHeader8.Text = "執行內容"
         ColumnHeader8.Width = 170
         ' 
-        ' ColumnHeader5
+        ' ColumnHeader13
         ' 
-        ColumnHeader5.Text = "執行動作"
-        ColumnHeader5.Width = 80
+        ColumnHeader13.Text = "上傳等待"
+        ColumnHeader13.Width = 80
+        ' 
+        ' ColumnHeader14
+        ' 
+        ColumnHeader14.Text = "送出等待"
+        ColumnHeader14.Width = 80
         ' 
         ' ColumnHeader9
         ' 
@@ -723,7 +743,7 @@ Partial Class Form1
         ' 
         Action_TabControl.Controls.Add(TabPage1)
         Action_TabControl.Controls.Add(TabPage3)
-        Action_TabControl.Location = New Point(1092, 12)
+        Action_TabControl.Location = New Point(1147, 12)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
         Action_TabControl.Size = New Size(673, 499)
@@ -731,6 +751,12 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(Label23)
+        TabPage1.Controls.Add(Label22)
+        TabPage1.Controls.Add(Button3)
+        TabPage1.Controls.Add(Label21)
+        TabPage1.Controls.Add(NumericUpDown3)
+        TabPage1.Controls.Add(NumericUpDown2)
         TabPage1.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
         TabPage1.Controls.Add(DeleteSelectedTextFiles_Button)
         TabPage1.Controls.Add(NewTextFileName_TextBox)
@@ -753,6 +779,51 @@ Partial Class Form1
         TabPage1.TabIndex = 0
         TabPage1.Text = "發帖"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' Label22
+        ' 
+        Label22.AutoSize = True
+        Label22.Location = New Point(334, 11)
+        Label22.Name = "Label22"
+        Label22.Size = New Size(80, 19)
+        Label22.TabIndex = 23
+        Label22.Text = "送出等待 : "
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(486, 8)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(94, 29)
+        Button3.TabIndex = 22
+        Button3.Text = "儲存"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Label21
+        ' 
+        Label21.AutoSize = True
+        Label21.Location = New Point(182, 11)
+        Label21.Name = "Label21"
+        Label21.Size = New Size(80, 19)
+        Label21.TabIndex = 21
+        Label21.Text = "上載等待 : "
+        ' 
+        ' NumericUpDown3
+        ' 
+        NumericUpDown3.Increment = New Decimal(New Integer() {0, 0, 0, 0})
+        NumericUpDown3.Location = New Point(268, 8)
+        NumericUpDown3.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumericUpDown3.Name = "NumericUpDown3"
+        NumericUpDown3.Size = New Size(60, 27)
+        NumericUpDown3.TabIndex = 20
+        ' 
+        ' NumericUpDown2
+        ' 
+        NumericUpDown2.Increment = New Decimal(New Integer() {0, 0, 0, 0})
+        NumericUpDown2.Location = New Point(420, 8)
+        NumericUpDown2.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumericUpDown2.Name = "NumericUpDown2"
+        NumericUpDown2.Size = New Size(60, 27)
+        NumericUpDown2.TabIndex = 19
         ' 
         ' DeselectAllMyAssetFolderListboxItems_Button
         ' 
@@ -793,10 +864,10 @@ Partial Class Form1
         ' 
         TextFileSelector_ListBox.FormattingEnabled = True
         TextFileSelector_ListBox.ItemHeight = 19
-        TextFileSelector_ListBox.Location = New Point(182, 6)
+        TextFileSelector_ListBox.Location = New Point(182, 44)
         TextFileSelector_ListBox.Name = "TextFileSelector_ListBox"
         TextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
-        TextFileSelector_ListBox.Size = New Size(163, 175)
+        TextFileSelector_ListBox.Size = New Size(163, 137)
         TextFileSelector_ListBox.TabIndex = 14
         ' 
         ' MyAssetsFolder_ListBox
@@ -856,9 +927,9 @@ Partial Class Form1
         ' 
         ' NewAssetFolderName_TextBox
         ' 
-        NewAssetFolderName_TextBox.Location = New Point(6, 359)
+        NewAssetFolderName_TextBox.Location = New Point(62, 359)
         NewAssetFolderName_TextBox.Name = "NewAssetFolderName_TextBox"
-        NewAssetFolderName_TextBox.Size = New Size(170, 27)
+        NewAssetFolderName_TextBox.Size = New Size(114, 27)
         NewAssetFolderName_TextBox.TabIndex = 6
         ' 
         ' MediaPreview_PictureBox
@@ -872,9 +943,9 @@ Partial Class Form1
         ' 
         ' PreviewTextFile_RichTextBox
         ' 
-        PreviewTextFile_RichTextBox.Location = New Point(351, 6)
+        PreviewTextFile_RichTextBox.Location = New Point(351, 42)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(294, 175)
+        PreviewTextFile_RichTextBox.Size = New Size(294, 139)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
         ' 
@@ -928,7 +999,7 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label8)
         ScriptTask_GroupBox.Location = New Point(441, 441)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(645, 188)
+        ScriptTask_GroupBox.Size = New Size(700, 188)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
@@ -1198,7 +1269,7 @@ Partial Class Form1
         ' 
         ' SveScriptListViewToCSVFile_Button
         ' 
-        SveScriptListViewToCSVFile_Button.Location = New Point(992, 1064)
+        SveScriptListViewToCSVFile_Button.Location = New Point(1047, 1064)
         SveScriptListViewToCSVFile_Button.Name = "SveScriptListViewToCSVFile_Button"
         SveScriptListViewToCSVFile_Button.Size = New Size(94, 29)
         SveScriptListViewToCSVFile_Button.TabIndex = 30
@@ -1241,11 +1312,20 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
+        ' Label23
+        ' 
+        Label23.AutoSize = True
+        Label23.Location = New Point(6, 362)
+        Label23.Name = "Label23"
+        Label23.Size = New Size(50, 19)
+        Label23.TabIndex = 24
+        Label23.Text = "名稱 : "
+        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9F, 19F)
+        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1782, 1103)
+        ClientSize = New Size(1832, 1103)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
         Controls.Add(DeleteSelectedScriptListviewItem_Button)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
@@ -1285,6 +1365,8 @@ Partial Class Form1
         Action_TabControl.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
+        CType(NumericUpDown3, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
@@ -1416,5 +1498,13 @@ Partial Class Form1
     Friend WithEvents ModifySelectedScriptListviewWaitTime_Button As Button
     Friend WithEvents ModifySelectedScriptListviewAsset_Button As Button
     Friend WithEvents ResetScript_Button As Button
+    Friend WithEvents ColumnHeader13 As ColumnHeader
+    Friend WithEvents ColumnHeader14 As ColumnHeader
+    Friend WithEvents Label21 As Label
+    Friend WithEvents NumericUpDown3 As NumericUpDown
+    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label23 As Label
 
 End Class

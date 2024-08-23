@@ -230,11 +230,17 @@ Public Class MainFormEventHandlers
         ' 目標網址
         scriptQueueItem.SubItems.Add(groupUrl)
 
+        ' 執行動作
+        scriptQueueItem.SubItems.Add(action)
+
         ' 執行內容
         scriptQueueItem.SubItems.Add(content)
 
-        ' 執行動作
-        scriptQueueItem.SubItems.Add(action)
+        ' 上載等待
+        scriptQueueItem.SubItems.Add(0)
+
+        ' 送出等待
+        scriptQueueItem.SubItems.Add(0)
 
         ' 執行成功次數
         scriptQueueItem.SubItems.Add(0)
@@ -264,7 +270,7 @@ Public Class MainFormEventHandlers
                     '.Item(5).Text = action
                     '.Item(6).Text = "0"
                     '.Item(7).Text = "0"
-                    .Item(8).Text = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
+                    .Item(10).Text = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
                     '.Item(9).Text = ""
                 End With
             Next
@@ -290,16 +296,7 @@ Public Class MainFormEventHandlers
         If selectedListviewItems.Count > 0 Then
             For Each item As ListViewItem In selectedListviewItems
                 With item.SubItems
-                    '.Item(0).Text = userData
-                    '.Item(1).Text = executionTime
-                    '.Item(2).Text = groupName
-                    '.Item(3).Text = groupUrl
-                    .Item(4).Text = content
-                    '.Item(5).Text = action
-                    '.Item(6).Text = "0"
-                    '.Item(7).Text = "0"
-                    '.Item(8).Text = ""
-                    '.Item(9).Text = ""
+                    .Item(5).Text = content
                 End With
             Next
         End If
@@ -324,7 +321,7 @@ Public Class MainFormEventHandlers
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
             If item.SubItems(0).Text = markUserdata Then
                 item.ForeColor = Color.LightGray
-                item.SubItems(9).Text = "略過"
+                item.SubItems(11).Text = "略過"
                 'item.BackColor = Color.LightGray
             End If
         Next
@@ -340,7 +337,7 @@ Public Class MainFormEventHandlers
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
             If item.SubItems(0).Text = markUserdata Then
                 item.ForeColor = Color.Black
-                item.SubItems(9).Text = ""
+                item.SubItems(11).Text = ""
                 'item.BackColor = Color.LightGray
             End If
         Next
@@ -367,7 +364,7 @@ Public Class MainFormEventHandlers
 
             For Each item As ListViewItem In scriptListviewSelectedItems
                 item.ForeColor = Color.LightGray
-                item.SubItems(9).Text = "略過"
+                item.SubItems(11).Text = "略過"
             Next
 
 
@@ -387,7 +384,7 @@ Public Class MainFormEventHandlers
 
             For Each item As ListViewItem In scriptListviewSelectedItems
                 item.ForeColor = Color.Black
-                item.SubItems(9).Text = ""
+                item.SubItems(11).Text = ""
             Next
 
             Form1.ScriptQueue_ListView.SelectedItems.Clear()
@@ -436,8 +433,11 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Public Async Sub ResetScript_Button_Click(sender As Object, e As EventArgs)
-        Await Webview2Controller.ResetWebview2()
+    Public Sub ResetScript_Button_Click(sender As Object, e As EventArgs)
+        'Await Webview2Controller.ResetWebview2()
+        If Webview2Controller.edgeDriver IsNot Nothing Then
+            edgeDriver.Quit()
+        End If
         Dim appPath As String = Application.ExecutablePath
         System.Diagnostics.Process.Start(appPath)
         Application.Exit()

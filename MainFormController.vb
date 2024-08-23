@@ -4,6 +4,7 @@ Imports System.Security.Permissions
 Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
 Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
@@ -558,8 +559,8 @@ Module MainFormController
         Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
         Using writer As New StreamWriter(filePath)
             For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
-                item.SubItems(6).Text = "0"
-                item.SubItems(7).Text = "0"
+                item.SubItems(8).Text = "0"
+                item.SubItems(9).Text = "0"
                 Dim subItemTexts As New List(Of String)()
                 For Each subItem As ListViewItem.ListViewSubItem In item.SubItems
                     subItemTexts.Add(subItem.Text)
@@ -599,7 +600,7 @@ Module MainFormController
             End If
 
             For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
-                If item.SubItems(9).Text = "略過" Then
+                If item.SubItems(11).Text = "略過" Then
                     item.ForeColor = Color.LightGray
                 End If
             Next
@@ -615,13 +616,15 @@ Module MainFormController
         Try
             Dim myAssetFolderPath As String = Nothing
             content = content.Replace("資料夾=", "")
+            Dim rand As New Random()
+
             If content = "隨機" Then
                 Dim directoryPath As String = Path.Combine()
 
                 ' 獲取目錄下所有的子資料夾
                 Dim directories As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
                 If directories.Length > 0 Then
-                    Dim rand As New Random()
+
 
                     Dim randomIndex As Integer = rand.Next(0, directories.Length)
                     myAssetFolderPath = directories(randomIndex)
@@ -632,10 +635,13 @@ Module MainFormController
                 End If
 
             Else
-                myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, content.Replace("資料夾=", ""))
+                Dim directories = Split(content, "&")
+
+                Dim randomIndex As Integer = rand.Next(0, directories.Length)
+                myAssetFolderPath = directories(randomIndex)
                 'Debug.WriteLine("asset folder path : " & myAssetFolderPath)
             End If
-
+            Debug.WriteLine("myAssetFolderPath : " & myAssetFolderPath)
             Return myAssetFolderPath
         Catch ex As Exception
             Return False

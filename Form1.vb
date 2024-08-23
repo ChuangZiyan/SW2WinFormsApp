@@ -319,11 +319,15 @@ Public Class Form1
             Dim executionTime As String = item.SubItems(1).Text
             Dim myUrlName As String = item.SubItems(2).Text
             Dim myUrl As String = item.SubItems(3).Text
-            Dim content As String = item.SubItems(4).Text
-            Dim action As String = item.SubItems(5).Text
-            Dim executionSuccessResultCount As String = item.SubItems(6).Text
-            Dim executionFailResultCount As String = item.SubItems(7).Text
-            Dim waitSecond As String = item.SubItems(8).Text
+            Dim action As String = item.SubItems(4).Text
+            Dim content As String = item.SubItems(5).Text
+            Dim uploadWaitTime = item.SubItems(6).Text
+            Dim submitWaitTime = item.SubItems(7).Text
+
+            Dim executionSuccessResultCount As String = item.SubItems(8).Text
+            Dim executionFailResultCount As String = item.SubItems(9).Text
+            Dim waitSecond As String = item.SubItems(10).Text
+            Dim remark As String = item.SubItems(11).Text
 
             'Debug.WriteLine("############## Run #################")
             'Debug.WriteLine("userData: " & userData)
@@ -335,7 +339,7 @@ Public Class Form1
             'Debug.WriteLine("waitSecond: " & waitSecond)
 
             ' 判斷略過
-            If item.SubItems(9).Text = "略過" Then
+            If remark = "略過" Then
                 Continue For
             End If
 
@@ -360,17 +364,18 @@ Public Class Form1
                 Case "發帖"
                     'Debug.WriteLine("發帖")
                     Dim assetFolderPath = GetRandomAssetFolder(content)
-                    item.SubItems(4).Text = "資料夾->" & Path.GetFileName(assetFolderPath)
+                    item.SubItems(5).Text = "資料夾->" & Path.GetFileName(assetFolderPath)
                     result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath)
 
-                    item.SubItems(4).Text = content
+                    ' 執行完後復原執行內容
+                    item.SubItems(5).Text = content
             End Select
 
             ' 增加成功或者失敗的次數
             If result Then
-                item.SubItems(6).Text = (CInt(item.SubItems(6).Text) + 1).ToString
+                item.SubItems(8).Text = (CInt(item.SubItems(6).Text) + 1).ToString
             ElseIf Not result Then
-                item.SubItems(7).Text = (CInt(item.SubItems(7).Text) + 1).ToString
+                item.SubItems(9).Text = (CInt(item.SubItems(7).Text) + 1).ToString
             End If
 
 
@@ -384,11 +389,11 @@ Public Class Form1
                     While PAUSE
                         Await Delay_msec(1000)
                     End While
-                    item.SubItems(8).Text = i.ToString()
+                    item.SubItems(10).Text = i.ToString()
                     Await Delay_msec(1000)
                 Next
             Else
-                item.SubItems(8).Text = "0"
+                item.SubItems(10).Text = "0"
             End If
 
             While PAUSE
@@ -397,7 +402,7 @@ Public Class Form1
 
 
             ' 等待完後重設
-            item.SubItems(8).Text = waitSecond
+            item.SubItems(10).Text = waitSecond
             item.BackColor = Color.White
             item.ForeColor = Color.Black
 
@@ -419,7 +424,6 @@ Public Class Form1
         'NavigateTo_Url_Button.Enabled = False
         Await Webview2Controller.GetWebview2EdgeVersion()
         'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
-
 
         ' Register to event Event Handlers
         AddHandler MyAssetsFolder_ListBox.DoubleClick, AddressOf mainFormEventHandlers.RevealAssetFolderInFileExplorer_DoubleClick
@@ -453,5 +457,6 @@ Public Class Form1
         AddHandler ResetScript_Button.Click, AddressOf mainFormEventHandlers.ResetScript_Button_Click
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
+
 
 End Class
