@@ -636,12 +636,9 @@ Module MainFormController
 
             Else
                 Dim directories = Split(content, "&")
-
                 Dim randomIndex As Integer = rand.Next(0, directories.Length)
-                myAssetFolderPath = directories(randomIndex)
-                'Debug.WriteLine("asset folder path : " & myAssetFolderPath)
+                myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, directories(randomIndex))
             End If
-            Debug.WriteLine("myAssetFolderPath : " & myAssetFolderPath)
             Return myAssetFolderPath
         Catch ex As Exception
             Return False
