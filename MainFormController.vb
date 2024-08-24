@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Reflection.Metadata
+Imports System.Reflection.PortableExecutable
 Imports System.Security.Permissions
 Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
@@ -455,12 +456,33 @@ Module MainFormController
 
 
 
+    Public Sub DisplayFBWritePostWaitSeconds(folderName)
+        Try
+            Dim configFilePath = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
+            If File.Exists(configFilePath) Then
+                Debug.WriteLine("######")
+                Dim myText = File.ReadAllText(configFilePath)
+                Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(0))
+                Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(1))
+
+            Else
+                Debug.WriteLine("#!!!!!")
+                File.WriteAllText(configFilePath, "30,30")
+                Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = 30
+                Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value = 30
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+
+
     Public Sub PreviewTextFileToRichTextBox(fileName As String)
 
         Try
             Form1.PreviewTextFile_RichTextBox.Clear()
             Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName)
-
             Dim text = File.ReadAllText(filePath)
             Form1.PreviewTextFile_RichTextBox.Text = text
         Catch ex As Exception
@@ -645,6 +667,9 @@ Module MainFormController
         End Try
 
     End Function
+
+
+
 
 
     Public Class GroupListviewDataStruct

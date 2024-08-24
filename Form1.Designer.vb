@@ -92,11 +92,12 @@ Partial Class Form1
         ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
         TabPage1 = New TabPage()
+        Label23 = New Label()
         Label22 = New Label()
-        Button3 = New Button()
+        SaveFBWritePostWaitSecondsConfig_Button = New Button()
         Label21 = New Label()
-        NumericUpDown3 = New NumericUpDown()
-        NumericUpDown2 = New NumericUpDown()
+        FBWritePostUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBWritePostSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
         DeselectAllMyAssetFolderListboxItems_Button = New Button()
         DeleteSelectedTextFiles_Button = New Button()
         NewTextFileName_TextBox = New TextBox()
@@ -149,7 +150,7 @@ Partial Class Form1
         UnmarkSelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
-        Label23 = New Label()
+        ExecuteSelectedScriptListviewItem_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -157,8 +158,8 @@ Partial Class Form1
         FBGroups_TabPage.SuspendLayout()
         Action_TabControl.SuspendLayout()
         TabPage1.SuspendLayout()
-        CType(NumericUpDown3, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScriptExecutionCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -753,10 +754,10 @@ Partial Class Form1
         ' 
         TabPage1.Controls.Add(Label23)
         TabPage1.Controls.Add(Label22)
-        TabPage1.Controls.Add(Button3)
+        TabPage1.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
         TabPage1.Controls.Add(Label21)
-        TabPage1.Controls.Add(NumericUpDown3)
-        TabPage1.Controls.Add(NumericUpDown2)
+        TabPage1.Controls.Add(FBWritePostUploadWaitSeconds_NumericUpDown)
+        TabPage1.Controls.Add(FBWritePostSubmitWaitSeconds_NumericUpDown)
         TabPage1.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
         TabPage1.Controls.Add(DeleteSelectedTextFiles_Button)
         TabPage1.Controls.Add(NewTextFileName_TextBox)
@@ -780,6 +781,15 @@ Partial Class Form1
         TabPage1.Text = "發帖"
         TabPage1.UseVisualStyleBackColor = True
         ' 
+        ' Label23
+        ' 
+        Label23.AutoSize = True
+        Label23.Location = New Point(6, 362)
+        Label23.Name = "Label23"
+        Label23.Size = New Size(50, 19)
+        Label23.TabIndex = 24
+        Label23.Text = "名稱 : "
+        ' 
         ' Label22
         ' 
         Label22.AutoSize = True
@@ -789,14 +799,14 @@ Partial Class Form1
         Label22.TabIndex = 23
         Label22.Text = "送出等待 : "
         ' 
-        ' Button3
+        ' SaveFBWritePostWaitSecondsConfig_Button
         ' 
-        Button3.Location = New Point(486, 8)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 22
-        Button3.Text = "儲存"
-        Button3.UseVisualStyleBackColor = True
+        SaveFBWritePostWaitSecondsConfig_Button.Location = New Point(486, 8)
+        SaveFBWritePostWaitSecondsConfig_Button.Name = "SaveFBWritePostWaitSecondsConfig_Button"
+        SaveFBWritePostWaitSecondsConfig_Button.Size = New Size(94, 29)
+        SaveFBWritePostWaitSecondsConfig_Button.TabIndex = 22
+        SaveFBWritePostWaitSecondsConfig_Button.Text = "儲存"
+        SaveFBWritePostWaitSecondsConfig_Button.UseVisualStyleBackColor = True
         ' 
         ' Label21
         ' 
@@ -807,23 +817,21 @@ Partial Class Form1
         Label21.TabIndex = 21
         Label21.Text = "上載等待 : "
         ' 
-        ' NumericUpDown3
+        ' FBWritePostUploadWaitSeconds_NumericUpDown
         ' 
-        NumericUpDown3.Increment = New Decimal(New Integer() {0, 0, 0, 0})
-        NumericUpDown3.Location = New Point(268, 8)
-        NumericUpDown3.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        NumericUpDown3.Name = "NumericUpDown3"
-        NumericUpDown3.Size = New Size(60, 27)
-        NumericUpDown3.TabIndex = 20
+        FBWritePostUploadWaitSeconds_NumericUpDown.Location = New Point(268, 8)
+        FBWritePostUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBWritePostUploadWaitSeconds_NumericUpDown.Name = "FBWritePostUploadWaitSeconds_NumericUpDown"
+        FBWritePostUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBWritePostUploadWaitSeconds_NumericUpDown.TabIndex = 20
         ' 
-        ' NumericUpDown2
+        ' FBWritePostSubmitWaitSeconds_NumericUpDown
         ' 
-        NumericUpDown2.Increment = New Decimal(New Integer() {0, 0, 0, 0})
-        NumericUpDown2.Location = New Point(420, 8)
-        NumericUpDown2.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        NumericUpDown2.Name = "NumericUpDown2"
-        NumericUpDown2.Size = New Size(60, 27)
-        NumericUpDown2.TabIndex = 19
+        FBWritePostSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 8)
+        FBWritePostSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBWritePostSubmitWaitSeconds_NumericUpDown.Name = "FBWritePostSubmitWaitSeconds_NumericUpDown"
+        FBWritePostSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBWritePostSubmitWaitSeconds_NumericUpDown.TabIndex = 19
         ' 
         ' DeselectAllMyAssetFolderListboxItems_Button
         ' 
@@ -970,6 +978,7 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(ExecuteSelectedScriptListviewItem_Button)
         ScriptTask_GroupBox.Controls.Add(ResetScript_Button)
         ScriptTask_GroupBox.Controls.Add(ModifySelectedScriptListviewAsset_Button)
         ScriptTask_GroupBox.Controls.Add(ContinueScriptExecution_Button)
@@ -1006,7 +1015,7 @@ Partial Class Form1
         ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(520, 146)
+        ResetScript_Button.Location = New Point(579, 146)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -1024,7 +1033,7 @@ Partial Class Form1
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(420, 146)
+        ContinueScriptExecution_Button.Location = New Point(479, 146)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(94, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -1033,7 +1042,7 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(320, 146)
+        PauseScriptExecution_Button.Location = New Point(379, 146)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(94, 29)
         PauseScriptExecution_Button.TabIndex = 24
@@ -1081,7 +1090,7 @@ Partial Class Form1
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
         ExecutionScriptQueue_Button.Location = New Point(178, 146)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
-        ExecutionScriptQueue_Button.Size = New Size(136, 29)
+        ExecutionScriptQueue_Button.Size = New Size(94, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
         ExecutionScriptQueue_Button.Text = "執行腳本"
         ExecutionScriptQueue_Button.UseVisualStyleBackColor = False
@@ -1312,14 +1321,14 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
-        ' Label23
+        ' ExecuteSelectedScriptListviewItem_Button
         ' 
-        Label23.AutoSize = True
-        Label23.Location = New Point(6, 362)
-        Label23.Name = "Label23"
-        Label23.Size = New Size(50, 19)
-        Label23.TabIndex = 24
-        Label23.Text = "名稱 : "
+        ExecuteSelectedScriptListviewItem_Button.Location = New Point(279, 146)
+        ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
+        ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
+        ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
+        ExecuteSelectedScriptListviewItem_Button.Text = "執行所選"
+        ExecuteSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -1365,8 +1374,8 @@ Partial Class Form1
         Action_TabControl.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
-        CType(NumericUpDown3, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
@@ -1501,10 +1510,11 @@ Partial Class Form1
     Friend WithEvents ColumnHeader13 As ColumnHeader
     Friend WithEvents ColumnHeader14 As ColumnHeader
     Friend WithEvents Label21 As Label
-    Friend WithEvents NumericUpDown3 As NumericUpDown
-    Friend WithEvents NumericUpDown2 As NumericUpDown
-    Friend WithEvents Button3 As Button
+    Friend WithEvents FBWritePostUploadWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBWritePostSubmitWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents SaveFBWritePostWaitSecondsConfig_Button As Button
     Friend WithEvents Label22 As Label
     Friend WithEvents Label23 As Label
+    Friend WithEvents ExecuteSelectedScriptListviewItem_Button As Button
 
 End Class

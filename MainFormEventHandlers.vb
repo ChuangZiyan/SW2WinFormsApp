@@ -367,12 +367,10 @@ Public Class MainFormEventHandlers
                 item.SubItems(11).Text = "略過"
             Next
 
-
             Form1.ScriptQueue_ListView.SelectedItems.Clear()
             Form1.ScriptQueue_ListView.Refresh()
 
         End If
-
 
     End Sub
 
@@ -441,6 +439,22 @@ Public Class MainFormEventHandlers
         Dim appPath As String = Application.ExecutablePath
         System.Diagnostics.Process.Start(appPath)
         Application.Exit()
+
+    End Sub
+
+
+    Public Sub SaveFBWritePostWaitSecondsConfig_Button_Click(sender As Object, e As EventArgs)
+
+        Try
+            Dim folderName = Form1.MyAssetsFolder_ListBox.SelectedItem
+            Dim configFilePath = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
+            Dim myConfig As String = Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value & "," & Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value
+            File.WriteAllText(configFilePath, myConfig)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
 
     End Sub
 

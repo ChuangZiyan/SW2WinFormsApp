@@ -231,6 +231,26 @@ Module Webview2Controller
     End Sub
 
 
+    Public Async Function ClickByCssSelector_Task(cssSelector) As Task(Of Boolean)
+        Try
+            Return Await Task.Run(Function()
+                                      Try
+                                          edgeDriver.FindElement(By.CssSelector(cssSelector)).Click()
+                                          Return True
+                                      Catch ex As Exception
+                                          Debug.WriteLine(ex)
+                                          Return False
+                                      End Try
+                                  End Function)
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+
+
+
     Private Function IsElementPresentByCssSelector(cssSelector) As Boolean
         Try
             If edgeDriver.FindElements(By.CssSelector(cssSelector)).Count > 0 Then
@@ -319,11 +339,10 @@ Module Webview2Controller
             Await Delay_msec(500)
             ClickByCssSelector("div.x1iorvi4.x4uap5.xwib8y2.xkhd6sd > div > div:nth-child(3) > div")
             Await Delay_msec(500)
-            ClickByCssSelector("div.x1uvtmcs.x4k7w5x.x1h91t0o.x1beo9mf.xaigb6o.x12ejxvf.x3igimt.xarpa2k.xedcshv.x1lytzrv.x1t2pt76.x7ja8zs.x1n2onr6.x1qrby5j.x1jfb8zj > div > div > div > div > div > div > div > div > div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div > div")
+            ClickByCssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x17qophe.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div > div")
             Await Delay_msec(500)
-            ClickByCssSelector("div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div:nth-child(3) > div > div:nth-child(2) > label > div > div > div > div")
+            ClickByCssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x17qophe.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div.x1e56ztr.x1i64zmx.x1emribx.x1gslohp > div:nth-child(3) > div > div:nth-child(2) > label > div > div > div > div")
             Await Delay_msec(500)
-
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -560,14 +579,29 @@ Module Webview2Controller
     '6. 抽出資料夾,抽出txt檔,送出txt檔內容
     '7. 送出全部圖片影片
     '8. 送出帖文(如果有影片，網頁一直會處於送出狀態(上載中)，所以我把關閉瀏覽器放在第1. ，我自己增加等待時間就可以，無需判斷是否送出，因為影片可以卡很久的。
+    Private Async Function EnsureControlHandleCreated(ctrl As Control) As Task
+        If ctrl.IsHandleCreated Then
+            Return
+        End If
 
-    Public Async Function WritePostOnFacebook(myUrl As String, myAssetFolderPath As String) As Task(Of Boolean)
+        ' 主動創建控制代碼
+        Dim handle = ctrl.Handle
+
+        ' 等待控制代碼創建
+        Await Task.Run(Sub()
+                           While Not ctrl.IsHandleCreated
+                               Threading.Thread.Sleep(50) ' 等待 50 毫秒
+                           End While
+                       End Sub)
+    End Function
+
+
+    Public Async Function WritePostOnFacebook(myUrl As String, myAssetFolderPath As String, item As ListViewItem) As Task(Of Boolean)
         Try
             'Debug.WriteLine("WritePostOnFacebook")
 
             Return Await Task.Run(Async Function() As Task(Of Boolean)
                                       Try
-
 
 
                                           Await Navigate_GoToUrl(myUrl)
@@ -670,15 +704,6 @@ Module Webview2Controller
                                               media_input.SendKeys(String.Join(vbLf, mediaFileList))
                                           End If
 
-                                          ' 這邊要等待上傳完成，目前先用秒數取代，之後要判斷甚麼時候上傳完
-                                          Await Delay_msec(3000)
-
-                                          ' 如果你要發佈貼文就取消註解下面那行
-                                          'ClickByAriaLable("發佈")
-
-                                          '發布之後最好等個幾秒
-                                          Await Delay_msec(3000)
-
                                           Debug.WriteLine("EOF")
                                           Return True
                                       Catch ex As Exception
@@ -691,6 +716,9 @@ Module Webview2Controller
             Return False
         End Try
     End Function
+
+
+
 
     Public Class MyCookie
         Public Property Domain As String

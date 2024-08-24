@@ -259,6 +259,8 @@ Public Class Form1
         If selectedItem IsNot Nothing Then
             MainFormController.UpdateTextFileSelectorListBoxItems(selectedItem)
             MainFormController.UpdateMediaSelectorListBoxItems(selectedItem)
+            MainFormController.DisplayFBWritePostWaitSeconds(selectedItem)
+
         End If
     End Sub
 
@@ -296,12 +298,34 @@ Public Class Form1
 
     Public PAUSE As Boolean = False
 
+
+    Private Async Sub ScriptQueue_ListView_DoubleClick(sender As Object, e As EventArgs) Handles ScriptQueue_ListView.DoubleClick
+        Dim selectedItems = ScriptQueue_ListView.SelectedItems
+
+        If selectedItems.Count > 0 Then
+            Dim item As ListViewItem = selectedItems(0)
+            Await ExecutionListviewScriptByItem(item)
+        End If
+    End Sub
+
+
+    Private Async Sub ExecuteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs) Handles ExecuteSelectedScriptListviewItem_Button.Click
+        Dim selectedItems = ScriptQueue_ListView.SelectedItems
+
+        If selectedItems.Count > 0 Then
+            Dim item As ListViewItem = selectedItems(0)
+            Await ExecutionListviewScriptByItem(item)
+        End If
+    End Sub
+
+
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
+        ' 這個是用來迴圈控制跑腳本的
         Dim executionCount As Integer = ScriptExecutionCount_NumericUpDown.Value
         ExecutionScriptQueue_Button.Enabled = False
         For run = 1 To executionCount Step 1
             ExecutionScriptQueue_Button.Text = "剩餘次數 : " & executionCount - run
-            Await ExecutionListviewScript()
+            Await ExcutionListviewscriptItems()
         Next
 
         ExecutionScriptQueue_Button.Enabled = True
@@ -309,104 +333,155 @@ Public Class Form1
     End Sub
 
 
-
-    ' 這個是主要執行腳本的功能區段
-    Private Async Function ExecutionListviewScript() As Task
-        PAUSE = False
+    Private Async Function ExcutionListviewscriptItems() As Task
         For Each item As ListViewItem In ScriptQueue_ListView.Items
-
-            Dim userData As String = item.SubItems(0).Text
-            Dim executionTime As String = item.SubItems(1).Text
-            Dim myUrlName As String = item.SubItems(2).Text
-            Dim myUrl As String = item.SubItems(3).Text
-            Dim action As String = item.SubItems(4).Text
-            Dim content As String = item.SubItems(5).Text
-            Dim uploadWaitTime = item.SubItems(6).Text
-            Dim submitWaitTime = item.SubItems(7).Text
-
-            Dim executionSuccessResultCount As String = item.SubItems(8).Text
-            Dim executionFailResultCount As String = item.SubItems(9).Text
-            Dim waitSecond As String = item.SubItems(10).Text
-            Dim remark As String = item.SubItems(11).Text
-
-            'Debug.WriteLine("############## Run #################")
-            'Debug.WriteLine("userData: " & userData)
-            'Debug.WriteLine("executionTime: " & executionTime)
-            'Debug.WriteLine("myUrlName: " & myUrlName)
-            'Debug.WriteLine("myUrl: " & myUrl)
-            'Debug.WriteLine("content: " & content)
-            'Debug.WriteLine("executionResult: " & executionResult)
-            'Debug.WriteLine("waitSecond: " & waitSecond)
-
             ' 判斷略過
-            If remark = "略過" Then
+            If item.SubItems(11).Text = "略過" Then
                 Continue For
             End If
+            Await ExecutionListviewScriptByItem(item)
+        Next
+    End Function
 
 
-            ' 執行的那行要變色
-            item.BackColor = Color.SteelBlue
-            item.ForeColor = Color.White
+
+    ' 這個是主要執行腳本的功能區段
+    Private Async Function ExecutionListviewScriptByItem(item) As Task
+        PAUSE = False
+        'For Each item As ListViewItem In ScriptQueue_ListView.Items
+
+        Dim userData As String = item.SubItems(0).Text
+        Dim executionTime As String = item.SubItems(1).Text
+        Dim myUrlName As String = item.SubItems(2).Text
+        Dim myUrl As String = item.SubItems(3).Text
+        Dim action As String = item.SubItems(4).Text
+        Dim content As String = item.SubItems(5).Text
+        Dim uploadWaitTime = item.SubItems(6).Text
+        Dim submitWaitTime = item.SubItems(7).Text
+
+        Dim executionSuccessResultCount As String = item.SubItems(8).Text
+        Dim executionFailResultCount As String = item.SubItems(9).Text
+        Dim waitSecond As String = item.SubItems(10).Text
+        Dim remark As String = item.SubItems(11).Text
+
+        'Debug.WriteLine("############## Run #################")
+        'Debug.WriteLine("userData: " & userData)
+        'Debug.WriteLine("executionTime: " & executionTime)
+        'Debug.WriteLine("myUrlName: " & myUrlName)
+        'Debug.WriteLine("myUrl: " & myUrl)
+        'Debug.WriteLine("content: " & content)
+        'Debug.WriteLine("executionResult: " & executionResult)
+        'Debug.WriteLine("waitSecond: " & waitSecond)
 
 
-            '用選的userData 初始化webview
-            Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
-            ' 初始化webivew
-            Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
+        ' 執行的那行要變色
+        item.BackColor = Color.SteelBlue
+        item.ForeColor = Color.White
 
 
-            'Main Routing 主要路由在這
+        '用選的userData 初始化webview
+        Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
+        ' 初始化webivew
+        Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
-            'Debug.WriteLine("#######")
-            Dim result = False
-            Await Delay_msec(1000)
-            Select Case action
-                Case "發帖"
+
+        'Main Routing 主要路由在這
+
+        'Debug.WriteLine("#######")
+        '預設結果是失敗
+        Dim result = False
+        Await Delay_msec(1000)
+        Select Case action
+                '########################################################################### 發帖功能 ###############################################################################################
+            Case "發帖"
+                Try
                     'Debug.WriteLine("發帖")
                     Dim assetFolderPath = GetRandomAssetFolder(content)
                     item.SubItems(5).Text = "資料夾->" & Path.GetFileName(assetFolderPath)
-                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath)
 
-                    ' 執行完後復原執行內容
-                    item.SubItems(5).Text = content
-            End Select
+                    Dim FBWritePostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBWritePostWaitSecondsConfig.txt"))
+                    item.SubItems(6).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
+                    item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
 
-            ' 增加成功或者失敗的次數
-            If result Then
-                item.SubItems(8).Text = (CInt(item.SubItems(6).Text) + 1).ToString
-            ElseIf Not result Then
-                item.SubItems(9).Text = (CInt(item.SubItems(7).Text) + 1).ToString
-            End If
+                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath, item)
+                    'result = False
 
+                    ' 如果流程都沒問題
+                    If result Then
+                        ' 這邊要等待上傳完成
+                        For seconds = CInt(item.SubItems(6).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(6).Text = seconds
+                        Next
 
+                        ' 如果你要發佈貼文就取消註解下面那行
+                        'result = Await ClickByCssSelector_Task("div[aria-label$='發佈']")
 
-            '跑完腳本後等待
-            Dim splitedWaitSecond = waitSecond.Split("±")
-            Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
+                        ' 發佈後等待
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(7).Text = seconds
+                        Next
 
-            If myWaitSecs > 0 Then
-                For i As Integer = myWaitSecs To 0 Step -1
-                    While PAUSE
-                        Await Delay_msec(1000)
-                    End While
-                    item.SubItems(10).Text = i.ToString()
+                        ' 執行完後復原執行內容
+                        item.SubItems(5).Text = content
+
+                    End If
+
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
+
+                '########################################################################### 測試項功能 ###############################################################################################
+            Case "測試項"
+                Try
                     Await Delay_msec(1000)
-                Next
-            Else
-                item.SubItems(10).Text = "0"
-            End If
+                    result = True
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
 
-            While PAUSE
+
+        End Select
+
+        ' 增加成功或者失敗的次數
+        If result Then
+            item.SubItems(8).Text = (CInt(item.SubItems(8).Text) + 1).ToString
+        ElseIf Not result Then
+            item.SubItems(9).Text = (CInt(item.SubItems(9).Text) + 1).ToString
+        End If
+
+
+
+        '跑完腳本後等待
+        Dim splitedWaitSecond = waitSecond.Split("±")
+        Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
+
+        If myWaitSecs > 0 Then
+            For i As Integer = myWaitSecs To 0 Step -1
+                While PAUSE
+                    Await Delay_msec(1000)
+                End While
+                item.SubItems(10).Text = i.ToString()
                 Await Delay_msec(1000)
-            End While
+            Next
+        Else
+            item.SubItems(10).Text = "0"
+        End If
+
+        While PAUSE
+            Await Delay_msec(1000)
+        End While
 
 
-            ' 等待完後重設
-            item.SubItems(10).Text = waitSecond
-            item.BackColor = Color.White
-            item.ForeColor = Color.Black
+        ' 等待完後重設
+        item.SubItems(10).Text = waitSecond
+        item.BackColor = Color.White
+        item.ForeColor = Color.Black
 
-        Next
+        'Next
 
     End Function
 
@@ -455,8 +530,8 @@ Public Class Form1
         AddHandler ModifySelectedScriptListviewWaitTime_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewWaitTime
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
         AddHandler ResetScript_Button.Click, AddressOf mainFormEventHandlers.ResetScript_Button_Click
+        AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf mainFormEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
-
 
 End Class
