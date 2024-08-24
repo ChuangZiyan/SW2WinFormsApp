@@ -194,13 +194,12 @@ Public Class MainFormEventHandlers
 
         ' UserData
         If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
-            content += "資料夾="
             For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
                 content += item + "&"
             Next
             content = content.TrimEnd("&")
         Else
-            content += "資料夾=隨機"
+            content = "隨機"
         End If
 
 
@@ -233,8 +232,11 @@ Public Class MainFormEventHandlers
         ' 執行動作
         scriptQueueItem.SubItems.Add(action)
 
-        ' 執行內容
+        '選擇內容
         scriptQueueItem.SubItems.Add(content)
+
+        ' 執行內容
+        scriptQueueItem.SubItems.Add("")
 
         ' 上載等待
         scriptQueueItem.SubItems.Add(0)
@@ -262,16 +264,7 @@ Public Class MainFormEventHandlers
         If selectedListviewItems.Count > 0 Then
             For Each item As ListViewItem In selectedListviewItems
                 With item.SubItems
-                    '.Item(0).Text = userData
-                    '.Item(1).Text = executionTime
-                    '.Item(2).Text = groupName
-                    '.Item(3).Text = groupUrl
-                    '.Item(4).Text = content
-                    '.Item(5).Text = action
-                    '.Item(6).Text = "0"
-                    '.Item(7).Text = "0"
-                    .Item(10).Text = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
-                    '.Item(9).Text = ""
+                    .Item(11).Text = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
                 End With
             Next
         End If
@@ -282,13 +275,12 @@ Public Class MainFormEventHandlers
         ' UserData
         Dim content = ""
         If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
-            content += "資料夾="
             For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
                 content += item + "&"
             Next
             content = content.TrimEnd("&")
         Else
-            content += "資料夾=隨機"
+            content = "隨機"
         End If
 
 
@@ -321,7 +313,7 @@ Public Class MainFormEventHandlers
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
             If item.SubItems(0).Text = markUserdata Then
                 item.ForeColor = Color.LightGray
-                item.SubItems(11).Text = "略過"
+                item.SubItems(12).Text = "略過"
                 'item.BackColor = Color.LightGray
             End If
         Next
@@ -337,7 +329,7 @@ Public Class MainFormEventHandlers
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
             If item.SubItems(0).Text = markUserdata Then
                 item.ForeColor = Color.Black
-                item.SubItems(11).Text = ""
+                item.SubItems(12).Text = ""
                 'item.BackColor = Color.LightGray
             End If
         Next
@@ -364,7 +356,7 @@ Public Class MainFormEventHandlers
 
             For Each item As ListViewItem In scriptListviewSelectedItems
                 item.ForeColor = Color.LightGray
-                item.SubItems(11).Text = "略過"
+                item.SubItems(12).Text = "略過"
             Next
 
             Form1.ScriptQueue_ListView.SelectedItems.Clear()
@@ -382,7 +374,7 @@ Public Class MainFormEventHandlers
 
             For Each item As ListViewItem In scriptListviewSelectedItems
                 item.ForeColor = Color.Black
-                item.SubItems(11).Text = ""
+                item.SubItems(12).Text = ""
             Next
 
             Form1.ScriptQueue_ListView.SelectedItems.Clear()

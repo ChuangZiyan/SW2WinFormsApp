@@ -83,6 +83,7 @@ Partial Class Form1
         ColumnHeader7 = New ColumnHeader()
         ColumnHeader6 = New ColumnHeader()
         ColumnHeader5 = New ColumnHeader()
+        ColumnHeader15 = New ColumnHeader()
         ColumnHeader8 = New ColumnHeader()
         ColumnHeader13 = New ColumnHeader()
         ColumnHeader14 = New ColumnHeader()
@@ -115,6 +116,7 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        ExecuteSelectedScriptListviewItem_Button = New Button()
         ResetScript_Button = New Button()
         ModifySelectedScriptListviewAsset_Button = New Button()
         ContinueScriptExecution_Button = New Button()
@@ -145,12 +147,11 @@ Partial Class Form1
         userData_ComboBox = New ComboBox()
         MarkUserDataToSkip_Button = New Button()
         UnmarkUserDataToSkip_Button_Button = New Button()
-        SveScriptListViewToCSVFile_Button = New Button()
+        SaveScriptListViewToCSVFile_Button = New Button()
         MarkSelectedScriptListviewItem_Button = New Button()
         UnmarkSelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
-        ExecuteSelectedScriptListviewItem_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -672,7 +673,7 @@ Partial Class Form1
         ' 
         ' ScriptQueue_ListView
         ' 
-        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader5, ColumnHeader8, ColumnHeader13, ColumnHeader14, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
+        ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader5, ColumnHeader15, ColumnHeader8, ColumnHeader13, ColumnHeader14, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
         ScriptQueue_ListView.FullRowSelect = True
         ScriptQueue_ListView.Location = New Point(12, 635)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
@@ -699,12 +700,17 @@ Partial Class Form1
         ' ColumnHeader6
         ' 
         ColumnHeader6.Text = "目標網址"
-        ColumnHeader6.Width = 200
+        ColumnHeader6.Width = 100
         ' 
         ' ColumnHeader5
         ' 
         ColumnHeader5.Text = "執行動作"
         ColumnHeader5.Width = 80
+        ' 
+        ' ColumnHeader15
+        ' 
+        ColumnHeader15.Text = "選擇內容"
+        ColumnHeader15.Width = 100
         ' 
         ' ColumnHeader8
         ' 
@@ -1013,9 +1019,18 @@ Partial Class Form1
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
+        ' ExecuteSelectedScriptListviewItem_Button
+        ' 
+        ExecuteSelectedScriptListviewItem_Button.Location = New Point(387, 146)
+        ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
+        ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
+        ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
+        ExecuteSelectedScriptListviewItem_Button.Text = "執行所選"
+        ExecuteSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
+        ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(579, 146)
+        ResetScript_Button.Location = New Point(596, 146)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -1033,18 +1048,18 @@ Partial Class Form1
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(479, 146)
+        ContinueScriptExecution_Button.Location = New Point(543, 146)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
-        ContinueScriptExecution_Button.Size = New Size(94, 29)
+        ContinueScriptExecution_Button.Size = New Size(50, 29)
         ContinueScriptExecution_Button.TabIndex = 25
         ContinueScriptExecution_Button.Text = "繼續"
         ContinueScriptExecution_Button.UseVisualStyleBackColor = True
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(379, 146)
+        PauseScriptExecution_Button.Location = New Point(487, 146)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
-        PauseScriptExecution_Button.Size = New Size(94, 29)
+        PauseScriptExecution_Button.Size = New Size(50, 29)
         PauseScriptExecution_Button.TabIndex = 24
         PauseScriptExecution_Button.Text = "暫停"
         PauseScriptExecution_Button.UseVisualStyleBackColor = True
@@ -1090,7 +1105,7 @@ Partial Class Form1
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
         ExecutionScriptQueue_Button.Location = New Point(178, 146)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
-        ExecutionScriptQueue_Button.Size = New Size(94, 29)
+        ExecutionScriptQueue_Button.Size = New Size(150, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
         ExecutionScriptQueue_Button.Text = "執行腳本"
         ExecutionScriptQueue_Button.UseVisualStyleBackColor = False
@@ -1276,14 +1291,14 @@ Partial Class Form1
         UnmarkUserDataToSkip_Button_Button.Text = "取消標註"
         UnmarkUserDataToSkip_Button_Button.UseVisualStyleBackColor = True
         ' 
-        ' SveScriptListViewToCSVFile_Button
+        ' SaveScriptListViewToCSVFile_Button
         ' 
-        SveScriptListViewToCSVFile_Button.Location = New Point(1047, 1064)
-        SveScriptListViewToCSVFile_Button.Name = "SveScriptListViewToCSVFile_Button"
-        SveScriptListViewToCSVFile_Button.Size = New Size(94, 29)
-        SveScriptListViewToCSVFile_Button.TabIndex = 30
-        SveScriptListViewToCSVFile_Button.Text = "儲存腳本"
-        SveScriptListViewToCSVFile_Button.UseVisualStyleBackColor = True
+        SaveScriptListViewToCSVFile_Button.Location = New Point(1047, 1064)
+        SaveScriptListViewToCSVFile_Button.Name = "SaveScriptListViewToCSVFile_Button"
+        SaveScriptListViewToCSVFile_Button.Size = New Size(94, 29)
+        SaveScriptListViewToCSVFile_Button.TabIndex = 30
+        SaveScriptListViewToCSVFile_Button.Text = "儲存腳本"
+        SaveScriptListViewToCSVFile_Button.UseVisualStyleBackColor = True
         ' 
         ' MarkSelectedScriptListviewItem_Button
         ' 
@@ -1321,15 +1336,6 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
-        ' ExecuteSelectedScriptListviewItem_Button
-        ' 
-        ExecuteSelectedScriptListviewItem_Button.Location = New Point(279, 146)
-        ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
-        ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
-        ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
-        ExecuteSelectedScriptListviewItem_Button.Text = "執行所選"
-        ExecuteSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9.0F, 19.0F)
@@ -1339,7 +1345,7 @@ Partial Class Form1
         Controls.Add(DeleteSelectedScriptListviewItem_Button)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
         Controls.Add(MarkSelectedScriptListviewItem_Button)
-        Controls.Add(SveScriptListViewToCSVFile_Button)
+        Controls.Add(SaveScriptListViewToCSVFile_Button)
         Controls.Add(UnmarkUserDataToSkip_Button_Button)
         Controls.Add(MarkUserDataToSkip_Button)
         Controls.Add(userData_ComboBox)
@@ -1498,7 +1504,7 @@ Partial Class Form1
     Friend WithEvents MarkUserDataToSkip_Button As Button
     Friend WithEvents UnmarkUserDataToSkip_Button_Button As Button
     Friend WithEvents ColumnHeader11 As ColumnHeader
-    Friend WithEvents SveScriptListViewToCSVFile_Button As Button
+    Friend WithEvents SaveScriptListViewToCSVFile_Button As Button
     Friend WithEvents MarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents UnmarkSelectedScriptListviewItem_Button As Button
     Friend WithEvents ColumnHeader12 As ColumnHeader
@@ -1516,5 +1522,6 @@ Partial Class Form1
     Friend WithEvents Label22 As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents ExecuteSelectedScriptListviewItem_Button As Button
+    Friend WithEvents ColumnHeader15 As ColumnHeader
 
 End Class

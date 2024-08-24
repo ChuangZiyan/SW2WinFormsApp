@@ -359,10 +359,10 @@ Public Class Form1
         Dim uploadWaitTime = item.SubItems(6).Text
         Dim submitWaitTime = item.SubItems(7).Text
 
-        Dim executionSuccessResultCount As String = item.SubItems(8).Text
-        Dim executionFailResultCount As String = item.SubItems(9).Text
-        Dim waitSecond As String = item.SubItems(10).Text
-        Dim remark As String = item.SubItems(11).Text
+        Dim executionSuccessResultCount As String = item.SubItems(9).Text
+        Dim executionFailResultCount As String = item.SubItems(10).Text
+        Dim waitSecond As String = item.SubItems(11).Text
+        Dim remark As String = item.SubItems(12).Text
 
         'Debug.WriteLine("############## Run #################")
         'Debug.WriteLine("userData: " & userData)
@@ -397,11 +397,11 @@ Public Class Form1
                 Try
                     'Debug.WriteLine("發帖")
                     Dim assetFolderPath = GetRandomAssetFolder(content)
-                    item.SubItems(5).Text = "資料夾->" & Path.GetFileName(assetFolderPath)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
                     Dim FBWritePostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBWritePostWaitSecondsConfig.txt"))
-                    item.SubItems(6).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
-                    item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
+                    item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
+                    item.SubItems(8).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
 
                     result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath, item)
                     'result = False
@@ -409,22 +409,22 @@ Public Class Form1
                     ' 如果流程都沒問題
                     If result Then
                         ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(6).Text) To 0 Step -1
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
                             Await Delay_msec(1000)
-                            item.SubItems(6).Text = seconds
+                            item.SubItems(7).Text = seconds
                         Next
 
                         ' 如果你要發佈貼文就取消註解下面那行
                         'result = Await ClickByCssSelector_Task("div[aria-label$='發佈']")
 
                         ' 發佈後等待
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
                             Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
+                            item.SubItems(8).Text = seconds
                         Next
 
                         ' 執行完後復原執行內容
-                        item.SubItems(5).Text = content
+                        'item.SubItems(5).Text = content
 
                     End If
 
@@ -446,15 +446,18 @@ Public Class Form1
 
         End Select
 
+        Debug.WriteLine("增加成功或者失敗的次數")
+
         ' 增加成功或者失敗的次數
         If result Then
-            item.SubItems(8).Text = (CInt(item.SubItems(8).Text) + 1).ToString
-        ElseIf Not result Then
             item.SubItems(9).Text = (CInt(item.SubItems(9).Text) + 1).ToString
+        ElseIf Not result Then
+            item.SubItems(10).Text = (CInt(item.SubItems(10).Text) + 1).ToString
         End If
 
 
 
+        Debug.WriteLine("跑完腳本後等待")
         '跑完腳本後等待
         Dim splitedWaitSecond = waitSecond.Split("±")
         Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
@@ -464,11 +467,11 @@ Public Class Form1
                 While PAUSE
                     Await Delay_msec(1000)
                 End While
-                item.SubItems(10).Text = i.ToString()
+                item.SubItems(11).Text = i.ToString()
                 Await Delay_msec(1000)
             Next
         Else
-            item.SubItems(10).Text = "0"
+            item.SubItems(11).Text = "0"
         End If
 
         While PAUSE
@@ -477,7 +480,7 @@ Public Class Form1
 
 
         ' 等待完後重設
-        item.SubItems(10).Text = waitSecond
+        item.SubItems(11).Text = waitSecond
         item.BackColor = Color.White
         item.ForeColor = Color.Black
 
@@ -516,7 +519,7 @@ Public Class Form1
         AddHandler ContinueScriptExecution_Button.Click, AddressOf mainFormEventHandlers.ContinueScriptExecution_Button_Click
         AddHandler MarkUserDataToSkip_Button.Click, AddressOf mainFormEventHandlers.MarkUserDataToSkip_Button_Click
         AddHandler UnmarkUserDataToSkip_Button_Button.Click, AddressOf mainFormEventHandlers.UnmarkUserDataToSkip_Button_Button_Click
-        AddHandler SveScriptListViewToCSVFile_Button.Click, AddressOf mainFormEventHandlers.SaveScriptListViewToFile_Button_Click
+        AddHandler SaveScriptListViewToCSVFile_Button.Click, AddressOf mainFormEventHandlers.SaveScriptListViewToFile_Button_Click
         AddHandler MarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.MarkSelectedScriptListviewItem_Button_Click
         AddHandler UnmarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.UnmarkSelectedScriptListviewItem_Button_Click
 
@@ -533,5 +536,6 @@ Public Class Form1
         AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf mainFormEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
+
 
 End Class

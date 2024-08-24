@@ -660,7 +660,7 @@ Module Webview2Controller
                                           Dim mediaFileList As New List(Of String)
                                           Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
 
-                                          Debug.WriteLine("FFFFF : " & mediaFileFolderPath)
+                                          'Debug.WriteLine("FFFFF : " & mediaFileFolderPath)
 
                                           Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                                           Dim myFiles As String() = Directory.GetFiles(mediaFileFolderPath)
