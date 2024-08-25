@@ -299,28 +299,20 @@ Public Class Form1
     Public PAUSE As Boolean = False
 
 
-    Private Async Sub ScriptQueue_ListView_DoubleClick(sender As Object, e As EventArgs) Handles ScriptQueue_ListView.DoubleClick
-        Dim selectedItems = ScriptQueue_ListView.SelectedItems
-
-        If selectedItems.Count > 0 Then
-            Dim item As ListViewItem = selectedItems(0)
-            Await ExecutionListviewScriptByItem(item)
-        End If
-    End Sub
-
-
     Private Async Sub ExecuteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs) Handles ExecuteSelectedScriptListviewItem_Button.Click
+        MainFormController.EnabledAllExecutionButton(False)
         Dim selectedItems = ScriptQueue_ListView.SelectedItems
-
         If selectedItems.Count > 0 Then
             Dim item As ListViewItem = selectedItems(0)
             Await ExecutionListviewScriptByItem(item)
         End If
+        MainFormController.EnabledAllExecutionButton(True)
     End Sub
 
 
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
         ' 這個是用來迴圈控制跑腳本的
+        MainFormController.EnabledAllExecutionButton(False)
         Dim executionCount As Integer = ScriptExecutionCount_NumericUpDown.Value
         ExecutionScriptQueue_Button.Enabled = False
         For run = 1 To executionCount Step 1
@@ -330,6 +322,7 @@ Public Class Form1
 
         ExecutionScriptQueue_Button.Enabled = True
         ExecutionScriptQueue_Button.Text = "執行腳本"
+        MainFormController.EnabledAllExecutionButton(True)
     End Sub
 
 

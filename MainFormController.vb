@@ -581,6 +581,7 @@ Module MainFormController
         Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
         Using writer As New StreamWriter(filePath)
             For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+                item.SubItems(6).Text = ""
                 item.SubItems(7).Text = "0"
                 item.SubItems(8).Text = "0"
                 item.SubItems(9).Text = "0"
@@ -670,7 +671,10 @@ Module MainFormController
     End Function
 
 
-
+    Public Sub EnabledAllExecutionButton(flag As Boolean)
+        Form1.ExecutionScriptQueue_Button.Enabled = flag
+        Form1.ExecuteSelectedScriptListviewItem_Button.Enabled = flag
+    End Sub
 
 
     Public Class GroupListviewDataStruct
