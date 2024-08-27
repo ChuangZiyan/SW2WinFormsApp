@@ -161,8 +161,23 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+
+
     Public Sub InsertToQueueListview_Button_Click(sender As Object, e As EventArgs)
         'Debug.WriteLine("click")
+        InserScriptItemToListview(False)
+
+    End Sub
+
+    Public Sub InsertSchedulerScriptToListview_Button_Click(sender As Object, e As EventArgs)
+        InserScriptItemToListview(True)
+    End Sub
+
+
+    Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
+        ' sequence | scheduled
+
+
         Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
         Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
 
@@ -203,21 +218,35 @@ Public Class MainFormEventHandlers
         End If
 
 
-        If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
-            For Each selectedUserData In selectedUserDataFolderItems
-                AddScriptQueueItem(selectedUserData.ToString(), selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds, executionTime)
-            Next
-        Else ' 一帳號對多社團
+
+        If scheduled Then '定時執行
+            Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
+
+
             For Each selectedGroupItem As ListViewItem In selectedGroupItems
-                AddScriptQueueItem(selectedUserDataFolder, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds, executionTime)
+                executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
+                baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
+                AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
             Next
+        Else '順序執行
+            If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
+                For Each selectedUserData In selectedUserDataFolderItems
+                    AddScriptQueueItem(selectedUserData.ToString(), executionTime, selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds)
+                Next
+            Else ' 一帳號對多社團
+                For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
+                Next
+            End If
+
         End If
 
 
     End Sub
 
 
-    Private Sub AddScriptQueueItem(userData As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String, excutionTime As String)
+
+    Private Sub AddScriptQueueItem(userData As String, excutionTime As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String)
         Dim scriptQueueItem As New ListViewItem(userData)
 
         ' 執行時間
@@ -296,6 +325,22 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+    Public Sub ModifyListviewScheduleTime_Button_Click(sender As Object, e As EventArgs)
+        Dim selectedListviewItems = Form1.ScriptQueue_ListView.SelectedItems
+        If selectedListviewItems.Count > 0 Then
+            Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
+            For Each item As ListViewItem In selectedListviewItems
+
+                Dim executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
+
+                With item.SubItems
+                    .Item(1).Text = executionTime
+                End With
+                baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
+            Next
+        End If
+
+    End Sub
 
 
     Public Sub PauseScriptExecution_Button_Click(sender As Object, e As EventArgs)
@@ -449,5 +494,7 @@ Public Class MainFormEventHandlers
         End Try
 
     End Sub
+
+
 
 End Class

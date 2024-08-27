@@ -329,7 +329,7 @@ Public Class Form1
     Private Async Function ExcutionListviewscriptItems() As Task
         For Each item As ListViewItem In ScriptQueue_ListView.Items
             ' 判斷略過
-            If item.SubItems(11).Text = "略過" Then
+            If item.SubItems(12).Text = "略過" Then
                 Continue For
             End If
             Await ExecutionListviewScriptByItem(item)
@@ -337,8 +337,32 @@ Public Class Form1
     End Function
 
 
+    Private Async Sub ScheduledExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ScheduledExecutionScriptQueue_Button.Click
+        ' 定時執行
 
-    ' 這個是主要執行腳本的功能區段
+        While True
+            Dim currentTime As String = DateTime.Now.ToString("HH:mm:ss")
+            Debug.WriteLine("curr time : " & currentTime)
+            For Each item As ListViewItem In ScriptQueue_ListView.Items
+                Dim executionTime = item.SubItems(1).Text
+                If item.SubItems(12).Text = "略過" Or executionTime = "NULL" Then
+                    Continue For
+                End If
+
+                If executionTime = currentTime Then
+                    Await ExecutionListviewScriptByItem(item)
+                End If
+
+            Next
+
+            Await Delay_msec(1000)
+        End While
+
+    End Sub
+
+
+
+    ' 這個是主要執行腳本的功能區段，他會執行你傳入的ListviewItem
     Private Async Function ExecutionListviewScriptByItem(item) As Task
         PAUSE = False
         'For Each item As ListViewItem In ScriptQueue_ListView.Items
@@ -429,7 +453,7 @@ Public Class Form1
                 '########################################################################### 測試項功能 ###############################################################################################
             Case "測試項"
                 Try
-                    Await Delay_msec(1000)
+                    Await Delay_msec(3000)
                     result = True
                 Catch ex As Exception
                     Debug.WriteLine(ex)
@@ -439,8 +463,6 @@ Public Class Form1
 
         End Select
 
-        Debug.WriteLine("增加成功或者失敗的次數")
-
         ' 增加成功或者失敗的次數
         If result Then
             item.SubItems(9).Text = (CInt(item.SubItems(9).Text) + 1).ToString
@@ -448,9 +470,6 @@ Public Class Form1
             item.SubItems(10).Text = (CInt(item.SubItems(10).Text) + 1).ToString
         End If
 
-
-
-        Debug.WriteLine("跑完腳本後等待")
         '跑完腳本後等待
         Dim splitedWaitSecond = waitSecond.Split("±")
         Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
@@ -527,6 +546,10 @@ Public Class Form1
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
         AddHandler ResetScript_Button.Click, AddressOf mainFormEventHandlers.ResetScript_Button_Click
         AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf mainFormEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
+
+        AddHandler InsertSchedulerScriptToListview_Button.Click, AddressOf mainFormEventHandlers.InsertSchedulerScriptToListview_Button_Click
+        AddHandler ModifyListviewScheduleTime_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTime_Button_Click
+
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
 

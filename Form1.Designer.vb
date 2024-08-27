@@ -116,6 +116,12 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        Label24 = New Label()
+        Label25 = New Label()
+        ScheduledExecutionMinutes_NumericUpDown = New NumericUpDown()
+        ScheduledExecutionHours_NumericUpDown = New NumericUpDown()
+        ScheduledExecutionSeconds_NumericUpDown = New NumericUpDown()
+        ScheduledExecutionScriptQueue_Button = New Button()
         ExecuteSelectedScriptListviewItem_Button = New Button()
         ResetScript_Button = New Button()
         ModifySelectedScriptListviewAsset_Button = New Button()
@@ -136,11 +142,10 @@ Partial Class Form1
         ExecutionWaitHours_NumericUpDown = New NumericUpDown()
         ExecutionWaitSeconds_NumericUpDown = New NumericUpDown()
         InsertToQueueListview_Button = New Button()
-        Button2 = New Button()
-        Button1 = New Button()
+        ModifyListviewScheduleTime_Button = New Button()
+        InsertSchedulerScriptToListview_Button = New Button()
         Label13 = New Label()
-        NumericUpDown1 = New NumericUpDown()
-        DateTimePicker1 = New DateTimePicker()
+        SchedulerIntervalSeconds_NumericUpDown = New NumericUpDown()
         Label12 = New Label()
         Label11 = New Label()
         Label8 = New Label()
@@ -163,12 +168,15 @@ Partial Class Form1
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
+        CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ScheduledExecutionSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScriptExecutionCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -979,11 +987,17 @@ Partial Class Form1
         TabPage3.Padding = New Padding(3)
         TabPage3.Size = New Size(665, 467)
         TabPage3.TabIndex = 1
-        TabPage3.Text = "TabPage3"
+        TabPage3.Text = "測試項"
         TabPage3.UseVisualStyleBackColor = True
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(Label24)
+        ScriptTask_GroupBox.Controls.Add(Label25)
+        ScriptTask_GroupBox.Controls.Add(ScheduledExecutionMinutes_NumericUpDown)
+        ScriptTask_GroupBox.Controls.Add(ScheduledExecutionHours_NumericUpDown)
+        ScriptTask_GroupBox.Controls.Add(ScheduledExecutionSeconds_NumericUpDown)
+        ScriptTask_GroupBox.Controls.Add(ScheduledExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(ExecuteSelectedScriptListviewItem_Button)
         ScriptTask_GroupBox.Controls.Add(ResetScript_Button)
         ScriptTask_GroupBox.Controls.Add(ModifySelectedScriptListviewAsset_Button)
@@ -1004,11 +1018,10 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(ExecutionWaitHours_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(ExecutionWaitSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(InsertToQueueListview_Button)
-        ScriptTask_GroupBox.Controls.Add(Button2)
-        ScriptTask_GroupBox.Controls.Add(Button1)
+        ScriptTask_GroupBox.Controls.Add(ModifyListviewScheduleTime_Button)
+        ScriptTask_GroupBox.Controls.Add(InsertSchedulerScriptToListview_Button)
         ScriptTask_GroupBox.Controls.Add(Label13)
-        ScriptTask_GroupBox.Controls.Add(NumericUpDown1)
-        ScriptTask_GroupBox.Controls.Add(DateTimePicker1)
+        ScriptTask_GroupBox.Controls.Add(SchedulerIntervalSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
         ScriptTask_GroupBox.Controls.Add(Label8)
@@ -1018,6 +1031,56 @@ Partial Class Form1
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' Label24
+        ' 
+        Label24.AutoSize = True
+        Label24.Location = New Point(234, 38)
+        Label24.Name = "Label24"
+        Label24.Size = New Size(24, 19)
+        Label24.TabIndex = 34
+        Label24.Text = "分"
+        ' 
+        ' Label25
+        ' 
+        Label25.AutoSize = True
+        Label25.Location = New Point(148, 38)
+        Label25.Name = "Label25"
+        Label25.Size = New Size(24, 19)
+        Label25.TabIndex = 33
+        Label25.Text = "時"
+        ' 
+        ' ScheduledExecutionMinutes_NumericUpDown
+        ' 
+        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(178, 33)
+        ScheduledExecutionMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        ScheduledExecutionMinutes_NumericUpDown.Name = "ScheduledExecutionMinutes_NumericUpDown"
+        ScheduledExecutionMinutes_NumericUpDown.Size = New Size(50, 27)
+        ScheduledExecutionMinutes_NumericUpDown.TabIndex = 32
+        ' 
+        ' ScheduledExecutionHours_NumericUpDown
+        ' 
+        ScheduledExecutionHours_NumericUpDown.Location = New Point(92, 33)
+        ScheduledExecutionHours_NumericUpDown.Name = "ScheduledExecutionHours_NumericUpDown"
+        ScheduledExecutionHours_NumericUpDown.Size = New Size(50, 27)
+        ScheduledExecutionHours_NumericUpDown.TabIndex = 31
+        ' 
+        ' ScheduledExecutionSeconds_NumericUpDown
+        ' 
+        ScheduledExecutionSeconds_NumericUpDown.Location = New Point(264, 33)
+        ScheduledExecutionSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        ScheduledExecutionSeconds_NumericUpDown.Name = "ScheduledExecutionSeconds_NumericUpDown"
+        ScheduledExecutionSeconds_NumericUpDown.Size = New Size(50, 27)
+        ScheduledExecutionSeconds_NumericUpDown.TabIndex = 30
+        ' 
+        ' ScheduledExecutionScriptQueue_Button
+        ' 
+        ScheduledExecutionScriptQueue_Button.Location = New Point(212, 103)
+        ScheduledExecutionScriptQueue_Button.Name = "ScheduledExecutionScriptQueue_Button"
+        ScheduledExecutionScriptQueue_Button.Size = New Size(94, 29)
+        ScheduledExecutionScriptQueue_Button.TabIndex = 29
+        ScheduledExecutionScriptQueue_Button.Text = "定時執行"
+        ScheduledExecutionScriptQueue_Button.UseVisualStyleBackColor = True
         ' 
         ' ExecuteSelectedScriptListviewItem_Button
         ' 
@@ -1121,10 +1184,10 @@ Partial Class Form1
         ' 
         ' ExecutionWaitRandomSeconds_NumericUpDown
         ' 
-        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(406, 66)
+        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(402, 66)
         ExecutionWaitRandomSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitRandomSeconds_NumericUpDown.Name = "ExecutionWaitRandomSeconds_NumericUpDown"
-        ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(50, 27)
+        ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(54, 27)
         ExecutionWaitRandomSeconds_NumericUpDown.TabIndex = 17
         ' 
         ' Label17
@@ -1188,55 +1251,48 @@ Partial Class Form1
         ' 
         ' InsertToQueueListview_Button
         ' 
-        InsertToQueueListview_Button.Location = New Point(543, 64)
+        InsertToQueueListview_Button.Location = New Point(492, 65)
         InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
         InsertToQueueListview_Button.Size = New Size(94, 29)
         InsertToQueueListview_Button.TabIndex = 9
         InsertToQueueListview_Button.Text = "插入"
         InsertToQueueListview_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' ModifyListviewScheduleTime_Button
         ' 
-        Button2.Location = New Point(543, 29)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 7
-        Button2.Text = "修改"
-        Button2.UseVisualStyleBackColor = True
+        ModifyListviewScheduleTime_Button.Location = New Point(592, 31)
+        ModifyListviewScheduleTime_Button.Name = "ModifyListviewScheduleTime_Button"
+        ModifyListviewScheduleTime_Button.Size = New Size(94, 29)
+        ModifyListviewScheduleTime_Button.TabIndex = 7
+        ModifyListviewScheduleTime_Button.Text = "修改"
+        ModifyListviewScheduleTime_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button1
+        ' InsertSchedulerScriptToListview_Button
         ' 
-        Button1.Location = New Point(432, 28)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 6
-        Button1.Text = "插入"
-        Button1.UseVisualStyleBackColor = True
+        InsertSchedulerScriptToListview_Button.Location = New Point(492, 30)
+        InsertSchedulerScriptToListview_Button.Name = "InsertSchedulerScriptToListview_Button"
+        InsertSchedulerScriptToListview_Button.Size = New Size(94, 29)
+        InsertSchedulerScriptToListview_Button.TabIndex = 6
+        InsertSchedulerScriptToListview_Button.Text = "插入"
+        InsertSchedulerScriptToListview_Button.UseVisualStyleBackColor = True
         ' 
         ' Label13
         ' 
         Label13.AutoSize = True
-        Label13.Location = New Point(402, 36)
+        Label13.Location = New Point(462, 38)
         Label13.Name = "Label13"
         Label13.Size = New Size(24, 19)
         Label13.TabIndex = 5
         Label13.Text = "秒"
         ' 
-        ' NumericUpDown1
+        ' SchedulerIntervalSeconds_NumericUpDown
         ' 
-        NumericUpDown1.Location = New Point(329, 30)
-        NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(67, 27)
-        NumericUpDown1.TabIndex = 4
-        ' 
-        ' DateTimePicker1
-        ' 
-        DateTimePicker1.Format = DateTimePickerFormat.Time
-        DateTimePicker1.Location = New Point(92, 30)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.ShowUpDown = True
-        DateTimePicker1.Size = New Size(150, 27)
-        DateTimePicker1.TabIndex = 3
+        SchedulerIntervalSeconds_NumericUpDown.Location = New Point(402, 32)
+        SchedulerIntervalSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        SchedulerIntervalSeconds_NumericUpDown.Name = "SchedulerIntervalSeconds_NumericUpDown"
+        SchedulerIntervalSeconds_NumericUpDown.Size = New Size(54, 27)
+        SchedulerIntervalSeconds_NumericUpDown.TabIndex = 4
+        SchedulerIntervalSeconds_NumericUpDown.Value = New Decimal(New Integer() {180, 0, 0, 0})
         ' 
         ' Label12
         ' 
@@ -1250,7 +1306,7 @@ Partial Class Form1
         ' Label11
         ' 
         Label11.AutoSize = True
-        Label11.Location = New Point(248, 36)
+        Label11.Location = New Point(320, 38)
         Label11.Name = "Label11"
         Label11.Size = New Size(76, 19)
         Label11.TabIndex = 1
@@ -1259,7 +1315,7 @@ Partial Class Form1
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Location = New Point(10, 36)
+        Label8.Location = New Point(10, 40)
         Label8.Name = "Label8"
         Label8.Size = New Size(76, 19)
         Label8.TabIndex = 0
@@ -1385,12 +1441,15 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
+        CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(ScheduledExecutionSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ScriptExecutionCount_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitRandomSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -1474,11 +1533,10 @@ Partial Class Form1
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents Label13 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents SchedulerIntervalSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents ModifyListviewScheduleTime_Button As Button
+    Friend WithEvents InsertSchedulerScriptToListview_Button As Button
     Friend WithEvents ColumnHeader7 As ColumnHeader
     Friend WithEvents ColumnHeader8 As ColumnHeader
     Friend WithEvents ColumnHeader9 As ColumnHeader
@@ -1523,5 +1581,11 @@ Partial Class Form1
     Friend WithEvents Label23 As Label
     Friend WithEvents ExecuteSelectedScriptListviewItem_Button As Button
     Friend WithEvents ColumnHeader15 As ColumnHeader
+    Friend WithEvents ScheduledExecutionScriptQueue_Button As Button
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents ScheduledExecutionMinutes_NumericUpDown As NumericUpDown
+    Friend WithEvents ScheduledExecutionHours_NumericUpDown As NumericUpDown
+    Friend WithEvents ScheduledExecutionSeconds_NumericUpDown As NumericUpDown
 
 End Class

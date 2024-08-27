@@ -40,6 +40,12 @@ Module UtilsModule
         Return randomValue
     End Function
 
-
+    Public Function ConvertSecondsToTimeFormat(seconds As Integer) As String
+        If seconds > 86400 Then
+            Return "NULL"
+        End If
+        Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(seconds)
+        Return timeSpan.ToString("hh\:mm\:ss")
+    End Function
 
 End Module

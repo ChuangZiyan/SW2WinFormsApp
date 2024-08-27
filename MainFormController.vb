@@ -460,13 +460,11 @@ Module MainFormController
         Try
             Dim configFilePath = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
             If File.Exists(configFilePath) Then
-                Debug.WriteLine("######")
                 Dim myText = File.ReadAllText(configFilePath)
                 Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(0))
                 Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(1))
 
             Else
-                Debug.WriteLine("#!!!!!")
                 File.WriteAllText(configFilePath, "30,30")
                 Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = 30
                 Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value = 30
