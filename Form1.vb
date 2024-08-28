@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Security.Policy
+Imports System.Threading
 Imports Newtonsoft.Json
 
 Public Class Form1
@@ -337,12 +338,25 @@ Public Class Form1
     End Function
 
 
+    Private Sub StopScheduledExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles StopScheduledExecutionScriptQueue_Button.Click
+        ScheduledRun = False
+        ScheduledExecutionScriptQueue_Button.Text = "定時執行"
+        MainFormController.EnabledAllExecutionButton(True)
+    End Sub
+
+    Public ScheduledRun = False
+
     Private Async Sub ScheduledExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ScheduledExecutionScriptQueue_Button.Click
         ' 定時執行
-
-        While True
+        If ScheduledRun Then
+            Exit Sub
+        End If
+        MainFormController.EnabledAllExecutionButton(False)
+        ScheduledRun = True
+        While ScheduledRun
             Dim currentTime As String = DateTime.Now.ToString("HH:mm:ss")
-            Debug.WriteLine("curr time : " & currentTime)
+            'Debug.WriteLine("curr time : " & currentTime)
+            ScheduledExecutionScriptQueue_Button.Text = currentTime
             For Each item As ListViewItem In ScriptQueue_ListView.Items
                 Dim executionTime = item.SubItems(1).Text
                 If item.SubItems(12).Text = "略過" Or executionTime = "NULL" Then
@@ -350,7 +364,8 @@ Public Class Form1
                 End If
 
                 If executionTime = currentTime Then
-                    Await ExecutionListviewScriptByItem(item)
+                    ExecutionListviewScriptByItem(item)
+                    Debug.WriteLine("EOF")
                 End If
 
             Next
@@ -359,7 +374,6 @@ Public Class Form1
         End While
 
     End Sub
-
 
 
     ' 這個是主要執行腳本的功能區段，他會執行你傳入的ListviewItem
@@ -503,6 +517,8 @@ Public Class Form1
 
 
 
+
+
     Private mainFormEventHandlers As New MainFormEventHandlers()
 
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -549,6 +565,8 @@ Public Class Form1
 
         AddHandler InsertSchedulerScriptToListview_Button.Click, AddressOf mainFormEventHandlers.InsertSchedulerScriptToListview_Button_Click
         AddHandler ModifyListviewScheduleTime_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTime_Button_Click
+
+        AddHandler SchedulerTime_Label.Click, AddressOf mainFormEventHandlers.SchedulerTime_Label_Click
 
         MainFormController.SetForm1TitleStatus("完成")
     End Sub

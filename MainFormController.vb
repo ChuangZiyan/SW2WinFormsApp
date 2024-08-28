@@ -672,6 +672,7 @@ Module MainFormController
     Public Sub EnabledAllExecutionButton(flag As Boolean)
         Form1.ExecutionScriptQueue_Button.Enabled = flag
         Form1.ExecuteSelectedScriptListviewItem_Button.Enabled = flag
+        'Form1.ScheduledExecutionScriptQueue_Button.Enabled = flag
     End Sub
 
 

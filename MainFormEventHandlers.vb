@@ -495,6 +495,18 @@ Public Class MainFormEventHandlers
 
     End Sub
 
+    Public Sub SchedulerTime_Label_Click(sender As Object, e As EventArgs)
+        Dim now As DateTime = DateTime.Now
+        Dim timeSinceMidnight As TimeSpan = now - now.Date
+        Dim baseSeconds = CInt(timeSinceMidnight.TotalSeconds)
+        ' 加上時間間隔
+        baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
 
+        Dim splitedTimeStr = Split(UtilsModule.ConvertSecondsToTimeFormat(baseSeconds), ":")
+        Form1.ScheduledExecutionHours_NumericUpDown.Value = splitedTimeStr(0)
+        Form1.ScheduledExecutionMinutes_NumericUpDown.Value = splitedTimeStr(1)
+        Form1.ScheduledExecutionSeconds_NumericUpDown.Value = splitedTimeStr(2)
+
+    End Sub
 
 End Class

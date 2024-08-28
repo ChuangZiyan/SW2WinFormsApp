@@ -116,6 +116,7 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        StopScheduledExecutionScriptQueue_Button = New Button()
         Label24 = New Label()
         Label25 = New Label()
         ScheduledExecutionMinutes_NumericUpDown = New NumericUpDown()
@@ -148,7 +149,7 @@ Partial Class Form1
         SchedulerIntervalSeconds_NumericUpDown = New NumericUpDown()
         Label12 = New Label()
         Label11 = New Label()
-        Label8 = New Label()
+        SchedulerTime_Label = New Label()
         userData_ComboBox = New ComboBox()
         MarkUserDataToSkip_Button = New Button()
         UnmarkUserDataToSkip_Button_Button = New Button()
@@ -992,6 +993,7 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(StopScheduledExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(Label24)
         ScriptTask_GroupBox.Controls.Add(Label25)
         ScriptTask_GroupBox.Controls.Add(ScheduledExecutionMinutes_NumericUpDown)
@@ -1024,13 +1026,22 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(SchedulerIntervalSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
-        ScriptTask_GroupBox.Controls.Add(Label8)
+        ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
         ScriptTask_GroupBox.Location = New Point(441, 441)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
         ScriptTask_GroupBox.Size = New Size(700, 188)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' StopScheduledExecutionScriptQueue_Button
+        ' 
+        StopScheduledExecutionScriptQueue_Button.Location = New Point(312, 103)
+        StopScheduledExecutionScriptQueue_Button.Name = "StopScheduledExecutionScriptQueue_Button"
+        StopScheduledExecutionScriptQueue_Button.Size = New Size(94, 29)
+        StopScheduledExecutionScriptQueue_Button.TabIndex = 35
+        StopScheduledExecutionScriptQueue_Button.Text = "停止執行"
+        StopScheduledExecutionScriptQueue_Button.UseVisualStyleBackColor = True
         ' 
         ' Label24
         ' 
@@ -1312,14 +1323,15 @@ Partial Class Form1
         Label11.TabIndex = 1
         Label11.Text = "相隔時間 :"
         ' 
-        ' Label8
+        ' SchedulerTime_Label
         ' 
-        Label8.AutoSize = True
-        Label8.Location = New Point(10, 40)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(76, 19)
-        Label8.TabIndex = 0
-        Label8.Text = "執行時間 :"
+        SchedulerTime_Label.AutoSize = True
+        SchedulerTime_Label.Cursor = Cursors.Hand
+        SchedulerTime_Label.Location = New Point(10, 40)
+        SchedulerTime_Label.Name = "SchedulerTime_Label"
+        SchedulerTime_Label.Size = New Size(76, 19)
+        SchedulerTime_Label.TabIndex = 0
+        SchedulerTime_Label.Text = "執行時間 :"
         ' 
         ' userData_ComboBox
         ' 
@@ -1532,7 +1544,7 @@ Partial Class Form1
     Friend WithEvents ScriptTask_GroupBox As GroupBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label8 As Label
+    Friend WithEvents SchedulerTime_Label As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents SchedulerIntervalSeconds_NumericUpDown As NumericUpDown
     Friend WithEvents ModifyListviewScheduleTime_Button As Button
@@ -1587,5 +1599,6 @@ Partial Class Form1
     Friend WithEvents ScheduledExecutionMinutes_NumericUpDown As NumericUpDown
     Friend WithEvents ScheduledExecutionHours_NumericUpDown As NumericUpDown
     Friend WithEvents ScheduledExecutionSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents StopScheduledExecutionScriptQueue_Button As Button
 
 End Class
