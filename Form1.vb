@@ -364,7 +364,7 @@ Public Class Form1
                 End If
 
                 If executionTime = currentTime Then
-                    ExecutionListviewScriptByItem(item)
+                    Await ExecutionListviewScriptByItem(item)
                     Debug.WriteLine("EOF")
                 End If
 
@@ -404,6 +404,9 @@ Public Class Form1
         'Debug.WriteLine("executionResult: " & executionResult)
         'Debug.WriteLine("waitSecond: " & waitSecond)
 
+
+        '先把之前的顏色變回來
+        MainFormController.ResetScriptQueueListviewItemsBackgroundColor()
 
         ' 執行的那行要變色
         item.BackColor = Color.SteelBlue
@@ -507,8 +510,8 @@ Public Class Form1
 
         ' 等待完後重設
         item.SubItems(11).Text = waitSecond
-        item.BackColor = Color.White
-        item.ForeColor = Color.Black
+        'item.BackColor = Color.White
+        'item.ForeColor = Color.Black
 
         'Next
 
