@@ -342,6 +342,17 @@ Public Class MainFormEventHandlers
 
     End Sub
 
+    Public Sub ModifyListviewScheduleTimeTNull_Button_Click(sender As Object, e As EventArgs)
+        Dim selectedListviewItems = Form1.ScriptQueue_ListView.SelectedItems
+        If selectedListviewItems.Count > 0 Then
+            For Each item As ListViewItem In selectedListviewItems
+                With item.SubItems
+                    .Item(1).Text = "NULL"
+                End With
+            Next
+        End If
+    End Sub
+
 
     Public Sub PauseScriptExecution_Button_Click(sender As Object, e As EventArgs)
         Form1.PAUSE = True
@@ -508,5 +519,49 @@ Public Class MainFormEventHandlers
         Form1.ScheduledExecutionSeconds_NumericUpDown.Value = splitedTimeStr(2)
 
     End Sub
+
+    Public Sub SyncTimeToDateTimePicker_Label_Click(sender As Object, e As EventArgs)
+        Form1.ScheduledTimeSorting_DateTimePicker.Value = DateTime.Now
+    End Sub
+
+    Public Sub SortListviewItemByTime_Button_Click(sender As Object, e As EventArgs)
+
+        Dim selectedTime As DateTime = Form1.ScheduledTimeSorting_DateTimePicker.Value
+        Dim items As List(Of ListViewItem) = Form1.ScriptQueue_ListView.Items.Cast(Of ListViewItem).ToList()
+
+
+        Dim nullItems As New List(Of ListViewItem)
+        Dim notNullItems As New List(Of ListViewItem)
+
+        ' 先分離NULL的item
+        For Each item In items
+
+            If item.SubItems(1).Text = "NULL" Then
+                nullItems.Add(item)
+            Else
+                notNullItems.Add(item)
+            End If
+        Next
+
+
+
+        ' 把不是Null的Item照時間排序
+        notNullItems.Sort(Function(x, y)
+                              Dim timeX As DateTime = DateTime.Parse(x.SubItems(1).Text)
+                              Dim timeY As DateTime = DateTime.Parse(y.SubItems(1).Text)
+                              Return timeX.CompareTo(timeY)
+                          End Function)
+
+        ' 然後用選擇的時間切斷
+        Dim greaterOrEqualItems = notNullItems.Where(Function(item) DateTime.Parse(item.SubItems(1).Text).TimeOfDay >= selectedTime.TimeOfDay).ToList()
+        Dim lessItems = notNullItems.Where(Function(item) DateTime.Parse(item.SubItems(1).Text).TimeOfDay < selectedTime.TimeOfDay).ToList()
+
+        ' 最後再合併起來
+        Dim sortedItems = greaterOrEqualItems.Concat(lessItems).Concat(nullItems).ToList()
+        'sortedItems = sortedItems.Concat(notNullItems).ToList()
+        Form1.ScriptQueue_ListView.Items.Clear()
+        Form1.ScriptQueue_ListView.Items.AddRange(sortedItems.ToArray())
+    End Sub
+
 
 End Class

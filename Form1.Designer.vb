@@ -116,6 +116,10 @@ Partial Class Form1
         CreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
+        SortListviewItemByTime_Button = New Button()
+        ScheduledTimeSorting_DateTimePicker = New DateTimePicker()
+        SyncTimeToDateTimePicker_Label = New Label()
+        ModifyListviewScheduleTimeTNull_Button = New Button()
         StopScheduledExecutionScriptQueue_Button = New Button()
         Label24 = New Label()
         Label25 = New Label()
@@ -993,6 +997,10 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(SortListviewItemByTime_Button)
+        ScriptTask_GroupBox.Controls.Add(ScheduledTimeSorting_DateTimePicker)
+        ScriptTask_GroupBox.Controls.Add(SyncTimeToDateTimePicker_Label)
+        ScriptTask_GroupBox.Controls.Add(ModifyListviewScheduleTimeTNull_Button)
         ScriptTask_GroupBox.Controls.Add(StopScheduledExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(Label24)
         ScriptTask_GroupBox.Controls.Add(Label25)
@@ -1033,6 +1041,44 @@ Partial Class Form1
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' SortListviewItemByTime_Button
+        ' 
+        SortListviewItemByTime_Button.Location = New Point(596, 101)
+        SortListviewItemByTime_Button.Name = "SortListviewItemByTime_Button"
+        SortListviewItemByTime_Button.Size = New Size(94, 29)
+        SortListviewItemByTime_Button.TabIndex = 39
+        SortListviewItemByTime_Button.Text = "排序"
+        SortListviewItemByTime_Button.UseVisualStyleBackColor = True
+        ' 
+        ' ScheduledTimeSorting_DateTimePicker
+        ' 
+        ScheduledTimeSorting_DateTimePicker.CustomFormat = "HH:mm:ss"
+        ScheduledTimeSorting_DateTimePicker.Format = DateTimePickerFormat.Custom
+        ScheduledTimeSorting_DateTimePicker.Location = New Point(487, 103)
+        ScheduledTimeSorting_DateTimePicker.Name = "ScheduledTimeSorting_DateTimePicker"
+        ScheduledTimeSorting_DateTimePicker.ShowUpDown = True
+        ScheduledTimeSorting_DateTimePicker.Size = New Size(106, 27)
+        ScheduledTimeSorting_DateTimePicker.TabIndex = 38
+        ' 
+        ' SyncTimeToDateTimePicker_Label
+        ' 
+        SyncTimeToDateTimePicker_Label.AutoSize = True
+        SyncTimeToDateTimePicker_Label.Cursor = Cursors.Hand
+        SyncTimeToDateTimePicker_Label.Location = New Point(412, 108)
+        SyncTimeToDateTimePicker_Label.Name = "SyncTimeToDateTimePicker_Label"
+        SyncTimeToDateTimePicker_Label.Size = New Size(72, 19)
+        SyncTimeToDateTimePicker_Label.TabIndex = 37
+        SyncTimeToDateTimePicker_Label.Text = "排序時間:"
+        ' 
+        ' ModifyListviewScheduleTimeTNull_Button
+        ' 
+        ModifyListviewScheduleTimeTNull_Button.Location = New Point(610, 29)
+        ModifyListviewScheduleTimeTNull_Button.Name = "ModifyListviewScheduleTimeTNull_Button"
+        ModifyListviewScheduleTimeTNull_Button.Size = New Size(80, 29)
+        ModifyListviewScheduleTimeTNull_Button.TabIndex = 36
+        ModifyListviewScheduleTimeTNull_Button.Text = "NULL"
+        ModifyListviewScheduleTimeTNull_Button.UseVisualStyleBackColor = True
         ' 
         ' StopScheduledExecutionScriptQueue_Button
         ' 
@@ -1271,9 +1317,9 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTime_Button
         ' 
-        ModifyListviewScheduleTime_Button.Location = New Point(592, 31)
+        ModifyListviewScheduleTime_Button.Location = New Point(554, 29)
         ModifyListviewScheduleTime_Button.Name = "ModifyListviewScheduleTime_Button"
-        ModifyListviewScheduleTime_Button.Size = New Size(94, 29)
+        ModifyListviewScheduleTime_Button.Size = New Size(51, 29)
         ModifyListviewScheduleTime_Button.TabIndex = 7
         ModifyListviewScheduleTime_Button.Text = "修改"
         ModifyListviewScheduleTime_Button.UseVisualStyleBackColor = True
@@ -1282,7 +1328,7 @@ Partial Class Form1
         ' 
         InsertSchedulerScriptToListview_Button.Location = New Point(492, 30)
         InsertSchedulerScriptToListview_Button.Name = "InsertSchedulerScriptToListview_Button"
-        InsertSchedulerScriptToListview_Button.Size = New Size(94, 29)
+        InsertSchedulerScriptToListview_Button.Size = New Size(56, 29)
         InsertSchedulerScriptToListview_Button.TabIndex = 6
         InsertSchedulerScriptToListview_Button.Text = "插入"
         InsertSchedulerScriptToListview_Button.UseVisualStyleBackColor = True
@@ -1600,5 +1646,9 @@ Partial Class Form1
     Friend WithEvents ScheduledExecutionHours_NumericUpDown As NumericUpDown
     Friend WithEvents ScheduledExecutionSeconds_NumericUpDown As NumericUpDown
     Friend WithEvents StopScheduledExecutionScriptQueue_Button As Button
+    Friend WithEvents ModifyListviewScheduleTimeTNull_Button As Button
+    Friend WithEvents ScheduledTimeSorting_DateTimePicker As DateTimePicker
+    Friend WithEvents SyncTimeToDateTimePicker_Label As Label
+    Friend WithEvents SortListviewItemByTime_Button As Button
 
 End Class

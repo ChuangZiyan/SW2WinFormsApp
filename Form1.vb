@@ -303,10 +303,9 @@ Public Class Form1
     Private Async Sub ExecuteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs) Handles ExecuteSelectedScriptListviewItem_Button.Click
         MainFormController.EnabledAllExecutionButton(False)
         Dim selectedItems = ScriptQueue_ListView.SelectedItems
-        If selectedItems.Count > 0 Then
-            Dim item As ListViewItem = selectedItems(0)
-            Await ExecutionListviewScriptByItem(item)
-        End If
+        For Each item As ListViewItem In selectedItems
+            Await ExecutionListviewScriptByItem(item, False)
+        Next
         MainFormController.EnabledAllExecutionButton(True)
     End Sub
 
@@ -364,8 +363,8 @@ Public Class Form1
                 End If
 
                 If executionTime = currentTime Then
-                    Await ExecutionListviewScriptByItem(item)
-                    Debug.WriteLine("EOF")
+                    ' 第二個參數設成false就是執行完不等待
+                    Await ExecutionListviewScriptByItem(item, False)
                 End If
 
             Next
@@ -377,7 +376,7 @@ Public Class Form1
 
 
     ' 這個是主要執行腳本的功能區段，他會執行你傳入的ListviewItem
-    Private Async Function ExecutionListviewScriptByItem(item) As Task
+    Private Async Function ExecutionListviewScriptByItem(item As ListViewItem, Optional isAwaitingCompletion As Boolean = True) As Task
         PAUSE = False
         'For Each item As ListViewItem In ScriptQueue_ListView.Items
 
@@ -487,25 +486,29 @@ Public Class Form1
             item.SubItems(10).Text = (CInt(item.SubItems(10).Text) + 1).ToString
         End If
 
-        '跑完腳本後等待
-        Dim splitedWaitSecond = waitSecond.Split("±")
-        Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
 
-        If myWaitSecs > 0 Then
-            For i As Integer = myWaitSecs To 0 Step -1
-                While PAUSE
+        If isAwaitingCompletion Then
+            '如果是順序執行的話，跑完腳本後等待
+            Dim splitedWaitSecond = waitSecond.Split("±")
+            Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
+
+            If myWaitSecs > 0 Then
+                For i As Integer = myWaitSecs To 0 Step -1
+                    While PAUSE
+                        Await Delay_msec(1000)
+                    End While
+                    item.SubItems(11).Text = i.ToString()
                     Await Delay_msec(1000)
-                End While
-                item.SubItems(11).Text = i.ToString()
-                Await Delay_msec(1000)
-            Next
-        Else
-            item.SubItems(11).Text = "0"
-        End If
+                Next
+            Else
+                item.SubItems(11).Text = "0"
+            End If
 
-        While PAUSE
-            Await Delay_msec(1000)
-        End While
+            While PAUSE
+                Await Delay_msec(1000)
+            End While
+
+        End If
 
 
         ' 等待完後重設
@@ -516,9 +519,6 @@ Public Class Form1
         'Next
 
     End Function
-
-
-
 
 
 
@@ -567,10 +567,14 @@ Public Class Form1
         AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf mainFormEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
 
         AddHandler InsertSchedulerScriptToListview_Button.Click, AddressOf mainFormEventHandlers.InsertSchedulerScriptToListview_Button_Click
+
         AddHandler ModifyListviewScheduleTime_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTime_Button_Click
+        AddHandler ModifyListviewScheduleTimeTNull_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTimeTNull_Button_Click
 
         AddHandler SchedulerTime_Label.Click, AddressOf mainFormEventHandlers.SchedulerTime_Label_Click
 
+        AddHandler SyncTimeToDateTimePicker_Label.Click, AddressOf mainFormEventHandlers.SyncTimeToDateTimePicker_Label_Click
+        AddHandler SortListviewItemByTime_Button.Click, AddressOf mainFormEventHandlers.SortListviewItemByTime_Button_Click
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
 

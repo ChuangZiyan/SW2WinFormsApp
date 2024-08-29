@@ -48,4 +48,10 @@ Module UtilsModule
         Return timeSpan.ToString("hh\:mm\:ss")
     End Function
 
+    Public Function ConvertTimeToSeconds(timeString As String) As Integer
+        Dim time As TimeSpan = TimeSpan.Parse(timeString)
+        Dim totalSeconds As Integer = CInt(time.TotalSeconds)
+        Return totalSeconds
+    End Function
+
 End Module
