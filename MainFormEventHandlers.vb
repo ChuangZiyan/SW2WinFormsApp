@@ -578,6 +578,17 @@ Public Class MainFormEventHandlers
     Public Sub ScriptQueue_ListView_DoubleClick(sender As Object, e As EventArgs)
         If Form1.ScriptQueue_ListView.SelectedItems.Count > 0 Then
 
+
+            For Each item As ListViewItem In Form1.FBGroups_ListView.Items
+                item.Selected = False
+            Next
+
+            Form1.WebviewUserDataFolder_ListBox.ClearSelected()
+
+            Form1.MyAssetsFolder_ListBox.ClearSelected()
+
+
+
             Dim selectedItem As ListViewItem = Form1.ScriptQueue_ListView.SelectedItems(0)
 
             Dim userData = selectedItem.SubItems(0).Text
@@ -635,9 +646,6 @@ Public Class MainFormEventHandlers
             End If
 
 
-            For Each item As ListViewItem In Form1.FBGroups_ListView.Items
-                item.Selected = False
-            Next
 
         End If
 
