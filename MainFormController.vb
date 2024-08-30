@@ -369,12 +369,14 @@ Module MainFormController
         Try
             Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, folderName)
 
-            If Not Directory.Exists(folderPath) Then
+            If Not Directory.Exists(folderPath) And Not folderName.Contains("&"c) Then
                 Directory.CreateDirectory(folderPath)
                 Directory.CreateDirectory(Path.Combine(folderPath, "textFiles"))
                 Directory.CreateDirectory(Path.Combine(folderPath, "media"))
-
                 UpdateAssetsFolderListBox()
+
+                '新增後直接選擇該資料夾
+                Form1.MyAssetsFolder_ListBox.SelectedItem = folderName
                 'MsgBox("新增成功")
             Else
                 MsgBox("無法使用此名稱")
@@ -391,6 +393,7 @@ Module MainFormController
             Dim selectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
 
             If selectedItems.Count > 0 Then
+                ' 刪除所選
                 Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
 
@@ -399,13 +402,26 @@ Module MainFormController
                         Directory.Delete(folderPath, True)
                     Next
 
-                    UpdateAssetsFolderListBox()
-                    MsgBox("刪除完成")
+
                 End If
             Else
-                MsgBox("未選擇要刪除的資料夾")
+                ' 刪除全部資料夾
+                'MsgBox("未選擇要刪除的資料夾")
+                ' 刪除所選
+                Dim result As DialogResult = MessageBox.Show("確定要刪除全部資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+
+                    For Each item In Form1.MyAssetsFolder_ListBox.Items
+                        Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item)
+                        Directory.Delete(folderPath, True)
+                    Next
+
+                End If
+
             End If
 
+            UpdateAssetsFolderListBox()
+            MsgBox("刪除完成")
 
         Catch ex As Exception
             Debug.WriteLine(ex)

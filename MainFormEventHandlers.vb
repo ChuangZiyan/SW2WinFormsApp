@@ -21,7 +21,6 @@ Public Class MainFormEventHandlers
     End Sub
 
     Public Async Sub DeleteUserDataFolders_Button_Click()
-
         Try
             If Form1.WebviewUserDataFolder_ListBox.SelectedItems.Count <> 0 Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -59,6 +58,7 @@ Public Class MainFormEventHandlers
             Dim selectedItems = Form1.MediaSelector_ListBox.SelectedItems
 
             If selectedItems.Count > 0 Then
+                ' 刪除所選
                 Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     For Each item In selectedItems
@@ -67,10 +67,22 @@ Public Class MainFormEventHandlers
                         File.Delete(filePath)
                     Next
                 End If
-                UpdateMediaSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
+
             Else
-                MsgBox("未選擇要刪除的檔案")
+                ' 刪除全部
+                'MsgBox("未選擇要刪除的檔案")
+                Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    For Each item In Form1.MediaSelector_ListBox.Items
+                        'Debug.WriteLine("itm : " & item)
+                        Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
+                        File.Delete(filePath)
+                    Next
+                End If
+
             End If
+
+            UpdateMediaSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -102,19 +114,29 @@ Public Class MainFormEventHandlers
 
 
             If selectedItems.Count > 0 Then
-                Dim result As DialogResult = MessageBox.Show("確定要刪除社團列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                ' 刪掉選擇的
+                Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     For Each item In selectedItems
                         Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
                         File.Delete(textFilePath)
                     Next
                 End If
-                UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
             Else
-                MsgBox("未選擇要刪除的檔案")
+                ' 刪掉全部
+                'MsgBox("未選擇要刪除的檔案")
+                Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+
+                    For Each item In Form1.TextFileSelector_ListBox.Items
+                        Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
+                        File.Delete(textFilePath)
+                    Next
+                End If
+
             End If
 
-
+            UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -441,17 +463,6 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Public Sub ScriptQueue_ListView_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim scriptListviewSelectedItems = Form1.ScriptQueue_ListView.SelectedItems
-
-        If scriptListviewSelectedItems.Count > 0 Then
-
-            Dim url As String = scriptListviewSelectedItems(0).SubItems(3).Text
-            Form1.Navigate_Url_TextBox.Text = url
-
-        End If
-
-    End Sub
 
 
     Public Sub DeleteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs)
@@ -561,6 +572,75 @@ Public Class MainFormEventHandlers
         'sortedItems = sortedItems.Concat(notNullItems).ToList()
         Form1.ScriptQueue_ListView.Items.Clear()
         Form1.ScriptQueue_ListView.Items.AddRange(sortedItems.ToArray())
+    End Sub
+
+
+    Public Sub ScriptQueue_ListView_DoubleClick(sender As Object, e As EventArgs)
+        If Form1.ScriptQueue_ListView.SelectedItems.Count > 0 Then
+
+            Dim selectedItem As ListViewItem = Form1.ScriptQueue_ListView.SelectedItems(0)
+
+            Dim userData = selectedItem.SubItems(0).Text
+            Dim scheduleTime = selectedItem.SubItems(1).Text
+            Dim urlName = selectedItem.SubItems(2).Text
+            Dim url = selectedItem.SubItems(3).Text
+            Dim action = selectedItem.SubItems(4).Text
+            Dim content = selectedItem.SubItems(5).Text
+            Dim waitTime = selectedItem.SubItems(11).Text
+
+            ' 選取userData
+            Form1.WebviewUserDataFolder_ListBox.SelectedItem = userData
+
+
+            ' 不是NULL的話設定執行時間
+            If scheduleTime <> "NULL" Then
+                Dim splitedScheduleTime() As String = Split(scheduleTime, ":")
+                Form1.ScheduledExecutionHours_NumericUpDown.Value = CInt(splitedScheduleTime(0))
+                Form1.ScheduledExecutionMinutes_NumericUpDown.Value = CInt(splitedScheduleTime(1))
+                Form1.ScheduledExecutionSeconds_NumericUpDown.Value = CInt(splitedScheduleTime(2))
+            End If
+
+            ' 社團名稱跟網址
+            Form1.FBGroupName_TextBox.Text = urlName
+            Form1.FBGroupUrl_TextBox.Text = url
+
+
+            ' 設定tab
+            Select Case action
+                Case "發帖"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBPost_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                Case "測試項"
+                    Form1.Action_TabControl.SelectedTab = Form1.TabPage2
+            End Select
+
+
+            ' 設定時間
+            Dim waitSecondsStr = Split(waitTime, "±")(0)
+            Dim RandomWaitSeconds = Split(waitTime, "±")(1)
+            Dim SplitedWaitSecondsStr() As String = Split(UtilsModule.ConvertSecondsToTimeFormat(waitSecondsStr), ":")
+            Form1.ExecutionWaitHours_NumericUpDown.Value = CInt(SplitedWaitSecondsStr(0))
+            Form1.ExecutionWaitMinutes_NumericUpDown.Value = CInt(SplitedWaitSecondsStr(1))
+            Form1.ExecutionWaitSeconds_NumericUpDown.Value = CInt(SplitedWaitSecondsStr(2))
+            Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value = CInt(RandomWaitSeconds)
+
+            ' 設定選擇資料夾
+            If content <> "隨機" Then
+                Dim itemsToSelect As String() = Split(content, "&")
+                For i As Integer = 0 To Form1.MyAssetsFolder_ListBox.Items.Count - 1
+                    If itemsToSelect.Contains(Form1.MyAssetsFolder_ListBox.Items(i).ToString()) Then
+                        Form1.MyAssetsFolder_ListBox.SetSelected(i, True)
+                    End If
+                Next
+            End If
+
+        End If
+
+    End Sub
+
+
+    Public Sub CreateNewAssetFolder_Button_Click(sender As Object, e As EventArgs)
+        MainFormController.CreateNewAssetFolder(Form1.NewAssetFolderName_TextBox.Text)
     End Sub
 
 

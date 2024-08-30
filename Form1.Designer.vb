@@ -59,7 +59,7 @@ Partial Class Form1
         WebviewUserDataFolder_ListBox = New ListBox()
         RequestFriend_Button = New Button()
         GetCurrentUrl_Button = New Button()
-        FBData_TabControl = New TabControl()
+        FBUrlData_TabControl = New TabControl()
         FBGroups_TabPage = New TabPage()
         GetJoinedGroupList_Button = New Button()
         DeleteSelectedGroup_Button = New Button()
@@ -92,7 +92,7 @@ Partial Class Form1
         ColumnHeader10 = New ColumnHeader()
         ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
-        TabPage1 = New TabPage()
+        FBPost_TabPage = New TabPage()
         Label23 = New Label()
         Label22 = New Label()
         SaveFBWritePostWaitSecondsConfig_Button = New Button()
@@ -165,10 +165,10 @@ Partial Class Form1
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
-        FBData_TabControl.SuspendLayout()
+        FBUrlData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
         Action_TabControl.SuspendLayout()
-        TabPage1.SuspendLayout()
+        FBPost_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
@@ -195,7 +195,7 @@ Partial Class Form1
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(673, 541)
         Main_WebView2.TabIndex = 0
-        Main_WebView2.ZoomFactor = 1.0R
+        Main_WebView2.ZoomFactor = 1R
         ' 
         ' Navigate_Url_TextBox
         ' 
@@ -515,15 +515,15 @@ Partial Class Form1
         GetCurrentUrl_Button.Text = "取得網址"
         GetCurrentUrl_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBData_TabControl
+        ' FBUrlData_TabControl
         ' 
-        FBData_TabControl.Controls.Add(FBGroups_TabPage)
-        FBData_TabControl.Controls.Add(TabPage2)
-        FBData_TabControl.Location = New Point(441, 12)
-        FBData_TabControl.Name = "FBData_TabControl"
-        FBData_TabControl.SelectedIndex = 0
-        FBData_TabControl.Size = New Size(700, 423)
-        FBData_TabControl.TabIndex = 23
+        FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
+        FBUrlData_TabControl.Controls.Add(TabPage2)
+        FBUrlData_TabControl.Location = New Point(441, 12)
+        FBUrlData_TabControl.Name = "FBUrlData_TabControl"
+        FBUrlData_TabControl.SelectedIndex = 0
+        FBUrlData_TabControl.Size = New Size(700, 423)
+        FBUrlData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
         ' 
@@ -698,7 +698,7 @@ Partial Class Form1
         ' ColumnHeader3
         ' 
         ColumnHeader3.Text = "執行帳號"
-        ColumnHeader3.Width = 100
+        ColumnHeader3.Width = 120
         ' 
         ' ColumnHeader4
         ' 
@@ -728,7 +728,7 @@ Partial Class Form1
         ' ColumnHeader8
         ' 
         ColumnHeader8.Text = "執行內容"
-        ColumnHeader8.Width = 170
+        ColumnHeader8.Width = 150
         ' 
         ' ColumnHeader13
         ' 
@@ -761,7 +761,7 @@ Partial Class Form1
         ' 
         ' Action_TabControl
         ' 
-        Action_TabControl.Controls.Add(TabPage1)
+        Action_TabControl.Controls.Add(FBPost_TabPage)
         Action_TabControl.Controls.Add(TabPage3)
         Action_TabControl.Location = New Point(1147, 12)
         Action_TabControl.Name = "Action_TabControl"
@@ -769,36 +769,36 @@ Partial Class Form1
         Action_TabControl.Size = New Size(673, 499)
         Action_TabControl.TabIndex = 25
         ' 
-        ' TabPage1
+        ' FBPost_TabPage
         ' 
-        TabPage1.Controls.Add(Label23)
-        TabPage1.Controls.Add(Label22)
-        TabPage1.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
-        TabPage1.Controls.Add(Label21)
-        TabPage1.Controls.Add(FBWritePostUploadWaitSeconds_NumericUpDown)
-        TabPage1.Controls.Add(FBWritePostSubmitWaitSeconds_NumericUpDown)
-        TabPage1.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
-        TabPage1.Controls.Add(DeleteSelectedTextFiles_Button)
-        TabPage1.Controls.Add(NewTextFileName_TextBox)
-        TabPage1.Controls.Add(MediaSelector_ListBox)
-        TabPage1.Controls.Add(TextFileSelector_ListBox)
-        TabPage1.Controls.Add(MyAssetsFolder_ListBox)
-        TabPage1.Controls.Add(SaveEditedTextFile_Button)
-        TabPage1.Controls.Add(CreateNewTextFile_Button)
-        TabPage1.Controls.Add(DeleteSelectedMedia_Button)
-        TabPage1.Controls.Add(RevealMediaFoldesrInFileExplorer_Button)
-        TabPage1.Controls.Add(DeleteSelectedAssetFolder_Button)
-        TabPage1.Controls.Add(NewAssetFolderName_TextBox)
-        TabPage1.Controls.Add(MediaPreview_PictureBox)
-        TabPage1.Controls.Add(PreviewTextFile_RichTextBox)
-        TabPage1.Controls.Add(CreateNewAssetFolder_Button)
-        TabPage1.Location = New Point(4, 28)
-        TabPage1.Name = "TabPage1"
-        TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(665, 467)
-        TabPage1.TabIndex = 0
-        TabPage1.Text = "發帖"
-        TabPage1.UseVisualStyleBackColor = True
+        FBPost_TabPage.Controls.Add(Label23)
+        FBPost_TabPage.Controls.Add(Label22)
+        FBPost_TabPage.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
+        FBPost_TabPage.Controls.Add(Label21)
+        FBPost_TabPage.Controls.Add(FBWritePostUploadWaitSeconds_NumericUpDown)
+        FBPost_TabPage.Controls.Add(FBWritePostSubmitWaitSeconds_NumericUpDown)
+        FBPost_TabPage.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
+        FBPost_TabPage.Controls.Add(DeleteSelectedTextFiles_Button)
+        FBPost_TabPage.Controls.Add(NewTextFileName_TextBox)
+        FBPost_TabPage.Controls.Add(MediaSelector_ListBox)
+        FBPost_TabPage.Controls.Add(TextFileSelector_ListBox)
+        FBPost_TabPage.Controls.Add(MyAssetsFolder_ListBox)
+        FBPost_TabPage.Controls.Add(SaveEditedTextFile_Button)
+        FBPost_TabPage.Controls.Add(CreateNewTextFile_Button)
+        FBPost_TabPage.Controls.Add(DeleteSelectedMedia_Button)
+        FBPost_TabPage.Controls.Add(RevealMediaFoldesrInFileExplorer_Button)
+        FBPost_TabPage.Controls.Add(DeleteSelectedAssetFolder_Button)
+        FBPost_TabPage.Controls.Add(NewAssetFolderName_TextBox)
+        FBPost_TabPage.Controls.Add(MediaPreview_PictureBox)
+        FBPost_TabPage.Controls.Add(PreviewTextFile_RichTextBox)
+        FBPost_TabPage.Controls.Add(CreateNewAssetFolder_Button)
+        FBPost_TabPage.Location = New Point(4, 28)
+        FBPost_TabPage.Name = "FBPost_TabPage"
+        FBPost_TabPage.Padding = New Padding(3)
+        FBPost_TabPage.Size = New Size(665, 467)
+        FBPost_TabPage.TabIndex = 0
+        FBPost_TabPage.Text = "發帖"
+        FBPost_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label23
         ' 
@@ -1452,7 +1452,7 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
+        AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1832, 1103)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
@@ -1466,7 +1466,7 @@ Partial Class Form1
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueue_ListView)
-        Controls.Add(FBData_TabControl)
+        Controls.Add(FBUrlData_TabControl)
         Controls.Add(GetCurrentUrl_Button)
         Controls.Add(RequestFriend_Button)
         Controls.Add(WebviewUserDataFolder_ListBox)
@@ -1488,12 +1488,12 @@ Partial Class Form1
         UserInfo_GroupBox.PerformLayout()
         UserDataFoldListFilter_GroupBox.ResumeLayout(False)
         UserDataFoldListFilter_GroupBox.PerformLayout()
-        FBData_TabControl.ResumeLayout(False)
+        FBUrlData_TabControl.ResumeLayout(False)
         FBGroups_TabPage.ResumeLayout(False)
         FBGroups_TabPage.PerformLayout()
         Action_TabControl.ResumeLayout(False)
-        TabPage1.ResumeLayout(False)
-        TabPage1.PerformLayout()
+        FBPost_TabPage.ResumeLayout(False)
+        FBPost_TabPage.PerformLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
@@ -1547,7 +1547,7 @@ Partial Class Form1
     Friend WithEvents WebviewUserDataFolder_ListBox As ListBox
     Friend WithEvents RequestFriend_Button As Button
     Friend WithEvents GetCurrentUrl_Button As Button
-    Friend WithEvents FBData_TabControl As TabControl
+    Friend WithEvents FBUrlData_TabControl As TabControl
     Friend WithEvents FBGroups_TabPage As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents FBGroups_ListView As ListView
@@ -1567,7 +1567,7 @@ Partial Class Form1
     Friend WithEvents GetJoinedGroupList_Button As Button
     Friend WithEvents ScriptQueue_ListView As ListView
     Friend WithEvents Action_TabControl As TabControl
-    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents FBPost_TabPage As TabPage
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents MediaPreview_PictureBox As PictureBox
     Friend WithEvents PreviewTextFile_RichTextBox As RichTextBox

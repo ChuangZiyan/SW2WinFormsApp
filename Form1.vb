@@ -2,6 +2,7 @@
 Imports System.Security.Policy
 Imports System.Threading
 Imports Newtonsoft.Json
+Imports OpenQA.Selenium.DevTools.V125.Autofill
 
 Public Class Form1
 
@@ -247,9 +248,7 @@ Public Class Form1
         Webview2Controller.GetJoinedGroupList()
     End Sub
 
-    Private Sub CreateNewAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles CreateNewAssetFolder_Button.Click
-        MainFormController.CreateNewAssetFolder(NewAssetFolderName_TextBox.Text)
-    End Sub
+
 
     Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
 
@@ -554,7 +553,6 @@ Public Class Form1
         AddHandler MarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.MarkSelectedScriptListviewItem_Button_Click
         AddHandler UnmarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.UnmarkSelectedScriptListviewItem_Button_Click
 
-        AddHandler ScriptQueue_ListView.SelectedIndexChanged, AddressOf mainFormEventHandlers.ScriptQueue_ListView_SelectedIndexChanged
 
         AddHandler DeleteSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedScriptListviewItem_Button_Click
 
@@ -575,8 +573,12 @@ Public Class Form1
 
         AddHandler SyncTimeToDateTimePicker_Label.Click, AddressOf mainFormEventHandlers.SyncTimeToDateTimePicker_Label_Click
         AddHandler SortListviewItemByTime_Button.Click, AddressOf mainFormEventHandlers.SortListviewItemByTime_Button_Click
+
+        AddHandler ScriptQueue_ListView.DoubleClick, AddressOf mainFormEventHandlers.ScriptQueue_ListView_DoubleClick
+
+        AddHandler CreateNewAssetFolder_Button.Click, AddressOf mainFormEventHandlers.CreateNewAssetFolder_Button_Click
+
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
-
 
 End Class
