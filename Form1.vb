@@ -251,7 +251,6 @@ Public Class Form1
 
 
     Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
-
         MainFormController.DeletedSelectedAssetFolders()
     End Sub
     Private Sub MyAssetsFolder_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_ListBox.SelectedIndexChanged

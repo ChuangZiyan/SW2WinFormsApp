@@ -401,8 +401,8 @@ Module MainFormController
                         Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item)
                         Directory.Delete(folderPath, True)
                     Next
-
-
+                    UpdateAssetsFolderListBox()
+                    MsgBox("刪除完成")
                 End If
             Else
                 ' 刪除全部資料夾
@@ -415,13 +415,12 @@ Module MainFormController
                         Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item)
                         Directory.Delete(folderPath, True)
                     Next
-
+                    UpdateAssetsFolderListBox()
+                    MsgBox("刪除完成")
                 End If
-
             End If
 
-            UpdateAssetsFolderListBox()
-            MsgBox("刪除完成")
+
 
         Catch ex As Exception
             Debug.WriteLine(ex)

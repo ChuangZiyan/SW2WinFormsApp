@@ -634,6 +634,11 @@ Public Class MainFormEventHandlers
                 Next
             End If
 
+
+            For Each item As ListViewItem In Form1.FBGroups_ListView.Items
+                item.Selected = False
+            Next
+
         End If
 
     End Sub
