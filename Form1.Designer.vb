@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -162,6 +162,8 @@ Partial Class Form1
         UnmarkSelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
+        EnableClipboard_CheckBox = New CheckBox()
+        TextEmoji_ListBox = New ListBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -656,7 +658,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -771,6 +773,7 @@ Partial Class Form1
         ' 
         ' FBPost_TabPage
         ' 
+        FBPost_TabPage.Controls.Add(TextEmoji_ListBox)
         FBPost_TabPage.Controls.Add(Label23)
         FBPost_TabPage.Controls.Add(Label22)
         FBPost_TabPage.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
@@ -972,7 +975,7 @@ Partial Class Form1
         ' 
         PreviewTextFile_RichTextBox.Location = New Point(351, 42)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(294, 139)
+        PreviewTextFile_RichTextBox.Size = New Size(194, 139)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
         ' 
@@ -1450,11 +1453,32 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
+        ' EnableClipboard_CheckBox
+        ' 
+        EnableClipboard_CheckBox.AutoSize = True
+        EnableClipboard_CheckBox.Location = New Point(12, 601)
+        EnableClipboard_CheckBox.Name = "EnableClipboard_CheckBox"
+        EnableClipboard_CheckBox.Size = New Size(106, 23)
+        EnableClipboard_CheckBox.TabIndex = 36
+        EnableClipboard_CheckBox.Text = "使用剪貼簿"
+        EnableClipboard_CheckBox.UseVisualStyleBackColor = True
+        ' 
+        ' TextEmoji_ListBox
+        ' 
+        TextEmoji_ListBox.FormattingEnabled = True
+        TextEmoji_ListBox.ItemHeight = 19
+        TextEmoji_ListBox.Items.AddRange(New Object() {":)", ":("})
+        TextEmoji_ListBox.Location = New Point(551, 43)
+        TextEmoji_ListBox.Name = "TextEmoji_ListBox"
+        TextEmoji_ListBox.Size = New Size(108, 137)
+        TextEmoji_ListBox.TabIndex = 25
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1832, 1103)
+        Controls.Add(EnableClipboard_CheckBox)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
         Controls.Add(DeleteSelectedScriptListviewItem_Button)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
@@ -1650,5 +1674,7 @@ Partial Class Form1
     Friend WithEvents ScheduledTimeSorting_DateTimePicker As DateTimePicker
     Friend WithEvents SyncTimeToDateTimePicker_Label As Label
     Friend WithEvents SortListviewItemByTime_Button As Button
+    Friend WithEvents EnableClipboard_CheckBox As CheckBox
+    Friend WithEvents TextEmoji_ListBox As ListBox
 
 End Class

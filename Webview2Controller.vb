@@ -579,26 +579,35 @@ Module Webview2Controller
     '6. 抽出資料夾,抽出txt檔,送出txt檔內容
     '7. 送出全部圖片影片
     '8. 送出帖文(如果有影片，網頁一直會處於送出狀態(上載中)，所以我把關閉瀏覽器放在第1. ，我自己增加等待時間就可以，無需判斷是否送出，因為影片可以卡很久的。
-    Private Async Function EnsureControlHandleCreated(ctrl As Control) As Task
-        If ctrl.IsHandleCreated Then
-            Return
-        End If
-
-        ' 主動創建控制代碼
-        Dim handle = ctrl.Handle
-
-        ' 等待控制代碼創建
-        Await Task.Run(Sub()
-                           While Not ctrl.IsHandleCreated
-                               Threading.Thread.Sleep(50) ' 等待 50 毫秒
-                           End While
-                       End Sub)
-    End Function
 
 
-    Public Async Function WritePostOnFacebook(myUrl As String, myAssetFolderPath As String, item As ListViewItem) As Task(Of Boolean)
+    Public Async Function WritePostOnFacebook(myUrl As String, myAssetFolderPath As String) As Task(Of Boolean)
         Try
             'Debug.WriteLine("WritePostOnFacebook")
+            Dim enableClipboard As Boolean = Form1.EnableClipboard_CheckBox.Checked
+            Dim myText As String = ""
+
+            Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "TextFiles")
+            Dim textFiles As String() = Directory.GetFiles(textFileFolderPath, "*.txt")
+
+            If textFiles.Length > 0 Then
+
+                If Directory.Exists(textFileFolderPath) Then
+
+                    Dim rand As New Random()
+                    Dim randomIndex As Integer = rand.Next(0, textFiles.Length)
+                    Dim randomTextFile As String = textFiles(randomIndex)
+                    myText = File.ReadAllText(randomTextFile)
+
+                    If enableClipboard Then
+                        Clipboard.SetText(myText)
+                    End If
+
+                End If
+
+            Else
+                Debug.WriteLine("資料夾內無文字檔")
+            End If
 
             Return Await Task.Run(Async Function() As Task(Of Boolean)
                                       Try
@@ -631,9 +640,6 @@ Module Webview2Controller
 
                                           Await Delay_msec(1000)
 
-
-
-                                          Dim myText As String = ""
                                           Dim media_input As IWebElement
                                           Dim text_input As IWebElement
 
@@ -655,7 +661,6 @@ Module Webview2Controller
                                               text_input = edgeDriver.FindElement(By.CssSelector("div.x9f619.x1iyjqo2.xg7h5cd.x1swvt13.x1n2onr6.xh8yej3.x1ja2u2z.x11eofan > div > div > div > div > div._5rpb > div"))
                                           End If
 
-
                                           ' upload media files
                                           Dim mediaFileList As New List(Of String)
                                           Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
@@ -671,40 +676,23 @@ Module Webview2Controller
                                               End If
                                           Next
 
-
                                           ' 上傳文字
                                           Await Delay_msec(1000)
 
-
-                                          'Debug.WriteLine("Content : " & content)
-
-
-                                          Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "TextFiles")
-                                          Dim textFiles As String() = Directory.GetFiles(textFileFolderPath, "*.txt")
-
-                                          If textFiles.Length > 0 Then
-
-                                              If Directory.Exists(textFileFolderPath) Then
-
-                                                  Dim rand As New Random()
-                                                  Dim randomIndex As Integer = rand.Next(0, textFiles.Length)
-                                                  Dim randomTextFile As String = textFiles(randomIndex)
-                                                  myText = File.ReadAllText(randomTextFile)
-                                                  'Debug.WriteLine("Textfile : " & randomTextFile)
-                                                  text_input.SendKeys(myText)
-                                              End If
+                                          ' 使用剪貼簿貼上
+                                          If enableClipboard Then
+                                              text_input.SendKeys(Keys.LeftControl + "v")
                                           Else
-                                              Debug.WriteLine("資料夾內無文字檔")
+                                              text_input.SendKeys(myText)
                                           End If
 
                                           Await Delay_msec(1000)
-
 
                                           If mediaFileList.Count > 0 Then
                                               media_input.SendKeys(String.Join(vbLf, mediaFileList))
                                           End If
 
-                                          Debug.WriteLine("EOF")
+                                          'Debug.WriteLine("EOF")
                                           Return True
                                       Catch ex As Exception
                                           Debug.WriteLine(ex)

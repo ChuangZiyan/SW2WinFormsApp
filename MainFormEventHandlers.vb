@@ -657,4 +657,11 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+
+
+    Public Sub TextEmoji_ListBox_DoubleClick(sender As Object, e As EventArgs)
+        Form1.PreviewTextFile_RichTextBox.SelectedText = Form1.TextEmoji_ListBox.SelectedItem
+
+    End Sub
+
 End Class

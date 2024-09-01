@@ -1,6 +1,9 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Security.Policy
 Imports System.Threading
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports ICSharpCode.SharpZipLib.Zip.ExtendedUnixData
 Imports Newtonsoft.Json
 Imports OpenQA.Selenium.DevTools.V125.Autofill
 
@@ -15,6 +18,11 @@ Public Class Form1
 
 
     End Sub
+
+    Public Sub setCliText(text As String)
+        Clipboard.SetText(text)
+    End Sub
+
 
     Private Async Sub NavigateTo_Url_Button_Click(sender As Object, e As EventArgs) Handles NavigateTo_Url_Button.Click
         Dim myUrl = Navigate_Url_TextBox.Text
@@ -299,7 +307,14 @@ Public Class Form1
 
 
     Private Async Sub ExecuteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs) Handles ExecuteSelectedScriptListviewItem_Button.Click
-        MainFormController.EnabledAllExecutionButton(False)
+        Dim flag As Boolean = False
+        ExecutionScriptQueue_Button.Enabled = False
+        ExecuteSelectedScriptListviewItem_Button.Enabled = False
+        PauseScriptExecution_Button.Enabled = False
+        ContinueScriptExecution_Button.Enabled = False
+        ScheduledExecutionScriptQueue_Button.Enabled = False
+        StopScheduledExecutionScriptQueue_Button.Enabled = False
+        ExecutionScriptQueue_Button.Enabled = False
         Dim selectedItems = ScriptQueue_ListView.SelectedItems
         For Each item As ListViewItem In selectedItems
             Await ExecutionListviewScriptByItem(item, False)
@@ -309,8 +324,13 @@ Public Class Form1
 
 
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
+
+        ' Disable button
+        ExecuteSelectedScriptListviewItem_Button.Enabled = False
+        ScheduledExecutionScriptQueue_Button.Enabled = False
+        StopScheduledExecutionScriptQueue_Button.Enabled = False
+
         ' 這個是用來迴圈控制跑腳本的
-        MainFormController.EnabledAllExecutionButton(False)
         Dim executionCount As Integer = ScriptExecutionCount_NumericUpDown.Value
         ExecutionScriptQueue_Button.Enabled = False
         For run = 1 To executionCount Step 1
@@ -344,11 +364,18 @@ Public Class Form1
     Public ScheduledRun = False
 
     Private Async Sub ScheduledExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ScheduledExecutionScriptQueue_Button.Click
+
+        ' disable button
+        ExecutionScriptQueue_Button.Enabled = False
+        ExecuteSelectedScriptListviewItem_Button.Enabled = False
+        PauseScriptExecution_Button.Enabled = False
+        ContinueScriptExecution_Button.Enabled = False
+
         ' 定時執行
         If ScheduledRun Then
             Exit Sub
         End If
-        MainFormController.EnabledAllExecutionButton(False)
+
         ScheduledRun = True
         While ScheduledRun
             Dim currentTime As String = DateTime.Now.ToString("HH:mm:ss")
@@ -408,7 +435,7 @@ Public Class Form1
         ' 執行的那行要變色
         item.BackColor = Color.SteelBlue
         item.ForeColor = Color.White
-
+        MainFormController.CenterSelectedItem(item)
 
         '用選的userData 初始化webview
         Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
@@ -434,7 +461,7 @@ Public Class Form1
                     item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
                     item.SubItems(8).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
 
-                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath, item)
+                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath)
                     'result = False
 
                     ' 如果流程都沒問題
@@ -467,7 +494,7 @@ Public Class Form1
                 '########################################################################### 測試項功能 ###############################################################################################
             Case "測試項"
                 Try
-                    Await Delay_msec(3000)
+                    Await Delay_msec(1000)
                     result = True
                 Catch ex As Exception
                     Debug.WriteLine(ex)
@@ -577,7 +604,9 @@ Public Class Form1
 
         AddHandler CreateNewAssetFolder_Button.Click, AddressOf mainFormEventHandlers.CreateNewAssetFolder_Button_Click
 
+        AddHandler TextEmoji_ListBox.DoubleClick, AddressOf mainFormEventHandlers.TextEmoji_ListBox_DoubleClick
         MainFormController.SetForm1TitleStatus("完成")
     End Sub
+
 
 End Class

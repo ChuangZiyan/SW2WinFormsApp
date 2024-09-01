@@ -508,7 +508,15 @@ Module MainFormController
         Try
             Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", fileName)
             'Debug.WriteLine("img" & filePath)
-            Form1.MediaPreview_PictureBox.ImageLocation = filePath
+
+            Dim allowedVideoExtension As String() = {".mp4", ".MP4"}
+            If allowedVideoExtension.Contains(Path.GetExtension(fileName)) Then
+                Form1.MediaPreview_PictureBox.ImageLocation = Path.Combine(AppInitModule.appConfigsDirectory, "images", "PlayVideo.jpg")
+
+            Else
+                Form1.MediaPreview_PictureBox.ImageLocation = filePath
+            End If
+
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
@@ -687,7 +695,24 @@ Module MainFormController
     Public Sub EnabledAllExecutionButton(flag As Boolean)
         Form1.ExecutionScriptQueue_Button.Enabled = flag
         Form1.ExecuteSelectedScriptListviewItem_Button.Enabled = flag
-        'Form1.ScheduledExecutionScriptQueue_Button.Enabled = flag
+        Form1.PauseScriptExecution_Button.Enabled = flag
+        Form1.ContinueScriptExecution_Button.Enabled = flag
+        Form1.ScheduledExecutionScriptQueue_Button.Enabled = flag
+        Form1.StopScheduledExecutionScriptQueue_Button.Enabled = flag
+        Form1.ExecutionScriptQueue_Button.Enabled = flag
+        Form1.ScheduledExecutionScriptQueue_Button.Enabled = flag
+
+
+    End Sub
+
+
+    Public Sub CenterSelectedItem(selectedItem As ListViewItem)
+        If selectedItem IsNot Nothing Then
+            selectedItem.EnsureVisible()
+            Dim visibleItemsCount As Integer = Form1.ScriptQueue_ListView.ClientSize.Height \ Form1.ScriptQueue_ListView.Items(0).Bounds.Height
+            Dim topIndex As Integer = Math.Max(selectedItem.Index - visibleItemsCount \ 2, 0)
+            Form1.ScriptQueue_ListView.TopItem = Form1.ScriptQueue_ListView.Items(topIndex)
+        End If
     End Sub
 
 
