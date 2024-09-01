@@ -511,7 +511,7 @@ Module MainFormController
 
             Dim allowedVideoExtension As String() = {".mp4", ".MP4"}
             If allowedVideoExtension.Contains(Path.GetExtension(fileName)) Then
-                Form1.MediaPreview_PictureBox.ImageLocation = Path.Combine(AppInitModule.appConfigsDirectory, "images", "PlayVideo.jpg")
+                Form1.MediaPreview_PictureBox.Image = My.Resources.PlayVideo
 
             Else
                 Form1.MediaPreview_PictureBox.ImageLocation = filePath
