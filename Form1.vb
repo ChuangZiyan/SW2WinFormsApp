@@ -259,14 +259,14 @@ Public Class Form1
 
 
     Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
-        MainFormController.DeletedSelectedAssetFolders()
+        DeletedSelectedAssetFolders()
     End Sub
     Private Sub MyAssetsFolder_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_ListBox.SelectedIndexChanged
         Dim selectedItem = MyAssetsFolder_ListBox.SelectedItem
         If selectedItem IsNot Nothing Then
-            MainFormController.UpdateTextFileSelectorListBoxItems(selectedItem)
-            MainFormController.UpdateMediaSelectorListBoxItems(selectedItem)
-            MainFormController.DisplayFBWritePostWaitSeconds(selectedItem)
+            UpdateTextFileSelectorListBoxItems(selectedItem)
+            UpdateMediaSelectorListBoxItems(selectedItem)
+            DisplayFBWritePostWaitSeconds(selectedItem)
 
         End If
     End Sub
@@ -604,8 +604,28 @@ Public Class Form1
 
         AddHandler CreateNewAssetFolder_Button.Click, AddressOf mainFormEventHandlers.CreateNewAssetFolder_Button_Click
 
-        AddHandler TextEmoji_ListBox.DoubleClick, AddressOf mainFormEventHandlers.TextEmoji_ListBox_DoubleClick
+        'AddHandler TextEmoji_ListBox.DoubleClick, AddressOf mainFormEventHandlers.TextEmoji_ListBox_DoubleClick
         MainFormController.SetForm1TitleStatus("完成")
+
+
+        ' for test
+        Dim emojis As String() = {"😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "😗", "😙"}
+
+        Dim emojiIndex As Integer = 0
+        For row As Integer = 0 To 3
+            For col As Integer = 0 To 3
+                Dim lbl As New Label
+                lbl.Text = emojis(emojiIndex)
+                lbl.Font = New Font("Segoe UI Emoji", 16)
+                lbl.Dock = DockStyle.Fill
+                lbl.TextAlign = ContentAlignment.MiddleCenter
+
+                TableLayoutPanel1.Controls.Add(lbl, col, row)
+                emojiIndex += 1
+            Next
+        Next
+
+
     End Sub
 
 

@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -93,6 +93,7 @@ Partial Class Form1
         ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
         FBPost_TabPage = New TabPage()
+        TableLayoutPanel1 = New TableLayoutPanel()
         Label23 = New Label()
         Label22 = New Label()
         SaveFBWritePostWaitSecondsConfig_Button = New Button()
@@ -114,6 +115,29 @@ Partial Class Form1
         MediaPreview_PictureBox = New PictureBox()
         PreviewTextFile_RichTextBox = New RichTextBox()
         CreateNewAssetFolder_Button = New Button()
+        FBMarketplace_TabPage = New TabPage()
+        Button5 = New Button()
+        PictureBox1 = New PictureBox()
+        ListBox2 = New ListBox()
+        Label32 = New Label()
+        Label31 = New Label()
+        Button4 = New Button()
+        RichTextBox1 = New RichTextBox()
+        Label30 = New Label()
+        TextBox3 = New TextBox()
+        ComboBox1 = New ComboBox()
+        NumericUpDown1 = New NumericUpDown()
+        TextBox2 = New TextBox()
+        Label29 = New Label()
+        Label28 = New Label()
+        Label27 = New Label()
+        Label26 = New Label()
+        Label8 = New Label()
+        Button1 = New Button()
+        Button2 = New Button()
+        TextBox1 = New TextBox()
+        Button3 = New Button()
+        ListBox1 = New ListBox()
         TabPage3 = New TabPage()
         ScriptTask_GroupBox = New GroupBox()
         SortListviewItemByTime_Button = New Button()
@@ -163,7 +187,6 @@ Partial Class Form1
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
         EnableClipboard_CheckBox = New CheckBox()
-        TextEmoji_ListBox = New ListBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -174,6 +197,9 @@ Partial Class Form1
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        FBMarketplace_TabPage.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -658,7 +684,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -764,6 +790,7 @@ Partial Class Form1
         ' Action_TabControl
         ' 
         Action_TabControl.Controls.Add(FBPost_TabPage)
+        Action_TabControl.Controls.Add(FBMarketplace_TabPage)
         Action_TabControl.Controls.Add(TabPage3)
         Action_TabControl.Location = New Point(1147, 12)
         Action_TabControl.Name = "Action_TabControl"
@@ -773,7 +800,7 @@ Partial Class Form1
         ' 
         ' FBPost_TabPage
         ' 
-        FBPost_TabPage.Controls.Add(TextEmoji_ListBox)
+        FBPost_TabPage.Controls.Add(TableLayoutPanel1)
         FBPost_TabPage.Controls.Add(Label23)
         FBPost_TabPage.Controls.Add(Label22)
         FBPost_TabPage.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
@@ -802,6 +829,25 @@ Partial Class Form1
         FBPost_TabPage.TabIndex = 0
         FBPost_TabPage.Text = "發帖"
         FBPost_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' TableLayoutPanel1
+        ' 
+        TableLayoutPanel1.AutoScroll = True
+        TableLayoutPanel1.ColumnCount = 3
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.Location = New Point(475, 42)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 6
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
+        TableLayoutPanel1.Size = New Size(170, 139)
+        TableLayoutPanel1.TabIndex = 25
         ' 
         ' Label23
         ' 
@@ -975,7 +1021,7 @@ Partial Class Form1
         ' 
         PreviewTextFile_RichTextBox.Location = New Point(351, 42)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(194, 139)
+        PreviewTextFile_RichTextBox.Size = New Size(118, 139)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
         ' 
@@ -987,6 +1033,225 @@ Partial Class Form1
         CreateNewAssetFolder_Button.TabIndex = 2
         CreateNewAssetFolder_Button.Text = "建立"
         CreateNewAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMarketplace_TabPage
+        ' 
+        FBMarketplace_TabPage.Controls.Add(Button5)
+        FBMarketplace_TabPage.Controls.Add(PictureBox1)
+        FBMarketplace_TabPage.Controls.Add(ListBox2)
+        FBMarketplace_TabPage.Controls.Add(Label32)
+        FBMarketplace_TabPage.Controls.Add(Label31)
+        FBMarketplace_TabPage.Controls.Add(Button4)
+        FBMarketplace_TabPage.Controls.Add(RichTextBox1)
+        FBMarketplace_TabPage.Controls.Add(Label30)
+        FBMarketplace_TabPage.Controls.Add(TextBox3)
+        FBMarketplace_TabPage.Controls.Add(ComboBox1)
+        FBMarketplace_TabPage.Controls.Add(NumericUpDown1)
+        FBMarketplace_TabPage.Controls.Add(TextBox2)
+        FBMarketplace_TabPage.Controls.Add(Label29)
+        FBMarketplace_TabPage.Controls.Add(Label28)
+        FBMarketplace_TabPage.Controls.Add(Label27)
+        FBMarketplace_TabPage.Controls.Add(Label26)
+        FBMarketplace_TabPage.Controls.Add(Label8)
+        FBMarketplace_TabPage.Controls.Add(Button1)
+        FBMarketplace_TabPage.Controls.Add(Button2)
+        FBMarketplace_TabPage.Controls.Add(TextBox1)
+        FBMarketplace_TabPage.Controls.Add(Button3)
+        FBMarketplace_TabPage.Controls.Add(ListBox1)
+        FBMarketplace_TabPage.Location = New Point(4, 28)
+        FBMarketplace_TabPage.Name = "FBMarketplace_TabPage"
+        FBMarketplace_TabPage.Size = New Size(665, 467)
+        FBMarketplace_TabPage.TabIndex = 2
+        FBMarketplace_TabPage.Text = "拍賣"
+        FBMarketplace_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(422, 428)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(94, 29)
+        Button5.TabIndex = 45
+        Button5.Text = "刪除所選"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Location = New Point(422, 247)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(229, 175)
+        PictureBox1.TabIndex = 44
+        PictureBox1.TabStop = False
+        ' 
+        ' ListBox2
+        ' 
+        ListBox2.FormattingEnabled = True
+        ListBox2.ItemHeight = 19
+        ListBox2.Location = New Point(182, 247)
+        ListBox2.Name = "ListBox2"
+        ListBox2.Size = New Size(234, 213)
+        ListBox2.TabIndex = 43
+        ' 
+        ' Label32
+        ' 
+        Label32.AutoSize = True
+        Label32.Location = New Point(418, 225)
+        Label32.Name = "Label32"
+        Label32.Size = New Size(39, 19)
+        Label32.TabIndex = 42
+        Label32.Text = "預覽"
+        ' 
+        ' Label31
+        ' 
+        Label31.AutoSize = True
+        Label31.Location = New Point(182, 225)
+        Label31.Name = "Label31"
+        Label31.Size = New Size(39, 19)
+        Label31.TabIndex = 41
+        Label31.Text = "媒體"
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(557, 429)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 40
+        Button4.Text = "儲存商品"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' RichTextBox1
+        ' 
+        RichTextBox1.Location = New Point(182, 99)
+        RichTextBox1.Name = "RichTextBox1"
+        RichTextBox1.Size = New Size(469, 123)
+        RichTextBox1.TabIndex = 39
+        RichTextBox1.Text = ""
+        ' 
+        ' Label30
+        ' 
+        Label30.AutoSize = True
+        Label30.Location = New Point(182, 77)
+        Label30.Name = "Label30"
+        Label30.Size = New Size(80, 19)
+        Label30.TabIndex = 38
+        Label30.Text = "商品介紹 : "
+        ' 
+        ' TextBox3
+        ' 
+        TextBox3.Location = New Point(519, 39)
+        TextBox3.Name = "TextBox3"
+        TextBox3.Size = New Size(141, 27)
+        TextBox3.TabIndex = 37
+        ' 
+        ' ComboBox1
+        ' 
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Location = New Point(268, 39)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(189, 27)
+        ComboBox1.TabIndex = 36
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(575, 7)
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(85, 27)
+        NumericUpDown1.TabIndex = 35
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(268, 6)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(245, 27)
+        TextBox2.TabIndex = 34
+        ' 
+        ' Label29
+        ' 
+        Label29.AutoSize = True
+        Label29.Location = New Point(519, 9)
+        Label29.Name = "Label29"
+        Label29.Size = New Size(50, 19)
+        Label29.TabIndex = 33
+        Label29.Text = "價格 : "
+        ' 
+        ' Label28
+        ' 
+        Label28.AutoSize = True
+        Label28.Location = New Point(463, 42)
+        Label28.Name = "Label28"
+        Label28.Size = New Size(50, 19)
+        Label28.TabIndex = 32
+        Label28.Text = "地點 : "
+        ' 
+        ' Label27
+        ' 
+        Label27.AutoSize = True
+        Label27.Location = New Point(182, 47)
+        Label27.Name = "Label27"
+        Label27.Size = New Size(80, 19)
+        Label27.TabIndex = 31
+        Label27.Text = "商品狀態 : "
+        ' 
+        ' Label26
+        ' 
+        Label26.AutoSize = True
+        Label26.Location = New Point(182, 9)
+        Label26.Name = "Label26"
+        Label26.Size = New Size(80, 19)
+        Label26.TabIndex = 30
+        Label26.Text = "商品名稱 : "
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(3, 358)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(50, 19)
+        Label8.TabIndex = 29
+        Label8.Text = "名稱 : "
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(6, 322)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(170, 29)
+        Button1.TabIndex = 28
+        Button1.Text = "取消選擇"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(6, 425)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(170, 29)
+        Button2.TabIndex = 27
+        Button2.Text = "刪除所選"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(62, 357)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(114, 27)
+        TextBox1.TabIndex = 26
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(6, 390)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(170, 29)
+        Button3.TabIndex = 25
+        Button3.Text = "建立"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' ListBox1
+        ' 
+        ListBox1.FormattingEnabled = True
+        ListBox1.ItemHeight = 19
+        ListBox1.Location = New Point(6, 8)
+        ListBox1.Name = "ListBox1"
+        ListBox1.SelectionMode = SelectionMode.MultiExtended
+        ListBox1.Size = New Size(170, 308)
+        ListBox1.TabIndex = 14
         ' 
         ' TabPage3
         ' 
@@ -1463,16 +1728,6 @@ Partial Class Form1
         EnableClipboard_CheckBox.Text = "使用剪貼簿"
         EnableClipboard_CheckBox.UseVisualStyleBackColor = True
         ' 
-        ' TextEmoji_ListBox
-        ' 
-        TextEmoji_ListBox.FormattingEnabled = True
-        TextEmoji_ListBox.ItemHeight = 19
-        TextEmoji_ListBox.Items.AddRange(New Object() {":)", ":("})
-        TextEmoji_ListBox.Location = New Point(551, 43)
-        TextEmoji_ListBox.Name = "TextEmoji_ListBox"
-        TextEmoji_ListBox.Size = New Size(108, 137)
-        TextEmoji_ListBox.TabIndex = 25
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -1521,6 +1776,10 @@ Partial Class Form1
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        FBMarketplace_TabPage.ResumeLayout(False)
+        FBMarketplace_TabPage.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -1675,6 +1934,29 @@ Partial Class Form1
     Friend WithEvents SyncTimeToDateTimePicker_Label As Label
     Friend WithEvents SortListviewItemByTime_Button As Button
     Friend WithEvents EnableClipboard_CheckBox As CheckBox
-    Friend WithEvents TextEmoji_ListBox As ListBox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents FBMarketplace_TabPage As TabPage
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Button4 As Button
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Label30 As Label
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label31 As Label
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents Button5 As Button
 
 End Class
