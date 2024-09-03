@@ -12,13 +12,6 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Public Sub DeselectAllMyAssetFolderListboxItems_Button_Click(sender As Object, e As EventArgs)
-        Form1.MyAssetsFolder_ListBox.ClearSelected()
-        Form1.MediaSelector_ListBox.Items.Clear()
-        Form1.TextFileSelector_ListBox.Items.Clear()
-        Form1.PreviewTextFile_RichTextBox.Clear()
-        Form1.MediaPreview_PictureBox.ImageLocation = Nothing
-    End Sub
 
     Public Async Sub DeleteUserDataFolders_Button_Click()
         Try
@@ -48,136 +41,6 @@ Public Class MainFormEventHandlers
         Catch ex As Exception
             Debug.WriteLine(ex)
             MsgBox("刪除資料夾失敗")
-        End Try
-
-    End Sub
-
-
-    Public Sub DeleteSelectedMediaFile_Button_Click(sender As Object, e As EventArgs)
-        Try
-            Dim selectedItems = Form1.MediaSelector_ListBox.SelectedItems
-
-            If selectedItems.Count > 0 Then
-                ' 刪除所選
-                Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In selectedItems
-                        'Debug.WriteLine("itm : " & item)
-                        Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
-                        File.Delete(filePath)
-                    Next
-                End If
-
-            Else
-                ' 刪除全部
-                'MsgBox("未選擇要刪除的檔案")
-                Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In Form1.MediaSelector_ListBox.Items
-                        'Debug.WriteLine("itm : " & item)
-                        Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
-                        File.Delete(filePath)
-                    Next
-                End If
-
-            End If
-
-            UpdateMediaSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-    End Sub
-
-    Public Sub RevealMediaFoldersInFileExplorer_Button_Click(sender As Object, e As EventArgs)
-        Try
-            Dim selectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
-
-            If selectedItems.Count > 0 Then
-                For Each item In selectedItems
-                    Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item, "media")
-                    Process.Start("explorer.exe", folderPath)
-                Next
-            Else
-                MsgBox("未選擇資料夾")
-            End If
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-    Public Sub DeleteSelectedTextFiles_Button_Click(sender As Object, e As EventArgs)
-        Try
-            Dim selectedItems = Form1.TextFileSelector_ListBox.SelectedItems
-
-
-            If selectedItems.Count > 0 Then
-                ' 刪掉選擇的
-                Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In selectedItems
-                        Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
-                        File.Delete(textFilePath)
-                    Next
-                End If
-            Else
-                ' 刪掉全部
-                'MsgBox("未選擇要刪除的檔案")
-                Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-
-                    For Each item In Form1.TextFileSelector_ListBox.Items
-                        Dim textFilePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", item)
-                        File.Delete(textFilePath)
-                    Next
-                End If
-
-            End If
-
-            UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-    End Sub
-
-
-    Public Sub RevealAssetFolderInFileExplorer_DoubleClick(sender As Object, e As EventArgs)
-        Try
-            Dim foldPath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem)
-
-            If Path.Exists(foldPath) Then
-                Process.Start("Explorer", foldPath)
-            End If
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-    Public Sub EditSelectedTextFileWithNotepad(sender As Object, e As EventArgs)
-        Try
-
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "TextFiles", Form1.TextFileSelector_ListBox.SelectedItem)
-            If File.Exists(filePath) Then
-                Process.Start("notepad.exe", filePath)
-            End If
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-    End Sub
-
-    Public Sub PlaySelectedMedia(sender As Object, e As EventArgs)
-        Try
-
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "Media", Form1.MediaSelector_ListBox.SelectedItem)
-            If File.Exists(filePath) Then
-                Process.Start("Explorer", filePath)
-            End If
-        Catch ex As Exception
-            Debug.WriteLine(ex)
         End Try
 
     End Sub
@@ -265,8 +128,6 @@ Public Class MainFormEventHandlers
 
 
     End Sub
-
-
 
     Private Sub AddScriptQueueItem(userData As String, excutionTime As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String)
         Dim scriptQueueItem As New ListViewItem(userData)
@@ -502,20 +363,6 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Public Sub SaveFBWritePostWaitSecondsConfig_Button_Click(sender As Object, e As EventArgs)
-
-        Try
-            Dim folderName = Form1.MyAssetsFolder_ListBox.SelectedItem
-            Dim configFilePath = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
-            Dim myConfig As String = Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value & "," & Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value
-            File.WriteAllText(configFilePath, myConfig)
-            MsgBox("儲存成功")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("儲存失敗")
-        End Try
-
-    End Sub
 
     Public Sub SchedulerTime_Label_Click(sender As Object, e As EventArgs)
         Dim now As DateTime = DateTime.Now
@@ -652,16 +499,7 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Public Sub CreateNewAssetFolder_Button_Click(sender As Object, e As EventArgs)
-        MainFormController.CreateNewAssetFolder(Form1.NewAssetFolderName_TextBox.Text)
-    End Sub
 
 
-
-
-    Public Sub TextEmoji_ListBox_DoubleClick(sender As Object, e As EventArgs)
-        'Form1.PreviewTextFile_RichTextBox.SelectedText = Form1.TextEmoji_ListBox.SelectedItem
-
-    End Sub
 
 End Class

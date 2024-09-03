@@ -349,7 +349,7 @@ Module MainFormController
         Try
             Form1.MyAssetsFolder_ListBox.Items.Clear()
 
-            Dim dirs As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
+            Dim dirs As String() = Directory.GetDirectories(AppInitModule.FBPostAssetsDirectory)
             For Each dir As String In dirs
                 Form1.MyAssetsFolder_ListBox.Items.Add(Path.GetFileName(dir))
             Next
@@ -365,76 +365,13 @@ Module MainFormController
 
     End Sub
 
-    Public Sub CreateNewAssetFolder(folderName As String)
-        Try
-            Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, folderName)
-
-            If Not Directory.Exists(folderPath) And Not folderName.Contains("&"c) Then
-                Directory.CreateDirectory(folderPath)
-                Directory.CreateDirectory(Path.Combine(folderPath, "textFiles"))
-                Directory.CreateDirectory(Path.Combine(folderPath, "media"))
-                UpdateAssetsFolderListBox()
-
-                '新增後直接選擇該資料夾
-                Form1.MyAssetsFolder_ListBox.SelectedItem = folderName
-                'MsgBox("新增成功")
-            Else
-                MsgBox("無法使用此名稱")
-            End If
-        Catch ex As Exception
-            MsgBox(ex)
-        End Try
-    End Sub
-
-
-    Public Sub DeletedSelectedAssetFolders()
-        Try
-
-            Dim selectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
-
-            If selectedItems.Count > 0 Then
-                ' 刪除所選
-                Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-
-                    For Each item In selectedItems
-                        Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item)
-                        Directory.Delete(folderPath, True)
-                    Next
-                    UpdateAssetsFolderListBox()
-                    MsgBox("刪除完成")
-                End If
-            Else
-                ' 刪除全部資料夾
-                'MsgBox("未選擇要刪除的資料夾")
-                ' 刪除所選
-                Dim result As DialogResult = MessageBox.Show("確定要刪除全部資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-
-                    For Each item In Form1.MyAssetsFolder_ListBox.Items
-                        Dim folderPath = Path.Combine(AppInitModule.myAssetsDirectory, item)
-                        Directory.Delete(folderPath, True)
-                    Next
-                    UpdateAssetsFolderListBox()
-                    MsgBox("刪除完成")
-                End If
-            End If
-
-
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("刪除失敗")
-        End Try
-
-    End Sub
 
 
     Public Sub UpdateTextFileSelectorListBoxItems(folderName As String)
         Try
             Form1.TextFileSelector_ListBox.Items.Clear()
             Form1.PreviewTextFile_RichTextBox.Clear()
-            Dim textFileFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "textFiles")
+            Dim textFileFolder = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "textFiles")
             If Directory.Exists(textFileFolder) Then
                 Dim textFiles As String() = Directory.GetFiles(textFileFolder, "*.txt")
                 For Each file As String In textFiles
@@ -452,7 +389,7 @@ Module MainFormController
         Try
             Form1.MediaSelector_ListBox.Items.Clear()
             Form1.MediaPreview_PictureBox.ImageLocation = Nothing
-            Dim mediaFolder = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "media")
+            Dim mediaFolder = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
                 Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
@@ -473,7 +410,7 @@ Module MainFormController
 
     Public Sub DisplayFBWritePostWaitSeconds(folderName)
         Try
-            Dim configFilePath = Path.Combine(AppInitModule.myAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
+            Dim configFilePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
             If File.Exists(configFilePath) Then
                 Dim myText = File.ReadAllText(configFilePath)
                 Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(0))
@@ -490,99 +427,6 @@ Module MainFormController
     End Sub
 
 
-
-    Public Sub PreviewTextFileToRichTextBox(fileName As String)
-
-        Try
-            Form1.PreviewTextFile_RichTextBox.Clear()
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName)
-            Dim text = File.ReadAllText(filePath)
-            Form1.PreviewTextFile_RichTextBox.Text = text
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-    Public Sub PreviewMediaToPictureBox(fileName As String)
-        Try
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", fileName)
-            'Debug.WriteLine("img" & filePath)
-
-            Dim allowedVideoExtension As String() = {".mp4", ".MP4"}
-            If allowedVideoExtension.Contains(Path.GetExtension(fileName)) Then
-                Form1.MediaPreview_PictureBox.Image = My.Resources.PlayVideo
-
-            Else
-                Form1.MediaPreview_PictureBox.ImageLocation = filePath
-            End If
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-
-    Public Sub CreateNewTextFile(fileName As String)
-        Try
-            'Debug.WriteLine("filename : " & fileName)
-            'Debug.WriteLine("Form1.MyAssetsFolder_ListBox.SelectedItem:" & Form1.MyAssetsFolder_ListBox.SelectedItem)
-            If String.IsNullOrEmpty(fileName) Then
-                MsgBox("不合法檔案名稱")
-                Exit Sub
-            End If
-            If Form1.MyAssetsFolder_ListBox.SelectedItem IsNot Nothing Then
-                Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName & ".txt")
-                If File.Exists(filePath) Then
-                    MsgBox("已有相同檔案名稱")
-                    Exit Sub
-                End If
-                MyWriteFile(filePath)
-                Form1.NewTextFileName_TextBox.Clear()
-                UpdateTextFileSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
-
-            Else
-                MsgBox("未選擇資料夾")
-            End If
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("建立文字檔失敗，檔名也許不合法")
-        End Try
-
-    End Sub
-
-
-    Public Sub SaveEditedTextFile(fileName As String)
-        Try
-            Dim filePath = Path.Combine(AppInitModule.myAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", fileName)
-            MyWriteFile(filePath)
-            MsgBox("修改成功")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-
-    Private Sub MyWriteFile(filePath As String)
-        Try
-            Debug.WriteLine("path : " & filePath)
-            Using writer As New StreamWriter(filePath)
-
-                ' BMP pattern
-                Dim pattern_BMP As String = "[\uD800-\uDBFF][\uDC00-\uDFFF]"
-                ' remove non BMP char
-                Dim inputString = Form1.PreviewTextFile_RichTextBox.Text
-                Dim resultString As String = Regex.Replace(inputString, pattern_BMP, "")
-                writer.Write(resultString)
-                Form1.PreviewTextFile_RichTextBox.Text = resultString
-            End Using
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-    End Sub
 
 
 
@@ -667,7 +511,7 @@ Module MainFormController
                 Dim directoryPath As String = Path.Combine()
 
                 ' 獲取目錄下所有的子資料夾
-                Dim directories As String() = Directory.GetDirectories(AppInitModule.myAssetsDirectory)
+                Dim directories As String() = Directory.GetDirectories(AppInitModule.FBPostAssetsDirectory)
                 If directories.Length > 0 Then
 
 
@@ -682,7 +526,7 @@ Module MainFormController
             Else
                 Dim directories = Split(content, "&")
                 Dim randomIndex As Integer = rand.Next(0, directories.Length)
-                myAssetFolderPath = Path.Combine(AppInitModule.myAssetsDirectory, directories(randomIndex))
+                myAssetFolderPath = Path.Combine(AppInitModule.FBPostAssetsDirectory, directories(randomIndex))
             End If
             Return myAssetFolderPath
         Catch ex As Exception

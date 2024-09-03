@@ -14,8 +14,14 @@ Module AppInitModule
     ' assets
     Public ReadOnly myAssetsDirectory As String = Path.Combine(appBaseDirectory, "myAssets")
 
+    Public ReadOnly FBPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostAssets")
+    Public ReadOnly FBMarketPlaceAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBmarketplaceAssets")
+
     ' auto save script csv file path 
-    Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
+    'Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
+
+
+    Private mainFormEventHandlers As New MainFormEventHandlers()
 
 
     Public Sub InitializeMainApp()
@@ -32,7 +38,9 @@ Module AppInitModule
                 webivewUserDataDirectory,
                 availableUserDataDirectory,
                 unavailableUserDataDirectory,
-                myAssetsDirectory
+                myAssetsDirectory,
+                FBPostAssetsDirectory,
+                FBMarketPlaceAssetsDirectory
         }
 
         For Each myDir In myDirectories
@@ -42,6 +50,8 @@ Module AppInitModule
         Next
 
     End Sub
+
+
 
 
 End Module

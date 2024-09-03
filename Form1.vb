@@ -19,10 +19,6 @@ Public Class Form1
 
     End Sub
 
-    Public Sub setCliText(text As String)
-        Clipboard.SetText(text)
-    End Sub
-
 
     Private Async Sub NavigateTo_Url_Button_Click(sender As Object, e As EventArgs) Handles NavigateTo_Url_Button.Click
         Dim myUrl = Navigate_Url_TextBox.Text
@@ -256,51 +252,6 @@ Public Class Form1
         Webview2Controller.GetJoinedGroupList()
     End Sub
 
-
-
-    Private Sub DeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs) Handles DeleteSelectedAssetFolder_Button.Click
-        DeletedSelectedAssetFolders()
-    End Sub
-    Private Sub MyAssetsFolder_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MyAssetsFolder_ListBox.SelectedIndexChanged
-        Dim selectedItem = MyAssetsFolder_ListBox.SelectedItem
-        If selectedItem IsNot Nothing Then
-            UpdateTextFileSelectorListBoxItems(selectedItem)
-            UpdateMediaSelectorListBoxItems(selectedItem)
-            DisplayFBWritePostWaitSeconds(selectedItem)
-
-        End If
-    End Sub
-
-    Private Sub MediaSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MediaSelector_ListBox.SelectedIndexChanged
-        Dim selectedItem = MediaSelector_ListBox.SelectedItem
-        If selectedItem IsNot Nothing Then
-            MainFormController.PreviewMediaToPictureBox(selectedItem)
-        End If
-
-
-    End Sub
-
-    Private Sub TextFileSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TextFileSelector_ListBox.SelectedIndexChanged
-        Dim selectedItem = TextFileSelector_ListBox.SelectedItem
-        If selectedItem IsNot Nothing Then
-            MainFormController.PreviewTextFileToRichTextBox(selectedItem)
-        End If
-    End Sub
-
-    Private Sub CreateNewTextFile_Button_Click(sender As Object, e As EventArgs) Handles CreateNewTextFile_Button.Click
-        Dim fileName = NewTextFileName_TextBox.Text
-        MainFormController.CreateNewTextFile(fileName)
-    End Sub
-
-    Private Sub SaveEditedTextFile_Button_Click(sender As Object, e As EventArgs) Handles SaveEditedTextFile_Button.Click
-        Dim selectedItem = TextFileSelector_ListBox.SelectedItem
-        If selectedItem IsNot Nothing Then
-            MainFormController.SaveEditedTextFile(selectedItem)
-        Else
-            MsgBox("未選擇檔案")
-        End If
-
-    End Sub
 
 
     Public PAUSE As Boolean = False
@@ -548,29 +499,15 @@ Public Class Form1
 
 
     Private mainFormEventHandlers As New MainFormEventHandlers()
+    Private FBPostEventHandlers As New FBPostEventHandlers()
+    Private FBMarketplaceEventHandlers As New FBMarketplaceEventHandlers()
 
-    Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Main_WebView2.Source = New Uri("about:blank")
-        AppInitModule.InitializeMainApp()
-        MainFormController.LoadFileToScriptListview()
-
-        Navigate_Url_TextBox.Text = "https://www.facebook.com/"
-        'NavigateTo_Url_Button.Enabled = False
-        Await Webview2Controller.GetWebview2EdgeVersion()
-        'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
-
-        ' Register to event Event Handlers
-        AddHandler MyAssetsFolder_ListBox.DoubleClick, AddressOf mainFormEventHandlers.RevealAssetFolderInFileExplorer_DoubleClick
-        AddHandler DeleteSelectedTextFiles_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedTextFiles_Button_Click
-        AddHandler RevealMediaFoldesrInFileExplorer_Button.Click, AddressOf mainFormEventHandlers.RevealMediaFoldersInFileExplorer_Button_Click
-        AddHandler DeleteSelectedMedia_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedMediaFile_Button_Click
+    Private Sub RegisterMainFormEventHanders()
+        ' 這邊是用來註冊Form1的事件
         AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
         AddHandler FilterAvailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
         AddHandler FilterUnavailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
-        AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.EditSelectedTextFileWithNotepad
-        AddHandler MediaSelector_ListBox.DoubleClick, AddressOf mainFormEventHandlers.PlaySelectedMedia
         AddHandler InsertToQueueListview_Button.Click, AddressOf mainFormEventHandlers.InsertToQueueListview_Button_Click
-        AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf mainFormEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
         AddHandler PauseScriptExecution_Button.Click, AddressOf mainFormEventHandlers.PauseScriptExecution_Button_Click
         AddHandler ContinueScriptExecution_Button.Click, AddressOf mainFormEventHandlers.ContinueScriptExecution_Button_Click
         AddHandler MarkUserDataToSkip_Button.Click, AddressOf mainFormEventHandlers.MarkUserDataToSkip_Button_Click
@@ -578,55 +515,72 @@ Public Class Form1
         AddHandler SaveScriptListViewToCSVFile_Button.Click, AddressOf mainFormEventHandlers.SaveScriptListViewToFile_Button_Click
         AddHandler MarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.MarkSelectedScriptListviewItem_Button_Click
         AddHandler UnmarkSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.UnmarkSelectedScriptListviewItem_Button_Click
-
-
         AddHandler DeleteSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedScriptListviewItem_Button_Click
-
         AddHandler DeleteScriptListviewItemByUserData_Button.Click, AddressOf mainFormEventHandlers.DeleteScriptListviewItemByUserData_Button_Click
-
-
         AddHandler ModifySelectedScriptListviewWaitTime_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewWaitTime
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
         AddHandler ResetScript_Button.Click, AddressOf mainFormEventHandlers.ResetScript_Button_Click
-        AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf mainFormEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
-
         AddHandler InsertSchedulerScriptToListview_Button.Click, AddressOf mainFormEventHandlers.InsertSchedulerScriptToListview_Button_Click
-
         AddHandler ModifyListviewScheduleTime_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTime_Button_Click
         AddHandler ModifyListviewScheduleTimeTNull_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTimeTNull_Button_Click
-
         AddHandler SchedulerTime_Label.Click, AddressOf mainFormEventHandlers.SchedulerTime_Label_Click
-
         AddHandler SyncTimeToDateTimePicker_Label.Click, AddressOf mainFormEventHandlers.SyncTimeToDateTimePicker_Label_Click
         AddHandler SortListviewItemByTime_Button.Click, AddressOf mainFormEventHandlers.SortListviewItemByTime_Button_Click
-
         AddHandler ScriptQueue_ListView.DoubleClick, AddressOf mainFormEventHandlers.ScriptQueue_ListView_DoubleClick
 
-        AddHandler CreateNewAssetFolder_Button.Click, AddressOf mainFormEventHandlers.CreateNewAssetFolder_Button_Click
+    End Sub
 
-        'AddHandler TextEmoji_ListBox.DoubleClick, AddressOf mainFormEventHandlers.TextEmoji_ListBox_DoubleClick
-        MainFormController.SetForm1TitleStatus("完成")
-
-
-        ' for test
-        Dim emojis As String() = {"😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "😗", "😙"}
-
-        Dim emojiIndex As Integer = 0
-        For row As Integer = 0 To 3
-            For col As Integer = 0 To 3
-                Dim lbl As New Label
-                lbl.Text = emojis(emojiIndex)
-                lbl.Font = New Font("Segoe UI Emoji", 16)
-                lbl.Dock = DockStyle.Fill
-                lbl.TextAlign = ContentAlignment.MiddleCenter
-
-                TableLayoutPanel1.Controls.Add(lbl, col, row)
-                emojiIndex += 1
-            Next
-        Next
-
+    Private Sub RegisterFBPostEventHanders()
+        ' 這邊是用來註冊發帖相關的事件
+        AddHandler CreateNewAssetFolder_Button.Click, AddressOf FBPostEventHandlers.CreateNewAssetFolder_Button_Click
+        AddHandler MyAssetsFolder_ListBox.DoubleClick, AddressOf FBPostEventHandlers.RevealAssetFolderInFileExplorer_DoubleClick
+        AddHandler DeleteSelectedTextFiles_Button.Click, AddressOf FBPostEventHandlers.DeleteSelectedTextFiles_Button_Click
+        AddHandler RevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBPostEventHandlers.RevealMediaFoldersInFileExplorer_Button_Click
+        AddHandler DeleteSelectedMedia_Button.Click, AddressOf FBPostEventHandlers.DeleteSelectedMediaFile_Button_Click
+        AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf FBPostEventHandlers.EditSelectedTextFileWithNotepad
+        AddHandler MediaSelector_ListBox.DoubleClick, AddressOf FBPostEventHandlers.PlaySelectedMedia
+        AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf FBPostEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
+        AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf FBPostEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
+        AddHandler DeleteSelectedAssetFolder_Button.Click, AddressOf FBPostEventHandlers.DeletedSelectedAssetFolders
+        AddHandler MyAssetsFolder_ListBox.SelectedIndexChanged, AddressOf FBPostEventHandlers.MyAssetsFolder_ListBox_SelectedIndexChanged
+        AddHandler MediaSelector_ListBox.SelectedIndexChanged, AddressOf FBPostEventHandlers.MediaSelector_ListBox_SelectedIndexChanged
+        AddHandler TextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBPostEventHandlers.TextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler CreateNewTextFile_Button.Click, AddressOf FBPostEventHandlers.CreateNewTextFile_Button_Click
+        AddHandler SaveEditedTextFile_Button.Click, AddressOf FBPostEventHandlers.SaveEditedTextFile_Button_Click
 
     End Sub
+
+
+
+
+
+    Private Sub RegisterMarketplaceEventHanders()
+        ' 這邊是用來註冊拍賣相關的事件
+        AddHandler CreateNewMarketplaceAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.CreateNewMarketplaceAssetFolder_Button_Click
+    End Sub
+
+
+
+
+    Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Main_WebView2.Source = New Uri("about:blank")
+        AppInitModule.InitializeMainApp()
+        MainFormController.LoadFileToScriptListview()
+        Navigate_Url_TextBox.Text = "https://www.facebook.com/"
+        Await Webview2Controller.GetWebview2EdgeVersion()
+        FBPostEventHandlers.InitEmojiPickerTableLayoutPanel()
+        'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
+
+        ' Register to event Event Handlers
+        RegisterMainFormEventHanders()
+        RegisterFBPostEventHanders()
+        RegisterMarketplaceEventHanders()
+
+
+        ' EOF
+        MainFormController.SetForm1TitleStatus("完成")
+    End Sub
+
 
 
 End Class
