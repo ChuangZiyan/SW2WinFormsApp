@@ -246,12 +246,14 @@ Public Class FBPostEventHandlers
             ' 如果點的在轉換清單內，就轉換成文字
             If emojiIndex < emojisStr.Count Then
                 myEmoji = emojisStr(emojiIndex)
+                Form1.PreviewTextFile_RichTextBox.SelectedText = myEmoji & " "
             Else
                 '不轉換，用原本的表情插入
                 myEmoji = clickedLabel.Text
+                Form1.PreviewTextFile_RichTextBox.SelectedText = myEmoji
             End If
 
-            Form1.PreviewTextFile_RichTextBox.SelectedText = myEmoji
+
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -448,5 +450,84 @@ Public Class FBPostEventHandlers
     End Sub
 
 
+    Public Shared Sub UpdateAssetsFolderListBox()
+        Try
+            Form1.MyAssetsFolder_ListBox.Items.Clear()
+
+            Dim dirs As String() = Directory.GetDirectories(AppInitModule.FBPostAssetsDirectory)
+            For Each dir As String In dirs
+                Form1.MyAssetsFolder_ListBox.Items.Add(Path.GetFileName(dir))
+            Next
+            Form1.MediaSelector_ListBox.Items.Clear()
+            Form1.TextFileSelector_ListBox.Items.Clear()
+            Form1.NewAssetFolderName_TextBox.Clear()
+            Form1.PreviewTextFile_RichTextBox.Clear()
+            Form1.MediaPreview_PictureBox.ImageLocation = Nothing
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub UpdateTextFileSelectorListBoxItems(folderName As String)
+        Try
+            Form1.TextFileSelector_ListBox.Items.Clear()
+            Form1.PreviewTextFile_RichTextBox.Clear()
+            Dim textFileFolder = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "textFiles")
+            If Directory.Exists(textFileFolder) Then
+                Dim textFiles As String() = Directory.GetFiles(textFileFolder, "*.txt")
+                For Each file As String In textFiles
+                    Form1.TextFileSelector_ListBox.Items.Add(Path.GetFileName(file))
+                Next
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub UpdateMediaSelectorListBoxItems(folderName As String)
+        Try
+            Form1.MediaSelector_ListBox.Items.Clear()
+            Form1.MediaPreview_PictureBox.ImageLocation = Nothing
+            Dim mediaFolder = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "media")
+            If Directory.Exists(mediaFolder) Then
+                Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
+                Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
+                For Each file As String In mediaFiles
+                    If allowedExtension.Contains(Path.GetExtension(file)) Then
+                        Form1.MediaSelector_ListBox.Items.Add(Path.GetFileName(file))
+                    End If
+
+                Next
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+
+    Public Sub DisplayFBWritePostWaitSeconds(folderName)
+        Try
+            Dim configFilePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
+            If File.Exists(configFilePath) Then
+                Dim myText = File.ReadAllText(configFilePath)
+                Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(0))
+                Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value = CInt(Split(myText, ",")(1))
+
+            Else
+                File.WriteAllText(configFilePath, "30,30")
+                Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value = 30
+                Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value = 30
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
 
 End Class

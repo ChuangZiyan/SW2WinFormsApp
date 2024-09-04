@@ -27,7 +27,8 @@ Module AppInitModule
     Public Sub InitializeMainApp()
         InitializeDataDirectory()
         UpdateWebviewUserDataCheckListBox()
-        UpdateAssetsFolderListBox()
+        FBPostEventHandlers.UpdateAssetsFolderListBox()
+        FBMarketplaceEventHandlers.UpdateMarketplaceAssetsFolderListBox()
     End Sub
 
 

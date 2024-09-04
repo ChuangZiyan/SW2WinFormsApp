@@ -2,6 +2,7 @@
 Imports System.Reflection.Metadata
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports Microsoft.Web.WebView2.WinForms
+Imports Newtonsoft.Json
 
 Public Class MainFormEventHandlers
 
@@ -9,6 +10,11 @@ Public Class MainFormEventHandlers
 
     Public Sub UpdateWebviewUserDataCheckListBox_CheckBox_Click(sender As Object, e As EventArgs) 'Handles FilterAvailableUserData_CheckBox.Click
         MainFormController.UpdateWebviewUserDataCheckListBox()
+    End Sub
+
+    Public Sub WebviewUserDataFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+        MainFormController.DisplayUserData(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
+        MainFormController.DisplayGroupList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
 
 
@@ -44,9 +50,6 @@ Public Class MainFormEventHandlers
         End Try
 
     End Sub
-
-
-
 
     Public Sub InsertToQueueListview_Button_Click(sender As Object, e As EventArgs)
         'Debug.WriteLine("click")
@@ -323,9 +326,6 @@ Public Class MainFormEventHandlers
 
     End Sub
 
-
-
-
     Public Sub DeleteSelectedScriptListviewItem_Button_Click(sender As Object, e As EventArgs)
         Dim scriptListviewSelectedItems = Form1.ScriptQueue_ListView.SelectedItems
         If scriptListviewSelectedItems.Count > 0 Then
@@ -362,8 +362,6 @@ Public Class MainFormEventHandlers
 
     End Sub
 
-
-
     Public Sub SchedulerTime_Label_Click(sender As Object, e As EventArgs)
         Dim now As DateTime = DateTime.Now
         Dim timeSinceMidnight As TimeSpan = now - now.Date
@@ -387,7 +385,6 @@ Public Class MainFormEventHandlers
         Dim selectedTime As DateTime = Form1.ScheduledTimeSorting_DateTimePicker.Value
         Dim items As List(Of ListViewItem) = Form1.ScriptQueue_ListView.Items.Cast(Of ListViewItem).ToList()
 
-
         Dim nullItems As New List(Of ListViewItem)
         Dim notNullItems As New List(Of ListViewItem)
 
@@ -400,8 +397,6 @@ Public Class MainFormEventHandlers
                 notNullItems.Add(item)
             End If
         Next
-
-
 
         ' 把不是Null的Item照時間排序
         notNullItems.Sort(Function(x, y)
@@ -425,7 +420,6 @@ Public Class MainFormEventHandlers
     Public Sub ScriptQueue_ListView_DoubleClick(sender As Object, e As EventArgs)
         If Form1.ScriptQueue_ListView.SelectedItems.Count > 0 Then
 
-
             For Each item As ListViewItem In Form1.FBGroups_ListView.Items
                 item.Selected = False
             Next
@@ -433,8 +427,6 @@ Public Class MainFormEventHandlers
             Form1.WebviewUserDataFolder_ListBox.ClearSelected()
 
             Form1.MyAssetsFolder_ListBox.ClearSelected()
-
-
 
             Dim selectedItem As ListViewItem = Form1.ScriptQueue_ListView.SelectedItems(0)
 
@@ -492,14 +484,403 @@ Public Class MainFormEventHandlers
                 Next
             End If
 
-
-
         End If
 
     End Sub
 
+    Public Sub RevealFBPasswordText_Button_Click(sender As Object, e As EventArgs)
+        If Form1.FBPassword_TextBox.PasswordChar = "*" Then
+            Form1.RevealFBPasswordText_Button.Text = "隱藏"
+            Form1.FBPassword_TextBox.PasswordChar = vbNullChar
+        ElseIf Form1.FBPassword_TextBox.PasswordChar = vbNullChar Then
+            Form1.RevealFBPasswordText_Button.Text = "顯示"
+            Form1.FBPassword_TextBox.PasswordChar = "*"
+        End If
+
+    End Sub
+
+    Public Sub RevealEmailPasswordText_Button_Click(sender As Object, e As EventArgs)
+        If Form1.EmailPassword_TextBox.PasswordChar = "*" Then
+            Form1.RevealEmailPasswordText_Button.Text = "隱藏"
+            Form1.EmailPassword_TextBox.PasswordChar = vbNullChar
+        ElseIf Form1.EmailPassword_TextBox.PasswordChar = vbNullChar Then
+            Form1.RevealEmailPasswordText_Button.Text = "顯示"
+            Form1.EmailPassword_TextBox.PasswordChar = "*"
+        End If
+    End Sub
 
 
+    Public Async Sub NavigateTo_Url_Button_Click(sender As Object, e As EventArgs)
+        Dim myUrl = Form1.Navigate_Url_TextBox.Text
+        Await Navigate_GoToUrl_Task(myUrl)
+    End Sub
+
+
+    Public Sub CreateUserDataFolderButton_Click(sender As Object, e As EventArgs)
+        Try
+            Dim folderName = Form1.UserDataFolderName_TextBox.Text
+            Dim folderPath = Path.Combine(AppInitModule.availableUserDataDirectory, folderName)
+
+            If Not Directory.Exists(folderPath) Then
+                Directory.CreateDirectory(folderPath)
+                UpdateWebviewUserDataCheckListBox()
+                Form1.UserDataFolderName_TextBox.Clear()
+                'MsgBox("新增成功")
+            Else
+                MsgBox("無法使用此名稱")
+            End If
+        Catch ex As Exception
+            MsgBox(ex)
+        End Try
+    End Sub
+
+    Public Sub SaveUserData_Button_Click(sender As Object, e As EventArgs)
+
+        Try
+            Dim folderName = Form1.WebviewUserDataFolder_ListBox.SelectedItem
+            If folderName = "" Then
+                MsgBox("未選擇資料夾")
+                Exit Sub
+            End If
+
+            Dim userDataFilePath = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName, "myUserData.json")
+
+            Dim userDataStruct As New UserDataStruct With {
+                .FBAccount = Form1.FBAccount_TextBox.Text,
+                .FBPassword = Form1.FBPassword_TextBox.Text,
+                .FB2FA = Form1.FB2FA_TextBox.Text,
+                .EmailAccount = Form1.EmailAccount_TextBox.Text,
+                .EmailPassword = Form1.EmailPassword_TextBox.Text,
+                .FBCookie = Form1.FBCookie_RichTextBox.Text,
+                .Remark = Form1.Remark_RichTextBox.Text
+            }
+
+            Dim jsonString As String = JsonConvert.SerializeObject(userDataStruct, Formatting.Indented)
+
+            File.WriteAllText(userDataFilePath, jsonString)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+    End Sub
+
+    Public Async Sub Move_UserDataFolder_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItems.Count <> 0 Then
+
+                For Each item As String In Form1.WebviewUserDataFolder_ListBox.SelectedItems
+                    'Debug.WriteLine("item : " & item)
+                    Dim myFolders = Split(item, "\")
+                    Dim folderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, myFolders(0), myFolders(1))
+                    If myFolders(1) = Webview2Controller.ActivedWebview2UserData Then
+                        Await ResetWebview2()
+                        'Debug.WriteLine("after reset")
+                        Await Delay_msec(200)
+                    End If
+
+                    If myFolders(0) = "available" Then ' move to unavailable
+                        Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "unavailable", myFolders(1))
+                        Directory.Move(folderPath, destinationPath)
+                    ElseIf myFolders(0) = "unavailable" Then ' move to unavailable
+                        Dim destinationPath = Path.Combine(AppInitModule.webivewUserDataDirectory, "available", myFolders(1))
+                        Directory.Move(folderPath, destinationPath)
+                    End If
+                Next
+                MainFormController.UpdateWebviewUserDataCheckListBox()
+
+            Else
+                MsgBox("未選擇任何資料夾")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("移動失敗")
+        End Try
+
+    End Sub
+
+
+    Public Sub AddGroupDataToGroupListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim name = Form1.FBGroupName_TextBox.Text
+            Dim url = Form1.FBGroupUrl_TextBox.Text
+
+            If name <> "" And url <> "" Then
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBGroups_ListView.Items.Insert(0, newItem)
+            Else
+                MsgBox("欄位不得為空")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub EditSelectedGroupListviewItem_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBGroups_ListView.SelectedItems.Count > 0 Then
+                Dim name = Form1.FBGroupName_TextBox.Text
+                Dim url = Form1.FBGroupUrl_TextBox.Text
+                If name <> "" And url <> "" Then
+                    Dim selectedItem = Form1.FBGroups_ListView.SelectedItems(0)
+                    selectedItem.Text = name
+                    selectedItem.SubItems(1).Text = url
+
+                Else
+                    MsgBox("欄位不得為空")
+                End If
+            Else
+                MsgBox("未選擇欄位")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub DeleteSelectedGroup_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim selectedItems = Form1.FBGroups_ListView.SelectedItems
+            If selectedItems.Count > 0 Then
+                For i As Integer = selectedItems.Count - 1 To 0 Step -1
+                    Form1.FBGroups_ListView.Items.Remove(selectedItems(i))
+                Next
+            Else
+
+                If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                    MsgBox("未選擇使用者")
+                    Exit Sub
+                End If
+
+                Dim result As DialogResult = MessageBox.Show("確定要刪除社團列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBGroupList.json")
+
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                        Form1.FBGroups_ListView.Items.Clear()
+                        MsgBox("刪除完成")
+                    Else
+                        MsgBox("檔案不存在")
+                    End If
+
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox("刪除失敗")
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Sub GetJoinedGroupList_Button_Click(sender As Object, e As EventArgs)
+        Webview2Controller.GetJoinedGroupList()
+    End Sub
+
+    Public Sub GetCurrentUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Form1.Navigate_Url_TextBox.Text = Webview2Controller.edgeDriver.Url
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("未偵測到Edge driver")
+        End Try
+
+    End Sub
+
+    Public Sub GetFBGroupList_Button_Click(sender As Object, e As EventArgs)
+        Webview2Controller.GetFBGroupList()
+    End Sub
+
+    Public Sub SaveListviewGroupList_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                MsgBox("未選擇使用者")
+                Exit Sub
+            End If
+
+            Dim items As New List(Of GroupListviewDataStruct)()
+            For Each item As ListViewItem In Form1.FBGroups_ListView.Items
+
+                Dim listViewItemData As New GroupListviewDataStruct With {
+                    .Name = item.Text,
+                    .Url = item.SubItems(1).Text
+                }
+                items.Add(listViewItemData)
+            Next
+
+            Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
+            Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBGroupList.json")
+            File.WriteAllText(filePath, jsonStr)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+    End Sub
+
+    Public Sub FBGroups_ListView_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBGroups_ListView.SelectedItems.Count > 0 Then
+                'Debug.WriteLine(Form1.FBGroups_ListView.SelectedItems(0).Text)
+                Dim selectedItem = Form1.FBGroups_ListView.SelectedItems(0)
+                Form1.FBGroupName_TextBox.Text = selectedItem.Text
+                Form1.FBGroupUrl_TextBox.Text = selectedItem.SubItems(1).Text
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+
+    Public Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs)
+        Try
+            'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem = "" Then
+                Exit Sub
+            End If
+
+            If IsWebview2Lock = True Then
+                MsgBox("Webview2載入中，請稍後")
+                Exit Sub
+            End If
+
+            Dim userDataFolder = Nothing
+            Dim folderName = Split(Form1.WebviewUserDataFolder_ListBox.SelectedItem, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(webivewUserDataDirectory, folderName(0), folderName(1))
+            End If
+            ' need to auto detect debug port
+            ' use 9222 for development
+            'Dim debugPort = DebugForm.Webview_Edge_Debug_Port_NumericUpDown.Value
+            'Dim debugPort = 9222
+            Await RestartMainWebView2(userDataFolder)
+            Await Navigate_GoToUrl_Task(Form1.Navigate_Url_TextBox.Text)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            'MsgBox("初始化失敗")
+        End Try
+    End Sub
+
+    Public Sub ReadCookie_Button_Click(sender As Object, e As EventArgs)
+        Webview2Controller.ReadCookie()
+    End Sub
+
+    Public Sub SetCookie_Button_Click(sender As Object, e As EventArgs)
+        Webview2Controller.SetCookie()
+    End Sub
+
+
+
+    Public Async Sub TurnOnSetSeleteKeyboardShortcuts_Button_Click(sender As Object, e As EventArgs)
+
+        Dim WebviewUserDataFolders As New List(Of String)()
+        For Each item In Form1.WebviewUserDataFolder_ListBox.SelectedItems
+            WebviewUserDataFolders.Add(item.ToString)
+        Next
+
+        For Each item As String In WebviewUserDataFolders
+
+            Dim userDataFolder = Nothing
+            Dim folderName() As String = Split(item, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+
+                Await Webview2Controller.RestartMainWebView2(userDataFolder)
+                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
+                Await Webview2Controller.Delay_msec(1000)
+                Await Webview2Controller.TurnOnFBKeyboardShortcuts_Task()
+                Await Webview2Controller.Delay_msec(1000)
+                'Debug.WriteLine("EOF")
+            End If
+        Next
+    End Sub
+
+    Public Async Sub SetSeletedFBLanguageTo_zhTW_Button_Click(sender As Object, e As EventArgs)
+
+        Dim WebviewUserDataFolders As New List(Of String)()
+        For Each item In Form1.WebviewUserDataFolder_ListBox.SelectedItems
+            WebviewUserDataFolders.Add(item.ToString)
+        Next
+
+        For Each item As String In WebviewUserDataFolders
+            'Debug.WriteLine("item : " & item)
+
+            Dim userDataFolder = Nothing
+            Dim folderName() As String = Split(item, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+            End If
+
+            Await Webview2Controller.RestartMainWebView2(userDataFolder)
+            Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
+            Await Webview2Controller.Delay_msec(1000)
+
+            Await SetFBLanguageTo_zhTW_Task()
+            Await Webview2Controller.Delay_msec(1000)
+            'Debug.WriteLine("EOF")
+        Next
+
+    End Sub
+
+    Public Async Sub RequestFriend_Button_Click(sender As Object, e As EventArgs)
+        Dim WebviewUserDataFolders As New List(Of String)()
+        For Each item In Form1.WebviewUserDataFolder_ListBox.SelectedItems
+            WebviewUserDataFolders.Add(item.ToString)
+        Next
+
+        For Each item As String In WebviewUserDataFolders
+            'Debug.WriteLine("item : " & item)
+
+            Dim userDataFolder = Nothing
+            Dim folderName() As String = Split(item, "\")
+
+            If folderName(1) <> "" Then
+                userDataFolder = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName(0), folderName(1))
+            End If
+
+            Await Webview2Controller.RestartMainWebView2(userDataFolder)
+            Await Webview2Controller.Delay_msec(1000)
+
+            Await Navigate_GoToUrl_Task(Form1.Navigate_Url_TextBox.Text)
+
+            Await FBRquestFrient()
+
+            Await Webview2Controller.Delay_msec(1000)
+            'Debug.WriteLine("EOF")
+        Next
+    End Sub
+
+
+    Public Async Sub NavigateToSelectedGroup_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task(Form1.FBGroupUrl_TextBox.Text)
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Sub DisplayCurrUrlToGroupUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Form1.FBGroupUrl_TextBox.Text = Webview2Controller.edgeDriver.Url
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
 
 
 End Class
