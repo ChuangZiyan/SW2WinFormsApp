@@ -893,4 +893,16 @@ Public Class MainFormEventHandlers
         End If
     End Sub
 
+    Public Sub Form1_Move(sender As Object, e As EventArgs)
+        If EmojiPickerForm IsNot Nothing Then
+            EmojiPickerForm.UpdateForm2Position()
+        End If
+    End Sub
+
+    Public Sub Form1_Resize(sender As Object, e As EventArgs)
+        If EmojiPickerForm IsNot Nothing Then
+            EmojiPickerForm.UpdateForm2Position()
+        End If
+    End Sub
+
 End Class
