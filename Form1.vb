@@ -304,8 +304,7 @@ Public Class Form1
         AddHandler TurnOnSetSeleteKeyboardShortcuts_Button.Click, AddressOf mainFormEventHandlers.TurnOnSetSeleteKeyboardShortcuts_Button_Click
         AddHandler NavigateToSelectedGroup_Button.Click, AddressOf mainFormEventHandlers.NavigateToSelectedGroup_Button_Click
         AddHandler DisplayCurrUrlToGroupUrl_Button.Click, AddressOf mainFormEventHandlers.DisplayCurrUrlToGroupUrl_Button_Click
-
-
+        AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
     End Sub
 
     Private Sub RegisterFBPostEventHanders()
@@ -334,13 +333,15 @@ Public Class Form1
         AddHandler CreateNewMarketplaceAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.CreateNewMarketplaceAssetFolder_Button_Click
     End Sub
 
+    Private emojiPickerForm As EmojiPickerForm
+
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
         MainFormController.LoadFileToScriptListview()
         Navigate_Url_TextBox.Text = "https://www.facebook.com/"
         Await Webview2Controller.GetWebview2EdgeVersion()
-        FBPostEventHandlers.InitEmojiPickerTableLayoutPanel()
+
         'Webview2EdgeVersion_TextBox.Text = Webview2Controller.Webview2EdgeVersion
 
         ' Register to event Event Handlers
@@ -350,6 +351,24 @@ Public Class Form1
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")
+
+        emojiPickerForm = New EmojiPickerForm With {
+            .Owner = Me,
+            .TopMost = True
+        }
+        'emojiPickerForm.Show()
+    End Sub
+
+    Private Sub Form1_Move(sender As Object, e As EventArgs) Handles MyBase.Move
+        If emojiPickerForm IsNot Nothing Then
+            emojiPickerForm.UpdateForm2Position()
+        End If
+    End Sub
+
+    Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        If emojiPickerForm IsNot Nothing Then
+            emojiPickerForm.UpdateForm2Position()
+        End If
     End Sub
 
 

@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -93,7 +93,6 @@ Partial Class Form1
         ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
         FBPost_TabPage = New TabPage()
-        EmojiPicker_TableLayoutPanel = New TableLayoutPanel()
         Label23 = New Label()
         Label22 = New Label()
         SaveFBWritePostWaitSecondsConfig_Button = New Button()
@@ -122,7 +121,7 @@ Partial Class Form1
         Label32 = New Label()
         Label31 = New Label()
         Button4 = New Button()
-        RichTextBox1 = New RichTextBox()
+        FBMarketplaceProductDescription_RichTextBox = New RichTextBox()
         Label30 = New Label()
         TextBox3 = New TextBox()
         ComboBox1 = New ComboBox()
@@ -139,6 +138,7 @@ Partial Class Form1
         CreateNewMarketplaceAssetFolder_Button = New Button()
         MarkplaceProducts_ListBox = New ListBox()
         TabPage3 = New TabPage()
+        ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
         SortListviewItemByTime_Button = New Button()
         ScheduledTimeSorting_DateTimePicker = New DateTimePicker()
@@ -684,7 +684,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -800,7 +800,6 @@ Partial Class Form1
         ' 
         ' FBPost_TabPage
         ' 
-        FBPost_TabPage.Controls.Add(EmojiPicker_TableLayoutPanel)
         FBPost_TabPage.Controls.Add(Label23)
         FBPost_TabPage.Controls.Add(Label22)
         FBPost_TabPage.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
@@ -830,88 +829,6 @@ Partial Class Form1
         FBPost_TabPage.Text = "發帖"
         FBPost_TabPage.UseVisualStyleBackColor = True
         ' 
-        ' EmojiPicker_TableLayoutPanel
-        ' 
-        EmojiPicker_TableLayoutPanel.AutoScroll = True
-        EmojiPicker_TableLayoutPanel.ColumnCount = 3
-        EmojiPicker_TableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        EmojiPicker_TableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        EmojiPicker_TableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        EmojiPicker_TableLayoutPanel.Location = New Point(508, 42)
-        EmojiPicker_TableLayoutPanel.Name = "EmojiPicker_TableLayoutPanel"
-        EmojiPicker_TableLayoutPanel.RowCount = 69
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Absolute, 40F))
-        EmojiPicker_TableLayoutPanel.Size = New Size(137, 139)
-        EmojiPicker_TableLayoutPanel.TabIndex = 25
-        ' 
         ' Label23
         ' 
         Label23.AutoSize = True
@@ -932,7 +849,7 @@ Partial Class Form1
         ' 
         ' SaveFBWritePostWaitSecondsConfig_Button
         ' 
-        SaveFBWritePostWaitSecondsConfig_Button.Location = New Point(486, 8)
+        SaveFBWritePostWaitSecondsConfig_Button.Location = New Point(486, 7)
         SaveFBWritePostWaitSecondsConfig_Button.Name = "SaveFBWritePostWaitSecondsConfig_Button"
         SaveFBWritePostWaitSecondsConfig_Button.Size = New Size(94, 29)
         SaveFBWritePostWaitSecondsConfig_Button.TabIndex = 22
@@ -1021,7 +938,7 @@ Partial Class Form1
         ' 
         ' SaveEditedTextFile_Button
         ' 
-        SaveEditedTextFile_Button.Location = New Point(551, 187)
+        SaveEditedTextFile_Button.Location = New Point(534, 187)
         SaveEditedTextFile_Button.Name = "SaveEditedTextFile_Button"
         SaveEditedTextFile_Button.Size = New Size(94, 29)
         SaveEditedTextFile_Button.TabIndex = 12
@@ -1075,7 +992,7 @@ Partial Class Form1
         ' 
         MediaPreview_PictureBox.Location = New Point(334, 222)
         MediaPreview_PictureBox.Name = "MediaPreview_PictureBox"
-        MediaPreview_PictureBox.Size = New Size(311, 234)
+        MediaPreview_PictureBox.Size = New Size(325, 234)
         MediaPreview_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
         MediaPreview_PictureBox.TabIndex = 5
         MediaPreview_PictureBox.TabStop = False
@@ -1084,7 +1001,7 @@ Partial Class Form1
         ' 
         PreviewTextFile_RichTextBox.Location = New Point(334, 42)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(168, 139)
+        PreviewTextFile_RichTextBox.Size = New Size(325, 139)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
         PreviewTextFile_RichTextBox.WordWrap = False
@@ -1106,7 +1023,7 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(Label32)
         FBMarketplace_TabPage.Controls.Add(Label31)
         FBMarketplace_TabPage.Controls.Add(Button4)
-        FBMarketplace_TabPage.Controls.Add(RichTextBox1)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductDescription_RichTextBox)
         FBMarketplace_TabPage.Controls.Add(Label30)
         FBMarketplace_TabPage.Controls.Add(TextBox3)
         FBMarketplace_TabPage.Controls.Add(ComboBox1)
@@ -1182,14 +1099,14 @@ Partial Class Form1
         Button4.Text = "儲存商品"
         Button4.UseVisualStyleBackColor = True
         ' 
-        ' RichTextBox1
+        ' FBMarketplaceProductDescription_RichTextBox
         ' 
-        RichTextBox1.Location = New Point(182, 99)
-        RichTextBox1.Name = "RichTextBox1"
-        RichTextBox1.Size = New Size(469, 123)
-        RichTextBox1.TabIndex = 39
-        RichTextBox1.Text = ""
-        RichTextBox1.WordWrap = False
+        FBMarketplaceProductDescription_RichTextBox.Location = New Point(182, 99)
+        FBMarketplaceProductDescription_RichTextBox.Name = "FBMarketplaceProductDescription_RichTextBox"
+        FBMarketplaceProductDescription_RichTextBox.Size = New Size(469, 123)
+        FBMarketplaceProductDescription_RichTextBox.TabIndex = 39
+        FBMarketplaceProductDescription_RichTextBox.Text = ""
+        FBMarketplaceProductDescription_RichTextBox.WordWrap = False
         ' 
         ' Label30
         ' 
@@ -1327,6 +1244,15 @@ Partial Class Form1
         TabPage3.TabIndex = 1
         TabPage3.Text = "測試項"
         TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' ShowEmojiPicker_Button
+        ' 
+        ShowEmojiPicker_Button.Location = New Point(1824, 40)
+        ShowEmojiPicker_Button.Name = "ShowEmojiPicker_Button"
+        ShowEmojiPicker_Button.Size = New Size(25, 71)
+        ShowEmojiPicker_Button.TabIndex = 26
+        ShowEmojiPicker_Button.Text = "😀"
+        ShowEmojiPicker_Button.UseVisualStyleBackColor = True
         ' 
         ' ScriptTask_GroupBox
         ' 
@@ -1797,7 +1723,8 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1832, 1103)
+        ClientSize = New Size(1858, 1103)
+        Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(EnableClipboard_CheckBox)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
         Controls.Add(DeleteSelectedScriptListviewItem_Button)
@@ -1999,7 +1926,6 @@ Partial Class Form1
     Friend WithEvents SyncTimeToDateTimePicker_Label As Label
     Friend WithEvents SortListviewItemByTime_Button As Button
     Friend WithEvents EnableClipboard_CheckBox As CheckBox
-    Friend WithEvents EmojiPicker_TableLayoutPanel As TableLayoutPanel
     Friend WithEvents FBMarketplace_TabPage As TabPage
     Friend WithEvents MarkplaceProducts_ListBox As ListBox
     Friend WithEvents Label8 As Label
@@ -2014,7 +1940,7 @@ Partial Class Form1
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button4 As Button
-    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents FBMarketplaceProductDescription_RichTextBox As RichTextBox
     Friend WithEvents Label30 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents ComboBox1 As ComboBox
@@ -2023,5 +1949,6 @@ Partial Class Form1
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ListBox2 As ListBox
     Friend WithEvents Button5 As Button
+    Friend WithEvents ShowEmojiPicker_Button As Button
 
 End Class

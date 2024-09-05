@@ -883,4 +883,14 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+    Public Sub ShowEmojiPicker_Button_Click(sender As Object, e As EventArgs)
+        If EmojiPickerForm.Visible Then
+            EmojiPickerForm.Hide()
+            'emojiPickerForm.UpdateForm2Position()
+        Else
+            EmojiPickerForm.Show()
+            EmojiPickerForm.UpdateForm2Position()
+        End If
+    End Sub
+
 End Class
