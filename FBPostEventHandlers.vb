@@ -160,10 +160,12 @@ Public Class FBPostEventHandlers
     Public Sub SaveFBWritePostWaitSecondsConfig_Button_Click(sender As Object, e As EventArgs)
 
         Try
-            Dim folderName = Form1.MyAssetsFolder_ListBox.SelectedItem
-            Dim configFilePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "FBWritePostWaitSecondsConfig.txt")
-            Dim myConfig As String = Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value & "," & Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value
-            File.WriteAllText(configFilePath, myConfig)
+            For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+                Dim configFilePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, item, "FBWritePostWaitSecondsConfig.txt")
+                Dim myConfig As String = Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value & "," & Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value
+                File.WriteAllText(configFilePath, myConfig)
+            Next
+
             MsgBox("儲存成功")
         Catch ex As Exception
             Debug.WriteLine(ex)

@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -115,18 +115,33 @@ Partial Class Form1
         PreviewTextFile_RichTextBox = New RichTextBox()
         CreateNewAssetFolder_Button = New Button()
         FBMarketplace_TabPage = New TabPage()
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button = New Button()
+        CheckBox6 = New CheckBox()
+        NumericUpDown4 = New NumericUpDown()
+        Label36 = New Label()
+        CheckBox5 = New CheckBox()
+        Label34 = New Label()
+        Label35 = New Label()
+        FBMarketplaceUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBMarketplaceSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
+        CheckBox4 = New CheckBox()
+        CheckBox3 = New CheckBox()
+        CheckBox2 = New CheckBox()
+        CheckBox1 = New CheckBox()
+        FBMarketplaceProductTag_TextBox = New TextBox()
+        Label33 = New Label()
         Button5 = New Button()
-        PictureBox1 = New PictureBox()
-        ListBox2 = New ListBox()
+        FBmarketplaceMediaPreviewer_PictureBox = New PictureBox()
+        FBMarketplaceMediaSelector_ListBox = New ListBox()
         Label32 = New Label()
         Label31 = New Label()
-        Button4 = New Button()
+        FBMarketplaceSavePruductInfo_Button = New Button()
         FBMarketplaceProductDescription_RichTextBox = New RichTextBox()
         Label30 = New Label()
-        TextBox3 = New TextBox()
-        ComboBox1 = New ComboBox()
-        NumericUpDown1 = New NumericUpDown()
-        TextBox2 = New TextBox()
+        FBMarketplaceProductLocation_TextBox = New TextBox()
+        FBMarketplaceProductStatus_NumericUpDown = New ComboBox()
+        FBMarketplaceProductPrice_NumericUpDown = New NumericUpDown()
+        FBMarketplaceProductName_TextBox = New TextBox()
         Label29 = New Label()
         Label28 = New Label()
         Label27 = New Label()
@@ -136,7 +151,7 @@ Partial Class Form1
         Button2 = New Button()
         NewMarketplaceAssetFolderName_TextBox = New TextBox()
         CreateNewMarketplaceAssetFolder_Button = New Button()
-        MarkplaceProducts_ListBox = New ListBox()
+        FBMarkplaceProducts_ListBox = New ListBox()
         TabPage3 = New TabPage()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
@@ -198,8 +213,11 @@ Partial Class Form1
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         FBMarketplace_TabPage.SuspendLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown4, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBmarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -684,7 +702,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -1017,18 +1035,33 @@ Partial Class Form1
         ' 
         ' FBMarketplace_TabPage
         ' 
+        FBMarketplace_TabPage.Controls.Add(RevealFBMarketplaceMediaFoldesrInFileExplorer_Button)
+        FBMarketplace_TabPage.Controls.Add(CheckBox6)
+        FBMarketplace_TabPage.Controls.Add(NumericUpDown4)
+        FBMarketplace_TabPage.Controls.Add(Label36)
+        FBMarketplace_TabPage.Controls.Add(CheckBox5)
+        FBMarketplace_TabPage.Controls.Add(Label34)
+        FBMarketplace_TabPage.Controls.Add(Label35)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceUploadWaitSeconds_NumericUpDown)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceSubmitWaitSeconds_NumericUpDown)
+        FBMarketplace_TabPage.Controls.Add(CheckBox4)
+        FBMarketplace_TabPage.Controls.Add(CheckBox3)
+        FBMarketplace_TabPage.Controls.Add(CheckBox2)
+        FBMarketplace_TabPage.Controls.Add(CheckBox1)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductTag_TextBox)
+        FBMarketplace_TabPage.Controls.Add(Label33)
         FBMarketplace_TabPage.Controls.Add(Button5)
-        FBMarketplace_TabPage.Controls.Add(PictureBox1)
-        FBMarketplace_TabPage.Controls.Add(ListBox2)
+        FBMarketplace_TabPage.Controls.Add(FBmarketplaceMediaPreviewer_PictureBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaSelector_ListBox)
         FBMarketplace_TabPage.Controls.Add(Label32)
         FBMarketplace_TabPage.Controls.Add(Label31)
-        FBMarketplace_TabPage.Controls.Add(Button4)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceSavePruductInfo_Button)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductDescription_RichTextBox)
         FBMarketplace_TabPage.Controls.Add(Label30)
-        FBMarketplace_TabPage.Controls.Add(TextBox3)
-        FBMarketplace_TabPage.Controls.Add(ComboBox1)
-        FBMarketplace_TabPage.Controls.Add(NumericUpDown1)
-        FBMarketplace_TabPage.Controls.Add(TextBox2)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductLocation_TextBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductStatus_NumericUpDown)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductPrice_NumericUpDown)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductName_TextBox)
         FBMarketplace_TabPage.Controls.Add(Label29)
         FBMarketplace_TabPage.Controls.Add(Label28)
         FBMarketplace_TabPage.Controls.Add(Label27)
@@ -1038,7 +1071,7 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(Button2)
         FBMarketplace_TabPage.Controls.Add(NewMarketplaceAssetFolderName_TextBox)
         FBMarketplace_TabPage.Controls.Add(CreateNewMarketplaceAssetFolder_Button)
-        FBMarketplace_TabPage.Controls.Add(MarkplaceProducts_ListBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarkplaceProducts_ListBox)
         FBMarketplace_TabPage.Location = New Point(4, 28)
         FBMarketplace_TabPage.Name = "FBMarketplace_TabPage"
         FBMarketplace_TabPage.Size = New Size(665, 467)
@@ -1046,36 +1079,172 @@ Partial Class Form1
         FBMarketplace_TabPage.Text = "拍賣"
         FBMarketplace_TabPage.UseVisualStyleBackColor = True
         ' 
+        ' RevealFBMarketplaceMediaFoldesrInFileExplorer_Button
+        ' 
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Location = New Point(282, 424)
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Name = "RevealFBMarketplaceMediaFoldesrInFileExplorer_Button"
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Size = New Size(51, 29)
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.TabIndex = 68
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Text = "開啟"
+        RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox6
+        ' 
+        CheckBox6.AutoSize = True
+        CheckBox6.Location = New Point(494, 201)
+        CheckBox6.Name = "CheckBox6"
+        CheckBox6.Size = New Size(61, 23)
+        CheckBox6.TabIndex = 67
+        CheckBox6.Text = "順序"
+        CheckBox6.UseVisualStyleBackColor = True
+        ' 
+        ' NumericUpDown4
+        ' 
+        NumericUpDown4.Location = New Point(268, 201)
+        NumericUpDown4.Name = "NumericUpDown4"
+        NumericUpDown4.Size = New Size(60, 27)
+        NumericUpDown4.TabIndex = 66
+        ' 
+        ' Label36
+        ' 
+        Label36.AutoSize = True
+        Label36.Location = New Point(182, 203)
+        Label36.Name = "Label36"
+        Label36.Size = New Size(80, 19)
+        Label36.TabIndex = 65
+        Label36.Text = "其他社團 : "
+        ' 
+        ' CheckBox5
+        ' 
+        CheckBox5.AutoSize = True
+        CheckBox5.Location = New Point(575, 201)
+        CheckBox5.Name = "CheckBox5"
+        CheckBox5.Size = New Size(61, 23)
+        CheckBox5.TabIndex = 64
+        CheckBox5.Text = "隨機"
+        CheckBox5.UseVisualStyleBackColor = True
+        ' 
+        ' Label34
+        ' 
+        Label34.AutoSize = True
+        Label34.Location = New Point(334, 173)
+        Label34.Name = "Label34"
+        Label34.Size = New Size(80, 19)
+        Label34.TabIndex = 63
+        Label34.Text = "送出等待 : "
+        ' 
+        ' Label35
+        ' 
+        Label35.AutoSize = True
+        Label35.Location = New Point(182, 173)
+        Label35.Name = "Label35"
+        Label35.Size = New Size(80, 19)
+        Label35.TabIndex = 62
+        Label35.Text = "上載等待 : "
+        ' 
+        ' FBMarketplaceUploadWaitSeconds_NumericUpDown
+        ' 
+        FBMarketplaceUploadWaitSeconds_NumericUpDown.Location = New Point(268, 168)
+        FBMarketplaceUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBMarketplaceUploadWaitSeconds_NumericUpDown.Name = "FBMarketplaceUploadWaitSeconds_NumericUpDown"
+        FBMarketplaceUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBMarketplaceUploadWaitSeconds_NumericUpDown.TabIndex = 61
+        ' 
+        ' FBMarketplaceSubmitWaitSeconds_NumericUpDown
+        ' 
+        FBMarketplaceSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 168)
+        FBMarketplaceSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBMarketplaceSubmitWaitSeconds_NumericUpDown.Name = "FBMarketplaceSubmitWaitSeconds_NumericUpDown"
+        FBMarketplaceSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBMarketplaceSubmitWaitSeconds_NumericUpDown.TabIndex = 60
+        ' 
+        ' CheckBox4
+        ' 
+        CheckBox4.AutoSize = True
+        CheckBox4.Location = New Point(494, 172)
+        CheckBox4.Name = "CheckBox4"
+        CheckBox4.Size = New Size(161, 23)
+        CheckBox4.TabIndex = 59
+        CheckBox4.Text = "新增到Marketplace"
+        CheckBox4.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox3
+        ' 
+        CheckBox3.AutoSize = True
+        CheckBox3.Location = New Point(594, 141)
+        CheckBox3.Name = "CheckBox3"
+        CheckBox3.Size = New Size(61, 23)
+        CheckBox3.TabIndex = 58
+        CheckBox3.Text = "送門"
+        CheckBox3.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox2
+        ' 
+        CheckBox2.AutoSize = True
+        CheckBox2.Location = New Point(527, 141)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(61, 23)
+        CheckBox2.TabIndex = 57
+        CheckBox2.Text = "取貨"
+        CheckBox2.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox1
+        ' 
+        CheckBox1.AutoSize = True
+        CheckBox1.Location = New Point(460, 142)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(61, 23)
+        CheckBox1.TabIndex = 56
+        CheckBox1.Text = "面交"
+        CheckBox1.UseVisualStyleBackColor = True
+        ' 
+        ' FBMarketplaceProductTag_TextBox
+        ' 
+        FBMarketplaceProductTag_TextBox.Location = New Point(268, 105)
+        FBMarketplaceProductTag_TextBox.Name = "FBMarketplaceProductTag_TextBox"
+        FBMarketplaceProductTag_TextBox.Size = New Size(183, 27)
+        FBMarketplaceProductTag_TextBox.TabIndex = 47
+        ' 
+        ' Label33
+        ' 
+        Label33.AutoSize = True
+        Label33.Location = New Point(182, 113)
+        Label33.Name = "Label33"
+        Label33.Size = New Size(80, 19)
+        Label33.TabIndex = 46
+        Label33.Text = "商品標籤 : "
+        ' 
         ' Button5
         ' 
-        Button5.Location = New Point(422, 428)
+        Button5.Location = New Point(339, 423)
         Button5.Name = "Button5"
         Button5.Size = New Size(94, 29)
         Button5.TabIndex = 45
         Button5.Text = "刪除所選"
         Button5.UseVisualStyleBackColor = True
         ' 
-        ' PictureBox1
+        ' FBmarketplaceMediaPreviewer_PictureBox
         ' 
-        PictureBox1.Location = New Point(422, 247)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(229, 175)
-        PictureBox1.TabIndex = 44
-        PictureBox1.TabStop = False
+        FBmarketplaceMediaPreviewer_PictureBox.Location = New Point(437, 282)
+        FBmarketplaceMediaPreviewer_PictureBox.Name = "FBmarketplaceMediaPreviewer_PictureBox"
+        FBmarketplaceMediaPreviewer_PictureBox.Size = New Size(218, 172)
+        FBmarketplaceMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBmarketplaceMediaPreviewer_PictureBox.TabIndex = 44
+        FBmarketplaceMediaPreviewer_PictureBox.TabStop = False
         ' 
-        ' ListBox2
+        ' FBMarketplaceMediaSelector_ListBox
         ' 
-        ListBox2.FormattingEnabled = True
-        ListBox2.ItemHeight = 19
-        ListBox2.Location = New Point(182, 247)
-        ListBox2.Name = "ListBox2"
-        ListBox2.Size = New Size(234, 213)
-        ListBox2.TabIndex = 43
+        FBMarketplaceMediaSelector_ListBox.FormattingEnabled = True
+        FBMarketplaceMediaSelector_ListBox.ItemHeight = 19
+        FBMarketplaceMediaSelector_ListBox.Location = New Point(182, 281)
+        FBMarketplaceMediaSelector_ListBox.Name = "FBMarketplaceMediaSelector_ListBox"
+        FBMarketplaceMediaSelector_ListBox.Size = New Size(249, 137)
+        FBMarketplaceMediaSelector_ListBox.TabIndex = 43
         ' 
         ' Label32
         ' 
         Label32.AutoSize = True
-        Label32.Location = New Point(418, 225)
+        Label32.Location = New Point(437, 259)
         Label32.Name = "Label32"
         Label32.Size = New Size(39, 19)
         Label32.TabIndex = 42
@@ -1084,26 +1253,26 @@ Partial Class Form1
         ' Label31
         ' 
         Label31.AutoSize = True
-        Label31.Location = New Point(182, 225)
+        Label31.Location = New Point(182, 259)
         Label31.Name = "Label31"
         Label31.Size = New Size(39, 19)
         Label31.TabIndex = 41
         Label31.Text = "媒體"
         ' 
-        ' Button4
+        ' FBMarketplaceSavePruductInfo_Button
         ' 
-        Button4.Location = New Point(557, 429)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 40
-        Button4.Text = "儲存商品"
-        Button4.UseVisualStyleBackColor = True
+        FBMarketplaceSavePruductInfo_Button.Location = New Point(182, 424)
+        FBMarketplaceSavePruductInfo_Button.Name = "FBMarketplaceSavePruductInfo_Button"
+        FBMarketplaceSavePruductInfo_Button.Size = New Size(94, 29)
+        FBMarketplaceSavePruductInfo_Button.TabIndex = 40
+        FBMarketplaceSavePruductInfo_Button.Text = "儲存商品"
+        FBMarketplaceSavePruductInfo_Button.UseVisualStyleBackColor = True
         ' 
         ' FBMarketplaceProductDescription_RichTextBox
         ' 
-        FBMarketplaceProductDescription_RichTextBox.Location = New Point(182, 99)
+        FBMarketplaceProductDescription_RichTextBox.Location = New Point(460, 39)
         FBMarketplaceProductDescription_RichTextBox.Name = "FBMarketplaceProductDescription_RichTextBox"
-        FBMarketplaceProductDescription_RichTextBox.Size = New Size(469, 123)
+        FBMarketplaceProductDescription_RichTextBox.Size = New Size(195, 93)
         FBMarketplaceProductDescription_RichTextBox.TabIndex = 39
         FBMarketplaceProductDescription_RichTextBox.Text = ""
         FBMarketplaceProductDescription_RichTextBox.WordWrap = False
@@ -1111,45 +1280,47 @@ Partial Class Form1
         ' Label30
         ' 
         Label30.AutoSize = True
-        Label30.Location = New Point(182, 77)
+        Label30.Location = New Point(460, 9)
         Label30.Name = "Label30"
         Label30.Size = New Size(80, 19)
         Label30.TabIndex = 38
         Label30.Text = "商品介紹 : "
         ' 
-        ' TextBox3
+        ' FBMarketplaceProductLocation_TextBox
         ' 
-        TextBox3.Location = New Point(519, 39)
-        TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(141, 27)
-        TextBox3.TabIndex = 37
+        FBMarketplaceProductLocation_TextBox.Location = New Point(268, 138)
+        FBMarketplaceProductLocation_TextBox.Name = "FBMarketplaceProductLocation_TextBox"
+        FBMarketplaceProductLocation_TextBox.Size = New Size(183, 27)
+        FBMarketplaceProductLocation_TextBox.TabIndex = 37
         ' 
-        ' ComboBox1
+        ' FBMarketplaceProductStatus_NumericUpDown
         ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(268, 39)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(189, 27)
-        ComboBox1.TabIndex = 36
+        FBMarketplaceProductStatus_NumericUpDown.FormattingEnabled = True
+        FBMarketplaceProductStatus_NumericUpDown.Items.AddRange(New Object() {"全新", "二手 - 近全新", "二手 - 良好", "二手 - 普通"})
+        FBMarketplaceProductStatus_NumericUpDown.Location = New Point(268, 72)
+        FBMarketplaceProductStatus_NumericUpDown.Name = "FBMarketplaceProductStatus_NumericUpDown"
+        FBMarketplaceProductStatus_NumericUpDown.Size = New Size(183, 27)
+        FBMarketplaceProductStatus_NumericUpDown.TabIndex = 36
         ' 
-        ' NumericUpDown1
+        ' FBMarketplaceProductPrice_NumericUpDown
         ' 
-        NumericUpDown1.Location = New Point(575, 7)
-        NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(85, 27)
-        NumericUpDown1.TabIndex = 35
+        FBMarketplaceProductPrice_NumericUpDown.Location = New Point(268, 39)
+        FBMarketplaceProductPrice_NumericUpDown.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
+        FBMarketplaceProductPrice_NumericUpDown.Name = "FBMarketplaceProductPrice_NumericUpDown"
+        FBMarketplaceProductPrice_NumericUpDown.Size = New Size(183, 27)
+        FBMarketplaceProductPrice_NumericUpDown.TabIndex = 35
         ' 
-        ' TextBox2
+        ' FBMarketplaceProductName_TextBox
         ' 
-        TextBox2.Location = New Point(268, 6)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(245, 27)
-        TextBox2.TabIndex = 34
+        FBMarketplaceProductName_TextBox.Location = New Point(268, 6)
+        FBMarketplaceProductName_TextBox.Name = "FBMarketplaceProductName_TextBox"
+        FBMarketplaceProductName_TextBox.Size = New Size(183, 27)
+        FBMarketplaceProductName_TextBox.TabIndex = 34
         ' 
         ' Label29
         ' 
         Label29.AutoSize = True
-        Label29.Location = New Point(519, 9)
+        Label29.Location = New Point(212, 47)
         Label29.Name = "Label29"
         Label29.Size = New Size(50, 19)
         Label29.TabIndex = 33
@@ -1158,7 +1329,7 @@ Partial Class Form1
         ' Label28
         ' 
         Label28.AutoSize = True
-        Label28.Location = New Point(463, 42)
+        Label28.Location = New Point(212, 141)
         Label28.Name = "Label28"
         Label28.Size = New Size(50, 19)
         Label28.TabIndex = 32
@@ -1167,7 +1338,7 @@ Partial Class Form1
         ' Label27
         ' 
         Label27.AutoSize = True
-        Label27.Location = New Point(182, 47)
+        Label27.Location = New Point(182, 80)
         Label27.Name = "Label27"
         Label27.Size = New Size(80, 19)
         Label27.TabIndex = 31
@@ -1176,7 +1347,7 @@ Partial Class Form1
         ' Label26
         ' 
         Label26.AutoSize = True
-        Label26.Location = New Point(182, 9)
+        Label26.Location = New Point(182, 14)
         Label26.Name = "Label26"
         Label26.Size = New Size(80, 19)
         Label26.TabIndex = 30
@@ -1225,15 +1396,15 @@ Partial Class Form1
         CreateNewMarketplaceAssetFolder_Button.Text = "建立"
         CreateNewMarketplaceAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' MarkplaceProducts_ListBox
+        ' FBMarkplaceProducts_ListBox
         ' 
-        MarkplaceProducts_ListBox.FormattingEnabled = True
-        MarkplaceProducts_ListBox.ItemHeight = 19
-        MarkplaceProducts_ListBox.Location = New Point(6, 8)
-        MarkplaceProducts_ListBox.Name = "MarkplaceProducts_ListBox"
-        MarkplaceProducts_ListBox.SelectionMode = SelectionMode.MultiExtended
-        MarkplaceProducts_ListBox.Size = New Size(170, 308)
-        MarkplaceProducts_ListBox.TabIndex = 14
+        FBMarkplaceProducts_ListBox.FormattingEnabled = True
+        FBMarkplaceProducts_ListBox.ItemHeight = 19
+        FBMarkplaceProducts_ListBox.Location = New Point(6, 8)
+        FBMarkplaceProducts_ListBox.Name = "FBMarkplaceProducts_ListBox"
+        FBMarkplaceProducts_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBMarkplaceProducts_ListBox.Size = New Size(170, 308)
+        FBMarkplaceProducts_ListBox.TabIndex = 14
         ' 
         ' TabPage3
         ' 
@@ -1770,8 +1941,11 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         FBMarketplace_TabPage.ResumeLayout(False)
         FBMarketplace_TabPage.PerformLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown4, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBmarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -1927,7 +2101,7 @@ Partial Class Form1
     Friend WithEvents SortListviewItemByTime_Button As Button
     Friend WithEvents EnableClipboard_CheckBox As CheckBox
     Friend WithEvents FBMarketplace_TabPage As TabPage
-    Friend WithEvents MarkplaceProducts_ListBox As ListBox
+    Friend WithEvents FBMarkplaceProducts_ListBox As ListBox
     Friend WithEvents Label8 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
@@ -1937,18 +2111,33 @@ Partial Class Form1
     Friend WithEvents Label28 As Label
     Friend WithEvents Label27 As Label
     Friend WithEvents Label26 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents FBMarketplaceProductPrice_NumericUpDown As NumericUpDown
+    Friend WithEvents FBMarketplaceProductName_TextBox As TextBox
+    Friend WithEvents FBMarketplaceSavePruductInfo_Button As Button
     Friend WithEvents FBMarketplaceProductDescription_RichTextBox As RichTextBox
     Friend WithEvents Label30 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents FBMarketplaceProductLocation_TextBox As TextBox
+    Friend WithEvents FBMarketplaceProductStatus_NumericUpDown As ComboBox
     Friend WithEvents Label32 As Label
     Friend WithEvents Label31 As Label
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents FBmarketplaceMediaPreviewer_PictureBox As PictureBox
+    Friend WithEvents FBMarketplaceMediaSelector_ListBox As ListBox
     Friend WithEvents Button5 As Button
     Friend WithEvents ShowEmojiPicker_Button As Button
+    Friend WithEvents FBMarketplaceProductTag_TextBox As TextBox
+    Friend WithEvents Label33 As Label
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents CheckBox5 As CheckBox
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label35 As Label
+    Friend WithEvents FBMarketplaceUploadWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBMarketplaceSubmitWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents CheckBox6 As CheckBox
+    Friend WithEvents NumericUpDown4 As NumericUpDown
+    Friend WithEvents Label36 As Label
+    Friend WithEvents RevealFBMarketplaceMediaFoldesrInFileExplorer_Button As Button
 
 End Class

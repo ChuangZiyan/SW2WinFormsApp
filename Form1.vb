@@ -326,13 +326,16 @@ Public Class Form1
         AddHandler TextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBPostEventHandlers.TextFileSelector_ListBox_SelectedIndexChanged
         AddHandler CreateNewTextFile_Button.Click, AddressOf FBPostEventHandlers.CreateNewTextFile_Button_Click
         AddHandler SaveEditedTextFile_Button.Click, AddressOf FBPostEventHandlers.SaveEditedTextFile_Button_Click
-
     End Sub
 
 
     Private Sub RegisterMarketplaceEventHanders()
         ' 這邊是用來註冊拍賣相關的事件
         AddHandler CreateNewMarketplaceAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.CreateNewMarketplaceAssetFolder_Button_Click
+        AddHandler FBMarketplaceSavePruductInfo_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceSavePruductInfo_Button_Click
+        AddHandler FBMarkplaceProducts_ListBox.SelectedIndexChanged, AddressOf FBMarketplaceEventHandlers.MarkplaceProducts_ListBox_SelectedIndexChanged
+        AddHandler RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Click, AddressOf FBMarketplaceEventHandlers.RevealFBMarketplaceMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBMarketplaceMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceMediaSelector_ListBox_SelectedIndexChanged
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -360,8 +363,5 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
-
-
-
 
 End Class
