@@ -75,8 +75,12 @@ Public Class FBMarketplaceEventHandlers
                     .Price = Form1.FBMarketplaceProductPrice_NumericUpDown.Value,
                     .Description = Form1.FBMarketplaceProductDescription_RichTextBox.Text,
                     .Status = Form1.FBMarketplaceProductStatus_NumericUpDown.Text,
-                    .Tags = New String() {"Showcase", "Instance", "Exemplary"},
-                    .Location = Form1.FBMarketplaceProductLocation_TextBox.Text
+                    .Tags = Split(Form1.FBMarketplaceProductTag_TextBox.Text, ","),
+                    .Location = Form1.FBMarketplaceProductLocation_TextBox.Text,
+                    .OnMarketplace = Form1.FBMarketplaceOnMarketplace_CheckBox.Checked,
+                    .MeetInPerson = Form1.FBMarketplaceMeetInPerson_CheckBox.Checked,
+                    .PickUp = Form1.FBMarketplacePickUp_CheckBox.Checked,
+                    .HomeDelivery = Form1.FBMarketplaceHomeDelivery_CheckBox.Checked
                 }
 
                 Dim jsonString As String = JsonConvert.SerializeObject(product, Formatting.Indented)
@@ -137,6 +141,10 @@ Public Class FBMarketplaceEventHandlers
                 Form1.FBMarketplaceProductStatus_NumericUpDown.Text = product.Status
                 Form1.FBMarketplaceProductLocation_TextBox.Text = product.Location
                 Form1.FBMarketplaceProductTag_TextBox.Text = String.Join(",", product.Tags)
+                Form1.FBMarketplaceOnMarketplace_CheckBox.Checked = product.OnMarketplace
+                Form1.FBMarketplaceMeetInPerson_CheckBox.Checked = product.MeetInPerson
+                Form1.FBMarketplacePickUp_CheckBox.Checked = product.PickUp
+                Form1.FBMarketplaceHomeDelivery_CheckBox.Checked = product.HomeDelivery
 
             End If
 
@@ -145,6 +153,23 @@ Public Class FBMarketplaceEventHandlers
         End Try
 
     End Sub
+
+    Public Shared Function GetProduct(folderName As String) As FBMarketPlaceProduct
+        Try
+            Dim product As FBMarketPlaceProduct = Nothing
+            Dim filePath As String = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, folderName, "ProductInformation.json")
+
+            ' 檢查檔案是否存在
+            If File.Exists(filePath) Then
+                Dim jsonString As String = File.ReadAllText(filePath)
+                product = JsonConvert.DeserializeObject(Of FBMarketPlaceProduct)(jsonString)
+            End If
+            Return product
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+            Return Nothing
+        End Try
+    End Function
 
 
     Private Sub DisplayFBMarketPlaceWaitSeconds(folderName)
@@ -168,7 +193,7 @@ Public Class FBMarketplaceEventHandlers
     Private Sub UpdateFBMarketplaceMediaListbox(folderName)
         Try
             Form1.FBMarketplaceMediaSelector_ListBox.Items.Clear()
-            Form1.FBmarketplaceMediaPreviewer_PictureBox.ImageLocation = Nothing
+            Form1.FBMarketplaceMediaPreviewer_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
                 Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG"}
@@ -191,7 +216,7 @@ Public Class FBMarketplaceEventHandlers
             Dim selectedItem = Form1.FBMarketplaceMediaSelector_ListBox.SelectedItem
             If selectedItem IsNot Nothing Then
                 Dim filePath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, Form1.FBMarkplaceProducts_ListBox.SelectedItem, "media", selectedItem)
-                Form1.FBmarketplaceMediaPreviewer_PictureBox.ImageLocation = filePath
+                Form1.FBMarketplaceMediaPreviewer_PictureBox.ImageLocation = filePath
             End If
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -207,9 +232,21 @@ Public Class FBMarketplaceEventHandlers
         Form1.FBMarketplaceProductStatus_NumericUpDown.Text = ""
         Form1.FBMarketplaceProductLocation_TextBox.Clear()
         Form1.FBMarketplaceProductTag_TextBox.Clear()
+        Form1.FBMarketplaceOnMarketplace_CheckBox.Checked = False
+        Form1.FBMarketplaceMeetInPerson_CheckBox.Checked = False
+        Form1.FBMarketplacePickUp_CheckBox.Checked = False
+        Form1.FBMarketplaceHomeDelivery_CheckBox.Checked = False
+        Form1.FBMarketplaceMediaPreviewer_PictureBox.ImageLocation = Nothing
+        Form1.FBMarketplaceUploadWaitSeconds_NumericUpDown.Value = 0
+        Form1.FBMarketplaceSubmitWaitSeconds_NumericUpDown.Value = 0
+        Form1.FBMarketplaceMediaSelector_ListBox.Items.Clear()
+
     End Sub
 
-
+    Public Sub FBmarketplaceDeselectAllProductFolderListboxItems_Button_Click(sender As Object, e As EventArgs)
+        Form1.FBMarkplaceProducts_ListBox.ClearSelected()
+        ClearFBMarketplaceProductInformation()
+    End Sub
 
 
     Public Class FBMarketPlaceProduct
@@ -220,6 +257,10 @@ Public Class FBMarketplaceEventHandlers
         Public Property Tags As String()
         Public Property Location As String
         Public Property Transaction As String()
+        Public Property OnMarketplace As Boolean
+        Public Property MeetInPerson As Boolean
+        Public Property PickUp As Boolean
+        Public Property HomeDelivery As Boolean
 
     End Class
 

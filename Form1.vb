@@ -160,14 +160,14 @@ Public Class Form1
             Case "發帖"
                 Try
                     'Debug.WriteLine("發帖")
-                    Dim assetFolderPath = GetRandomAssetFolder(content)
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPostAssetsDirectory)
                     item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
                     Dim FBWritePostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBWritePostWaitSecondsConfig.txt"))
                     item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
                     item.SubItems(8).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
 
-                    result = Await Webview2Controller.WritePostOnFacebook(myUrl, assetFolderPath)
+                    result = Await FBPostSeleniumScript.WritePostOnFacebook(myUrl, assetFolderPath)
                     'result = False
 
                     ' 如果流程都沒問題
@@ -192,6 +192,20 @@ Public Class Form1
 
                     End If
 
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
+
+            Case "拍賣"
+                Try
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMarketPlaceAssetsDirectory)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                    Dim MarketplaceWaitSecondsConfig = File.ReadAllText(Path.Combine(assetFolderPath, "MarketplaceWaitSecondsConfig.txt"))
+                    item.SubItems(7).Text = Split(MarketplaceWaitSecondsConfig, ",")(0)
+                    item.SubItems(8).Text = Split(MarketplaceWaitSecondsConfig, ",")(1)
+                    result = Await FBMarketplaceSeleniumScript.SellSomething(myUrl, assetFolderPath)
                 Catch ex As Exception
                     Debug.WriteLine(ex)
                     result = False
@@ -336,6 +350,7 @@ Public Class Form1
         AddHandler FBMarkplaceProducts_ListBox.SelectedIndexChanged, AddressOf FBMarketplaceEventHandlers.MarkplaceProducts_ListBox_SelectedIndexChanged
         AddHandler RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Click, AddressOf FBMarketplaceEventHandlers.RevealFBMarketplaceMediaFoldesrInFileExplorer_Button_Click
         AddHandler FBMarketplaceMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBmarketplaceDeselectAllProductFolderListboxItems_Button.Click, AddressOf FBMarketplaceEventHandlers.FBmarketplaceDeselectAllProductFolderListboxItems_Button_Click
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -363,5 +378,6 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
+
 
 End Class

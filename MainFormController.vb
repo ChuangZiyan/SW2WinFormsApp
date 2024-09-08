@@ -195,7 +195,7 @@ Module MainFormController
 
     End Sub
 
-    Public Function GetRandomAssetFolder(content As String)
+    Public Function GetRandomAssetFolder(content As String, targetDirectory As String)
 
         Try
             Dim myAssetFolderPath As String = Nothing
@@ -205,7 +205,7 @@ Module MainFormController
                 Dim directoryPath As String = Path.Combine()
 
                 ' 獲取目錄下所有的子資料夾
-                Dim directories As String() = Directory.GetDirectories(AppInitModule.FBPostAssetsDirectory)
+                Dim directories As String() = Directory.GetDirectories(targetDirectory)
                 If directories.Length > 0 Then
 
                     Dim randomIndex As Integer = rand.Next(0, directories.Length)
@@ -219,7 +219,7 @@ Module MainFormController
             Else
                 Dim directories = Split(content, "&")
                 Dim randomIndex As Integer = rand.Next(0, directories.Length)
-                myAssetFolderPath = Path.Combine(AppInitModule.FBPostAssetsDirectory, directories(randomIndex))
+                myAssetFolderPath = Path.Combine(targetDirectory, directories(randomIndex))
             End If
             Return myAssetFolderPath
         Catch ex As Exception

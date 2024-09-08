@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -124,14 +124,14 @@ Partial Class Form1
         Label35 = New Label()
         FBMarketplaceUploadWaitSeconds_NumericUpDown = New NumericUpDown()
         FBMarketplaceSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
-        CheckBox4 = New CheckBox()
-        CheckBox3 = New CheckBox()
-        CheckBox2 = New CheckBox()
-        CheckBox1 = New CheckBox()
+        FBMarketplaceOnMarketplace_CheckBox = New CheckBox()
+        FBMarketplaceHomeDelivery_CheckBox = New CheckBox()
+        FBMarketplacePickUp_CheckBox = New CheckBox()
+        FBMarketplaceMeetInPerson_CheckBox = New CheckBox()
         FBMarketplaceProductTag_TextBox = New TextBox()
         Label33 = New Label()
         Button5 = New Button()
-        FBmarketplaceMediaPreviewer_PictureBox = New PictureBox()
+        FBMarketplaceMediaPreviewer_PictureBox = New PictureBox()
         FBMarketplaceMediaSelector_ListBox = New ListBox()
         Label32 = New Label()
         Label31 = New Label()
@@ -147,7 +147,7 @@ Partial Class Form1
         Label27 = New Label()
         Label26 = New Label()
         Label8 = New Label()
-        Button1 = New Button()
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button = New Button()
         Button2 = New Button()
         NewMarketplaceAssetFolderName_TextBox = New TextBox()
         CreateNewMarketplaceAssetFolder_Button = New Button()
@@ -216,7 +216,7 @@ Partial Class Form1
         CType(NumericUpDown4, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(FBmarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -702,7 +702,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -1044,14 +1044,14 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(Label35)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceUploadWaitSeconds_NumericUpDown)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceSubmitWaitSeconds_NumericUpDown)
-        FBMarketplace_TabPage.Controls.Add(CheckBox4)
-        FBMarketplace_TabPage.Controls.Add(CheckBox3)
-        FBMarketplace_TabPage.Controls.Add(CheckBox2)
-        FBMarketplace_TabPage.Controls.Add(CheckBox1)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceOnMarketplace_CheckBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceHomeDelivery_CheckBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplacePickUp_CheckBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceMeetInPerson_CheckBox)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductTag_TextBox)
         FBMarketplace_TabPage.Controls.Add(Label33)
         FBMarketplace_TabPage.Controls.Add(Button5)
-        FBMarketplace_TabPage.Controls.Add(FBmarketplaceMediaPreviewer_PictureBox)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaPreviewer_PictureBox)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaSelector_ListBox)
         FBMarketplace_TabPage.Controls.Add(Label32)
         FBMarketplace_TabPage.Controls.Add(Label31)
@@ -1067,7 +1067,7 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(Label27)
         FBMarketplace_TabPage.Controls.Add(Label26)
         FBMarketplace_TabPage.Controls.Add(Label8)
-        FBMarketplace_TabPage.Controls.Add(Button1)
+        FBMarketplace_TabPage.Controls.Add(FBmarketplaceDeselectAllProductFolderListboxItems_Button)
         FBMarketplace_TabPage.Controls.Add(Button2)
         FBMarketplace_TabPage.Controls.Add(NewMarketplaceAssetFolderName_TextBox)
         FBMarketplace_TabPage.Controls.Add(CreateNewMarketplaceAssetFolder_Button)
@@ -1158,45 +1158,45 @@ Partial Class Form1
         FBMarketplaceSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
         FBMarketplaceSubmitWaitSeconds_NumericUpDown.TabIndex = 60
         ' 
-        ' CheckBox4
+        ' FBMarketplaceOnMarketplace_CheckBox
         ' 
-        CheckBox4.AutoSize = True
-        CheckBox4.Location = New Point(494, 172)
-        CheckBox4.Name = "CheckBox4"
-        CheckBox4.Size = New Size(161, 23)
-        CheckBox4.TabIndex = 59
-        CheckBox4.Text = "新增到Marketplace"
-        CheckBox4.UseVisualStyleBackColor = True
+        FBMarketplaceOnMarketplace_CheckBox.AutoSize = True
+        FBMarketplaceOnMarketplace_CheckBox.Location = New Point(494, 172)
+        FBMarketplaceOnMarketplace_CheckBox.Name = "FBMarketplaceOnMarketplace_CheckBox"
+        FBMarketplaceOnMarketplace_CheckBox.Size = New Size(161, 23)
+        FBMarketplaceOnMarketplace_CheckBox.TabIndex = 59
+        FBMarketplaceOnMarketplace_CheckBox.Text = "新增到Marketplace"
+        FBMarketplaceOnMarketplace_CheckBox.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox3
+        ' FBMarketplaceHomeDelivery_CheckBox
         ' 
-        CheckBox3.AutoSize = True
-        CheckBox3.Location = New Point(594, 141)
-        CheckBox3.Name = "CheckBox3"
-        CheckBox3.Size = New Size(61, 23)
-        CheckBox3.TabIndex = 58
-        CheckBox3.Text = "送門"
-        CheckBox3.UseVisualStyleBackColor = True
+        FBMarketplaceHomeDelivery_CheckBox.AutoSize = True
+        FBMarketplaceHomeDelivery_CheckBox.Location = New Point(594, 141)
+        FBMarketplaceHomeDelivery_CheckBox.Name = "FBMarketplaceHomeDelivery_CheckBox"
+        FBMarketplaceHomeDelivery_CheckBox.Size = New Size(61, 23)
+        FBMarketplaceHomeDelivery_CheckBox.TabIndex = 58
+        FBMarketplaceHomeDelivery_CheckBox.Text = "送門"
+        FBMarketplaceHomeDelivery_CheckBox.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox2
+        ' FBMarketplacePickUp_CheckBox
         ' 
-        CheckBox2.AutoSize = True
-        CheckBox2.Location = New Point(527, 141)
-        CheckBox2.Name = "CheckBox2"
-        CheckBox2.Size = New Size(61, 23)
-        CheckBox2.TabIndex = 57
-        CheckBox2.Text = "取貨"
-        CheckBox2.UseVisualStyleBackColor = True
+        FBMarketplacePickUp_CheckBox.AutoSize = True
+        FBMarketplacePickUp_CheckBox.Location = New Point(527, 141)
+        FBMarketplacePickUp_CheckBox.Name = "FBMarketplacePickUp_CheckBox"
+        FBMarketplacePickUp_CheckBox.Size = New Size(61, 23)
+        FBMarketplacePickUp_CheckBox.TabIndex = 57
+        FBMarketplacePickUp_CheckBox.Text = "取貨"
+        FBMarketplacePickUp_CheckBox.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox1
+        ' FBMarketplaceMeetInPerson_CheckBox
         ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Location = New Point(460, 142)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(61, 23)
-        CheckBox1.TabIndex = 56
-        CheckBox1.Text = "面交"
-        CheckBox1.UseVisualStyleBackColor = True
+        FBMarketplaceMeetInPerson_CheckBox.AutoSize = True
+        FBMarketplaceMeetInPerson_CheckBox.Location = New Point(460, 142)
+        FBMarketplaceMeetInPerson_CheckBox.Name = "FBMarketplaceMeetInPerson_CheckBox"
+        FBMarketplaceMeetInPerson_CheckBox.Size = New Size(61, 23)
+        FBMarketplaceMeetInPerson_CheckBox.TabIndex = 56
+        FBMarketplaceMeetInPerson_CheckBox.Text = "面交"
+        FBMarketplaceMeetInPerson_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' FBMarketplaceProductTag_TextBox
         ' 
@@ -1223,14 +1223,14 @@ Partial Class Form1
         Button5.Text = "刪除所選"
         Button5.UseVisualStyleBackColor = True
         ' 
-        ' FBmarketplaceMediaPreviewer_PictureBox
+        ' FBMarketplaceMediaPreviewer_PictureBox
         ' 
-        FBmarketplaceMediaPreviewer_PictureBox.Location = New Point(437, 282)
-        FBmarketplaceMediaPreviewer_PictureBox.Name = "FBmarketplaceMediaPreviewer_PictureBox"
-        FBmarketplaceMediaPreviewer_PictureBox.Size = New Size(218, 172)
-        FBmarketplaceMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
-        FBmarketplaceMediaPreviewer_PictureBox.TabIndex = 44
-        FBmarketplaceMediaPreviewer_PictureBox.TabStop = False
+        FBMarketplaceMediaPreviewer_PictureBox.Location = New Point(437, 282)
+        FBMarketplaceMediaPreviewer_PictureBox.Name = "FBMarketplaceMediaPreviewer_PictureBox"
+        FBMarketplaceMediaPreviewer_PictureBox.Size = New Size(218, 172)
+        FBMarketplaceMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBMarketplaceMediaPreviewer_PictureBox.TabIndex = 44
+        FBMarketplaceMediaPreviewer_PictureBox.TabStop = False
         ' 
         ' FBMarketplaceMediaSelector_ListBox
         ' 
@@ -1362,14 +1362,14 @@ Partial Class Form1
         Label8.TabIndex = 29
         Label8.Text = "名稱 : "
         ' 
-        ' Button1
+        ' FBmarketplaceDeselectAllProductFolderListboxItems_Button
         ' 
-        Button1.Location = New Point(6, 322)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(170, 29)
-        Button1.TabIndex = 28
-        Button1.Text = "取消選擇"
-        Button1.UseVisualStyleBackColor = True
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button.Location = New Point(6, 322)
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button.Name = "FBmarketplaceDeselectAllProductFolderListboxItems_Button"
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button.Size = New Size(170, 29)
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button.TabIndex = 28
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button.Text = "取消選擇"
+        FBmarketplaceDeselectAllProductFolderListboxItems_Button.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
@@ -1944,7 +1944,7 @@ Partial Class Form1
         CType(NumericUpDown4, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(FBmarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
@@ -2103,7 +2103,7 @@ Partial Class Form1
     Friend WithEvents FBMarketplace_TabPage As TabPage
     Friend WithEvents FBMarkplaceProducts_ListBox As ListBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents FBmarketplaceDeselectAllProductFolderListboxItems_Button As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents NewMarketplaceAssetFolderName_TextBox As TextBox
     Friend WithEvents CreateNewMarketplaceAssetFolder_Button As Button
@@ -2120,16 +2120,16 @@ Partial Class Form1
     Friend WithEvents FBMarketplaceProductStatus_NumericUpDown As ComboBox
     Friend WithEvents Label32 As Label
     Friend WithEvents Label31 As Label
-    Friend WithEvents FBmarketplaceMediaPreviewer_PictureBox As PictureBox
+    Friend WithEvents FBMarketplaceMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBMarketplaceMediaSelector_ListBox As ListBox
     Friend WithEvents Button5 As Button
     Friend WithEvents ShowEmojiPicker_Button As Button
     Friend WithEvents FBMarketplaceProductTag_TextBox As TextBox
     Friend WithEvents Label33 As Label
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents FBMarketplaceHomeDelivery_CheckBox As CheckBox
+    Friend WithEvents FBMarketplacePickUp_CheckBox As CheckBox
+    Friend WithEvents FBMarketplaceMeetInPerson_CheckBox As CheckBox
+    Friend WithEvents FBMarketplaceOnMarketplace_CheckBox As CheckBox
     Friend WithEvents CheckBox5 As CheckBox
     Friend WithEvents Label34 As Label
     Friend WithEvents Label35 As Label

@@ -51,128 +51,6 @@ Public Class MainFormEventHandlers
 
     End Sub
 
-    Public Sub InsertToQueueListview_Button_Click(sender As Object, e As EventArgs)
-        'Debug.WriteLine("click")
-        InserScriptItemToListview(False)
-
-    End Sub
-
-    Public Sub InsertSchedulerScriptToListview_Button_Click(sender As Object, e As EventArgs)
-        InserScriptItemToListview(True)
-    End Sub
-
-
-    Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
-        ' sequence | scheduled
-
-
-        Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
-        Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
-
-        Dim executionTime = "NULL"
-        Dim executionWaitSeconds = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
-        Dim selectedGroupName = "NULL"
-        Dim selectedGroupUrl = "NULL"
-
-
-        Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
-        Dim content = ""
-
-
-        Dim selectedUserDataFolder = "NULL"
-
-
-        ' 第一個選擇的UserDataFolder
-        For Each selectedUserData In selectedUserDataFolderItems
-            selectedUserDataFolder = selectedUserData.ToString()
-        Next
-
-        ' 第一個選擇的Group
-        If selectedGroupItems.Count > 0 Then
-            Dim selectedItem = selectedGroupItems(0)
-            selectedGroupName = selectedItem.Text
-            selectedGroupUrl = selectedItem.SubItems(1).Text
-        End If
-
-
-        ' UserData
-        If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
-            For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
-                content += item + "&"
-            Next
-            content = content.TrimEnd("&")
-        Else
-            content = "隨機"
-        End If
-
-
-
-        If scheduled Then '定時執行
-            Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
-
-
-            For Each selectedGroupItem As ListViewItem In selectedGroupItems
-                executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
-                baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
-                AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
-            Next
-        Else '順序執行
-            If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
-                For Each selectedUserData In selectedUserDataFolderItems
-                    AddScriptQueueItem(selectedUserData.ToString(), executionTime, selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds)
-                Next
-            Else ' 一帳號對多社團
-                For Each selectedGroupItem As ListViewItem In selectedGroupItems
-                    AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
-                Next
-            End If
-
-        End If
-
-
-    End Sub
-
-    Private Sub AddScriptQueueItem(userData As String, excutionTime As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String)
-        Dim scriptQueueItem As New ListViewItem(userData)
-
-        ' 執行時間
-        scriptQueueItem.SubItems.Add(excutionTime)
-
-        ' 網址名稱
-        scriptQueueItem.SubItems.Add(groupName)
-
-        ' 目標網址
-        scriptQueueItem.SubItems.Add(groupUrl)
-
-        ' 執行動作
-        scriptQueueItem.SubItems.Add(action)
-
-        '選擇內容
-        scriptQueueItem.SubItems.Add(content)
-
-        ' 執行內容
-        scriptQueueItem.SubItems.Add("")
-
-        ' 上載等待
-        scriptQueueItem.SubItems.Add(0)
-
-        ' 送出等待
-        scriptQueueItem.SubItems.Add(0)
-
-        ' 執行成功次數
-        scriptQueueItem.SubItems.Add(0)
-
-        ' 執行失敗次數
-        scriptQueueItem.SubItems.Add(0)
-
-        ' 等待時間
-        scriptQueueItem.SubItems.Add(waitTime)
-
-        ' 備註
-        scriptQueueItem.SubItems.Add("")
-
-        Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
-    End Sub
 
     Public Sub ModifySelectedScriptListviewWaitTime()
         Dim selectedListviewItems = Form1.ScriptQueue_ListView.SelectedItems
@@ -903,6 +781,148 @@ Public Class MainFormEventHandlers
         If EmojiPickerForm IsNot Nothing Then
             EmojiPickerForm.UpdateForm2Position()
         End If
+    End Sub
+
+
+    Public Sub InsertToQueueListview_Button_Click(sender As Object, e As EventArgs)
+        'Debug.WriteLine("click")
+        InserScriptItemToListview(False)
+
+    End Sub
+
+    Public Sub InsertSchedulerScriptToListview_Button_Click(sender As Object, e As EventArgs)
+        InserScriptItemToListview(True)
+    End Sub
+
+
+    Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
+        ' sequence | scheduled
+
+
+        Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
+        Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
+
+        Dim executionTime = "NULL"
+        Dim executionWaitSeconds = (Form1.ExecutionWaitHours_NumericUpDown.Value * 3600 + Form1.ExecutionWaitMinutes_NumericUpDown.Value * 60 + Form1.ExecutionWaitSeconds_NumericUpDown.Value) & "±" & Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value
+        Dim selectedGroupName = "NULL"
+        Dim selectedGroupUrl = "NULL"
+
+
+        Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
+        Dim content = ""
+
+        Select Case selecteAction
+            Case "發帖"
+                If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "拍賣"
+                If Form1.FBMarkplaceProducts_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBMarkplaceProducts_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "測試項"
+                content = "測試"
+        End Select
+
+
+
+
+        Dim selectedUserDataFolder = "NULL"
+
+
+        ' 第一個選擇的UserDataFolder
+        For Each selectedUserData In selectedUserDataFolderItems
+            selectedUserDataFolder = selectedUserData.ToString()
+        Next
+
+        ' 第一個選擇的Group
+        If selectedGroupItems.Count > 0 Then
+            Dim selectedItem = selectedGroupItems(0)
+            selectedGroupName = selectedItem.Text
+            selectedGroupUrl = selectedItem.SubItems(1).Text
+        End If
+
+
+
+
+
+
+
+        If scheduled Then '定時執行
+            Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
+
+
+            For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
+                baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
+                AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
+            Next
+        Else '順序執行
+            If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
+                For Each selectedUserData In selectedUserDataFolderItems
+                    AddScriptQueueItem(selectedUserData.ToString(), executionTime, selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds)
+                Next
+            Else ' 一帳號對多社團
+                For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
+                Next
+            End If
+
+        End If
+
+
+    End Sub
+
+    Private Sub AddScriptQueueItem(userData As String, excutionTime As String, groupName As String, groupUrl As String, content As String, action As String, waitTime As String)
+        Dim scriptQueueItem As New ListViewItem(userData)
+
+        ' 執行時間
+        scriptQueueItem.SubItems.Add(excutionTime)
+
+        ' 網址名稱
+        scriptQueueItem.SubItems.Add(groupName)
+
+        ' 目標網址
+        scriptQueueItem.SubItems.Add(groupUrl)
+
+        ' 執行動作
+        scriptQueueItem.SubItems.Add(action)
+
+        '選擇內容
+        scriptQueueItem.SubItems.Add(content)
+
+        ' 執行內容
+        scriptQueueItem.SubItems.Add("")
+
+        ' 上載等待
+        scriptQueueItem.SubItems.Add(0)
+
+        ' 送出等待
+        scriptQueueItem.SubItems.Add(0)
+
+        ' 執行成功次數
+        scriptQueueItem.SubItems.Add(0)
+
+        ' 執行失敗次數
+        scriptQueueItem.SubItems.Add(0)
+
+        ' 等待時間
+        scriptQueueItem.SubItems.Add(waitTime)
+
+        ' 備註
+        scriptQueueItem.SubItems.Add("")
+
+        Form1.ScriptQueue_ListView.Items.Add(scriptQueueItem)
     End Sub
 
 End Class
