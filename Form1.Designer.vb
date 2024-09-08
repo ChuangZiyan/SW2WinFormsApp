@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -115,11 +115,11 @@ Partial Class Form1
         PreviewTextFile_RichTextBox = New RichTextBox()
         CreateNewAssetFolder_Button = New Button()
         FBMarketplace_TabPage = New TabPage()
+        FBMarketplaceShareGroupsByRandom_RadioButton = New RadioButton()
+        FBMarketplaceShareGroupsBySequence_RadioButton = New RadioButton()
         RevealFBMarketplaceMediaFoldesrInFileExplorer_Button = New Button()
-        CheckBox6 = New CheckBox()
-        NumericUpDown4 = New NumericUpDown()
+        FBMarketplaceShareGroupsCount_NumericUpDown = New NumericUpDown()
         Label36 = New Label()
-        CheckBox5 = New CheckBox()
         Label34 = New Label()
         Label35 = New Label()
         FBMarketplaceUploadWaitSeconds_NumericUpDown = New NumericUpDown()
@@ -213,7 +213,7 @@ Partial Class Form1
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         FBMarketplace_TabPage.SuspendLayout()
-        CType(NumericUpDown4, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMarketplaceShareGroupsCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
@@ -702,7 +702,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -1035,11 +1035,11 @@ Partial Class Form1
         ' 
         ' FBMarketplace_TabPage
         ' 
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceShareGroupsByRandom_RadioButton)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceShareGroupsBySequence_RadioButton)
         FBMarketplace_TabPage.Controls.Add(RevealFBMarketplaceMediaFoldesrInFileExplorer_Button)
-        FBMarketplace_TabPage.Controls.Add(CheckBox6)
-        FBMarketplace_TabPage.Controls.Add(NumericUpDown4)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceShareGroupsCount_NumericUpDown)
         FBMarketplace_TabPage.Controls.Add(Label36)
-        FBMarketplace_TabPage.Controls.Add(CheckBox5)
         FBMarketplace_TabPage.Controls.Add(Label34)
         FBMarketplace_TabPage.Controls.Add(Label35)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceUploadWaitSeconds_NumericUpDown)
@@ -1079,6 +1079,28 @@ Partial Class Form1
         FBMarketplace_TabPage.Text = "拍賣"
         FBMarketplace_TabPage.UseVisualStyleBackColor = True
         ' 
+        ' FBMarketplaceShareGroupsByRandom_RadioButton
+        ' 
+        FBMarketplaceShareGroupsByRandom_RadioButton.AutoSize = True
+        FBMarketplaceShareGroupsByRandom_RadioButton.Location = New Point(400, 203)
+        FBMarketplaceShareGroupsByRandom_RadioButton.Name = "FBMarketplaceShareGroupsByRandom_RadioButton"
+        FBMarketplaceShareGroupsByRandom_RadioButton.Size = New Size(60, 23)
+        FBMarketplaceShareGroupsByRandom_RadioButton.TabIndex = 70
+        FBMarketplaceShareGroupsByRandom_RadioButton.Text = "隨機"
+        FBMarketplaceShareGroupsByRandom_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' FBMarketplaceShareGroupsBySequence_RadioButton
+        ' 
+        FBMarketplaceShareGroupsBySequence_RadioButton.AutoSize = True
+        FBMarketplaceShareGroupsBySequence_RadioButton.Checked = True
+        FBMarketplaceShareGroupsBySequence_RadioButton.Location = New Point(334, 203)
+        FBMarketplaceShareGroupsBySequence_RadioButton.Name = "FBMarketplaceShareGroupsBySequence_RadioButton"
+        FBMarketplaceShareGroupsBySequence_RadioButton.Size = New Size(60, 23)
+        FBMarketplaceShareGroupsBySequence_RadioButton.TabIndex = 69
+        FBMarketplaceShareGroupsBySequence_RadioButton.TabStop = True
+        FBMarketplaceShareGroupsBySequence_RadioButton.Text = "順序"
+        FBMarketplaceShareGroupsBySequence_RadioButton.UseVisualStyleBackColor = True
+        ' 
         ' RevealFBMarketplaceMediaFoldesrInFileExplorer_Button
         ' 
         RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Location = New Point(282, 424)
@@ -1088,22 +1110,12 @@ Partial Class Form1
         RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Text = "開啟"
         RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox6
+        ' FBMarketplaceShareGroupsCount_NumericUpDown
         ' 
-        CheckBox6.AutoSize = True
-        CheckBox6.Location = New Point(494, 201)
-        CheckBox6.Name = "CheckBox6"
-        CheckBox6.Size = New Size(61, 23)
-        CheckBox6.TabIndex = 67
-        CheckBox6.Text = "順序"
-        CheckBox6.UseVisualStyleBackColor = True
-        ' 
-        ' NumericUpDown4
-        ' 
-        NumericUpDown4.Location = New Point(268, 201)
-        NumericUpDown4.Name = "NumericUpDown4"
-        NumericUpDown4.Size = New Size(60, 27)
-        NumericUpDown4.TabIndex = 66
+        FBMarketplaceShareGroupsCount_NumericUpDown.Location = New Point(268, 201)
+        FBMarketplaceShareGroupsCount_NumericUpDown.Name = "FBMarketplaceShareGroupsCount_NumericUpDown"
+        FBMarketplaceShareGroupsCount_NumericUpDown.Size = New Size(60, 27)
+        FBMarketplaceShareGroupsCount_NumericUpDown.TabIndex = 66
         ' 
         ' Label36
         ' 
@@ -1113,16 +1125,6 @@ Partial Class Form1
         Label36.Size = New Size(80, 19)
         Label36.TabIndex = 65
         Label36.Text = "其他社團 : "
-        ' 
-        ' CheckBox5
-        ' 
-        CheckBox5.AutoSize = True
-        CheckBox5.Location = New Point(575, 201)
-        CheckBox5.Name = "CheckBox5"
-        CheckBox5.Size = New Size(61, 23)
-        CheckBox5.TabIndex = 64
-        CheckBox5.Text = "隨機"
-        CheckBox5.UseVisualStyleBackColor = True
         ' 
         ' Label34
         ' 
@@ -1941,7 +1943,7 @@ Partial Class Form1
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         FBMarketplace_TabPage.ResumeLayout(False)
         FBMarketplace_TabPage.PerformLayout()
-        CType(NumericUpDown4, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMarketplaceShareGroupsCount_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
@@ -2130,14 +2132,14 @@ Partial Class Form1
     Friend WithEvents FBMarketplacePickUp_CheckBox As CheckBox
     Friend WithEvents FBMarketplaceMeetInPerson_CheckBox As CheckBox
     Friend WithEvents FBMarketplaceOnMarketplace_CheckBox As CheckBox
-    Friend WithEvents CheckBox5 As CheckBox
     Friend WithEvents Label34 As Label
     Friend WithEvents Label35 As Label
     Friend WithEvents FBMarketplaceUploadWaitSeconds_NumericUpDown As NumericUpDown
     Friend WithEvents FBMarketplaceSubmitWaitSeconds_NumericUpDown As NumericUpDown
-    Friend WithEvents CheckBox6 As CheckBox
-    Friend WithEvents NumericUpDown4 As NumericUpDown
+    Friend WithEvents FBMarketplaceShareGroupsCount_NumericUpDown As NumericUpDown
     Friend WithEvents Label36 As Label
     Friend WithEvents RevealFBMarketplaceMediaFoldesrInFileExplorer_Button As Button
+    Friend WithEvents FBMarketplaceShareGroupsBySequence_RadioButton As RadioButton
+    Friend WithEvents FBMarketplaceShareGroupsByRandom_RadioButton As RadioButton
 
 End Class

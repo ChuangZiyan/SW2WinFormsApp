@@ -351,6 +351,8 @@ Public Class Form1
         AddHandler RevealFBMarketplaceMediaFoldesrInFileExplorer_Button.Click, AddressOf FBMarketplaceEventHandlers.RevealFBMarketplaceMediaFoldesrInFileExplorer_Button_Click
         AddHandler FBMarketplaceMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceMediaSelector_ListBox_SelectedIndexChanged
         AddHandler FBmarketplaceDeselectAllProductFolderListboxItems_Button.Click, AddressOf FBMarketplaceEventHandlers.FBmarketplaceDeselectAllProductFolderListboxItems_Button_Click
+        AddHandler FBMarketplaceShareGroupsBySequence_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsBySequence_RadioButton_CheckedChanged
+        AddHandler FBMarketplaceShareGroupsByRandom_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsByRandom_RadioButton_CheckedChanged
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm

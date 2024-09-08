@@ -82,7 +82,19 @@ Module FBMarketplaceSeleniumScript
                                           ClickByCssSelectorWaitUntil("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x17qophe.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(5) > div > div > div > div > div > label", 5)
                                           Await Delay_msec(2000)
                                           edgeDriver.FindElement(By.XPath("//span[text()='" & product.Status & "']")).Click()
+                                          ClickByCssSelectorWaitUntil("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(1) > div", 5)
+                                          Await Delay_msec(2000)
 
+                                          edgeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(2) > div > div > div > div > label > div > textarea")).SendKeys(product.Description)
+                                          Await Delay_msec(1000)
+                                          Dim productTagsInput = edgeDriver.FindElement(By.CssSelector("div.x78zum5.x1ye3gou.xn6708d.xtt52l0 > div  > textarea"))
+                                          For Each tag In product.Tags
+                                              productTagsInput.SendKeys(tag)
+                                              Await Delay_msec(500)
+                                              productTagsInput.SendKeys(Keys.Return)
+                                          Next
+                                          Await Delay_msec(1000)
+                                          ClickByAriaLable("下一步")
 
                                           Debug.WriteLine("EOF")
                                           Return True

@@ -80,7 +80,9 @@ Public Class FBMarketplaceEventHandlers
                     .OnMarketplace = Form1.FBMarketplaceOnMarketplace_CheckBox.Checked,
                     .MeetInPerson = Form1.FBMarketplaceMeetInPerson_CheckBox.Checked,
                     .PickUp = Form1.FBMarketplacePickUp_CheckBox.Checked,
-                    .HomeDelivery = Form1.FBMarketplaceHomeDelivery_CheckBox.Checked
+                    .HomeDelivery = Form1.FBMarketplaceHomeDelivery_CheckBox.Checked,
+                    .NumberOfGroupsShared = Form1.FBMarketplaceShareGroupsCount_NumericUpDown.Value,
+                    .RandomShare = Form1.FBMarketplaceShareGroupsByRandom_RadioButton.Checked
                 }
 
                 Dim jsonString As String = JsonConvert.SerializeObject(product, Formatting.Indented)
@@ -145,6 +147,8 @@ Public Class FBMarketplaceEventHandlers
                 Form1.FBMarketplaceMeetInPerson_CheckBox.Checked = product.MeetInPerson
                 Form1.FBMarketplacePickUp_CheckBox.Checked = product.PickUp
                 Form1.FBMarketplaceHomeDelivery_CheckBox.Checked = product.HomeDelivery
+                Form1.FBMarketplaceShareGroupsCount_NumericUpDown.Value = product.NumberOfGroupsShared
+                Form1.FBMarketplaceShareGroupsByRandom_RadioButton.Checked = product.RandomShare
 
             End If
 
@@ -240,12 +244,28 @@ Public Class FBMarketplaceEventHandlers
         Form1.FBMarketplaceUploadWaitSeconds_NumericUpDown.Value = 0
         Form1.FBMarketplaceSubmitWaitSeconds_NumericUpDown.Value = 0
         Form1.FBMarketplaceMediaSelector_ListBox.Items.Clear()
+        Form1.FBMarketplaceShareGroupsCount_NumericUpDown.Value = 0
+        Form1.FBMarketplaceShareGroupsByRandom_RadioButton.Checked = False
+        Form1.FBMarketplaceShareGroupsBySequence_RadioButton.Checked = True
 
     End Sub
 
     Public Sub FBmarketplaceDeselectAllProductFolderListboxItems_Button_Click(sender As Object, e As EventArgs)
         Form1.FBMarkplaceProducts_ListBox.ClearSelected()
         ClearFBMarketplaceProductInformation()
+    End Sub
+
+
+    Public Sub FBMarketplaceShareGroupsBySequence_RadioButton_CheckedChanged(sender As Object, e As EventArgs)
+        If Form1.FBMarketplaceShareGroupsBySequence_RadioButton.Checked Then
+            Form1.FBMarketplaceShareGroupsByRandom_RadioButton.Checked = False
+        End If
+    End Sub
+
+    Public Sub FBMarketplaceShareGroupsByRandom_RadioButton_CheckedChanged(sender As Object, e As EventArgs)
+        If Form1.FBMarketplaceShareGroupsByRandom_RadioButton.Checked Then
+            Form1.FBMarketplaceShareGroupsBySequence_RadioButton.Checked = False
+        End If
     End Sub
 
 
@@ -261,6 +281,8 @@ Public Class FBMarketplaceEventHandlers
         Public Property MeetInPerson As Boolean
         Public Property PickUp As Boolean
         Public Property HomeDelivery As Boolean
+        Public Property NumberOfGroupsShared As Integer
+        Public Property RandomShare As Boolean
 
     End Class
 
