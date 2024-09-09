@@ -268,6 +268,46 @@ Public Class FBMarketplaceEventHandlers
         End If
     End Sub
 
+    Public Sub FBMarketplaceDeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs)
+        Try
+
+            Dim selectedItems = Form1.FBMarkplaceProducts_ListBox.SelectedItems
+
+            If selectedItems.Count > 0 Then
+                ' 刪除所選
+                Dim result As DialogResult = MessageBox.Show("確定要刪除資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+
+                    For Each item In selectedItems
+                        Dim folderPath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, item)
+                        Directory.Delete(folderPath, True)
+                    Next
+                    UpdateMarketplaceAssetsFolderListBox()
+                    MsgBox("刪除完成")
+                End If
+            Else
+                ' 刪除全部資料夾
+                'MsgBox("未選擇要刪除的資料夾")
+                ' 刪除所選
+                Dim result As DialogResult = MessageBox.Show("確定要刪除全部資料夾嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+
+                    For Each item In Form1.FBMarkplaceProducts_ListBox.Items
+                        Dim folderPath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, item)
+                        Directory.Delete(folderPath, True)
+                    Next
+                    UpdateMarketplaceAssetsFolderListBox()
+
+                    MsgBox("刪除完成")
+                End If
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("刪除失敗")
+        End Try
+    End Sub
+
 
     Public Class FBMarketPlaceProduct
         Public Property Name As String

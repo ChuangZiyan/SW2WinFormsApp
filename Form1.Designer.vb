@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -148,7 +148,7 @@ Partial Class Form1
         Label26 = New Label()
         Label8 = New Label()
         FBmarketplaceDeselectAllProductFolderListboxItems_Button = New Button()
-        Button2 = New Button()
+        FBMarketplaceDeleteSelectedAssetFolder_Button = New Button()
         NewMarketplaceAssetFolderName_TextBox = New TextBox()
         CreateNewMarketplaceAssetFolder_Button = New Button()
         FBMarkplaceProducts_ListBox = New ListBox()
@@ -702,7 +702,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -1068,7 +1068,7 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(Label26)
         FBMarketplace_TabPage.Controls.Add(Label8)
         FBMarketplace_TabPage.Controls.Add(FBmarketplaceDeselectAllProductFolderListboxItems_Button)
-        FBMarketplace_TabPage.Controls.Add(Button2)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceDeleteSelectedAssetFolder_Button)
         FBMarketplace_TabPage.Controls.Add(NewMarketplaceAssetFolderName_TextBox)
         FBMarketplace_TabPage.Controls.Add(CreateNewMarketplaceAssetFolder_Button)
         FBMarketplace_TabPage.Controls.Add(FBMarkplaceProducts_ListBox)
@@ -1373,14 +1373,14 @@ Partial Class Form1
         FBmarketplaceDeselectAllProductFolderListboxItems_Button.Text = "取消選擇"
         FBmarketplaceDeselectAllProductFolderListboxItems_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' FBMarketplaceDeleteSelectedAssetFolder_Button
         ' 
-        Button2.Location = New Point(6, 425)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(170, 29)
-        Button2.TabIndex = 27
-        Button2.Text = "刪除所選"
-        Button2.UseVisualStyleBackColor = True
+        FBMarketplaceDeleteSelectedAssetFolder_Button.Location = New Point(6, 425)
+        FBMarketplaceDeleteSelectedAssetFolder_Button.Name = "FBMarketplaceDeleteSelectedAssetFolder_Button"
+        FBMarketplaceDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        FBMarketplaceDeleteSelectedAssetFolder_Button.TabIndex = 27
+        FBMarketplaceDeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        FBMarketplaceDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
         ' NewMarketplaceAssetFolderName_TextBox
         ' 
@@ -2106,7 +2106,7 @@ Partial Class Form1
     Friend WithEvents FBMarkplaceProducts_ListBox As ListBox
     Friend WithEvents Label8 As Label
     Friend WithEvents FBmarketplaceDeselectAllProductFolderListboxItems_Button As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents FBMarketplaceDeleteSelectedAssetFolder_Button As Button
     Friend WithEvents NewMarketplaceAssetFolderName_TextBox As TextBox
     Friend WithEvents CreateNewMarketplaceAssetFolder_Button As Button
     Friend WithEvents Label29 As Label

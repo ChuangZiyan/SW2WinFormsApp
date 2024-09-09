@@ -353,6 +353,7 @@ Public Class Form1
         AddHandler FBmarketplaceDeselectAllProductFolderListboxItems_Button.Click, AddressOf FBMarketplaceEventHandlers.FBmarketplaceDeselectAllProductFolderListboxItems_Button_Click
         AddHandler FBMarketplaceShareGroupsBySequence_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsBySequence_RadioButton_CheckedChanged
         AddHandler FBMarketplaceShareGroupsByRandom_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsByRandom_RadioButton_CheckedChanged
+        AddHandler FBMarketplaceDeleteSelectedAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedAssetFolder_Button_Click
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -380,6 +381,7 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
+
 
 
 End Class
