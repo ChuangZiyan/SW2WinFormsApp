@@ -115,6 +115,23 @@ Module FBMarketplaceSeleniumScript
                                           productLocationOption.ElementAt(0).Click()
 
                                           Await Delay_msec(1000)
+
+                                          If product.MeetInPerson Then
+                                              Await Delay_msec(1000)
+                                              edgeDriver.FindElement(By.XPath("//span[text()='公開面交']")).Click()
+                                          End If
+
+                                          If product.PickUp Then
+                                              Await Delay_msec(1000)
+                                              edgeDriver.FindElement(By.XPath("//span[text()='到府取貨']")).Click()
+                                          End If
+
+                                          If product.HomeDelivery Then
+                                              Await Delay_msec(1000)
+                                              edgeDriver.FindElement(By.XPath("//span[text()='送至門口']")).Click()
+                                          End If
+
+                                          Await Delay_msec(1000)
                                           ClickByAriaLable("下一步")
 
                                           Debug.WriteLine("EOF")
