@@ -1153,6 +1153,8 @@ Partial Class Form1
         ' FBMarketplaceOnMarketplace_CheckBox
         ' 
         FBMarketplaceOnMarketplace_CheckBox.AutoSize = True
+        FBMarketplaceOnMarketplace_CheckBox.Checked = True
+        FBMarketplaceOnMarketplace_CheckBox.CheckState = CheckState.Checked
         FBMarketplaceOnMarketplace_CheckBox.Location = New Point(494, 172)
         FBMarketplaceOnMarketplace_CheckBox.Name = "FBMarketplaceOnMarketplace_CheckBox"
         FBMarketplaceOnMarketplace_CheckBox.Size = New Size(161, 23)
