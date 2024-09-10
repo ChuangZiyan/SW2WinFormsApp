@@ -200,7 +200,7 @@ Public Class FBMarketplaceEventHandlers
             Form1.FBMarketplaceMediaPreviewer_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
-                Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG"}
+                Dim allowedExtension As String() = {".WEBP", ".webp", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
                 For Each file As String In mediaFiles
                     If allowedExtension.Contains(Path.GetExtension(file)) Then
@@ -308,6 +308,44 @@ Public Class FBMarketplaceEventHandlers
         End Try
     End Sub
 
+
+    Public Sub FBMarketplaceDeleteSelectedMedia_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim selectedFBMarkplaceProduct = Form1.FBMarkplaceProducts_ListBox.SelectedItem
+            If selectedFBMarkplaceProduct IsNot Nothing Then
+                Dim selectedItems = Form1.FBMarketplaceMediaSelector_ListBox.SelectedItems
+                If selectedItems.Count > 0 Then
+                    ' 刪除所選
+                    Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        For Each item In selectedItems
+                            Dim filePath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, Form1.FBMarkplaceProducts_ListBox.SelectedItem, "media", item)
+                            File.Delete(filePath)
+                        Next
+                    End If
+
+                Else
+                    ' 刪除全部
+                    'MsgBox("未選擇要刪除的檔案")
+                    Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        For Each item In Form1.FBMarketplaceMediaSelector_ListBox.Items
+                            Dim filePath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, Form1.FBMarkplaceProducts_ListBox.SelectedItem, "media", item)
+                            File.Delete(filePath)
+                        Next
+                    End If
+
+                End If
+
+                UpdateFBMarketplaceMediaListbox(selectedFBMarkplaceProduct)
+            Else
+                MsgBox("未選擇資料夾")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
 
     Public Class FBMarketPlaceProduct
         Public Property Name As String

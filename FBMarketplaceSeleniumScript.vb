@@ -45,7 +45,7 @@ Module FBMarketplaceSeleniumScript
                                           ClickByCssSelectorWaitUntil("div.xamitd3.x78zum5.x1q0g3np.x1a02dak.x1e56ztr.xw3qccf.x1sliqq.x14vqqas.xh8yej3.x1ni0lre.xlqeb66 > div:nth-child(1) > div > span > div > div", 5)
 
                                           ' 開很慢，要等久一點
-                                          Await Delay_msec(3000)
+                                          Await Delay_msec(5000)
 
                                           ' 上傳圖片
                                           Dim media_input As IWebElement
@@ -55,9 +55,7 @@ Module FBMarketplaceSeleniumScript
                                           Dim mediaFileList As New List(Of String)
                                           Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
 
-                                          'Debug.WriteLine("FFFFF : " & mediaFileFolderPath)
-
-                                          Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
+                                          Dim allowedExtension As String() = {".webp", ".WEBP", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                                           Dim myFiles As String() = Directory.GetFiles(mediaFileFolderPath)
                                           For Each file As String In myFiles
                                               If allowedExtension.Contains(Path.GetExtension(file)) Then
@@ -105,34 +103,35 @@ Module FBMarketplaceSeleniumScript
                                           Await Delay_msec(1000)
                                           Dim productLocationInput = edgeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(4) > div > div > div > div > div > div > div > div > div > label > input"))
                                           productLocationInput.Click()
-                                          Await Delay_msec(500)
-                                          productLocationInput.SendKeys(Keys.Delete)
-                                          Await Delay_msec(500)
-                                          productLocationInput.SendKeys(product.Location)
                                           Await Delay_msec(1000)
+                                          productLocationInput.SendKeys(Keys.Delete)
+                                          Await Delay_msec(1000)
+                                          productLocationInput.SendKeys(product.Location)
+                                          Await Delay_msec(3000)
                                           '搜尋地點後 點第一個符合的
                                           Dim productLocationOption = edgeDriver.FindElements(By.CssSelector("div.x1jx94hy.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c.xh8yej3 > div > ul > li"))
                                           productLocationOption.ElementAt(0).Click()
 
+                                          ' 交貨方式
                                           Await Delay_msec(1000)
+                                          Try
+                                              If product.MeetInPerson Then
+                                                  Await Delay_msec(1000)
+                                                  edgeDriver.FindElement(By.XPath("//span[text()='公開面交']")).Click()
+                                              End If
 
-                                          If product.MeetInPerson Then
-                                              Await Delay_msec(1000)
-                                              edgeDriver.FindElement(By.XPath("//span[text()='公開面交']")).Click()
-                                          End If
+                                              If product.PickUp Then
+                                                  Await Delay_msec(1000)
+                                                  edgeDriver.FindElement(By.XPath("//span[text()='到府取貨']")).Click()
+                                              End If
 
-                                          If product.PickUp Then
-                                              Await Delay_msec(1000)
-                                              edgeDriver.FindElement(By.XPath("//span[text()='到府取貨']")).Click()
-                                          End If
-
-                                          If product.HomeDelivery Then
-                                              Await Delay_msec(1000)
-                                              edgeDriver.FindElement(By.XPath("//span[text()='送至門口']")).Click()
-                                          End If
-
-                                          Await Delay_msec(1000)
-                                          ClickByAriaLable("下一步")
+                                              If product.HomeDelivery Then
+                                                  Await Delay_msec(1000)
+                                                  edgeDriver.FindElement(By.XPath("//span[text()='送至門口']")).Click()
+                                              End If
+                                          Catch ex As Exception
+                                              'Debug.WriteLine(ex)
+                                          End Try
 
                                           Debug.WriteLine("EOF")
                                           Return True
@@ -146,4 +145,60 @@ Module FBMarketplaceSeleniumScript
             Return False
         End Try
     End Function
+
+
+    Public Async Function AddYourListingToOtherGroups(myAssetFolderPath As String) As Task(Of Boolean)
+        Try
+            Dim product As FBMarketplaceEventHandlers.FBMarketPlaceProduct = FBMarketplaceEventHandlers.GetProduct(myAssetFolderPath)
+
+            Return Await Task.Run(Async Function() As Task(Of Boolean)
+                                      '然後點下一步
+                                      'ClickByAriaLable("下一步")
+                                      ClickByCssSelectorWaitUntil("div.x8cjs6t.x13fuv20.x178xt8z.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div", 5)
+                                      Await Delay_msec(2000)
+
+                                      If product.OnMarketplace Then
+                                          ClickByCssSelectorWaitUntil("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div", 5)
+                                      End If
+
+                                      Await Delay_msec(1000)
+
+                                      Dim group_elms = edgeDriver.FindElements(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(4) > div > div > div > div > div > div > div:nth-child(2) > div > div"))
+
+                                      If product.RandomShare Then
+                                          '隨機點
+                                          Dim numbers As New List(Of Integer)(Enumerable.Range(0, group_elms.Count))
+                                          Dim rand As New Random()
+                                          Dim selectedNumbers As New List(Of Integer)()
+                                          While selectedNumbers.Count < product.NumberOfGroupsShared
+                                              ' 隨機選擇一個數字的索引
+                                              Dim index As Integer = rand.Next(numbers.Count)
+                                              ' 從 numbers 列表中取出該數字
+                                              selectedNumbers.Add(numbers(index))
+                                              ' 將該數字從 numbers 列表中移除，避免重複
+                                              numbers.RemoveAt(index)
+                                          End While
+
+                                          For Each number As Integer In selectedNumbers
+                                              group_elms.ElementAt(number).Click()
+                                              Await Delay_msec(300)
+                                          Next
+
+                                      Else
+                                          '順序點
+                                          For i = 0 To product.NumberOfGroupsShared - 1
+                                              group_elms.ElementAt(i).Click()
+                                              Await Delay_msec(300)
+                                          Next
+                                      End If
+
+                                      Return True
+                                  End Function)
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+
 End Module

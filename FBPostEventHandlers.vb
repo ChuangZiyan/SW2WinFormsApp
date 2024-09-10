@@ -98,34 +98,43 @@ Public Class FBPostEventHandlers
 
     Public Sub DeleteSelectedMediaFile_Button_Click(sender As Object, e As EventArgs)
         Try
-            Dim selectedItems = Form1.MediaSelector_ListBox.SelectedItems
 
-            If selectedItems.Count > 0 Then
-                ' 刪除所選
-                Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In selectedItems
-                        'Debug.WriteLine("itm : " & item)
-                        Dim filePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
-                        File.Delete(filePath)
-                    Next
+            Dim selectedAssetFolder = Form1.MyAssetsFolder_ListBox.SelectedItem
+
+            If selectedAssetFolder IsNot Nothing Then
+
+                Dim selectedItems = Form1.MediaSelector_ListBox.SelectedItems
+
+                If selectedItems.Count > 0 Then
+                    ' 刪除所選
+                    Dim result As DialogResult = MessageBox.Show("確定要刪除檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        For Each item In selectedItems
+                            'Debug.WriteLine("itm : " & item)
+                            Dim filePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, selectedAssetFolder, "media", item)
+                            File.Delete(filePath)
+                        Next
+                    End If
+
+                Else
+                    ' 刪除全部
+                    'MsgBox("未選擇要刪除的檔案")
+                    Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    If result = DialogResult.Yes Then
+                        For Each item In Form1.MediaSelector_ListBox.Items
+                            'Debug.WriteLine("itm : " & item)
+                            Dim filePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, selectedAssetFolder, "media", item)
+                            File.Delete(filePath)
+                        Next
+                    End If
+
                 End If
 
+                UpdateMediaSelectorListBoxItems(selectedAssetFolder)
             Else
-                ' 刪除全部
-                'MsgBox("未選擇要刪除的檔案")
-                Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                If result = DialogResult.Yes Then
-                    For Each item In Form1.MediaSelector_ListBox.Items
-                        'Debug.WriteLine("itm : " & item)
-                        Dim filePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "media", item)
-                        File.Delete(filePath)
-                    Next
-                End If
-
+                MsgBox("未選擇資料夾")
             End If
 
-            UpdateMediaSelectorListBoxItems(Form1.MyAssetsFolder_ListBox.SelectedItem)
 
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -153,23 +162,6 @@ Public Class FBPostEventHandlers
             End If
         Catch ex As Exception
             Debug.WriteLine(ex)
-        End Try
-
-    End Sub
-
-    Public Sub SaveFBWritePostWaitSecondsConfig_Button_Click(sender As Object, e As EventArgs)
-
-        Try
-            For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
-                Dim configFilePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, item, "FBWritePostWaitSecondsConfig.txt")
-                Dim myConfig As String = Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value & "," & Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value
-                File.WriteAllText(configFilePath, myConfig)
-            Next
-
-            MsgBox("儲存成功")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            MsgBox("儲存失敗")
         End Try
 
     End Sub
@@ -357,21 +349,32 @@ Public Class FBPostEventHandlers
 
     Public Sub SaveEditedTextFile_Button_Click(sender As Object, e As EventArgs)
         Try
-            Dim selectedItem = Form1.TextFileSelector_ListBox.SelectedItem
-            If selectedItem IsNot Nothing Then
-                Dim filePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, Form1.MyAssetsFolder_ListBox.SelectedItem, "textFiles", selectedItem)
-                MyWriteFile(filePath)
-                MsgBox("修改成功")
+            Dim selectedAssetItem = Form1.MyAssetsFolder_ListBox.SelectedItem
+            Dim selectedTextItem = Form1.TextFileSelector_ListBox.SelectedItem
+            If selectedAssetItem IsNot Nothing Then
+                '儲存等待秒數
+                Dim configFilePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, selectedAssetItem, "FBWritePostWaitSecondsConfig.txt")
+                Dim myConfig As String = Form1.FBWritePostUploadWaitSeconds_NumericUpDown.Value & "," & Form1.FBWritePostSubmitWaitSeconds_NumericUpDown.Value
+                File.WriteAllText(configFilePath, myConfig)
+
+                ' 儲存文字檔
+                If selectedTextItem IsNot Nothing Then
+                    Dim filePath = Path.Combine(AppInitModule.FBPostAssetsDirectory, selectedAssetItem, "textFiles", selectedTextItem)
+                    MyWriteFile(filePath)
+                End If
+
+                MsgBox("儲存成功")
             Else
-                MsgBox("未選擇檔案")
+                MsgBox("未選擇資料夾")
             End If
         Catch ex As Exception
             Debug.WriteLine(ex)
-            MsgBox("修改失敗")
+            MsgBox("儲存失敗")
         End Try
 
 
     End Sub
+
 
 
     Public Shared Sub UpdateAssetsFolderListBox()
@@ -419,7 +422,7 @@ Public Class FBPostEventHandlers
             Form1.MediaPreview_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.FBPostAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
-                Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
+                Dim allowedExtension As String() = {".WEBP", ".webp", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
                 For Each file As String In mediaFiles
                     If allowedExtension.Contains(Path.GetExtension(file)) Then

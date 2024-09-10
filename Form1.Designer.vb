@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -95,7 +95,6 @@ Partial Class Form1
         FBPost_TabPage = New TabPage()
         Label23 = New Label()
         Label22 = New Label()
-        SaveFBWritePostWaitSecondsConfig_Button = New Button()
         Label21 = New Label()
         FBWritePostUploadWaitSeconds_NumericUpDown = New NumericUpDown()
         FBWritePostSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
@@ -130,7 +129,7 @@ Partial Class Form1
         FBMarketplaceMeetInPerson_CheckBox = New CheckBox()
         FBMarketplaceProductTag_TextBox = New TextBox()
         Label33 = New Label()
-        Button5 = New Button()
+        FBMarketplaceDeleteSelectedMedia_Button = New Button()
         FBMarketplaceMediaPreviewer_PictureBox = New PictureBox()
         FBMarketplaceMediaSelector_ListBox = New ListBox()
         Label32 = New Label()
@@ -702,7 +701,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -820,7 +819,6 @@ Partial Class Form1
         ' 
         FBPost_TabPage.Controls.Add(Label23)
         FBPost_TabPage.Controls.Add(Label22)
-        FBPost_TabPage.Controls.Add(SaveFBWritePostWaitSecondsConfig_Button)
         FBPost_TabPage.Controls.Add(Label21)
         FBPost_TabPage.Controls.Add(FBWritePostUploadWaitSeconds_NumericUpDown)
         FBPost_TabPage.Controls.Add(FBWritePostSubmitWaitSeconds_NumericUpDown)
@@ -864,15 +862,6 @@ Partial Class Form1
         Label22.Size = New Size(80, 19)
         Label22.TabIndex = 23
         Label22.Text = "送出等待 : "
-        ' 
-        ' SaveFBWritePostWaitSecondsConfig_Button
-        ' 
-        SaveFBWritePostWaitSecondsConfig_Button.Location = New Point(486, 7)
-        SaveFBWritePostWaitSecondsConfig_Button.Name = "SaveFBWritePostWaitSecondsConfig_Button"
-        SaveFBWritePostWaitSecondsConfig_Button.Size = New Size(94, 29)
-        SaveFBWritePostWaitSecondsConfig_Button.TabIndex = 22
-        SaveFBWritePostWaitSecondsConfig_Button.Text = "儲存"
-        SaveFBWritePostWaitSecondsConfig_Button.UseVisualStyleBackColor = True
         ' 
         ' Label21
         ' 
@@ -960,7 +949,7 @@ Partial Class Form1
         SaveEditedTextFile_Button.Name = "SaveEditedTextFile_Button"
         SaveEditedTextFile_Button.Size = New Size(94, 29)
         SaveEditedTextFile_Button.TabIndex = 12
-        SaveEditedTextFile_Button.Text = "儲存修改"
+        SaveEditedTextFile_Button.Text = "儲存"
         SaveEditedTextFile_Button.UseVisualStyleBackColor = True
         ' 
         ' CreateNewTextFile_Button
@@ -1050,7 +1039,7 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceMeetInPerson_CheckBox)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductTag_TextBox)
         FBMarketplace_TabPage.Controls.Add(Label33)
-        FBMarketplace_TabPage.Controls.Add(Button5)
+        FBMarketplace_TabPage.Controls.Add(FBMarketplaceDeleteSelectedMedia_Button)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaPreviewer_PictureBox)
         FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaSelector_ListBox)
         FBMarketplace_TabPage.Controls.Add(Label32)
@@ -1113,6 +1102,7 @@ Partial Class Form1
         ' FBMarketplaceShareGroupsCount_NumericUpDown
         ' 
         FBMarketplaceShareGroupsCount_NumericUpDown.Location = New Point(268, 201)
+        FBMarketplaceShareGroupsCount_NumericUpDown.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         FBMarketplaceShareGroupsCount_NumericUpDown.Name = "FBMarketplaceShareGroupsCount_NumericUpDown"
         FBMarketplaceShareGroupsCount_NumericUpDown.Size = New Size(60, 27)
         FBMarketplaceShareGroupsCount_NumericUpDown.TabIndex = 66
@@ -1216,14 +1206,14 @@ Partial Class Form1
         Label33.TabIndex = 46
         Label33.Text = "商品標籤 : "
         ' 
-        ' Button5
+        ' FBMarketplaceDeleteSelectedMedia_Button
         ' 
-        Button5.Location = New Point(339, 423)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(94, 29)
-        Button5.TabIndex = 45
-        Button5.Text = "刪除所選"
-        Button5.UseVisualStyleBackColor = True
+        FBMarketplaceDeleteSelectedMedia_Button.Location = New Point(339, 423)
+        FBMarketplaceDeleteSelectedMedia_Button.Name = "FBMarketplaceDeleteSelectedMedia_Button"
+        FBMarketplaceDeleteSelectedMedia_Button.Size = New Size(94, 29)
+        FBMarketplaceDeleteSelectedMedia_Button.TabIndex = 45
+        FBMarketplaceDeleteSelectedMedia_Button.Text = "刪除所選"
+        FBMarketplaceDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
         ' 
         ' FBMarketplaceMediaPreviewer_PictureBox
         ' 
@@ -2085,7 +2075,6 @@ Partial Class Form1
     Friend WithEvents Label21 As Label
     Friend WithEvents FBWritePostUploadWaitSeconds_NumericUpDown As NumericUpDown
     Friend WithEvents FBWritePostSubmitWaitSeconds_NumericUpDown As NumericUpDown
-    Friend WithEvents SaveFBWritePostWaitSecondsConfig_Button As Button
     Friend WithEvents Label22 As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents ExecuteSelectedScriptListviewItem_Button As Button
@@ -2124,7 +2113,7 @@ Partial Class Form1
     Friend WithEvents Label31 As Label
     Friend WithEvents FBMarketplaceMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBMarketplaceMediaSelector_ListBox As ListBox
-    Friend WithEvents Button5 As Button
+    Friend WithEvents FBMarketplaceDeleteSelectedMedia_Button As Button
     Friend WithEvents ShowEmojiPicker_Button As Button
     Friend WithEvents FBMarketplaceProductTag_TextBox As TextBox
     Friend WithEvents Label33 As Label

@@ -201,11 +201,29 @@ Public Class Form1
                 Try
                     Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMarketPlaceAssetsDirectory)
                     item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
                     Dim MarketplaceWaitSecondsConfig = File.ReadAllText(Path.Combine(assetFolderPath, "MarketplaceWaitSecondsConfig.txt"))
                     item.SubItems(7).Text = Split(MarketplaceWaitSecondsConfig, ",")(0)
                     item.SubItems(8).Text = Split(MarketplaceWaitSecondsConfig, ",")(1)
                     result = Await FBMarketplaceSeleniumScript.SellSomething(myUrl, assetFolderPath)
+                    If result Then
+                        ' 這邊要等待上傳完成
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(7).Text = seconds
+                        Next
+
+                        '將商品新增到其他社團後等待
+                        Await FBMarketplaceSeleniumScript.AddYourListingToOtherGroups(assetFolderPath)
+                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(8).Text = seconds
+                        Next
+
+                        '點發佈 你如果要實際發佈，就取消註解下面這行
+                        ' Webview2Controller.ClickByAriaLable("發佈")
+
+                    End If
+
                 Catch ex As Exception
                     Debug.WriteLine(ex)
                     result = False
@@ -332,7 +350,6 @@ Public Class Form1
         AddHandler DeleteSelectedMedia_Button.Click, AddressOf FBPostEventHandlers.DeleteSelectedMediaFile_Button_Click
         AddHandler TextFileSelector_ListBox.DoubleClick, AddressOf FBPostEventHandlers.EditSelectedTextFileWithNotepad
         AddHandler MediaSelector_ListBox.DoubleClick, AddressOf FBPostEventHandlers.PlaySelectedMedia
-        AddHandler SaveFBWritePostWaitSecondsConfig_Button.Click, AddressOf FBPostEventHandlers.SaveFBWritePostWaitSecondsConfig_Button_Click
         AddHandler DeselectAllMyAssetFolderListboxItems_Button.Click, AddressOf FBPostEventHandlers.DeselectAllMyAssetFolderListboxItems_Button_Click
         AddHandler DeleteSelectedAssetFolder_Button.Click, AddressOf FBPostEventHandlers.DeletedSelectedAssetFolders
         AddHandler MyAssetsFolder_ListBox.SelectedIndexChanged, AddressOf FBPostEventHandlers.MyAssetsFolder_ListBox_SelectedIndexChanged
@@ -354,6 +371,7 @@ Public Class Form1
         AddHandler FBMarketplaceShareGroupsBySequence_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsBySequence_RadioButton_CheckedChanged
         AddHandler FBMarketplaceShareGroupsByRandom_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsByRandom_RadioButton_CheckedChanged
         AddHandler FBMarketplaceDeleteSelectedAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBMarketplaceDeleteSelectedMedia_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedMedia_Button_Click
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -381,7 +399,6 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
-
 
 
 End Class
