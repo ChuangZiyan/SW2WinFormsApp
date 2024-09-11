@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
+Imports SkiaSharp
 
 Public Class FBMarketplaceEventHandlers
 
@@ -220,13 +221,20 @@ Public Class FBMarketplaceEventHandlers
             Dim selectedItem = Form1.FBMarketplaceMediaSelector_ListBox.SelectedItem
             If selectedItem IsNot Nothing Then
                 Dim filePath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, Form1.FBMarkplaceProducts_ListBox.SelectedItem, "media", selectedItem)
-                Form1.FBMarketplaceMediaPreviewer_PictureBox.ImageLocation = filePath
+
+                If {".webp", ".WEBP"}.Contains(Path.GetExtension(selectedItem)) Then
+                    Dim skBitmap As SKBitmap = SKBitmap.Decode(filePath)
+                    Dim bitmap As Bitmap = UtilsModule.SKBitmapToBitmap(skBitmap)
+                    Form1.FBMarketplaceMediaPreviewer_PictureBox.Image = bitmap
+                Else
+                    Form1.FBMarketplaceMediaPreviewer_PictureBox.ImageLocation = filePath
+                End If
+
             End If
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
     End Sub
-
 
 
     Private Sub ClearFBMarketplaceProductInformation()

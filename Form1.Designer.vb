@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem11 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem12 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -201,6 +201,28 @@ Partial Class Form1
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
         EnableClipboard_CheckBox = New CheckBox()
+        TabPage1 = New TabPage()
+        Label37 = New Label()
+        Button1 = New Button()
+        ListBox1 = New ListBox()
+        Button2 = New Button()
+        TextBox1 = New TextBox()
+        Button3 = New Button()
+        Label38 = New Label()
+        Label39 = New Label()
+        NumericUpDown1 = New NumericUpDown()
+        NumericUpDown2 = New NumericUpDown()
+        Label40 = New Label()
+        TextBox2 = New TextBox()
+        Button4 = New Button()
+        TextBox3 = New TextBox()
+        ListBox2 = New ListBox()
+        Button5 = New Button()
+        Button6 = New Button()
+        RichTextBox1 = New RichTextBox()
+        Button7 = New Button()
+        Button8 = New Button()
+        Button9 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -227,6 +249,9 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        TabPage1.SuspendLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -701,7 +726,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem11, ListViewItem12})
         FBGroups_ListView.Location = New Point(6, 107)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -808,6 +833,7 @@ Partial Class Form1
         ' 
         Action_TabControl.Controls.Add(FBPost_TabPage)
         Action_TabControl.Controls.Add(FBMarketplace_TabPage)
+        Action_TabControl.Controls.Add(TabPage1)
         Action_TabControl.Controls.Add(TabPage3)
         Action_TabControl.Location = New Point(1147, 12)
         Action_TabControl.Name = "Action_TabControl"
@@ -1882,6 +1908,219 @@ Partial Class Form1
         EnableClipboard_CheckBox.Text = "使用剪貼簿"
         EnableClipboard_CheckBox.UseVisualStyleBackColor = True
         ' 
+        ' TabPage1
+        ' 
+        TabPage1.Controls.Add(Button9)
+        TabPage1.Controls.Add(Button8)
+        TabPage1.Controls.Add(Button7)
+        TabPage1.Controls.Add(Button4)
+        TabPage1.Controls.Add(TextBox3)
+        TabPage1.Controls.Add(ListBox2)
+        TabPage1.Controls.Add(Button5)
+        TabPage1.Controls.Add(Button6)
+        TabPage1.Controls.Add(RichTextBox1)
+        TabPage1.Controls.Add(TextBox2)
+        TabPage1.Controls.Add(Label40)
+        TabPage1.Controls.Add(Label38)
+        TabPage1.Controls.Add(Label39)
+        TabPage1.Controls.Add(NumericUpDown1)
+        TabPage1.Controls.Add(NumericUpDown2)
+        TabPage1.Controls.Add(Label37)
+        TabPage1.Controls.Add(Button1)
+        TabPage1.Controls.Add(ListBox1)
+        TabPage1.Controls.Add(Button2)
+        TabPage1.Controls.Add(TextBox1)
+        TabPage1.Controls.Add(Button3)
+        TabPage1.Location = New Point(4, 28)
+        TabPage1.Name = "TabPage1"
+        TabPage1.Size = New Size(665, 467)
+        TabPage1.TabIndex = 3
+        TabPage1.Text = "分享"
+        TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' Label37
+        ' 
+        Label37.AutoSize = True
+        Label37.Location = New Point(6, 362)
+        Label37.Name = "Label37"
+        Label37.Size = New Size(50, 19)
+        Label37.TabIndex = 30
+        Label37.Text = "名稱 : "
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(6, 324)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(170, 29)
+        Button1.TabIndex = 29
+        Button1.Text = "取消選擇"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' ListBox1
+        ' 
+        ListBox1.FormattingEnabled = True
+        ListBox1.ItemHeight = 19
+        ListBox1.Location = New Point(6, 6)
+        ListBox1.Name = "ListBox1"
+        ListBox1.SelectionMode = SelectionMode.MultiExtended
+        ListBox1.Size = New Size(170, 308)
+        ListBox1.TabIndex = 28
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(6, 427)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(170, 29)
+        Button2.TabIndex = 27
+        Button2.Text = "刪除所選"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(62, 359)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(114, 27)
+        TextBox1.TabIndex = 26
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(6, 392)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(170, 29)
+        Button3.TabIndex = 25
+        Button3.Text = "建立"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Label38
+        ' 
+        Label38.AutoSize = True
+        Label38.Location = New Point(334, 11)
+        Label38.Name = "Label38"
+        Label38.Size = New Size(80, 19)
+        Label38.TabIndex = 34
+        Label38.Text = "送出等待 : "
+        ' 
+        ' Label39
+        ' 
+        Label39.AutoSize = True
+        Label39.Location = New Point(182, 11)
+        Label39.Name = "Label39"
+        Label39.Size = New Size(80, 19)
+        Label39.TabIndex = 33
+        Label39.Text = "上載等待 : "
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(268, 8)
+        NumericUpDown1.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(60, 27)
+        NumericUpDown1.TabIndex = 32
+        ' 
+        ' NumericUpDown2
+        ' 
+        NumericUpDown2.Location = New Point(420, 8)
+        NumericUpDown2.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumericUpDown2.Name = "NumericUpDown2"
+        NumericUpDown2.Size = New Size(60, 27)
+        NumericUpDown2.TabIndex = 31
+        ' 
+        ' Label40
+        ' 
+        Label40.AutoSize = True
+        Label40.Location = New Point(182, 69)
+        Label40.Name = "Label40"
+        Label40.Size = New Size(50, 19)
+        Label40.TabIndex = 35
+        Label40.Text = "網址 : "
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(238, 61)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(421, 27)
+        TextBox2.TabIndex = 36
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(434, 427)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 42
+        Button4.Text = "刪除所選"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox3
+        ' 
+        TextBox3.Location = New Point(182, 427)
+        TextBox3.Name = "TextBox3"
+        TextBox3.Size = New Size(146, 27)
+        TextBox3.TabIndex = 41
+        ' 
+        ' ListBox2
+        ' 
+        ListBox2.FormattingEnabled = True
+        ListBox2.ItemHeight = 19
+        ListBox2.Location = New Point(182, 151)
+        ListBox2.Name = "ListBox2"
+        ListBox2.SelectionMode = SelectionMode.MultiExtended
+        ListBox2.Size = New Size(146, 270)
+        ListBox2.TabIndex = 40
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(534, 427)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(94, 29)
+        Button5.TabIndex = 39
+        Button5.Text = "儲存"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' Button6
+        ' 
+        Button6.Location = New Point(334, 427)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(94, 29)
+        Button6.TabIndex = 38
+        Button6.Text = "新增文字檔"
+        Button6.UseVisualStyleBackColor = True
+        ' 
+        ' RichTextBox1
+        ' 
+        RichTextBox1.Location = New Point(334, 151)
+        RichTextBox1.Name = "RichTextBox1"
+        RichTextBox1.Size = New Size(325, 270)
+        RichTextBox1.TabIndex = 37
+        RichTextBox1.Text = ""
+        RichTextBox1.WordWrap = False
+        ' 
+        ' Button7
+        ' 
+        Button7.Location = New Point(238, 94)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(94, 29)
+        Button7.TabIndex = 43
+        Button7.Text = "前往"
+        Button7.UseVisualStyleBackColor = True
+        ' 
+        ' Button8
+        ' 
+        Button8.Location = New Point(338, 94)
+        Button8.Name = "Button8"
+        Button8.Size = New Size(94, 29)
+        Button8.TabIndex = 44
+        Button8.Text = "取得網址"
+        Button8.UseVisualStyleBackColor = True
+        ' 
+        ' Button9
+        ' 
+        Button9.Location = New Point(438, 94)
+        Button9.Name = "Button9"
+        Button9.Size = New Size(94, 29)
+        Button9.TabIndex = 45
+        Button9.Text = "修改"
+        Button9.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -1949,6 +2188,10 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        TabPage1.ResumeLayout(False)
+        TabPage1.PerformLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -2130,5 +2373,27 @@ Partial Class Form1
     Friend WithEvents RevealFBMarketplaceMediaFoldesrInFileExplorer_Button As Button
     Friend WithEvents FBMarketplaceShareGroupsBySequence_RadioButton As RadioButton
     Friend WithEvents FBMarketplaceShareGroupsByRandom_RadioButton As RadioButton
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label38 As Label
+    Friend WithEvents Label39 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label40 As Label
+    Friend WithEvents Button4 As Button
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button7 As Button
 
 End Class

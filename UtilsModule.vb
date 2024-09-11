@@ -1,5 +1,7 @@
-﻿Imports System.Net.NetworkInformation
+﻿Imports System.IO
+Imports System.Net.NetworkInformation
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
+Imports SkiaSharp
 
 Module UtilsModule
 
@@ -54,6 +56,16 @@ Module UtilsModule
         Return totalSeconds
     End Function
 
+
+    Public Function SKBitmapToBitmap(skBitmap As SKBitmap) As Bitmap
+        Using image As SKImage = SKImage.FromBitmap(skBitmap)
+            Using data As SKData = image.Encode()
+                Using stream As New MemoryStream(data.ToArray())
+                    Return New Bitmap(stream)
+                End Using
+            End Using
+        End Using
+    End Function
 
 
 

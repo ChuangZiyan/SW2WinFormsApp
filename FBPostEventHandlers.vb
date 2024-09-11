@@ -1,5 +1,7 @@
 ﻿Imports System.IO
 Imports System.Text.RegularExpressions
+Imports SkiaSharp
+
 
 Public Class FBPostEventHandlers
     Public Sub CreateNewAssetFolder_Button_Click(sender As Object, e As EventArgs)
@@ -240,9 +242,16 @@ Public Class FBPostEventHandlers
                 Dim allowedVideoExtension As String() = {".mp4", ".MP4"}
                 If allowedVideoExtension.Contains(Path.GetExtension(selectedItem)) Then
                     Form1.MediaPreview_PictureBox.Image = My.Resources.PlayVideo
-
                 Else
-                    Form1.MediaPreview_PictureBox.ImageLocation = filePath
+                    If {".webp", ".WEBP"}.Contains(Path.GetExtension(selectedItem)) Then
+                        'Debug.WriteLine("is webp...")
+                        Dim skBitmap As SKBitmap = SKBitmap.Decode(filePath)
+                        Dim bitmap As Bitmap = UtilsModule.SKBitmapToBitmap(skBitmap)
+                        Form1.MediaPreview_PictureBox.Image = Bitmap
+                    Else
+                        Form1.MediaPreview_PictureBox.ImageLocation = filePath
+                    End If
+
                 End If
             End If
         Catch ex As Exception
@@ -250,7 +259,6 @@ Public Class FBPostEventHandlers
         End Try
 
     End Sub
-
 
 
     Public Sub TextFileSelector_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs)

@@ -44,7 +44,6 @@ Module FBPostSeleniumScript
             Return Await Task.Run(Async Function() As Task(Of Boolean)
                                       Try
 
-
                                           Await Navigate_GoToUrl(myUrl)
 
                                           Await Delay_msec(300)
@@ -97,9 +96,7 @@ Module FBPostSeleniumScript
                                           Dim mediaFileList As New List(Of String)
                                           Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
 
-                                          'Debug.WriteLine("FFFFF : " & mediaFileFolderPath)
-
-                                          Dim allowedExtension As String() = {".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
+                                          Dim allowedExtension As String() = {".WEBP", ".webp", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                                           Dim myFiles As String() = Directory.GetFiles(mediaFileFolderPath)
                                           For Each file As String In myFiles
                                               If allowedExtension.Contains(Path.GetExtension(file)) Then

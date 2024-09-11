@@ -65,10 +65,25 @@ Public Class MainFormEventHandlers
     End Sub
 
     Public Sub ModifySelectedScriptListviewAsset_Button_Click(sender As Object, e As EventArgs)
-        ' UserData
-        Dim content = ""
-        If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
-            For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+
+
+
+        'Form1.Action_TabControl.SelectedTab.Text
+        Dim assetFolderListBoxSelectedItems = Nothing
+        Select Case Form1.Action_TabControl.SelectedTab.Text
+            Case "發帖"
+                assetFolderListBoxSelectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
+            Case "拍賣"
+                assetFolderListBoxSelectedItems = Form1.FBMarkplaceProducts_ListBox.SelectedItems
+            Case Else
+                MsgBox("不支援此執行動作")
+                Exit Sub
+        End Select
+
+
+        Dim content As String = ""
+        If assetFolderListBoxSelectedItems.Count > 0 Then
+            For Each item In assetFolderListBoxSelectedItems
                 content += item + "&"
             Next
             content = content.TrimEnd("&")
@@ -76,13 +91,15 @@ Public Class MainFormEventHandlers
             content = "隨機"
         End If
 
-
         Dim selectedListviewItems = Form1.ScriptQueue_ListView.SelectedItems
         If selectedListviewItems.Count > 0 Then
             For Each item As ListViewItem In selectedListviewItems
-                With item.SubItems
-                    .Item(5).Text = content
-                End With
+
+                If item.SubItems(4).Text = Form1.Action_TabControl.SelectedTab.Text Then
+                    With item.SubItems
+                        .Item(5).Text = content
+                    End With
+                End If
             Next
         End If
 
@@ -332,18 +349,24 @@ Public Class MainFormEventHandlers
             Form1.FBGroupName_TextBox.Text = urlName
             Form1.FBGroupUrl_TextBox.Text = url
 
+            '先宣告待會要用的asset listbox
+            Dim assetsFolder_ListBox = Nothing
 
-            ' 設定tab
+            ' 設定tab 順便設定是執行動作用的asset listbox
             Select Case action
                 Case "發帖"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPost_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    assetsFolder_ListBox = Form1.MyAssetsFolder_ListBox
+                Case "拍賣"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBMarketplace_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    assetsFolder_ListBox = Form1.FBMarkplaceProducts_ListBox
                 Case "測試項"
                     Form1.Action_TabControl.SelectedTab = Form1.TabPage2
             End Select
 
-
-            ' 設定時間
+            ' 設定時間, 這是通用的
             Dim waitSecondsStr = Split(waitTime, "±")(0)
             Dim RandomWaitSeconds = Split(waitTime, "±")(1)
             Dim SplitedWaitSecondsStr() As String = Split(UtilsModule.ConvertSecondsToTimeFormat(waitSecondsStr), ":")
@@ -352,14 +375,16 @@ Public Class MainFormEventHandlers
             Form1.ExecutionWaitSeconds_NumericUpDown.Value = CInt(SplitedWaitSecondsStr(2))
             Form1.ExecutionWaitRandomSeconds_NumericUpDown.Value = CInt(RandomWaitSeconds)
 
-            ' 設定選擇資料夾
-            If content <> "隨機" Then
-                Dim itemsToSelect As String() = Split(content, "&")
-                For i As Integer = 0 To Form1.MyAssetsFolder_ListBox.Items.Count - 1
-                    If itemsToSelect.Contains(Form1.MyAssetsFolder_ListBox.Items(i).ToString()) Then
-                        Form1.MyAssetsFolder_ListBox.SetSelected(i, True)
-                    End If
-                Next
+            '根據執行動作設定的 assetsFolder_ListBox 設定選擇資料夾
+            If assetsFolder_ListBox IsNot Nothing Then
+                If content <> "隨機" Then '如果不是隨機就選
+                    Dim itemsToSelect As String() = Split(content, "&")
+                    For i As Integer = 0 To assetsFolder_ListBox.Items.Count - 1
+                        If itemsToSelect.Contains(assetsFolder_ListBox.Items(i).ToString()) Then
+                            assetsFolder_ListBox.SetSelected(i, True)
+                        End If
+                    Next
+                End If
             End If
 
         End If
