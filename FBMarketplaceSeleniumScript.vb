@@ -155,15 +155,20 @@ Module FBMarketplaceSeleniumScript
                                       '然後點下一步
                                       'ClickByAriaLable("下一步")
                                       ClickByCssSelectorWaitUntil("div.x8cjs6t.x13fuv20.x178xt8z.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div", 5)
-                                      Await Delay_msec(2000)
+                                      Await Delay_msec(3000)
 
                                       If product.OnMarketplace Then
-                                          ClickByCssSelectorWaitUntil("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div", 5)
+                                          ClickByCssSelectorWaitUntil("div:nth-child(4) > div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div", 5)
                                       End If
 
-                                      Await Delay_msec(1000)
+                                      Await Delay_msec(2000)
 
                                       Dim group_elms = edgeDriver.FindElements(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(4) > div > div > div > div > div > div > div:nth-child(2) > div > div"))
+
+                                      If product.NumberOfGroupsShared > group_elms.Count Then
+                                          product.NumberOfGroupsShared = group_elms.Count
+                                      End If
+
 
                                       If product.RandomShare Then
                                           '隨機點
