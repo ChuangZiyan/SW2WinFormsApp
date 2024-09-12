@@ -287,6 +287,7 @@ Public Class Form1
     Private mainFormEventHandlers As New MainFormEventHandlers()
     Private FBPostEventHandlers As New FBPostEventHandlers()
     Private FBMarketplaceEventHandlers As New FBMarketplaceEventHandlers()
+    Private FBPostShareURLEventHandlers As New FBPostShareURLEventHandlers()
 
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
@@ -372,6 +373,24 @@ Public Class Form1
         AddHandler FBMarketplaceShareGroupsByRandom_RadioButton.CheckedChanged, AddressOf FBMarketplaceEventHandlers.FBMarketplaceShareGroupsByRandom_RadioButton_CheckedChanged
         AddHandler FBMarketplaceDeleteSelectedAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedAssetFolder_Button_Click
         AddHandler FBMarketplaceDeleteSelectedMedia_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedMedia_Button_Click
+        AddHandler FBMarkplaceProducts_ListBox.DoubleClick, AddressOf FBMarketplaceEventHandlers.FBMarkplaceProducts_ListBox_DoubleClick
+    End Sub
+
+    Private Sub RegisterFBPostShareURL()
+        ' 這邊是用來發帖分享網址相關的事件
+        AddHandler FBPostShareURLCreateNewAssetFolder_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLCreateNewAssetFolder_Button_Click
+        AddHandler FBPostShareURLDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBPostShareURLAssetFolder_ListBox.DoubleClick, AddressOf FBPostShareURLEventHandlers.FBPostShareURLAssetFolder_ListBox_DoubleClick
+        AddHandler FBPostShareURLDeleteSelectedAssetFolder_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBPostShareURLCreateNewTextFile_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLCreateNewTextFile_Button_Click
+        AddHandler FBPostShareURLDeleteSelectedTextFile_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLDeleteSelectedTextFile_Button_Click
+        AddHandler FBPostShareURLAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBPostShareURLEventHandlers.FBPostShareURLAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBPostShareURLTextFile_ListBox.SelectedIndexChanged, AddressOf FBPostShareURLEventHandlers.FBPostShareURLTextFile_ListBox_SelectedIndexChanged
+        AddHandler FBPostShareURLSaveTextFile_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLSaveTextFile_Button_Click
+        AddHandler FBPostShareURLTextFile_ListBox.DoubleClick, AddressOf FBPostShareURLEventHandlers.FBPostShareURLTextFile_ListBox_DoubleClick
+        AddHandler FBPostShareURLGetCurrentURL_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLGetCurrentURL_Button_Click
+        AddHandler FBPostShareURLNavigateToURL_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLNavigateToURL_Button_Click
+
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -389,6 +408,7 @@ Public Class Form1
         RegisterMainFormEventHanders()
         RegisterFBPostEventHanders()
         RegisterMarketplaceEventHanders()
+        RegisterFBPostShareURL()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")

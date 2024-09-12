@@ -18,6 +18,7 @@ Public Class FBMarketplaceEventHandlers
 
                 '新增後直接選擇該資料夾
                 Form1.FBMarkplaceProducts_ListBox.SelectedItem = folderName
+                Form1.NewMarketplaceAssetFolderName_TextBox.Clear()
                 'MsgBox("新增成功")
             Else
                 MsgBox("無法使用此名稱")
@@ -27,6 +28,19 @@ Public Class FBMarketplaceEventHandlers
         End Try
 
 
+    End Sub
+
+
+    Public Sub FBMarkplaceProducts_ListBox_DoubleClick(sender As Object, e As EventArgs)
+        Try
+            Dim foldPath = Path.Combine(AppInitModule.FBMarketPlaceAssetsDirectory, Form1.FBMarkplaceProducts_ListBox.SelectedItem)
+
+            If Path.Exists(foldPath) Then
+                Process.Start("Explorer", foldPath)
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
     End Sub
 
 

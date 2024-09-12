@@ -2,20 +2,21 @@
 
 Module AppInitModule
 
-    ' user data
+    ' app base 
     Public ReadOnly appBaseDirectory As String = AppDomain.CurrentDomain.BaseDirectory
-
     Public ReadOnly appConfigsDirectory As String = Path.Combine(appBaseDirectory, "appConfigs")
 
+    ' UserData
     Public ReadOnly webivewUserDataDirectory As String = Path.Combine(appBaseDirectory, "WebviewUserData")
     Public ReadOnly availableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "available")
     Public ReadOnly unavailableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "unavailable")
 
-    ' assets
+    ' Assets
     Public ReadOnly myAssetsDirectory As String = Path.Combine(appBaseDirectory, "myAssets")
 
     Public ReadOnly FBPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostAssets")
     Public ReadOnly FBMarketPlaceAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBmarketplaceAssets")
+    Public ReadOnly FBPostShareURLAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostShareURLAssets")
 
     ' auto save script csv file path 
     'Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
@@ -29,11 +30,13 @@ Module AppInitModule
         UpdateWebviewUserDataCheckListBox()
         FBPostEventHandlers.UpdateAssetsFolderListBox()
         FBMarketplaceEventHandlers.UpdateMarketplaceAssetsFolderListBox()
+        FBPostShareURLEventHandlers.UpdatePostShareURLAssetsFolderListBox()
     End Sub
 
 
     Public Sub InitializeDataDirectory()
 
+        ' 初始化所有資料夾，把路徑放進去就會在程式啟動時候自動建立
         Dim myDirectories() As String = {
                 appConfigsDirectory,
                 webivewUserDataDirectory,
@@ -41,7 +44,8 @@ Module AppInitModule
                 unavailableUserDataDirectory,
                 myAssetsDirectory,
                 FBPostAssetsDirectory,
-                FBMarketPlaceAssetsDirectory
+                FBMarketPlaceAssetsDirectory,
+                FBPostShareURLAssetsDirectory
         }
 
         For Each myDir In myDirectories

@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net.NetworkInformation
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
 Imports SkiaSharp
 
@@ -66,6 +67,36 @@ Module UtilsModule
             End Using
         End Using
     End Function
+
+
+
+    Public Sub MyWriteFile(text As String, filePath As String)
+        Try
+            'Debug.WriteLine("path : " & filePath)
+            Using writer As New StreamWriter(filePath)
+
+                ' BMP pattern
+                Dim pattern_BMP As String = "[\uD800-\uDBFF][\uDC00-\uDFFF]"
+                ' remove non BMP char
+                Dim inputString = text
+                Dim resultString As String = Regex.Replace(inputString, pattern_BMP, "")
+                writer.Write(resultString)
+            End Using
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Function IsValidUrl(url As String) As Boolean
+        Try
+            Dim uriResult As New Uri(url)
+            Return uriResult.Scheme = Uri.UriSchemeHttp OrElse uriResult.Scheme = Uri.UriSchemeHttps
+        Catch ex As UriFormatException
+            Return False
+        End Try
+    End Function
+
 
 
 

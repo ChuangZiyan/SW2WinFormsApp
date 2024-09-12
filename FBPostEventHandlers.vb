@@ -406,7 +406,7 @@ Public Class FBPostEventHandlers
     End Sub
 
 
-    Public Sub UpdateTextFileSelectorListBoxItems(folderName As String)
+    Private Sub UpdateTextFileSelectorListBoxItems(folderName As String)
         Try
             Form1.TextFileSelector_ListBox.Items.Clear()
             Form1.PreviewTextFile_RichTextBox.Clear()
