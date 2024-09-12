@@ -508,7 +508,7 @@ Module Webview2Controller
             Exit Sub
         End If
 
-        Debug.WriteLine("GetFBGroupList")
+        'Debug.WriteLine("GetFBGroupList")
         Dim items = Await Task.Run(Async Function()
                                        Dim itemList As New List(Of ListViewItem)()
                                        Try
@@ -540,22 +540,12 @@ Module Webview2Controller
                                            Dim elements = edgeDriver.FindElements(By.CssSelector("div.xb57i2i.x1q594ok.x5lxg6s.x78zum5.xdt5ytf.x6ikm8r.x1ja2u2z.x1pq812k.x1rohswg.xfk6m8.x1yqm8si.xjx87ck.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xx8ngbg.xwo3gff.x1oyok0e.x1odjw0f.x1e4zzel.x1n2onr6.xq1qtft > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div > div > div > div > a"))
                                            '"div.xb57i2i.x1q594ok.x5lxg6s.x78zum5.xdt5ytf.x6ikm8r.x1ja2u2z.x1pq812k.x1rohswg.xfk6m8.x1yqm8si.xjx87ck.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xx8ngbg.xwo3gff.x1oyok0e.x1odjw0f.x1e4zzel.x1n2onr6.xq1qtft > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div:nth-child(11) > div > div > div > a > div.x9f619.x1n2onr6.x1ja2u2z.x1qjc9v5.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli.x1sxyh0.xurb0ha.xwib8y2.x1y1aw1k.xykv574.xbmpl8g.x4vbgl9.x1rdy4ex.x1wiwyrm > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"
                                            For Each elm In elements
-                                               Debug.WriteLine("ele")
-                                               If i < 3 Then
-                                                   i += 1
-                                                   Continue For
-                                               Else
-                                                   i += 1
-                                               End If
-
 
                                                Dim name = elm.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x1qjc9v5.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli.x1sxyh0.xurb0ha.xwib8y2.x1y1aw1k.xykv574.xbmpl8g.x4vbgl9.x1rdy4ex.x1wiwyrm > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span")).GetAttribute("innerHTML")
                                                Dim url = elm.GetAttribute("href")
-
                                                Dim item As New ListViewItem(name)
                                                item.SubItems.Add(url)
                                                itemList.Add(item)
-
                                            Next
 
                                            Return itemList

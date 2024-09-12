@@ -420,5 +420,4 @@ Public Class Form1
         'emojiPickerForm.Show()
     End Sub
 
-
 End Class
