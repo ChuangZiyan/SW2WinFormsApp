@@ -152,7 +152,6 @@ Partial Class Form1
         CreateNewMarketplaceAssetFolder_Button = New Button()
         FBMarkplaceProducts_ListBox = New ListBox()
         TabPage1 = New TabPage()
-        Button9 = New Button()
         FBPostShareURLGetCurrentURL_Button = New Button()
         FBPostShareURLNavigateToURL_Button = New Button()
         FBPostShareURLDeleteSelectedTextFile_Button = New Button()
@@ -1428,7 +1427,6 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
-        TabPage1.Controls.Add(Button9)
         TabPage1.Controls.Add(FBPostShareURLGetCurrentURL_Button)
         TabPage1.Controls.Add(FBPostShareURLNavigateToURL_Button)
         TabPage1.Controls.Add(FBPostShareURLDeleteSelectedTextFile_Button)
@@ -1455,15 +1453,6 @@ Partial Class Form1
         TabPage1.TabIndex = 3
         TabPage1.Text = "分享"
         TabPage1.UseVisualStyleBackColor = True
-        ' 
-        ' Button9
-        ' 
-        Button9.Location = New Point(438, 94)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(94, 29)
-        Button9.TabIndex = 45
-        Button9.Text = "修改"
-        Button9.UseVisualStyleBackColor = True
         ' 
         ' FBPostShareURLGetCurrentURL_Button
         ' 
@@ -2127,7 +2116,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1858, 1103)
+        ClientSize = New Size(1858, 1055)
         Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(EnableClipboard_CheckBox)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
@@ -2394,7 +2383,6 @@ Partial Class Form1
     Friend WithEvents FBPostShareURLSaveTextFile_Button As Button
     Friend WithEvents FBPostShareURLCreateNewTextFile_Button As Button
     Friend WithEvents FBPostShareURLTextFilePreviewer_RichTextBox As RichTextBox
-    Friend WithEvents Button9 As Button
     Friend WithEvents FBPostShareURLGetCurrentURL_Button As Button
     Friend WithEvents FBPostShareURLNavigateToURL_Button As Button
 

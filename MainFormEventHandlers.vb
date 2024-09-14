@@ -362,6 +362,9 @@ Public Class MainFormEventHandlers
                     Form1.Action_TabControl.SelectedTab = Form1.FBMarketplace_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
                     assetsFolder_ListBox = Form1.FBMarkplaceProducts_ListBox
+
+                Case "分享"
+
                 Case "測試項"
                     Form1.Action_TabControl.SelectedTab = Form1.TabPage2
             End Select
@@ -823,7 +826,6 @@ Public Class MainFormEventHandlers
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled
 
-
         Dim selectedUserDataFolderItems = Form1.WebviewUserDataFolder_ListBox.SelectedItems
         Dim selectedGroupItems = Form1.FBGroups_ListView.SelectedItems
 
@@ -855,11 +857,18 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "分享"
+                If Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
             Case "測試項"
                 content = "測試"
         End Select
-
-
 
 
         Dim selectedUserDataFolder = "NULL"

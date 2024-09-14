@@ -9,7 +9,6 @@ Imports OpenQA.Selenium.DevTools.V125.Autofill
 
 Public Class Form1
 
-
     Private Sub Form1_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         MainFormController.SetForm1TitleStatus("關閉中...")
         If Webview2Controller.edgeDriver IsNot Nothing Then
@@ -37,7 +36,6 @@ Public Class Form1
         Next
         MainFormController.EnabledAllExecutionButton(True)
     End Sub
-
 
     Private Async Sub ExecutionScriptQueue_Button_Click(sender As Object, e As EventArgs) Handles ExecutionScriptQueue_Button.Click
 
@@ -228,7 +226,43 @@ Public Class Form1
                     Debug.WriteLine(ex)
                     result = False
                 End Try
+            Case "分享"
+                Try
 
+                    Debug.WriteLine("分享")
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPostShareURLAssetsDirectory)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                    Dim FBWritePostShareURLWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBPostShareURLWaitSecondsConfig.txt"))
+                    item.SubItems(7).Text = Split(FBWritePostShareURLWaitSecondsCfg, ",")(0)
+                    item.SubItems(8).Text = Split(FBWritePostShareURLWaitSecondsCfg, ",")(1)
+
+                    result = Await FBShareURLSeleniumScript.WritePostAndShareURLOnFacebook(myUrl, assetFolderPath)
+                    'result = False
+
+                    ' 如果流程都沒問題
+                    If result Then
+                        ' 這邊要等待上傳完成
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(7).Text = seconds
+                        Next
+
+                        ' 如果你要發佈貼文就取消註解下面那行
+                        'result = Await ClickByCssSelector_Task("div[aria-label$='發佈']")
+
+                        ' 發佈後等待
+                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(8).Text = seconds
+                        Next
+
+
+                    End If
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
                 '########################################################################### 測試項功能 ###############################################################################################
             Case "測試項"
                 Try
