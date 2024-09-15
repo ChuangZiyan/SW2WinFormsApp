@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -151,7 +151,7 @@ Partial Class Form1
         NewMarketplaceAssetFolderName_TextBox = New TextBox()
         CreateNewMarketplaceAssetFolder_Button = New Button()
         FBMarkplaceProducts_ListBox = New ListBox()
-        TabPage1 = New TabPage()
+        FBPostShareURL_TabPage = New TabPage()
         FBPostShareURLGetCurrentURL_Button = New Button()
         FBPostShareURLNavigateToURL_Button = New Button()
         FBPostShareURLDeleteSelectedTextFile_Button = New Button()
@@ -222,6 +222,7 @@ Partial Class Form1
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
         EnableClipboard_CheckBox = New CheckBox()
+        SelectScriptListviewItemsByUserDataButton = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -238,7 +239,7 @@ Partial Class Form1
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        TabPage1.SuspendLayout()
+        FBPostShareURL_TabPage.SuspendLayout()
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
@@ -262,7 +263,7 @@ Partial Class Form1
         Main_WebView2.ForeColor = Color.Black
         Main_WebView2.Location = New Point(1147, 517)
         Main_WebView2.Name = "Main_WebView2"
-        Main_WebView2.Size = New Size(673, 541)
+        Main_WebView2.Size = New Size(672, 541)
         Main_WebView2.TabIndex = 0
         Main_WebView2.ZoomFactor = 1R
         ' 
@@ -303,9 +304,9 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label2)
         UserInfo_GroupBox.Controls.Add(FBAccount_TextBox)
         UserInfo_GroupBox.Controls.Add(Label1)
-        UserInfo_GroupBox.Location = New Point(212, 12)
+        UserInfo_GroupBox.Location = New Point(212, 11)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(223, 589)
+        UserInfo_GroupBox.Size = New Size(222, 589)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
@@ -329,7 +330,7 @@ Partial Class Form1
         ' 
         ' SetCookie_Button
         ' 
-        SetCookie_Button.Location = New Point(117, 373)
+        SetCookie_Button.Location = New Point(117, 372)
         SetCookie_Button.Name = "SetCookie_Button"
         SetCookie_Button.Size = New Size(95, 29)
         SetCookie_Button.TabIndex = 16
@@ -338,7 +339,7 @@ Partial Class Form1
         ' 
         ' ReadCookie_Button
         ' 
-        ReadCookie_Button.Location = New Point(6, 373)
+        ReadCookie_Button.Location = New Point(6, 372)
         ReadCookie_Button.Name = "ReadCookie_Button"
         ReadCookie_Button.Size = New Size(105, 29)
         ReadCookie_Button.TabIndex = 15
@@ -365,7 +366,7 @@ Partial Class Form1
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(6, 283)
+        Label6.Location = New Point(6, 282)
         Label6.Name = "Label6"
         Label6.Size = New Size(57, 19)
         Label6.TabIndex = 12
@@ -401,7 +402,7 @@ Partial Class Form1
         EmailPassword_TextBox.Location = New Point(6, 201)
         EmailPassword_TextBox.Name = "EmailPassword_TextBox"
         EmailPassword_TextBox.PasswordChar = "*"c
-        EmailPassword_TextBox.Size = New Size(150, 27)
+        EmailPassword_TextBox.Size = New Size(151, 27)
         EmailPassword_TextBox.TabIndex = 8
         ' 
         ' Label3
@@ -431,7 +432,7 @@ Partial Class Form1
         ' 
         ' RevealFBPasswordText_Button
         ' 
-        RevealFBPasswordText_Button.Location = New Point(162, 97)
+        RevealFBPasswordText_Button.Location = New Point(162, 98)
         RevealFBPasswordText_Button.Name = "RevealFBPasswordText_Button"
         RevealFBPasswordText_Button.Size = New Size(50, 29)
         RevealFBPasswordText_Button.TabIndex = 4
@@ -440,10 +441,10 @@ Partial Class Form1
         ' 
         ' FBPassword_TextBox
         ' 
-        FBPassword_TextBox.Location = New Point(6, 97)
+        FBPassword_TextBox.Location = New Point(6, 98)
         FBPassword_TextBox.Name = "FBPassword_TextBox"
         FBPassword_TextBox.PasswordChar = "*"c
-        FBPassword_TextBox.Size = New Size(150, 27)
+        FBPassword_TextBox.Size = New Size(151, 27)
         FBPassword_TextBox.TabIndex = 3
         ' 
         ' Label2
@@ -457,7 +458,7 @@ Partial Class Form1
         ' 
         ' FBAccount_TextBox
         ' 
-        FBAccount_TextBox.Location = New Point(6, 45)
+        FBAccount_TextBox.Location = New Point(6, 46)
         FBAccount_TextBox.Name = "FBAccount_TextBox"
         FBAccount_TextBox.Size = New Size(206, 27)
         FBAccount_TextBox.TabIndex = 1
@@ -473,14 +474,14 @@ Partial Class Form1
         ' 
         ' UserDataFolderName_TextBox
         ' 
-        UserDataFolderName_TextBox.Location = New Point(12, 463)
+        UserDataFolderName_TextBox.Location = New Point(12, 464)
         UserDataFolderName_TextBox.Name = "UserDataFolderName_TextBox"
         UserDataFolderName_TextBox.Size = New Size(94, 27)
         UserDataFolderName_TextBox.TabIndex = 9
         ' 
         ' CreateUserDataFolderButton
         ' 
-        CreateUserDataFolderButton.Location = New Point(112, 463)
+        CreateUserDataFolderButton.Location = New Point(112, 464)
         CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
         CreateUserDataFolderButton.Size = New Size(94, 29)
         CreateUserDataFolderButton.TabIndex = 10
@@ -500,9 +501,9 @@ Partial Class Form1
         ' 
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterUnavailableUserData_CheckBox)
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterAvailableUserData_CheckBox)
-        UserDataFoldListFilter_GroupBox.Location = New Point(12, 363)
+        UserDataFoldListFilter_GroupBox.Location = New Point(12, 364)
         UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
-        UserDataFoldListFilter_GroupBox.Size = New Size(194, 93)
+        UserDataFoldListFilter_GroupBox.Size = New Size(194, 92)
         UserDataFoldListFilter_GroupBox.TabIndex = 13
         UserDataFoldListFilter_GroupBox.TabStop = False
         UserDataFoldListFilter_GroupBox.Text = "顯示"
@@ -510,7 +511,7 @@ Partial Class Form1
         ' FilterUnavailableUserData_CheckBox
         ' 
         FilterUnavailableUserData_CheckBox.AutoSize = True
-        FilterUnavailableUserData_CheckBox.Location = New Point(6, 55)
+        FilterUnavailableUserData_CheckBox.Location = New Point(6, 54)
         FilterUnavailableUserData_CheckBox.Name = "FilterUnavailableUserData_CheckBox"
         FilterUnavailableUserData_CheckBox.Size = New Size(61, 23)
         FilterUnavailableUserData_CheckBox.TabIndex = 1
@@ -522,7 +523,7 @@ Partial Class Form1
         FilterAvailableUserData_CheckBox.AutoSize = True
         FilterAvailableUserData_CheckBox.Checked = True
         FilterAvailableUserData_CheckBox.CheckState = CheckState.Checked
-        FilterAvailableUserData_CheckBox.Location = New Point(6, 26)
+        FilterAvailableUserData_CheckBox.Location = New Point(6, 27)
         FilterAvailableUserData_CheckBox.Name = "FilterAvailableUserData_CheckBox"
         FilterAvailableUserData_CheckBox.Size = New Size(61, 23)
         FilterAvailableUserData_CheckBox.TabIndex = 0
@@ -531,7 +532,7 @@ Partial Class Form1
         ' 
         ' Move_UserDataFolder_Button
         ' 
-        Move_UserDataFolder_Button.Location = New Point(12, 496)
+        Move_UserDataFolder_Button.Location = New Point(12, 497)
         Move_UserDataFolder_Button.Name = "Move_UserDataFolder_Button"
         Move_UserDataFolder_Button.Size = New Size(94, 29)
         Move_UserDataFolder_Button.TabIndex = 14
@@ -560,7 +561,7 @@ Partial Class Form1
         ' 
         WebviewUserDataFolder_ListBox.FormattingEnabled = True
         WebviewUserDataFolder_ListBox.ItemHeight = 19
-        WebviewUserDataFolder_ListBox.Location = New Point(12, 12)
+        WebviewUserDataFolder_ListBox.Location = New Point(12, 11)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
         WebviewUserDataFolder_ListBox.Size = New Size(194, 346)
@@ -577,7 +578,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1726, 1064)
+        GetCurrentUrl_Button.Location = New Point(1725, 1064)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -588,10 +589,10 @@ Partial Class Form1
         ' 
         FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
         FBUrlData_TabControl.Controls.Add(TabPage2)
-        FBUrlData_TabControl.Location = New Point(441, 12)
+        FBUrlData_TabControl.Location = New Point(441, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
-        FBUrlData_TabControl.Size = New Size(700, 423)
+        FBUrlData_TabControl.Size = New Size(699, 423)
         FBUrlData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -612,14 +613,14 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(692, 391)
+        FBGroups_TabPage.Size = New Size(691, 391)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
         ' GetJoinedGroupList_Button
         ' 
-        GetJoinedGroupList_Button.Location = New Point(106, 349)
+        GetJoinedGroupList_Button.Location = New Point(105, 350)
         GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
         GetJoinedGroupList_Button.Size = New Size(109, 29)
         GetJoinedGroupList_Button.TabIndex = 12
@@ -628,7 +629,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(592, 349)
+        DeleteSelectedGroup_Button.Location = New Point(591, 350)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -637,7 +638,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(221, 349)
+        SaveListviewGroupList_Button.Location = New Point(221, 350)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -646,7 +647,7 @@ Partial Class Form1
         ' 
         ' GetFBGroupList_Button
         ' 
-        GetFBGroupList_Button.Location = New Point(6, 349)
+        GetFBGroupList_Button.Location = New Point(6, 350)
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
@@ -673,7 +674,7 @@ Partial Class Form1
         ' 
         ' DisplayCurrUrlToGroupUrl_Button
         ' 
-        DisplayCurrUrlToGroupUrl_Button.Location = New Point(106, 72)
+        DisplayCurrUrlToGroupUrl_Button.Location = New Point(105, 72)
         DisplayCurrUrlToGroupUrl_Button.Name = "DisplayCurrUrlToGroupUrl_Button"
         DisplayCurrUrlToGroupUrl_Button.Size = New Size(94, 29)
         DisplayCurrUrlToGroupUrl_Button.TabIndex = 6
@@ -725,8 +726,8 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
-        FBGroups_ListView.Location = New Point(6, 107)
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
         FBGroups_ListView.TabIndex = 0
@@ -748,7 +749,7 @@ Partial Class Form1
         TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(692, 391)
+        TabPage2.Size = New Size(691, 391)
         TabPage2.TabIndex = 1
         TabPage2.Text = "TabPage2"
         TabPage2.UseVisualStyleBackColor = True
@@ -832,12 +833,12 @@ Partial Class Form1
         ' 
         Action_TabControl.Controls.Add(FBPost_TabPage)
         Action_TabControl.Controls.Add(FBMarketplace_TabPage)
-        Action_TabControl.Controls.Add(TabPage1)
+        Action_TabControl.Controls.Add(FBPostShareURL_TabPage)
         Action_TabControl.Controls.Add(TabPage3)
-        Action_TabControl.Location = New Point(1147, 12)
+        Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
-        Action_TabControl.Size = New Size(673, 499)
+        Action_TabControl.Size = New Size(672, 499)
         Action_TabControl.TabIndex = 25
         ' 
         ' FBPost_TabPage
@@ -865,7 +866,7 @@ Partial Class Form1
         FBPost_TabPage.Location = New Point(4, 28)
         FBPost_TabPage.Name = "FBPost_TabPage"
         FBPost_TabPage.Padding = New Padding(3)
-        FBPost_TabPage.Size = New Size(665, 467)
+        FBPost_TabPage.Size = New Size(664, 467)
         FBPost_TabPage.TabIndex = 0
         FBPost_TabPage.Text = "發帖"
         FBPost_TabPage.UseVisualStyleBackColor = True
@@ -891,7 +892,7 @@ Partial Class Form1
         ' Label21
         ' 
         Label21.AutoSize = True
-        Label21.Location = New Point(182, 11)
+        Label21.Location = New Point(183, 11)
         Label21.Name = "Label21"
         Label21.Size = New Size(80, 19)
         Label21.TabIndex = 21
@@ -899,7 +900,7 @@ Partial Class Form1
         ' 
         ' FBWritePostUploadWaitSeconds_NumericUpDown
         ' 
-        FBWritePostUploadWaitSeconds_NumericUpDown.Location = New Point(268, 8)
+        FBWritePostUploadWaitSeconds_NumericUpDown.Location = New Point(267, 8)
         FBWritePostUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         FBWritePostUploadWaitSeconds_NumericUpDown.Name = "FBWritePostUploadWaitSeconds_NumericUpDown"
         FBWritePostUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
@@ -924,7 +925,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedTextFiles_Button
         ' 
-        DeleteSelectedTextFiles_Button.Location = New Point(434, 187)
+        DeleteSelectedTextFiles_Button.Location = New Point(435, 187)
         DeleteSelectedTextFiles_Button.Name = "DeleteSelectedTextFiles_Button"
         DeleteSelectedTextFiles_Button.Size = New Size(94, 29)
         DeleteSelectedTextFiles_Button.TabIndex = 17
@@ -933,29 +934,29 @@ Partial Class Form1
         ' 
         ' NewTextFileName_TextBox
         ' 
-        NewTextFileName_TextBox.Location = New Point(182, 187)
+        NewTextFileName_TextBox.Location = New Point(183, 187)
         NewTextFileName_TextBox.Name = "NewTextFileName_TextBox"
-        NewTextFileName_TextBox.Size = New Size(146, 27)
+        NewTextFileName_TextBox.Size = New Size(145, 27)
         NewTextFileName_TextBox.TabIndex = 16
         ' 
         ' MediaSelector_ListBox
         ' 
         MediaSelector_ListBox.FormattingEnabled = True
         MediaSelector_ListBox.ItemHeight = 19
-        MediaSelector_ListBox.Location = New Point(182, 222)
+        MediaSelector_ListBox.Location = New Point(183, 222)
         MediaSelector_ListBox.Name = "MediaSelector_ListBox"
         MediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
-        MediaSelector_ListBox.Size = New Size(146, 156)
+        MediaSelector_ListBox.Size = New Size(145, 156)
         MediaSelector_ListBox.TabIndex = 15
         ' 
         ' TextFileSelector_ListBox
         ' 
         TextFileSelector_ListBox.FormattingEnabled = True
         TextFileSelector_ListBox.ItemHeight = 19
-        TextFileSelector_ListBox.Location = New Point(182, 44)
+        TextFileSelector_ListBox.Location = New Point(183, 44)
         TextFileSelector_ListBox.Name = "TextFileSelector_ListBox"
         TextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
-        TextFileSelector_ListBox.Size = New Size(146, 137)
+        TextFileSelector_ListBox.Size = New Size(145, 137)
         TextFileSelector_ListBox.TabIndex = 14
         ' 
         ' MyAssetsFolder_ListBox
@@ -988,18 +989,18 @@ Partial Class Form1
         ' 
         ' DeleteSelectedMedia_Button
         ' 
-        DeleteSelectedMedia_Button.Location = New Point(182, 427)
+        DeleteSelectedMedia_Button.Location = New Point(183, 427)
         DeleteSelectedMedia_Button.Name = "DeleteSelectedMedia_Button"
-        DeleteSelectedMedia_Button.Size = New Size(146, 29)
+        DeleteSelectedMedia_Button.Size = New Size(147, 29)
         DeleteSelectedMedia_Button.TabIndex = 9
         DeleteSelectedMedia_Button.Text = "刪除所選"
         DeleteSelectedMedia_Button.UseVisualStyleBackColor = True
         ' 
         ' RevealMediaFoldesrInFileExplorer_Button
         ' 
-        RevealMediaFoldesrInFileExplorer_Button.Location = New Point(182, 392)
+        RevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 391)
         RevealMediaFoldesrInFileExplorer_Button.Name = "RevealMediaFoldesrInFileExplorer_Button"
-        RevealMediaFoldesrInFileExplorer_Button.Size = New Size(146, 29)
+        RevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
         RevealMediaFoldesrInFileExplorer_Button.TabIndex = 8
         RevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
         RevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
@@ -1015,9 +1016,9 @@ Partial Class Form1
         ' 
         ' NewAssetFolderName_TextBox
         ' 
-        NewAssetFolderName_TextBox.Location = New Point(62, 359)
+        NewAssetFolderName_TextBox.Location = New Point(62, 358)
         NewAssetFolderName_TextBox.Name = "NewAssetFolderName_TextBox"
-        NewAssetFolderName_TextBox.Size = New Size(114, 27)
+        NewAssetFolderName_TextBox.Size = New Size(115, 27)
         NewAssetFolderName_TextBox.TabIndex = 6
         ' 
         ' MediaPreview_PictureBox
@@ -1033,14 +1034,14 @@ Partial Class Form1
         ' 
         PreviewTextFile_RichTextBox.Location = New Point(334, 42)
         PreviewTextFile_RichTextBox.Name = "PreviewTextFile_RichTextBox"
-        PreviewTextFile_RichTextBox.Size = New Size(325, 139)
+        PreviewTextFile_RichTextBox.Size = New Size(325, 140)
         PreviewTextFile_RichTextBox.TabIndex = 4
         PreviewTextFile_RichTextBox.Text = ""
         PreviewTextFile_RichTextBox.WordWrap = False
         ' 
         ' CreateNewAssetFolder_Button
         ' 
-        CreateNewAssetFolder_Button.Location = New Point(6, 392)
+        CreateNewAssetFolder_Button.Location = New Point(6, 391)
         CreateNewAssetFolder_Button.Name = "CreateNewAssetFolder_Button"
         CreateNewAssetFolder_Button.Size = New Size(170, 29)
         CreateNewAssetFolder_Button.TabIndex = 2
@@ -1088,7 +1089,7 @@ Partial Class Form1
         FBMarketplace_TabPage.Controls.Add(FBMarkplaceProducts_ListBox)
         FBMarketplace_TabPage.Location = New Point(4, 28)
         FBMarketplace_TabPage.Name = "FBMarketplace_TabPage"
-        FBMarketplace_TabPage.Size = New Size(665, 467)
+        FBMarketplace_TabPage.Size = New Size(664, 467)
         FBMarketplace_TabPage.TabIndex = 2
         FBMarketplace_TabPage.Text = "拍賣"
         FBMarketplace_TabPage.UseVisualStyleBackColor = True
@@ -1126,7 +1127,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceShareGroupsCount_NumericUpDown
         ' 
-        FBMarketplaceShareGroupsCount_NumericUpDown.Location = New Point(268, 201)
+        FBMarketplaceShareGroupsCount_NumericUpDown.Location = New Point(267, 201)
         FBMarketplaceShareGroupsCount_NumericUpDown.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         FBMarketplaceShareGroupsCount_NumericUpDown.Name = "FBMarketplaceShareGroupsCount_NumericUpDown"
         FBMarketplaceShareGroupsCount_NumericUpDown.Size = New Size(60, 27)
@@ -1135,7 +1136,7 @@ Partial Class Form1
         ' Label36
         ' 
         Label36.AutoSize = True
-        Label36.Location = New Point(182, 203)
+        Label36.Location = New Point(183, 203)
         Label36.Name = "Label36"
         Label36.Size = New Size(80, 19)
         Label36.TabIndex = 65
@@ -1144,7 +1145,7 @@ Partial Class Form1
         ' Label34
         ' 
         Label34.AutoSize = True
-        Label34.Location = New Point(334, 173)
+        Label34.Location = New Point(334, 174)
         Label34.Name = "Label34"
         Label34.Size = New Size(80, 19)
         Label34.TabIndex = 63
@@ -1153,7 +1154,7 @@ Partial Class Form1
         ' Label35
         ' 
         Label35.AutoSize = True
-        Label35.Location = New Point(182, 173)
+        Label35.Location = New Point(183, 174)
         Label35.Name = "Label35"
         Label35.Size = New Size(80, 19)
         Label35.TabIndex = 62
@@ -1161,7 +1162,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceUploadWaitSeconds_NumericUpDown
         ' 
-        FBMarketplaceUploadWaitSeconds_NumericUpDown.Location = New Point(268, 168)
+        FBMarketplaceUploadWaitSeconds_NumericUpDown.Location = New Point(267, 168)
         FBMarketplaceUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         FBMarketplaceUploadWaitSeconds_NumericUpDown.Name = "FBMarketplaceUploadWaitSeconds_NumericUpDown"
         FBMarketplaceUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
@@ -1219,7 +1220,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceProductTag_TextBox
         ' 
-        FBMarketplaceProductTag_TextBox.Location = New Point(268, 105)
+        FBMarketplaceProductTag_TextBox.Location = New Point(267, 105)
         FBMarketplaceProductTag_TextBox.Name = "FBMarketplaceProductTag_TextBox"
         FBMarketplaceProductTag_TextBox.Size = New Size(183, 27)
         FBMarketplaceProductTag_TextBox.TabIndex = 47
@@ -1227,7 +1228,7 @@ Partial Class Form1
         ' Label33
         ' 
         Label33.AutoSize = True
-        Label33.Location = New Point(182, 113)
+        Label33.Location = New Point(183, 113)
         Label33.Name = "Label33"
         Label33.Size = New Size(80, 19)
         Label33.TabIndex = 46
@@ -1246,7 +1247,7 @@ Partial Class Form1
         ' 
         FBMarketplaceMediaPreviewer_PictureBox.Location = New Point(437, 282)
         FBMarketplaceMediaPreviewer_PictureBox.Name = "FBMarketplaceMediaPreviewer_PictureBox"
-        FBMarketplaceMediaPreviewer_PictureBox.Size = New Size(218, 172)
+        FBMarketplaceMediaPreviewer_PictureBox.Size = New Size(219, 172)
         FBMarketplaceMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
         FBMarketplaceMediaPreviewer_PictureBox.TabIndex = 44
         FBMarketplaceMediaPreviewer_PictureBox.TabStop = False
@@ -1255,15 +1256,15 @@ Partial Class Form1
         ' 
         FBMarketplaceMediaSelector_ListBox.FormattingEnabled = True
         FBMarketplaceMediaSelector_ListBox.ItemHeight = 19
-        FBMarketplaceMediaSelector_ListBox.Location = New Point(182, 281)
+        FBMarketplaceMediaSelector_ListBox.Location = New Point(183, 281)
         FBMarketplaceMediaSelector_ListBox.Name = "FBMarketplaceMediaSelector_ListBox"
-        FBMarketplaceMediaSelector_ListBox.Size = New Size(249, 137)
+        FBMarketplaceMediaSelector_ListBox.Size = New Size(250, 137)
         FBMarketplaceMediaSelector_ListBox.TabIndex = 43
         ' 
         ' Label32
         ' 
         Label32.AutoSize = True
-        Label32.Location = New Point(437, 259)
+        Label32.Location = New Point(437, 258)
         Label32.Name = "Label32"
         Label32.Size = New Size(39, 19)
         Label32.TabIndex = 42
@@ -1272,7 +1273,7 @@ Partial Class Form1
         ' Label31
         ' 
         Label31.AutoSize = True
-        Label31.Location = New Point(182, 259)
+        Label31.Location = New Point(183, 258)
         Label31.Name = "Label31"
         Label31.Size = New Size(39, 19)
         Label31.TabIndex = 41
@@ -1280,7 +1281,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceSavePruductInfo_Button
         ' 
-        FBMarketplaceSavePruductInfo_Button.Location = New Point(182, 424)
+        FBMarketplaceSavePruductInfo_Button.Location = New Point(183, 424)
         FBMarketplaceSavePruductInfo_Button.Name = "FBMarketplaceSavePruductInfo_Button"
         FBMarketplaceSavePruductInfo_Button.Size = New Size(94, 29)
         FBMarketplaceSavePruductInfo_Button.TabIndex = 40
@@ -1291,7 +1292,7 @@ Partial Class Form1
         ' 
         FBMarketplaceProductDescription_RichTextBox.Location = New Point(460, 39)
         FBMarketplaceProductDescription_RichTextBox.Name = "FBMarketplaceProductDescription_RichTextBox"
-        FBMarketplaceProductDescription_RichTextBox.Size = New Size(195, 93)
+        FBMarketplaceProductDescription_RichTextBox.Size = New Size(196, 93)
         FBMarketplaceProductDescription_RichTextBox.TabIndex = 39
         FBMarketplaceProductDescription_RichTextBox.Text = ""
         FBMarketplaceProductDescription_RichTextBox.WordWrap = False
@@ -1307,7 +1308,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceProductLocation_TextBox
         ' 
-        FBMarketplaceProductLocation_TextBox.Location = New Point(268, 138)
+        FBMarketplaceProductLocation_TextBox.Location = New Point(267, 138)
         FBMarketplaceProductLocation_TextBox.Name = "FBMarketplaceProductLocation_TextBox"
         FBMarketplaceProductLocation_TextBox.Size = New Size(183, 27)
         FBMarketplaceProductLocation_TextBox.TabIndex = 37
@@ -1316,14 +1317,14 @@ Partial Class Form1
         ' 
         FBMarketplaceProductStatus_NumericUpDown.FormattingEnabled = True
         FBMarketplaceProductStatus_NumericUpDown.Items.AddRange(New Object() {"全新", "二手 - 近全新", "二手 - 良好", "二手 - 普通"})
-        FBMarketplaceProductStatus_NumericUpDown.Location = New Point(268, 72)
+        FBMarketplaceProductStatus_NumericUpDown.Location = New Point(267, 72)
         FBMarketplaceProductStatus_NumericUpDown.Name = "FBMarketplaceProductStatus_NumericUpDown"
         FBMarketplaceProductStatus_NumericUpDown.Size = New Size(183, 27)
         FBMarketplaceProductStatus_NumericUpDown.TabIndex = 36
         ' 
         ' FBMarketplaceProductPrice_NumericUpDown
         ' 
-        FBMarketplaceProductPrice_NumericUpDown.Location = New Point(268, 39)
+        FBMarketplaceProductPrice_NumericUpDown.Location = New Point(267, 39)
         FBMarketplaceProductPrice_NumericUpDown.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         FBMarketplaceProductPrice_NumericUpDown.Name = "FBMarketplaceProductPrice_NumericUpDown"
         FBMarketplaceProductPrice_NumericUpDown.Size = New Size(183, 27)
@@ -1331,7 +1332,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceProductName_TextBox
         ' 
-        FBMarketplaceProductName_TextBox.Location = New Point(268, 6)
+        FBMarketplaceProductName_TextBox.Location = New Point(267, 6)
         FBMarketplaceProductName_TextBox.Name = "FBMarketplaceProductName_TextBox"
         FBMarketplaceProductName_TextBox.Size = New Size(183, 27)
         FBMarketplaceProductName_TextBox.TabIndex = 34
@@ -1357,7 +1358,7 @@ Partial Class Form1
         ' Label27
         ' 
         Label27.AutoSize = True
-        Label27.Location = New Point(182, 80)
+        Label27.Location = New Point(183, 80)
         Label27.Name = "Label27"
         Label27.Size = New Size(80, 19)
         Label27.TabIndex = 31
@@ -1366,7 +1367,7 @@ Partial Class Form1
         ' Label26
         ' 
         Label26.AutoSize = True
-        Label26.Location = New Point(182, 14)
+        Label26.Location = New Point(183, 14)
         Label26.Name = "Label26"
         Label26.Size = New Size(80, 19)
         Label26.TabIndex = 30
@@ -1392,7 +1393,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceDeleteSelectedAssetFolder_Button
         ' 
-        FBMarketplaceDeleteSelectedAssetFolder_Button.Location = New Point(6, 425)
+        FBMarketplaceDeleteSelectedAssetFolder_Button.Location = New Point(6, 426)
         FBMarketplaceDeleteSelectedAssetFolder_Button.Name = "FBMarketplaceDeleteSelectedAssetFolder_Button"
         FBMarketplaceDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
         FBMarketplaceDeleteSelectedAssetFolder_Button.TabIndex = 27
@@ -1403,7 +1404,7 @@ Partial Class Form1
         ' 
         NewMarketplaceAssetFolderName_TextBox.Location = New Point(62, 357)
         NewMarketplaceAssetFolderName_TextBox.Name = "NewMarketplaceAssetFolderName_TextBox"
-        NewMarketplaceAssetFolderName_TextBox.Size = New Size(114, 27)
+        NewMarketplaceAssetFolderName_TextBox.Size = New Size(115, 27)
         NewMarketplaceAssetFolderName_TextBox.TabIndex = 26
         ' 
         ' CreateNewMarketplaceAssetFolder_Button
@@ -1425,34 +1426,34 @@ Partial Class Form1
         FBMarkplaceProducts_ListBox.Size = New Size(170, 308)
         FBMarkplaceProducts_ListBox.TabIndex = 14
         ' 
-        ' TabPage1
+        ' FBPostShareURL_TabPage
         ' 
-        TabPage1.Controls.Add(FBPostShareURLGetCurrentURL_Button)
-        TabPage1.Controls.Add(FBPostShareURLNavigateToURL_Button)
-        TabPage1.Controls.Add(FBPostShareURLDeleteSelectedTextFile_Button)
-        TabPage1.Controls.Add(FBPostShareURLTextFileName_TextBox)
-        TabPage1.Controls.Add(FBPostShareURLTextFile_ListBox)
-        TabPage1.Controls.Add(FBPostShareURLSaveTextFile_Button)
-        TabPage1.Controls.Add(FBPostShareURLCreateNewTextFile_Button)
-        TabPage1.Controls.Add(FBPostShareURLTextFilePreviewer_RichTextBox)
-        TabPage1.Controls.Add(FBPostShareURLBaseURL_TextBox)
-        TabPage1.Controls.Add(Label40)
-        TabPage1.Controls.Add(Label38)
-        TabPage1.Controls.Add(Label39)
-        TabPage1.Controls.Add(FBPostShareURLUploadWaitSeconds_NumericUpDown)
-        TabPage1.Controls.Add(FBPostShareURLSubmitWaitSeconds_NumericUpDown)
-        TabPage1.Controls.Add(Label37)
-        TabPage1.Controls.Add(FBPostShareURLDeselectAllAssetFolderListboxItems_Button)
-        TabPage1.Controls.Add(FBPostShareURLAssetFolder_ListBox)
-        TabPage1.Controls.Add(FBPostShareURLDeleteSelectedAssetFolder_Button)
-        TabPage1.Controls.Add(FBPostShareURLAssetFolderName_TextBox)
-        TabPage1.Controls.Add(FBPostShareURLCreateNewAssetFolder_Button)
-        TabPage1.Location = New Point(4, 28)
-        TabPage1.Name = "TabPage1"
-        TabPage1.Size = New Size(665, 467)
-        TabPage1.TabIndex = 3
-        TabPage1.Text = "分享"
-        TabPage1.UseVisualStyleBackColor = True
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLGetCurrentURL_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLNavigateToURL_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLDeleteSelectedTextFile_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLTextFileName_TextBox)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLTextFile_ListBox)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLSaveTextFile_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLCreateNewTextFile_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLTextFilePreviewer_RichTextBox)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLBaseURL_TextBox)
+        FBPostShareURL_TabPage.Controls.Add(Label40)
+        FBPostShareURL_TabPage.Controls.Add(Label38)
+        FBPostShareURL_TabPage.Controls.Add(Label39)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLUploadWaitSeconds_NumericUpDown)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLSubmitWaitSeconds_NumericUpDown)
+        FBPostShareURL_TabPage.Controls.Add(Label37)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLDeselectAllAssetFolderListboxItems_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLAssetFolder_ListBox)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLDeleteSelectedAssetFolder_Button)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLAssetFolderName_TextBox)
+        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLCreateNewAssetFolder_Button)
+        FBPostShareURL_TabPage.Location = New Point(4, 28)
+        FBPostShareURL_TabPage.Name = "FBPostShareURL_TabPage"
+        FBPostShareURL_TabPage.Size = New Size(664, 467)
+        FBPostShareURL_TabPage.TabIndex = 3
+        FBPostShareURL_TabPage.Text = "分享"
+        FBPostShareURL_TabPage.UseVisualStyleBackColor = True
         ' 
         ' FBPostShareURLGetCurrentURL_Button
         ' 
@@ -1474,7 +1475,7 @@ Partial Class Form1
         ' 
         ' FBPostShareURLDeleteSelectedTextFile_Button
         ' 
-        FBPostShareURLDeleteSelectedTextFile_Button.Location = New Point(434, 427)
+        FBPostShareURLDeleteSelectedTextFile_Button.Location = New Point(435, 427)
         FBPostShareURLDeleteSelectedTextFile_Button.Name = "FBPostShareURLDeleteSelectedTextFile_Button"
         FBPostShareURLDeleteSelectedTextFile_Button.Size = New Size(94, 29)
         FBPostShareURLDeleteSelectedTextFile_Button.TabIndex = 42
@@ -1483,19 +1484,19 @@ Partial Class Form1
         ' 
         ' FBPostShareURLTextFileName_TextBox
         ' 
-        FBPostShareURLTextFileName_TextBox.Location = New Point(182, 427)
+        FBPostShareURLTextFileName_TextBox.Location = New Point(183, 427)
         FBPostShareURLTextFileName_TextBox.Name = "FBPostShareURLTextFileName_TextBox"
-        FBPostShareURLTextFileName_TextBox.Size = New Size(146, 27)
+        FBPostShareURLTextFileName_TextBox.Size = New Size(145, 27)
         FBPostShareURLTextFileName_TextBox.TabIndex = 41
         ' 
         ' FBPostShareURLTextFile_ListBox
         ' 
         FBPostShareURLTextFile_ListBox.FormattingEnabled = True
         FBPostShareURLTextFile_ListBox.ItemHeight = 19
-        FBPostShareURLTextFile_ListBox.Location = New Point(182, 151)
+        FBPostShareURLTextFile_ListBox.Location = New Point(183, 151)
         FBPostShareURLTextFile_ListBox.Name = "FBPostShareURLTextFile_ListBox"
         FBPostShareURLTextFile_ListBox.SelectionMode = SelectionMode.MultiExtended
-        FBPostShareURLTextFile_ListBox.Size = New Size(146, 270)
+        FBPostShareURLTextFile_ListBox.Size = New Size(145, 270)
         FBPostShareURLTextFile_ListBox.TabIndex = 40
         ' 
         ' FBPostShareURLSaveTextFile_Button
@@ -1535,7 +1536,7 @@ Partial Class Form1
         ' Label40
         ' 
         Label40.AutoSize = True
-        Label40.Location = New Point(182, 69)
+        Label40.Location = New Point(183, 68)
         Label40.Name = "Label40"
         Label40.Size = New Size(50, 19)
         Label40.TabIndex = 35
@@ -1553,7 +1554,7 @@ Partial Class Form1
         ' Label39
         ' 
         Label39.AutoSize = True
-        Label39.Location = New Point(182, 11)
+        Label39.Location = New Point(183, 11)
         Label39.Name = "Label39"
         Label39.Size = New Size(80, 19)
         Label39.TabIndex = 33
@@ -1561,7 +1562,7 @@ Partial Class Form1
         ' 
         ' FBPostShareURLUploadWaitSeconds_NumericUpDown
         ' 
-        FBPostShareURLUploadWaitSeconds_NumericUpDown.Location = New Point(268, 8)
+        FBPostShareURLUploadWaitSeconds_NumericUpDown.Location = New Point(267, 8)
         FBPostShareURLUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         FBPostShareURLUploadWaitSeconds_NumericUpDown.Name = "FBPostShareURLUploadWaitSeconds_NumericUpDown"
         FBPostShareURLUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
@@ -1614,14 +1615,14 @@ Partial Class Form1
         ' 
         ' FBPostShareURLAssetFolderName_TextBox
         ' 
-        FBPostShareURLAssetFolderName_TextBox.Location = New Point(62, 359)
+        FBPostShareURLAssetFolderName_TextBox.Location = New Point(62, 358)
         FBPostShareURLAssetFolderName_TextBox.Name = "FBPostShareURLAssetFolderName_TextBox"
-        FBPostShareURLAssetFolderName_TextBox.Size = New Size(114, 27)
+        FBPostShareURLAssetFolderName_TextBox.Size = New Size(115, 27)
         FBPostShareURLAssetFolderName_TextBox.TabIndex = 26
         ' 
         ' FBPostShareURLCreateNewAssetFolder_Button
         ' 
-        FBPostShareURLCreateNewAssetFolder_Button.Location = New Point(6, 392)
+        FBPostShareURLCreateNewAssetFolder_Button.Location = New Point(6, 391)
         FBPostShareURLCreateNewAssetFolder_Button.Name = "FBPostShareURLCreateNewAssetFolder_Button"
         FBPostShareURLCreateNewAssetFolder_Button.Size = New Size(170, 29)
         FBPostShareURLCreateNewAssetFolder_Button.TabIndex = 25
@@ -1633,16 +1634,16 @@ Partial Class Form1
         TabPage3.Location = New Point(4, 28)
         TabPage3.Name = "TabPage3"
         TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(665, 467)
+        TabPage3.Size = New Size(664, 467)
         TabPage3.TabIndex = 1
         TabPage3.Text = "測試項"
         TabPage3.UseVisualStyleBackColor = True
         ' 
         ' ShowEmojiPicker_Button
         ' 
-        ShowEmojiPicker_Button.Location = New Point(1824, 40)
+        ShowEmojiPicker_Button.Location = New Point(1824, 41)
         ShowEmojiPicker_Button.Name = "ShowEmojiPicker_Button"
-        ShowEmojiPicker_Button.Size = New Size(25, 71)
+        ShowEmojiPicker_Button.Size = New Size(24, 71)
         ShowEmojiPicker_Button.TabIndex = 26
         ShowEmojiPicker_Button.Text = "😀"
         ShowEmojiPicker_Button.UseVisualStyleBackColor = True
@@ -1689,14 +1690,14 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
         ScriptTask_GroupBox.Location = New Point(441, 441)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(700, 188)
+        ScriptTask_GroupBox.Size = New Size(699, 187)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
         ' SortListviewItemByTime_Button
         ' 
-        SortListviewItemByTime_Button.Location = New Point(596, 101)
+        SortListviewItemByTime_Button.Location = New Point(597, 101)
         SortListviewItemByTime_Button.Name = "SortListviewItemByTime_Button"
         SortListviewItemByTime_Button.Size = New Size(94, 29)
         SortListviewItemByTime_Button.TabIndex = 39
@@ -1717,7 +1718,7 @@ Partial Class Form1
         ' 
         SyncTimeToDateTimePicker_Label.AutoSize = True
         SyncTimeToDateTimePicker_Label.Cursor = Cursors.Hand
-        SyncTimeToDateTimePicker_Label.Location = New Point(412, 108)
+        SyncTimeToDateTimePicker_Label.Location = New Point(411, 108)
         SyncTimeToDateTimePicker_Label.Name = "SyncTimeToDateTimePicker_Label"
         SyncTimeToDateTimePicker_Label.Size = New Size(72, 19)
         SyncTimeToDateTimePicker_Label.TabIndex = 37
@@ -1725,7 +1726,7 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTimeTNull_Button
         ' 
-        ModifyListviewScheduleTimeTNull_Button.Location = New Point(610, 29)
+        ModifyListviewScheduleTimeTNull_Button.Location = New Point(609, 29)
         ModifyListviewScheduleTimeTNull_Button.Name = "ModifyListviewScheduleTimeTNull_Button"
         ModifyListviewScheduleTimeTNull_Button.Size = New Size(80, 29)
         ModifyListviewScheduleTimeTNull_Button.TabIndex = 36
@@ -1761,7 +1762,7 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionMinutes_NumericUpDown
         ' 
-        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(178, 33)
+        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(177, 33)
         ScheduledExecutionMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ScheduledExecutionMinutes_NumericUpDown.Name = "ScheduledExecutionMinutes_NumericUpDown"
         ScheduledExecutionMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -1769,7 +1770,7 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionHours_NumericUpDown
         ' 
-        ScheduledExecutionHours_NumericUpDown.Location = New Point(92, 33)
+        ScheduledExecutionHours_NumericUpDown.Location = New Point(93, 33)
         ScheduledExecutionHours_NumericUpDown.Name = "ScheduledExecutionHours_NumericUpDown"
         ScheduledExecutionHours_NumericUpDown.Size = New Size(50, 27)
         ScheduledExecutionHours_NumericUpDown.TabIndex = 31
@@ -1802,7 +1803,7 @@ Partial Class Form1
         ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(596, 146)
+        ResetScript_Button.Location = New Point(597, 146)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -1856,7 +1857,7 @@ Partial Class Form1
         ' 
         ' ScriptExecutionCount_NumericUpDown
         ' 
-        ScriptExecutionCount_NumericUpDown.Location = New Point(92, 146)
+        ScriptExecutionCount_NumericUpDown.Location = New Point(93, 146)
         ScriptExecutionCount_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         ScriptExecutionCount_NumericUpDown.Name = "ScriptExecutionCount_NumericUpDown"
         ScriptExecutionCount_NumericUpDown.Size = New Size(50, 27)
@@ -1875,7 +1876,7 @@ Partial Class Form1
         ' ExecutionScriptQueue_Button
         ' 
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
-        ExecutionScriptQueue_Button.Location = New Point(178, 146)
+        ExecutionScriptQueue_Button.Location = New Point(177, 146)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
         ExecutionScriptQueue_Button.Size = New Size(150, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
@@ -1937,7 +1938,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitMinutes_NumericUpDown
         ' 
-        ExecutionWaitMinutes_NumericUpDown.Location = New Point(178, 66)
+        ExecutionWaitMinutes_NumericUpDown.Location = New Point(177, 66)
         ExecutionWaitMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitMinutes_NumericUpDown.Name = "ExecutionWaitMinutes_NumericUpDown"
         ExecutionWaitMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -1945,7 +1946,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitHours_NumericUpDown
         ' 
-        ExecutionWaitHours_NumericUpDown.Location = New Point(92, 66)
+        ExecutionWaitHours_NumericUpDown.Location = New Point(93, 66)
         ExecutionWaitHours_NumericUpDown.Name = "ExecutionWaitHours_NumericUpDown"
         ExecutionWaitHours_NumericUpDown.Size = New Size(50, 27)
         ExecutionWaitHours_NumericUpDown.TabIndex = 11
@@ -1980,7 +1981,7 @@ Partial Class Form1
         ' 
         InsertSchedulerScriptToListview_Button.Location = New Point(492, 30)
         InsertSchedulerScriptToListview_Button.Name = "InsertSchedulerScriptToListview_Button"
-        InsertSchedulerScriptToListview_Button.Size = New Size(56, 29)
+        InsertSchedulerScriptToListview_Button.Size = New Size(57, 29)
         InsertSchedulerScriptToListview_Button.TabIndex = 6
         InsertSchedulerScriptToListview_Button.Text = "插入"
         InsertSchedulerScriptToListview_Button.UseVisualStyleBackColor = True
@@ -2025,7 +2026,7 @@ Partial Class Form1
         ' 
         SchedulerTime_Label.AutoSize = True
         SchedulerTime_Label.Cursor = Cursors.Hand
-        SchedulerTime_Label.Location = New Point(10, 40)
+        SchedulerTime_Label.Location = New Point(10, 41)
         SchedulerTime_Label.Name = "SchedulerTime_Label"
         SchedulerTime_Label.Size = New Size(76, 19)
         SchedulerTime_Label.TabIndex = 0
@@ -2068,7 +2069,7 @@ Partial Class Form1
         ' 
         ' MarkSelectedScriptListviewItem_Button
         ' 
-        MarkSelectedScriptListviewItem_Button.Location = New Point(551, 1064)
+        MarkSelectedScriptListviewItem_Button.Location = New Point(582, 1065)
         MarkSelectedScriptListviewItem_Button.Name = "MarkSelectedScriptListviewItem_Button"
         MarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         MarkSelectedScriptListviewItem_Button.TabIndex = 31
@@ -2077,7 +2078,7 @@ Partial Class Form1
         ' 
         ' UnmarkSelectedScriptListviewItem_Button
         ' 
-        UnmarkSelectedScriptListviewItem_Button.Location = New Point(651, 1064)
+        UnmarkSelectedScriptListviewItem_Button.Location = New Point(681, 1065)
         UnmarkSelectedScriptListviewItem_Button.Name = "UnmarkSelectedScriptListviewItem_Button"
         UnmarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         UnmarkSelectedScriptListviewItem_Button.TabIndex = 32
@@ -2086,7 +2087,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedScriptListviewItem_Button
         ' 
-        DeleteSelectedScriptListviewItem_Button.Location = New Point(751, 1064)
+        DeleteSelectedScriptListviewItem_Button.Location = New Point(782, 1065)
         DeleteSelectedScriptListviewItem_Button.Name = "DeleteSelectedScriptListviewItem_Button"
         DeleteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         DeleteSelectedScriptListviewItem_Button.TabIndex = 34
@@ -2095,7 +2096,7 @@ Partial Class Form1
         ' 
         ' DeleteScriptListviewItemByUserData_Button
         ' 
-        DeleteScriptListviewItemByUserData_Button.Location = New Point(380, 1064)
+        DeleteScriptListviewItemByUserData_Button.Location = New Point(483, 1064)
         DeleteScriptListviewItemByUserData_Button.Name = "DeleteScriptListviewItemByUserData_Button"
         DeleteScriptListviewItemByUserData_Button.Size = New Size(94, 29)
         DeleteScriptListviewItemByUserData_Button.TabIndex = 35
@@ -2105,18 +2106,29 @@ Partial Class Form1
         ' EnableClipboard_CheckBox
         ' 
         EnableClipboard_CheckBox.AutoSize = True
-        EnableClipboard_CheckBox.Location = New Point(12, 601)
+        EnableClipboard_CheckBox.Location = New Point(12, 600)
         EnableClipboard_CheckBox.Name = "EnableClipboard_CheckBox"
         EnableClipboard_CheckBox.Size = New Size(106, 23)
         EnableClipboard_CheckBox.TabIndex = 36
         EnableClipboard_CheckBox.Text = "使用剪貼簿"
         EnableClipboard_CheckBox.UseVisualStyleBackColor = True
         ' 
+        ' SelectScriptListviewItemsByUserDataButton
+        ' 
+        SelectScriptListviewItemsByUserDataButton.Location = New Point(381, 1064)
+        SelectScriptListviewItemsByUserDataButton.Margin = New Padding(4)
+        SelectScriptListviewItemsByUserDataButton.Name = "SelectScriptListviewItemsByUserDataButton"
+        SelectScriptListviewItemsByUserDataButton.Size = New Size(96, 29)
+        SelectScriptListviewItemsByUserDataButton.TabIndex = 37
+        SelectScriptListviewItemsByUserDataButton.Text = "選取"
+        SelectScriptListviewItemsByUserDataButton.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1858, 1055)
+        Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(EnableClipboard_CheckBox)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
@@ -2168,8 +2180,8 @@ Partial Class Form1
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        TabPage1.ResumeLayout(False)
-        TabPage1.PerformLayout()
+        FBPostShareURL_TabPage.ResumeLayout(False)
+        FBPostShareURL_TabPage.PerformLayout()
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
@@ -2364,7 +2376,7 @@ Partial Class Form1
     Friend WithEvents RevealFBMarketplaceMediaFoldesrInFileExplorer_Button As Button
     Friend WithEvents FBMarketplaceShareGroupsBySequence_RadioButton As RadioButton
     Friend WithEvents FBMarketplaceShareGroupsByRandom_RadioButton As RadioButton
-    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents FBPostShareURL_TabPage As TabPage
     Friend WithEvents Label37 As Label
     Friend WithEvents FBPostShareURLDeselectAllAssetFolderListboxItems_Button As Button
     Friend WithEvents FBPostShareURLAssetFolder_ListBox As ListBox
@@ -2385,5 +2397,6 @@ Partial Class Form1
     Friend WithEvents FBPostShareURLTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBPostShareURLGetCurrentURL_Button As Button
     Friend WithEvents FBPostShareURLNavigateToURL_Button As Button
+    Friend WithEvents SelectScriptListviewItemsByUserDataButton As Button
 
 End Class

@@ -66,8 +66,6 @@ Public Class MainFormEventHandlers
 
     Public Sub ModifySelectedScriptListviewAsset_Button_Click(sender As Object, e As EventArgs)
 
-
-
         'Form1.Action_TabControl.SelectedTab.Text
         Dim assetFolderListBoxSelectedItems = Nothing
         Select Case Form1.Action_TabControl.SelectedTab.Text
@@ -75,6 +73,8 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.MyAssetsFolder_ListBox.SelectedItems
             Case "拍賣"
                 assetFolderListBoxSelectedItems = Form1.FBMarkplaceProducts_ListBox.SelectedItems
+            Case "分享"
+                assetFolderListBoxSelectedItems = Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
             Case Else
                 MsgBox("不支援此執行動作")
                 Exit Sub
@@ -319,9 +319,10 @@ Public Class MainFormEventHandlers
                 item.Selected = False
             Next
 
+            ' 先把原本Listbox選的清掉
             Form1.WebviewUserDataFolder_ListBox.ClearSelected()
-
             Form1.MyAssetsFolder_ListBox.ClearSelected()
+            Form1.FBPostShareURLAssetFolder_ListBox.ClearSelected()
 
             Dim selectedItem As ListViewItem = Form1.ScriptQueue_ListView.SelectedItems(0)
 
@@ -335,7 +336,6 @@ Public Class MainFormEventHandlers
 
             ' 選取userData
             Form1.WebviewUserDataFolder_ListBox.SelectedItem = userData
-
 
             ' 不是NULL的話設定執行時間
             If scheduleTime <> "NULL" Then
@@ -364,7 +364,9 @@ Public Class MainFormEventHandlers
                     assetsFolder_ListBox = Form1.FBMarkplaceProducts_ListBox
 
                 Case "分享"
-
+                    Form1.Action_TabControl.SelectedTab = Form1.FBPostShareURL_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    assetsFolder_ListBox = Form1.FBPostShareURLAssetFolder_ListBox
                 Case "測試項"
                     Form1.Action_TabControl.SelectedTab = Form1.TabPage2
             End Select
@@ -820,6 +822,20 @@ Public Class MainFormEventHandlers
 
     Public Sub InsertSchedulerScriptToListview_Button_Click(sender As Object, e As EventArgs)
         InserScriptItemToListview(True)
+    End Sub
+
+    Public Sub SelectListviewItemsByUserDataButton_Click(sender As Object, e As EventArgs)
+        If Form1.userData_ComboBox.Text <> "" Then
+            For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+                If item.SubItems(0).Text = Form1.userData_ComboBox.Text Then
+                    item.Selected = True
+                End If
+            Next
+        Else
+            For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+                item.Selected = True
+            Next
+        End If
     End Sub
 
 
