@@ -22,6 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
         Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
@@ -76,7 +78,22 @@ Partial Class Form1
         FBGroups_ListView = New ListView()
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
-        TabPage2 = New TabPage()
+        FBCommentURLs_TabPage = New TabPage()
+        NumericUpDown3 = New NumericUpDown()
+        Button9 = New Button()
+        Button10 = New Button()
+        Button11 = New Button()
+        Button13 = New Button()
+        Button14 = New Button()
+        Button15 = New Button()
+        Button16 = New Button()
+        TextBox3 = New TextBox()
+        TextBox4 = New TextBox()
+        Label44 = New Label()
+        Label45 = New Label()
+        ListView1 = New ListView()
+        ColumnHeader16 = New ColumnHeader()
+        ColumnHeader17 = New ColumnHeader()
         ScriptQueue_ListView = New ListView()
         ColumnHeader3 = New ColumnHeader()
         ColumnHeader4 = New ColumnHeader()
@@ -172,9 +189,31 @@ Partial Class Form1
         FBPostShareURLDeleteSelectedAssetFolder_Button = New Button()
         FBPostShareURLAssetFolderName_TextBox = New TextBox()
         FBPostShareURLCreateNewAssetFolder_Button = New Button()
+        FBComment_TabPage = New TabPage()
+        Label41 = New Label()
+        Label42 = New Label()
+        Label43 = New Label()
+        NumericUpDown1 = New NumericUpDown()
+        NumericUpDown2 = New NumericUpDown()
+        Button1 = New Button()
+        Button2 = New Button()
+        TextBox1 = New TextBox()
+        ListBox1 = New ListBox()
+        ListBox2 = New ListBox()
+        ListBox3 = New ListBox()
+        Button3 = New Button()
+        Button4 = New Button()
+        Button5 = New Button()
+        Button6 = New Button()
+        Button7 = New Button()
+        TextBox2 = New TextBox()
+        PictureBox1 = New PictureBox()
+        RichTextBox1 = New RichTextBox()
+        Button8 = New Button()
         TabPage3 = New TabPage()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
+        ModfiyScriptListviewURLToRandom_Button = New Button()
         SortListviewItemByTime_Button = New Button()
         ScheduledTimeSorting_DateTimePicker = New DateTimePicker()
         SyncTimeToDateTimePicker_Label = New Label()
@@ -228,6 +267,8 @@ Partial Class Form1
         UserDataFoldListFilter_GroupBox.SuspendLayout()
         FBUrlData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
+        FBCommentURLs_TabPage.SuspendLayout()
+        CType(NumericUpDown3, ComponentModel.ISupportInitialize).BeginInit()
         Action_TabControl.SuspendLayout()
         FBPost_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -242,6 +283,10 @@ Partial Class Form1
         FBPostShareURL_TabPage.SuspendLayout()
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        FBComment_TabPage.SuspendLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -588,7 +633,7 @@ Partial Class Form1
         ' FBUrlData_TabControl
         ' 
         FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
-        FBUrlData_TabControl.Controls.Add(TabPage2)
+        FBUrlData_TabControl.Controls.Add(FBCommentURLs_TabPage)
         FBUrlData_TabControl.Location = New Point(441, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
@@ -726,7 +771,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -744,15 +789,152 @@ Partial Class Form1
         ColumnHeader2.Text = "社團網址"
         ColumnHeader2.Width = 470
         ' 
-        ' TabPage2
+        ' FBCommentURLs_TabPage
         ' 
-        TabPage2.Location = New Point(4, 28)
-        TabPage2.Name = "TabPage2"
-        TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(691, 391)
-        TabPage2.TabIndex = 1
-        TabPage2.Text = "TabPage2"
-        TabPage2.UseVisualStyleBackColor = True
+        FBCommentURLs_TabPage.Controls.Add(NumericUpDown3)
+        FBCommentURLs_TabPage.Controls.Add(Button9)
+        FBCommentURLs_TabPage.Controls.Add(Button10)
+        FBCommentURLs_TabPage.Controls.Add(Button11)
+        FBCommentURLs_TabPage.Controls.Add(Button13)
+        FBCommentURLs_TabPage.Controls.Add(Button14)
+        FBCommentURLs_TabPage.Controls.Add(Button15)
+        FBCommentURLs_TabPage.Controls.Add(Button16)
+        FBCommentURLs_TabPage.Controls.Add(TextBox3)
+        FBCommentURLs_TabPage.Controls.Add(TextBox4)
+        FBCommentURLs_TabPage.Controls.Add(Label44)
+        FBCommentURLs_TabPage.Controls.Add(Label45)
+        FBCommentURLs_TabPage.Controls.Add(ListView1)
+        FBCommentURLs_TabPage.Location = New Point(4, 28)
+        FBCommentURLs_TabPage.Name = "FBCommentURLs_TabPage"
+        FBCommentURLs_TabPage.Padding = New Padding(3)
+        FBCommentURLs_TabPage.Size = New Size(691, 391)
+        FBCommentURLs_TabPage.TabIndex = 1
+        FBCommentURLs_TabPage.Text = "留言"
+        FBCommentURLs_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' NumericUpDown3
+        ' 
+        NumericUpDown3.Location = New Point(7, 350)
+        NumericUpDown3.Name = "NumericUpDown3"
+        NumericUpDown3.Size = New Size(92, 27)
+        NumericUpDown3.TabIndex = 26
+        ' 
+        ' Button9
+        ' 
+        Button9.Location = New Point(105, 350)
+        Button9.Name = "Button9"
+        Button9.Size = New Size(109, 29)
+        Button9.TabIndex = 25
+        Button9.Text = "讀取最近貼文"
+        Button9.UseVisualStyleBackColor = True
+        ' 
+        ' Button10
+        ' 
+        Button10.Location = New Point(591, 350)
+        Button10.Name = "Button10"
+        Button10.Size = New Size(94, 29)
+        Button10.TabIndex = 24
+        Button10.Text = "刪除"
+        Button10.UseVisualStyleBackColor = True
+        ' 
+        ' Button11
+        ' 
+        Button11.Location = New Point(221, 350)
+        Button11.Name = "Button11"
+        Button11.Size = New Size(94, 29)
+        Button11.TabIndex = 23
+        Button11.Text = "儲存"
+        Button11.UseVisualStyleBackColor = True
+        ' 
+        ' Button13
+        ' 
+        Button13.Location = New Point(306, 72)
+        Button13.Name = "Button13"
+        Button13.Size = New Size(94, 29)
+        Button13.TabIndex = 21
+        Button13.Text = "修改"
+        Button13.UseVisualStyleBackColor = True
+        ' 
+        ' Button14
+        ' 
+        Button14.Location = New Point(206, 72)
+        Button14.Name = "Button14"
+        Button14.Size = New Size(94, 29)
+        Button14.TabIndex = 20
+        Button14.Text = "增加"
+        Button14.UseVisualStyleBackColor = True
+        ' 
+        ' Button15
+        ' 
+        Button15.Location = New Point(105, 72)
+        Button15.Name = "Button15"
+        Button15.Size = New Size(94, 29)
+        Button15.TabIndex = 19
+        Button15.Text = "取得網址"
+        Button15.UseVisualStyleBackColor = True
+        ' 
+        ' Button16
+        ' 
+        Button16.Location = New Point(6, 72)
+        Button16.Name = "Button16"
+        Button16.Size = New Size(94, 29)
+        Button16.TabIndex = 18
+        Button16.Text = "前往"
+        Button16.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox3
+        ' 
+        TextBox3.Location = New Point(62, 39)
+        TextBox3.Name = "TextBox3"
+        TextBox3.Size = New Size(624, 27)
+        TextBox3.TabIndex = 17
+        ' 
+        ' TextBox4
+        ' 
+        TextBox4.Location = New Point(62, 6)
+        TextBox4.Name = "TextBox4"
+        TextBox4.Size = New Size(624, 27)
+        TextBox4.TabIndex = 16
+        ' 
+        ' Label44
+        ' 
+        Label44.AutoSize = True
+        Label44.Location = New Point(6, 42)
+        Label44.Name = "Label44"
+        Label44.Size = New Size(50, 19)
+        Label44.TabIndex = 15
+        Label44.Text = "網址 : "
+        ' 
+        ' Label45
+        ' 
+        Label45.AutoSize = True
+        Label45.Location = New Point(6, 9)
+        Label45.Name = "Label45"
+        Label45.Size = New Size(50, 19)
+        Label45.TabIndex = 14
+        Label45.Text = "名稱 : "
+        ' 
+        ' ListView1
+        ' 
+        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
+        ListView1.FullRowSelect = True
+        ListView1.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        ListView1.Location = New Point(6, 106)
+        ListView1.Name = "ListView1"
+        ListView1.Size = New Size(680, 236)
+        ListView1.TabIndex = 13
+        ListView1.UseCompatibleStateImageBehavior = False
+        ListView1.View = View.Details
+        ' 
+        ' ColumnHeader16
+        ' 
+        ColumnHeader16.Text = "社團名稱"
+        ColumnHeader16.Width = 200
+        ' 
+        ' ColumnHeader17
+        ' 
+        ColumnHeader17.Text = "社團網址"
+        ColumnHeader17.Width = 470
         ' 
         ' ScriptQueue_ListView
         ' 
@@ -834,6 +1016,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBPost_TabPage)
         Action_TabControl.Controls.Add(FBMarketplace_TabPage)
         Action_TabControl.Controls.Add(FBPostShareURL_TabPage)
+        Action_TabControl.Controls.Add(FBComment_TabPage)
         Action_TabControl.Controls.Add(TabPage3)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
@@ -1629,6 +1812,212 @@ Partial Class Form1
         FBPostShareURLCreateNewAssetFolder_Button.Text = "建立"
         FBPostShareURLCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' FBComment_TabPage
+        ' 
+        FBComment_TabPage.Controls.Add(Label41)
+        FBComment_TabPage.Controls.Add(Label42)
+        FBComment_TabPage.Controls.Add(Label43)
+        FBComment_TabPage.Controls.Add(NumericUpDown1)
+        FBComment_TabPage.Controls.Add(NumericUpDown2)
+        FBComment_TabPage.Controls.Add(Button1)
+        FBComment_TabPage.Controls.Add(Button2)
+        FBComment_TabPage.Controls.Add(TextBox1)
+        FBComment_TabPage.Controls.Add(ListBox1)
+        FBComment_TabPage.Controls.Add(ListBox2)
+        FBComment_TabPage.Controls.Add(ListBox3)
+        FBComment_TabPage.Controls.Add(Button3)
+        FBComment_TabPage.Controls.Add(Button4)
+        FBComment_TabPage.Controls.Add(Button5)
+        FBComment_TabPage.Controls.Add(Button6)
+        FBComment_TabPage.Controls.Add(Button7)
+        FBComment_TabPage.Controls.Add(TextBox2)
+        FBComment_TabPage.Controls.Add(PictureBox1)
+        FBComment_TabPage.Controls.Add(RichTextBox1)
+        FBComment_TabPage.Controls.Add(Button8)
+        FBComment_TabPage.Location = New Point(4, 28)
+        FBComment_TabPage.Name = "FBComment_TabPage"
+        FBComment_TabPage.Size = New Size(664, 467)
+        FBComment_TabPage.TabIndex = 4
+        FBComment_TabPage.Text = "留言"
+        FBComment_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Label41
+        ' 
+        Label41.AutoSize = True
+        Label41.Location = New Point(6, 364)
+        Label41.Name = "Label41"
+        Label41.Size = New Size(50, 19)
+        Label41.TabIndex = 44
+        Label41.Text = "名稱 : "
+        ' 
+        ' Label42
+        ' 
+        Label42.AutoSize = True
+        Label42.Location = New Point(334, 13)
+        Label42.Name = "Label42"
+        Label42.Size = New Size(80, 19)
+        Label42.TabIndex = 43
+        Label42.Text = "送出等待 : "
+        ' 
+        ' Label43
+        ' 
+        Label43.AutoSize = True
+        Label43.Location = New Point(183, 13)
+        Label43.Name = "Label43"
+        Label43.Size = New Size(80, 19)
+        Label43.TabIndex = 42
+        Label43.Text = "上載等待 : "
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(267, 10)
+        NumericUpDown1.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(60, 27)
+        NumericUpDown1.TabIndex = 41
+        ' 
+        ' NumericUpDown2
+        ' 
+        NumericUpDown2.Location = New Point(420, 10)
+        NumericUpDown2.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumericUpDown2.Name = "NumericUpDown2"
+        NumericUpDown2.Size = New Size(60, 27)
+        NumericUpDown2.TabIndex = 40
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(6, 326)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(170, 29)
+        Button1.TabIndex = 39
+        Button1.Text = "取消選擇"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(435, 189)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 38
+        Button2.Text = "刪除所選"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(183, 189)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(145, 27)
+        TextBox1.TabIndex = 37
+        ' 
+        ' ListBox1
+        ' 
+        ListBox1.FormattingEnabled = True
+        ListBox1.ItemHeight = 19
+        ListBox1.Location = New Point(183, 224)
+        ListBox1.Name = "ListBox1"
+        ListBox1.SelectionMode = SelectionMode.MultiExtended
+        ListBox1.Size = New Size(145, 156)
+        ListBox1.TabIndex = 36
+        ' 
+        ' ListBox2
+        ' 
+        ListBox2.FormattingEnabled = True
+        ListBox2.ItemHeight = 19
+        ListBox2.Location = New Point(183, 46)
+        ListBox2.Name = "ListBox2"
+        ListBox2.SelectionMode = SelectionMode.MultiExtended
+        ListBox2.Size = New Size(145, 137)
+        ListBox2.TabIndex = 35
+        ' 
+        ' ListBox3
+        ' 
+        ListBox3.FormattingEnabled = True
+        ListBox3.ItemHeight = 19
+        ListBox3.Location = New Point(6, 8)
+        ListBox3.Name = "ListBox3"
+        ListBox3.SelectionMode = SelectionMode.MultiExtended
+        ListBox3.Size = New Size(170, 308)
+        ListBox3.TabIndex = 34
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(534, 189)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(94, 29)
+        Button3.TabIndex = 33
+        Button3.Text = "儲存"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(334, 189)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 32
+        Button4.Text = "新增文字檔"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(183, 429)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(147, 29)
+        Button5.TabIndex = 31
+        Button5.Text = "刪除所選"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' Button6
+        ' 
+        Button6.Location = New Point(183, 393)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(147, 29)
+        Button6.TabIndex = 30
+        Button6.Text = "開啟資料夾"
+        Button6.UseVisualStyleBackColor = True
+        ' 
+        ' Button7
+        ' 
+        Button7.Location = New Point(6, 429)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(170, 29)
+        Button7.TabIndex = 29
+        Button7.Text = "刪除所選"
+        Button7.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(62, 360)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(115, 27)
+        TextBox2.TabIndex = 28
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Location = New Point(334, 224)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(325, 234)
+        PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
+        PictureBox1.TabIndex = 27
+        PictureBox1.TabStop = False
+        ' 
+        ' RichTextBox1
+        ' 
+        RichTextBox1.Location = New Point(334, 44)
+        RichTextBox1.Name = "RichTextBox1"
+        RichTextBox1.Size = New Size(325, 140)
+        RichTextBox1.TabIndex = 26
+        RichTextBox1.Text = ""
+        RichTextBox1.WordWrap = False
+        ' 
+        ' Button8
+        ' 
+        Button8.Location = New Point(6, 393)
+        Button8.Name = "Button8"
+        Button8.Size = New Size(170, 29)
+        Button8.TabIndex = 25
+        Button8.Text = "建立"
+        Button8.UseVisualStyleBackColor = True
+        ' 
         ' TabPage3
         ' 
         TabPage3.Location = New Point(4, 28)
@@ -1650,6 +2039,7 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(ModfiyScriptListviewURLToRandom_Button)
         ScriptTask_GroupBox.Controls.Add(SortListviewItemByTime_Button)
         ScriptTask_GroupBox.Controls.Add(ScheduledTimeSorting_DateTimePicker)
         ScriptTask_GroupBox.Controls.Add(SyncTimeToDateTimePicker_Label)
@@ -1694,6 +2084,15 @@ Partial Class Form1
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' ModfiyScriptListviewURLToRandom_Button
+        ' 
+        ModfiyScriptListviewURLToRandom_Button.Location = New Point(592, 63)
+        ModfiyScriptListviewURLToRandom_Button.Name = "ModfiyScriptListviewURLToRandom_Button"
+        ModfiyScriptListviewURLToRandom_Button.Size = New Size(94, 29)
+        ModfiyScriptListviewURLToRandom_Button.TabIndex = 40
+        ModfiyScriptListviewURLToRandom_Button.Text = "隨機網址"
+        ModfiyScriptListviewURLToRandom_Button.UseVisualStyleBackColor = True
         ' 
         ' SortListviewItemByTime_Button
         ' 
@@ -2127,7 +2526,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1858, 1055)
+        ClientSize = New Size(1858, 1103)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(EnableClipboard_CheckBox)
@@ -2167,6 +2566,9 @@ Partial Class Form1
         FBUrlData_TabControl.ResumeLayout(False)
         FBGroups_TabPage.ResumeLayout(False)
         FBGroups_TabPage.PerformLayout()
+        FBCommentURLs_TabPage.ResumeLayout(False)
+        FBCommentURLs_TabPage.PerformLayout()
+        CType(NumericUpDown3, ComponentModel.ISupportInitialize).EndInit()
         Action_TabControl.ResumeLayout(False)
         FBPost_TabPage.ResumeLayout(False)
         FBPost_TabPage.PerformLayout()
@@ -2184,6 +2586,11 @@ Partial Class Form1
         FBPostShareURL_TabPage.PerformLayout()
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        FBComment_TabPage.ResumeLayout(False)
+        FBComment_TabPage.PerformLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -2236,7 +2643,7 @@ Partial Class Form1
     Friend WithEvents GetCurrentUrl_Button As Button
     Friend WithEvents FBUrlData_TabControl As TabControl
     Friend WithEvents FBGroups_TabPage As TabPage
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents FBCommentURLs_TabPage As TabPage
     Friend WithEvents FBGroups_ListView As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
@@ -2398,5 +2805,42 @@ Partial Class Form1
     Friend WithEvents FBPostShareURLGetCurrentURL_Button As Button
     Friend WithEvents FBPostShareURLNavigateToURL_Button As Button
     Friend WithEvents SelectScriptListviewItemsByUserDataButton As Button
+    Friend WithEvents ModfiyScriptListviewURLToRandom_Button As Button
+    Friend WithEvents FBComment_TabPage As TabPage
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Label42 As Label
+    Friend WithEvents Label43 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents ListBox3 As ListBox
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Button8 As Button
+    Friend WithEvents NumericUpDown3 As NumericUpDown
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button10 As Button
+    Friend WithEvents Button11 As Button
+    Friend WithEvents Button13 As Button
+    Friend WithEvents Button14 As Button
+    Friend WithEvents Button15 As Button
+    Friend WithEvents Button16 As Button
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Label45 As Label
+    Friend WithEvents ListView1 As ListView
+    Friend WithEvents ColumnHeader16 As ColumnHeader
+    Friend WithEvents ColumnHeader17 As ColumnHeader
 
 End Class

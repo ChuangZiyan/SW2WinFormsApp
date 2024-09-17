@@ -140,6 +140,14 @@ Module MainFormController
         Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
         Using writer As New StreamWriter(filePath)
             For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+                If item.SubItems(2).Text.Contains("隨機") Then
+                    item.SubItems(2).Text = "隨機"
+                End If
+
+                If item.SubItems(3).Text.Contains("隨機") Then
+                    item.SubItems(3).Text = "隨機"
+                End If
+
                 item.SubItems(6).Text = ""
                 item.SubItems(7).Text = "0"
                 item.SubItems(8).Text = "0"
@@ -229,6 +237,36 @@ Module MainFormController
     End Function
 
 
+    Public Function GetRandomGroupsUrl(userDataFolderPath As String) As JToken
+        Try
+
+            Dim filePath = Path.Combine(userDataFolderPath, "FBGroupList.json")
+
+            If File.Exists(filePath) Then
+                Dim jsonString As String = File.ReadAllText(filePath)
+                Dim jsonArray As JArray = JArray.Parse(jsonString)
+
+                Dim rnd As New Random()
+                Dim randomIndex As Integer = rnd.Next(0, jsonArray.Count)
+                Dim randomItem As JToken = jsonArray(randomIndex)
+
+                'Debug.WriteLine("Name : " & randomItem("Name").ToString)
+                'Debug.WriteLine("URL : " & randomItem("Url").ToString)
+
+                Return randomItem
+            End If
+
+            Return Nothing
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return Nothing
+        End Try
+
+
+
+    End Function
+
+
     Public Sub EnabledAllExecutionButton(flag As Boolean)
         Form1.ExecutionScriptQueue_Button.Enabled = flag
         Form1.ExecuteSelectedScriptListviewItem_Button.Enabled = flag
@@ -238,7 +276,6 @@ Module MainFormController
         Form1.StopScheduledExecutionScriptQueue_Button.Enabled = flag
         Form1.ExecutionScriptQueue_Button.Enabled = flag
         Form1.ScheduledExecutionScriptQueue_Button.Enabled = flag
-
 
     End Sub
 

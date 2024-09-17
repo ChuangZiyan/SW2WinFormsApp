@@ -5,6 +5,7 @@ Imports System.Threading
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports ICSharpCode.SharpZipLib.Zip.ExtendedUnixData
 Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 Imports OpenQA.Selenium.DevTools.V125.Autofill
 
 Public Class Form1
@@ -145,6 +146,16 @@ Public Class Form1
         Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
         ' 初始化webivew
         Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
+
+
+        '處理隨機網址
+        If myUrl.Contains("隨機") Then
+            Dim randomItem As JToken = MainFormController.GetRandomGroupsUrl(userDataFolderPath)
+            item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
+            item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()
+            myUrl = randomItem("Url").ToString()
+
+        End If
 
 
         'Main Routing 主要路由在這
@@ -373,6 +384,8 @@ Public Class Form1
         AddHandler DisplayCurrUrlToGroupUrl_Button.Click, AddressOf mainFormEventHandlers.DisplayCurrUrlToGroupUrl_Button_Click
         AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
+        AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
+
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
     End Sub

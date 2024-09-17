@@ -368,7 +368,7 @@ Public Class MainFormEventHandlers
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
                     assetsFolder_ListBox = Form1.FBPostShareURLAssetFolder_ListBox
                 Case "測試項"
-                    Form1.Action_TabControl.SelectedTab = Form1.TabPage2
+                    Form1.Action_TabControl.SelectedTab = Form1.FBCommentURLs_TabPage
             End Select
 
             ' 設定時間, 這是通用的
@@ -838,6 +838,15 @@ Public Class MainFormEventHandlers
         End If
     End Sub
 
+    Public Sub ModfiyScriptListviewURLToRandom_Button_Click(sender As Object, e As EventArgs)
+
+        For Each item As ListViewItem In Form1.ScriptQueue_ListView.SelectedItems
+            item.SubItems(2).Text = "隨機"
+            item.SubItems(3).Text = "隨機"
+        Next
+
+    End Sub
+
 
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled
@@ -901,12 +910,6 @@ Public Class MainFormEventHandlers
             selectedGroupName = selectedItem.Text
             selectedGroupUrl = selectedItem.SubItems(1).Text
         End If
-
-
-
-
-
-
 
         If scheduled Then '定時執行
             Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
