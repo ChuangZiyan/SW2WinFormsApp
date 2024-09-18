@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -193,23 +193,23 @@ Partial Class Form1
         Label41 = New Label()
         Label42 = New Label()
         Label43 = New Label()
-        NumericUpDown1 = New NumericUpDown()
-        NumericUpDown2 = New NumericUpDown()
-        Button1 = New Button()
-        Button2 = New Button()
-        TextBox1 = New TextBox()
-        ListBox1 = New ListBox()
-        ListBox2 = New ListBox()
-        ListBox3 = New ListBox()
-        Button3 = New Button()
-        Button4 = New Button()
+        FBCommentUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBCommentSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBCommentDeselectAllAssetFolderListboxItems_Button = New Button()
+        FBCommentDeleteSelectedTextFile_Button = New Button()
+        FBCommentNewTextFileName_TextBox = New TextBox()
+        FBCommentMediaSelector_ListBox = New ListBox()
+        FBCommentTextFileSelector_ListBox = New ListBox()
+        FBCommentAssetFolder_ListBox = New ListBox()
+        FBCommentSaveTextFile_Button = New Button()
+        FBCommentCreateNewTextFile_Button = New Button()
         Button5 = New Button()
         Button6 = New Button()
-        Button7 = New Button()
-        TextBox2 = New TextBox()
-        PictureBox1 = New PictureBox()
-        RichTextBox1 = New RichTextBox()
-        Button8 = New Button()
+        FBCommentDeleteSelectedAssetFolder_Button = New Button()
+        FBCommentAssetFolderName_TextBox = New TextBox()
+        FBCommentMediaPreviewer_PictureBox = New PictureBox()
+        FBCommentTextFilePreviewer_RichTextBox = New RichTextBox()
+        FBCommentCreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
@@ -284,9 +284,9 @@ Partial Class Form1
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         FBComment_TabPage.SuspendLayout()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -771,7 +771,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -918,7 +918,7 @@ Partial Class Form1
         ' 
         ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
         ListView1.FullRowSelect = True
-        ListView1.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        ListView1.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
         ListView1.Location = New Point(6, 106)
         ListView1.Name = "ListView1"
         ListView1.Size = New Size(680, 236)
@@ -1817,23 +1817,23 @@ Partial Class Form1
         FBComment_TabPage.Controls.Add(Label41)
         FBComment_TabPage.Controls.Add(Label42)
         FBComment_TabPage.Controls.Add(Label43)
-        FBComment_TabPage.Controls.Add(NumericUpDown1)
-        FBComment_TabPage.Controls.Add(NumericUpDown2)
-        FBComment_TabPage.Controls.Add(Button1)
-        FBComment_TabPage.Controls.Add(Button2)
-        FBComment_TabPage.Controls.Add(TextBox1)
-        FBComment_TabPage.Controls.Add(ListBox1)
-        FBComment_TabPage.Controls.Add(ListBox2)
-        FBComment_TabPage.Controls.Add(ListBox3)
-        FBComment_TabPage.Controls.Add(Button3)
-        FBComment_TabPage.Controls.Add(Button4)
+        FBComment_TabPage.Controls.Add(FBCommentUploadWaitSeconds_NumericUpDown)
+        FBComment_TabPage.Controls.Add(FBCommentSubmitWaitSeconds_NumericUpDown)
+        FBComment_TabPage.Controls.Add(FBCommentDeselectAllAssetFolderListboxItems_Button)
+        FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedTextFile_Button)
+        FBComment_TabPage.Controls.Add(FBCommentNewTextFileName_TextBox)
+        FBComment_TabPage.Controls.Add(FBCommentMediaSelector_ListBox)
+        FBComment_TabPage.Controls.Add(FBCommentTextFileSelector_ListBox)
+        FBComment_TabPage.Controls.Add(FBCommentAssetFolder_ListBox)
+        FBComment_TabPage.Controls.Add(FBCommentSaveTextFile_Button)
+        FBComment_TabPage.Controls.Add(FBCommentCreateNewTextFile_Button)
         FBComment_TabPage.Controls.Add(Button5)
         FBComment_TabPage.Controls.Add(Button6)
-        FBComment_TabPage.Controls.Add(Button7)
-        FBComment_TabPage.Controls.Add(TextBox2)
-        FBComment_TabPage.Controls.Add(PictureBox1)
-        FBComment_TabPage.Controls.Add(RichTextBox1)
-        FBComment_TabPage.Controls.Add(Button8)
+        FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedAssetFolder_Button)
+        FBComment_TabPage.Controls.Add(FBCommentAssetFolderName_TextBox)
+        FBComment_TabPage.Controls.Add(FBCommentMediaPreviewer_PictureBox)
+        FBComment_TabPage.Controls.Add(FBCommentTextFilePreviewer_RichTextBox)
+        FBComment_TabPage.Controls.Add(FBCommentCreateNewAssetFolder_Button)
         FBComment_TabPage.Location = New Point(4, 28)
         FBComment_TabPage.Name = "FBComment_TabPage"
         FBComment_TabPage.Size = New Size(664, 467)
@@ -1868,94 +1868,94 @@ Partial Class Form1
         Label43.TabIndex = 42
         Label43.Text = "上載等待 : "
         ' 
-        ' NumericUpDown1
+        ' FBCommentUploadWaitSeconds_NumericUpDown
         ' 
-        NumericUpDown1.Location = New Point(267, 10)
-        NumericUpDown1.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(60, 27)
-        NumericUpDown1.TabIndex = 41
+        FBCommentUploadWaitSeconds_NumericUpDown.Location = New Point(267, 10)
+        FBCommentUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBCommentUploadWaitSeconds_NumericUpDown.Name = "FBCommentUploadWaitSeconds_NumericUpDown"
+        FBCommentUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBCommentUploadWaitSeconds_NumericUpDown.TabIndex = 41
         ' 
-        ' NumericUpDown2
+        ' FBCommentSubmitWaitSeconds_NumericUpDown
         ' 
-        NumericUpDown2.Location = New Point(420, 10)
-        NumericUpDown2.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        NumericUpDown2.Name = "NumericUpDown2"
-        NumericUpDown2.Size = New Size(60, 27)
-        NumericUpDown2.TabIndex = 40
+        FBCommentSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 10)
+        FBCommentSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBCommentSubmitWaitSeconds_NumericUpDown.Name = "FBCommentSubmitWaitSeconds_NumericUpDown"
+        FBCommentSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBCommentSubmitWaitSeconds_NumericUpDown.TabIndex = 40
         ' 
-        ' Button1
+        ' FBCommentDeselectAllAssetFolderListboxItems_Button
         ' 
-        Button1.Location = New Point(6, 326)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(170, 29)
-        Button1.TabIndex = 39
-        Button1.Text = "取消選擇"
-        Button1.UseVisualStyleBackColor = True
+        FBCommentDeselectAllAssetFolderListboxItems_Button.Location = New Point(6, 326)
+        FBCommentDeselectAllAssetFolderListboxItems_Button.Name = "FBCommentDeselectAllAssetFolderListboxItems_Button"
+        FBCommentDeselectAllAssetFolderListboxItems_Button.Size = New Size(170, 29)
+        FBCommentDeselectAllAssetFolderListboxItems_Button.TabIndex = 39
+        FBCommentDeselectAllAssetFolderListboxItems_Button.Text = "取消選擇"
+        FBCommentDeselectAllAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' FBCommentDeleteSelectedTextFile_Button
         ' 
-        Button2.Location = New Point(435, 189)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 38
-        Button2.Text = "刪除所選"
-        Button2.UseVisualStyleBackColor = True
+        FBCommentDeleteSelectedTextFile_Button.Location = New Point(435, 189)
+        FBCommentDeleteSelectedTextFile_Button.Name = "FBCommentDeleteSelectedTextFile_Button"
+        FBCommentDeleteSelectedTextFile_Button.Size = New Size(94, 29)
+        FBCommentDeleteSelectedTextFile_Button.TabIndex = 38
+        FBCommentDeleteSelectedTextFile_Button.Text = "刪除所選"
+        FBCommentDeleteSelectedTextFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' TextBox1
+        ' FBCommentNewTextFileName_TextBox
         ' 
-        TextBox1.Location = New Point(183, 189)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(145, 27)
-        TextBox1.TabIndex = 37
+        FBCommentNewTextFileName_TextBox.Location = New Point(183, 189)
+        FBCommentNewTextFileName_TextBox.Name = "FBCommentNewTextFileName_TextBox"
+        FBCommentNewTextFileName_TextBox.Size = New Size(145, 27)
+        FBCommentNewTextFileName_TextBox.TabIndex = 37
         ' 
-        ' ListBox1
+        ' FBCommentMediaSelector_ListBox
         ' 
-        ListBox1.FormattingEnabled = True
-        ListBox1.ItemHeight = 19
-        ListBox1.Location = New Point(183, 224)
-        ListBox1.Name = "ListBox1"
-        ListBox1.SelectionMode = SelectionMode.MultiExtended
-        ListBox1.Size = New Size(145, 156)
-        ListBox1.TabIndex = 36
+        FBCommentMediaSelector_ListBox.FormattingEnabled = True
+        FBCommentMediaSelector_ListBox.ItemHeight = 19
+        FBCommentMediaSelector_ListBox.Location = New Point(183, 224)
+        FBCommentMediaSelector_ListBox.Name = "FBCommentMediaSelector_ListBox"
+        FBCommentMediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBCommentMediaSelector_ListBox.Size = New Size(145, 156)
+        FBCommentMediaSelector_ListBox.TabIndex = 36
         ' 
-        ' ListBox2
+        ' FBCommentTextFileSelector_ListBox
         ' 
-        ListBox2.FormattingEnabled = True
-        ListBox2.ItemHeight = 19
-        ListBox2.Location = New Point(183, 46)
-        ListBox2.Name = "ListBox2"
-        ListBox2.SelectionMode = SelectionMode.MultiExtended
-        ListBox2.Size = New Size(145, 137)
-        ListBox2.TabIndex = 35
+        FBCommentTextFileSelector_ListBox.FormattingEnabled = True
+        FBCommentTextFileSelector_ListBox.ItemHeight = 19
+        FBCommentTextFileSelector_ListBox.Location = New Point(183, 46)
+        FBCommentTextFileSelector_ListBox.Name = "FBCommentTextFileSelector_ListBox"
+        FBCommentTextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBCommentTextFileSelector_ListBox.Size = New Size(145, 137)
+        FBCommentTextFileSelector_ListBox.TabIndex = 35
         ' 
-        ' ListBox3
+        ' FBCommentAssetFolder_ListBox
         ' 
-        ListBox3.FormattingEnabled = True
-        ListBox3.ItemHeight = 19
-        ListBox3.Location = New Point(6, 8)
-        ListBox3.Name = "ListBox3"
-        ListBox3.SelectionMode = SelectionMode.MultiExtended
-        ListBox3.Size = New Size(170, 308)
-        ListBox3.TabIndex = 34
+        FBCommentAssetFolder_ListBox.FormattingEnabled = True
+        FBCommentAssetFolder_ListBox.ItemHeight = 19
+        FBCommentAssetFolder_ListBox.Location = New Point(6, 8)
+        FBCommentAssetFolder_ListBox.Name = "FBCommentAssetFolder_ListBox"
+        FBCommentAssetFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBCommentAssetFolder_ListBox.Size = New Size(170, 308)
+        FBCommentAssetFolder_ListBox.TabIndex = 34
         ' 
-        ' Button3
+        ' FBCommentSaveTextFile_Button
         ' 
-        Button3.Location = New Point(534, 189)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 33
-        Button3.Text = "儲存"
-        Button3.UseVisualStyleBackColor = True
+        FBCommentSaveTextFile_Button.Location = New Point(534, 189)
+        FBCommentSaveTextFile_Button.Name = "FBCommentSaveTextFile_Button"
+        FBCommentSaveTextFile_Button.Size = New Size(94, 29)
+        FBCommentSaveTextFile_Button.TabIndex = 33
+        FBCommentSaveTextFile_Button.Text = "儲存"
+        FBCommentSaveTextFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' FBCommentCreateNewTextFile_Button
         ' 
-        Button4.Location = New Point(334, 189)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 32
-        Button4.Text = "新增文字檔"
-        Button4.UseVisualStyleBackColor = True
+        FBCommentCreateNewTextFile_Button.Location = New Point(334, 189)
+        FBCommentCreateNewTextFile_Button.Name = "FBCommentCreateNewTextFile_Button"
+        FBCommentCreateNewTextFile_Button.Size = New Size(94, 29)
+        FBCommentCreateNewTextFile_Button.TabIndex = 32
+        FBCommentCreateNewTextFile_Button.Text = "新增文字檔"
+        FBCommentCreateNewTextFile_Button.UseVisualStyleBackColor = True
         ' 
         ' Button5
         ' 
@@ -1975,48 +1975,48 @@ Partial Class Form1
         Button6.Text = "開啟資料夾"
         Button6.UseVisualStyleBackColor = True
         ' 
-        ' Button7
+        ' FBCommentDeleteSelectedAssetFolder_Button
         ' 
-        Button7.Location = New Point(6, 429)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(170, 29)
-        Button7.TabIndex = 29
-        Button7.Text = "刪除所選"
-        Button7.UseVisualStyleBackColor = True
+        FBCommentDeleteSelectedAssetFolder_Button.Location = New Point(6, 429)
+        FBCommentDeleteSelectedAssetFolder_Button.Name = "FBCommentDeleteSelectedAssetFolder_Button"
+        FBCommentDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        FBCommentDeleteSelectedAssetFolder_Button.TabIndex = 29
+        FBCommentDeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        FBCommentDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' TextBox2
+        ' FBCommentAssetFolderName_TextBox
         ' 
-        TextBox2.Location = New Point(62, 360)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(115, 27)
-        TextBox2.TabIndex = 28
+        FBCommentAssetFolderName_TextBox.Location = New Point(62, 360)
+        FBCommentAssetFolderName_TextBox.Name = "FBCommentAssetFolderName_TextBox"
+        FBCommentAssetFolderName_TextBox.Size = New Size(115, 27)
+        FBCommentAssetFolderName_TextBox.TabIndex = 28
         ' 
-        ' PictureBox1
+        ' FBCommentMediaPreviewer_PictureBox
         ' 
-        PictureBox1.Location = New Point(334, 224)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(325, 234)
-        PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
-        PictureBox1.TabIndex = 27
-        PictureBox1.TabStop = False
+        FBCommentMediaPreviewer_PictureBox.Location = New Point(334, 224)
+        FBCommentMediaPreviewer_PictureBox.Name = "FBCommentMediaPreviewer_PictureBox"
+        FBCommentMediaPreviewer_PictureBox.Size = New Size(325, 234)
+        FBCommentMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBCommentMediaPreviewer_PictureBox.TabIndex = 27
+        FBCommentMediaPreviewer_PictureBox.TabStop = False
         ' 
-        ' RichTextBox1
+        ' FBCommentTextFilePreviewer_RichTextBox
         ' 
-        RichTextBox1.Location = New Point(334, 44)
-        RichTextBox1.Name = "RichTextBox1"
-        RichTextBox1.Size = New Size(325, 140)
-        RichTextBox1.TabIndex = 26
-        RichTextBox1.Text = ""
-        RichTextBox1.WordWrap = False
+        FBCommentTextFilePreviewer_RichTextBox.Location = New Point(334, 44)
+        FBCommentTextFilePreviewer_RichTextBox.Name = "FBCommentTextFilePreviewer_RichTextBox"
+        FBCommentTextFilePreviewer_RichTextBox.Size = New Size(325, 140)
+        FBCommentTextFilePreviewer_RichTextBox.TabIndex = 26
+        FBCommentTextFilePreviewer_RichTextBox.Text = ""
+        FBCommentTextFilePreviewer_RichTextBox.WordWrap = False
         ' 
-        ' Button8
+        ' FBCommentCreateNewAssetFolder_Button
         ' 
-        Button8.Location = New Point(6, 393)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(170, 29)
-        Button8.TabIndex = 25
-        Button8.Text = "建立"
-        Button8.UseVisualStyleBackColor = True
+        FBCommentCreateNewAssetFolder_Button.Location = New Point(6, 393)
+        FBCommentCreateNewAssetFolder_Button.Name = "FBCommentCreateNewAssetFolder_Button"
+        FBCommentCreateNewAssetFolder_Button.Size = New Size(170, 29)
+        FBCommentCreateNewAssetFolder_Button.TabIndex = 25
+        FBCommentCreateNewAssetFolder_Button.Text = "建立"
+        FBCommentCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
         ' TabPage3
         ' 
@@ -2588,9 +2588,9 @@ Partial Class Form1
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         FBComment_TabPage.ResumeLayout(False)
         FBComment_TabPage.PerformLayout()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -2810,23 +2810,23 @@ Partial Class Form1
     Friend WithEvents Label41 As Label
     Friend WithEvents Label42 As Label
     Friend WithEvents Label43 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents NumericUpDown2 As NumericUpDown
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents ListBox2 As ListBox
-    Friend WithEvents ListBox3 As ListBox
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents FBCommentUploadWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBCommentSubmitWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBCommentDeselectAllAssetFolderListboxItems_Button As Button
+    Friend WithEvents FBCommentDeleteSelectedTextFile_Button As Button
+    Friend WithEvents FBCommentNewTextFileName_TextBox As TextBox
+    Friend WithEvents FBCommentMediaSelector_ListBox As ListBox
+    Friend WithEvents FBCommentTextFileSelector_ListBox As ListBox
+    Friend WithEvents FBCommentAssetFolder_ListBox As ListBox
+    Friend WithEvents FBCommentSaveTextFile_Button As Button
+    Friend WithEvents FBCommentCreateNewTextFile_Button As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents RichTextBox1 As RichTextBox
-    Friend WithEvents Button8 As Button
+    Friend WithEvents FBCommentDeleteSelectedAssetFolder_Button As Button
+    Friend WithEvents FBCommentAssetFolderName_TextBox As TextBox
+    Friend WithEvents FBCommentMediaPreviewer_PictureBox As PictureBox
+    Friend WithEvents FBCommentTextFilePreviewer_RichTextBox As RichTextBox
+    Friend WithEvents FBCommentCreateNewAssetFolder_Button As Button
     Friend WithEvents NumericUpDown3 As NumericUpDown
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button

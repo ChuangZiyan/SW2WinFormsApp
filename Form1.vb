@@ -333,6 +333,7 @@ Public Class Form1
     Private FBPostEventHandlers As New FBPostEventHandlers()
     Private FBMarketplaceEventHandlers As New FBMarketplaceEventHandlers()
     Private FBPostShareURLEventHandlers As New FBPostShareURLEventHandlers()
+    Private FBCommentEventHandlers As New FBCommemtEventHandlers()
 
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
@@ -424,7 +425,7 @@ Public Class Form1
         AddHandler FBMarkplaceProducts_ListBox.DoubleClick, AddressOf FBMarketplaceEventHandlers.FBMarkplaceProducts_ListBox_DoubleClick
     End Sub
 
-    Private Sub RegisterFBPostShareURL()
+    Private Sub RegisterFBPostShareURLEventHanders()
         ' 這邊是用來發帖分享網址相關的事件
         AddHandler FBPostShareURLCreateNewAssetFolder_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLCreateNewAssetFolder_Button_Click
         AddHandler FBPostShareURLDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLDeselectAllAssetFolderListboxItems_Button_Click
@@ -438,6 +439,18 @@ Public Class Form1
         AddHandler FBPostShareURLTextFile_ListBox.DoubleClick, AddressOf FBPostShareURLEventHandlers.FBPostShareURLTextFile_ListBox_DoubleClick
         AddHandler FBPostShareURLGetCurrentURL_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLGetCurrentURL_Button_Click
         AddHandler FBPostShareURLNavigateToURL_Button.Click, AddressOf FBPostShareURLEventHandlers.FBPostShareURLNavigateToURL_Button_Click
+
+    End Sub
+
+
+    Private Sub RegisterFBCommentEventHanders()
+        AddHandler FBCommentCreateNewAssetFolder_Button.Click, AddressOf FBCommentEventHandlers.FBCommentCreateNewAssetFolder_Button_Click
+        AddHandler FBCommentDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBCommentDeleteSelectedAssetFolder_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBCommentCreateNewTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentCreateNewTextFile_Button_Click
+
+        AddHandler FBCommentAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentAssetFolder_ListBox_SelectedIndexChanged
+
 
     End Sub
 
@@ -456,7 +469,8 @@ Public Class Form1
         RegisterMainFormEventHanders()
         RegisterFBPostEventHanders()
         RegisterMarketplaceEventHanders()
-        RegisterFBPostShareURL()
+        RegisterFBPostShareURLEventHanders()
+        RegisterFBCommentEventHanders()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")

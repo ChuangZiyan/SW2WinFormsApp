@@ -18,6 +18,7 @@ Public Class FBPostEventHandlers
 
                 '新增後直接選擇該資料夾
                 Form1.MyAssetsFolder_ListBox.SelectedItem = folderName
+                Form1.NewAssetFolderName_TextBox.Clear()
                 'MsgBox("新增成功")
             Else
                 MsgBox("無法使用此名稱")

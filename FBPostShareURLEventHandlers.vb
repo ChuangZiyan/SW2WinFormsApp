@@ -61,8 +61,6 @@ Public Class FBPostShareURLEventHandlers
     End Sub
 
 
-
-
     Public Sub FBPostShareURLDeleteSelectedAssetFolder_Button_Click(sender As Object, e As EventArgs)
         Try
 
