@@ -450,7 +450,20 @@ Public Class Form1
         AddHandler FBCommentCreateNewTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentCreateNewTextFile_Button_Click
 
         AddHandler FBCommentAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBCommentTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBCommentDeleteSelectedTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedTextFile_Button_Click
+        AddHandler FBCommentSaveTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentSaveTextFile_Button_Click
 
+
+
+
+        AddHandler FBCommentMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBCommentRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBCommentEventHandlers.FBCommentRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBCommentDeleteSelectedMedia_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedMedia_Button_Click
+
+        AddHandler FBCommentAssetFolder_ListBox.DoubleClick, AddressOf FBCommentEventHandlers.FBCommentAssetFolder_ListBox_DoubleClick
+
+        AddHandler FBCommentTextFileSelector_ListBox.DoubleClick, AddressOf FBCommentEventHandlers.FBCommentTextFileSelector_ListBox_DoubleClick
 
     End Sub
 
@@ -474,7 +487,6 @@ Public Class Form1
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")
-
         emojiPickerForm = New EmojiPickerForm With {
             .Owner = Me,
             .TopMost = True

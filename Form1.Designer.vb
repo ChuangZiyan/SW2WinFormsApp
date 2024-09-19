@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
-        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -203,8 +203,8 @@ Partial Class Form1
         FBCommentAssetFolder_ListBox = New ListBox()
         FBCommentSaveTextFile_Button = New Button()
         FBCommentCreateNewTextFile_Button = New Button()
-        Button5 = New Button()
-        Button6 = New Button()
+        FBCommentDeleteSelectedMedia_Button = New Button()
+        FBCommentRevealMediaFoldesrInFileExplorer_Button = New Button()
         FBCommentDeleteSelectedAssetFolder_Button = New Button()
         FBCommentAssetFolderName_TextBox = New TextBox()
         FBCommentMediaPreviewer_PictureBox = New PictureBox()
@@ -771,7 +771,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -918,7 +918,7 @@ Partial Class Form1
         ' 
         ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
         ListView1.FullRowSelect = True
-        ListView1.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
+        ListView1.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
         ListView1.Location = New Point(6, 106)
         ListView1.Name = "ListView1"
         ListView1.Size = New Size(680, 236)
@@ -1827,8 +1827,8 @@ Partial Class Form1
         FBComment_TabPage.Controls.Add(FBCommentAssetFolder_ListBox)
         FBComment_TabPage.Controls.Add(FBCommentSaveTextFile_Button)
         FBComment_TabPage.Controls.Add(FBCommentCreateNewTextFile_Button)
-        FBComment_TabPage.Controls.Add(Button5)
-        FBComment_TabPage.Controls.Add(Button6)
+        FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedMedia_Button)
+        FBComment_TabPage.Controls.Add(FBCommentRevealMediaFoldesrInFileExplorer_Button)
         FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedAssetFolder_Button)
         FBComment_TabPage.Controls.Add(FBCommentAssetFolderName_TextBox)
         FBComment_TabPage.Controls.Add(FBCommentMediaPreviewer_PictureBox)
@@ -1957,23 +1957,23 @@ Partial Class Form1
         FBCommentCreateNewTextFile_Button.Text = "新增文字檔"
         FBCommentCreateNewTextFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button5
+        ' FBCommentDeleteSelectedMedia_Button
         ' 
-        Button5.Location = New Point(183, 429)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(147, 29)
-        Button5.TabIndex = 31
-        Button5.Text = "刪除所選"
-        Button5.UseVisualStyleBackColor = True
+        FBCommentDeleteSelectedMedia_Button.Location = New Point(183, 429)
+        FBCommentDeleteSelectedMedia_Button.Name = "FBCommentDeleteSelectedMedia_Button"
+        FBCommentDeleteSelectedMedia_Button.Size = New Size(147, 29)
+        FBCommentDeleteSelectedMedia_Button.TabIndex = 31
+        FBCommentDeleteSelectedMedia_Button.Text = "刪除所選"
+        FBCommentDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button6
+        ' FBCommentRevealMediaFoldesrInFileExplorer_Button
         ' 
-        Button6.Location = New Point(183, 393)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(147, 29)
-        Button6.TabIndex = 30
-        Button6.Text = "開啟資料夾"
-        Button6.UseVisualStyleBackColor = True
+        FBCommentRevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 393)
+        FBCommentRevealMediaFoldesrInFileExplorer_Button.Name = "FBCommentRevealMediaFoldesrInFileExplorer_Button"
+        FBCommentRevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
+        FBCommentRevealMediaFoldesrInFileExplorer_Button.TabIndex = 30
+        FBCommentRevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
+        FBCommentRevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
         ' 
         ' FBCommentDeleteSelectedAssetFolder_Button
         ' 
@@ -2820,8 +2820,8 @@ Partial Class Form1
     Friend WithEvents FBCommentAssetFolder_ListBox As ListBox
     Friend WithEvents FBCommentSaveTextFile_Button As Button
     Friend WithEvents FBCommentCreateNewTextFile_Button As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
+    Friend WithEvents FBCommentDeleteSelectedMedia_Button As Button
+    Friend WithEvents FBCommentRevealMediaFoldesrInFileExplorer_Button As Button
     Friend WithEvents FBCommentDeleteSelectedAssetFolder_Button As Button
     Friend WithEvents FBCommentAssetFolderName_TextBox As TextBox
     Friend WithEvents FBCommentMediaPreviewer_PictureBox As PictureBox
