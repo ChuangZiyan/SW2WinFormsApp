@@ -572,10 +572,22 @@ Module Webview2Controller
         Dim items = Await Task.Run(Async Function()
                                        Dim itemList As New List(Of ListViewItem)()
                                        Try
-                                           Dim default_wait_msec = 2000
-                                           Await Navigate_GoToUrl_Task("https://www.facebook.com/100002728990423/allactivity?activity_history=false&category_key=GROUPPOSTS&manage_mode=false&should_load_landing_page=false")
-
+                                           Dim default_wait_msec = 3000
                                            Await Delay_msec(default_wait_msec)
+
+                                           If NumberOfActivityLogs > 0 Then
+                                               Dim js As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+                                               Dim lastHeight As Long = CLng(js.ExecuteScript("return document.body.scrollHeight"))
+                                               For i = 0 To NumberOfActivityLogs - 1
+                                                   js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);")
+                                                   Await Delay_msec(default_wait_msec)
+                                                   Dim newHeight As Long = CLng(js.ExecuteScript("return document.body.scrollHeight"))
+                                                   If newHeight = lastHeight Then
+                                                       Exit For
+                                                   End If
+                                                   lastHeight = newHeight
+                                               Next
+                                           End If
 
                                            Dim pageItemElements = edgeDriver.FindElements(By.CssSelector("div.xgqk73l > div > a"))
 

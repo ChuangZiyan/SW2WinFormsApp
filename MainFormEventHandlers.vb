@@ -644,8 +644,11 @@ Public Class MainFormEventHandlers
 
 
     Public Sub ReadActivityLogs_Button_Click(sender As Object, e As EventArgs)
+        Webview2Controller.ReadActivityLogs(Form1.NumberOfActivityLogsPageDropDown_NumericUpDown.Value)
+    End Sub
 
-        Webview2Controller.ReadActivityLogs(Form1.NumberOfActivityLogs_NumericUpDown.Value)
+    Public Async Sub NavigateToActivityLogsPage_Button_Click(sender As Object, e As EventArgs)
+        Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/100002728990423/allactivity?activity_history=false&category_key=GROUPPOSTS&manage_mode=false&should_load_landing_page=false")
     End Sub
 
 

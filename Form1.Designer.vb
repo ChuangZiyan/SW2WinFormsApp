@@ -79,7 +79,9 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         FBCommentURLs_TabPage = New TabPage()
-        NumberOfActivityLogs_NumericUpDown = New NumericUpDown()
+        NavigateToActivityLogsPage_Button = New Button()
+        Label46 = New Label()
+        NumberOfActivityLogsPageDropDown_NumericUpDown = New NumericUpDown()
         ReadActivityLogs_Button = New Button()
         Button10 = New Button()
         Button11 = New Button()
@@ -268,7 +270,7 @@ Partial Class Form1
         FBUrlData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
         FBCommentURLs_TabPage.SuspendLayout()
-        CType(NumberOfActivityLogs_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         Action_TabControl.SuspendLayout()
         FBPost_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -791,7 +793,9 @@ Partial Class Form1
         ' 
         ' FBCommentURLs_TabPage
         ' 
-        FBCommentURLs_TabPage.Controls.Add(NumberOfActivityLogs_NumericUpDown)
+        FBCommentURLs_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
+        FBCommentURLs_TabPage.Controls.Add(Label46)
+        FBCommentURLs_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
         FBCommentURLs_TabPage.Controls.Add(ReadActivityLogs_Button)
         FBCommentURLs_TabPage.Controls.Add(Button10)
         FBCommentURLs_TabPage.Controls.Add(Button11)
@@ -812,20 +816,38 @@ Partial Class Form1
         FBCommentURLs_TabPage.Text = "留言"
         FBCommentURLs_TabPage.UseVisualStyleBackColor = True
         ' 
-        ' NumberOfActivityLogs_NumericUpDown
+        ' NavigateToActivityLogsPage_Button
         ' 
-        NumberOfActivityLogs_NumericUpDown.Location = New Point(7, 350)
-        NumberOfActivityLogs_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        NumberOfActivityLogs_NumericUpDown.Name = "NumberOfActivityLogs_NumericUpDown"
-        NumberOfActivityLogs_NumericUpDown.Size = New Size(92, 27)
-        NumberOfActivityLogs_NumericUpDown.TabIndex = 26
-        NumberOfActivityLogs_NumericUpDown.Value = New Decimal(New Integer() {30, 0, 0, 0})
+        NavigateToActivityLogsPage_Button.Location = New Point(8, 348)
+        NavigateToActivityLogsPage_Button.Name = "NavigateToActivityLogsPage_Button"
+        NavigateToActivityLogsPage_Button.Size = New Size(110, 29)
+        NavigateToActivityLogsPage_Button.TabIndex = 28
+        NavigateToActivityLogsPage_Button.Text = "前往最近貼文"
+        NavigateToActivityLogsPage_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label46
+        ' 
+        Label46.AutoSize = True
+        Label46.Location = New Point(124, 353)
+        Label46.Name = "Label46"
+        Label46.Size = New Size(80, 19)
+        Label46.TabIndex = 27
+        Label46.Text = "下拉次數 : "
+        ' 
+        ' NumberOfActivityLogsPageDropDown_NumericUpDown
+        ' 
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Location = New Point(210, 350)
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Name = "NumberOfActivityLogsPageDropDown_NumericUpDown"
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(92, 27)
+        NumberOfActivityLogsPageDropDown_NumericUpDown.TabIndex = 26
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Value = New Decimal(New Integer() {30, 0, 0, 0})
         ' 
         ' ReadActivityLogs_Button
         ' 
-        ReadActivityLogs_Button.Location = New Point(105, 350)
+        ReadActivityLogs_Button.Location = New Point(308, 349)
         ReadActivityLogs_Button.Name = "ReadActivityLogs_Button"
-        ReadActivityLogs_Button.Size = New Size(109, 29)
+        ReadActivityLogs_Button.Size = New Size(110, 29)
         ReadActivityLogs_Button.TabIndex = 25
         ReadActivityLogs_Button.Text = "讀取最近貼文"
         ReadActivityLogs_Button.UseVisualStyleBackColor = True
@@ -841,7 +863,7 @@ Partial Class Form1
         ' 
         ' Button11
         ' 
-        Button11.Location = New Point(221, 350)
+        Button11.Location = New Point(491, 350)
         Button11.Name = "Button11"
         Button11.Size = New Size(94, 29)
         Button11.TabIndex = 23
@@ -2570,7 +2592,7 @@ Partial Class Form1
         FBGroups_TabPage.PerformLayout()
         FBCommentURLs_TabPage.ResumeLayout(False)
         FBCommentURLs_TabPage.PerformLayout()
-        CType(NumberOfActivityLogs_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         Action_TabControl.ResumeLayout(False)
         FBPost_TabPage.ResumeLayout(False)
         FBPost_TabPage.PerformLayout()
@@ -2829,7 +2851,7 @@ Partial Class Form1
     Friend WithEvents FBCommentMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBCommentTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBCommentCreateNewAssetFolder_Button As Button
-    Friend WithEvents NumberOfActivityLogs_NumericUpDown As NumericUpDown
+    Friend WithEvents NumberOfActivityLogsPageDropDown_NumericUpDown As NumericUpDown
     Friend WithEvents ReadActivityLogs_Button As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
@@ -2844,5 +2866,7 @@ Partial Class Form1
     Friend WithEvents FBComment_ListView As ListView
     Friend WithEvents ColumnHeader16 As ColumnHeader
     Friend WithEvents ColumnHeader17 As ColumnHeader
+    Friend WithEvents Label46 As Label
+    Friend WithEvents NavigateToActivityLogsPage_Button As Button
 
 End Class
