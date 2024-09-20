@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -79,8 +79,8 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         FBCommentURLs_TabPage = New TabPage()
-        NumericUpDown3 = New NumericUpDown()
-        Button9 = New Button()
+        NumberOfActivityLogs_NumericUpDown = New NumericUpDown()
+        ReadActivityLogs_Button = New Button()
         Button10 = New Button()
         Button11 = New Button()
         Button13 = New Button()
@@ -91,7 +91,7 @@ Partial Class Form1
         TextBox4 = New TextBox()
         Label44 = New Label()
         Label45 = New Label()
-        ListView1 = New ListView()
+        FBComment_ListView = New ListView()
         ColumnHeader16 = New ColumnHeader()
         ColumnHeader17 = New ColumnHeader()
         ScriptQueue_ListView = New ListView()
@@ -268,7 +268,7 @@ Partial Class Form1
         FBUrlData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
         FBCommentURLs_TabPage.SuspendLayout()
-        CType(NumericUpDown3, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumberOfActivityLogs_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         Action_TabControl.SuspendLayout()
         FBPost_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -771,7 +771,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -791,8 +791,8 @@ Partial Class Form1
         ' 
         ' FBCommentURLs_TabPage
         ' 
-        FBCommentURLs_TabPage.Controls.Add(NumericUpDown3)
-        FBCommentURLs_TabPage.Controls.Add(Button9)
+        FBCommentURLs_TabPage.Controls.Add(NumberOfActivityLogs_NumericUpDown)
+        FBCommentURLs_TabPage.Controls.Add(ReadActivityLogs_Button)
         FBCommentURLs_TabPage.Controls.Add(Button10)
         FBCommentURLs_TabPage.Controls.Add(Button11)
         FBCommentURLs_TabPage.Controls.Add(Button13)
@@ -803,7 +803,7 @@ Partial Class Form1
         FBCommentURLs_TabPage.Controls.Add(TextBox4)
         FBCommentURLs_TabPage.Controls.Add(Label44)
         FBCommentURLs_TabPage.Controls.Add(Label45)
-        FBCommentURLs_TabPage.Controls.Add(ListView1)
+        FBCommentURLs_TabPage.Controls.Add(FBComment_ListView)
         FBCommentURLs_TabPage.Location = New Point(4, 28)
         FBCommentURLs_TabPage.Name = "FBCommentURLs_TabPage"
         FBCommentURLs_TabPage.Padding = New Padding(3)
@@ -812,21 +812,23 @@ Partial Class Form1
         FBCommentURLs_TabPage.Text = "留言"
         FBCommentURLs_TabPage.UseVisualStyleBackColor = True
         ' 
-        ' NumericUpDown3
+        ' NumberOfActivityLogs_NumericUpDown
         ' 
-        NumericUpDown3.Location = New Point(7, 350)
-        NumericUpDown3.Name = "NumericUpDown3"
-        NumericUpDown3.Size = New Size(92, 27)
-        NumericUpDown3.TabIndex = 26
+        NumberOfActivityLogs_NumericUpDown.Location = New Point(7, 350)
+        NumberOfActivityLogs_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        NumberOfActivityLogs_NumericUpDown.Name = "NumberOfActivityLogs_NumericUpDown"
+        NumberOfActivityLogs_NumericUpDown.Size = New Size(92, 27)
+        NumberOfActivityLogs_NumericUpDown.TabIndex = 26
+        NumberOfActivityLogs_NumericUpDown.Value = New Decimal(New Integer() {30, 0, 0, 0})
         ' 
-        ' Button9
+        ' ReadActivityLogs_Button
         ' 
-        Button9.Location = New Point(105, 350)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(109, 29)
-        Button9.TabIndex = 25
-        Button9.Text = "讀取最近貼文"
-        Button9.UseVisualStyleBackColor = True
+        ReadActivityLogs_Button.Location = New Point(105, 350)
+        ReadActivityLogs_Button.Name = "ReadActivityLogs_Button"
+        ReadActivityLogs_Button.Size = New Size(109, 29)
+        ReadActivityLogs_Button.TabIndex = 25
+        ReadActivityLogs_Button.Text = "讀取最近貼文"
+        ReadActivityLogs_Button.UseVisualStyleBackColor = True
         ' 
         ' Button10
         ' 
@@ -914,17 +916,17 @@ Partial Class Form1
         Label45.TabIndex = 14
         Label45.Text = "名稱 : "
         ' 
-        ' ListView1
+        ' FBComment_ListView
         ' 
-        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
-        ListView1.FullRowSelect = True
-        ListView1.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
-        ListView1.Location = New Point(6, 106)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(680, 236)
-        ListView1.TabIndex = 13
-        ListView1.UseCompatibleStateImageBehavior = False
-        ListView1.View = View.Details
+        FBComment_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
+        FBComment_ListView.FullRowSelect = True
+        FBComment_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
+        FBComment_ListView.Location = New Point(6, 106)
+        FBComment_ListView.Name = "FBComment_ListView"
+        FBComment_ListView.Size = New Size(680, 236)
+        FBComment_ListView.TabIndex = 13
+        FBComment_ListView.UseCompatibleStateImageBehavior = False
+        FBComment_ListView.View = View.Details
         ' 
         ' ColumnHeader16
         ' 
@@ -933,7 +935,7 @@ Partial Class Form1
         ' 
         ' ColumnHeader17
         ' 
-        ColumnHeader17.Text = "社團網址"
+        ColumnHeader17.Text = "貼文網址"
         ColumnHeader17.Width = 470
         ' 
         ' ScriptQueue_ListView
@@ -2568,7 +2570,7 @@ Partial Class Form1
         FBGroups_TabPage.PerformLayout()
         FBCommentURLs_TabPage.ResumeLayout(False)
         FBCommentURLs_TabPage.PerformLayout()
-        CType(NumericUpDown3, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumberOfActivityLogs_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         Action_TabControl.ResumeLayout(False)
         FBPost_TabPage.ResumeLayout(False)
         FBPost_TabPage.PerformLayout()
@@ -2827,8 +2829,8 @@ Partial Class Form1
     Friend WithEvents FBCommentMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBCommentTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBCommentCreateNewAssetFolder_Button As Button
-    Friend WithEvents NumericUpDown3 As NumericUpDown
-    Friend WithEvents Button9 As Button
+    Friend WithEvents NumberOfActivityLogs_NumericUpDown As NumericUpDown
+    Friend WithEvents ReadActivityLogs_Button As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents Button13 As Button
@@ -2839,7 +2841,7 @@ Partial Class Form1
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label44 As Label
     Friend WithEvents Label45 As Label
-    Friend WithEvents ListView1 As ListView
+    Friend WithEvents FBComment_ListView As ListView
     Friend WithEvents ColumnHeader16 As ColumnHeader
     Friend WithEvents ColumnHeader17 As ColumnHeader
 

@@ -387,6 +387,8 @@ Public Class Form1
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
         AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
 
+        AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
+
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
     End Sub
@@ -448,23 +450,15 @@ Public Class Form1
         AddHandler FBCommentDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeselectAllAssetFolderListboxItems_Button_Click
         AddHandler FBCommentDeleteSelectedAssetFolder_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedAssetFolder_Button_Click
         AddHandler FBCommentCreateNewTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentCreateNewTextFile_Button_Click
-
         AddHandler FBCommentAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentAssetFolder_ListBox_SelectedIndexChanged
         AddHandler FBCommentTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentTextFileSelector_ListBox_SelectedIndexChanged
         AddHandler FBCommentDeleteSelectedTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedTextFile_Button_Click
         AddHandler FBCommentSaveTextFile_Button.Click, AddressOf FBCommentEventHandlers.FBCommentSaveTextFile_Button_Click
-
-
-
-
         AddHandler FBCommentMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBCommentEventHandlers.FBCommentMediaSelector_ListBox_SelectedIndexChanged
         AddHandler FBCommentRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBCommentEventHandlers.FBCommentRevealMediaFoldesrInFileExplorer_Button_Click
         AddHandler FBCommentDeleteSelectedMedia_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedMedia_Button_Click
-
         AddHandler FBCommentAssetFolder_ListBox.DoubleClick, AddressOf FBCommentEventHandlers.FBCommentAssetFolder_ListBox_DoubleClick
-
         AddHandler FBCommentTextFileSelector_ListBox.DoubleClick, AddressOf FBCommentEventHandlers.FBCommentTextFileSelector_ListBox_DoubleClick
-
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -493,5 +487,6 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
+
 
 End Class

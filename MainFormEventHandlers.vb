@@ -643,6 +643,12 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+    Public Sub ReadActivityLogs_Button_Click(sender As Object, e As EventArgs)
+
+        Webview2Controller.ReadActivityLogs(Form1.NumberOfActivityLogs_NumericUpDown.Value)
+    End Sub
+
+
     Public Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs)
         Try
             'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)
