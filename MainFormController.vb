@@ -115,6 +115,40 @@ Module MainFormController
 
     End Sub
 
+    Public Sub DisplayFBActivityLogs(FolderName)
+        If FolderName = "" Then
+            Exit Sub
+        End If
+
+        Form1.FBActivityLogs_ListView.Items.Clear()
+
+        Form1.FBActivityLogsGroupName_TextBox.Text = ""
+        Form1.FBActivityLogsGroupURL_TextBox.Text = ""
+
+        Dim activityLogGroupListJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "FBActivityLogList.json")
+
+        'Debug.WriteLine(userDataJsonFilePath)
+
+        If File.Exists(activityLogGroupListJsonFilePath) Then
+            Dim jsonString As String = File.ReadAllText(activityLogGroupListJsonFilePath)
+
+            Dim jsonArray As JArray = JArray.Parse(jsonString)
+
+            ' 使用 For Each 迴圈逐個處理每個項目
+            For Each item As JObject In jsonArray
+                Dim name As String = item("Name").ToString()
+                Dim url As String = item("Url").ToString()
+
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBActivityLogs_ListView.Items.Add(newItem)
+
+            Next
+
+        End If
+
+    End Sub
+
 
     Public Sub SetForm1TitleStatus(status As String)
         Dim myUserData = Webview2Controller.ActivedWebview2UserData

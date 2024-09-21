@@ -15,6 +15,7 @@ Public Class MainFormEventHandlers
     Public Sub WebviewUserDataFolder_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs)
         MainFormController.DisplayUserData(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
         MainFormController.DisplayGroupList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
+        MainFormController.DisplayFBActivityLogs(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
 
 
@@ -651,6 +652,146 @@ Public Class MainFormEventHandlers
         Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/100002728990423/allactivity?activity_history=false&category_key=GROUPPOSTS&manage_mode=false&should_load_landing_page=false")
     End Sub
 
+    Public Sub SaveFBActivityLogListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                MsgBox("未選擇使用者")
+                Exit Sub
+            End If
+
+            Dim items As New List(Of GroupListviewDataStruct)()
+            For Each item As ListViewItem In Form1.FBActivityLogs_ListView.Items
+
+                Dim listViewItemData As New GroupListviewDataStruct With {
+                    .Name = item.Text,
+                    .Url = item.SubItems(1).Text
+                }
+                items.Add(listViewItemData)
+            Next
+
+            Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
+            Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBActivityLogList.json")
+            File.WriteAllText(filePath, jsonStr)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+
+    End Sub
+
+
+
+    Public Sub FBActivityLogs_ListView_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBActivityLogs_ListView.SelectedItems.Count > 0 Then
+                'Debug.WriteLine(Form1.FBGroups_ListView.SelectedItems(0).Text)
+                Dim selectedItem = Form1.FBActivityLogs_ListView.SelectedItems(0)
+                Form1.FBActivityLogsGroupName_TextBox.Text = selectedItem.Text
+                Form1.FBActivityLogsGroupURL_TextBox.Text = selectedItem.SubItems(1).Text
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub DeleteSelectedFBActivityLogListviewItems_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim selectedItems = Form1.FBActivityLogs_ListView.SelectedItems
+            If selectedItems.Count > 0 Then
+                For i As Integer = selectedItems.Count - 1 To 0 Step -1
+                    Form1.FBActivityLogs_ListView.Items.Remove(selectedItems(i))
+                Next
+            Else
+
+                If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                    MsgBox("未選擇使用者")
+                    Exit Sub
+                End If
+
+                Dim result As DialogResult = MessageBox.Show("確定要近期活動列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBActivityLogList.json")
+
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                        Form1.FBActivityLogs_ListView.Items.Clear()
+                        MsgBox("刪除完成")
+                    Else
+                        MsgBox("檔案不存在")
+                    End If
+
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox("刪除失敗")
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Async Sub NavigateToFBActivityLogSelectedGroupURL_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task(Form1.FBActivityLogsGroupURL_TextBox.Text)
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub DisplayCurrUrlToFBActivityLogUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Form1.FBActivityLogsGroupURL_TextBox.Text = Webview2Controller.edgeDriver.Url
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+
+    Public Sub AddItemToFBActivityLogListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim name = Form1.FBActivityLogsGroupName_TextBox.Text
+            Dim url = Form1.FBActivityLogsGroupURL_TextBox.Text
+
+            If name <> "" And url <> "" Then
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBActivityLogs_ListView.Items.Insert(0, newItem)
+            Else
+                MsgBox("欄位不得為空")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub EditSelectedFBActivityLogListviewItem_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBActivityLogs_ListView.SelectedItems.Count > 0 Then
+                Dim name = Form1.FBActivityLogsGroupName_TextBox.Text
+                Dim url = Form1.FBActivityLogsGroupURL_TextBox.Text
+                If name <> "" And url <> "" Then
+                    Dim selectedItem = Form1.FBActivityLogs_ListView.SelectedItems(0)
+                    selectedItem.Text = name
+                    selectedItem.SubItems(1).Text = url
+
+                Else
+                    MsgBox("欄位不得為空")
+                End If
+            Else
+                MsgBox("未選擇欄位")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
 
     Public Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs)
         Try

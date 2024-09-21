@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
         Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -83,17 +83,17 @@ Partial Class Form1
         Label46 = New Label()
         NumberOfActivityLogsPageDropDown_NumericUpDown = New NumericUpDown()
         ReadActivityLogs_Button = New Button()
-        Button10 = New Button()
-        Button11 = New Button()
-        Button13 = New Button()
-        Button14 = New Button()
-        Button15 = New Button()
-        Button16 = New Button()
-        TextBox3 = New TextBox()
-        TextBox4 = New TextBox()
+        DeleteSelectedFBActivityLogListviewItems_Button = New Button()
+        SaveFBActivityLogListview_Button = New Button()
+        EditSelectedFBActivityLogListviewItem_Button = New Button()
+        AddItemToFBActivityLogListview_Button = New Button()
+        DisplayCurrUrlToFBActivityLogUrl_Button = New Button()
+        NavigateToFBActivityLogSelectedGroupURL_Button = New Button()
+        FBActivityLogsGroupURL_TextBox = New TextBox()
+        FBActivityLogsGroupName_TextBox = New TextBox()
         Label44 = New Label()
         Label45 = New Label()
-        FBComment_ListView = New ListView()
+        FBActivityLogs_ListView = New ListView()
         ColumnHeader16 = New ColumnHeader()
         ColumnHeader17 = New ColumnHeader()
         ScriptQueue_ListView = New ListView()
@@ -685,7 +685,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(221, 350)
+        SaveListviewGroupList_Button.Location = New Point(491, 350)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -773,7 +773,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -797,17 +797,17 @@ Partial Class Form1
         FBCommentURLs_TabPage.Controls.Add(Label46)
         FBCommentURLs_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
         FBCommentURLs_TabPage.Controls.Add(ReadActivityLogs_Button)
-        FBCommentURLs_TabPage.Controls.Add(Button10)
-        FBCommentURLs_TabPage.Controls.Add(Button11)
-        FBCommentURLs_TabPage.Controls.Add(Button13)
-        FBCommentURLs_TabPage.Controls.Add(Button14)
-        FBCommentURLs_TabPage.Controls.Add(Button15)
-        FBCommentURLs_TabPage.Controls.Add(Button16)
-        FBCommentURLs_TabPage.Controls.Add(TextBox3)
-        FBCommentURLs_TabPage.Controls.Add(TextBox4)
+        FBCommentURLs_TabPage.Controls.Add(DeleteSelectedFBActivityLogListviewItems_Button)
+        FBCommentURLs_TabPage.Controls.Add(SaveFBActivityLogListview_Button)
+        FBCommentURLs_TabPage.Controls.Add(EditSelectedFBActivityLogListviewItem_Button)
+        FBCommentURLs_TabPage.Controls.Add(AddItemToFBActivityLogListview_Button)
+        FBCommentURLs_TabPage.Controls.Add(DisplayCurrUrlToFBActivityLogUrl_Button)
+        FBCommentURLs_TabPage.Controls.Add(NavigateToFBActivityLogSelectedGroupURL_Button)
+        FBCommentURLs_TabPage.Controls.Add(FBActivityLogsGroupURL_TextBox)
+        FBCommentURLs_TabPage.Controls.Add(FBActivityLogsGroupName_TextBox)
         FBCommentURLs_TabPage.Controls.Add(Label44)
         FBCommentURLs_TabPage.Controls.Add(Label45)
-        FBCommentURLs_TabPage.Controls.Add(FBComment_ListView)
+        FBCommentURLs_TabPage.Controls.Add(FBActivityLogs_ListView)
         FBCommentURLs_TabPage.Location = New Point(4, 28)
         FBCommentURLs_TabPage.Name = "FBCommentURLs_TabPage"
         FBCommentURLs_TabPage.Padding = New Padding(3)
@@ -839,86 +839,86 @@ Partial Class Form1
         NumberOfActivityLogsPageDropDown_NumericUpDown.Location = New Point(210, 350)
         NumberOfActivityLogsPageDropDown_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         NumberOfActivityLogsPageDropDown_NumericUpDown.Name = "NumberOfActivityLogsPageDropDown_NumericUpDown"
-        NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(92, 27)
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(62, 27)
         NumberOfActivityLogsPageDropDown_NumericUpDown.TabIndex = 26
-        NumberOfActivityLogsPageDropDown_NumericUpDown.Value = New Decimal(New Integer() {30, 0, 0, 0})
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Value = New Decimal(New Integer() {10, 0, 0, 0})
         ' 
         ' ReadActivityLogs_Button
         ' 
-        ReadActivityLogs_Button.Location = New Point(308, 349)
+        ReadActivityLogs_Button.Location = New Point(278, 348)
         ReadActivityLogs_Button.Name = "ReadActivityLogs_Button"
         ReadActivityLogs_Button.Size = New Size(110, 29)
         ReadActivityLogs_Button.TabIndex = 25
         ReadActivityLogs_Button.Text = "讀取最近貼文"
         ReadActivityLogs_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button10
+        ' DeleteSelectedFBActivityLogListviewItems_Button
         ' 
-        Button10.Location = New Point(591, 350)
-        Button10.Name = "Button10"
-        Button10.Size = New Size(94, 29)
-        Button10.TabIndex = 24
-        Button10.Text = "刪除"
-        Button10.UseVisualStyleBackColor = True
+        DeleteSelectedFBActivityLogListviewItems_Button.Location = New Point(591, 350)
+        DeleteSelectedFBActivityLogListviewItems_Button.Name = "DeleteSelectedFBActivityLogListviewItems_Button"
+        DeleteSelectedFBActivityLogListviewItems_Button.Size = New Size(94, 29)
+        DeleteSelectedFBActivityLogListviewItems_Button.TabIndex = 24
+        DeleteSelectedFBActivityLogListviewItems_Button.Text = "刪除"
+        DeleteSelectedFBActivityLogListviewItems_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button11
+        ' SaveFBActivityLogListview_Button
         ' 
-        Button11.Location = New Point(491, 350)
-        Button11.Name = "Button11"
-        Button11.Size = New Size(94, 29)
-        Button11.TabIndex = 23
-        Button11.Text = "儲存"
-        Button11.UseVisualStyleBackColor = True
+        SaveFBActivityLogListview_Button.Location = New Point(491, 350)
+        SaveFBActivityLogListview_Button.Name = "SaveFBActivityLogListview_Button"
+        SaveFBActivityLogListview_Button.Size = New Size(94, 29)
+        SaveFBActivityLogListview_Button.TabIndex = 23
+        SaveFBActivityLogListview_Button.Text = "儲存"
+        SaveFBActivityLogListview_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button13
+        ' EditSelectedFBActivityLogListviewItem_Button
         ' 
-        Button13.Location = New Point(306, 72)
-        Button13.Name = "Button13"
-        Button13.Size = New Size(94, 29)
-        Button13.TabIndex = 21
-        Button13.Text = "修改"
-        Button13.UseVisualStyleBackColor = True
+        EditSelectedFBActivityLogListviewItem_Button.Location = New Point(306, 72)
+        EditSelectedFBActivityLogListviewItem_Button.Name = "EditSelectedFBActivityLogListviewItem_Button"
+        EditSelectedFBActivityLogListviewItem_Button.Size = New Size(94, 29)
+        EditSelectedFBActivityLogListviewItem_Button.TabIndex = 21
+        EditSelectedFBActivityLogListviewItem_Button.Text = "修改"
+        EditSelectedFBActivityLogListviewItem_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button14
+        ' AddItemToFBActivityLogListview_Button
         ' 
-        Button14.Location = New Point(206, 72)
-        Button14.Name = "Button14"
-        Button14.Size = New Size(94, 29)
-        Button14.TabIndex = 20
-        Button14.Text = "增加"
-        Button14.UseVisualStyleBackColor = True
+        AddItemToFBActivityLogListview_Button.Location = New Point(206, 72)
+        AddItemToFBActivityLogListview_Button.Name = "AddItemToFBActivityLogListview_Button"
+        AddItemToFBActivityLogListview_Button.Size = New Size(94, 29)
+        AddItemToFBActivityLogListview_Button.TabIndex = 20
+        AddItemToFBActivityLogListview_Button.Text = "增加"
+        AddItemToFBActivityLogListview_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button15
+        ' DisplayCurrUrlToFBActivityLogUrl_Button
         ' 
-        Button15.Location = New Point(105, 72)
-        Button15.Name = "Button15"
-        Button15.Size = New Size(94, 29)
-        Button15.TabIndex = 19
-        Button15.Text = "取得網址"
-        Button15.UseVisualStyleBackColor = True
+        DisplayCurrUrlToFBActivityLogUrl_Button.Location = New Point(105, 72)
+        DisplayCurrUrlToFBActivityLogUrl_Button.Name = "DisplayCurrUrlToFBActivityLogUrl_Button"
+        DisplayCurrUrlToFBActivityLogUrl_Button.Size = New Size(94, 29)
+        DisplayCurrUrlToFBActivityLogUrl_Button.TabIndex = 19
+        DisplayCurrUrlToFBActivityLogUrl_Button.Text = "取得網址"
+        DisplayCurrUrlToFBActivityLogUrl_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button16
+        ' NavigateToFBActivityLogSelectedGroupURL_Button
         ' 
-        Button16.Location = New Point(6, 72)
-        Button16.Name = "Button16"
-        Button16.Size = New Size(94, 29)
-        Button16.TabIndex = 18
-        Button16.Text = "前往"
-        Button16.UseVisualStyleBackColor = True
+        NavigateToFBActivityLogSelectedGroupURL_Button.Location = New Point(6, 72)
+        NavigateToFBActivityLogSelectedGroupURL_Button.Name = "NavigateToFBActivityLogSelectedGroupURL_Button"
+        NavigateToFBActivityLogSelectedGroupURL_Button.Size = New Size(94, 29)
+        NavigateToFBActivityLogSelectedGroupURL_Button.TabIndex = 18
+        NavigateToFBActivityLogSelectedGroupURL_Button.Text = "前往"
+        NavigateToFBActivityLogSelectedGroupURL_Button.UseVisualStyleBackColor = True
         ' 
-        ' TextBox3
+        ' FBActivityLogsGroupURL_TextBox
         ' 
-        TextBox3.Location = New Point(62, 39)
-        TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(624, 27)
-        TextBox3.TabIndex = 17
+        FBActivityLogsGroupURL_TextBox.Location = New Point(62, 39)
+        FBActivityLogsGroupURL_TextBox.Name = "FBActivityLogsGroupURL_TextBox"
+        FBActivityLogsGroupURL_TextBox.Size = New Size(624, 27)
+        FBActivityLogsGroupURL_TextBox.TabIndex = 17
         ' 
-        ' TextBox4
+        ' FBActivityLogsGroupName_TextBox
         ' 
-        TextBox4.Location = New Point(62, 6)
-        TextBox4.Name = "TextBox4"
-        TextBox4.Size = New Size(624, 27)
-        TextBox4.TabIndex = 16
+        FBActivityLogsGroupName_TextBox.Location = New Point(62, 6)
+        FBActivityLogsGroupName_TextBox.Name = "FBActivityLogsGroupName_TextBox"
+        FBActivityLogsGroupName_TextBox.Size = New Size(624, 27)
+        FBActivityLogsGroupName_TextBox.TabIndex = 16
         ' 
         ' Label44
         ' 
@@ -938,17 +938,17 @@ Partial Class Form1
         Label45.TabIndex = 14
         Label45.Text = "名稱 : "
         ' 
-        ' FBComment_ListView
+        ' FBActivityLogs_ListView
         ' 
-        FBComment_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
-        FBComment_ListView.FullRowSelect = True
-        FBComment_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
-        FBComment_ListView.Location = New Point(6, 106)
-        FBComment_ListView.Name = "FBComment_ListView"
-        FBComment_ListView.Size = New Size(680, 236)
-        FBComment_ListView.TabIndex = 13
-        FBComment_ListView.UseCompatibleStateImageBehavior = False
-        FBComment_ListView.View = View.Details
+        FBActivityLogs_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
+        FBActivityLogs_ListView.FullRowSelect = True
+        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBActivityLogs_ListView.Location = New Point(6, 106)
+        FBActivityLogs_ListView.Name = "FBActivityLogs_ListView"
+        FBActivityLogs_ListView.Size = New Size(680, 236)
+        FBActivityLogs_ListView.TabIndex = 13
+        FBActivityLogs_ListView.UseCompatibleStateImageBehavior = False
+        FBActivityLogs_ListView.View = View.Details
         ' 
         ' ColumnHeader16
         ' 
@@ -2853,17 +2853,17 @@ Partial Class Form1
     Friend WithEvents FBCommentCreateNewAssetFolder_Button As Button
     Friend WithEvents NumberOfActivityLogsPageDropDown_NumericUpDown As NumericUpDown
     Friend WithEvents ReadActivityLogs_Button As Button
-    Friend WithEvents Button10 As Button
-    Friend WithEvents Button11 As Button
-    Friend WithEvents Button13 As Button
-    Friend WithEvents Button14 As Button
-    Friend WithEvents Button15 As Button
-    Friend WithEvents Button16 As Button
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents DeleteSelectedFBActivityLogListviewItems_Button As Button
+    Friend WithEvents SaveFBActivityLogListview_Button As Button
+    Friend WithEvents EditSelectedFBActivityLogListviewItem_Button As Button
+    Friend WithEvents AddItemToFBActivityLogListview_Button As Button
+    Friend WithEvents DisplayCurrUrlToFBActivityLogUrl_Button As Button
+    Friend WithEvents NavigateToFBActivityLogSelectedGroupURL_Button As Button
+    Friend WithEvents FBActivityLogsGroupURL_TextBox As TextBox
+    Friend WithEvents FBActivityLogsGroupName_TextBox As TextBox
     Friend WithEvents Label44 As Label
     Friend WithEvents Label45 As Label
-    Friend WithEvents FBComment_ListView As ListView
+    Friend WithEvents FBActivityLogs_ListView As ListView
     Friend WithEvents ColumnHeader16 As ColumnHeader
     Friend WithEvents ColumnHeader17 As ColumnHeader
     Friend WithEvents Label46 As Label

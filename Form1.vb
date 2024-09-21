@@ -390,9 +390,19 @@ Public Class Form1
         AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
         AddHandler NavigateToActivityLogsPage_Button.Click, AddressOf mainFormEventHandlers.NavigateToActivityLogsPage_Button_Click
 
+        AddHandler SaveFBActivityLogListview_Button.Click, AddressOf mainFormEventHandlers.SaveFBActivityLogListview_Button_Click
+
+        AddHandler FBActivityLogs_ListView.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBActivityLogs_ListView_SelectedIndexChanged
+        AddHandler DeleteSelectedFBActivityLogListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedFBActivityLogListviewItems_Button_Click
+        AddHandler NavigateToFBActivityLogSelectedGroupURL_Button.Click, AddressOf mainFormEventHandlers.NavigateToFBActivityLogSelectedGroupURL_Button_Click
+        AddHandler DisplayCurrUrlToFBActivityLogUrl_Button.Click, AddressOf mainFormEventHandlers.DisplayCurrUrlToFBActivityLogUrl_Button_Click
+        AddHandler AddItemToFBActivityLogListview_Button.Click, AddressOf mainFormEventHandlers.AddItemToFBActivityLogListview_Button_Click
+        AddHandler EditSelectedFBActivityLogListviewItem_Button.Click, AddressOf mainFormEventHandlers.EditSelectedFBActivityLogListviewItem_Button_Click
+
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
     End Sub
+
 
 
     Private Sub RegisterFBPostEventHanders()

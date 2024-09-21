@@ -617,9 +617,9 @@ Module Webview2Controller
                                        End Try
                                    End Function)
 
-        Form1.FBComment_ListView.Items.Clear()
+        Form1.FBActivityLogs_ListView.Items.Clear()
         For Each item In items
-            Form1.FBComment_ListView.Items.Add(item)
+            Form1.FBActivityLogs_ListView.Items.Add(item)
         Next
     End Sub
 
