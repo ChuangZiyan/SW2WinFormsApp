@@ -296,7 +296,32 @@ Module MainFormController
             Return Nothing
         End Try
 
+    End Function
 
+    Public Function GetRandomFBActivityLogUrl(userDataFolderPath As String) As JToken
+        Try
+
+            Dim filePath = Path.Combine(userDataFolderPath, "FBActivityLogList.json")
+
+            If File.Exists(filePath) Then
+                Dim jsonString As String = File.ReadAllText(filePath)
+                Dim jsonArray As JArray = JArray.Parse(jsonString)
+
+                Dim rnd As New Random()
+                Dim randomIndex As Integer = rnd.Next(0, jsonArray.Count)
+                Dim randomItem As JToken = jsonArray(randomIndex)
+
+                'Debug.WriteLine("Name : " & randomItem("Name").ToString)
+                'Debug.WriteLine("URL : " & randomItem("Url").ToString)
+
+                Return randomItem
+            End If
+
+            Return Nothing
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return Nothing
+        End Try
 
     End Function
 

@@ -150,7 +150,13 @@ Public Class Form1
 
         '處理隨機網址
         If myUrl.Contains("隨機") Then
-            Dim randomItem As JToken = MainFormController.GetRandomGroupsUrl(userDataFolderPath)
+            Dim randomItem As JToken
+
+            If action = "留言" Then
+                randomItem = MainFormController.GetRandomFBActivityLogUrl(userDataFolderPath)
+            Else
+                randomItem = MainFormController.GetRandomGroupsUrl(userDataFolderPath)
+            End If
             item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
             item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()
             myUrl = randomItem("Url").ToString()

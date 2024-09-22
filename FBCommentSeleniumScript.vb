@@ -57,7 +57,8 @@ Module FBCommentSeleniumScript
                                           '按下"留個言吧..."，如果按不到直接顯示失敗
                                           Webview2Controller.ClickByAriaLable("留言")
                                           Await Delay_msec(2000)
-                                          Dim text_input As IWebElement = edgeDriver.FindElement(By.XPath("//div[@aria-placeholder='留言……']"))
+                                          'Dim text_input As IWebElement = edgeDriver.FindElement(By.XPath("//div[@aria-placeholder='留言……']"))
+                                          Dim text_input As IWebElement = edgeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
 
 
                                           Dim lines As String() = myText.Split(New String() {vbCrLf, vbCr, vbLf}, StringSplitOptions.None)
