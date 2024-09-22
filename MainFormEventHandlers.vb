@@ -76,6 +76,8 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.FBMarkplaceProducts_ListBox.SelectedItems
             Case "分享"
                 assetFolderListBoxSelectedItems = Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
+            Case "留言"
+                assetFolderListBoxSelectedItems = Form1.FBCommentAssetFolder_ListBox.SelectedItems
             Case Else
                 MsgBox("不支援此執行動作")
                 Exit Sub
@@ -325,6 +327,7 @@ Public Class MainFormEventHandlers
             Form1.WebviewUserDataFolder_ListBox.ClearSelected()
             Form1.MyAssetsFolder_ListBox.ClearSelected()
             Form1.FBPostShareURLAssetFolder_ListBox.ClearSelected()
+            Form1.FBCommentAssetFolder_ListBox.ClearSelected()
 
             Dim selectedItem As ListViewItem = Form1.ScriptQueue_ListView.SelectedItems(0)
 
@@ -347,9 +350,6 @@ Public Class MainFormEventHandlers
                 Form1.ScheduledExecutionSeconds_NumericUpDown.Value = CInt(splitedScheduleTime(2))
             End If
 
-            ' 社團名稱跟網址
-            Form1.FBGroupName_TextBox.Text = urlName
-            Form1.FBGroupUrl_TextBox.Text = url
 
             '先宣告待會要用的asset listbox
             Dim assetsFolder_ListBox = Nothing
@@ -369,11 +369,26 @@ Public Class MainFormEventHandlers
                     Form1.Action_TabControl.SelectedTab = Form1.FBPostShareURL_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
                     assetsFolder_ListBox = Form1.FBPostShareURLAssetFolder_ListBox
+                Case "留言"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBComment_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
+                    assetsFolder_ListBox = Form1.FBCommentAssetFolder_ListBox
                 Case "測試項"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBCommentURLs_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
             End Select
 
-            ' 設定時間, 這是通用的
+
+            ' 填入社團名稱跟網址，動作是留言的話，要填到留言的面板去
+            If action = "留言" Then
+                Form1.FBActivityLogsGroupName_TextBox.Text = urlName
+                Form1.FBActivityLogsGroupURL_TextBox.Text = url
+            Else
+                Form1.FBGroupName_TextBox.Text = urlName
+                Form1.FBGroupUrl_TextBox.Text = url
+            End If
+
+
+            ' 設定時間，這是通用的
             Dim waitSecondsStr = Split(waitTime, "±")(0)
             Dim RandomWaitSeconds = Split(waitTime, "±")(1)
             Dim SplitedWaitSecondsStr() As String = Split(UtilsModule.ConvertSecondsToTimeFormat(waitSecondsStr), ":")
@@ -569,12 +584,11 @@ Public Class MainFormEventHandlers
 
                     If File.Exists(filePath) Then
                         File.Delete(filePath)
-                        Form1.FBGroups_ListView.Items.Clear()
                         MsgBox("刪除完成")
                     Else
                         MsgBox("檔案不存在")
                     End If
-
+                    Form1.FBGroups_ListView.Items.Clear()
                 End If
 
             End If
@@ -715,12 +729,11 @@ Public Class MainFormEventHandlers
 
                     If File.Exists(filePath) Then
                         File.Delete(filePath)
-                        Form1.FBActivityLogs_ListView.Items.Clear()
                         MsgBox("刪除完成")
                     Else
                         MsgBox("檔案不存在")
                     End If
-
+                    Form1.FBActivityLogs_ListView.Items.Clear()
                 End If
 
             End If
@@ -1042,6 +1055,17 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "留言"
+                If Form1.FBCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBCommentAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+
+
             Case "測試項"
                 content = "測試"
         End Select
@@ -1054,6 +1078,13 @@ Public Class MainFormEventHandlers
         For Each selectedUserData In selectedUserDataFolderItems
             selectedUserDataFolder = selectedUserData.ToString()
         Next
+
+
+        If selecteAction = "留言" Then
+            selectedGroupItems = Form1.FBActivityLogs_ListView.SelectedItems
+        End If
+
+
 
         ' 第一個選擇的Group
         If selectedGroupItems.Count > 0 Then

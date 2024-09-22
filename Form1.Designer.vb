@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
         Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -78,7 +78,7 @@ Partial Class Form1
         FBGroups_ListView = New ListView()
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
-        FBCommentURLs_TabPage = New TabPage()
+        FBActivityLogs_TabPage = New TabPage()
         NavigateToActivityLogsPage_Button = New Button()
         Label46 = New Label()
         NumberOfActivityLogsPageDropDown_NumericUpDown = New NumericUpDown()
@@ -269,7 +269,7 @@ Partial Class Form1
         UserDataFoldListFilter_GroupBox.SuspendLayout()
         FBUrlData_TabControl.SuspendLayout()
         FBGroups_TabPage.SuspendLayout()
-        FBCommentURLs_TabPage.SuspendLayout()
+        FBActivityLogs_TabPage.SuspendLayout()
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         Action_TabControl.SuspendLayout()
         FBPost_TabPage.SuspendLayout()
@@ -635,7 +635,7 @@ Partial Class Form1
         ' FBUrlData_TabControl
         ' 
         FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
-        FBUrlData_TabControl.Controls.Add(FBCommentURLs_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBActivityLogs_TabPage)
         FBUrlData_TabControl.Location = New Point(441, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
@@ -773,7 +773,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -791,30 +791,30 @@ Partial Class Form1
         ColumnHeader2.Text = "社團網址"
         ColumnHeader2.Width = 470
         ' 
-        ' FBCommentURLs_TabPage
+        ' FBActivityLogs_TabPage
         ' 
-        FBCommentURLs_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
-        FBCommentURLs_TabPage.Controls.Add(Label46)
-        FBCommentURLs_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
-        FBCommentURLs_TabPage.Controls.Add(ReadActivityLogs_Button)
-        FBCommentURLs_TabPage.Controls.Add(DeleteSelectedFBActivityLogListviewItems_Button)
-        FBCommentURLs_TabPage.Controls.Add(SaveFBActivityLogListview_Button)
-        FBCommentURLs_TabPage.Controls.Add(EditSelectedFBActivityLogListviewItem_Button)
-        FBCommentURLs_TabPage.Controls.Add(AddItemToFBActivityLogListview_Button)
-        FBCommentURLs_TabPage.Controls.Add(DisplayCurrUrlToFBActivityLogUrl_Button)
-        FBCommentURLs_TabPage.Controls.Add(NavigateToFBActivityLogSelectedGroupURL_Button)
-        FBCommentURLs_TabPage.Controls.Add(FBActivityLogsGroupURL_TextBox)
-        FBCommentURLs_TabPage.Controls.Add(FBActivityLogsGroupName_TextBox)
-        FBCommentURLs_TabPage.Controls.Add(Label44)
-        FBCommentURLs_TabPage.Controls.Add(Label45)
-        FBCommentURLs_TabPage.Controls.Add(FBActivityLogs_ListView)
-        FBCommentURLs_TabPage.Location = New Point(4, 28)
-        FBCommentURLs_TabPage.Name = "FBCommentURLs_TabPage"
-        FBCommentURLs_TabPage.Padding = New Padding(3)
-        FBCommentURLs_TabPage.Size = New Size(691, 391)
-        FBCommentURLs_TabPage.TabIndex = 1
-        FBCommentURLs_TabPage.Text = "留言"
-        FBCommentURLs_TabPage.UseVisualStyleBackColor = True
+        FBActivityLogs_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
+        FBActivityLogs_TabPage.Controls.Add(Label46)
+        FBActivityLogs_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
+        FBActivityLogs_TabPage.Controls.Add(ReadActivityLogs_Button)
+        FBActivityLogs_TabPage.Controls.Add(DeleteSelectedFBActivityLogListviewItems_Button)
+        FBActivityLogs_TabPage.Controls.Add(SaveFBActivityLogListview_Button)
+        FBActivityLogs_TabPage.Controls.Add(EditSelectedFBActivityLogListviewItem_Button)
+        FBActivityLogs_TabPage.Controls.Add(AddItemToFBActivityLogListview_Button)
+        FBActivityLogs_TabPage.Controls.Add(DisplayCurrUrlToFBActivityLogUrl_Button)
+        FBActivityLogs_TabPage.Controls.Add(NavigateToFBActivityLogSelectedGroupURL_Button)
+        FBActivityLogs_TabPage.Controls.Add(FBActivityLogsGroupURL_TextBox)
+        FBActivityLogs_TabPage.Controls.Add(FBActivityLogsGroupName_TextBox)
+        FBActivityLogs_TabPage.Controls.Add(Label44)
+        FBActivityLogs_TabPage.Controls.Add(Label45)
+        FBActivityLogs_TabPage.Controls.Add(FBActivityLogs_ListView)
+        FBActivityLogs_TabPage.Location = New Point(4, 28)
+        FBActivityLogs_TabPage.Name = "FBActivityLogs_TabPage"
+        FBActivityLogs_TabPage.Padding = New Padding(3)
+        FBActivityLogs_TabPage.Size = New Size(691, 391)
+        FBActivityLogs_TabPage.TabIndex = 1
+        FBActivityLogs_TabPage.Text = "留言"
+        FBActivityLogs_TabPage.UseVisualStyleBackColor = True
         ' 
         ' NavigateToActivityLogsPage_Button
         ' 
@@ -942,7 +942,7 @@ Partial Class Form1
         ' 
         FBActivityLogs_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
         FBActivityLogs_ListView.FullRowSelect = True
-        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
+        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
         FBActivityLogs_ListView.Location = New Point(6, 106)
         FBActivityLogs_ListView.Name = "FBActivityLogs_ListView"
         FBActivityLogs_ListView.Size = New Size(680, 236)
@@ -2590,8 +2590,8 @@ Partial Class Form1
         FBUrlData_TabControl.ResumeLayout(False)
         FBGroups_TabPage.ResumeLayout(False)
         FBGroups_TabPage.PerformLayout()
-        FBCommentURLs_TabPage.ResumeLayout(False)
-        FBCommentURLs_TabPage.PerformLayout()
+        FBActivityLogs_TabPage.ResumeLayout(False)
+        FBActivityLogs_TabPage.PerformLayout()
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         Action_TabControl.ResumeLayout(False)
         FBPost_TabPage.ResumeLayout(False)
@@ -2667,7 +2667,7 @@ Partial Class Form1
     Friend WithEvents GetCurrentUrl_Button As Button
     Friend WithEvents FBUrlData_TabControl As TabControl
     Friend WithEvents FBGroups_TabPage As TabPage
-    Friend WithEvents FBCommentURLs_TabPage As TabPage
+    Friend WithEvents FBActivityLogs_TabPage As TabPage
     Friend WithEvents FBGroups_ListView As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader

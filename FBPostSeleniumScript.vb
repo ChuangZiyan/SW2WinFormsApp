@@ -19,8 +19,10 @@ Module FBPostSeleniumScript
             Dim enableClipboard As Boolean = Form1.EnableClipboard_CheckBox.Checked
             Dim myText As String = ""
 
-            Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "TextFiles")
+            Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "textFiles")
             Dim textFiles As String() = Directory.GetFiles(textFileFolderPath, "*.txt")
+
+            Debug.WriteLine("PATH" & textFileFolderPath)
 
             If textFiles.Length > 0 Then
 

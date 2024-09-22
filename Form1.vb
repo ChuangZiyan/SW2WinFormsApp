@@ -188,7 +188,7 @@ Public Class Form1
                         Next
 
                         ' 如果你要發佈貼文就取消註解下面那行
-                        'result = Await ClickByCssSelector_Task("div[aria-label$='發佈']")
+                        ' result = Await Webview2Controller.ClickByCssSelector_Task("div[aria-label$='發佈']")
 
                         ' 發佈後等待
                         For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
@@ -260,9 +260,45 @@ Public Class Form1
                         Next
 
                         ' 如果你要發佈貼文就取消註解下面那行
-                        'result = Await ClickByCssSelector_Task("div[aria-label$='發佈']")
+                        'result = Await Webview2Controller.ClickByCssSelector_Task("div[aria-label$='發佈']")
 
                         ' 發佈後等待
+                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(8).Text = seconds
+                        Next
+
+
+                    End If
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
+            Case "留言"
+                Try
+                    Debug.WriteLine("留言")
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCommentAssetsDirectory)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                    Dim FBCommentWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBCommentWaitSecondsConfig.txt"))
+                    item.SubItems(7).Text = Split(FBCommentWaitSecondsCfg, ",")(0)
+                    item.SubItems(8).Text = Split(FBCommentWaitSecondsCfg, ",")(1)
+
+                    result = Await FBCommentSeleniumScript.CommentOnThePost(myUrl, assetFolderPath)
+                    'result = False
+
+                    ' 如果流程都沒問題
+                    If result Then
+                        ' 這邊要等待上傳完成
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(7).Text = seconds
+                        Next
+
+                        ' 如果你要送出留言就取消註解下面那行
+                        result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                        ' 送出留言後等待
                         For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
                             Await Delay_msec(1000)
                             item.SubItems(8).Text = seconds
@@ -386,12 +422,9 @@ Public Class Form1
         AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
         AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
-
         AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
         AddHandler NavigateToActivityLogsPage_Button.Click, AddressOf mainFormEventHandlers.NavigateToActivityLogsPage_Button_Click
-
         AddHandler SaveFBActivityLogListview_Button.Click, AddressOf mainFormEventHandlers.SaveFBActivityLogListview_Button_Click
-
         AddHandler FBActivityLogs_ListView.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBActivityLogs_ListView_SelectedIndexChanged
         AddHandler DeleteSelectedFBActivityLogListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedFBActivityLogListviewItems_Button_Click
         AddHandler NavigateToFBActivityLogSelectedGroupURL_Button.Click, AddressOf mainFormEventHandlers.NavigateToFBActivityLogSelectedGroupURL_Button_Click
