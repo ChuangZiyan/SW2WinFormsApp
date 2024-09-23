@@ -69,9 +69,12 @@ Module FBCommentSeleniumScript
                                               text_input.SendKeys(Keys.LeftShift + Keys.Return)
                                           Next
 
-                                          Dim media_input As IWebElement = edgeDriver.FindElement(By.CssSelector("#focused-state-actions-list > ul > li:nth-child(3) > input"))
-                                          'Debug.WriteLine("Media File : " & myMedia)
-                                          media_input.SendKeys(myMedia)
+                                          If myMedia <> Nothing Then
+                                              Dim media_input As IWebElement = edgeDriver.FindElement(By.CssSelector("#focused-state-actions-list > ul > li:nth-child(3) > input"))
+                                              'Debug.WriteLine("Media File : " & myMedia)
+                                              media_input.SendKeys(myMedia)
+                                          End If
+
 
                                           Await Delay_msec(3000)
 
