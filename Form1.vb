@@ -376,6 +376,7 @@ Public Class Form1
     Private FBMarketplaceEventHandlers As New FBMarketplaceEventHandlers()
     Private FBPostShareURLEventHandlers As New FBPostShareURLEventHandlers()
     Private FBCommentEventHandlers As New FBCommemtEventHandlers()
+    Private FBCustomizeCommentEventHandlers As New FBCustomizeCommentEventHandlers()
 
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
@@ -443,7 +444,6 @@ Public Class Form1
     End Sub
 
 
-
     Private Sub RegisterFBPostEventHanders()
         ' 這邊是用來註冊發帖相關的事件
         AddHandler CreateNewAssetFolder_Button.Click, AddressOf FBPostEventHandlers.CreateNewAssetFolder_Button_Click
@@ -497,6 +497,7 @@ Public Class Form1
 
 
     Private Sub RegisterFBCommentEventHanders()
+        ' 留言相關的事件
         AddHandler FBCommentCreateNewAssetFolder_Button.Click, AddressOf FBCommentEventHandlers.FBCommentCreateNewAssetFolder_Button_Click
         AddHandler FBCommentDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeselectAllAssetFolderListboxItems_Button_Click
         AddHandler FBCommentDeleteSelectedAssetFolder_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedAssetFolder_Button_Click
@@ -510,6 +511,12 @@ Public Class Form1
         AddHandler FBCommentDeleteSelectedMedia_Button.Click, AddressOf FBCommentEventHandlers.FBCommentDeleteSelectedMedia_Button_Click
         AddHandler FBCommentAssetFolder_ListBox.DoubleClick, AddressOf FBCommentEventHandlers.FBCommentAssetFolder_ListBox_DoubleClick
         AddHandler FBCommentTextFileSelector_ListBox.DoubleClick, AddressOf FBCommentEventHandlers.FBCommentTextFileSelector_ListBox_DoubleClick
+    End Sub
+
+
+    Private Sub RegisterFBCustomizeCommentEventhandlers()
+        ' 自訂留言的事件
+
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm
@@ -529,6 +536,7 @@ Public Class Form1
         RegisterMarketplaceEventHanders()
         RegisterFBPostShareURLEventHanders()
         RegisterFBCommentEventHanders()
+        RegisterFBCustomizeCommentEventhandlers()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")
