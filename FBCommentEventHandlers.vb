@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports SkiaSharp
 
-Public Class FBCommemtEventHandlers
+Public Class FBCommentEventHandlers
 
     Public Sub FBCommentCreateNewAssetFolder_Button_Click(sender As Object, e As EventArgs)
 
@@ -233,7 +233,7 @@ Public Class FBCommemtEventHandlers
                 Dim result As DialogResult = MessageBox.Show("確定要刪除全部檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
 
-                    For Each item In Form1.TextFileSelector_ListBox.Items
+                    For Each item In Form1.FBCommentTextFileSelector_ListBox.Items
                         Dim textFilePath = Path.Combine(AppInitModule.FBCommentAssetsDirectory, Form1.FBCommentAssetFolder_ListBox.SelectedItem, "textFiles", item)
                         File.Delete(textFilePath)
                     Next
@@ -283,7 +283,7 @@ Public Class FBCommemtEventHandlers
                 Dim filePath = Path.Combine(AppInitModule.FBCommentAssetsDirectory, Form1.FBCommentAssetFolder_ListBox.SelectedItem, "media", selectedItem)
 
                 If {".webp", ".WEBP"}.Contains(Path.GetExtension(selectedItem)) Then
-                    Dim skBitmap As SKBitmap = skBitmap.Decode(filePath)
+                    Dim skBitmap As SKBitmap = SKBitmap.Decode(filePath)
                     Dim bitmap As Bitmap = UtilsModule.SKBitmapToBitmap(skBitmap)
                     Form1.FBCommentMediaPreviewer_PictureBox.Image = bitmap
                 Else

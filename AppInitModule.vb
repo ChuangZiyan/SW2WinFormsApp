@@ -13,11 +13,11 @@ Module AppInitModule
 
     ' Assets
     Public ReadOnly myAssetsDirectory As String = Path.Combine(appBaseDirectory, "myAssets")
-
     Public ReadOnly FBPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostAssets")
     Public ReadOnly FBMarketPlaceAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBmarketplaceAssets")
     Public ReadOnly FBPostShareURLAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostShareURLAssets")
     Public ReadOnly FBCommentAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBCommentAssets")
+    Public ReadOnly FBCustomizeCommentAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBCustomizeCommentAssets")
 
     ' auto save script csv file path 
     ' Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
@@ -32,7 +32,9 @@ Module AppInitModule
         FBPostEventHandlers.UpdateAssetsFolderListBox()
         FBMarketplaceEventHandlers.UpdateMarketplaceAssetsFolderListBox()
         FBPostShareURLEventHandlers.UpdatePostShareURLAssetsFolderListBox()
-        FBCommemtEventHandlers.UpdateAssetsFolderListBox()
+        FBCommentEventHandlers.UpdateAssetsFolderListBox()
+        FBCustomizeCommentEventHandlers.UpdateAssetsFolderListBox()
+
     End Sub
 
 
@@ -48,7 +50,8 @@ Module AppInitModule
                 FBPostAssetsDirectory,
                 FBMarketPlaceAssetsDirectory,
                 FBPostShareURLAssetsDirectory,
-                FBCommentAssetsDirectory
+                FBCommentAssetsDirectory,
+                FBCustomizeCommentAssetsDirectory
         }
 
         For Each myDir In myDirectories

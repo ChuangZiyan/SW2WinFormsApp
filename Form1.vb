@@ -375,7 +375,7 @@ Public Class Form1
     Private FBPostEventHandlers As New FBPostEventHandlers()
     Private FBMarketplaceEventHandlers As New FBMarketplaceEventHandlers()
     Private FBPostShareURLEventHandlers As New FBPostShareURLEventHandlers()
-    Private FBCommentEventHandlers As New FBCommemtEventHandlers()
+    Private FBCommentEventHandlers As New FBCommentEventHandlers()
     Private FBCustomizeCommentEventHandlers As New FBCustomizeCommentEventHandlers()
 
     Private Sub RegisterMainFormEventHanders()
@@ -516,7 +516,19 @@ Public Class Form1
 
     Private Sub RegisterFBCustomizeCommentEventhandlers()
         ' 自訂留言的事件
-
+        AddHandler FBCustomizeCommentCreateNewAssetFolder_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentCreateNewAssetFolder_Button_Click
+        AddHandler FBCustomizeCommentDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBCustomizeCommentDeleteSelectedAssetFolder_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBCustomizeCommentCreateNewTextFile_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentCreateNewTextFile_Button_Click
+        AddHandler FBCustomizeCommentAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBCustomizeCommentTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBCustomizeCommentDeleteSelectedTextFile_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentDeleteSelectedTextFile_Button_Click
+        AddHandler FBCustomizeCommentSaveTextFile_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentSaveTextFile_Button_Click
+        AddHandler FBCustomizeCommentMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBCustomizeCommentRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBCustomizeCommentDeleteSelectedMedia_Button.Click, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentDeleteSelectedMedia_Button_Click
+        AddHandler FBCustomizeCommentAssetFolder_ListBox.DoubleClick, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentAssetFolder_ListBox_DoubleClick
+        AddHandler FBCustomizeCommentTextFileSelector_ListBox.DoubleClick, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentTextFileSelector_ListBox_DoubleClick
     End Sub
 
     Private emojiPickerForm As EmojiPickerForm

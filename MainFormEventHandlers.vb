@@ -78,6 +78,8 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
             Case "留言"
                 assetFolderListBoxSelectedItems = Form1.FBCommentAssetFolder_ListBox.SelectedItems
+            Case "自訂"
+                assetFolderListBoxSelectedItems = Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
             Case Else
                 MsgBox("不支援此執行動作")
                 Exit Sub
@@ -373,10 +375,13 @@ Public Class MainFormEventHandlers
                     Form1.Action_TabControl.SelectedTab = Form1.FBComment_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
                     assetsFolder_ListBox = Form1.FBCommentAssetFolder_ListBox
+                Case "自訂"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeComment_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    assetsFolder_ListBox = Form1.FBCustomizeCommentAssetFolder_ListBox
                 Case "測試項"
                     Form1.Action_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
             End Select
-
 
             ' 填入社團名稱跟網址，動作是留言的話，要填到留言的面板去
             If action = "留言" Then
@@ -1064,6 +1069,15 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "自訂"
+                If Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
 
 
             Case "測試項"
@@ -1083,8 +1097,6 @@ Public Class MainFormEventHandlers
         If selecteAction = "留言" Then
             selectedGroupItems = Form1.FBActivityLogs_ListView.SelectedItems
         End If
-
-
 
         ' 第一個選擇的Group
         If selectedGroupItems.Count > 0 Then

@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -212,7 +212,7 @@ Partial Class Form1
         FBCommentMediaPreviewer_PictureBox = New PictureBox()
         FBCommentTextFilePreviewer_RichTextBox = New RichTextBox()
         FBCommentCreateNewAssetFolder_Button = New Button()
-        Customize_TabPage = New TabPage()
+        FBCustomizeComment_TabPage = New TabPage()
         Label47 = New Label()
         Label48 = New Label()
         Label49 = New Label()
@@ -310,7 +310,7 @@ Partial Class Form1
         CType(FBCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
-        Customize_TabPage.SuspendLayout()
+        FBCustomizeComment_TabPage.SuspendLayout()
         CType(FBCustomizeCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCustomizeCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
@@ -798,7 +798,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -967,7 +967,7 @@ Partial Class Form1
         ' 
         FBActivityLogs_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
         FBActivityLogs_ListView.FullRowSelect = True
-        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
         FBActivityLogs_ListView.Location = New Point(6, 106)
         FBActivityLogs_ListView.Name = "FBActivityLogs_ListView"
         FBActivityLogs_ListView.Size = New Size(680, 236)
@@ -1066,7 +1066,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBMarketplace_TabPage)
         Action_TabControl.Controls.Add(FBPostShareURL_TabPage)
         Action_TabControl.Controls.Add(FBComment_TabPage)
-        Action_TabControl.Controls.Add(Customize_TabPage)
+        Action_TabControl.Controls.Add(FBCustomizeComment_TabPage)
         Action_TabControl.Controls.Add(TabPage3)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
@@ -2068,34 +2068,34 @@ Partial Class Form1
         FBCommentCreateNewAssetFolder_Button.Text = "建立"
         FBCommentCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' Customize_TabPage
+        ' FBCustomizeComment_TabPage
         ' 
-        Customize_TabPage.Controls.Add(Label47)
-        Customize_TabPage.Controls.Add(Label48)
-        Customize_TabPage.Controls.Add(Label49)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentUploadWaitSeconds_NumericUpDown)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentDeselectAllAssetFolderListboxItems_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedTextFile_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentNewTextFileName_TextBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentMediaSelector_ListBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentTextFileSelector_ListBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentAssetFolder_ListBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentSaveTextFile_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentCreateNewTextFile_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedMedia_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentRevealMediaFoldesrInFileExplorer_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedAssetFolder_Button)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentAssetFolderName_TextBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentMediaPreviewer_PictureBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentTextFilePreviewer_RichTextBox)
-        Customize_TabPage.Controls.Add(FBCustomizeCommentCreateNewAssetFolder_Button)
-        Customize_TabPage.Location = New Point(4, 28)
-        Customize_TabPage.Name = "Customize_TabPage"
-        Customize_TabPage.Size = New Size(664, 467)
-        Customize_TabPage.TabIndex = 5
-        Customize_TabPage.Text = "自訂"
-        Customize_TabPage.UseVisualStyleBackColor = True
+        FBCustomizeComment_TabPage.Controls.Add(Label47)
+        FBCustomizeComment_TabPage.Controls.Add(Label48)
+        FBCustomizeComment_TabPage.Controls.Add(Label49)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentUploadWaitSeconds_NumericUpDown)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeselectAllAssetFolderListboxItems_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedTextFile_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentNewTextFileName_TextBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentMediaSelector_ListBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentTextFileSelector_ListBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentAssetFolder_ListBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentSaveTextFile_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentCreateNewTextFile_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedMedia_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentRevealMediaFoldesrInFileExplorer_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedAssetFolder_Button)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentAssetFolderName_TextBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentMediaPreviewer_PictureBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentTextFilePreviewer_RichTextBox)
+        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentCreateNewAssetFolder_Button)
+        FBCustomizeComment_TabPage.Location = New Point(4, 28)
+        FBCustomizeComment_TabPage.Name = "FBCustomizeComment_TabPage"
+        FBCustomizeComment_TabPage.Size = New Size(664, 467)
+        FBCustomizeComment_TabPage.TabIndex = 5
+        FBCustomizeComment_TabPage.Text = "自訂"
+        FBCustomizeComment_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label47
         ' 
@@ -2847,8 +2847,8 @@ Partial Class Form1
         CType(FBCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
-        Customize_TabPage.ResumeLayout(False)
-        Customize_TabPage.PerformLayout()
+        FBCustomizeComment_TabPage.ResumeLayout(False)
+        FBCustomizeComment_TabPage.PerformLayout()
         CType(FBCustomizeCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCustomizeCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
@@ -3105,7 +3105,7 @@ Partial Class Form1
     Friend WithEvents ColumnHeader17 As ColumnHeader
     Friend WithEvents Label46 As Label
     Friend WithEvents NavigateToActivityLogsPage_Button As Button
-    Friend WithEvents Customize_TabPage As TabPage
+    Friend WithEvents FBCustomizeComment_TabPage As TabPage
     Friend WithEvents Label47 As Label
     Friend WithEvents Label48 As Label
     Friend WithEvents Label49 As Label
