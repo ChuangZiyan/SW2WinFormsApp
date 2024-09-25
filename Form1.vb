@@ -302,7 +302,7 @@ Public Class Form1
                         Next
 
                         ' 如果你要送出留言就取消註解下面那行
-                        result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+                        ' result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
 
                         ' 送出留言後等待
                         For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
@@ -317,6 +317,43 @@ Public Class Form1
                     result = False
                 End Try
                 '########################################################################### 測試項功能 ###############################################################################################
+
+            Case "自訂"
+                Try
+                    Debug.WriteLine("自訂")
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCustomizeCommentAssetsDirectory)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                    Dim FBCustomizeCommentWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBCustomizeCommentWaitSecondsConfig.txt"))
+                    item.SubItems(7).Text = Split(FBCustomizeCommentWaitSecondsCfg, ",")(0)
+                    item.SubItems(8).Text = Split(FBCustomizeCommentWaitSecondsCfg, ",")(1)
+
+                    result = Await FBCustomizeCommentSeleniumScript.CustomizeCommentOnThePost(myUrl, assetFolderPath)
+                    'result = False
+
+                    ' 如果流程都沒問題
+                    If result Then
+                        ' 這邊要等待上傳完成
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(7).Text = seconds
+                        Next
+
+                        ' 如果你要送出留言就取消註解下面那行
+                        'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                        ' 送出留言後等待
+                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(8).Text = seconds
+                        Next
+
+
+                    End If
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
             Case "測試項"
                 Try
                     Await Delay_msec(1000)
