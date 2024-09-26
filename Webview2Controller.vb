@@ -623,7 +623,54 @@ Module Webview2Controller
         Next
     End Sub
 
+    Public Async Sub ReadFBNotifications()
+        If ActivedUserDataFolderPath Is Nothing Then
+            MsgBox("未偵測到啟用的edgedriver")
+            Exit Sub
+        End If
 
+        Dim items = Await Task.Run(Async Function()
+                                       Dim itemList As New List(Of ListViewItem)()
+                                       Try
+                                           Dim default_wait_msec = 3000
+                                           Await Delay_msec(default_wait_msec)
+
+                                           Await Navigate_GoToUrl_Task("https://www.facebook.com/notifications")
+                                           Await Delay_msec(default_wait_msec)
+
+                                           Dim elms = edgeDriver.FindElements(By.CssSelector(".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1lliihq"))
+
+                                           For Each elm In elms
+                                               Dim href = elm.GetAttribute("href")
+                                               Dim content_elm = elm.FindElement(By.CssSelector("div.x6s0dn4.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.xeuugli.x18d9i69.x1sxyh0.xurb0ha.xexx8yu.x1n2onr6.x1ja2u2z.x1gg8mnh > div.x6s0dn4.xkh2ocl.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x18d9i69.x4uap5.xkhd6sd.xexx8yu.x1n2onr6.x1ja2u2z > div.x1qjc9v5.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1r8uery.xdt5ytf.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x4uap5.xkhd6sd.x1n2onr6.x1ja2u2z.x1y1aw1k.xwib8y2 > div:nth-child(1) > div > div:nth-child(1) > span > span"))
+                                               Dim strong_elm = content_elm.FindElement(By.CssSelector("strong")).GetAttribute("innerHTML")
+
+                                               'Debug.WriteLine("strong : " & strong_elm.GetAttribute("innerHTML"))
+
+                                               'Debug.WriteLine(content_elm.GetAttribute("innerHTML"))
+                                               Dim item As New ListViewItem(strong_elm)
+                                               item.SubItems.Add(href)
+                                               itemList.Add(item)
+                                               'Debug.WriteLine("href : " & href)
+                                           Next
+
+
+
+                                           'Item.SubItems.Add(Url)
+                                           'itemList.Add(Item)
+
+                                           Return itemList
+                                       Catch ex As Exception
+                                           Debug.WriteLine(ex)
+                                           Return itemList
+                                       End Try
+                                   End Function)
+
+        Form1.FBNotificationsData_Listview.Items.Clear()
+        For Each item In items
+            Form1.FBNotificationsData_Listview.Items.Add(item)
+        Next
+    End Sub
 
     Public Class MyCookie
         Public Property Domain As String

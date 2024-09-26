@@ -1016,6 +1016,10 @@ Public Class MainFormEventHandlers
 
     End Sub
 
+    Public Sub ReadFBNotifications_Button_Click(sender As Object, e As EventArgs)
+        Webview2Controller.ReadFBNotifications()
+    End Sub
+
 
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled

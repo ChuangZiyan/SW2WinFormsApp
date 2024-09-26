@@ -22,12 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem1 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem2 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
-        Dim ListViewItem3 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem4 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
         Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
+        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
+        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -99,19 +97,23 @@ Partial Class Form1
         ColumnHeader16 = New ColumnHeader()
         ColumnHeader17 = New ColumnHeader()
         FBNotifications_TabPage = New TabPage()
+        Button10 = New Button()
+        Button1 = New Button()
+        CheckBox2 = New CheckBox()
+        CheckBox1 = New CheckBox()
         Button9 = New Button()
         Button2 = New Button()
         Button3 = New Button()
-        Button4 = New Button()
-        Button5 = New Button()
-        Button6 = New Button()
-        Button7 = New Button()
-        Button8 = New Button()
-        TextBox1 = New TextBox()
-        TextBox2 = New TextBox()
+        ReadFBNotifications_Button = New Button()
+        FBNotificationsEditSelectedListviewItem_Button = New Button()
+        FBNotificationsAddItemToListview_Button = New Button()
+        FBNotificationsDisplayCurrUrl_Button = New Button()
+        FBNotificationsNavigateToSelectedURL_Button = New Button()
+        FBNotificationsUrl_TextBox = New TextBox()
+        FBNotificationsName_TextBox = New TextBox()
         Label50 = New Label()
         Label51 = New Label()
-        ListView1 = New ListView()
+        FBNotificationsData_Listview = New ListView()
         ColumnHeader18 = New ColumnHeader()
         ColumnHeader19 = New ColumnHeader()
         ScriptQueue_ListView = New ListView()
@@ -303,10 +305,6 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         EnableClipboard_CheckBox = New CheckBox()
         SelectScriptListviewItemsByUserDataButton = New Button()
-        CheckBox1 = New CheckBox()
-        CheckBox2 = New CheckBox()
-        Button1 = New Button()
-        Button10 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -822,7 +820,7 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem1, ListViewItem2})
+        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -991,7 +989,7 @@ Partial Class Form1
         ' 
         FBActivityLogs_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
         FBActivityLogs_ListView.FullRowSelect = True
-        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem3, ListViewItem4})
+        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
         FBActivityLogs_ListView.Location = New Point(6, 106)
         FBActivityLogs_ListView.Name = "FBActivityLogs_ListView"
         FBActivityLogs_ListView.Size = New Size(680, 236)
@@ -1018,16 +1016,16 @@ Partial Class Form1
         FBNotifications_TabPage.Controls.Add(Button9)
         FBNotifications_TabPage.Controls.Add(Button2)
         FBNotifications_TabPage.Controls.Add(Button3)
-        FBNotifications_TabPage.Controls.Add(Button4)
-        FBNotifications_TabPage.Controls.Add(Button5)
-        FBNotifications_TabPage.Controls.Add(Button6)
-        FBNotifications_TabPage.Controls.Add(Button7)
-        FBNotifications_TabPage.Controls.Add(Button8)
-        FBNotifications_TabPage.Controls.Add(TextBox1)
-        FBNotifications_TabPage.Controls.Add(TextBox2)
+        FBNotifications_TabPage.Controls.Add(ReadFBNotifications_Button)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsEditSelectedListviewItem_Button)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsAddItemToListview_Button)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsDisplayCurrUrl_Button)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsNavigateToSelectedURL_Button)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsUrl_TextBox)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsName_TextBox)
         FBNotifications_TabPage.Controls.Add(Label50)
         FBNotifications_TabPage.Controls.Add(Label51)
-        FBNotifications_TabPage.Controls.Add(ListView1)
+        FBNotifications_TabPage.Controls.Add(FBNotificationsData_Listview)
         FBNotifications_TabPage.Location = New Point(4, 28)
         FBNotifications_TabPage.Name = "FBNotifications_TabPage"
         FBNotifications_TabPage.Size = New Size(691, 391)
@@ -1035,9 +1033,47 @@ Partial Class Form1
         FBNotifications_TabPage.Text = "通知"
         FBNotifications_TabPage.UseVisualStyleBackColor = True
         ' 
+        ' Button10
+        ' 
+        Button10.Location = New Point(337, 350)
+        Button10.Name = "Button10"
+        Button10.Size = New Size(94, 29)
+        Button10.TabIndex = 30
+        Button10.Text = "順序網址"
+        Button10.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(240, 350)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 29
+        Button1.Text = "插入"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox2
+        ' 
+        CheckBox2.AutoSize = True
+        CheckBox2.Location = New Point(173, 354)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(61, 23)
+        CheckBox2.TabIndex = 28
+        CheckBox2.Text = "已讀"
+        CheckBox2.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox1
+        ' 
+        CheckBox1.AutoSize = True
+        CheckBox1.Location = New Point(106, 354)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(61, 23)
+        CheckBox1.TabIndex = 27
+        CheckBox1.Text = "未讀"
+        CheckBox1.UseVisualStyleBackColor = True
+        ' 
         ' Button9
         ' 
-        Button9.Location = New Point(566, 74)
+        Button9.Location = New Point(567, 71)
         Button9.Name = "Button9"
         Button9.Size = New Size(119, 29)
         Button9.TabIndex = 26
@@ -1046,7 +1082,7 @@ Partial Class Form1
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(590, 353)
+        Button2.Location = New Point(591, 350)
         Button2.Name = "Button2"
         Button2.Size = New Size(94, 29)
         Button2.TabIndex = 24
@@ -1055,101 +1091,100 @@ Partial Class Form1
         ' 
         ' Button3
         ' 
-        Button3.Location = New Point(490, 353)
+        Button3.Location = New Point(491, 350)
         Button3.Name = "Button3"
         Button3.Size = New Size(94, 29)
         Button3.TabIndex = 23
         Button3.Text = "儲存"
         Button3.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' ReadFBNotifications_Button
         ' 
-        Button4.Location = New Point(5, 353)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 22
-        Button4.Text = "讀取通知"
-        Button4.UseVisualStyleBackColor = True
+        ReadFBNotifications_Button.Location = New Point(6, 350)
+        ReadFBNotifications_Button.Name = "ReadFBNotifications_Button"
+        ReadFBNotifications_Button.Size = New Size(94, 29)
+        ReadFBNotifications_Button.TabIndex = 22
+        ReadFBNotifications_Button.Text = "讀取通知"
+        ReadFBNotifications_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button5
+        ' FBNotificationsEditSelectedListviewItem_Button
         ' 
-        Button5.Location = New Point(305, 75)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(94, 29)
-        Button5.TabIndex = 21
-        Button5.Text = "修改"
-        Button5.UseVisualStyleBackColor = True
+        FBNotificationsEditSelectedListviewItem_Button.Location = New Point(306, 72)
+        FBNotificationsEditSelectedListviewItem_Button.Name = "FBNotificationsEditSelectedListviewItem_Button"
+        FBNotificationsEditSelectedListviewItem_Button.Size = New Size(94, 29)
+        FBNotificationsEditSelectedListviewItem_Button.TabIndex = 21
+        FBNotificationsEditSelectedListviewItem_Button.Text = "修改"
+        FBNotificationsEditSelectedListviewItem_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button6
+        ' FBNotificationsAddItemToListview_Button
         ' 
-        Button6.Location = New Point(205, 75)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(94, 29)
-        Button6.TabIndex = 20
-        Button6.Text = "增加"
-        Button6.UseVisualStyleBackColor = True
+        FBNotificationsAddItemToListview_Button.Location = New Point(206, 72)
+        FBNotificationsAddItemToListview_Button.Name = "FBNotificationsAddItemToListview_Button"
+        FBNotificationsAddItemToListview_Button.Size = New Size(94, 29)
+        FBNotificationsAddItemToListview_Button.TabIndex = 20
+        FBNotificationsAddItemToListview_Button.Text = "增加"
+        FBNotificationsAddItemToListview_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button7
+        ' FBNotificationsDisplayCurrUrl_Button
         ' 
-        Button7.Location = New Point(104, 75)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(94, 29)
-        Button7.TabIndex = 19
-        Button7.Text = "取得網址"
-        Button7.UseVisualStyleBackColor = True
+        FBNotificationsDisplayCurrUrl_Button.Location = New Point(105, 72)
+        FBNotificationsDisplayCurrUrl_Button.Name = "FBNotificationsDisplayCurrUrl_Button"
+        FBNotificationsDisplayCurrUrl_Button.Size = New Size(94, 29)
+        FBNotificationsDisplayCurrUrl_Button.TabIndex = 19
+        FBNotificationsDisplayCurrUrl_Button.Text = "取得網址"
+        FBNotificationsDisplayCurrUrl_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button8
+        ' FBNotificationsNavigateToSelectedURL_Button
         ' 
-        Button8.Location = New Point(5, 75)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(94, 29)
-        Button8.TabIndex = 18
-        Button8.Text = "前往"
-        Button8.UseVisualStyleBackColor = True
+        FBNotificationsNavigateToSelectedURL_Button.Location = New Point(6, 72)
+        FBNotificationsNavigateToSelectedURL_Button.Name = "FBNotificationsNavigateToSelectedURL_Button"
+        FBNotificationsNavigateToSelectedURL_Button.Size = New Size(94, 29)
+        FBNotificationsNavigateToSelectedURL_Button.TabIndex = 18
+        FBNotificationsNavigateToSelectedURL_Button.Text = "前往"
+        FBNotificationsNavigateToSelectedURL_Button.UseVisualStyleBackColor = True
         ' 
-        ' TextBox1
+        ' FBNotificationsUrl_TextBox
         ' 
-        TextBox1.Location = New Point(61, 42)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(624, 27)
-        TextBox1.TabIndex = 17
+        FBNotificationsUrl_TextBox.Location = New Point(92, 39)
+        FBNotificationsUrl_TextBox.Name = "FBNotificationsUrl_TextBox"
+        FBNotificationsUrl_TextBox.Size = New Size(593, 27)
+        FBNotificationsUrl_TextBox.TabIndex = 17
         ' 
-        ' TextBox2
+        ' FBNotificationsName_TextBox
         ' 
-        TextBox2.Location = New Point(61, 9)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(624, 27)
-        TextBox2.TabIndex = 16
+        FBNotificationsName_TextBox.Location = New Point(92, 5)
+        FBNotificationsName_TextBox.Name = "FBNotificationsName_TextBox"
+        FBNotificationsName_TextBox.Size = New Size(593, 27)
+        FBNotificationsName_TextBox.TabIndex = 16
         ' 
         ' Label50
         ' 
         Label50.AutoSize = True
-        Label50.Location = New Point(5, 45)
+        Label50.Location = New Point(6, 42)
         Label50.Name = "Label50"
-        Label50.Size = New Size(50, 19)
+        Label50.Size = New Size(80, 19)
         Label50.TabIndex = 15
-        Label50.Text = "網址 : "
+        Label50.Text = "回應網址 : "
         ' 
         ' Label51
         ' 
         Label51.AutoSize = True
-        Label51.Location = New Point(5, 12)
+        Label51.Location = New Point(6, 9)
         Label51.Name = "Label51"
-        Label51.Size = New Size(50, 19)
+        Label51.Size = New Size(80, 19)
         Label51.TabIndex = 14
-        Label51.Text = "名稱 : "
+        Label51.Text = "人物名稱 : "
         ' 
-        ' ListView1
+        ' FBNotificationsData_Listview
         ' 
-        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader18, ColumnHeader19})
-        ListView1.FullRowSelect = True
-        ListView1.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
-        ListView1.Location = New Point(5, 109)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(680, 236)
-        ListView1.TabIndex = 13
-        ListView1.UseCompatibleStateImageBehavior = False
-        ListView1.View = View.Details
+        FBNotificationsData_Listview.Columns.AddRange(New ColumnHeader() {ColumnHeader18, ColumnHeader19})
+        FBNotificationsData_Listview.FullRowSelect = True
+        FBNotificationsData_Listview.Location = New Point(6, 106)
+        FBNotificationsData_Listview.Name = "FBNotificationsData_Listview"
+        FBNotificationsData_Listview.Size = New Size(680, 236)
+        FBNotificationsData_Listview.TabIndex = 13
+        FBNotificationsData_Listview.UseCompatibleStateImageBehavior = False
+        FBNotificationsData_Listview.View = View.Details
         ' 
         ' ColumnHeader18
         ' 
@@ -2954,44 +2989,6 @@ Partial Class Form1
         SelectScriptListviewItemsByUserDataButton.Text = "選取"
         SelectScriptListviewItemsByUserDataButton.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox1
-        ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Location = New Point(105, 357)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(61, 23)
-        CheckBox1.TabIndex = 27
-        CheckBox1.Text = "未讀"
-        CheckBox1.UseVisualStyleBackColor = True
-        ' 
-        ' CheckBox2
-        ' 
-        CheckBox2.AutoSize = True
-        CheckBox2.Location = New Point(172, 357)
-        CheckBox2.Name = "CheckBox2"
-        CheckBox2.Size = New Size(61, 23)
-        CheckBox2.TabIndex = 28
-        CheckBox2.Text = "已讀"
-        CheckBox2.UseVisualStyleBackColor = True
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(236, 353)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 29
-        Button1.Text = "插入"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' Button10
-        ' 
-        Button10.Location = New Point(336, 353)
-        Button10.Name = "Button10"
-        Button10.Size = New Size(94, 29)
-        Button10.TabIndex = 30
-        Button10.Text = "順序網址"
-        Button10.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -3346,16 +3343,16 @@ Partial Class Form1
     Friend WithEvents Button9 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents ReadFBNotifications_Button As Button
+    Friend WithEvents FBNotificationsEditSelectedListviewItem_Button As Button
+    Friend WithEvents FBNotificationsAddItemToListview_Button As Button
+    Friend WithEvents FBNotificationsDisplayCurrUrl_Button As Button
+    Friend WithEvents FBNotificationsNavigateToSelectedURL_Button As Button
+    Friend WithEvents FBNotificationsUrl_TextBox As TextBox
+    Friend WithEvents FBNotificationsName_TextBox As TextBox
     Friend WithEvents Label50 As Label
     Friend WithEvents Label51 As Label
-    Friend WithEvents ListView1 As ListView
+    Friend WithEvents FBNotificationsData_Listview As ListView
     Friend WithEvents ColumnHeader18 As ColumnHeader
     Friend WithEvents ColumnHeader19 As ColumnHeader
     Friend WithEvents Button10 As Button
