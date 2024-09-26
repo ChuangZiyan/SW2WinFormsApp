@@ -10,28 +10,27 @@ Module FBCustomizeCommentSeleniumScript
 
                                       Await Navigate_GoToUrl(myUrl)
 
-                                      Await Delay_msec(300)
+                                      Await Delay_msec(1000)
                                       '送出1個ESC鍵
                                       Dim bodyElement As IWebElement = edgeDriver.FindElement(By.TagName("body"))
                                       bodyElement.SendKeys(Keys.Escape)
 
-                                      Await Delay_msec(1000)
+                                      'Await Delay_msec(1000)
                                       '按下"留個言吧..."，如果按不到直接顯示失敗
-                                      edgeDriver.ExecuteScript("window.scrollTo(0, 250);")
+                                      'edgeDriver.ExecuteScript("window.scrollTo(0, 250);")
 
-                                      Await Delay_msec(1000)
+                                      'Await Delay_msec(1000)
 
-                                      Dim discussion_spanElements = edgeDriver.FindElements(By.CssSelector("div.x1ey2m1c.x9f619.xds687c.x10l6tqk.x17qophe.x13vifvy > a"))
-                                      For Each elm In discussion_spanElements
-                                          'Debug.WriteLine("#################")
-                                          Dim span_innerHTML = elm.FindElement(By.CssSelector("span")).GetAttribute("innerHTML")
+                                      'Dim discussion_spanElements = edgeDriver.FindElements(By.CssSelector("div.x1ey2m1c.x9f619.xds687c.x10l6tqk.x17qophe.x13vifvy > a"))
+                                      'For Each elm In discussion_spanElements
+                                      'Debug.WriteLine("#################")
+                                      'Dim span_innerHTML = elm.FindElement(By.CssSelector("span")).GetAttribute("innerHTML")
 
-                                          If span_innerHTML.Trim() = "討論區" Or span_innerHTML.Trim() = "討論" Then
-                                              elm.Click()
-                                              Exit For
-                                          End If
-
-                                      Next
+                                      'If span_innerHTML.Trim() = "討論區" Or span_innerHTML.Trim() = "討論" Then
+                                      'elm.Click()
+                                      'Exit For
+                                      'End If
+                                      'Next
 
                                       Await Delay_msec(5000)
 
