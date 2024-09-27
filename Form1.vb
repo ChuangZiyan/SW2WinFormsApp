@@ -465,6 +465,8 @@ Public Class Form1
         AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
         AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
+
+        ' ### FB ActivityLogs
         AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
         AddHandler NavigateToActivityLogsPage_Button.Click, AddressOf mainFormEventHandlers.NavigateToActivityLogsPage_Button_Click
         AddHandler SaveFBActivityLogListview_Button.Click, AddressOf mainFormEventHandlers.SaveFBActivityLogListview_Button_Click
@@ -475,11 +477,21 @@ Public Class Form1
         AddHandler AddItemToFBActivityLogListview_Button.Click, AddressOf mainFormEventHandlers.AddItemToFBActivityLogListview_Button_Click
         AddHandler EditSelectedFBActivityLogListviewItem_Button.Click, AddressOf mainFormEventHandlers.EditSelectedFBActivityLogListviewItem_Button_Click
 
+        ' ### FB Notifications
         AddHandler ReadFBNotifications_Button.Click, AddressOf mainFormEventHandlers.ReadFBNotifications_Button_Click
+        AddHandler SaveFBNotificationsListview_Button.Click, AddressOf mainFormEventHandlers.SaveFBNotificationsListview_Button_Click
+        AddHandler FBNotificationsData_Listview.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBNotificationsData_Listview_SelectedIndexChanged
+        AddHandler DeleteSelectedFBNotificationsListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedFBNotificationsListviewItems_Button_Click
+        AddHandler FBNotificationsDisplayCurrUrl_Button.Click, AddressOf mainFormEventHandlers.FBNotificationsDisplayCurrUrl_Button_Click
+        AddHandler FBNotificationsNavigateToSelectedURL_Button.Click, AddressOf mainFormEventHandlers.FBNotificationsNavigateToSelectedURL_Button_Click
+        AddHandler FBNotificationsAddItemToListview_Button.Click, AddressOf mainFormEventHandlers.FBNotificationsAddItemToListview_Button_Click
+        AddHandler FBNotificationsEditSelectedListviewItem_Button.Click, AddressOf mainFormEventHandlers.FBNotificationsEditSelectedListviewItem_Button_Click
+
 
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
     End Sub
+
 
 
     Private Sub RegisterFBPostEventHanders()
@@ -596,5 +608,6 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
+
 
 End Class

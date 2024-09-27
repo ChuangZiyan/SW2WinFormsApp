@@ -150,6 +150,39 @@ Module MainFormController
     End Sub
 
 
+    Public Sub DisplayFBNotificationList(FolderName)
+        If FolderName = "" Then
+            Exit Sub
+        End If
+
+        Form1.FBNotificationsData_Listview.Items.Clear()
+
+        Form1.FBNotificationsName_TextBox.Text = ""
+        Form1.FBNotificationsUrl_TextBox.Text = ""
+
+        Dim jsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "FBNotificationList.json")
+
+        'Debug.WriteLine(userDataJsonFilePath)
+
+        If File.Exists(jsonFilePath) Then
+            Dim jsonString As String = File.ReadAllText(jsonFilePath)
+
+            Dim jsonArray As JArray = JArray.Parse(jsonString)
+
+            ' 使用 For Each 迴圈逐個處理每個項目
+            For Each item As JObject In jsonArray
+                Dim name As String = item("Name").ToString()
+                Dim url As String = item("Url").ToString()
+
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBNotificationsData_Listview.Items.Add(newItem)
+            Next
+
+        End If
+    End Sub
+
+
     Public Sub SetForm1TitleStatus(status As String)
         Dim myUserData = Webview2Controller.ActivedWebview2UserData
         Form1.Text = "UserData: " & myUserData & "    Port: " & Webview2Controller.DebugPortInUse & "    |    " & status & "    - MainWebview2Form"

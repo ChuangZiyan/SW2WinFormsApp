@@ -22,10 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewItem5 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem6 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
-        Dim ListViewItem7 As ListViewItem = New ListViewItem(New String() {"google", "https://google.com/"}, -1)
-        Dim ListViewItem8 As ListViewItem = New ListViewItem(New String() {"Bing", "https://bing.com/"}, -1)
         Main_WebView2 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Navigate_Url_TextBox = New TextBox()
         NavigateTo_Url_Button = New Button()
@@ -99,11 +95,11 @@ Partial Class Form1
         FBNotifications_TabPage = New TabPage()
         Button10 = New Button()
         Button1 = New Button()
-        CheckBox2 = New CheckBox()
-        CheckBox1 = New CheckBox()
+        ReadFBNotifications_CheckBox = New CheckBox()
+        UnreadFBNotifications_CheckBox = New CheckBox()
         Button9 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
+        DeleteSelectedFBNotificationsListviewItems_Button = New Button()
+        SaveFBNotificationsListview_Button = New Button()
         ReadFBNotifications_Button = New Button()
         FBNotificationsEditSelectedListviewItem_Button = New Button()
         FBNotificationsAddItemToListview_Button = New Button()
@@ -820,7 +816,6 @@ Partial Class Form1
         ' 
         FBGroups_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader1, ColumnHeader2})
         FBGroups_ListView.FullRowSelect = True
-        FBGroups_ListView.Items.AddRange(New ListViewItem() {ListViewItem5, ListViewItem6})
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
         FBGroups_ListView.Size = New Size(680, 236)
@@ -989,7 +984,6 @@ Partial Class Form1
         ' 
         FBActivityLogs_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader16, ColumnHeader17})
         FBActivityLogs_ListView.FullRowSelect = True
-        FBActivityLogs_ListView.Items.AddRange(New ListViewItem() {ListViewItem7, ListViewItem8})
         FBActivityLogs_ListView.Location = New Point(6, 106)
         FBActivityLogs_ListView.Name = "FBActivityLogs_ListView"
         FBActivityLogs_ListView.Size = New Size(680, 236)
@@ -1011,11 +1005,11 @@ Partial Class Form1
         ' 
         FBNotifications_TabPage.Controls.Add(Button10)
         FBNotifications_TabPage.Controls.Add(Button1)
-        FBNotifications_TabPage.Controls.Add(CheckBox2)
-        FBNotifications_TabPage.Controls.Add(CheckBox1)
+        FBNotifications_TabPage.Controls.Add(ReadFBNotifications_CheckBox)
+        FBNotifications_TabPage.Controls.Add(UnreadFBNotifications_CheckBox)
         FBNotifications_TabPage.Controls.Add(Button9)
-        FBNotifications_TabPage.Controls.Add(Button2)
-        FBNotifications_TabPage.Controls.Add(Button3)
+        FBNotifications_TabPage.Controls.Add(DeleteSelectedFBNotificationsListviewItems_Button)
+        FBNotifications_TabPage.Controls.Add(SaveFBNotificationsListview_Button)
         FBNotifications_TabPage.Controls.Add(ReadFBNotifications_Button)
         FBNotifications_TabPage.Controls.Add(FBNotificationsEditSelectedListviewItem_Button)
         FBNotifications_TabPage.Controls.Add(FBNotificationsAddItemToListview_Button)
@@ -1051,25 +1045,27 @@ Partial Class Form1
         Button1.Text = "插入"
         Button1.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox2
+        ' ReadFBNotifications_CheckBox
         ' 
-        CheckBox2.AutoSize = True
-        CheckBox2.Location = New Point(173, 354)
-        CheckBox2.Name = "CheckBox2"
-        CheckBox2.Size = New Size(61, 23)
-        CheckBox2.TabIndex = 28
-        CheckBox2.Text = "已讀"
-        CheckBox2.UseVisualStyleBackColor = True
+        ReadFBNotifications_CheckBox.AutoSize = True
+        ReadFBNotifications_CheckBox.Location = New Point(173, 354)
+        ReadFBNotifications_CheckBox.Name = "ReadFBNotifications_CheckBox"
+        ReadFBNotifications_CheckBox.Size = New Size(61, 23)
+        ReadFBNotifications_CheckBox.TabIndex = 28
+        ReadFBNotifications_CheckBox.Text = "已讀"
+        ReadFBNotifications_CheckBox.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox1
+        ' UnreadFBNotifications_CheckBox
         ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Location = New Point(106, 354)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(61, 23)
-        CheckBox1.TabIndex = 27
-        CheckBox1.Text = "未讀"
-        CheckBox1.UseVisualStyleBackColor = True
+        UnreadFBNotifications_CheckBox.AutoSize = True
+        UnreadFBNotifications_CheckBox.Checked = True
+        UnreadFBNotifications_CheckBox.CheckState = CheckState.Checked
+        UnreadFBNotifications_CheckBox.Location = New Point(106, 354)
+        UnreadFBNotifications_CheckBox.Name = "UnreadFBNotifications_CheckBox"
+        UnreadFBNotifications_CheckBox.Size = New Size(61, 23)
+        UnreadFBNotifications_CheckBox.TabIndex = 27
+        UnreadFBNotifications_CheckBox.Text = "未讀"
+        UnreadFBNotifications_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' Button9
         ' 
@@ -1080,23 +1076,23 @@ Partial Class Form1
         Button9.Text = "插入全部已讀"
         Button9.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' DeleteSelectedFBNotificationsListviewItems_Button
         ' 
-        Button2.Location = New Point(591, 350)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 24
-        Button2.Text = "刪除"
-        Button2.UseVisualStyleBackColor = True
+        DeleteSelectedFBNotificationsListviewItems_Button.Location = New Point(591, 350)
+        DeleteSelectedFBNotificationsListviewItems_Button.Name = "DeleteSelectedFBNotificationsListviewItems_Button"
+        DeleteSelectedFBNotificationsListviewItems_Button.Size = New Size(94, 29)
+        DeleteSelectedFBNotificationsListviewItems_Button.TabIndex = 24
+        DeleteSelectedFBNotificationsListviewItems_Button.Text = "刪除"
+        DeleteSelectedFBNotificationsListviewItems_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' SaveFBNotificationsListview_Button
         ' 
-        Button3.Location = New Point(491, 350)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 23
-        Button3.Text = "儲存"
-        Button3.UseVisualStyleBackColor = True
+        SaveFBNotificationsListview_Button.Location = New Point(491, 350)
+        SaveFBNotificationsListview_Button.Name = "SaveFBNotificationsListview_Button"
+        SaveFBNotificationsListview_Button.Size = New Size(94, 29)
+        SaveFBNotificationsListview_Button.TabIndex = 23
+        SaveFBNotificationsListview_Button.Text = "儲存"
+        SaveFBNotificationsListview_Button.UseVisualStyleBackColor = True
         ' 
         ' ReadFBNotifications_Button
         ' 
@@ -3341,8 +3337,8 @@ Partial Class Form1
     Friend WithEvents FBCustomizeCommentCreateNewAssetFolder_Button As Button
     Friend WithEvents FBNotifications_TabPage As TabPage
     Friend WithEvents Button9 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents DeleteSelectedFBNotificationsListviewItems_Button As Button
+    Friend WithEvents SaveFBNotificationsListview_Button As Button
     Friend WithEvents ReadFBNotifications_Button As Button
     Friend WithEvents FBNotificationsEditSelectedListviewItem_Button As Button
     Friend WithEvents FBNotificationsAddItemToListview_Button As Button
@@ -3357,7 +3353,7 @@ Partial Class Form1
     Friend WithEvents ColumnHeader19 As ColumnHeader
     Friend WithEvents Button10 As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents ReadFBNotifications_CheckBox As CheckBox
+    Friend WithEvents UnreadFBNotifications_CheckBox As CheckBox
 
 End Class

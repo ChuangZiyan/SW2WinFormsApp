@@ -16,6 +16,7 @@ Public Class MainFormEventHandlers
         MainFormController.DisplayUserData(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
         MainFormController.DisplayGroupList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
         MainFormController.DisplayFBActivityLogs(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
+        MainFormController.DisplayFBNotificationList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
     End Sub
 
 
@@ -1017,7 +1018,124 @@ Public Class MainFormEventHandlers
     End Sub
 
     Public Sub ReadFBNotifications_Button_Click(sender As Object, e As EventArgs)
-        Webview2Controller.ReadFBNotifications()
+        Webview2Controller.ReadFBNotifications(Form1.ReadFBNotifications_CheckBox.Checked, Form1.UnreadFBNotifications_CheckBox.Checked)
+    End Sub
+
+    Public Sub SaveFBNotificationsListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                MsgBox("未選擇使用者")
+                Exit Sub
+            End If
+
+            Dim items As New List(Of GroupListviewDataStruct)()
+            For Each item As ListViewItem In Form1.FBNotificationsData_Listview.Items
+
+                Dim listViewItemData As New GroupListviewDataStruct With {
+                    .Name = item.Text,
+                    .Url = item.SubItems(1).Text
+                }
+                items.Add(listViewItemData)
+            Next
+
+            Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
+            Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBNotificationList.json")
+            File.WriteAllText(filePath, jsonStr)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+    End Sub
+
+
+    Public Sub FBNotificationsData_Listview_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBNotificationsData_Listview.SelectedItems.Count > 0 Then
+                'Debug.WriteLine(Form1.FBGroups_ListView.SelectedItems(0).Text)
+                Dim selectedItem = Form1.FBNotificationsData_Listview.SelectedItems(0)
+                Form1.FBNotificationsName_TextBox.Text = selectedItem.Text
+                Form1.FBNotificationsUrl_TextBox.Text = selectedItem.SubItems(1).Text
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub DeleteSelectedFBNotificationsListviewItems_Button_Click(sender As Object, e As EventArgs)
+        Dim scriptListviewSelectedItems = Form1.FBNotificationsData_Listview.SelectedItems
+        If scriptListviewSelectedItems.Count > 0 Then
+            For Each item As ListViewItem In scriptListviewSelectedItems
+                Form1.FBNotificationsData_Listview.Items.Remove(item)
+            Next
+            'Form1.FBNotificationsName_TextBox.Clear()
+            'Form1.FBNotificationsUrl_TextBox.Clear()
+        End If
+    End Sub
+
+    Public Sub FBNotificationsDisplayCurrUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Form1.FBNotificationsUrl_TextBox.Text = Webview2Controller.edgeDriver.Url
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Async Sub FBNotificationsNavigateToSelectedURL_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task(Form1.FBNotificationsUrl_TextBox.Text)
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub FBNotificationsAddItemToListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim name = Form1.FBNotificationsName_TextBox.Text
+            Dim url = Form1.FBNotificationsUrl_TextBox.Text
+
+            If name <> "" And url <> "" Then
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBNotificationsData_Listview.Items.Insert(0, newItem)
+            Else
+                MsgBox("欄位不得為空")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Public Sub FBNotificationsEditSelectedListviewItem_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBNotificationsData_Listview.SelectedItems.Count > 0 Then
+                Dim name = Form1.FBNotificationsName_TextBox.Text
+                Dim url = Form1.FBNotificationsUrl_TextBox.Text
+                If name <> "" And url <> "" Then
+                    Dim selectedItem = Form1.FBNotificationsData_Listview.SelectedItems(0)
+                    selectedItem.Text = name
+                    selectedItem.SubItems(1).Text = url
+
+                Else
+                    MsgBox("欄位不得為空")
+                End If
+            Else
+                MsgBox("未選擇欄位")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
     End Sub
 
 
