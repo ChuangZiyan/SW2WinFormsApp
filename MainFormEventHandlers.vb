@@ -1139,6 +1139,14 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+    Public Sub DefaultScriptInsertion_RadioButton_Click(sender As Object, e As EventArgs)
+        Form1.CustomizeScriptInsertion_RadioButton.Checked = False
+    End Sub
+
+    Public Sub CustomizeScriptInsertion_RadioButton_Click(sender As Object, e As EventArgs)
+        Form1.DefaultScriptInsertion_RadioButton.Checked = False
+    End Sub
+
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled
 
@@ -1154,57 +1162,61 @@ Public Class MainFormEventHandlers
         Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
         Dim content = ""
 
-        Select Case selecteAction
-            Case "發帖"
-                If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
-                    For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
-                        content += item + "&"
-                    Next
-                    content = content.TrimEnd("&")
-                Else
-                    content = "隨機"
-                End If
-            Case "拍賣"
-                If Form1.FBMarkplaceProducts_ListBox.SelectedItems.Count > 0 Then
-                    For Each item In Form1.FBMarkplaceProducts_ListBox.SelectedItems
-                        content += item + "&"
-                    Next
-                    content = content.TrimEnd("&")
-                Else
-                    content = "隨機"
-                End If
-            Case "分享"
-                If Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                    For Each item In Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
-                        content += item + "&"
-                    Next
-                    content = content.TrimEnd("&")
-                Else
-                    content = "隨機"
-                End If
-            Case "留言"
-                If Form1.FBCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                    For Each item In Form1.FBCommentAssetFolder_ListBox.SelectedItems
-                        content += item + "&"
-                    Next
-                    content = content.TrimEnd("&")
-                Else
-                    content = "隨機"
-                End If
-            Case "自訂"
-                If Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                    For Each item In Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
-                        content += item + "&"
-                    Next
-                    content = content.TrimEnd("&")
-                Else
-                    content = "隨機"
-                End If
+        If Form1.CustomizeScriptInsertion_RadioButton.Checked Then
+            selecteAction = Form1.CustomizeAction_ComboBox.Text
+        Else
+            Select Case selecteAction
+                Case "發帖"
+                    If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
+                        For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+                            content += item + "&"
+                        Next
+                        content = content.TrimEnd("&")
+                    Else
+                        content = "隨機"
+                    End If
+                Case "拍賣"
+                    If Form1.FBMarkplaceProducts_ListBox.SelectedItems.Count > 0 Then
+                        For Each item In Form1.FBMarkplaceProducts_ListBox.SelectedItems
+                            content += item + "&"
+                        Next
+                        content = content.TrimEnd("&")
+                    Else
+                        content = "隨機"
+                    End If
+                Case "分享"
+                    If Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                        For Each item In Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
+                            content += item + "&"
+                        Next
+                        content = content.TrimEnd("&")
+                    Else
+                        content = "隨機"
+                    End If
+                Case "留言"
+                    If Form1.FBCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                        For Each item In Form1.FBCommentAssetFolder_ListBox.SelectedItems
+                            content += item + "&"
+                        Next
+                        content = content.TrimEnd("&")
+                    Else
+                        content = "隨機"
+                    End If
+                Case "自訂"
+                    If Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                        For Each item In Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
+                            content += item + "&"
+                        Next
+                        content = content.TrimEnd("&")
+                    Else
+                        content = "隨機"
+                    End If
 
 
-            Case "測試項"
-                content = "測試"
-        End Select
+                Case "測試項"
+                    content = "測試"
+            End Select
+        End If
 
 
         Dim selectedUserDataFolder = "NULL"

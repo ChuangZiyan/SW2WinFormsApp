@@ -413,6 +413,10 @@ Public Class Form1
     Private FBPostShareURLEventHandlers As New FBPostShareURLEventHandlers()
     Private FBCommentEventHandlers As New FBCommentEventHandlers()
     Private FBCustomizeCommentEventHandlers As New FBCustomizeCommentEventHandlers()
+    Private FBResponseEventHandlers As New FBResponseEventHandlers()
+
+
+
 
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
@@ -466,6 +470,9 @@ Public Class Form1
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
         AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
 
+        AddHandler DefaultScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.DefaultScriptInsertion_RadioButton_Click
+        AddHandler CustomizeScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.CustomizeScriptInsertion_RadioButton_Click
+
         ' ### FB ActivityLogs
         AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
         AddHandler NavigateToActivityLogsPage_Button.Click, AddressOf mainFormEventHandlers.NavigateToActivityLogsPage_Button_Click
@@ -491,6 +498,7 @@ Public Class Form1
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
     End Sub
+
 
 
 
@@ -581,6 +589,23 @@ Public Class Form1
         AddHandler FBCustomizeCommentTextFileSelector_ListBox.DoubleClick, AddressOf FBCustomizeCommentEventHandlers.FBCustomizeCommentTextFileSelector_ListBox_DoubleClick
     End Sub
 
+    Private Sub RegisterFBResponseEventhandlers()
+        ' 回應通知的事件
+        AddHandler FBResponseCreateNewAssetFolder_Button.Click, AddressOf FBResponseEventHandlers.FBResponseCreateNewAssetFolder_Button_Click
+        AddHandler FBResponseDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBResponseEventHandlers.FBResponseDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBResponseDeleteSelectedAssetFolder_Button.Click, AddressOf FBResponseEventHandlers.FBResponseDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBResponseCreateNewTextFile_Button.Click, AddressOf FBResponseEventHandlers.FBResponseCreateNewTextFile_Button_Click
+        AddHandler FBResponseAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBResponseEventHandlers.FBResponseAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBResponseTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBResponseEventHandlers.FBResponseTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBResponseDeleteSelectedTextFile_Button.Click, AddressOf FBResponseEventHandlers.FBResponseDeleteSelectedTextFile_Button_Click
+        AddHandler FBResponseSaveTextFile_Button.Click, AddressOf FBResponseEventHandlers.FBResponseSaveTextFile_Button_Click
+        AddHandler FBResponseMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBResponseEventHandlers.FBResponseMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBResponseRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBResponseEventHandlers.FBResponseRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBResponseDeleteSelectedMedia_Button.Click, AddressOf FBResponseEventHandlers.FBResponseDeleteSelectedMedia_Button_Click
+        AddHandler FBResponseAssetFolder_ListBox.DoubleClick, AddressOf FBResponseEventHandlers.FBResponseAssetFolder_ListBox_DoubleClick
+        AddHandler FBResponseTextFileSelector_ListBox.DoubleClick, AddressOf FBResponseEventHandlers.FBResponseTextFileSelector_ListBox_DoubleClick
+    End Sub
+
     Private emojiPickerForm As EmojiPickerForm
 
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -599,6 +624,7 @@ Public Class Form1
         RegisterFBPostShareURLEventHanders()
         RegisterFBCommentEventHanders()
         RegisterFBCustomizeCommentEventhandlers()
+        RegisterFBResponseEventhandlers()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")

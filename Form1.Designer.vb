@@ -97,7 +97,7 @@ Partial Class Form1
         Button1 = New Button()
         ReadFBNotifications_CheckBox = New CheckBox()
         UnreadFBNotifications_CheckBox = New CheckBox()
-        Button9 = New Button()
+        InsertReadFBAllNotifications_Button = New Button()
         DeleteSelectedFBNotificationsListviewItems_Button = New Button()
         SaveFBNotificationsListview_Button = New Button()
         ReadFBNotifications_Button = New Button()
@@ -249,9 +249,34 @@ Partial Class Form1
         FBCustomizeCommentMediaPreviewer_PictureBox = New PictureBox()
         FBCustomizeCommentTextFilePreviewer_RichTextBox = New RichTextBox()
         FBCustomizeCommentCreateNewAssetFolder_Button = New Button()
+        FBRespondNotifications_TabPage = New TabPage()
+        Label52 = New Label()
+        Label53 = New Label()
+        Label54 = New Label()
+        FBResponseUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBResponseSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBResponseDeselectAllAssetFolderListboxItems_Button = New Button()
+        FBResponseDeleteSelectedTextFile_Button = New Button()
+        FBResponseNewTextFileName_TextBox = New TextBox()
+        FBResponseMediaSelector_ListBox = New ListBox()
+        FBResponseTextFileSelector_ListBox = New ListBox()
+        FBResponseAssetFolder_ListBox = New ListBox()
+        FBResponseSaveTextFile_Button = New Button()
+        FBResponseCreateNewTextFile_Button = New Button()
+        FBResponseDeleteSelectedMedia_Button = New Button()
+        FBResponseRevealMediaFoldesrInFileExplorer_Button = New Button()
+        FBResponseDeleteSelectedAssetFolder_Button = New Button()
+        FBResponseAssetFolderName_TextBox = New TextBox()
+        FBResponseMediaPreviewer_PictureBox = New PictureBox()
+        FBResponseTextFilePreviewer_RichTextBox = New RichTextBox()
+        FBResponseCreateNewAssetFolder_Button = New Button()
         TabPage3 = New TabPage()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
+        Label55 = New Label()
+        CustomizeAction_ComboBox = New ComboBox()
+        CustomizeScriptInsertion_RadioButton = New RadioButton()
+        DefaultScriptInsertion_RadioButton = New RadioButton()
         ModfiyScriptListviewURLToRandom_Button = New Button()
         SortListviewItemByTime_Button = New Button()
         ScheduledTimeSorting_DateTimePicker = New DateTimePicker()
@@ -331,6 +356,10 @@ Partial Class Form1
         CType(FBCustomizeCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCustomizeCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        FBRespondNotifications_TabPage.SuspendLayout()
+        CType(FBResponseUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBResponseSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBResponseMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -682,7 +711,7 @@ Partial Class Form1
         FBUrlData_TabControl.Location = New Point(441, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
-        FBUrlData_TabControl.Size = New Size(699, 423)
+        FBUrlData_TabControl.Size = New Size(699, 383)
         FBUrlData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -703,14 +732,14 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(691, 391)
+        FBGroups_TabPage.Size = New Size(691, 351)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
         ' GetJoinedGroupList_Button
         ' 
-        GetJoinedGroupList_Button.Location = New Point(105, 350)
+        GetJoinedGroupList_Button.Location = New Point(102, 312)
         GetJoinedGroupList_Button.Name = "GetJoinedGroupList_Button"
         GetJoinedGroupList_Button.Size = New Size(109, 29)
         GetJoinedGroupList_Button.TabIndex = 12
@@ -719,7 +748,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(591, 350)
+        DeleteSelectedGroup_Button.Location = New Point(588, 312)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -728,7 +757,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(491, 350)
+        SaveListviewGroupList_Button.Location = New Point(488, 312)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -737,7 +766,7 @@ Partial Class Form1
         ' 
         ' GetFBGroupList_Button
         ' 
-        GetFBGroupList_Button.Location = New Point(6, 350)
+        GetFBGroupList_Button.Location = New Point(3, 312)
         GetFBGroupList_Button.Name = "GetFBGroupList_Button"
         GetFBGroupList_Button.Size = New Size(94, 29)
         GetFBGroupList_Button.TabIndex = 9
@@ -818,7 +847,7 @@ Partial Class Form1
         FBGroups_ListView.FullRowSelect = True
         FBGroups_ListView.Location = New Point(6, 106)
         FBGroups_ListView.Name = "FBGroups_ListView"
-        FBGroups_ListView.Size = New Size(680, 236)
+        FBGroups_ListView.Size = New Size(680, 200)
         FBGroups_ListView.TabIndex = 0
         FBGroups_ListView.UseCompatibleStateImageBehavior = False
         FBGroups_ListView.View = View.Details
@@ -853,14 +882,14 @@ Partial Class Form1
         FBActivityLogs_TabPage.Location = New Point(4, 28)
         FBActivityLogs_TabPage.Name = "FBActivityLogs_TabPage"
         FBActivityLogs_TabPage.Padding = New Padding(3)
-        FBActivityLogs_TabPage.Size = New Size(691, 391)
+        FBActivityLogs_TabPage.Size = New Size(691, 351)
         FBActivityLogs_TabPage.TabIndex = 1
         FBActivityLogs_TabPage.Text = "留言"
         FBActivityLogs_TabPage.UseVisualStyleBackColor = True
         ' 
         ' NavigateToActivityLogsPage_Button
         ' 
-        NavigateToActivityLogsPage_Button.Location = New Point(8, 348)
+        NavigateToActivityLogsPage_Button.Location = New Point(5, 310)
         NavigateToActivityLogsPage_Button.Name = "NavigateToActivityLogsPage_Button"
         NavigateToActivityLogsPage_Button.Size = New Size(110, 29)
         NavigateToActivityLogsPage_Button.TabIndex = 28
@@ -870,7 +899,7 @@ Partial Class Form1
         ' Label46
         ' 
         Label46.AutoSize = True
-        Label46.Location = New Point(124, 353)
+        Label46.Location = New Point(121, 315)
         Label46.Name = "Label46"
         Label46.Size = New Size(80, 19)
         Label46.TabIndex = 27
@@ -878,7 +907,7 @@ Partial Class Form1
         ' 
         ' NumberOfActivityLogsPageDropDown_NumericUpDown
         ' 
-        NumberOfActivityLogsPageDropDown_NumericUpDown.Location = New Point(210, 350)
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Location = New Point(207, 312)
         NumberOfActivityLogsPageDropDown_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         NumberOfActivityLogsPageDropDown_NumericUpDown.Name = "NumberOfActivityLogsPageDropDown_NumericUpDown"
         NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(62, 27)
@@ -887,7 +916,7 @@ Partial Class Form1
         ' 
         ' ReadActivityLogs_Button
         ' 
-        ReadActivityLogs_Button.Location = New Point(278, 348)
+        ReadActivityLogs_Button.Location = New Point(275, 310)
         ReadActivityLogs_Button.Name = "ReadActivityLogs_Button"
         ReadActivityLogs_Button.Size = New Size(110, 29)
         ReadActivityLogs_Button.TabIndex = 25
@@ -896,7 +925,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedFBActivityLogListviewItems_Button
         ' 
-        DeleteSelectedFBActivityLogListviewItems_Button.Location = New Point(591, 350)
+        DeleteSelectedFBActivityLogListviewItems_Button.Location = New Point(592, 312)
         DeleteSelectedFBActivityLogListviewItems_Button.Name = "DeleteSelectedFBActivityLogListviewItems_Button"
         DeleteSelectedFBActivityLogListviewItems_Button.Size = New Size(94, 29)
         DeleteSelectedFBActivityLogListviewItems_Button.TabIndex = 24
@@ -905,7 +934,7 @@ Partial Class Form1
         ' 
         ' SaveFBActivityLogListview_Button
         ' 
-        SaveFBActivityLogListview_Button.Location = New Point(491, 350)
+        SaveFBActivityLogListview_Button.Location = New Point(495, 312)
         SaveFBActivityLogListview_Button.Name = "SaveFBActivityLogListview_Button"
         SaveFBActivityLogListview_Button.Size = New Size(94, 29)
         SaveFBActivityLogListview_Button.TabIndex = 23
@@ -986,7 +1015,7 @@ Partial Class Form1
         FBActivityLogs_ListView.FullRowSelect = True
         FBActivityLogs_ListView.Location = New Point(6, 106)
         FBActivityLogs_ListView.Name = "FBActivityLogs_ListView"
-        FBActivityLogs_ListView.Size = New Size(680, 236)
+        FBActivityLogs_ListView.Size = New Size(680, 200)
         FBActivityLogs_ListView.TabIndex = 13
         FBActivityLogs_ListView.UseCompatibleStateImageBehavior = False
         FBActivityLogs_ListView.View = View.Details
@@ -1007,7 +1036,7 @@ Partial Class Form1
         FBNotifications_TabPage.Controls.Add(Button1)
         FBNotifications_TabPage.Controls.Add(ReadFBNotifications_CheckBox)
         FBNotifications_TabPage.Controls.Add(UnreadFBNotifications_CheckBox)
-        FBNotifications_TabPage.Controls.Add(Button9)
+        FBNotifications_TabPage.Controls.Add(InsertReadFBAllNotifications_Button)
         FBNotifications_TabPage.Controls.Add(DeleteSelectedFBNotificationsListviewItems_Button)
         FBNotifications_TabPage.Controls.Add(SaveFBNotificationsListview_Button)
         FBNotifications_TabPage.Controls.Add(ReadFBNotifications_Button)
@@ -1022,14 +1051,14 @@ Partial Class Form1
         FBNotifications_TabPage.Controls.Add(FBNotificationsData_Listview)
         FBNotifications_TabPage.Location = New Point(4, 28)
         FBNotifications_TabPage.Name = "FBNotifications_TabPage"
-        FBNotifications_TabPage.Size = New Size(691, 391)
+        FBNotifications_TabPage.Size = New Size(691, 351)
         FBNotifications_TabPage.TabIndex = 2
         FBNotifications_TabPage.Text = "通知"
         FBNotifications_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Button10
         ' 
-        Button10.Location = New Point(337, 350)
+        Button10.Location = New Point(341, 312)
         Button10.Name = "Button10"
         Button10.Size = New Size(94, 29)
         Button10.TabIndex = 30
@@ -1038,7 +1067,7 @@ Partial Class Form1
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(240, 350)
+        Button1.Location = New Point(244, 312)
         Button1.Name = "Button1"
         Button1.Size = New Size(94, 29)
         Button1.TabIndex = 29
@@ -1048,7 +1077,7 @@ Partial Class Form1
         ' ReadFBNotifications_CheckBox
         ' 
         ReadFBNotifications_CheckBox.AutoSize = True
-        ReadFBNotifications_CheckBox.Location = New Point(173, 354)
+        ReadFBNotifications_CheckBox.Location = New Point(177, 316)
         ReadFBNotifications_CheckBox.Name = "ReadFBNotifications_CheckBox"
         ReadFBNotifications_CheckBox.Size = New Size(61, 23)
         ReadFBNotifications_CheckBox.TabIndex = 28
@@ -1060,25 +1089,25 @@ Partial Class Form1
         UnreadFBNotifications_CheckBox.AutoSize = True
         UnreadFBNotifications_CheckBox.Checked = True
         UnreadFBNotifications_CheckBox.CheckState = CheckState.Checked
-        UnreadFBNotifications_CheckBox.Location = New Point(106, 354)
+        UnreadFBNotifications_CheckBox.Location = New Point(110, 316)
         UnreadFBNotifications_CheckBox.Name = "UnreadFBNotifications_CheckBox"
         UnreadFBNotifications_CheckBox.Size = New Size(61, 23)
         UnreadFBNotifications_CheckBox.TabIndex = 27
         UnreadFBNotifications_CheckBox.Text = "未讀"
         UnreadFBNotifications_CheckBox.UseVisualStyleBackColor = True
         ' 
-        ' Button9
+        ' InsertReadFBAllNotifications_Button
         ' 
-        Button9.Location = New Point(567, 71)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(119, 29)
-        Button9.TabIndex = 26
-        Button9.Text = "插入全部已讀"
-        Button9.UseVisualStyleBackColor = True
+        InsertReadFBAllNotifications_Button.Location = New Point(567, 71)
+        InsertReadFBAllNotifications_Button.Name = "InsertReadFBAllNotifications_Button"
+        InsertReadFBAllNotifications_Button.Size = New Size(119, 29)
+        InsertReadFBAllNotifications_Button.TabIndex = 26
+        InsertReadFBAllNotifications_Button.Text = "插入全部已讀"
+        InsertReadFBAllNotifications_Button.UseVisualStyleBackColor = True
         ' 
         ' DeleteSelectedFBNotificationsListviewItems_Button
         ' 
-        DeleteSelectedFBNotificationsListviewItems_Button.Location = New Point(591, 350)
+        DeleteSelectedFBNotificationsListviewItems_Button.Location = New Point(595, 312)
         DeleteSelectedFBNotificationsListviewItems_Button.Name = "DeleteSelectedFBNotificationsListviewItems_Button"
         DeleteSelectedFBNotificationsListviewItems_Button.Size = New Size(94, 29)
         DeleteSelectedFBNotificationsListviewItems_Button.TabIndex = 24
@@ -1087,7 +1116,7 @@ Partial Class Form1
         ' 
         ' SaveFBNotificationsListview_Button
         ' 
-        SaveFBNotificationsListview_Button.Location = New Point(491, 350)
+        SaveFBNotificationsListview_Button.Location = New Point(495, 312)
         SaveFBNotificationsListview_Button.Name = "SaveFBNotificationsListview_Button"
         SaveFBNotificationsListview_Button.Size = New Size(94, 29)
         SaveFBNotificationsListview_Button.TabIndex = 23
@@ -1096,7 +1125,7 @@ Partial Class Form1
         ' 
         ' ReadFBNotifications_Button
         ' 
-        ReadFBNotifications_Button.Location = New Point(6, 350)
+        ReadFBNotifications_Button.Location = New Point(10, 312)
         ReadFBNotifications_Button.Name = "ReadFBNotifications_Button"
         ReadFBNotifications_Button.Size = New Size(94, 29)
         ReadFBNotifications_Button.TabIndex = 22
@@ -1177,7 +1206,7 @@ Partial Class Form1
         FBNotificationsData_Listview.FullRowSelect = True
         FBNotificationsData_Listview.Location = New Point(6, 106)
         FBNotificationsData_Listview.Name = "FBNotificationsData_Listview"
-        FBNotificationsData_Listview.Size = New Size(680, 236)
+        FBNotificationsData_Listview.Size = New Size(680, 200)
         FBNotificationsData_Listview.TabIndex = 13
         FBNotificationsData_Listview.UseCompatibleStateImageBehavior = False
         FBNotificationsData_Listview.View = View.Details
@@ -1274,6 +1303,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBPostShareURL_TabPage)
         Action_TabControl.Controls.Add(FBComment_TabPage)
         Action_TabControl.Controls.Add(FBCustomizeComment_TabPage)
+        Action_TabControl.Controls.Add(FBRespondNotifications_TabPage)
         Action_TabControl.Controls.Add(TabPage3)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
@@ -2481,6 +2511,212 @@ Partial Class Form1
         FBCustomizeCommentCreateNewAssetFolder_Button.Text = "建立"
         FBCustomizeCommentCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' FBRespondNotifications_TabPage
+        ' 
+        FBRespondNotifications_TabPage.Controls.Add(Label52)
+        FBRespondNotifications_TabPage.Controls.Add(Label53)
+        FBRespondNotifications_TabPage.Controls.Add(Label54)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseUploadWaitSeconds_NumericUpDown)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseSubmitWaitSeconds_NumericUpDown)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeselectAllAssetFolderListboxItems_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeleteSelectedTextFile_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseNewTextFileName_TextBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseMediaSelector_ListBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseTextFileSelector_ListBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseAssetFolder_ListBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseSaveTextFile_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseCreateNewTextFile_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeleteSelectedMedia_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseRevealMediaFoldesrInFileExplorer_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeleteSelectedAssetFolder_Button)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseAssetFolderName_TextBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseMediaPreviewer_PictureBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseTextFilePreviewer_RichTextBox)
+        FBRespondNotifications_TabPage.Controls.Add(FBResponseCreateNewAssetFolder_Button)
+        FBRespondNotifications_TabPage.Location = New Point(4, 28)
+        FBRespondNotifications_TabPage.Name = "FBRespondNotifications_TabPage"
+        FBRespondNotifications_TabPage.Size = New Size(664, 467)
+        FBRespondNotifications_TabPage.TabIndex = 6
+        FBRespondNotifications_TabPage.Text = "回應"
+        FBRespondNotifications_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Label52
+        ' 
+        Label52.AutoSize = True
+        Label52.Location = New Point(6, 364)
+        Label52.Name = "Label52"
+        Label52.Size = New Size(50, 19)
+        Label52.TabIndex = 84
+        Label52.Text = "名稱 : "
+        ' 
+        ' Label53
+        ' 
+        Label53.AutoSize = True
+        Label53.Location = New Point(334, 13)
+        Label53.Name = "Label53"
+        Label53.Size = New Size(80, 19)
+        Label53.TabIndex = 83
+        Label53.Text = "送出等待 : "
+        ' 
+        ' Label54
+        ' 
+        Label54.AutoSize = True
+        Label54.Location = New Point(183, 13)
+        Label54.Name = "Label54"
+        Label54.Size = New Size(80, 19)
+        Label54.TabIndex = 82
+        Label54.Text = "上載等待 : "
+        ' 
+        ' FBResponseUploadWaitSeconds_NumericUpDown
+        ' 
+        FBResponseUploadWaitSeconds_NumericUpDown.Location = New Point(267, 10)
+        FBResponseUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBResponseUploadWaitSeconds_NumericUpDown.Name = "FBResponseUploadWaitSeconds_NumericUpDown"
+        FBResponseUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBResponseUploadWaitSeconds_NumericUpDown.TabIndex = 81
+        ' 
+        ' FBResponseSubmitWaitSeconds_NumericUpDown
+        ' 
+        FBResponseSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 10)
+        FBResponseSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBResponseSubmitWaitSeconds_NumericUpDown.Name = "FBResponseSubmitWaitSeconds_NumericUpDown"
+        FBResponseSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBResponseSubmitWaitSeconds_NumericUpDown.TabIndex = 80
+        ' 
+        ' FBResponseDeselectAllAssetFolderListboxItems_Button
+        ' 
+        FBResponseDeselectAllAssetFolderListboxItems_Button.Location = New Point(6, 326)
+        FBResponseDeselectAllAssetFolderListboxItems_Button.Name = "FBResponseDeselectAllAssetFolderListboxItems_Button"
+        FBResponseDeselectAllAssetFolderListboxItems_Button.Size = New Size(170, 29)
+        FBResponseDeselectAllAssetFolderListboxItems_Button.TabIndex = 79
+        FBResponseDeselectAllAssetFolderListboxItems_Button.Text = "取消選擇"
+        FBResponseDeselectAllAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseDeleteSelectedTextFile_Button
+        ' 
+        FBResponseDeleteSelectedTextFile_Button.Location = New Point(435, 189)
+        FBResponseDeleteSelectedTextFile_Button.Name = "FBResponseDeleteSelectedTextFile_Button"
+        FBResponseDeleteSelectedTextFile_Button.Size = New Size(94, 29)
+        FBResponseDeleteSelectedTextFile_Button.TabIndex = 78
+        FBResponseDeleteSelectedTextFile_Button.Text = "刪除所選"
+        FBResponseDeleteSelectedTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseNewTextFileName_TextBox
+        ' 
+        FBResponseNewTextFileName_TextBox.Location = New Point(183, 189)
+        FBResponseNewTextFileName_TextBox.Name = "FBResponseNewTextFileName_TextBox"
+        FBResponseNewTextFileName_TextBox.Size = New Size(145, 27)
+        FBResponseNewTextFileName_TextBox.TabIndex = 77
+        ' 
+        ' FBResponseMediaSelector_ListBox
+        ' 
+        FBResponseMediaSelector_ListBox.FormattingEnabled = True
+        FBResponseMediaSelector_ListBox.ItemHeight = 19
+        FBResponseMediaSelector_ListBox.Location = New Point(183, 224)
+        FBResponseMediaSelector_ListBox.Name = "FBResponseMediaSelector_ListBox"
+        FBResponseMediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBResponseMediaSelector_ListBox.Size = New Size(145, 156)
+        FBResponseMediaSelector_ListBox.TabIndex = 76
+        ' 
+        ' FBResponseTextFileSelector_ListBox
+        ' 
+        FBResponseTextFileSelector_ListBox.FormattingEnabled = True
+        FBResponseTextFileSelector_ListBox.ItemHeight = 19
+        FBResponseTextFileSelector_ListBox.Location = New Point(183, 46)
+        FBResponseTextFileSelector_ListBox.Name = "FBResponseTextFileSelector_ListBox"
+        FBResponseTextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBResponseTextFileSelector_ListBox.Size = New Size(145, 137)
+        FBResponseTextFileSelector_ListBox.TabIndex = 75
+        ' 
+        ' FBResponseAssetFolder_ListBox
+        ' 
+        FBResponseAssetFolder_ListBox.FormattingEnabled = True
+        FBResponseAssetFolder_ListBox.ItemHeight = 19
+        FBResponseAssetFolder_ListBox.Location = New Point(6, 8)
+        FBResponseAssetFolder_ListBox.Name = "FBResponseAssetFolder_ListBox"
+        FBResponseAssetFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBResponseAssetFolder_ListBox.Size = New Size(170, 308)
+        FBResponseAssetFolder_ListBox.TabIndex = 74
+        ' 
+        ' FBResponseSaveTextFile_Button
+        ' 
+        FBResponseSaveTextFile_Button.Location = New Point(534, 189)
+        FBResponseSaveTextFile_Button.Name = "FBResponseSaveTextFile_Button"
+        FBResponseSaveTextFile_Button.Size = New Size(94, 29)
+        FBResponseSaveTextFile_Button.TabIndex = 73
+        FBResponseSaveTextFile_Button.Text = "儲存"
+        FBResponseSaveTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseCreateNewTextFile_Button
+        ' 
+        FBResponseCreateNewTextFile_Button.Location = New Point(334, 189)
+        FBResponseCreateNewTextFile_Button.Name = "FBResponseCreateNewTextFile_Button"
+        FBResponseCreateNewTextFile_Button.Size = New Size(94, 29)
+        FBResponseCreateNewTextFile_Button.TabIndex = 72
+        FBResponseCreateNewTextFile_Button.Text = "新增文字檔"
+        FBResponseCreateNewTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseDeleteSelectedMedia_Button
+        ' 
+        FBResponseDeleteSelectedMedia_Button.Location = New Point(183, 429)
+        FBResponseDeleteSelectedMedia_Button.Name = "FBResponseDeleteSelectedMedia_Button"
+        FBResponseDeleteSelectedMedia_Button.Size = New Size(147, 29)
+        FBResponseDeleteSelectedMedia_Button.TabIndex = 71
+        FBResponseDeleteSelectedMedia_Button.Text = "刪除所選"
+        FBResponseDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseRevealMediaFoldesrInFileExplorer_Button
+        ' 
+        FBResponseRevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 393)
+        FBResponseRevealMediaFoldesrInFileExplorer_Button.Name = "FBResponseRevealMediaFoldesrInFileExplorer_Button"
+        FBResponseRevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
+        FBResponseRevealMediaFoldesrInFileExplorer_Button.TabIndex = 70
+        FBResponseRevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
+        FBResponseRevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseDeleteSelectedAssetFolder_Button
+        ' 
+        FBResponseDeleteSelectedAssetFolder_Button.Location = New Point(6, 429)
+        FBResponseDeleteSelectedAssetFolder_Button.Name = "FBResponseDeleteSelectedAssetFolder_Button"
+        FBResponseDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        FBResponseDeleteSelectedAssetFolder_Button.TabIndex = 69
+        FBResponseDeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        FBResponseDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBResponseAssetFolderName_TextBox
+        ' 
+        FBResponseAssetFolderName_TextBox.Location = New Point(62, 360)
+        FBResponseAssetFolderName_TextBox.Name = "FBResponseAssetFolderName_TextBox"
+        FBResponseAssetFolderName_TextBox.Size = New Size(115, 27)
+        FBResponseAssetFolderName_TextBox.TabIndex = 68
+        ' 
+        ' FBResponseMediaPreviewer_PictureBox
+        ' 
+        FBResponseMediaPreviewer_PictureBox.Location = New Point(334, 224)
+        FBResponseMediaPreviewer_PictureBox.Name = "FBResponseMediaPreviewer_PictureBox"
+        FBResponseMediaPreviewer_PictureBox.Size = New Size(325, 234)
+        FBResponseMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBResponseMediaPreviewer_PictureBox.TabIndex = 67
+        FBResponseMediaPreviewer_PictureBox.TabStop = False
+        ' 
+        ' FBResponseTextFilePreviewer_RichTextBox
+        ' 
+        FBResponseTextFilePreviewer_RichTextBox.Location = New Point(334, 44)
+        FBResponseTextFilePreviewer_RichTextBox.Name = "FBResponseTextFilePreviewer_RichTextBox"
+        FBResponseTextFilePreviewer_RichTextBox.Size = New Size(325, 140)
+        FBResponseTextFilePreviewer_RichTextBox.TabIndex = 66
+        FBResponseTextFilePreviewer_RichTextBox.Text = ""
+        FBResponseTextFilePreviewer_RichTextBox.WordWrap = False
+        ' 
+        ' FBResponseCreateNewAssetFolder_Button
+        ' 
+        FBResponseCreateNewAssetFolder_Button.Location = New Point(6, 393)
+        FBResponseCreateNewAssetFolder_Button.Name = "FBResponseCreateNewAssetFolder_Button"
+        FBResponseCreateNewAssetFolder_Button.Size = New Size(170, 29)
+        FBResponseCreateNewAssetFolder_Button.TabIndex = 65
+        FBResponseCreateNewAssetFolder_Button.Text = "建立"
+        FBResponseCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
         ' TabPage3
         ' 
         TabPage3.Location = New Point(4, 28)
@@ -2502,6 +2738,10 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(Label55)
+        ScriptTask_GroupBox.Controls.Add(CustomizeAction_ComboBox)
+        ScriptTask_GroupBox.Controls.Add(CustomizeScriptInsertion_RadioButton)
+        ScriptTask_GroupBox.Controls.Add(DefaultScriptInsertion_RadioButton)
         ScriptTask_GroupBox.Controls.Add(ModfiyScriptListviewURLToRandom_Button)
         ScriptTask_GroupBox.Controls.Add(SortListviewItemByTime_Button)
         ScriptTask_GroupBox.Controls.Add(ScheduledTimeSorting_DateTimePicker)
@@ -2541,16 +2781,57 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
         ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
-        ScriptTask_GroupBox.Location = New Point(441, 441)
+        ScriptTask_GroupBox.Location = New Point(441, 400)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(699, 187)
+        ScriptTask_GroupBox.Size = New Size(699, 228)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
         ' 
+        ' Label55
+        ' 
+        Label55.AutoSize = True
+        Label55.Location = New Point(14, 51)
+        Label55.Name = "Label55"
+        Label55.Size = New Size(80, 19)
+        Label55.TabIndex = 44
+        Label55.Text = "執行功能 : "
+        ' 
+        ' CustomizeAction_ComboBox
+        ' 
+        CustomizeAction_ComboBox.FormattingEnabled = True
+        CustomizeAction_ComboBox.Items.AddRange(New Object() {"已讀全部通知", "通知功能項目", "測試"})
+        CustomizeAction_ComboBox.Location = New Point(292, 46)
+        CustomizeAction_ComboBox.Name = "CustomizeAction_ComboBox"
+        CustomizeAction_ComboBox.Size = New Size(168, 27)
+        CustomizeAction_ComboBox.TabIndex = 43
+        ' 
+        ' CustomizeScriptInsertion_RadioButton
+        ' 
+        CustomizeScriptInsertion_RadioButton.AutoSize = True
+        CustomizeScriptInsertion_RadioButton.Location = New Point(196, 51)
+        CustomizeScriptInsertion_RadioButton.Name = "CustomizeScriptInsertion_RadioButton"
+        CustomizeScriptInsertion_RadioButton.Size = New Size(90, 23)
+        CustomizeScriptInsertion_RadioButton.TabIndex = 42
+        CustomizeScriptInsertion_RadioButton.TabStop = True
+        CustomizeScriptInsertion_RadioButton.Text = "自訂功能"
+        CustomizeScriptInsertion_RadioButton.UseVisualStyleBackColor = True
+        ' 
+        ' DefaultScriptInsertion_RadioButton
+        ' 
+        DefaultScriptInsertion_RadioButton.AutoSize = True
+        DefaultScriptInsertion_RadioButton.Checked = True
+        DefaultScriptInsertion_RadioButton.Location = New Point(100, 51)
+        DefaultScriptInsertion_RadioButton.Name = "DefaultScriptInsertion_RadioButton"
+        DefaultScriptInsertion_RadioButton.Size = New Size(90, 23)
+        DefaultScriptInsertion_RadioButton.TabIndex = 41
+        DefaultScriptInsertion_RadioButton.TabStop = True
+        DefaultScriptInsertion_RadioButton.Text = "預設功能"
+        DefaultScriptInsertion_RadioButton.UseVisualStyleBackColor = True
+        ' 
         ' ModfiyScriptListviewURLToRandom_Button
         ' 
-        ModfiyScriptListviewURLToRandom_Button.Location = New Point(592, 63)
+        ModfiyScriptListviewURLToRandom_Button.Location = New Point(596, 110)
         ModfiyScriptListviewURLToRandom_Button.Name = "ModfiyScriptListviewURLToRandom_Button"
         ModfiyScriptListviewURLToRandom_Button.Size = New Size(94, 29)
         ModfiyScriptListviewURLToRandom_Button.TabIndex = 40
@@ -2559,7 +2840,7 @@ Partial Class Form1
         ' 
         ' SortListviewItemByTime_Button
         ' 
-        SortListviewItemByTime_Button.Location = New Point(597, 101)
+        SortListviewItemByTime_Button.Location = New Point(601, 148)
         SortListviewItemByTime_Button.Name = "SortListviewItemByTime_Button"
         SortListviewItemByTime_Button.Size = New Size(94, 29)
         SortListviewItemByTime_Button.TabIndex = 39
@@ -2570,7 +2851,7 @@ Partial Class Form1
         ' 
         ScheduledTimeSorting_DateTimePicker.CustomFormat = "HH:mm:ss"
         ScheduledTimeSorting_DateTimePicker.Format = DateTimePickerFormat.Custom
-        ScheduledTimeSorting_DateTimePicker.Location = New Point(487, 103)
+        ScheduledTimeSorting_DateTimePicker.Location = New Point(491, 150)
         ScheduledTimeSorting_DateTimePicker.Name = "ScheduledTimeSorting_DateTimePicker"
         ScheduledTimeSorting_DateTimePicker.ShowUpDown = True
         ScheduledTimeSorting_DateTimePicker.Size = New Size(106, 27)
@@ -2580,7 +2861,7 @@ Partial Class Form1
         ' 
         SyncTimeToDateTimePicker_Label.AutoSize = True
         SyncTimeToDateTimePicker_Label.Cursor = Cursors.Hand
-        SyncTimeToDateTimePicker_Label.Location = New Point(411, 108)
+        SyncTimeToDateTimePicker_Label.Location = New Point(415, 155)
         SyncTimeToDateTimePicker_Label.Name = "SyncTimeToDateTimePicker_Label"
         SyncTimeToDateTimePicker_Label.Size = New Size(72, 19)
         SyncTimeToDateTimePicker_Label.TabIndex = 37
@@ -2588,7 +2869,7 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTimeTNull_Button
         ' 
-        ModifyListviewScheduleTimeTNull_Button.Location = New Point(609, 29)
+        ModifyListviewScheduleTimeTNull_Button.Location = New Point(613, 76)
         ModifyListviewScheduleTimeTNull_Button.Name = "ModifyListviewScheduleTimeTNull_Button"
         ModifyListviewScheduleTimeTNull_Button.Size = New Size(80, 29)
         ModifyListviewScheduleTimeTNull_Button.TabIndex = 36
@@ -2597,7 +2878,7 @@ Partial Class Form1
         ' 
         ' StopScheduledExecutionScriptQueue_Button
         ' 
-        StopScheduledExecutionScriptQueue_Button.Location = New Point(312, 103)
+        StopScheduledExecutionScriptQueue_Button.Location = New Point(316, 150)
         StopScheduledExecutionScriptQueue_Button.Name = "StopScheduledExecutionScriptQueue_Button"
         StopScheduledExecutionScriptQueue_Button.Size = New Size(94, 29)
         StopScheduledExecutionScriptQueue_Button.TabIndex = 35
@@ -2607,7 +2888,7 @@ Partial Class Form1
         ' Label24
         ' 
         Label24.AutoSize = True
-        Label24.Location = New Point(234, 38)
+        Label24.Location = New Point(238, 85)
         Label24.Name = "Label24"
         Label24.Size = New Size(24, 19)
         Label24.TabIndex = 34
@@ -2616,7 +2897,7 @@ Partial Class Form1
         ' Label25
         ' 
         Label25.AutoSize = True
-        Label25.Location = New Point(148, 38)
+        Label25.Location = New Point(152, 85)
         Label25.Name = "Label25"
         Label25.Size = New Size(24, 19)
         Label25.TabIndex = 33
@@ -2624,7 +2905,7 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionMinutes_NumericUpDown
         ' 
-        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(177, 33)
+        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(181, 80)
         ScheduledExecutionMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ScheduledExecutionMinutes_NumericUpDown.Name = "ScheduledExecutionMinutes_NumericUpDown"
         ScheduledExecutionMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -2632,14 +2913,14 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionHours_NumericUpDown
         ' 
-        ScheduledExecutionHours_NumericUpDown.Location = New Point(93, 33)
+        ScheduledExecutionHours_NumericUpDown.Location = New Point(97, 80)
         ScheduledExecutionHours_NumericUpDown.Name = "ScheduledExecutionHours_NumericUpDown"
         ScheduledExecutionHours_NumericUpDown.Size = New Size(50, 27)
         ScheduledExecutionHours_NumericUpDown.TabIndex = 31
         ' 
         ' ScheduledExecutionSeconds_NumericUpDown
         ' 
-        ScheduledExecutionSeconds_NumericUpDown.Location = New Point(264, 33)
+        ScheduledExecutionSeconds_NumericUpDown.Location = New Point(268, 80)
         ScheduledExecutionSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ScheduledExecutionSeconds_NumericUpDown.Name = "ScheduledExecutionSeconds_NumericUpDown"
         ScheduledExecutionSeconds_NumericUpDown.Size = New Size(50, 27)
@@ -2647,7 +2928,7 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionScriptQueue_Button
         ' 
-        ScheduledExecutionScriptQueue_Button.Location = New Point(212, 103)
+        ScheduledExecutionScriptQueue_Button.Location = New Point(216, 150)
         ScheduledExecutionScriptQueue_Button.Name = "ScheduledExecutionScriptQueue_Button"
         ScheduledExecutionScriptQueue_Button.Size = New Size(94, 29)
         ScheduledExecutionScriptQueue_Button.TabIndex = 29
@@ -2656,7 +2937,7 @@ Partial Class Form1
         ' 
         ' ExecuteSelectedScriptListviewItem_Button
         ' 
-        ExecuteSelectedScriptListviewItem_Button.Location = New Point(387, 146)
+        ExecuteSelectedScriptListviewItem_Button.Location = New Point(391, 193)
         ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
         ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
@@ -2665,7 +2946,7 @@ Partial Class Form1
         ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(597, 146)
+        ResetScript_Button.Location = New Point(601, 193)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -2674,7 +2955,7 @@ Partial Class Form1
         ' 
         ' ModifySelectedScriptListviewAsset_Button
         ' 
-        ModifySelectedScriptListviewAsset_Button.Location = New Point(112, 103)
+        ModifySelectedScriptListviewAsset_Button.Location = New Point(116, 150)
         ModifySelectedScriptListviewAsset_Button.Name = "ModifySelectedScriptListviewAsset_Button"
         ModifySelectedScriptListviewAsset_Button.Size = New Size(94, 29)
         ModifySelectedScriptListviewAsset_Button.TabIndex = 26
@@ -2683,7 +2964,7 @@ Partial Class Form1
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(543, 146)
+        ContinueScriptExecution_Button.Location = New Point(547, 193)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(50, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -2692,7 +2973,7 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(487, 146)
+        PauseScriptExecution_Button.Location = New Point(491, 193)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(50, 29)
         PauseScriptExecution_Button.TabIndex = 24
@@ -2701,7 +2982,7 @@ Partial Class Form1
         ' 
         ' ModifySelectedScriptListviewWaitTime_Button
         ' 
-        ModifySelectedScriptListviewWaitTime_Button.Location = New Point(10, 103)
+        ModifySelectedScriptListviewWaitTime_Button.Location = New Point(14, 150)
         ModifySelectedScriptListviewWaitTime_Button.Name = "ModifySelectedScriptListviewWaitTime_Button"
         ModifySelectedScriptListviewWaitTime_Button.Size = New Size(94, 29)
         ModifySelectedScriptListviewWaitTime_Button.TabIndex = 23
@@ -2711,7 +2992,7 @@ Partial Class Form1
         ' Label20
         ' 
         Label20.AutoSize = True
-        Label20.Location = New Point(148, 153)
+        Label20.Location = New Point(152, 200)
         Label20.Name = "Label20"
         Label20.Size = New Size(24, 19)
         Label20.TabIndex = 22
@@ -2719,7 +3000,7 @@ Partial Class Form1
         ' 
         ' ScriptExecutionCount_NumericUpDown
         ' 
-        ScriptExecutionCount_NumericUpDown.Location = New Point(93, 146)
+        ScriptExecutionCount_NumericUpDown.Location = New Point(97, 193)
         ScriptExecutionCount_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         ScriptExecutionCount_NumericUpDown.Name = "ScriptExecutionCount_NumericUpDown"
         ScriptExecutionCount_NumericUpDown.Size = New Size(50, 27)
@@ -2729,7 +3010,7 @@ Partial Class Form1
         ' Label19
         ' 
         Label19.AutoSize = True
-        Label19.Location = New Point(10, 151)
+        Label19.Location = New Point(14, 198)
         Label19.Name = "Label19"
         Label19.Size = New Size(76, 19)
         Label19.TabIndex = 20
@@ -2738,7 +3019,7 @@ Partial Class Form1
         ' ExecutionScriptQueue_Button
         ' 
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
-        ExecutionScriptQueue_Button.Location = New Point(177, 146)
+        ExecutionScriptQueue_Button.Location = New Point(181, 193)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
         ExecutionScriptQueue_Button.Size = New Size(150, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
@@ -2748,7 +3029,7 @@ Partial Class Form1
         ' Label18
         ' 
         Label18.AutoSize = True
-        Label18.Location = New Point(350, 71)
+        Label18.Location = New Point(354, 118)
         Label18.Name = "Label18"
         Label18.Size = New Size(50, 19)
         Label18.TabIndex = 18
@@ -2756,7 +3037,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitRandomSeconds_NumericUpDown
         ' 
-        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(402, 66)
+        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(406, 113)
         ExecutionWaitRandomSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitRandomSeconds_NumericUpDown.Name = "ExecutionWaitRandomSeconds_NumericUpDown"
         ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(54, 27)
@@ -2765,7 +3046,7 @@ Partial Class Form1
         ' Label17
         ' 
         Label17.AutoSize = True
-        Label17.Location = New Point(462, 71)
+        Label17.Location = New Point(466, 118)
         Label17.Name = "Label17"
         Label17.Size = New Size(24, 19)
         Label17.TabIndex = 16
@@ -2774,7 +3055,7 @@ Partial Class Form1
         ' Label16
         ' 
         Label16.AutoSize = True
-        Label16.Location = New Point(320, 71)
+        Label16.Location = New Point(324, 118)
         Label16.Name = "Label16"
         Label16.Size = New Size(24, 19)
         Label16.TabIndex = 15
@@ -2783,7 +3064,7 @@ Partial Class Form1
         ' Label15
         ' 
         Label15.AutoSize = True
-        Label15.Location = New Point(234, 71)
+        Label15.Location = New Point(238, 118)
         Label15.Name = "Label15"
         Label15.Size = New Size(24, 19)
         Label15.TabIndex = 14
@@ -2792,7 +3073,7 @@ Partial Class Form1
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(148, 71)
+        Label14.Location = New Point(152, 118)
         Label14.Name = "Label14"
         Label14.Size = New Size(24, 19)
         Label14.TabIndex = 13
@@ -2800,7 +3081,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitMinutes_NumericUpDown
         ' 
-        ExecutionWaitMinutes_NumericUpDown.Location = New Point(177, 66)
+        ExecutionWaitMinutes_NumericUpDown.Location = New Point(181, 113)
         ExecutionWaitMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitMinutes_NumericUpDown.Name = "ExecutionWaitMinutes_NumericUpDown"
         ExecutionWaitMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -2808,14 +3089,14 @@ Partial Class Form1
         ' 
         ' ExecutionWaitHours_NumericUpDown
         ' 
-        ExecutionWaitHours_NumericUpDown.Location = New Point(93, 66)
+        ExecutionWaitHours_NumericUpDown.Location = New Point(97, 113)
         ExecutionWaitHours_NumericUpDown.Name = "ExecutionWaitHours_NumericUpDown"
         ExecutionWaitHours_NumericUpDown.Size = New Size(50, 27)
         ExecutionWaitHours_NumericUpDown.TabIndex = 11
         ' 
         ' ExecutionWaitSeconds_NumericUpDown
         ' 
-        ExecutionWaitSeconds_NumericUpDown.Location = New Point(264, 66)
+        ExecutionWaitSeconds_NumericUpDown.Location = New Point(268, 113)
         ExecutionWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitSeconds_NumericUpDown.Name = "ExecutionWaitSeconds_NumericUpDown"
         ExecutionWaitSeconds_NumericUpDown.Size = New Size(50, 27)
@@ -2823,7 +3104,7 @@ Partial Class Form1
         ' 
         ' InsertToQueueListview_Button
         ' 
-        InsertToQueueListview_Button.Location = New Point(492, 65)
+        InsertToQueueListview_Button.Location = New Point(496, 112)
         InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
         InsertToQueueListview_Button.Size = New Size(94, 29)
         InsertToQueueListview_Button.TabIndex = 9
@@ -2832,7 +3113,7 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTime_Button
         ' 
-        ModifyListviewScheduleTime_Button.Location = New Point(554, 29)
+        ModifyListviewScheduleTime_Button.Location = New Point(558, 76)
         ModifyListviewScheduleTime_Button.Name = "ModifyListviewScheduleTime_Button"
         ModifyListviewScheduleTime_Button.Size = New Size(51, 29)
         ModifyListviewScheduleTime_Button.TabIndex = 7
@@ -2841,7 +3122,7 @@ Partial Class Form1
         ' 
         ' InsertSchedulerScriptToListview_Button
         ' 
-        InsertSchedulerScriptToListview_Button.Location = New Point(492, 30)
+        InsertSchedulerScriptToListview_Button.Location = New Point(496, 77)
         InsertSchedulerScriptToListview_Button.Name = "InsertSchedulerScriptToListview_Button"
         InsertSchedulerScriptToListview_Button.Size = New Size(57, 29)
         InsertSchedulerScriptToListview_Button.TabIndex = 6
@@ -2851,7 +3132,7 @@ Partial Class Form1
         ' Label13
         ' 
         Label13.AutoSize = True
-        Label13.Location = New Point(462, 38)
+        Label13.Location = New Point(466, 85)
         Label13.Name = "Label13"
         Label13.Size = New Size(24, 19)
         Label13.TabIndex = 5
@@ -2859,7 +3140,7 @@ Partial Class Form1
         ' 
         ' SchedulerIntervalSeconds_NumericUpDown
         ' 
-        SchedulerIntervalSeconds_NumericUpDown.Location = New Point(402, 32)
+        SchedulerIntervalSeconds_NumericUpDown.Location = New Point(406, 79)
         SchedulerIntervalSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         SchedulerIntervalSeconds_NumericUpDown.Name = "SchedulerIntervalSeconds_NumericUpDown"
         SchedulerIntervalSeconds_NumericUpDown.Size = New Size(54, 27)
@@ -2869,7 +3150,7 @@ Partial Class Form1
         ' Label12
         ' 
         Label12.AutoSize = True
-        Label12.Location = New Point(10, 71)
+        Label12.Location = New Point(14, 118)
         Label12.Name = "Label12"
         Label12.Size = New Size(76, 19)
         Label12.TabIndex = 2
@@ -2878,7 +3159,7 @@ Partial Class Form1
         ' Label11
         ' 
         Label11.AutoSize = True
-        Label11.Location = New Point(320, 38)
+        Label11.Location = New Point(324, 85)
         Label11.Name = "Label11"
         Label11.Size = New Size(76, 19)
         Label11.TabIndex = 1
@@ -2888,7 +3169,7 @@ Partial Class Form1
         ' 
         SchedulerTime_Label.AutoSize = True
         SchedulerTime_Label.Cursor = Cursors.Hand
-        SchedulerTime_Label.Location = New Point(10, 41)
+        SchedulerTime_Label.Location = New Point(14, 88)
         SchedulerTime_Label.Name = "SchedulerTime_Label"
         SchedulerTime_Label.Size = New Size(76, 19)
         SchedulerTime_Label.TabIndex = 0
@@ -3061,6 +3342,11 @@ Partial Class Form1
         CType(FBCustomizeCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCustomizeCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        FBRespondNotifications_TabPage.ResumeLayout(False)
+        FBRespondNotifications_TabPage.PerformLayout()
+        CType(FBResponseUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBResponseSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBResponseMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -3336,7 +3622,7 @@ Partial Class Form1
     Friend WithEvents FBCustomizeCommentTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBCustomizeCommentCreateNewAssetFolder_Button As Button
     Friend WithEvents FBNotifications_TabPage As TabPage
-    Friend WithEvents Button9 As Button
+    Friend WithEvents InsertReadFBAllNotifications_Button As Button
     Friend WithEvents DeleteSelectedFBNotificationsListviewItems_Button As Button
     Friend WithEvents SaveFBNotificationsListview_Button As Button
     Friend WithEvents ReadFBNotifications_Button As Button
@@ -3355,5 +3641,30 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents ReadFBNotifications_CheckBox As CheckBox
     Friend WithEvents UnreadFBNotifications_CheckBox As CheckBox
+    Friend WithEvents FBRespondNotifications_TabPage As TabPage
+    Friend WithEvents Label52 As Label
+    Friend WithEvents Label53 As Label
+    Friend WithEvents Label54 As Label
+    Friend WithEvents FBResponseUploadWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBResponseSubmitWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBResponseDeselectAllAssetFolderListboxItems_Button As Button
+    Friend WithEvents FBResponseDeleteSelectedTextFile_Button As Button
+    Friend WithEvents FBResponseNewTextFileName_TextBox As TextBox
+    Friend WithEvents FBResponseMediaSelector_ListBox As ListBox
+    Friend WithEvents FBResponseTextFileSelector_ListBox As ListBox
+    Friend WithEvents FBResponseAssetFolder_ListBox As ListBox
+    Friend WithEvents FBResponseSaveTextFile_Button As Button
+    Friend WithEvents FBResponseCreateNewTextFile_Button As Button
+    Friend WithEvents FBResponseDeleteSelectedMedia_Button As Button
+    Friend WithEvents FBResponseRevealMediaFoldesrInFileExplorer_Button As Button
+    Friend WithEvents FBResponseDeleteSelectedAssetFolder_Button As Button
+    Friend WithEvents FBResponseAssetFolderName_TextBox As TextBox
+    Friend WithEvents FBResponseMediaPreviewer_PictureBox As PictureBox
+    Friend WithEvents FBResponseTextFilePreviewer_RichTextBox As RichTextBox
+    Friend WithEvents FBResponseCreateNewAssetFolder_Button As Button
+    Friend WithEvents CustomizeScriptInsertion_RadioButton As RadioButton
+    Friend WithEvents DefaultScriptInsertion_RadioButton As RadioButton
+    Friend WithEvents CustomizeAction_ComboBox As ComboBox
+    Friend WithEvents Label55 As Label
 
 End Class
