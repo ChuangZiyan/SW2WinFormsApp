@@ -191,9 +191,9 @@ Module MainFormController
 
 
 
-    Public Sub ResetScriptQueueListviewItemsBackgroundColor()
+    Public Sub ResetListviewItemsBackgroundColor(lv)
 
-        For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+        For Each item As ListViewItem In lv.Items
             item.BackColor = Color.White
             item.ForeColor = Color.Black
         Next

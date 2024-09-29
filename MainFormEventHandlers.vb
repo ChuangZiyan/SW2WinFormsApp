@@ -182,7 +182,7 @@ Public Class MainFormEventHandlers
 
     Public Sub SaveScriptListViewToFile_Button_Click(sender As Object, e As EventArgs)
         Try
-            MainFormController.ResetScriptQueueListviewItemsBackgroundColor()
+            MainFormController.ResetListviewItemsBackgroundColor(Form1.ScriptQueue_ListView)
             MainFormController.SaveScriptListViewToFile()
             MsgBox("儲存成功")
         Catch ex As Exception
@@ -1017,8 +1017,13 @@ Public Class MainFormEventHandlers
 
     End Sub
 
-    Public Sub ReadFBNotifications_Button_Click(sender As Object, e As EventArgs)
-        Webview2Controller.ReadFBNotifications(Form1.ReadFBNotifications_CheckBox.Checked, Form1.UnreadFBNotifications_CheckBox.Checked)
+    Public Async Sub ReadFBNotifications_Button_Click(sender As Object, e As EventArgs)
+        If ActivedUserDataFolderPath Is Nothing Then
+            MsgBox("未偵測到啟用的edgedriver")
+            Exit Sub
+
+        End If
+        Await Webview2Controller.ReadFBNotifications(Form1.ReadFBNotifications_CheckBox.Checked, Form1.UnreadFBNotifications_CheckBox.Checked)
     End Sub
 
     Public Sub SaveFBNotificationsListview_Button_Click(sender As Object, e As EventArgs)
@@ -1141,10 +1146,38 @@ Public Class MainFormEventHandlers
 
     Public Sub DefaultScriptInsertion_RadioButton_Click(sender As Object, e As EventArgs)
         Form1.CustomizeScriptInsertion_RadioButton.Checked = False
+        Form1.CustomizeAction_ComboBox.Enabled = False
     End Sub
 
     Public Sub CustomizeScriptInsertion_RadioButton_Click(sender As Object, e As EventArgs)
         Form1.DefaultScriptInsertion_RadioButton.Checked = False
+        Form1.CustomizeAction_ComboBox.Enabled = True
+    End Sub
+
+
+    Public Sub FBUrlData_TabControl_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+        If Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBNotifications_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotifications_TabPage
+        End If
+        'FBRespondNotifications_TabPage
+
+    End Sub
+
+    Public Sub Action_TabControl_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+
+
+        If Form1.Action_TabControl.SelectedTab Is Form1.FBRespondNotifications_TabPage Then
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotifications_TabPage
+
+        ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBComment_TabPage Or Form1.Action_TabControl.SelectedTab Is Form1.FBCustomizeComment_TabPage Then
+
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
+        Else
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+        End If
+
     End Sub
 
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
@@ -1211,6 +1244,15 @@ Public Class MainFormEventHandlers
                     Else
                         content = "隨機"
                     End If
+                Case "回應"
+                    If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                        For Each item In Form1.FBResponseAssetFolder_ListBox.SelectedItems
+                            content += item + "&"
+                        Next
+                        content = content.TrimEnd("&")
+                    Else
+                        content = "隨機"
+                    End If
 
 
                 Case "測試項"
@@ -1230,7 +1272,11 @@ Public Class MainFormEventHandlers
 
         If selecteAction = "留言" Then
             selectedGroupItems = Form1.FBActivityLogs_ListView.SelectedItems
+        ElseIf selecteAction = "回應" Then
+            selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
         End If
+
+
 
         ' 第一個選擇的Group
         If selectedGroupItems.Count > 0 Then
@@ -1242,22 +1288,55 @@ Public Class MainFormEventHandlers
         If scheduled Then '定時執行
             Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
 
-
-            For Each selectedGroupItem As ListViewItem In selectedGroupItems
+            If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
                 executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
-                baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
-                AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
-            Next
-        Else '順序執行
-            If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
-                For Each selectedUserData In selectedUserDataFolderItems
-                    AddScriptQueueItem(selectedUserData.ToString(), executionTime, selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds)
-                Next
-            Else ' 一帳號對多社團
+                Select Case selecteAction
+                    Case "已讀全部通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                    Case "讀取已讀通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                    Case "讀取未讀通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                    Case "順序回應通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                End Select
+
+            Else ' 預設功能
                 For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                    executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
+                    baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
                 Next
             End If
+
+        Else '順序執行
+
+            If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
+                Select Case selecteAction
+                    Case "已讀全部通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                    Case "讀取已讀通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                    Case "讀取未讀通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                    Case "順序回應通知"
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
+                End Select
+
+            Else ' 預設功能
+                If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
+                    For Each selectedUserData In selectedUserDataFolderItems
+                        AddScriptQueueItem(selectedUserData.ToString(), executionTime, selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds)
+                    Next
+                Else ' 一帳號對多社團
+                    For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
+                    Next
+                End If
+            End If
+
+
+
 
         End If
 

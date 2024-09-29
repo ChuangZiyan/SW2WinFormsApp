@@ -93,11 +93,8 @@ Partial Class Form1
         ColumnHeader16 = New ColumnHeader()
         ColumnHeader17 = New ColumnHeader()
         FBNotifications_TabPage = New TabPage()
-        Button10 = New Button()
-        Button1 = New Button()
         ReadFBNotifications_CheckBox = New CheckBox()
         UnreadFBNotifications_CheckBox = New CheckBox()
-        InsertReadFBAllNotifications_Button = New Button()
         DeleteSelectedFBNotificationsListviewItems_Button = New Button()
         SaveFBNotificationsListview_Button = New Button()
         ReadFBNotifications_Button = New Button()
@@ -324,7 +321,6 @@ Partial Class Form1
         UnmarkSelectedScriptListviewItem_Button = New Button()
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
-        EnableClipboard_CheckBox = New CheckBox()
         SelectScriptListviewItemsByUserDataButton = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
@@ -708,10 +704,10 @@ Partial Class Form1
         FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
         FBUrlData_TabControl.Controls.Add(FBActivityLogs_TabPage)
         FBUrlData_TabControl.Controls.Add(FBNotifications_TabPage)
-        FBUrlData_TabControl.Location = New Point(441, 11)
+        FBUrlData_TabControl.Location = New Point(440, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
-        FBUrlData_TabControl.Size = New Size(699, 383)
+        FBUrlData_TabControl.Size = New Size(700, 383)
         FBUrlData_TabControl.TabIndex = 23
         ' 
         ' FBGroups_TabPage
@@ -732,7 +728,7 @@ Partial Class Form1
         FBGroups_TabPage.Location = New Point(4, 28)
         FBGroups_TabPage.Name = "FBGroups_TabPage"
         FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(691, 351)
+        FBGroups_TabPage.Size = New Size(692, 351)
         FBGroups_TabPage.TabIndex = 0
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
@@ -882,7 +878,7 @@ Partial Class Form1
         FBActivityLogs_TabPage.Location = New Point(4, 28)
         FBActivityLogs_TabPage.Name = "FBActivityLogs_TabPage"
         FBActivityLogs_TabPage.Padding = New Padding(3)
-        FBActivityLogs_TabPage.Size = New Size(691, 351)
+        FBActivityLogs_TabPage.Size = New Size(692, 351)
         FBActivityLogs_TabPage.TabIndex = 1
         FBActivityLogs_TabPage.Text = "留言"
         FBActivityLogs_TabPage.UseVisualStyleBackColor = True
@@ -1032,11 +1028,8 @@ Partial Class Form1
         ' 
         ' FBNotifications_TabPage
         ' 
-        FBNotifications_TabPage.Controls.Add(Button10)
-        FBNotifications_TabPage.Controls.Add(Button1)
         FBNotifications_TabPage.Controls.Add(ReadFBNotifications_CheckBox)
         FBNotifications_TabPage.Controls.Add(UnreadFBNotifications_CheckBox)
-        FBNotifications_TabPage.Controls.Add(InsertReadFBAllNotifications_Button)
         FBNotifications_TabPage.Controls.Add(DeleteSelectedFBNotificationsListviewItems_Button)
         FBNotifications_TabPage.Controls.Add(SaveFBNotificationsListview_Button)
         FBNotifications_TabPage.Controls.Add(ReadFBNotifications_Button)
@@ -1051,28 +1044,10 @@ Partial Class Form1
         FBNotifications_TabPage.Controls.Add(FBNotificationsData_Listview)
         FBNotifications_TabPage.Location = New Point(4, 28)
         FBNotifications_TabPage.Name = "FBNotifications_TabPage"
-        FBNotifications_TabPage.Size = New Size(691, 351)
+        FBNotifications_TabPage.Size = New Size(692, 351)
         FBNotifications_TabPage.TabIndex = 2
         FBNotifications_TabPage.Text = "通知"
         FBNotifications_TabPage.UseVisualStyleBackColor = True
-        ' 
-        ' Button10
-        ' 
-        Button10.Location = New Point(341, 312)
-        Button10.Name = "Button10"
-        Button10.Size = New Size(94, 29)
-        Button10.TabIndex = 30
-        Button10.Text = "順序網址"
-        Button10.UseVisualStyleBackColor = True
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(244, 312)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 29
-        Button1.Text = "插入"
-        Button1.UseVisualStyleBackColor = True
         ' 
         ' ReadFBNotifications_CheckBox
         ' 
@@ -1095,15 +1070,6 @@ Partial Class Form1
         UnreadFBNotifications_CheckBox.TabIndex = 27
         UnreadFBNotifications_CheckBox.Text = "未讀"
         UnreadFBNotifications_CheckBox.UseVisualStyleBackColor = True
-        ' 
-        ' InsertReadFBAllNotifications_Button
-        ' 
-        InsertReadFBAllNotifications_Button.Location = New Point(567, 71)
-        InsertReadFBAllNotifications_Button.Name = "InsertReadFBAllNotifications_Button"
-        InsertReadFBAllNotifications_Button.Size = New Size(119, 29)
-        InsertReadFBAllNotifications_Button.TabIndex = 26
-        InsertReadFBAllNotifications_Button.Text = "插入全部已讀"
-        InsertReadFBAllNotifications_Button.UseVisualStyleBackColor = True
         ' 
         ' DeleteSelectedFBNotificationsListviewItems_Button
         ' 
@@ -2781,9 +2747,9 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
         ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
-        ScriptTask_GroupBox.Location = New Point(441, 400)
+        ScriptTask_GroupBox.Location = New Point(440, 403)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(699, 228)
+        ScriptTask_GroupBox.Size = New Size(701, 220)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
@@ -2791,7 +2757,7 @@ Partial Class Form1
         ' Label55
         ' 
         Label55.AutoSize = True
-        Label55.Location = New Point(14, 51)
+        Label55.Location = New Point(13, 26)
         Label55.Name = "Label55"
         Label55.Size = New Size(80, 19)
         Label55.TabIndex = 44
@@ -2799,9 +2765,10 @@ Partial Class Form1
         ' 
         ' CustomizeAction_ComboBox
         ' 
+        CustomizeAction_ComboBox.Enabled = False
         CustomizeAction_ComboBox.FormattingEnabled = True
-        CustomizeAction_ComboBox.Items.AddRange(New Object() {"已讀全部通知", "通知功能項目", "測試"})
-        CustomizeAction_ComboBox.Location = New Point(292, 46)
+        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知"})
+        CustomizeAction_ComboBox.Location = New Point(291, 21)
         CustomizeAction_ComboBox.Name = "CustomizeAction_ComboBox"
         CustomizeAction_ComboBox.Size = New Size(168, 27)
         CustomizeAction_ComboBox.TabIndex = 43
@@ -2809,7 +2776,7 @@ Partial Class Form1
         ' CustomizeScriptInsertion_RadioButton
         ' 
         CustomizeScriptInsertion_RadioButton.AutoSize = True
-        CustomizeScriptInsertion_RadioButton.Location = New Point(196, 51)
+        CustomizeScriptInsertion_RadioButton.Location = New Point(195, 26)
         CustomizeScriptInsertion_RadioButton.Name = "CustomizeScriptInsertion_RadioButton"
         CustomizeScriptInsertion_RadioButton.Size = New Size(90, 23)
         CustomizeScriptInsertion_RadioButton.TabIndex = 42
@@ -2821,7 +2788,7 @@ Partial Class Form1
         ' 
         DefaultScriptInsertion_RadioButton.AutoSize = True
         DefaultScriptInsertion_RadioButton.Checked = True
-        DefaultScriptInsertion_RadioButton.Location = New Point(100, 51)
+        DefaultScriptInsertion_RadioButton.Location = New Point(99, 26)
         DefaultScriptInsertion_RadioButton.Name = "DefaultScriptInsertion_RadioButton"
         DefaultScriptInsertion_RadioButton.Size = New Size(90, 23)
         DefaultScriptInsertion_RadioButton.TabIndex = 41
@@ -2831,7 +2798,7 @@ Partial Class Form1
         ' 
         ' ModfiyScriptListviewURLToRandom_Button
         ' 
-        ModfiyScriptListviewURLToRandom_Button.Location = New Point(596, 110)
+        ModfiyScriptListviewURLToRandom_Button.Location = New Point(595, 85)
         ModfiyScriptListviewURLToRandom_Button.Name = "ModfiyScriptListviewURLToRandom_Button"
         ModfiyScriptListviewURLToRandom_Button.Size = New Size(94, 29)
         ModfiyScriptListviewURLToRandom_Button.TabIndex = 40
@@ -2840,7 +2807,7 @@ Partial Class Form1
         ' 
         ' SortListviewItemByTime_Button
         ' 
-        SortListviewItemByTime_Button.Location = New Point(601, 148)
+        SortListviewItemByTime_Button.Location = New Point(600, 123)
         SortListviewItemByTime_Button.Name = "SortListviewItemByTime_Button"
         SortListviewItemByTime_Button.Size = New Size(94, 29)
         SortListviewItemByTime_Button.TabIndex = 39
@@ -2851,7 +2818,7 @@ Partial Class Form1
         ' 
         ScheduledTimeSorting_DateTimePicker.CustomFormat = "HH:mm:ss"
         ScheduledTimeSorting_DateTimePicker.Format = DateTimePickerFormat.Custom
-        ScheduledTimeSorting_DateTimePicker.Location = New Point(491, 150)
+        ScheduledTimeSorting_DateTimePicker.Location = New Point(490, 125)
         ScheduledTimeSorting_DateTimePicker.Name = "ScheduledTimeSorting_DateTimePicker"
         ScheduledTimeSorting_DateTimePicker.ShowUpDown = True
         ScheduledTimeSorting_DateTimePicker.Size = New Size(106, 27)
@@ -2861,7 +2828,7 @@ Partial Class Form1
         ' 
         SyncTimeToDateTimePicker_Label.AutoSize = True
         SyncTimeToDateTimePicker_Label.Cursor = Cursors.Hand
-        SyncTimeToDateTimePicker_Label.Location = New Point(415, 155)
+        SyncTimeToDateTimePicker_Label.Location = New Point(414, 130)
         SyncTimeToDateTimePicker_Label.Name = "SyncTimeToDateTimePicker_Label"
         SyncTimeToDateTimePicker_Label.Size = New Size(72, 19)
         SyncTimeToDateTimePicker_Label.TabIndex = 37
@@ -2869,7 +2836,7 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTimeTNull_Button
         ' 
-        ModifyListviewScheduleTimeTNull_Button.Location = New Point(613, 76)
+        ModifyListviewScheduleTimeTNull_Button.Location = New Point(612, 51)
         ModifyListviewScheduleTimeTNull_Button.Name = "ModifyListviewScheduleTimeTNull_Button"
         ModifyListviewScheduleTimeTNull_Button.Size = New Size(80, 29)
         ModifyListviewScheduleTimeTNull_Button.TabIndex = 36
@@ -2878,7 +2845,7 @@ Partial Class Form1
         ' 
         ' StopScheduledExecutionScriptQueue_Button
         ' 
-        StopScheduledExecutionScriptQueue_Button.Location = New Point(316, 150)
+        StopScheduledExecutionScriptQueue_Button.Location = New Point(315, 125)
         StopScheduledExecutionScriptQueue_Button.Name = "StopScheduledExecutionScriptQueue_Button"
         StopScheduledExecutionScriptQueue_Button.Size = New Size(94, 29)
         StopScheduledExecutionScriptQueue_Button.TabIndex = 35
@@ -2888,7 +2855,7 @@ Partial Class Form1
         ' Label24
         ' 
         Label24.AutoSize = True
-        Label24.Location = New Point(238, 85)
+        Label24.Location = New Point(237, 60)
         Label24.Name = "Label24"
         Label24.Size = New Size(24, 19)
         Label24.TabIndex = 34
@@ -2897,7 +2864,7 @@ Partial Class Form1
         ' Label25
         ' 
         Label25.AutoSize = True
-        Label25.Location = New Point(152, 85)
+        Label25.Location = New Point(151, 60)
         Label25.Name = "Label25"
         Label25.Size = New Size(24, 19)
         Label25.TabIndex = 33
@@ -2905,7 +2872,7 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionMinutes_NumericUpDown
         ' 
-        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(181, 80)
+        ScheduledExecutionMinutes_NumericUpDown.Location = New Point(180, 55)
         ScheduledExecutionMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ScheduledExecutionMinutes_NumericUpDown.Name = "ScheduledExecutionMinutes_NumericUpDown"
         ScheduledExecutionMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -2913,14 +2880,14 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionHours_NumericUpDown
         ' 
-        ScheduledExecutionHours_NumericUpDown.Location = New Point(97, 80)
+        ScheduledExecutionHours_NumericUpDown.Location = New Point(96, 55)
         ScheduledExecutionHours_NumericUpDown.Name = "ScheduledExecutionHours_NumericUpDown"
         ScheduledExecutionHours_NumericUpDown.Size = New Size(50, 27)
         ScheduledExecutionHours_NumericUpDown.TabIndex = 31
         ' 
         ' ScheduledExecutionSeconds_NumericUpDown
         ' 
-        ScheduledExecutionSeconds_NumericUpDown.Location = New Point(268, 80)
+        ScheduledExecutionSeconds_NumericUpDown.Location = New Point(267, 55)
         ScheduledExecutionSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ScheduledExecutionSeconds_NumericUpDown.Name = "ScheduledExecutionSeconds_NumericUpDown"
         ScheduledExecutionSeconds_NumericUpDown.Size = New Size(50, 27)
@@ -2928,7 +2895,7 @@ Partial Class Form1
         ' 
         ' ScheduledExecutionScriptQueue_Button
         ' 
-        ScheduledExecutionScriptQueue_Button.Location = New Point(216, 150)
+        ScheduledExecutionScriptQueue_Button.Location = New Point(215, 125)
         ScheduledExecutionScriptQueue_Button.Name = "ScheduledExecutionScriptQueue_Button"
         ScheduledExecutionScriptQueue_Button.Size = New Size(94, 29)
         ScheduledExecutionScriptQueue_Button.TabIndex = 29
@@ -2937,7 +2904,7 @@ Partial Class Form1
         ' 
         ' ExecuteSelectedScriptListviewItem_Button
         ' 
-        ExecuteSelectedScriptListviewItem_Button.Location = New Point(391, 193)
+        ExecuteSelectedScriptListviewItem_Button.Location = New Point(390, 168)
         ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
         ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
@@ -2946,7 +2913,7 @@ Partial Class Form1
         ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(601, 193)
+        ResetScript_Button.Location = New Point(600, 168)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -2955,7 +2922,7 @@ Partial Class Form1
         ' 
         ' ModifySelectedScriptListviewAsset_Button
         ' 
-        ModifySelectedScriptListviewAsset_Button.Location = New Point(116, 150)
+        ModifySelectedScriptListviewAsset_Button.Location = New Point(115, 125)
         ModifySelectedScriptListviewAsset_Button.Name = "ModifySelectedScriptListviewAsset_Button"
         ModifySelectedScriptListviewAsset_Button.Size = New Size(94, 29)
         ModifySelectedScriptListviewAsset_Button.TabIndex = 26
@@ -2964,7 +2931,7 @@ Partial Class Form1
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(547, 193)
+        ContinueScriptExecution_Button.Location = New Point(546, 168)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(50, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -2973,7 +2940,7 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(491, 193)
+        PauseScriptExecution_Button.Location = New Point(490, 168)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(50, 29)
         PauseScriptExecution_Button.TabIndex = 24
@@ -2982,7 +2949,7 @@ Partial Class Form1
         ' 
         ' ModifySelectedScriptListviewWaitTime_Button
         ' 
-        ModifySelectedScriptListviewWaitTime_Button.Location = New Point(14, 150)
+        ModifySelectedScriptListviewWaitTime_Button.Location = New Point(13, 125)
         ModifySelectedScriptListviewWaitTime_Button.Name = "ModifySelectedScriptListviewWaitTime_Button"
         ModifySelectedScriptListviewWaitTime_Button.Size = New Size(94, 29)
         ModifySelectedScriptListviewWaitTime_Button.TabIndex = 23
@@ -2992,7 +2959,7 @@ Partial Class Form1
         ' Label20
         ' 
         Label20.AutoSize = True
-        Label20.Location = New Point(152, 200)
+        Label20.Location = New Point(151, 175)
         Label20.Name = "Label20"
         Label20.Size = New Size(24, 19)
         Label20.TabIndex = 22
@@ -3000,7 +2967,7 @@ Partial Class Form1
         ' 
         ' ScriptExecutionCount_NumericUpDown
         ' 
-        ScriptExecutionCount_NumericUpDown.Location = New Point(97, 193)
+        ScriptExecutionCount_NumericUpDown.Location = New Point(96, 168)
         ScriptExecutionCount_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         ScriptExecutionCount_NumericUpDown.Name = "ScriptExecutionCount_NumericUpDown"
         ScriptExecutionCount_NumericUpDown.Size = New Size(50, 27)
@@ -3010,7 +2977,7 @@ Partial Class Form1
         ' Label19
         ' 
         Label19.AutoSize = True
-        Label19.Location = New Point(14, 198)
+        Label19.Location = New Point(13, 173)
         Label19.Name = "Label19"
         Label19.Size = New Size(76, 19)
         Label19.TabIndex = 20
@@ -3019,7 +2986,7 @@ Partial Class Form1
         ' ExecutionScriptQueue_Button
         ' 
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
-        ExecutionScriptQueue_Button.Location = New Point(181, 193)
+        ExecutionScriptQueue_Button.Location = New Point(180, 168)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
         ExecutionScriptQueue_Button.Size = New Size(150, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
@@ -3029,7 +2996,7 @@ Partial Class Form1
         ' Label18
         ' 
         Label18.AutoSize = True
-        Label18.Location = New Point(354, 118)
+        Label18.Location = New Point(353, 93)
         Label18.Name = "Label18"
         Label18.Size = New Size(50, 19)
         Label18.TabIndex = 18
@@ -3037,7 +3004,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitRandomSeconds_NumericUpDown
         ' 
-        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(406, 113)
+        ExecutionWaitRandomSeconds_NumericUpDown.Location = New Point(405, 88)
         ExecutionWaitRandomSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitRandomSeconds_NumericUpDown.Name = "ExecutionWaitRandomSeconds_NumericUpDown"
         ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(54, 27)
@@ -3046,7 +3013,7 @@ Partial Class Form1
         ' Label17
         ' 
         Label17.AutoSize = True
-        Label17.Location = New Point(466, 118)
+        Label17.Location = New Point(465, 93)
         Label17.Name = "Label17"
         Label17.Size = New Size(24, 19)
         Label17.TabIndex = 16
@@ -3055,7 +3022,7 @@ Partial Class Form1
         ' Label16
         ' 
         Label16.AutoSize = True
-        Label16.Location = New Point(324, 118)
+        Label16.Location = New Point(323, 93)
         Label16.Name = "Label16"
         Label16.Size = New Size(24, 19)
         Label16.TabIndex = 15
@@ -3064,7 +3031,7 @@ Partial Class Form1
         ' Label15
         ' 
         Label15.AutoSize = True
-        Label15.Location = New Point(238, 118)
+        Label15.Location = New Point(237, 93)
         Label15.Name = "Label15"
         Label15.Size = New Size(24, 19)
         Label15.TabIndex = 14
@@ -3073,7 +3040,7 @@ Partial Class Form1
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(152, 118)
+        Label14.Location = New Point(151, 93)
         Label14.Name = "Label14"
         Label14.Size = New Size(24, 19)
         Label14.TabIndex = 13
@@ -3081,7 +3048,7 @@ Partial Class Form1
         ' 
         ' ExecutionWaitMinutes_NumericUpDown
         ' 
-        ExecutionWaitMinutes_NumericUpDown.Location = New Point(181, 113)
+        ExecutionWaitMinutes_NumericUpDown.Location = New Point(180, 88)
         ExecutionWaitMinutes_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitMinutes_NumericUpDown.Name = "ExecutionWaitMinutes_NumericUpDown"
         ExecutionWaitMinutes_NumericUpDown.Size = New Size(50, 27)
@@ -3089,14 +3056,14 @@ Partial Class Form1
         ' 
         ' ExecutionWaitHours_NumericUpDown
         ' 
-        ExecutionWaitHours_NumericUpDown.Location = New Point(97, 113)
+        ExecutionWaitHours_NumericUpDown.Location = New Point(96, 88)
         ExecutionWaitHours_NumericUpDown.Name = "ExecutionWaitHours_NumericUpDown"
         ExecutionWaitHours_NumericUpDown.Size = New Size(50, 27)
         ExecutionWaitHours_NumericUpDown.TabIndex = 11
         ' 
         ' ExecutionWaitSeconds_NumericUpDown
         ' 
-        ExecutionWaitSeconds_NumericUpDown.Location = New Point(268, 113)
+        ExecutionWaitSeconds_NumericUpDown.Location = New Point(267, 88)
         ExecutionWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         ExecutionWaitSeconds_NumericUpDown.Name = "ExecutionWaitSeconds_NumericUpDown"
         ExecutionWaitSeconds_NumericUpDown.Size = New Size(50, 27)
@@ -3104,7 +3071,7 @@ Partial Class Form1
         ' 
         ' InsertToQueueListview_Button
         ' 
-        InsertToQueueListview_Button.Location = New Point(496, 112)
+        InsertToQueueListview_Button.Location = New Point(495, 87)
         InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
         InsertToQueueListview_Button.Size = New Size(94, 29)
         InsertToQueueListview_Button.TabIndex = 9
@@ -3113,7 +3080,7 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTime_Button
         ' 
-        ModifyListviewScheduleTime_Button.Location = New Point(558, 76)
+        ModifyListviewScheduleTime_Button.Location = New Point(557, 51)
         ModifyListviewScheduleTime_Button.Name = "ModifyListviewScheduleTime_Button"
         ModifyListviewScheduleTime_Button.Size = New Size(51, 29)
         ModifyListviewScheduleTime_Button.TabIndex = 7
@@ -3122,7 +3089,7 @@ Partial Class Form1
         ' 
         ' InsertSchedulerScriptToListview_Button
         ' 
-        InsertSchedulerScriptToListview_Button.Location = New Point(496, 77)
+        InsertSchedulerScriptToListview_Button.Location = New Point(495, 52)
         InsertSchedulerScriptToListview_Button.Name = "InsertSchedulerScriptToListview_Button"
         InsertSchedulerScriptToListview_Button.Size = New Size(57, 29)
         InsertSchedulerScriptToListview_Button.TabIndex = 6
@@ -3132,7 +3099,7 @@ Partial Class Form1
         ' Label13
         ' 
         Label13.AutoSize = True
-        Label13.Location = New Point(466, 85)
+        Label13.Location = New Point(465, 60)
         Label13.Name = "Label13"
         Label13.Size = New Size(24, 19)
         Label13.TabIndex = 5
@@ -3140,7 +3107,7 @@ Partial Class Form1
         ' 
         ' SchedulerIntervalSeconds_NumericUpDown
         ' 
-        SchedulerIntervalSeconds_NumericUpDown.Location = New Point(406, 79)
+        SchedulerIntervalSeconds_NumericUpDown.Location = New Point(405, 54)
         SchedulerIntervalSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         SchedulerIntervalSeconds_NumericUpDown.Name = "SchedulerIntervalSeconds_NumericUpDown"
         SchedulerIntervalSeconds_NumericUpDown.Size = New Size(54, 27)
@@ -3150,7 +3117,7 @@ Partial Class Form1
         ' Label12
         ' 
         Label12.AutoSize = True
-        Label12.Location = New Point(14, 118)
+        Label12.Location = New Point(13, 93)
         Label12.Name = "Label12"
         Label12.Size = New Size(76, 19)
         Label12.TabIndex = 2
@@ -3159,7 +3126,7 @@ Partial Class Form1
         ' Label11
         ' 
         Label11.AutoSize = True
-        Label11.Location = New Point(324, 85)
+        Label11.Location = New Point(323, 60)
         Label11.Name = "Label11"
         Label11.Size = New Size(76, 19)
         Label11.TabIndex = 1
@@ -3169,7 +3136,7 @@ Partial Class Form1
         ' 
         SchedulerTime_Label.AutoSize = True
         SchedulerTime_Label.Cursor = Cursors.Hand
-        SchedulerTime_Label.Location = New Point(14, 88)
+        SchedulerTime_Label.Location = New Point(13, 63)
         SchedulerTime_Label.Name = "SchedulerTime_Label"
         SchedulerTime_Label.Size = New Size(76, 19)
         SchedulerTime_Label.TabIndex = 0
@@ -3246,16 +3213,6 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button.Text = "帳號刪除"
         DeleteScriptListviewItemByUserData_Button.UseVisualStyleBackColor = True
         ' 
-        ' EnableClipboard_CheckBox
-        ' 
-        EnableClipboard_CheckBox.AutoSize = True
-        EnableClipboard_CheckBox.Location = New Point(12, 600)
-        EnableClipboard_CheckBox.Name = "EnableClipboard_CheckBox"
-        EnableClipboard_CheckBox.Size = New Size(106, 23)
-        EnableClipboard_CheckBox.TabIndex = 36
-        EnableClipboard_CheckBox.Text = "使用剪貼簿"
-        EnableClipboard_CheckBox.UseVisualStyleBackColor = True
-        ' 
         ' SelectScriptListviewItemsByUserDataButton
         ' 
         SelectScriptListviewItemsByUserDataButton.Location = New Point(381, 1064)
@@ -3273,7 +3230,6 @@ Partial Class Form1
         ClientSize = New Size(1858, 1103)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
-        Controls.Add(EnableClipboard_CheckBox)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
         Controls.Add(DeleteSelectedScriptListviewItem_Button)
         Controls.Add(UnmarkSelectedScriptListviewItem_Button)
@@ -3499,7 +3455,6 @@ Partial Class Form1
     Friend WithEvents ScheduledTimeSorting_DateTimePicker As DateTimePicker
     Friend WithEvents SyncTimeToDateTimePicker_Label As Label
     Friend WithEvents SortListviewItemByTime_Button As Button
-    Friend WithEvents EnableClipboard_CheckBox As CheckBox
     Friend WithEvents FBMarketplace_TabPage As TabPage
     Friend WithEvents FBMarkplaceProducts_ListBox As ListBox
     Friend WithEvents Label8 As Label
@@ -3622,7 +3577,6 @@ Partial Class Form1
     Friend WithEvents FBCustomizeCommentTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBCustomizeCommentCreateNewAssetFolder_Button As Button
     Friend WithEvents FBNotifications_TabPage As TabPage
-    Friend WithEvents InsertReadFBAllNotifications_Button As Button
     Friend WithEvents DeleteSelectedFBNotificationsListviewItems_Button As Button
     Friend WithEvents SaveFBNotificationsListview_Button As Button
     Friend WithEvents ReadFBNotifications_Button As Button
@@ -3637,8 +3591,6 @@ Partial Class Form1
     Friend WithEvents FBNotificationsData_Listview As ListView
     Friend WithEvents ColumnHeader18 As ColumnHeader
     Friend WithEvents ColumnHeader19 As ColumnHeader
-    Friend WithEvents Button10 As Button
-    Friend WithEvents Button1 As Button
     Friend WithEvents ReadFBNotifications_CheckBox As CheckBox
     Friend WithEvents UnreadFBNotifications_CheckBox As CheckBox
     Friend WithEvents FBRespondNotifications_TabPage As TabPage

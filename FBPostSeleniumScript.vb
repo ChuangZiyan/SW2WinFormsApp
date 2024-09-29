@@ -16,7 +16,6 @@ Module FBPostSeleniumScript
     Public Async Function WritePostOnFacebook(myUrl As String, myAssetFolderPath As String) As Task(Of Boolean)
         Try
             'Debug.WriteLine("WritePostOnFacebook")
-            Dim enableClipboard As Boolean = Form1.EnableClipboard_CheckBox.Checked
             Dim myText As String = ""
 
             Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "textFiles")
@@ -32,10 +31,6 @@ Module FBPostSeleniumScript
                     Dim randomIndex As Integer = rand.Next(0, textFiles.Length)
                     Dim randomTextFile As String = textFiles(randomIndex)
                     myText = File.ReadAllText(randomTextFile)
-
-                    If enableClipboard Then
-                        Clipboard.SetText(myText)
-                    End If
 
                 End If
 
@@ -110,12 +105,7 @@ Module FBPostSeleniumScript
                                           ' 上傳文字
                                           Await Delay_msec(1000)
 
-                                          ' 使用剪貼簿貼上
-                                          If enableClipboard Then
-                                              text_input.SendKeys(Keys.LeftControl + "v")
-                                          Else
-                                              text_input.SendKeys(myText)
-                                          End If
+                                          text_input.SendKeys(myText)
 
                                           Await Delay_msec(1000)
 

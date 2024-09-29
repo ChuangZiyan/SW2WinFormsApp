@@ -134,7 +134,7 @@ Public Class Form1
         Dim remark As String = item.SubItems(12).Text
 
         '先把之前的顏色變回來
-        MainFormController.ResetScriptQueueListviewItemsBackgroundColor()
+        MainFormController.ResetListviewItemsBackgroundColor(ScriptQueue_ListView)
 
         ' 執行的那行要變色
         item.BackColor = Color.SteelBlue
@@ -319,7 +319,6 @@ Public Class Form1
 
             Case "自訂"
                 Try
-                    Debug.WriteLine("自訂")
                     Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCustomizeCommentAssetsDirectory)
                     item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
@@ -353,6 +352,108 @@ Public Class Form1
                     Debug.WriteLine(ex)
                     result = False
                 End Try
+            Case "回應"
+                Try
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                    Dim FBResponseWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBResponseWaitSecondsConfig.txt"))
+                    item.SubItems(7).Text = Split(FBResponseWaitSecondsCfg, ",")(0)
+                    item.SubItems(8).Text = Split(FBResponseWaitSecondsCfg, ",")(1)
+
+                    result = Await FBResponseSeleniumScript.RespondThePost(myUrl, assetFolderPath)
+                    'result = False
+
+                    ' 如果流程都沒問題
+                    If result Then
+                        ' 這邊要等待上傳完成
+                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(7).Text = seconds
+                        Next
+
+                        ' 如果你要送出留言就取消註解下面那行
+                        'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                        ' 送出留言後等待
+                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                            Await Delay_msec(1000)
+                            item.SubItems(8).Text = seconds
+                        Next
+
+                    End If
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    result = False
+                End Try
+
+            Case "讀取已讀通知"
+                result = Await Webview2Controller.ReadFBNotifications(True, False)
+            Case "讀取未讀通知"
+                result = Await Webview2Controller.ReadFBNotifications(False, True)
+            Case "已讀全部通知"
+                result = Await Webview2Controller.MarkAllFBNotificationsAsRead()
+            Case "順序回應通知"
+                Dim myListbox = WebviewUserDataFolder_ListBox
+                Dim index As Integer = myListbox.Items.IndexOf(userData)
+                If index <> -1 Then
+                    myListbox.SelectedIndex = index
+                Else
+                    myListbox.SelectedIndex = -1
+                End If
+                Await Delay_msec(500)
+                Action_TabControl.SelectedTab = FBRespondNotifications_TabPage
+
+                Dim FBNotificationItems = FBNotificationsData_Listview.Items
+
+                For Each notificationItem As ListViewItem In FBNotificationItems
+                    Try
+                        'Debug.WriteLine("url :" & notificationItem.SubItems(0).Text)
+                        notificationItem.BackColor = Color.SteelBlue
+                        notificationItem.ForeColor = Color.White
+                        MainFormController.CenterSelectedItem(notificationItem)
+                        Await Delay_msec(2000)
+                        notificationItem.BackColor = Color.White
+                        notificationItem.ForeColor = Color.Black
+
+                        Continue For
+
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBResponseWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBResponseWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBResponseWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBResponseWaitSecondsCfg, ",")(1)
+
+                        result = Await FBResponseSeleniumScript.RespondThePost(myUrl, assetFolderPath)
+                        'result = False
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要送出留言就取消註解下面那行
+                            'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                        End If
+
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+                Next
+
+
             Case "測試項"
                 Try
                     Await Delay_msec(1000)
@@ -469,9 +570,11 @@ Public Class Form1
         AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
         AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
-
         AddHandler DefaultScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.DefaultScriptInsertion_RadioButton_Click
         AddHandler CustomizeScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.CustomizeScriptInsertion_RadioButton_Click
+        AddHandler FBUrlData_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBUrlData_TabControl_SelectedIndexChanged
+        AddHandler Action_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.Action_TabControl_SelectedIndexChanged
+
 
         ' ### FB ActivityLogs
         AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
@@ -497,7 +600,12 @@ Public Class Form1
 
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
+
+
+
+
     End Sub
+
 
 
 

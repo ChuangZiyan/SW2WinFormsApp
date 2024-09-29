@@ -639,68 +639,96 @@ Module Webview2Controller
         Next
     End Sub
 
-    Public Async Sub ReadFBNotifications(read As Boolean, unread As Boolean)
-        If ActivedUserDataFolderPath Is Nothing Then
-            MsgBox("未偵測到啟用的edgedriver")
-            Exit Sub
-        End If
+    Public Async Function ReadFBNotifications(read As Boolean, unread As Boolean) As Task(Of Boolean)
+        Try
+            Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotifications_TabPage
+            Dim items = Await Task.Run(Async Function()
+                                           Dim itemList As New List(Of ListViewItem)()
+                                           Try
+                                               Dim default_wait_msec = 3000
 
-        Dim items = Await Task.Run(Async Function()
-                                       Dim itemList As New List(Of ListViewItem)()
-                                       Try
-                                           Dim default_wait_msec = 3000
+                                               Await Navigate_GoToUrl_Task("https://www.facebook.com/notifications")
+                                               Await Delay_msec(default_wait_msec)
 
-                                           Await Navigate_GoToUrl_Task("https://www.facebook.com/notifications")
-                                           Await Delay_msec(default_wait_msec)
+                                               ClickByAriaLable("查看先前的通知")
 
-                                           ClickByAriaLable("查看先前的通知")
+                                               Await ScrollToBottom()
 
-                                           Await ScrollToBottom()
+                                               Dim elms = edgeDriver.FindElements(By.CssSelector(".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1lliihq"))
 
-                                           Dim elms = edgeDriver.FindElements(By.CssSelector(".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x1lliihq"))
+                                               For Each elm In elms
 
-                                           For Each elm In elms
-
-                                               ' 檢查是否為未讀通知
-                                               Dim isUnread As Boolean = False
-                                               Try
-                                                   Dim unread_elm = elm.FindElement(By.CssSelector("div > span > .x9f619.x1ja2u2z.xzpqnlu.x1hyvwdk.x14bfe9o.xjm9jq1.x6ikm8r.x10wlt62.x10l6tqk.x1i1rx1s"))
-                                                   isUnread = True
-                                               Catch ex As NoSuchElementException
-                                               End Try
-
-
-                                               If (unread And isUnread) Or (read And Not isUnread) Then
+                                                   ' 檢查是否為未讀通知
+                                                   Dim isUnread As Boolean = False
                                                    Try
-                                                       Dim innerHtml As String = elm.GetAttribute("innerHTML")
-                                                       'If innerHtml.Contains("回應了你") Or innerHtml.Contains("的貼文") Then
-                                                       Dim href = elm.GetAttribute("href")
-                                                       Dim strong_elm = elm.FindElement(By.CssSelector("div > div:nth-child(1) > div > div:nth-child(1) > span > span > strong:nth-of-type(1)")).GetAttribute("innerHTML")
-                                                       ' add to listview
-                                                       Dim item As New ListViewItem(strong_elm)
-                                                       item.SubItems.Add(href)
-                                                       itemList.Add(item)
-                                                       'End If
-
-                                                   Catch ex As Exception
-
+                                                       Dim unread_elm = elm.FindElement(By.CssSelector("div > span > .x9f619.x1ja2u2z.xzpqnlu.x1hyvwdk.x14bfe9o.xjm9jq1.x6ikm8r.x10wlt62.x10l6tqk.x1i1rx1s"))
+                                                       isUnread = True
+                                                   Catch ex As NoSuchElementException
                                                    End Try
-                                               End If
 
-                                           Next
 
-                                           Return itemList
-                                       Catch ex As Exception
-                                           Debug.WriteLine(ex)
-                                           Return itemList
-                                       End Try
-                                   End Function)
+                                                   If (unread And isUnread) Or (read And Not isUnread) Then
+                                                       Try
+                                                           Dim innerHtml As String = elm.GetAttribute("innerHTML")
+                                                           'If innerHtml.Contains("回應了你") And innerHtml.Contains("的貼文") Then
+                                                           Dim href = elm.GetAttribute("href")
+                                                           Dim strong_elm = elm.FindElement(By.CssSelector("div > div:nth-child(1) > div > div:nth-child(1) > span > span > strong:nth-of-type(1)")).GetAttribute("innerHTML")
+                                                           ' add to listview
+                                                           Dim item As New ListViewItem(strong_elm)
+                                                           item.SubItems.Add(href)
+                                                           itemList.Add(item)
+                                                           'End If
 
-        Form1.FBNotificationsData_Listview.Items.Clear()
-        For Each item In items
-            Form1.FBNotificationsData_Listview.Items.Add(item)
-        Next
-    End Sub
+                                                       Catch ex As Exception
+
+                                                       End Try
+                                                   End If
+
+                                               Next
+
+                                               Return itemList
+                                           Catch ex As Exception
+                                               Debug.WriteLine(ex)
+                                               Return itemList
+                                           End Try
+                                       End Function)
+
+            Form1.FBNotificationsData_Listview.Items.Clear()
+            For Each item In items
+                Form1.FBNotificationsData_Listview.Items.Add(item)
+            Next
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+
+    End Function
+
+    Public Async Function MarkAllFBNotificationsAsRead() As Task(Of Boolean)
+        Try
+            Return Await Task.Run(Async Function() As Task(Of Boolean)
+                                      Try
+
+                                          Await Navigate_GoToUrl("https://www.facebook.com/notifications")
+                                          Await Delay_msec(3000)
+                                          ClickByAriaLable("通知動作")
+                                          Await Delay_msec(3000)
+                                          ClickByCssSelectorWaitUntil("div.x1uvtmcs.x4k7w5x.x1h91t0o.x1beo9mf.xaigb6o.x12ejxvf.x3igimt.xarpa2k.xedcshv.x1lytzrv.x1t2pt76.x7ja8zs.x1n2onr6.x1qrby5j.x1jfb8zj > div > div > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div > div", 5)
+                                          Await Delay_msec(2000)
+                                          Return True
+                                      Catch ex As Exception
+                                          Debug.WriteLine(ex)
+                                          Return False
+                                      End Try
+                                  End Function)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+
 
     Public Class MyCookie
         Public Property Domain As String
