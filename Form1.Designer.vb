@@ -1073,7 +1073,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedFBNotificationsListviewItems_Button
         ' 
-        DeleteSelectedFBNotificationsListviewItems_Button.Location = New Point(595, 312)
+        DeleteSelectedFBNotificationsListviewItems_Button.Location = New Point(592, 312)
         DeleteSelectedFBNotificationsListviewItems_Button.Name = "DeleteSelectedFBNotificationsListviewItems_Button"
         DeleteSelectedFBNotificationsListviewItems_Button.Size = New Size(94, 29)
         DeleteSelectedFBNotificationsListviewItems_Button.TabIndex = 24

@@ -1068,14 +1068,38 @@ Public Class MainFormEventHandlers
     End Sub
 
     Public Sub DeleteSelectedFBNotificationsListviewItems_Button_Click(sender As Object, e As EventArgs)
-        Dim scriptListviewSelectedItems = Form1.FBNotificationsData_Listview.SelectedItems
-        If scriptListviewSelectedItems.Count > 0 Then
-            For Each item As ListViewItem In scriptListviewSelectedItems
-                Form1.FBNotificationsData_Listview.Items.Remove(item)
-            Next
-            'Form1.FBNotificationsName_TextBox.Clear()
-            'Form1.FBNotificationsUrl_TextBox.Clear()
-        End If
+
+        Try
+            Dim selectedItems = Form1.FBNotificationsData_Listview.SelectedItems
+            If selectedItems.Count > 0 Then
+                For i As Integer = selectedItems.Count - 1 To 0 Step -1
+                    Form1.FBNotificationsData_Listview.Items.Remove(selectedItems(i))
+                Next
+            Else
+
+                If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                    MsgBox("未選擇使用者")
+                    Exit Sub
+                End If
+
+                Dim result As DialogResult = MessageBox.Show("確定要通知列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBNotificationList.json")
+
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                        MsgBox("刪除完成")
+                    Else
+                        MsgBox("檔案不存在")
+                    End If
+                    Form1.FBNotificationsData_Listview.Items.Clear()
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox("刪除失敗")
+            Debug.WriteLine(ex)
+        End Try
     End Sub
 
     Public Sub FBNotificationsDisplayCurrUrl_Button_Click(sender As Object, e As EventArgs)
@@ -1159,8 +1183,11 @@ Public Class MainFormEventHandlers
 
         If Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBNotifications_TabPage Then
             Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotifications_TabPage
+        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBGroups_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBPost_TabPage
+        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBActivityLogs_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBComment_TabPage
         End If
-        'FBRespondNotifications_TabPage
 
     End Sub
 
@@ -1254,7 +1281,6 @@ Public Class MainFormEventHandlers
                         content = "隨機"
                     End If
 
-
                 Case "測試項"
                     content = "測試"
             End Select
@@ -1274,8 +1300,16 @@ Public Class MainFormEventHandlers
             selectedGroupItems = Form1.FBActivityLogs_ListView.SelectedItems
         ElseIf selecteAction = "回應" Then
             selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
+        ElseIf selecteAction = "順序回應通知" Then
+            If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                For Each item In Form1.FBResponseAssetFolder_ListBox.SelectedItems
+                    content += item + "&"
+                Next
+                content = content.TrimEnd("&")
+            Else
+                content = "隨機"
+            End If
         End If
-
 
 
         ' 第一個選擇的Group

@@ -416,7 +416,7 @@ Public Class Form1
                         notificationItem.BackColor = Color.White
                         notificationItem.ForeColor = Color.Black
 
-                        Continue For
+                        'Continue For
 
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
                         item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
@@ -424,7 +424,7 @@ Public Class Form1
                         Dim FBResponseWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBResponseWaitSecondsConfig.txt"))
                         item.SubItems(7).Text = Split(FBResponseWaitSecondsCfg, ",")(0)
                         item.SubItems(8).Text = Split(FBResponseWaitSecondsCfg, ",")(1)
-
+                        myUrl = notificationItem.SubItems(1).Text
                         result = Await FBResponseSeleniumScript.RespondThePost(myUrl, assetFolderPath)
                         'result = False
 
@@ -451,6 +451,7 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         result = False
                     End Try
+
                 Next
 
 
