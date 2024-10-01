@@ -6,6 +6,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports ICSharpCode.SharpZipLib.Zip.ExtendedUnixData
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports OpenQA.Selenium
 Imports OpenQA.Selenium.DevTools.V125.Autofill
 
 Public Class Form1
@@ -139,7 +140,7 @@ Public Class Form1
         ' 執行的那行要變色
         item.BackColor = Color.SteelBlue
         item.ForeColor = Color.White
-        MainFormController.CenterSelectedItem(item)
+        MainFormController.CenterSelectedItem(ScriptQueue_ListView, item)
 
         '用選的userData 初始化webview
         Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
@@ -411,12 +412,11 @@ Public Class Form1
                         'Debug.WriteLine("url :" & notificationItem.SubItems(0).Text)
                         notificationItem.BackColor = Color.SteelBlue
                         notificationItem.ForeColor = Color.White
-                        MainFormController.CenterSelectedItem(notificationItem)
+                        MainFormController.CenterSelectedItem(FBNotificationsData_Listview, notificationItem)
                         Await Delay_msec(2000)
                         notificationItem.BackColor = Color.White
                         notificationItem.ForeColor = Color.Black
 
-                        'Continue For
 
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
                         item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
@@ -570,7 +570,7 @@ Public Class Form1
         AddHandler DisplayCurrUrlToGroupUrl_Button.Click, AddressOf mainFormEventHandlers.DisplayCurrUrlToGroupUrl_Button_Click
         AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
-        AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModfiyScriptListviewURLToRandom_Button_Click
+        AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModifyScriptListviewURLToRandom_Button_Click
         AddHandler DefaultScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.DefaultScriptInsertion_RadioButton_Click
         AddHandler CustomizeScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.CustomizeScriptInsertion_RadioButton_Click
         AddHandler FBUrlData_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBUrlData_TabControl_SelectedIndexChanged
@@ -602,13 +602,7 @@ Public Class Form1
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
 
-
-
-
     End Sub
-
-
-
 
 
     Private Sub RegisterFBPostEventHanders()

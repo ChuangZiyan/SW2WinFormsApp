@@ -81,6 +81,10 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.FBCommentAssetFolder_ListBox.SelectedItems
             Case "自訂"
                 assetFolderListBoxSelectedItems = Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
+            Case "回應"
+                assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
+            Case "順序回應通知"
+                assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
             Case Else
                 MsgBox("不支援此執行動作")
                 Exit Sub
@@ -102,6 +106,10 @@ Public Class MainFormEventHandlers
             For Each item As ListViewItem In selectedListviewItems
 
                 If item.SubItems(4).Text = Form1.Action_TabControl.SelectedTab.Text Then
+                    With item.SubItems
+                        .Item(5).Text = content
+                    End With
+                ElseIf item.SubItems(4).Text = "順序回應通知" And Form1.Action_TabControl.SelectedTab.Text = "回應" Then
                     With item.SubItems
                         .Item(5).Text = content
                     End With
@@ -1008,7 +1016,7 @@ Public Class MainFormEventHandlers
         End If
     End Sub
 
-    Public Sub ModfiyScriptListviewURLToRandom_Button_Click(sender As Object, e As EventArgs)
+    Public Sub ModifyScriptListviewURLToRandom_Button_Click(sender As Object, e As EventArgs)
 
         For Each item As ListViewItem In Form1.ScriptQueue_ListView.SelectedItems
             item.SubItems(2).Text = "隨機"
@@ -1193,8 +1201,6 @@ Public Class MainFormEventHandlers
 
     Public Sub Action_TabControl_SelectedIndexChanged(sender As Object, e As EventArgs)
 
-
-
         If Form1.Action_TabControl.SelectedTab Is Form1.FBRespondNotifications_TabPage Then
             Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotifications_TabPage
 
@@ -1221,6 +1227,11 @@ Public Class MainFormEventHandlers
 
         Dim selecteAction = Form1.Action_TabControl.SelectedTab.Text
         Dim content = ""
+
+        If selectedUserDataFolderItems.Count < 1 Then
+            MsgBox("未選擇userdata")
+            Exit Sub
+        End If
 
         If Form1.CustomizeScriptInsertion_RadioButton.Checked Then
             selecteAction = Form1.CustomizeAction_ComboBox.Text
@@ -1324,14 +1335,10 @@ Public Class MainFormEventHandlers
 
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
                 executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
-                Select Case selecteAction
-                    Case "已讀全部通知"
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                    Case "讀取已讀通知"
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                    Case "讀取未讀通知"
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                    Case "順序回應通知"
+                Select Case True
+                    Case selecteAction.Contains("隨機")
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "隨機", "隨機", content, selecteAction, executionWaitSeconds)
+                    Case Else
                         AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
                 End Select
 
@@ -1346,14 +1353,10 @@ Public Class MainFormEventHandlers
         Else '順序執行
 
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
-                Select Case selecteAction
-                    Case "已讀全部通知"
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                    Case "讀取已讀通知"
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                    Case "讀取未讀通知"
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                    Case "順序回應通知"
+                Select Case True
+                    Case selecteAction.Contains("隨機")
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "隨機", "隨機", content, selecteAction, executionWaitSeconds)
+                    Case Else
                         AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
                 End Select
 

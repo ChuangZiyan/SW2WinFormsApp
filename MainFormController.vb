@@ -372,13 +372,18 @@ Module MainFormController
     End Sub
 
 
-    Public Sub CenterSelectedItem(selectedItem As ListViewItem)
-        If selectedItem IsNot Nothing Then
-            selectedItem.EnsureVisible()
-            Dim visibleItemsCount As Integer = Form1.ScriptQueue_ListView.ClientSize.Height \ Form1.ScriptQueue_ListView.Items(0).Bounds.Height
-            Dim topIndex As Integer = Math.Max(selectedItem.Index - visibleItemsCount \ 2, 0)
-            Form1.ScriptQueue_ListView.TopItem = Form1.ScriptQueue_ListView.Items(topIndex)
-        End If
+    Public Sub CenterSelectedItem(listview As Object, selectedItem As ListViewItem)
+        Try
+            If selectedItem IsNot Nothing Then
+                selectedItem.EnsureVisible()
+                Dim visibleItemsCount As Integer = listview.ClientSize.Height \ listview.Items(0).Bounds.Height
+                Dim topIndex As Integer = Math.Max(selectedItem.Index - visibleItemsCount \ 2, 0)
+                listview.TopItem = listview.Items(topIndex)
+            End If
+        Catch ex As Exception
+            Debug.WriteLine("ex")
+        End Try
+
     End Sub
 
 

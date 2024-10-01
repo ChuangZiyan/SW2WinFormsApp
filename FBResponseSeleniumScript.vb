@@ -52,11 +52,11 @@ Module FBResponseSeleniumScript
                                           Dim bodyElement As IWebElement = edgeDriver.FindElement(By.TagName("body"))
                                           bodyElement.SendKeys(Keys.Escape)
 
-                                          Await Delay_msec(1000)
-                                          Webview2Controller.ClickByAriaLable("留言")
+                                          'Await Delay_msec(1000)
+                                          'Webview2Controller.ClickByAriaLable("留言")
                                           Await Delay_msec(2000)
                                           'Dim text_input As IWebElement = edgeDriver.FindElement(By.XPath("//div[@aria-placeholder='留言……']"))
-                                          Dim text_input As IWebElement = edgeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
+                                          Dim text_input As IWebElement = edgeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
 
 
                                           Dim lines As String() = myText.Split(New String() {vbCrLf, vbCr, vbLf}, StringSplitOptions.None)
