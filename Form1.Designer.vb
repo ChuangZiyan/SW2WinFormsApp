@@ -59,6 +59,7 @@ Partial Class Form1
         GetCurrentUrl_Button = New Button()
         FBUrlData_TabControl = New TabControl()
         FBGroups_TabPage = New TabPage()
+        DeselecteAllFBGroups_ListViewItems_Button = New Button()
         GetJoinedGroupList_Button = New Button()
         DeleteSelectedGroup_Button = New Button()
         SaveListviewGroupList_Button = New Button()
@@ -75,6 +76,7 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         FBActivityLogs_TabPage = New TabPage()
+        DeselectAllFBActivityLogs_ListViewItems_Button = New Button()
         NavigateToActivityLogsPage_Button = New Button()
         Label46 = New Label()
         NumberOfActivityLogsPageDropDown_NumericUpDown = New NumericUpDown()
@@ -93,6 +95,7 @@ Partial Class Form1
         ColumnHeader16 = New ColumnHeader()
         ColumnHeader17 = New ColumnHeader()
         FBNotifications_TabPage = New TabPage()
+        DeselecteAllFBNotificationsData_ListviewItems_Button = New Button()
         ReadFBNotifications_CheckBox = New CheckBox()
         UnreadFBNotifications_CheckBox = New CheckBox()
         DeleteSelectedFBNotificationsListviewItems_Button = New Button()
@@ -274,7 +277,6 @@ Partial Class Form1
         CustomizeAction_ComboBox = New ComboBox()
         CustomizeScriptInsertion_RadioButton = New RadioButton()
         DefaultScriptInsertion_RadioButton = New RadioButton()
-        ModfiyScriptListviewURLToRandom_Button = New Button()
         SortListviewItemByTime_Button = New Button()
         ScheduledTimeSorting_DateTimePicker = New DateTimePicker()
         SyncTimeToDateTimePicker_Label = New Label()
@@ -322,6 +324,26 @@ Partial Class Form1
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
+        FBMessenger_TabPage = New TabPage()
+        Button1 = New Button()
+        CheckBox1 = New CheckBox()
+        CheckBox2 = New CheckBox()
+        Button2 = New Button()
+        Button3 = New Button()
+        Button4 = New Button()
+        Button5 = New Button()
+        Button6 = New Button()
+        Button7 = New Button()
+        Button8 = New Button()
+        TextBox1 = New TextBox()
+        TextBox2 = New TextBox()
+        Label56 = New Label()
+        Label57 = New Label()
+        ListView1 = New ListView()
+        ColumnHeader20 = New ColumnHeader()
+        ColumnHeader21 = New ColumnHeader()
+        Button9 = New Button()
+        ComboBox1 = New ComboBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -366,6 +388,7 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        FBMessenger_TabPage.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -704,6 +727,7 @@ Partial Class Form1
         FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
         FBUrlData_TabControl.Controls.Add(FBActivityLogs_TabPage)
         FBUrlData_TabControl.Controls.Add(FBNotifications_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBMessenger_TabPage)
         FBUrlData_TabControl.Location = New Point(440, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
@@ -712,6 +736,7 @@ Partial Class Form1
         ' 
         ' FBGroups_TabPage
         ' 
+        FBGroups_TabPage.Controls.Add(DeselecteAllFBGroups_ListViewItems_Button)
         FBGroups_TabPage.Controls.Add(GetJoinedGroupList_Button)
         FBGroups_TabPage.Controls.Add(DeleteSelectedGroup_Button)
         FBGroups_TabPage.Controls.Add(SaveListviewGroupList_Button)
@@ -733,6 +758,15 @@ Partial Class Form1
         FBGroups_TabPage.Text = "社團"
         FBGroups_TabPage.UseVisualStyleBackColor = True
         ' 
+        ' DeselecteAllFBGroups_ListViewItems_Button
+        ' 
+        DeselecteAllFBGroups_ListViewItems_Button.Location = New Point(591, 72)
+        DeselecteAllFBGroups_ListViewItems_Button.Name = "DeselecteAllFBGroups_ListViewItems_Button"
+        DeselecteAllFBGroups_ListViewItems_Button.Size = New Size(94, 29)
+        DeselecteAllFBGroups_ListViewItems_Button.TabIndex = 13
+        DeselecteAllFBGroups_ListViewItems_Button.Text = "取消選擇"
+        DeselecteAllFBGroups_ListViewItems_Button.UseVisualStyleBackColor = True
+        ' 
         ' GetJoinedGroupList_Button
         ' 
         GetJoinedGroupList_Button.Location = New Point(102, 312)
@@ -744,7 +778,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedGroup_Button
         ' 
-        DeleteSelectedGroup_Button.Location = New Point(588, 312)
+        DeleteSelectedGroup_Button.Location = New Point(592, 312)
         DeleteSelectedGroup_Button.Name = "DeleteSelectedGroup_Button"
         DeleteSelectedGroup_Button.Size = New Size(94, 29)
         DeleteSelectedGroup_Button.TabIndex = 11
@@ -753,7 +787,7 @@ Partial Class Form1
         ' 
         ' SaveListviewGroupList_Button
         ' 
-        SaveListviewGroupList_Button.Location = New Point(488, 312)
+        SaveListviewGroupList_Button.Location = New Point(495, 312)
         SaveListviewGroupList_Button.Name = "SaveListviewGroupList_Button"
         SaveListviewGroupList_Button.Size = New Size(94, 29)
         SaveListviewGroupList_Button.TabIndex = 10
@@ -860,6 +894,7 @@ Partial Class Form1
         ' 
         ' FBActivityLogs_TabPage
         ' 
+        FBActivityLogs_TabPage.Controls.Add(DeselectAllFBActivityLogs_ListViewItems_Button)
         FBActivityLogs_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
         FBActivityLogs_TabPage.Controls.Add(Label46)
         FBActivityLogs_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
@@ -882,6 +917,15 @@ Partial Class Form1
         FBActivityLogs_TabPage.TabIndex = 1
         FBActivityLogs_TabPage.Text = "留言"
         FBActivityLogs_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' DeselectAllFBActivityLogs_ListViewItems_Button
+        ' 
+        DeselectAllFBActivityLogs_ListViewItems_Button.Location = New Point(591, 72)
+        DeselectAllFBActivityLogs_ListViewItems_Button.Name = "DeselectAllFBActivityLogs_ListViewItems_Button"
+        DeselectAllFBActivityLogs_ListViewItems_Button.Size = New Size(94, 29)
+        DeselectAllFBActivityLogs_ListViewItems_Button.TabIndex = 29
+        DeselectAllFBActivityLogs_ListViewItems_Button.Text = "取消選擇"
+        DeselectAllFBActivityLogs_ListViewItems_Button.UseVisualStyleBackColor = True
         ' 
         ' NavigateToActivityLogsPage_Button
         ' 
@@ -1028,6 +1072,7 @@ Partial Class Form1
         ' 
         ' FBNotifications_TabPage
         ' 
+        FBNotifications_TabPage.Controls.Add(DeselecteAllFBNotificationsData_ListviewItems_Button)
         FBNotifications_TabPage.Controls.Add(ReadFBNotifications_CheckBox)
         FBNotifications_TabPage.Controls.Add(UnreadFBNotifications_CheckBox)
         FBNotifications_TabPage.Controls.Add(DeleteSelectedFBNotificationsListviewItems_Button)
@@ -1048,6 +1093,15 @@ Partial Class Form1
         FBNotifications_TabPage.TabIndex = 2
         FBNotifications_TabPage.Text = "通知"
         FBNotifications_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' DeselecteAllFBNotificationsData_ListviewItems_Button
+        ' 
+        DeselecteAllFBNotificationsData_ListviewItems_Button.Location = New Point(591, 72)
+        DeselecteAllFBNotificationsData_ListviewItems_Button.Name = "DeselecteAllFBNotificationsData_ListviewItems_Button"
+        DeselecteAllFBNotificationsData_ListviewItems_Button.Size = New Size(94, 29)
+        DeselecteAllFBNotificationsData_ListviewItems_Button.TabIndex = 29
+        DeselecteAllFBNotificationsData_ListviewItems_Button.Text = "取消選擇"
+        DeselecteAllFBNotificationsData_ListviewItems_Button.UseVisualStyleBackColor = True
         ' 
         ' ReadFBNotifications_CheckBox
         ' 
@@ -2708,7 +2762,6 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(CustomizeAction_ComboBox)
         ScriptTask_GroupBox.Controls.Add(CustomizeScriptInsertion_RadioButton)
         ScriptTask_GroupBox.Controls.Add(DefaultScriptInsertion_RadioButton)
-        ScriptTask_GroupBox.Controls.Add(ModfiyScriptListviewURLToRandom_Button)
         ScriptTask_GroupBox.Controls.Add(SortListviewItemByTime_Button)
         ScriptTask_GroupBox.Controls.Add(ScheduledTimeSorting_DateTimePicker)
         ScriptTask_GroupBox.Controls.Add(SyncTimeToDateTimePicker_Label)
@@ -2765,9 +2818,10 @@ Partial Class Form1
         ' 
         ' CustomizeAction_ComboBox
         ' 
+        CustomizeAction_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         CustomizeAction_ComboBox.Enabled = False
         CustomizeAction_ComboBox.FormattingEnabled = True
-        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "隨機網址發帖", "隨機網址拍賣", "隨機網址分享", "隨機網址留言", "隨機網址自訂"})
+        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知"})
         CustomizeAction_ComboBox.Location = New Point(291, 21)
         CustomizeAction_ComboBox.Name = "CustomizeAction_ComboBox"
         CustomizeAction_ComboBox.Size = New Size(168, 27)
@@ -2795,15 +2849,6 @@ Partial Class Form1
         DefaultScriptInsertion_RadioButton.TabStop = True
         DefaultScriptInsertion_RadioButton.Text = "預設功能"
         DefaultScriptInsertion_RadioButton.UseVisualStyleBackColor = True
-        ' 
-        ' ModfiyScriptListviewURLToRandom_Button
-        ' 
-        ModfiyScriptListviewURLToRandom_Button.Location = New Point(595, 85)
-        ModfiyScriptListviewURLToRandom_Button.Name = "ModfiyScriptListviewURLToRandom_Button"
-        ModfiyScriptListviewURLToRandom_Button.Size = New Size(94, 29)
-        ModfiyScriptListviewURLToRandom_Button.TabIndex = 40
-        ModfiyScriptListviewURLToRandom_Button.Text = "隨機網址"
-        ModfiyScriptListviewURLToRandom_Button.UseVisualStyleBackColor = True
         ' 
         ' SortListviewItemByTime_Button
         ' 
@@ -2836,9 +2881,9 @@ Partial Class Form1
         ' 
         ' ModifyListviewScheduleTimeTNull_Button
         ' 
-        ModifyListviewScheduleTimeTNull_Button.Location = New Point(612, 51)
+        ModifyListviewScheduleTimeTNull_Button.Location = New Point(627, 53)
         ModifyListviewScheduleTimeTNull_Button.Name = "ModifyListviewScheduleTimeTNull_Button"
-        ModifyListviewScheduleTimeTNull_Button.Size = New Size(80, 29)
+        ModifyListviewScheduleTimeTNull_Button.Size = New Size(60, 29)
         ModifyListviewScheduleTimeTNull_Button.TabIndex = 36
         ModifyListviewScheduleTimeTNull_Button.Text = "NULL"
         ModifyListviewScheduleTimeTNull_Button.UseVisualStyleBackColor = True
@@ -3071,27 +3116,27 @@ Partial Class Form1
         ' 
         ' InsertToQueueListview_Button
         ' 
-        InsertToQueueListview_Button.Location = New Point(495, 87)
+        InsertToQueueListview_Button.Location = New Point(495, 86)
         InsertToQueueListview_Button.Name = "InsertToQueueListview_Button"
-        InsertToQueueListview_Button.Size = New Size(94, 29)
+        InsertToQueueListview_Button.Size = New Size(60, 29)
         InsertToQueueListview_Button.TabIndex = 9
         InsertToQueueListview_Button.Text = "插入"
         InsertToQueueListview_Button.UseVisualStyleBackColor = True
         ' 
         ' ModifyListviewScheduleTime_Button
         ' 
-        ModifyListviewScheduleTime_Button.Location = New Point(557, 51)
+        ModifyListviewScheduleTime_Button.Location = New Point(561, 53)
         ModifyListviewScheduleTime_Button.Name = "ModifyListviewScheduleTime_Button"
-        ModifyListviewScheduleTime_Button.Size = New Size(51, 29)
+        ModifyListviewScheduleTime_Button.Size = New Size(60, 29)
         ModifyListviewScheduleTime_Button.TabIndex = 7
         ModifyListviewScheduleTime_Button.Text = "修改"
         ModifyListviewScheduleTime_Button.UseVisualStyleBackColor = True
         ' 
         ' InsertSchedulerScriptToListview_Button
         ' 
-        InsertSchedulerScriptToListview_Button.Location = New Point(495, 52)
+        InsertSchedulerScriptToListview_Button.Location = New Point(495, 53)
         InsertSchedulerScriptToListview_Button.Name = "InsertSchedulerScriptToListview_Button"
-        InsertSchedulerScriptToListview_Button.Size = New Size(57, 29)
+        InsertSchedulerScriptToListview_Button.Size = New Size(60, 29)
         InsertSchedulerScriptToListview_Button.TabIndex = 6
         InsertSchedulerScriptToListview_Button.Text = "插入"
         InsertSchedulerScriptToListview_Button.UseVisualStyleBackColor = True
@@ -3223,6 +3268,198 @@ Partial Class Form1
         SelectScriptListviewItemsByUserDataButton.Text = "選取"
         SelectScriptListviewItemsByUserDataButton.UseVisualStyleBackColor = True
         ' 
+        ' FBMessenger_TabPage
+        ' 
+        FBMessenger_TabPage.Controls.Add(ComboBox1)
+        FBMessenger_TabPage.Controls.Add(Button9)
+        FBMessenger_TabPage.Controls.Add(Button1)
+        FBMessenger_TabPage.Controls.Add(CheckBox1)
+        FBMessenger_TabPage.Controls.Add(CheckBox2)
+        FBMessenger_TabPage.Controls.Add(Button2)
+        FBMessenger_TabPage.Controls.Add(Button3)
+        FBMessenger_TabPage.Controls.Add(Button4)
+        FBMessenger_TabPage.Controls.Add(Button5)
+        FBMessenger_TabPage.Controls.Add(Button6)
+        FBMessenger_TabPage.Controls.Add(Button7)
+        FBMessenger_TabPage.Controls.Add(Button8)
+        FBMessenger_TabPage.Controls.Add(TextBox1)
+        FBMessenger_TabPage.Controls.Add(TextBox2)
+        FBMessenger_TabPage.Controls.Add(Label56)
+        FBMessenger_TabPage.Controls.Add(Label57)
+        FBMessenger_TabPage.Controls.Add(ListView1)
+        FBMessenger_TabPage.Location = New Point(4, 28)
+        FBMessenger_TabPage.Name = "FBMessenger_TabPage"
+        FBMessenger_TabPage.Size = New Size(692, 351)
+        FBMessenger_TabPage.TabIndex = 3
+        FBMessenger_TabPage.Text = "聊天室"
+        FBMessenger_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(591, 72)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 44
+        Button1.Text = "取消選擇"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox1
+        ' 
+        CheckBox1.AutoSize = True
+        CheckBox1.Location = New Point(177, 316)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(61, 23)
+        CheckBox1.TabIndex = 43
+        CheckBox1.Text = "已讀"
+        CheckBox1.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox2
+        ' 
+        CheckBox2.AutoSize = True
+        CheckBox2.Checked = True
+        CheckBox2.CheckState = CheckState.Checked
+        CheckBox2.Location = New Point(110, 316)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(61, 23)
+        CheckBox2.TabIndex = 42
+        CheckBox2.Text = "未讀"
+        CheckBox2.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(592, 312)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 41
+        Button2.Text = "刪除"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(495, 312)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(94, 29)
+        Button3.TabIndex = 40
+        Button3.Text = "儲存"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(10, 312)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 39
+        Button4.Text = "前往Msg"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(306, 72)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(94, 29)
+        Button5.TabIndex = 38
+        Button5.Text = "修改"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' Button6
+        ' 
+        Button6.Location = New Point(206, 72)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(94, 29)
+        Button6.TabIndex = 37
+        Button6.Text = "增加"
+        Button6.UseVisualStyleBackColor = True
+        ' 
+        ' Button7
+        ' 
+        Button7.Location = New Point(105, 72)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(94, 29)
+        Button7.TabIndex = 36
+        Button7.Text = "取得網址"
+        Button7.UseVisualStyleBackColor = True
+        ' 
+        ' Button8
+        ' 
+        Button8.Location = New Point(6, 72)
+        Button8.Name = "Button8"
+        Button8.Size = New Size(94, 29)
+        Button8.TabIndex = 35
+        Button8.Text = "前往"
+        Button8.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(92, 39)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(593, 27)
+        TextBox1.TabIndex = 34
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(92, 5)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(593, 27)
+        TextBox2.TabIndex = 33
+        ' 
+        ' Label56
+        ' 
+        Label56.AutoSize = True
+        Label56.Location = New Point(6, 42)
+        Label56.Name = "Label56"
+        Label56.Size = New Size(80, 19)
+        Label56.TabIndex = 32
+        Label56.Text = "回應網址 : "
+        ' 
+        ' Label57
+        ' 
+        Label57.AutoSize = True
+        Label57.Location = New Point(6, 9)
+        Label57.Name = "Label57"
+        Label57.Size = New Size(80, 19)
+        Label57.TabIndex = 31
+        Label57.Text = "人物名稱 : "
+        ' 
+        ' ListView1
+        ' 
+        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader20, ColumnHeader21})
+        ListView1.FullRowSelect = True
+        ListView1.Location = New Point(6, 106)
+        ListView1.Name = "ListView1"
+        ListView1.Size = New Size(680, 200)
+        ListView1.TabIndex = 30
+        ListView1.UseCompatibleStateImageBehavior = False
+        ListView1.View = View.Details
+        ' 
+        ' ColumnHeader20
+        ' 
+        ColumnHeader20.Text = "人物名稱"
+        ColumnHeader20.Width = 200
+        ' 
+        ' ColumnHeader21
+        ' 
+        ColumnHeader21.Text = "回應網址"
+        ColumnHeader21.Width = 470
+        ' 
+        ' Button9
+        ' 
+        Button9.Location = New Point(244, 312)
+        Button9.Name = "Button9"
+        Button9.Size = New Size(94, 29)
+        Button9.TabIndex = 45
+        Button9.Text = "讀取"
+        Button9.UseVisualStyleBackColor = True
+        ' 
+        ' ComboBox1
+        ' 
+        ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Items.AddRange(New Object() {"聊天室", "Marketplace", "陌生訊息"})
+        ComboBox1.Location = New Point(344, 312)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(111, 27)
+        ComboBox1.TabIndex = 46
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -3314,6 +3551,8 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        FBMessenger_TabPage.ResumeLayout(False)
+        FBMessenger_TabPage.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -3516,7 +3755,6 @@ Partial Class Form1
     Friend WithEvents FBPostShareURLGetCurrentURL_Button As Button
     Friend WithEvents FBPostShareURLNavigateToURL_Button As Button
     Friend WithEvents SelectScriptListviewItemsByUserDataButton As Button
-    Friend WithEvents ModfiyScriptListviewURLToRandom_Button As Button
     Friend WithEvents FBComment_TabPage As TabPage
     Friend WithEvents Label41 As Label
     Friend WithEvents Label42 As Label
@@ -3618,5 +3856,28 @@ Partial Class Form1
     Friend WithEvents DefaultScriptInsertion_RadioButton As RadioButton
     Friend WithEvents CustomizeAction_ComboBox As ComboBox
     Friend WithEvents Label55 As Label
+    Friend WithEvents DeselecteAllFBGroups_ListViewItems_Button As Button
+    Friend WithEvents DeselectAllFBActivityLogs_ListViewItems_Button As Button
+    Friend WithEvents DeselecteAllFBNotificationsData_ListviewItems_Button As Button
+    Friend WithEvents FBMessenger_TabPage As TabPage
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label56 As Label
+    Friend WithEvents Label57 As Label
+    Friend WithEvents ListView1 As ListView
+    Friend WithEvents ColumnHeader20 As ColumnHeader
+    Friend WithEvents ColumnHeader21 As ColumnHeader
 
 End Class

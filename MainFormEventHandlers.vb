@@ -1,5 +1,7 @@
-﻿Imports System.IO
+﻿Imports System.Diagnostics.Metrics
+Imports System.IO
 Imports System.Reflection.Metadata
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports Microsoft.Web.WebView2.WinForms
 Imports Newtonsoft.Json
@@ -1016,14 +1018,6 @@ Public Class MainFormEventHandlers
         End If
     End Sub
 
-    Public Sub ModifyScriptListviewURLToRandom_Button_Click(sender As Object, e As EventArgs)
-
-        For Each item As ListViewItem In Form1.ScriptQueue_ListView.SelectedItems
-            item.SubItems(2).Text = "隨機"
-            item.SubItems(3).Text = "隨機"
-        Next
-
-    End Sub
 
     Public Async Sub ReadFBNotifications_Button_Click(sender As Object, e As EventArgs)
         If ActivedUserDataFolderPath Is Nothing Then
@@ -1213,6 +1207,24 @@ Public Class MainFormEventHandlers
 
     End Sub
 
+    Public Sub DeselecteAllFBGroups_ListViewItems_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.FBGroups_ListView.Items
+            item.Selected = False
+        Next
+    End Sub
+
+    Public Sub DeselectAllFBActivityLogs_ListViewItems_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.FBActivityLogs_ListView.SelectedItems
+            item.Selected = False
+        Next
+    End Sub
+
+    Public Sub DeselecteAllFBNotificationsData_ListviewItems_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.FBNotificationsData_Listview.SelectedItems
+            item.Selected = False
+        Next
+    End Sub
+
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled
 
@@ -1235,148 +1247,125 @@ Public Class MainFormEventHandlers
 
         If Form1.CustomizeScriptInsertion_RadioButton.Checked Then
             selecteAction = Form1.CustomizeAction_ComboBox.Text
-        Else
-            Select Case selecteAction
-                Case "發帖"
-                    If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
-                        For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
-                            content += item + "&"
-                        Next
-                        content = content.TrimEnd("&")
-                    Else
-                        content = "隨機"
-                    End If
-                Case "拍賣"
-                    If Form1.FBMarkplaceProducts_ListBox.SelectedItems.Count > 0 Then
-                        For Each item In Form1.FBMarkplaceProducts_ListBox.SelectedItems
-                            content += item + "&"
-                        Next
-                        content = content.TrimEnd("&")
-                    Else
-                        content = "隨機"
-                    End If
-                Case "分享"
-                    If Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                        For Each item In Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
-                            content += item + "&"
-                        Next
-                        content = content.TrimEnd("&")
-                    Else
-                        content = "隨機"
-                    End If
-                Case "留言"
-                    If Form1.FBCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                        For Each item In Form1.FBCommentAssetFolder_ListBox.SelectedItems
-                            content += item + "&"
-                        Next
-                        content = content.TrimEnd("&")
-                    Else
-                        content = "隨機"
-                    End If
-                Case "自訂"
-                    If Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                        For Each item In Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
-                            content += item + "&"
-                        Next
-                        content = content.TrimEnd("&")
-                    Else
-                        content = "隨機"
-                    End If
-                Case "回應"
-                    If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                        For Each item In Form1.FBResponseAssetFolder_ListBox.SelectedItems
-                            content += item + "&"
-                        Next
-                        content = content.TrimEnd("&")
-                    Else
-                        content = "隨機"
-                    End If
-
-                Case "測試項"
-                    content = "測試"
-            End Select
+            If selecteAction = "" Then
+                MsgBox("未選擇自訂功能")
+                Exit Sub
+            End If
         End If
 
+        Select Case selecteAction
+            Case "發帖"
+                If Form1.MyAssetsFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.MyAssetsFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "拍賣"
+                If Form1.FBMarkplaceProducts_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBMarkplaceProducts_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "分享"
+                If Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBPostShareURLAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "留言"
+                selectedGroupItems = Form1.FBActivityLogs_ListView.SelectedItems
+                If Form1.FBCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBCommentAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "自訂"
+                If Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "回應"
+                selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
+                If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBResponseAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+            Case "順序回應通知"
+                selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
+                If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBResponseAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+
+        End Select
 
         Dim selectedUserDataFolder = "NULL"
-
 
         ' 第一個選擇的UserDataFolder
         For Each selectedUserData In selectedUserDataFolderItems
             selectedUserDataFolder = selectedUserData.ToString()
         Next
 
-
-        If selecteAction = "留言" Then
-            selectedGroupItems = Form1.FBActivityLogs_ListView.SelectedItems
-        ElseIf selecteAction = "回應" Then
-            selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
-        ElseIf selecteAction = "順序回應通知" Then
-            If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
-                For Each item In Form1.FBResponseAssetFolder_ListBox.SelectedItems
-                    content += item + "&"
-                Next
-                content = content.TrimEnd("&")
-            Else
-                content = "隨機"
-            End If
-        End If
-
-
-        ' 第一個選擇的Group
-        If selectedGroupItems.Count > 0 Then
-            Dim selectedItem = selectedGroupItems(0)
-            selectedGroupName = selectedItem.Text
-            selectedGroupUrl = selectedItem.SubItems(1).Text
-        End If
-
+        ' refactor test
         If scheduled Then '定時執行
+
             Dim baseSeconds = Form1.ScheduledExecutionHours_NumericUpDown.Value * 3600 + Form1.ScheduledExecutionMinutes_NumericUpDown.Value * 60 + Form1.ScheduledExecutionSeconds_NumericUpDown.Value
-
+            executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
-                executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
-                Select Case True
-                    Case selecteAction.Contains("隨機")
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "隨機", "隨機", content, selecteAction, executionWaitSeconds)
-                    Case Else
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                End Select
-
+                AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
-                For Each selectedGroupItem As ListViewItem In selectedGroupItems
-                    executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
-                    baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
-                    AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
-                Next
+
+
+                If selectedGroupItems.Count > 0 Then ' 有選超過一個網址項目
+                    For Each selectedGroupItem As ListViewItem In selectedGroupItems
+                        executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
+                        baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
+                        AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
+                    Next
+                Else ' 沒選就隨機
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "隨機", "隨機", content, selecteAction, executionWaitSeconds)
+                End If
+
             End If
 
-        Else '順序執行
-
+        Else ' 順序執行
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
-                Select Case True
-                    Case selecteAction.Contains("隨機")
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "隨機", "隨機", content, selecteAction, executionWaitSeconds)
-                    Case Else
-                        AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
-                End Select
-
+                AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
-                If selectedUserDataFolderItems.Count > 1 Then ' 如果你選擇超過一個帳號，多帳號對一社團
-                    For Each selectedUserData In selectedUserDataFolderItems
-                        AddScriptQueueItem(selectedUserData.ToString(), executionTime, selectedGroupName, selectedGroupUrl, content, selecteAction, executionWaitSeconds)
-                    Next
-                Else ' 一帳號對多社團
+                If selectedGroupItems.Count > 0 Then
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems
                         AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
                     Next
+                Else ' 沒選就隨機
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "隨機", "隨機", content, selecteAction, executionWaitSeconds)
                 End If
             End If
 
-
-
-
         End If
-
 
     End Sub
 

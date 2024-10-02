@@ -409,14 +409,9 @@ Public Class Form1
 
                 For Each notificationItem As ListViewItem In FBNotificationItems
                     Try
-                        'Debug.WriteLine("url :" & notificationItem.SubItems(0).Text)
                         notificationItem.BackColor = Color.SteelBlue
                         notificationItem.ForeColor = Color.White
                         MainFormController.CenterSelectedItem(FBNotificationsData_Listview, notificationItem)
-                        Await Delay_msec(2000)
-                        notificationItem.BackColor = Color.White
-                        notificationItem.ForeColor = Color.Black
-
 
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
                         item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
@@ -452,18 +447,11 @@ Public Class Form1
                         result = False
                     End Try
 
+                    ' 執行完後變回來
+                    notificationItem.BackColor = Color.White
+                    notificationItem.ForeColor = Color.Black
+
                 Next
-
-
-            Case "測試項"
-                Try
-                    Await Delay_msec(1000)
-                    result = True
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-
 
         End Select
 
@@ -570,11 +558,11 @@ Public Class Form1
         AddHandler DisplayCurrUrlToGroupUrl_Button.Click, AddressOf mainFormEventHandlers.DisplayCurrUrlToGroupUrl_Button_Click
         AddHandler ShowEmojiPicker_Button.Click, AddressOf mainFormEventHandlers.ShowEmojiPicker_Button_Click
         AddHandler SelectScriptListviewItemsByUserDataButton.Click, AddressOf mainFormEventHandlers.SelectListviewItemsByUserDataButton_Click
-        AddHandler ModfiyScriptListviewURLToRandom_Button.Click, AddressOf mainFormEventHandlers.ModifyScriptListviewURLToRandom_Button_Click
         AddHandler DefaultScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.DefaultScriptInsertion_RadioButton_Click
         AddHandler CustomizeScriptInsertion_RadioButton.Click, AddressOf mainFormEventHandlers.CustomizeScriptInsertion_RadioButton_Click
         AddHandler FBUrlData_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBUrlData_TabControl_SelectedIndexChanged
         AddHandler Action_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.Action_TabControl_SelectedIndexChanged
+        AddHandler DeselecteAllFBGroups_ListViewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBGroups_ListViewItems_Button_Click
 
 
         ' ### FB ActivityLogs
@@ -588,6 +576,8 @@ Public Class Form1
         AddHandler AddItemToFBActivityLogListview_Button.Click, AddressOf mainFormEventHandlers.AddItemToFBActivityLogListview_Button_Click
         AddHandler EditSelectedFBActivityLogListviewItem_Button.Click, AddressOf mainFormEventHandlers.EditSelectedFBActivityLogListviewItem_Button_Click
 
+        AddHandler DeselectAllFBActivityLogs_ListViewItems_Button.Click, AddressOf mainFormEventHandlers.DeselectAllFBActivityLogs_ListViewItems_Button_Click
+
         ' ### FB Notifications
         AddHandler ReadFBNotifications_Button.Click, AddressOf mainFormEventHandlers.ReadFBNotifications_Button_Click
         AddHandler SaveFBNotificationsListview_Button.Click, AddressOf mainFormEventHandlers.SaveFBNotificationsListview_Button_Click
@@ -598,11 +588,17 @@ Public Class Form1
         AddHandler FBNotificationsAddItemToListview_Button.Click, AddressOf mainFormEventHandlers.FBNotificationsAddItemToListview_Button_Click
         AddHandler FBNotificationsEditSelectedListviewItem_Button.Click, AddressOf mainFormEventHandlers.FBNotificationsEditSelectedListviewItem_Button_Click
 
+        AddHandler DeselecteAllFBNotificationsData_ListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBNotificationsData_ListviewItems_Button_Click
+
 
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
 
     End Sub
+
+
+
+
 
 
     Private Sub RegisterFBPostEventHanders()
