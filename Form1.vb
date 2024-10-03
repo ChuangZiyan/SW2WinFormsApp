@@ -591,13 +591,25 @@ Public Class Form1
         AddHandler DeselecteAllFBNotificationsData_ListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBNotificationsData_ListviewItems_Button_Click
 
 
+        ' ### FB Messenger
+        'AddHandler ReadFBNotifications_Button.Click, AddressOf mainFormEventHandlers.ReadFBNotifications_Button_Click
+
+        AddHandler SaveFBMessengerListview_Button.Click, AddressOf mainFormEventHandlers.SaveFBMessengerListview_Button_Click
+        AddHandler FBMessengerData_Listview.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBMessengerData_Listview_SelectedIndexChanged
+        AddHandler DeleteSelectedFBMessengerListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedFBMessengerListviewItems_Button_Click
+        AddHandler FBMessengerDisplayCurrUrl_Button.Click, AddressOf mainFormEventHandlers.FBMessengerDisplayCurrUrl_Button_Click
+        AddHandler FBMessengerNavigateToSelectedURL_Button.Click, AddressOf mainFormEventHandlers.FBMessengerNavigateToSelectedURL_Button_Click
+        AddHandler FBMessengerAddItemToListview_Button.Click, AddressOf mainFormEventHandlers.FBMessengerAddItemToListview_Button_Click
+        AddHandler FBMessengerEditSelectedListviewItem_Button.Click, AddressOf mainFormEventHandlers.FBMessengerEditSelectedListviewItem_Button_Click
+        AddHandler DeselecteAllFBMessenger_ListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBMessengerData_ListviewItems_Button_Click
+        AddHandler FBMessengerNavigateToMessenger_Button.Click, AddressOf mainFormEventHandlers.FBMessengerNavigateToMessenger_Button_Click
+
+
+
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
 
     End Sub
-
-
-
 
 
 

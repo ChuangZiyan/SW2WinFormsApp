@@ -19,6 +19,9 @@ Public Class MainFormEventHandlers
         MainFormController.DisplayGroupList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
         MainFormController.DisplayFBActivityLogs(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
         MainFormController.DisplayFBNotificationList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
+        MainFormController.DisplayFBMessengerList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
+
+
     End Sub
 
 
@@ -1084,7 +1087,7 @@ Public Class MainFormEventHandlers
                     Exit Sub
                 End If
 
-                Dim result As DialogResult = MessageBox.Show("確定要通知列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim result As DialogResult = MessageBox.Show("確定要刪除通知列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If result = DialogResult.Yes Then
                     Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBNotificationList.json")
 
@@ -1224,6 +1227,168 @@ Public Class MainFormEventHandlers
             item.Selected = False
         Next
     End Sub
+
+    Public Sub DeselecteAllFBMessengerData_ListviewItems_Button_Click(sender As Object, e As EventArgs)
+        For Each item As ListViewItem In Form1.FBMessengerData_Listview.SelectedItems
+            item.Selected = False
+        Next
+    End Sub
+
+
+    Public Sub FBMessengerAddItemToListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim name = Form1.FBMessengerName_TextBox.Text
+            Dim url = Form1.FBMessengerUrl_TextBox.Text
+
+            If name <> "" And url <> "" Then
+                Dim newItem As New ListViewItem(name)
+                newItem.SubItems.Add(url)
+                Form1.FBMessengerData_Listview.Items.Insert(0, newItem)
+            Else
+                MsgBox("欄位不得為空")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Sub SaveFBMessengerListview_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                MsgBox("未選擇使用者")
+                Exit Sub
+            End If
+
+            Dim items As New List(Of GroupListviewDataStruct)()
+            For Each item As ListViewItem In Form1.FBMessengerData_Listview.Items
+
+                Dim listViewItemData As New GroupListviewDataStruct With {
+                    .Name = item.Text,
+                    .Url = item.SubItems(1).Text
+                }
+                items.Add(listViewItemData)
+            Next
+
+            Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
+            Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBMessengerList.json")
+            File.WriteAllText(filePath, jsonStr)
+            MsgBox("儲存成功")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+    End Sub
+
+
+    Public Sub FBMessengerData_Listview_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBMessengerData_Listview.SelectedItems.Count > 0 Then
+                'Debug.WriteLine(Form1.FBGroups_ListView.SelectedItems(0).Text)
+                Dim selectedItem = Form1.FBMessengerData_Listview.SelectedItems(0)
+                Form1.FBMessengerName_TextBox.Text = selectedItem.Text
+                Form1.FBMessengerUrl_TextBox.Text = selectedItem.SubItems(1).Text
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub DeleteSelectedFBMessengerListviewItems_Button_Click(sender As Object, e As EventArgs)
+
+        Try
+            Dim selectedItems = Form1.FBMessengerData_Listview.SelectedItems
+            If selectedItems.Count > 0 Then
+                For i As Integer = selectedItems.Count - 1 To 0 Step -1
+                    Form1.FBMessengerData_Listview.Items.Remove(selectedItems(i))
+                Next
+            Else
+
+                If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                    MsgBox("未選擇使用者")
+                    Exit Sub
+                End If
+
+                Dim result As DialogResult = MessageBox.Show("確定要刪除聊天室列表檔案嗎？", "刪除確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBMessengerList.json")
+
+                    If File.Exists(filePath) Then
+                        File.Delete(filePath)
+                        MsgBox("刪除完成")
+                    Else
+                        MsgBox("檔案不存在")
+                    End If
+                    Form1.FBMessengerData_Listview.Items.Clear()
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox("刪除失敗")
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub FBMessengerDisplayCurrUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Form1.FBMessengerUrl_TextBox.Text = Webview2Controller.edgeDriver.Url
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Public Async Sub FBMessengerNavigateToSelectedURL_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task(Form1.FBMessengerUrl_TextBox.Text)
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Sub FBMessengerEditSelectedListviewItem_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Form1.FBMessengerData_Listview.SelectedItems.Count > 0 Then
+                Dim name = Form1.FBMessengerName_TextBox.Text
+                Dim url = Form1.FBMessengerUrl_TextBox.Text
+                If name <> "" And url <> "" Then
+                    Dim selectedItem = Form1.FBMessengerData_Listview.SelectedItems(0)
+                    selectedItem.Text = name
+                    selectedItem.SubItems(1).Text = url
+
+                Else
+                    MsgBox("欄位不得為空")
+                End If
+            Else
+                MsgBox("未選擇欄位")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Public Async Sub FBMessengerNavigateToMessenger_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.messenger.com/")
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+
 
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled

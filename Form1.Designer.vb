@@ -112,6 +112,26 @@ Partial Class Form1
         FBNotificationsData_Listview = New ListView()
         ColumnHeader18 = New ColumnHeader()
         ColumnHeader19 = New ColumnHeader()
+        FBMessenger_TabPage = New TabPage()
+        FBMessengerMessageSource_ComboBox = New ComboBox()
+        FBMessengerReadMessage_Button = New Button()
+        DeselecteAllFBMessenger_ListviewItems_Button = New Button()
+        FBMessengerReadMessage_CheckBox = New CheckBox()
+        FBMessengerUnreadMessage_CheckBox = New CheckBox()
+        DeleteSelectedFBMessengerListviewItems_Button = New Button()
+        SaveFBMessengerListview_Button = New Button()
+        FBMessengerNavigateToMessenger_Button = New Button()
+        FBMessengerEditSelectedListviewItem_Button = New Button()
+        FBMessengerAddItemToListview_Button = New Button()
+        FBMessengerDisplayCurrUrl_Button = New Button()
+        FBMessengerNavigateToSelectedURL_Button = New Button()
+        FBMessengerUrl_TextBox = New TextBox()
+        FBMessengerName_TextBox = New TextBox()
+        Label56 = New Label()
+        Label57 = New Label()
+        FBMessengerData_Listview = New ListView()
+        ColumnHeader20 = New ColumnHeader()
+        ColumnHeader21 = New ColumnHeader()
         ScriptQueue_ListView = New ListView()
         ColumnHeader3 = New ColumnHeader()
         ColumnHeader4 = New ColumnHeader()
@@ -324,26 +344,6 @@ Partial Class Form1
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
-        FBMessenger_TabPage = New TabPage()
-        Button1 = New Button()
-        CheckBox1 = New CheckBox()
-        CheckBox2 = New CheckBox()
-        Button2 = New Button()
-        Button3 = New Button()
-        Button4 = New Button()
-        Button5 = New Button()
-        Button6 = New Button()
-        Button7 = New Button()
-        Button8 = New Button()
-        TextBox1 = New TextBox()
-        TextBox2 = New TextBox()
-        Label56 = New Label()
-        Label57 = New Label()
-        ListView1 = New ListView()
-        ColumnHeader20 = New ColumnHeader()
-        ColumnHeader21 = New ColumnHeader()
-        Button9 = New Button()
-        ComboBox1 = New ComboBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -352,6 +352,7 @@ Partial Class Form1
         FBActivityLogs_TabPage.SuspendLayout()
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         FBNotifications_TabPage.SuspendLayout()
+        FBMessenger_TabPage.SuspendLayout()
         Action_TabControl.SuspendLayout()
         FBPost_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -388,7 +389,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        FBMessenger_TabPage.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -1240,6 +1240,198 @@ Partial Class Form1
         ' 
         ColumnHeader19.Text = "回應網址"
         ColumnHeader19.Width = 470
+        ' 
+        ' FBMessenger_TabPage
+        ' 
+        FBMessenger_TabPage.Controls.Add(FBMessengerMessageSource_ComboBox)
+        FBMessenger_TabPage.Controls.Add(FBMessengerReadMessage_Button)
+        FBMessenger_TabPage.Controls.Add(DeselecteAllFBMessenger_ListviewItems_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerReadMessage_CheckBox)
+        FBMessenger_TabPage.Controls.Add(FBMessengerUnreadMessage_CheckBox)
+        FBMessenger_TabPage.Controls.Add(DeleteSelectedFBMessengerListviewItems_Button)
+        FBMessenger_TabPage.Controls.Add(SaveFBMessengerListview_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerNavigateToMessenger_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerEditSelectedListviewItem_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerAddItemToListview_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerDisplayCurrUrl_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerNavigateToSelectedURL_Button)
+        FBMessenger_TabPage.Controls.Add(FBMessengerUrl_TextBox)
+        FBMessenger_TabPage.Controls.Add(FBMessengerName_TextBox)
+        FBMessenger_TabPage.Controls.Add(Label56)
+        FBMessenger_TabPage.Controls.Add(Label57)
+        FBMessenger_TabPage.Controls.Add(FBMessengerData_Listview)
+        FBMessenger_TabPage.Location = New Point(4, 28)
+        FBMessenger_TabPage.Name = "FBMessenger_TabPage"
+        FBMessenger_TabPage.Size = New Size(692, 351)
+        FBMessenger_TabPage.TabIndex = 3
+        FBMessenger_TabPage.Text = "聊天室"
+        FBMessenger_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerMessageSource_ComboBox
+        ' 
+        FBMessengerMessageSource_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList
+        FBMessengerMessageSource_ComboBox.FormattingEnabled = True
+        FBMessengerMessageSource_ComboBox.Items.AddRange(New Object() {"聊天室", "Marketplace", "陌生訊息"})
+        FBMessengerMessageSource_ComboBox.Location = New Point(344, 312)
+        FBMessengerMessageSource_ComboBox.Name = "FBMessengerMessageSource_ComboBox"
+        FBMessengerMessageSource_ComboBox.Size = New Size(145, 27)
+        FBMessengerMessageSource_ComboBox.TabIndex = 46
+        ' 
+        ' FBMessengerReadMessage_Button
+        ' 
+        FBMessengerReadMessage_Button.Location = New Point(244, 312)
+        FBMessengerReadMessage_Button.Name = "FBMessengerReadMessage_Button"
+        FBMessengerReadMessage_Button.Size = New Size(94, 29)
+        FBMessengerReadMessage_Button.TabIndex = 45
+        FBMessengerReadMessage_Button.Text = "讀取"
+        FBMessengerReadMessage_Button.UseVisualStyleBackColor = True
+        ' 
+        ' DeselecteAllFBMessenger_ListviewItems_Button
+        ' 
+        DeselecteAllFBMessenger_ListviewItems_Button.Location = New Point(591, 72)
+        DeselecteAllFBMessenger_ListviewItems_Button.Name = "DeselecteAllFBMessenger_ListviewItems_Button"
+        DeselecteAllFBMessenger_ListviewItems_Button.Size = New Size(94, 29)
+        DeselecteAllFBMessenger_ListviewItems_Button.TabIndex = 44
+        DeselecteAllFBMessenger_ListviewItems_Button.Text = "取消選擇"
+        DeselecteAllFBMessenger_ListviewItems_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerReadMessage_CheckBox
+        ' 
+        FBMessengerReadMessage_CheckBox.AutoSize = True
+        FBMessengerReadMessage_CheckBox.Location = New Point(177, 316)
+        FBMessengerReadMessage_CheckBox.Name = "FBMessengerReadMessage_CheckBox"
+        FBMessengerReadMessage_CheckBox.Size = New Size(61, 23)
+        FBMessengerReadMessage_CheckBox.TabIndex = 43
+        FBMessengerReadMessage_CheckBox.Text = "已讀"
+        FBMessengerReadMessage_CheckBox.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerUnreadMessage_CheckBox
+        ' 
+        FBMessengerUnreadMessage_CheckBox.AutoSize = True
+        FBMessengerUnreadMessage_CheckBox.Checked = True
+        FBMessengerUnreadMessage_CheckBox.CheckState = CheckState.Checked
+        FBMessengerUnreadMessage_CheckBox.Location = New Point(110, 316)
+        FBMessengerUnreadMessage_CheckBox.Name = "FBMessengerUnreadMessage_CheckBox"
+        FBMessengerUnreadMessage_CheckBox.Size = New Size(61, 23)
+        FBMessengerUnreadMessage_CheckBox.TabIndex = 42
+        FBMessengerUnreadMessage_CheckBox.Text = "未讀"
+        FBMessengerUnreadMessage_CheckBox.UseVisualStyleBackColor = True
+        ' 
+        ' DeleteSelectedFBMessengerListviewItems_Button
+        ' 
+        DeleteSelectedFBMessengerListviewItems_Button.Location = New Point(592, 312)
+        DeleteSelectedFBMessengerListviewItems_Button.Name = "DeleteSelectedFBMessengerListviewItems_Button"
+        DeleteSelectedFBMessengerListviewItems_Button.Size = New Size(94, 29)
+        DeleteSelectedFBMessengerListviewItems_Button.TabIndex = 41
+        DeleteSelectedFBMessengerListviewItems_Button.Text = "刪除"
+        DeleteSelectedFBMessengerListviewItems_Button.UseVisualStyleBackColor = True
+        ' 
+        ' SaveFBMessengerListview_Button
+        ' 
+        SaveFBMessengerListview_Button.Location = New Point(495, 312)
+        SaveFBMessengerListview_Button.Name = "SaveFBMessengerListview_Button"
+        SaveFBMessengerListview_Button.Size = New Size(94, 29)
+        SaveFBMessengerListview_Button.TabIndex = 40
+        SaveFBMessengerListview_Button.Text = "儲存"
+        SaveFBMessengerListview_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerNavigateToMessenger_Button
+        ' 
+        FBMessengerNavigateToMessenger_Button.Location = New Point(10, 312)
+        FBMessengerNavigateToMessenger_Button.Name = "FBMessengerNavigateToMessenger_Button"
+        FBMessengerNavigateToMessenger_Button.Size = New Size(94, 29)
+        FBMessengerNavigateToMessenger_Button.TabIndex = 39
+        FBMessengerNavigateToMessenger_Button.Text = "前往Msg"
+        FBMessengerNavigateToMessenger_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerEditSelectedListviewItem_Button
+        ' 
+        FBMessengerEditSelectedListviewItem_Button.Location = New Point(306, 72)
+        FBMessengerEditSelectedListviewItem_Button.Name = "FBMessengerEditSelectedListviewItem_Button"
+        FBMessengerEditSelectedListviewItem_Button.Size = New Size(94, 29)
+        FBMessengerEditSelectedListviewItem_Button.TabIndex = 38
+        FBMessengerEditSelectedListviewItem_Button.Text = "修改"
+        FBMessengerEditSelectedListviewItem_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerAddItemToListview_Button
+        ' 
+        FBMessengerAddItemToListview_Button.Location = New Point(206, 72)
+        FBMessengerAddItemToListview_Button.Name = "FBMessengerAddItemToListview_Button"
+        FBMessengerAddItemToListview_Button.Size = New Size(94, 29)
+        FBMessengerAddItemToListview_Button.TabIndex = 37
+        FBMessengerAddItemToListview_Button.Text = "增加"
+        FBMessengerAddItemToListview_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerDisplayCurrUrl_Button
+        ' 
+        FBMessengerDisplayCurrUrl_Button.Location = New Point(105, 72)
+        FBMessengerDisplayCurrUrl_Button.Name = "FBMessengerDisplayCurrUrl_Button"
+        FBMessengerDisplayCurrUrl_Button.Size = New Size(94, 29)
+        FBMessengerDisplayCurrUrl_Button.TabIndex = 36
+        FBMessengerDisplayCurrUrl_Button.Text = "取得網址"
+        FBMessengerDisplayCurrUrl_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerNavigateToSelectedURL_Button
+        ' 
+        FBMessengerNavigateToSelectedURL_Button.Location = New Point(6, 72)
+        FBMessengerNavigateToSelectedURL_Button.Name = "FBMessengerNavigateToSelectedURL_Button"
+        FBMessengerNavigateToSelectedURL_Button.Size = New Size(94, 29)
+        FBMessengerNavigateToSelectedURL_Button.TabIndex = 35
+        FBMessengerNavigateToSelectedURL_Button.Text = "前往"
+        FBMessengerNavigateToSelectedURL_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerUrl_TextBox
+        ' 
+        FBMessengerUrl_TextBox.Location = New Point(92, 39)
+        FBMessengerUrl_TextBox.Name = "FBMessengerUrl_TextBox"
+        FBMessengerUrl_TextBox.Size = New Size(593, 27)
+        FBMessengerUrl_TextBox.TabIndex = 34
+        ' 
+        ' FBMessengerName_TextBox
+        ' 
+        FBMessengerName_TextBox.Location = New Point(92, 5)
+        FBMessengerName_TextBox.Name = "FBMessengerName_TextBox"
+        FBMessengerName_TextBox.Size = New Size(593, 27)
+        FBMessengerName_TextBox.TabIndex = 33
+        ' 
+        ' Label56
+        ' 
+        Label56.AutoSize = True
+        Label56.Location = New Point(6, 42)
+        Label56.Name = "Label56"
+        Label56.Size = New Size(80, 19)
+        Label56.TabIndex = 32
+        Label56.Text = "回應網址 : "
+        ' 
+        ' Label57
+        ' 
+        Label57.AutoSize = True
+        Label57.Location = New Point(6, 9)
+        Label57.Name = "Label57"
+        Label57.Size = New Size(80, 19)
+        Label57.TabIndex = 31
+        Label57.Text = "人物名稱 : "
+        ' 
+        ' FBMessengerData_Listview
+        ' 
+        FBMessengerData_Listview.Columns.AddRange(New ColumnHeader() {ColumnHeader20, ColumnHeader21})
+        FBMessengerData_Listview.FullRowSelect = True
+        FBMessengerData_Listview.Location = New Point(6, 106)
+        FBMessengerData_Listview.Name = "FBMessengerData_Listview"
+        FBMessengerData_Listview.Size = New Size(680, 200)
+        FBMessengerData_Listview.TabIndex = 30
+        FBMessengerData_Listview.UseCompatibleStateImageBehavior = False
+        FBMessengerData_Listview.View = View.Details
+        ' 
+        ' ColumnHeader20
+        ' 
+        ColumnHeader20.Text = "人物名稱"
+        ColumnHeader20.Width = 200
+        ' 
+        ' ColumnHeader21
+        ' 
+        ColumnHeader21.Text = "回應網址"
+        ColumnHeader21.Width = 470
         ' 
         ' ScriptQueue_ListView
         ' 
@@ -3268,198 +3460,6 @@ Partial Class Form1
         SelectScriptListviewItemsByUserDataButton.Text = "選取"
         SelectScriptListviewItemsByUserDataButton.UseVisualStyleBackColor = True
         ' 
-        ' FBMessenger_TabPage
-        ' 
-        FBMessenger_TabPage.Controls.Add(ComboBox1)
-        FBMessenger_TabPage.Controls.Add(Button9)
-        FBMessenger_TabPage.Controls.Add(Button1)
-        FBMessenger_TabPage.Controls.Add(CheckBox1)
-        FBMessenger_TabPage.Controls.Add(CheckBox2)
-        FBMessenger_TabPage.Controls.Add(Button2)
-        FBMessenger_TabPage.Controls.Add(Button3)
-        FBMessenger_TabPage.Controls.Add(Button4)
-        FBMessenger_TabPage.Controls.Add(Button5)
-        FBMessenger_TabPage.Controls.Add(Button6)
-        FBMessenger_TabPage.Controls.Add(Button7)
-        FBMessenger_TabPage.Controls.Add(Button8)
-        FBMessenger_TabPage.Controls.Add(TextBox1)
-        FBMessenger_TabPage.Controls.Add(TextBox2)
-        FBMessenger_TabPage.Controls.Add(Label56)
-        FBMessenger_TabPage.Controls.Add(Label57)
-        FBMessenger_TabPage.Controls.Add(ListView1)
-        FBMessenger_TabPage.Location = New Point(4, 28)
-        FBMessenger_TabPage.Name = "FBMessenger_TabPage"
-        FBMessenger_TabPage.Size = New Size(692, 351)
-        FBMessenger_TabPage.TabIndex = 3
-        FBMessenger_TabPage.Text = "聊天室"
-        FBMessenger_TabPage.UseVisualStyleBackColor = True
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(591, 72)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 44
-        Button1.Text = "取消選擇"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' CheckBox1
-        ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Location = New Point(177, 316)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(61, 23)
-        CheckBox1.TabIndex = 43
-        CheckBox1.Text = "已讀"
-        CheckBox1.UseVisualStyleBackColor = True
-        ' 
-        ' CheckBox2
-        ' 
-        CheckBox2.AutoSize = True
-        CheckBox2.Checked = True
-        CheckBox2.CheckState = CheckState.Checked
-        CheckBox2.Location = New Point(110, 316)
-        CheckBox2.Name = "CheckBox2"
-        CheckBox2.Size = New Size(61, 23)
-        CheckBox2.TabIndex = 42
-        CheckBox2.Text = "未讀"
-        CheckBox2.UseVisualStyleBackColor = True
-        ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(592, 312)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 41
-        Button2.Text = "刪除"
-        Button2.UseVisualStyleBackColor = True
-        ' 
-        ' Button3
-        ' 
-        Button3.Location = New Point(495, 312)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 40
-        Button3.Text = "儲存"
-        Button3.UseVisualStyleBackColor = True
-        ' 
-        ' Button4
-        ' 
-        Button4.Location = New Point(10, 312)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 39
-        Button4.Text = "前往Msg"
-        Button4.UseVisualStyleBackColor = True
-        ' 
-        ' Button5
-        ' 
-        Button5.Location = New Point(306, 72)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(94, 29)
-        Button5.TabIndex = 38
-        Button5.Text = "修改"
-        Button5.UseVisualStyleBackColor = True
-        ' 
-        ' Button6
-        ' 
-        Button6.Location = New Point(206, 72)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(94, 29)
-        Button6.TabIndex = 37
-        Button6.Text = "增加"
-        Button6.UseVisualStyleBackColor = True
-        ' 
-        ' Button7
-        ' 
-        Button7.Location = New Point(105, 72)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(94, 29)
-        Button7.TabIndex = 36
-        Button7.Text = "取得網址"
-        Button7.UseVisualStyleBackColor = True
-        ' 
-        ' Button8
-        ' 
-        Button8.Location = New Point(6, 72)
-        Button8.Name = "Button8"
-        Button8.Size = New Size(94, 29)
-        Button8.TabIndex = 35
-        Button8.Text = "前往"
-        Button8.UseVisualStyleBackColor = True
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.Location = New Point(92, 39)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(593, 27)
-        TextBox1.TabIndex = 34
-        ' 
-        ' TextBox2
-        ' 
-        TextBox2.Location = New Point(92, 5)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(593, 27)
-        TextBox2.TabIndex = 33
-        ' 
-        ' Label56
-        ' 
-        Label56.AutoSize = True
-        Label56.Location = New Point(6, 42)
-        Label56.Name = "Label56"
-        Label56.Size = New Size(80, 19)
-        Label56.TabIndex = 32
-        Label56.Text = "回應網址 : "
-        ' 
-        ' Label57
-        ' 
-        Label57.AutoSize = True
-        Label57.Location = New Point(6, 9)
-        Label57.Name = "Label57"
-        Label57.Size = New Size(80, 19)
-        Label57.TabIndex = 31
-        Label57.Text = "人物名稱 : "
-        ' 
-        ' ListView1
-        ' 
-        ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader20, ColumnHeader21})
-        ListView1.FullRowSelect = True
-        ListView1.Location = New Point(6, 106)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(680, 200)
-        ListView1.TabIndex = 30
-        ListView1.UseCompatibleStateImageBehavior = False
-        ListView1.View = View.Details
-        ' 
-        ' ColumnHeader20
-        ' 
-        ColumnHeader20.Text = "人物名稱"
-        ColumnHeader20.Width = 200
-        ' 
-        ' ColumnHeader21
-        ' 
-        ColumnHeader21.Text = "回應網址"
-        ColumnHeader21.Width = 470
-        ' 
-        ' Button9
-        ' 
-        Button9.Location = New Point(244, 312)
-        Button9.Name = "Button9"
-        Button9.Size = New Size(94, 29)
-        Button9.TabIndex = 45
-        Button9.Text = "讀取"
-        Button9.UseVisualStyleBackColor = True
-        ' 
-        ' ComboBox1
-        ' 
-        ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"聊天室", "Marketplace", "陌生訊息"})
-        ComboBox1.Location = New Point(344, 312)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(111, 27)
-        ComboBox1.TabIndex = 46
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -3508,6 +3508,8 @@ Partial Class Form1
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         FBNotifications_TabPage.ResumeLayout(False)
         FBNotifications_TabPage.PerformLayout()
+        FBMessenger_TabPage.ResumeLayout(False)
+        FBMessenger_TabPage.PerformLayout()
         Action_TabControl.ResumeLayout(False)
         FBPost_TabPage.ResumeLayout(False)
         FBPost_TabPage.PerformLayout()
@@ -3551,8 +3553,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        FBMessenger_TabPage.ResumeLayout(False)
-        FBMessenger_TabPage.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -3860,23 +3860,23 @@ Partial Class Form1
     Friend WithEvents DeselectAllFBActivityLogs_ListViewItems_Button As Button
     Friend WithEvents DeselecteAllFBNotificationsData_ListviewItems_Button As Button
     Friend WithEvents FBMessenger_TabPage As TabPage
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Button9 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents FBMessengerMessageSource_ComboBox As ComboBox
+    Friend WithEvents FBMessengerReadMessage_Button As Button
+    Friend WithEvents DeselecteAllFBMessenger_ListviewItems_Button As Button
+    Friend WithEvents FBMessengerReadMessage_CheckBox As CheckBox
+    Friend WithEvents FBMessengerUnreadMessage_CheckBox As CheckBox
+    Friend WithEvents DeleteSelectedFBMessengerListviewItems_Button As Button
+    Friend WithEvents SaveFBMessengerListview_Button As Button
+    Friend WithEvents FBMessengerNavigateToMessenger_Button As Button
+    Friend WithEvents FBMessengerEditSelectedListviewItem_Button As Button
+    Friend WithEvents FBMessengerAddItemToListview_Button As Button
+    Friend WithEvents FBMessengerDisplayCurrUrl_Button As Button
+    Friend WithEvents FBMessengerNavigateToSelectedURL_Button As Button
+    Friend WithEvents FBMessengerUrl_TextBox As TextBox
+    Friend WithEvents FBMessengerName_TextBox As TextBox
     Friend WithEvents Label56 As Label
     Friend WithEvents Label57 As Label
-    Friend WithEvents ListView1 As ListView
+    Friend WithEvents FBMessengerData_Listview As ListView
     Friend WithEvents ColumnHeader20 As ColumnHeader
     Friend WithEvents ColumnHeader21 As ColumnHeader
 
