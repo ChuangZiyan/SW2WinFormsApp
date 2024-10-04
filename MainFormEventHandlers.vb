@@ -1388,6 +1388,20 @@ Public Class MainFormEventHandlers
         End Try
     End Sub
 
+    Public Sub FBMessengerReadMessage_Button_Click(sender As Object, e As EventArgs)
+        Try
+            If Webview2Controller.edgeDriver IsNot Nothing Then
+                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.messenger.com/")
+
+            Else
+                MsgBox("未偵測到EdgeDriver")
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
 
 
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)

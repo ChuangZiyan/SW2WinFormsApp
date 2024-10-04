@@ -728,6 +728,37 @@ Module Webview2Controller
         End Try
     End Function
 
+    Public Async Function ReadFBMessenger(messageSource As String, read As Boolean, unread As Boolean) As Task(Of Boolean)
+        'messageSource : 聊天室 | Marketplace | 陌生訊息
+        Try
+            Return Await Task.Run(Async Function() As Task(Of Boolean)
+                                      Try
+                                          Dim msgsrcCss As String = Nothing
+                                          Select Case messageSource
+                                              Case "聊天室"
+                                                  msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > a"
+                                              Case "Marketplace"
+                                                  msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > a"
+                                              Case "陌生訊息"
+                                                  msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
+                                          End Select
+
+                                          ClickByCssSelectorWaitUntil(msgsrcCss, 5)
+                                          Await Delay_msec(2000)
+
+
+                                          Return True
+                                      Catch ex As Exception
+                                          Debug.WriteLine(ex)
+                                          Return False
+                                      End Try
+                                  End Function)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
 
 
     Public Class MyCookie

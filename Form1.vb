@@ -603,14 +603,12 @@ Public Class Form1
         AddHandler FBMessengerEditSelectedListviewItem_Button.Click, AddressOf mainFormEventHandlers.FBMessengerEditSelectedListviewItem_Button_Click
         AddHandler DeselecteAllFBMessenger_ListviewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBMessengerData_ListviewItems_Button_Click
         AddHandler FBMessengerNavigateToMessenger_Button.Click, AddressOf mainFormEventHandlers.FBMessengerNavigateToMessenger_Button_Click
-
-
+        AddHandler FBMessengerReadMessage_Button.Click, AddressOf mainFormEventHandlers.FBMessengerReadMessage_Button_Click
 
         AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
         AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
 
     End Sub
-
 
 
     Private Sub RegisterFBPostEventHanders()
@@ -717,6 +715,8 @@ Public Class Form1
         AddHandler FBResponseTextFileSelector_ListBox.DoubleClick, AddressOf FBResponseEventHandlers.FBResponseTextFileSelector_ListBox_DoubleClick
     End Sub
 
+
+
     Private emojiPickerForm As EmojiPickerForm
 
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -745,6 +745,7 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
+
 
 
 End Class
