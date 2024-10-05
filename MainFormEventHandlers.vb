@@ -1394,11 +1394,26 @@ Public Class MainFormEventHandlers
                 Dim msgSource As String = Form1.FBMessengerMessageSource_ComboBox.Text
                 Dim read As Boolean = Form1.FBMessengerReadMessage_CheckBox.Checked
                 Dim unread As Boolean = Form1.FBMessengerUnreadMessage_CheckBox.Checked
-                If msgSource <> "" Then
-                    Await Webview2Controller.ReadFBMessenger(msgSource, read, unread)
+                Dim items As New List(Of ListViewItem)
+
+                If msgSource = "" Then ' 全抓
+                    Dim myMsgSrc As New List(Of String) From {"聊天室", "Marketplace", "陌生訊息", "垃圾訊息"}
+                    For Each mySrc In myMsgSrc
+                        items.AddRange(Await Webview2Controller.ReadFBMessenger(mySrc, read, unread))
+                    Next
+
+
                 Else
-                    MsgBox("未選擇聊天室來源")
+                    items = Await Webview2Controller.ReadFBMessenger(msgSource, read, unread)
+                    If msgSource = "陌生訊息" Then
+                        items.AddRange(Await Webview2Controller.ReadFBMessenger("垃圾訊息", read, unread))
+                    End If
+
                 End If
+                Form1.FBMessengerData_Listview.Items.Clear()
+                For Each item In items
+                    Form1.FBMessengerData_Listview.Items.Add(item)
+                Next
 
             Else
                 MsgBox("未偵測到EdgeDriver")
