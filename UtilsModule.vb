@@ -98,6 +98,9 @@ Module UtilsModule
     End Function
 
 
-
+    Public Function RemoveHtmlTags(ByVal input As String) As String
+        ' 使用正則表達式來去除 HTML 標籤
+        Return Regex.Replace(input, "<.*?>", String.Empty)
+    End Function
 
 End Module

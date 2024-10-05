@@ -790,6 +790,7 @@ Module Webview2Controller
                                                    Dim name = "null"
                                                    Try
                                                        name = elm.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > span > span")).GetAttribute("innerHTML")
+                                                       name = UtilsModule.RemoveHtmlTags(name)
                                                    Catch ex As Exception
                                                        'Debug.WriteLine(ex)
                                                        Continue For

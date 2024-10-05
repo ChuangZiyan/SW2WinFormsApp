@@ -1271,7 +1271,7 @@ Partial Class Form1
         ' 
         FBMessengerMessageSource_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         FBMessengerMessageSource_ComboBox.FormattingEnabled = True
-        FBMessengerMessageSource_ComboBox.Items.AddRange(New Object() {"聊天室", "Marketplace", "陌生訊息"})
+        FBMessengerMessageSource_ComboBox.Items.AddRange(New Object() {"", "聊天室", "Marketplace", "陌生訊息"})
         FBMessengerMessageSource_ComboBox.Location = New Point(344, 312)
         FBMessengerMessageSource_ComboBox.Name = "FBMessengerMessageSource_ComboBox"
         FBMessengerMessageSource_ComboBox.Size = New Size(145, 27)
