@@ -1388,10 +1388,17 @@ Public Class MainFormEventHandlers
         End Try
     End Sub
 
-    Public Sub FBMessengerReadMessage_Button_Click(sender As Object, e As EventArgs)
+    Public Async Sub FBMessengerReadMessage_Button_Click(sender As Object, e As EventArgs)
         Try
             If Webview2Controller.edgeDriver IsNot Nothing Then
-                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.messenger.com/")
+                Dim msgSource As String = Form1.FBMessengerMessageSource_ComboBox.Text
+                Dim read As Boolean = Form1.FBMessengerReadMessage_CheckBox.Checked
+                Dim unread As Boolean = Form1.FBMessengerUnreadMessage_CheckBox.Checked
+                If msgSource <> "" Then
+                    Await Webview2Controller.ReadFBMessenger(msgSource, read, unread)
+                Else
+                    MsgBox("未選擇聊天室來源")
+                End If
 
             Else
                 MsgBox("未偵測到EdgeDriver")

@@ -731,28 +731,109 @@ Module Webview2Controller
     Public Async Function ReadFBMessenger(messageSource As String, read As Boolean, unread As Boolean) As Task(Of Boolean)
         'messageSource : 聊天室 | Marketplace | 陌生訊息
         Try
-            Return Await Task.Run(Async Function() As Task(Of Boolean)
-                                      Try
-                                          Dim msgsrcCss As String = Nothing
-                                          Select Case messageSource
-                                              Case "聊天室"
-                                                  msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > a"
-                                              Case "Marketplace"
-                                                  msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > a"
-                                              Case "陌生訊息"
-                                                  msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
-                                          End Select
+            Dim items = Await Task.Run(Async Function()
+                                           Dim itemList As New List(Of ListViewItem)()
+                                           Try
 
-                                          ClickByCssSelectorWaitUntil(msgsrcCss, 5)
-                                          Await Delay_msec(2000)
+                                               Dim msgsrcCss As String = Nothing
+                                               Dim messengerCssSelector = ".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x78zum5"
+                                               Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                               Select Case messageSource
+                                                   Case "聊天室"
+                                                       msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > a"
+                                                       messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > a"
+
+                                                   Case "Marketplace"
+                                                       msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > a"
+                                                       scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
+                                                       'messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div > div:nth-child(2) > div > div"
+                                                   Case "陌生訊息"
+                                                       msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
+                                                       'messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div > div:nth-child(2) > div > div"
+                                               End Select
+
+                                               ClickByCssSelectorWaitUntil(msgsrcCss, 5)
 
 
-                                          Return True
-                                      Catch ex As Exception
-                                          Debug.WriteLine(ex)
-                                          Return False
-                                      End Try
-                                  End Function)
+                                               Await Delay_msec(2000)
+
+
+
+                                               Dim scrolldivElement As IWebElement = edgeDriver.FindElement(By.CssSelector(scrollDivCss))
+                                               Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+
+                                               Dim lastHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
+
+                                               Dim scrollCounter = 0
+                                               While True
+
+                                                   jsExecutor.ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", scrolldivElement)
+
+                                                   Await Delay_msec(2000)
+
+                                                   Dim elms = edgeDriver.FindElements(By.CssSelector(messengerCssSelector))
+
+                                                   For Each elm As IWebElement In elms
+
+
+                                                       Dim url = elm.GetAttribute("href")
+                                                       Dim name = elm.FindElement(By.CssSelector("div > div > div > div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > span > span")).GetAttribute("innerHTML")
+                                                       Dim unread_dot As Boolean = False
+                                                       Try
+                                                           elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
+                                                           unread_dot = True
+                                                       Catch ex As NoSuchElementException
+
+                                                       End Try
+
+                                                       Dim item As New ListViewItem(name)
+                                                       item.SubItems.Add(url)
+
+                                                       ' 判斷是否已經被加進去了
+                                                       Dim exists As Boolean = itemList.Any(Function(itm) itm.SubItems(1).Text = url)
+                                                       If exists Then
+
+                                                           Debug.WriteLine("continue")
+                                                           Continue For
+                                                       End If
+
+                                                       If unread And unread_dot Then ' 未讀
+                                                           itemList.Add(item)
+                                                       ElseIf read And Not unread_dot Then ' 已讀
+                                                           itemList.Add(item)
+                                                       End If
+
+                                                   Next
+
+                                                   ' test
+                                                   scrollCounter += 1
+
+                                                   If scrollCounter > 3 Then
+                                                       Exit While
+                                                   End If
+
+
+                                                   Dim newHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
+                                                   If newHeight = lastHeight Then
+                                                       Exit While
+                                                   End If
+
+                                                   lastHeight = newHeight
+                                               End While
+
+                                           Catch ex As Exception
+                                               Debug.WriteLine(ex)
+                                           End Try
+                                           Return itemList
+                                       End Function)
+
+            Form1.FBMessengerData_Listview.Items.Clear()
+
+            For Each item In items
+                Form1.FBMessengerData_Listview.Items.Add(item)
+            Next
+
+            Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
             Return False
