@@ -58,7 +58,7 @@ Partial Class Form1
         RequestFriend_Button = New Button()
         GetCurrentUrl_Button = New Button()
         FBUrlData_TabControl = New TabControl()
-        FBGroups_TabPage = New TabPage()
+        FBGroupsUrlData_TabPage = New TabPage()
         DeselecteAllFBGroups_ListViewItems_Button = New Button()
         GetJoinedGroupList_Button = New Button()
         DeleteSelectedGroup_Button = New Button()
@@ -75,7 +75,7 @@ Partial Class Form1
         FBGroups_ListView = New ListView()
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
-        FBActivityLogs_TabPage = New TabPage()
+        FBActivityLogsUrlData_TabPage = New TabPage()
         DeselectAllFBActivityLogs_ListViewItems_Button = New Button()
         NavigateToActivityLogsPage_Button = New Button()
         Label46 = New Label()
@@ -94,7 +94,7 @@ Partial Class Form1
         FBActivityLogs_ListView = New ListView()
         ColumnHeader16 = New ColumnHeader()
         ColumnHeader17 = New ColumnHeader()
-        FBNotifications_TabPage = New TabPage()
+        FBNotificationsUrlData_TabPage = New TabPage()
         DeselecteAllFBNotificationsData_ListviewItems_Button = New Button()
         ReadFBNotifications_CheckBox = New CheckBox()
         UnreadFBNotifications_CheckBox = New CheckBox()
@@ -112,7 +112,7 @@ Partial Class Form1
         FBNotificationsData_Listview = New ListView()
         ColumnHeader18 = New ColumnHeader()
         ColumnHeader19 = New ColumnHeader()
-        FBMessenger_TabPage = New TabPage()
+        FBMessengerUrlData_TabPage = New TabPage()
         FBMessengerMessageSource_ComboBox = New ComboBox()
         FBMessengerReadMessage_Button = New Button()
         DeselecteAllFBMessenger_ListviewItems_Button = New Button()
@@ -147,7 +147,7 @@ Partial Class Form1
         ColumnHeader10 = New ColumnHeader()
         ColumnHeader12 = New ColumnHeader()
         Action_TabControl = New TabControl()
-        FBPost_TabPage = New TabPage()
+        FBPostAssets_TabPage = New TabPage()
         Label23 = New Label()
         Label22 = New Label()
         Label21 = New Label()
@@ -168,7 +168,7 @@ Partial Class Form1
         MediaPreview_PictureBox = New PictureBox()
         PreviewTextFile_RichTextBox = New RichTextBox()
         CreateNewAssetFolder_Button = New Button()
-        FBMarketplace_TabPage = New TabPage()
+        FBMarketplaceAssets_TabPage = New TabPage()
         FBMarketplaceShareGroupsByRandom_RadioButton = New RadioButton()
         FBMarketplaceShareGroupsBySequence_RadioButton = New RadioButton()
         RevealFBMarketplaceMediaFoldesrInFileExplorer_Button = New Button()
@@ -206,7 +206,7 @@ Partial Class Form1
         NewMarketplaceAssetFolderName_TextBox = New TextBox()
         CreateNewMarketplaceAssetFolder_Button = New Button()
         FBMarkplaceProducts_ListBox = New ListBox()
-        FBPostShareURL_TabPage = New TabPage()
+        FBPostShareURLAssets_TabPage = New TabPage()
         FBPostShareURLGetCurrentURL_Button = New Button()
         FBPostShareURLNavigateToURL_Button = New Button()
         FBPostShareURLDeleteSelectedTextFile_Button = New Button()
@@ -227,7 +227,7 @@ Partial Class Form1
         FBPostShareURLDeleteSelectedAssetFolder_Button = New Button()
         FBPostShareURLAssetFolderName_TextBox = New TextBox()
         FBPostShareURLCreateNewAssetFolder_Button = New Button()
-        FBComment_TabPage = New TabPage()
+        FBCommentAssets_TabPage = New TabPage()
         Label41 = New Label()
         Label42 = New Label()
         Label43 = New Label()
@@ -248,7 +248,7 @@ Partial Class Form1
         FBCommentMediaPreviewer_PictureBox = New PictureBox()
         FBCommentTextFilePreviewer_RichTextBox = New RichTextBox()
         FBCommentCreateNewAssetFolder_Button = New Button()
-        FBCustomizeComment_TabPage = New TabPage()
+        FBCustomizeCommentAssets_TabPage = New TabPage()
         Label47 = New Label()
         Label48 = New Label()
         Label49 = New Label()
@@ -269,7 +269,7 @@ Partial Class Form1
         FBCustomizeCommentMediaPreviewer_PictureBox = New PictureBox()
         FBCustomizeCommentTextFilePreviewer_RichTextBox = New RichTextBox()
         FBCustomizeCommentCreateNewAssetFolder_Button = New Button()
-        FBRespondNotifications_TabPage = New TabPage()
+        FBRespondNotificationsAssets_TabPage = New TabPage()
         Label52 = New Label()
         Label53 = New Label()
         Label54 = New Label()
@@ -290,7 +290,27 @@ Partial Class Form1
         FBResponseMediaPreviewer_PictureBox = New PictureBox()
         FBResponseTextFilePreviewer_RichTextBox = New RichTextBox()
         FBResponseCreateNewAssetFolder_Button = New Button()
-        TabPage3 = New TabPage()
+        FBMessengerAssets_TabPage = New TabPage()
+        Label58 = New Label()
+        Label59 = New Label()
+        Label60 = New Label()
+        FBMessengerUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBMessengerSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBMessengerDeselectAllAssetFolderListboxItems_Button = New Button()
+        FBMessengerDeleteSelectedTextFile_Button = New Button()
+        FBMessengerNewTextFileName_TextBox = New TextBox()
+        FBMessengerMediaSelector_ListBox = New ListBox()
+        FBMessengerTextFileSelector_ListBox = New ListBox()
+        FBMessengerAssetFolder_ListBox = New ListBox()
+        FBMessengerSaveTextFile_Button = New Button()
+        FBMessengerCreateNewTextFile_Button = New Button()
+        FBMessengerDeleteSelectedMedia_Button = New Button()
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button = New Button()
+        FBMessengerDeleteSelectedAssetFolder_Button = New Button()
+        FBMessengerAssetFolderName_TextBox = New TextBox()
+        FBMessengerMediaPreviewer_PictureBox = New PictureBox()
+        FBMessengerTextFilePreviewer_RichTextBox = New RichTextBox()
+        FBMessengerCreateNewAssetFolder_Button = New Button()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
         Label55 = New Label()
@@ -348,37 +368,41 @@ Partial Class Form1
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
         FBUrlData_TabControl.SuspendLayout()
-        FBGroups_TabPage.SuspendLayout()
-        FBActivityLogs_TabPage.SuspendLayout()
+        FBGroupsUrlData_TabPage.SuspendLayout()
+        FBActivityLogsUrlData_TabPage.SuspendLayout()
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        FBNotifications_TabPage.SuspendLayout()
-        FBMessenger_TabPage.SuspendLayout()
+        FBNotificationsUrlData_TabPage.SuspendLayout()
+        FBMessengerUrlData_TabPage.SuspendLayout()
         Action_TabControl.SuspendLayout()
-        FBPost_TabPage.SuspendLayout()
+        FBPostAssets_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
-        FBMarketplace_TabPage.SuspendLayout()
+        FBMarketplaceAssets_TabPage.SuspendLayout()
         CType(FBMarketplaceShareGroupsCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        FBPostShareURL_TabPage.SuspendLayout()
+        FBPostShareURLAssets_TabPage.SuspendLayout()
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        FBComment_TabPage.SuspendLayout()
+        FBCommentAssets_TabPage.SuspendLayout()
         CType(FBCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
-        FBCustomizeComment_TabPage.SuspendLayout()
+        FBCustomizeCommentAssets_TabPage.SuspendLayout()
         CType(FBCustomizeCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBCustomizeCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
-        FBRespondNotifications_TabPage.SuspendLayout()
+        FBRespondNotificationsAssets_TabPage.SuspendLayout()
         CType(FBResponseUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBResponseSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBResponseMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        FBMessengerAssets_TabPage.SuspendLayout()
+        CType(FBMessengerUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMessengerSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBMessengerMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -724,39 +748,39 @@ Partial Class Form1
         ' 
         ' FBUrlData_TabControl
         ' 
-        FBUrlData_TabControl.Controls.Add(FBGroups_TabPage)
-        FBUrlData_TabControl.Controls.Add(FBActivityLogs_TabPage)
-        FBUrlData_TabControl.Controls.Add(FBNotifications_TabPage)
-        FBUrlData_TabControl.Controls.Add(FBMessenger_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBGroupsUrlData_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBActivityLogsUrlData_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBNotificationsUrlData_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBMessengerUrlData_TabPage)
         FBUrlData_TabControl.Location = New Point(440, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
         FBUrlData_TabControl.Size = New Size(700, 383)
         FBUrlData_TabControl.TabIndex = 23
         ' 
-        ' FBGroups_TabPage
+        ' FBGroupsUrlData_TabPage
         ' 
-        FBGroups_TabPage.Controls.Add(DeselecteAllFBGroups_ListViewItems_Button)
-        FBGroups_TabPage.Controls.Add(GetJoinedGroupList_Button)
-        FBGroups_TabPage.Controls.Add(DeleteSelectedGroup_Button)
-        FBGroups_TabPage.Controls.Add(SaveListviewGroupList_Button)
-        FBGroups_TabPage.Controls.Add(GetFBGroupList_Button)
-        FBGroups_TabPage.Controls.Add(EditSelectedGroupListviewItem_Button)
-        FBGroups_TabPage.Controls.Add(AddGroupDataToGroupListview_Button)
-        FBGroups_TabPage.Controls.Add(DisplayCurrUrlToGroupUrl_Button)
-        FBGroups_TabPage.Controls.Add(NavigateToSelectedGroup_Button)
-        FBGroups_TabPage.Controls.Add(FBGroupUrl_TextBox)
-        FBGroups_TabPage.Controls.Add(FBGroupName_TextBox)
-        FBGroups_TabPage.Controls.Add(Label10)
-        FBGroups_TabPage.Controls.Add(Label9)
-        FBGroups_TabPage.Controls.Add(FBGroups_ListView)
-        FBGroups_TabPage.Location = New Point(4, 28)
-        FBGroups_TabPage.Name = "FBGroups_TabPage"
-        FBGroups_TabPage.Padding = New Padding(3)
-        FBGroups_TabPage.Size = New Size(692, 351)
-        FBGroups_TabPage.TabIndex = 0
-        FBGroups_TabPage.Text = "社團"
-        FBGroups_TabPage.UseVisualStyleBackColor = True
+        FBGroupsUrlData_TabPage.Controls.Add(DeselecteAllFBGroups_ListViewItems_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(GetJoinedGroupList_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(DeleteSelectedGroup_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(SaveListviewGroupList_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(GetFBGroupList_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(EditSelectedGroupListviewItem_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(AddGroupDataToGroupListview_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(DisplayCurrUrlToGroupUrl_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(NavigateToSelectedGroup_Button)
+        FBGroupsUrlData_TabPage.Controls.Add(FBGroupUrl_TextBox)
+        FBGroupsUrlData_TabPage.Controls.Add(FBGroupName_TextBox)
+        FBGroupsUrlData_TabPage.Controls.Add(Label10)
+        FBGroupsUrlData_TabPage.Controls.Add(Label9)
+        FBGroupsUrlData_TabPage.Controls.Add(FBGroups_ListView)
+        FBGroupsUrlData_TabPage.Location = New Point(4, 28)
+        FBGroupsUrlData_TabPage.Name = "FBGroupsUrlData_TabPage"
+        FBGroupsUrlData_TabPage.Padding = New Padding(3)
+        FBGroupsUrlData_TabPage.Size = New Size(692, 351)
+        FBGroupsUrlData_TabPage.TabIndex = 0
+        FBGroupsUrlData_TabPage.Text = "社團"
+        FBGroupsUrlData_TabPage.UseVisualStyleBackColor = True
         ' 
         ' DeselecteAllFBGroups_ListViewItems_Button
         ' 
@@ -892,31 +916,31 @@ Partial Class Form1
         ColumnHeader2.Text = "社團網址"
         ColumnHeader2.Width = 470
         ' 
-        ' FBActivityLogs_TabPage
+        ' FBActivityLogsUrlData_TabPage
         ' 
-        FBActivityLogs_TabPage.Controls.Add(DeselectAllFBActivityLogs_ListViewItems_Button)
-        FBActivityLogs_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
-        FBActivityLogs_TabPage.Controls.Add(Label46)
-        FBActivityLogs_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
-        FBActivityLogs_TabPage.Controls.Add(ReadActivityLogs_Button)
-        FBActivityLogs_TabPage.Controls.Add(DeleteSelectedFBActivityLogListviewItems_Button)
-        FBActivityLogs_TabPage.Controls.Add(SaveFBActivityLogListview_Button)
-        FBActivityLogs_TabPage.Controls.Add(EditSelectedFBActivityLogListviewItem_Button)
-        FBActivityLogs_TabPage.Controls.Add(AddItemToFBActivityLogListview_Button)
-        FBActivityLogs_TabPage.Controls.Add(DisplayCurrUrlToFBActivityLogUrl_Button)
-        FBActivityLogs_TabPage.Controls.Add(NavigateToFBActivityLogSelectedGroupURL_Button)
-        FBActivityLogs_TabPage.Controls.Add(FBActivityLogsGroupURL_TextBox)
-        FBActivityLogs_TabPage.Controls.Add(FBActivityLogsGroupName_TextBox)
-        FBActivityLogs_TabPage.Controls.Add(Label44)
-        FBActivityLogs_TabPage.Controls.Add(Label45)
-        FBActivityLogs_TabPage.Controls.Add(FBActivityLogs_ListView)
-        FBActivityLogs_TabPage.Location = New Point(4, 28)
-        FBActivityLogs_TabPage.Name = "FBActivityLogs_TabPage"
-        FBActivityLogs_TabPage.Padding = New Padding(3)
-        FBActivityLogs_TabPage.Size = New Size(692, 351)
-        FBActivityLogs_TabPage.TabIndex = 1
-        FBActivityLogs_TabPage.Text = "留言"
-        FBActivityLogs_TabPage.UseVisualStyleBackColor = True
+        FBActivityLogsUrlData_TabPage.Controls.Add(DeselectAllFBActivityLogs_ListViewItems_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(Label46)
+        FBActivityLogsUrlData_TabPage.Controls.Add(NumberOfActivityLogsPageDropDown_NumericUpDown)
+        FBActivityLogsUrlData_TabPage.Controls.Add(ReadActivityLogs_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(DeleteSelectedFBActivityLogListviewItems_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(SaveFBActivityLogListview_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(EditSelectedFBActivityLogListviewItem_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(AddItemToFBActivityLogListview_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(DisplayCurrUrlToFBActivityLogUrl_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(NavigateToFBActivityLogSelectedGroupURL_Button)
+        FBActivityLogsUrlData_TabPage.Controls.Add(FBActivityLogsGroupURL_TextBox)
+        FBActivityLogsUrlData_TabPage.Controls.Add(FBActivityLogsGroupName_TextBox)
+        FBActivityLogsUrlData_TabPage.Controls.Add(Label44)
+        FBActivityLogsUrlData_TabPage.Controls.Add(Label45)
+        FBActivityLogsUrlData_TabPage.Controls.Add(FBActivityLogs_ListView)
+        FBActivityLogsUrlData_TabPage.Location = New Point(4, 28)
+        FBActivityLogsUrlData_TabPage.Name = "FBActivityLogsUrlData_TabPage"
+        FBActivityLogsUrlData_TabPage.Padding = New Padding(3)
+        FBActivityLogsUrlData_TabPage.Size = New Size(692, 351)
+        FBActivityLogsUrlData_TabPage.TabIndex = 1
+        FBActivityLogsUrlData_TabPage.Text = "留言"
+        FBActivityLogsUrlData_TabPage.UseVisualStyleBackColor = True
         ' 
         ' DeselectAllFBActivityLogs_ListViewItems_Button
         ' 
@@ -1070,29 +1094,29 @@ Partial Class Form1
         ColumnHeader17.Text = "貼文網址"
         ColumnHeader17.Width = 470
         ' 
-        ' FBNotifications_TabPage
+        ' FBNotificationsUrlData_TabPage
         ' 
-        FBNotifications_TabPage.Controls.Add(DeselecteAllFBNotificationsData_ListviewItems_Button)
-        FBNotifications_TabPage.Controls.Add(ReadFBNotifications_CheckBox)
-        FBNotifications_TabPage.Controls.Add(UnreadFBNotifications_CheckBox)
-        FBNotifications_TabPage.Controls.Add(DeleteSelectedFBNotificationsListviewItems_Button)
-        FBNotifications_TabPage.Controls.Add(SaveFBNotificationsListview_Button)
-        FBNotifications_TabPage.Controls.Add(ReadFBNotifications_Button)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsEditSelectedListviewItem_Button)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsAddItemToListview_Button)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsDisplayCurrUrl_Button)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsNavigateToSelectedURL_Button)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsUrl_TextBox)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsName_TextBox)
-        FBNotifications_TabPage.Controls.Add(Label50)
-        FBNotifications_TabPage.Controls.Add(Label51)
-        FBNotifications_TabPage.Controls.Add(FBNotificationsData_Listview)
-        FBNotifications_TabPage.Location = New Point(4, 28)
-        FBNotifications_TabPage.Name = "FBNotifications_TabPage"
-        FBNotifications_TabPage.Size = New Size(692, 351)
-        FBNotifications_TabPage.TabIndex = 2
-        FBNotifications_TabPage.Text = "通知"
-        FBNotifications_TabPage.UseVisualStyleBackColor = True
+        FBNotificationsUrlData_TabPage.Controls.Add(DeselecteAllFBNotificationsData_ListviewItems_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(ReadFBNotifications_CheckBox)
+        FBNotificationsUrlData_TabPage.Controls.Add(UnreadFBNotifications_CheckBox)
+        FBNotificationsUrlData_TabPage.Controls.Add(DeleteSelectedFBNotificationsListviewItems_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(SaveFBNotificationsListview_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(ReadFBNotifications_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsEditSelectedListviewItem_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsAddItemToListview_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsDisplayCurrUrl_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsNavigateToSelectedURL_Button)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsUrl_TextBox)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsName_TextBox)
+        FBNotificationsUrlData_TabPage.Controls.Add(Label50)
+        FBNotificationsUrlData_TabPage.Controls.Add(Label51)
+        FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsData_Listview)
+        FBNotificationsUrlData_TabPage.Location = New Point(4, 28)
+        FBNotificationsUrlData_TabPage.Name = "FBNotificationsUrlData_TabPage"
+        FBNotificationsUrlData_TabPage.Size = New Size(692, 351)
+        FBNotificationsUrlData_TabPage.TabIndex = 2
+        FBNotificationsUrlData_TabPage.Text = "通知"
+        FBNotificationsUrlData_TabPage.UseVisualStyleBackColor = True
         ' 
         ' DeselecteAllFBNotificationsData_ListviewItems_Button
         ' 
@@ -1241,31 +1265,31 @@ Partial Class Form1
         ColumnHeader19.Text = "回應網址"
         ColumnHeader19.Width = 470
         ' 
-        ' FBMessenger_TabPage
+        ' FBMessengerUrlData_TabPage
         ' 
-        FBMessenger_TabPage.Controls.Add(FBMessengerMessageSource_ComboBox)
-        FBMessenger_TabPage.Controls.Add(FBMessengerReadMessage_Button)
-        FBMessenger_TabPage.Controls.Add(DeselecteAllFBMessenger_ListviewItems_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerReadMessage_CheckBox)
-        FBMessenger_TabPage.Controls.Add(FBMessengerUnreadMessage_CheckBox)
-        FBMessenger_TabPage.Controls.Add(DeleteSelectedFBMessengerListviewItems_Button)
-        FBMessenger_TabPage.Controls.Add(SaveFBMessengerListview_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerNavigateToMessenger_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerEditSelectedListviewItem_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerAddItemToListview_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerDisplayCurrUrl_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerNavigateToSelectedURL_Button)
-        FBMessenger_TabPage.Controls.Add(FBMessengerUrl_TextBox)
-        FBMessenger_TabPage.Controls.Add(FBMessengerName_TextBox)
-        FBMessenger_TabPage.Controls.Add(Label56)
-        FBMessenger_TabPage.Controls.Add(Label57)
-        FBMessenger_TabPage.Controls.Add(FBMessengerData_Listview)
-        FBMessenger_TabPage.Location = New Point(4, 28)
-        FBMessenger_TabPage.Name = "FBMessenger_TabPage"
-        FBMessenger_TabPage.Size = New Size(692, 351)
-        FBMessenger_TabPage.TabIndex = 3
-        FBMessenger_TabPage.Text = "聊天室"
-        FBMessenger_TabPage.UseVisualStyleBackColor = True
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerMessageSource_ComboBox)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerReadMessage_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(DeselecteAllFBMessenger_ListviewItems_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerReadMessage_CheckBox)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerUnreadMessage_CheckBox)
+        FBMessengerUrlData_TabPage.Controls.Add(DeleteSelectedFBMessengerListviewItems_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(SaveFBMessengerListview_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerNavigateToMessenger_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerEditSelectedListviewItem_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerAddItemToListview_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerDisplayCurrUrl_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerNavigateToSelectedURL_Button)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerUrl_TextBox)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerName_TextBox)
+        FBMessengerUrlData_TabPage.Controls.Add(Label56)
+        FBMessengerUrlData_TabPage.Controls.Add(Label57)
+        FBMessengerUrlData_TabPage.Controls.Add(FBMessengerData_Listview)
+        FBMessengerUrlData_TabPage.Location = New Point(4, 28)
+        FBMessengerUrlData_TabPage.Name = "FBMessengerUrlData_TabPage"
+        FBMessengerUrlData_TabPage.Size = New Size(692, 351)
+        FBMessengerUrlData_TabPage.TabIndex = 3
+        FBMessengerUrlData_TabPage.Text = "聊天室"
+        FBMessengerUrlData_TabPage.UseVisualStyleBackColor = True
         ' 
         ' FBMessengerMessageSource_ComboBox
         ' 
@@ -1510,48 +1534,48 @@ Partial Class Form1
         ' 
         ' Action_TabControl
         ' 
-        Action_TabControl.Controls.Add(FBPost_TabPage)
-        Action_TabControl.Controls.Add(FBMarketplace_TabPage)
-        Action_TabControl.Controls.Add(FBPostShareURL_TabPage)
-        Action_TabControl.Controls.Add(FBComment_TabPage)
-        Action_TabControl.Controls.Add(FBCustomizeComment_TabPage)
-        Action_TabControl.Controls.Add(FBRespondNotifications_TabPage)
-        Action_TabControl.Controls.Add(TabPage3)
+        Action_TabControl.Controls.Add(FBPostAssets_TabPage)
+        Action_TabControl.Controls.Add(FBMarketplaceAssets_TabPage)
+        Action_TabControl.Controls.Add(FBPostShareURLAssets_TabPage)
+        Action_TabControl.Controls.Add(FBCommentAssets_TabPage)
+        Action_TabControl.Controls.Add(FBCustomizeCommentAssets_TabPage)
+        Action_TabControl.Controls.Add(FBRespondNotificationsAssets_TabPage)
+        Action_TabControl.Controls.Add(FBMessengerAssets_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
         Action_TabControl.Size = New Size(672, 499)
         Action_TabControl.TabIndex = 25
         ' 
-        ' FBPost_TabPage
+        ' FBPostAssets_TabPage
         ' 
-        FBPost_TabPage.Controls.Add(Label23)
-        FBPost_TabPage.Controls.Add(Label22)
-        FBPost_TabPage.Controls.Add(Label21)
-        FBPost_TabPage.Controls.Add(FBWritePostUploadWaitSeconds_NumericUpDown)
-        FBPost_TabPage.Controls.Add(FBWritePostSubmitWaitSeconds_NumericUpDown)
-        FBPost_TabPage.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
-        FBPost_TabPage.Controls.Add(DeleteSelectedTextFiles_Button)
-        FBPost_TabPage.Controls.Add(NewTextFileName_TextBox)
-        FBPost_TabPage.Controls.Add(MediaSelector_ListBox)
-        FBPost_TabPage.Controls.Add(TextFileSelector_ListBox)
-        FBPost_TabPage.Controls.Add(MyAssetsFolder_ListBox)
-        FBPost_TabPage.Controls.Add(SaveEditedTextFile_Button)
-        FBPost_TabPage.Controls.Add(CreateNewTextFile_Button)
-        FBPost_TabPage.Controls.Add(DeleteSelectedMedia_Button)
-        FBPost_TabPage.Controls.Add(RevealMediaFoldesrInFileExplorer_Button)
-        FBPost_TabPage.Controls.Add(DeleteSelectedAssetFolder_Button)
-        FBPost_TabPage.Controls.Add(NewAssetFolderName_TextBox)
-        FBPost_TabPage.Controls.Add(MediaPreview_PictureBox)
-        FBPost_TabPage.Controls.Add(PreviewTextFile_RichTextBox)
-        FBPost_TabPage.Controls.Add(CreateNewAssetFolder_Button)
-        FBPost_TabPage.Location = New Point(4, 28)
-        FBPost_TabPage.Name = "FBPost_TabPage"
-        FBPost_TabPage.Padding = New Padding(3)
-        FBPost_TabPage.Size = New Size(664, 467)
-        FBPost_TabPage.TabIndex = 0
-        FBPost_TabPage.Text = "發帖"
-        FBPost_TabPage.UseVisualStyleBackColor = True
+        FBPostAssets_TabPage.Controls.Add(Label23)
+        FBPostAssets_TabPage.Controls.Add(Label22)
+        FBPostAssets_TabPage.Controls.Add(Label21)
+        FBPostAssets_TabPage.Controls.Add(FBWritePostUploadWaitSeconds_NumericUpDown)
+        FBPostAssets_TabPage.Controls.Add(FBWritePostSubmitWaitSeconds_NumericUpDown)
+        FBPostAssets_TabPage.Controls.Add(DeselectAllMyAssetFolderListboxItems_Button)
+        FBPostAssets_TabPage.Controls.Add(DeleteSelectedTextFiles_Button)
+        FBPostAssets_TabPage.Controls.Add(NewTextFileName_TextBox)
+        FBPostAssets_TabPage.Controls.Add(MediaSelector_ListBox)
+        FBPostAssets_TabPage.Controls.Add(TextFileSelector_ListBox)
+        FBPostAssets_TabPage.Controls.Add(MyAssetsFolder_ListBox)
+        FBPostAssets_TabPage.Controls.Add(SaveEditedTextFile_Button)
+        FBPostAssets_TabPage.Controls.Add(CreateNewTextFile_Button)
+        FBPostAssets_TabPage.Controls.Add(DeleteSelectedMedia_Button)
+        FBPostAssets_TabPage.Controls.Add(RevealMediaFoldesrInFileExplorer_Button)
+        FBPostAssets_TabPage.Controls.Add(DeleteSelectedAssetFolder_Button)
+        FBPostAssets_TabPage.Controls.Add(NewAssetFolderName_TextBox)
+        FBPostAssets_TabPage.Controls.Add(MediaPreview_PictureBox)
+        FBPostAssets_TabPage.Controls.Add(PreviewTextFile_RichTextBox)
+        FBPostAssets_TabPage.Controls.Add(CreateNewAssetFolder_Button)
+        FBPostAssets_TabPage.Location = New Point(4, 28)
+        FBPostAssets_TabPage.Name = "FBPostAssets_TabPage"
+        FBPostAssets_TabPage.Padding = New Padding(3)
+        FBPostAssets_TabPage.Size = New Size(664, 467)
+        FBPostAssets_TabPage.TabIndex = 0
+        FBPostAssets_TabPage.Text = "發帖"
+        FBPostAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label23
         ' 
@@ -1730,51 +1754,51 @@ Partial Class Form1
         CreateNewAssetFolder_Button.Text = "建立"
         CreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBMarketplace_TabPage
+        ' FBMarketplaceAssets_TabPage
         ' 
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceShareGroupsByRandom_RadioButton)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceShareGroupsBySequence_RadioButton)
-        FBMarketplace_TabPage.Controls.Add(RevealFBMarketplaceMediaFoldesrInFileExplorer_Button)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceShareGroupsCount_NumericUpDown)
-        FBMarketplace_TabPage.Controls.Add(Label36)
-        FBMarketplace_TabPage.Controls.Add(Label34)
-        FBMarketplace_TabPage.Controls.Add(Label35)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceUploadWaitSeconds_NumericUpDown)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceSubmitWaitSeconds_NumericUpDown)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceOnMarketplace_CheckBox)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceHomeDelivery_CheckBox)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplacePickUp_CheckBox)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceMeetInPerson_CheckBox)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductTag_TextBox)
-        FBMarketplace_TabPage.Controls.Add(Label33)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceDeleteSelectedMedia_Button)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaPreviewer_PictureBox)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceMediaSelector_ListBox)
-        FBMarketplace_TabPage.Controls.Add(Label32)
-        FBMarketplace_TabPage.Controls.Add(Label31)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceSavePruductInfo_Button)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductDescription_RichTextBox)
-        FBMarketplace_TabPage.Controls.Add(Label30)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductLocation_TextBox)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductStatus_NumericUpDown)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductPrice_NumericUpDown)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceProductName_TextBox)
-        FBMarketplace_TabPage.Controls.Add(Label29)
-        FBMarketplace_TabPage.Controls.Add(Label28)
-        FBMarketplace_TabPage.Controls.Add(Label27)
-        FBMarketplace_TabPage.Controls.Add(Label26)
-        FBMarketplace_TabPage.Controls.Add(Label8)
-        FBMarketplace_TabPage.Controls.Add(FBmarketplaceDeselectAllProductFolderListboxItems_Button)
-        FBMarketplace_TabPage.Controls.Add(FBMarketplaceDeleteSelectedAssetFolder_Button)
-        FBMarketplace_TabPage.Controls.Add(NewMarketplaceAssetFolderName_TextBox)
-        FBMarketplace_TabPage.Controls.Add(CreateNewMarketplaceAssetFolder_Button)
-        FBMarketplace_TabPage.Controls.Add(FBMarkplaceProducts_ListBox)
-        FBMarketplace_TabPage.Location = New Point(4, 28)
-        FBMarketplace_TabPage.Name = "FBMarketplace_TabPage"
-        FBMarketplace_TabPage.Size = New Size(664, 467)
-        FBMarketplace_TabPage.TabIndex = 2
-        FBMarketplace_TabPage.Text = "拍賣"
-        FBMarketplace_TabPage.UseVisualStyleBackColor = True
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsByRandom_RadioButton)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsBySequence_RadioButton)
+        FBMarketplaceAssets_TabPage.Controls.Add(RevealFBMarketplaceMediaFoldesrInFileExplorer_Button)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsCount_NumericUpDown)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label36)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label34)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label35)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceUploadWaitSeconds_NumericUpDown)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceSubmitWaitSeconds_NumericUpDown)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceOnMarketplace_CheckBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceHomeDelivery_CheckBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplacePickUp_CheckBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceMeetInPerson_CheckBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProductTag_TextBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label33)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceDeleteSelectedMedia_Button)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceMediaPreviewer_PictureBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceMediaSelector_ListBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label32)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label31)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceSavePruductInfo_Button)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProductDescription_RichTextBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label30)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProductLocation_TextBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProductStatus_NumericUpDown)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProductPrice_NumericUpDown)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProductName_TextBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label29)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label28)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label27)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label26)
+        FBMarketplaceAssets_TabPage.Controls.Add(Label8)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBmarketplaceDeselectAllProductFolderListboxItems_Button)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceDeleteSelectedAssetFolder_Button)
+        FBMarketplaceAssets_TabPage.Controls.Add(NewMarketplaceAssetFolderName_TextBox)
+        FBMarketplaceAssets_TabPage.Controls.Add(CreateNewMarketplaceAssetFolder_Button)
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarkplaceProducts_ListBox)
+        FBMarketplaceAssets_TabPage.Location = New Point(4, 28)
+        FBMarketplaceAssets_TabPage.Name = "FBMarketplaceAssets_TabPage"
+        FBMarketplaceAssets_TabPage.Size = New Size(664, 467)
+        FBMarketplaceAssets_TabPage.TabIndex = 2
+        FBMarketplaceAssets_TabPage.Text = "拍賣"
+        FBMarketplaceAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' FBMarketplaceShareGroupsByRandom_RadioButton
         ' 
@@ -2108,34 +2132,34 @@ Partial Class Form1
         FBMarkplaceProducts_ListBox.Size = New Size(170, 308)
         FBMarkplaceProducts_ListBox.TabIndex = 14
         ' 
-        ' FBPostShareURL_TabPage
+        ' FBPostShareURLAssets_TabPage
         ' 
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLGetCurrentURL_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLNavigateToURL_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLDeleteSelectedTextFile_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLTextFileName_TextBox)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLTextFile_ListBox)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLSaveTextFile_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLCreateNewTextFile_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLTextFilePreviewer_RichTextBox)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLBaseURL_TextBox)
-        FBPostShareURL_TabPage.Controls.Add(Label40)
-        FBPostShareURL_TabPage.Controls.Add(Label38)
-        FBPostShareURL_TabPage.Controls.Add(Label39)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLUploadWaitSeconds_NumericUpDown)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLSubmitWaitSeconds_NumericUpDown)
-        FBPostShareURL_TabPage.Controls.Add(Label37)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLDeselectAllAssetFolderListboxItems_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLAssetFolder_ListBox)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLDeleteSelectedAssetFolder_Button)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLAssetFolderName_TextBox)
-        FBPostShareURL_TabPage.Controls.Add(FBPostShareURLCreateNewAssetFolder_Button)
-        FBPostShareURL_TabPage.Location = New Point(4, 28)
-        FBPostShareURL_TabPage.Name = "FBPostShareURL_TabPage"
-        FBPostShareURL_TabPage.Size = New Size(664, 467)
-        FBPostShareURL_TabPage.TabIndex = 3
-        FBPostShareURL_TabPage.Text = "分享"
-        FBPostShareURL_TabPage.UseVisualStyleBackColor = True
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLGetCurrentURL_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLNavigateToURL_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLDeleteSelectedTextFile_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLTextFileName_TextBox)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLTextFile_ListBox)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLSaveTextFile_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLCreateNewTextFile_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLTextFilePreviewer_RichTextBox)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLBaseURL_TextBox)
+        FBPostShareURLAssets_TabPage.Controls.Add(Label40)
+        FBPostShareURLAssets_TabPage.Controls.Add(Label38)
+        FBPostShareURLAssets_TabPage.Controls.Add(Label39)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLUploadWaitSeconds_NumericUpDown)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLSubmitWaitSeconds_NumericUpDown)
+        FBPostShareURLAssets_TabPage.Controls.Add(Label37)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLDeselectAllAssetFolderListboxItems_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLAssetFolder_ListBox)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLDeleteSelectedAssetFolder_Button)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLAssetFolderName_TextBox)
+        FBPostShareURLAssets_TabPage.Controls.Add(FBPostShareURLCreateNewAssetFolder_Button)
+        FBPostShareURLAssets_TabPage.Location = New Point(4, 28)
+        FBPostShareURLAssets_TabPage.Name = "FBPostShareURLAssets_TabPage"
+        FBPostShareURLAssets_TabPage.Size = New Size(664, 467)
+        FBPostShareURLAssets_TabPage.TabIndex = 3
+        FBPostShareURLAssets_TabPage.Text = "分享"
+        FBPostShareURLAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' FBPostShareURLGetCurrentURL_Button
         ' 
@@ -2311,34 +2335,34 @@ Partial Class Form1
         FBPostShareURLCreateNewAssetFolder_Button.Text = "建立"
         FBPostShareURLCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBComment_TabPage
+        ' FBCommentAssets_TabPage
         ' 
-        FBComment_TabPage.Controls.Add(Label41)
-        FBComment_TabPage.Controls.Add(Label42)
-        FBComment_TabPage.Controls.Add(Label43)
-        FBComment_TabPage.Controls.Add(FBCommentUploadWaitSeconds_NumericUpDown)
-        FBComment_TabPage.Controls.Add(FBCommentSubmitWaitSeconds_NumericUpDown)
-        FBComment_TabPage.Controls.Add(FBCommentDeselectAllAssetFolderListboxItems_Button)
-        FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedTextFile_Button)
-        FBComment_TabPage.Controls.Add(FBCommentNewTextFileName_TextBox)
-        FBComment_TabPage.Controls.Add(FBCommentMediaSelector_ListBox)
-        FBComment_TabPage.Controls.Add(FBCommentTextFileSelector_ListBox)
-        FBComment_TabPage.Controls.Add(FBCommentAssetFolder_ListBox)
-        FBComment_TabPage.Controls.Add(FBCommentSaveTextFile_Button)
-        FBComment_TabPage.Controls.Add(FBCommentCreateNewTextFile_Button)
-        FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedMedia_Button)
-        FBComment_TabPage.Controls.Add(FBCommentRevealMediaFoldesrInFileExplorer_Button)
-        FBComment_TabPage.Controls.Add(FBCommentDeleteSelectedAssetFolder_Button)
-        FBComment_TabPage.Controls.Add(FBCommentAssetFolderName_TextBox)
-        FBComment_TabPage.Controls.Add(FBCommentMediaPreviewer_PictureBox)
-        FBComment_TabPage.Controls.Add(FBCommentTextFilePreviewer_RichTextBox)
-        FBComment_TabPage.Controls.Add(FBCommentCreateNewAssetFolder_Button)
-        FBComment_TabPage.Location = New Point(4, 28)
-        FBComment_TabPage.Name = "FBComment_TabPage"
-        FBComment_TabPage.Size = New Size(664, 467)
-        FBComment_TabPage.TabIndex = 4
-        FBComment_TabPage.Text = "留言"
-        FBComment_TabPage.UseVisualStyleBackColor = True
+        FBCommentAssets_TabPage.Controls.Add(Label41)
+        FBCommentAssets_TabPage.Controls.Add(Label42)
+        FBCommentAssets_TabPage.Controls.Add(Label43)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentUploadWaitSeconds_NumericUpDown)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentSubmitWaitSeconds_NumericUpDown)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentDeselectAllAssetFolderListboxItems_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentDeleteSelectedTextFile_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentNewTextFileName_TextBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentMediaSelector_ListBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentTextFileSelector_ListBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentAssetFolder_ListBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentSaveTextFile_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentCreateNewTextFile_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentDeleteSelectedMedia_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentRevealMediaFoldesrInFileExplorer_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentDeleteSelectedAssetFolder_Button)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentAssetFolderName_TextBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentMediaPreviewer_PictureBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentTextFilePreviewer_RichTextBox)
+        FBCommentAssets_TabPage.Controls.Add(FBCommentCreateNewAssetFolder_Button)
+        FBCommentAssets_TabPage.Location = New Point(4, 28)
+        FBCommentAssets_TabPage.Name = "FBCommentAssets_TabPage"
+        FBCommentAssets_TabPage.Size = New Size(664, 467)
+        FBCommentAssets_TabPage.TabIndex = 4
+        FBCommentAssets_TabPage.Text = "留言"
+        FBCommentAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label41
         ' 
@@ -2517,34 +2541,34 @@ Partial Class Form1
         FBCommentCreateNewAssetFolder_Button.Text = "建立"
         FBCommentCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBCustomizeComment_TabPage
+        ' FBCustomizeCommentAssets_TabPage
         ' 
-        FBCustomizeComment_TabPage.Controls.Add(Label47)
-        FBCustomizeComment_TabPage.Controls.Add(Label48)
-        FBCustomizeComment_TabPage.Controls.Add(Label49)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentUploadWaitSeconds_NumericUpDown)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeselectAllAssetFolderListboxItems_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedTextFile_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentNewTextFileName_TextBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentMediaSelector_ListBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentTextFileSelector_ListBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentAssetFolder_ListBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentSaveTextFile_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentCreateNewTextFile_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedMedia_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentRevealMediaFoldesrInFileExplorer_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedAssetFolder_Button)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentAssetFolderName_TextBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentMediaPreviewer_PictureBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentTextFilePreviewer_RichTextBox)
-        FBCustomizeComment_TabPage.Controls.Add(FBCustomizeCommentCreateNewAssetFolder_Button)
-        FBCustomizeComment_TabPage.Location = New Point(4, 28)
-        FBCustomizeComment_TabPage.Name = "FBCustomizeComment_TabPage"
-        FBCustomizeComment_TabPage.Size = New Size(664, 467)
-        FBCustomizeComment_TabPage.TabIndex = 5
-        FBCustomizeComment_TabPage.Text = "自訂"
-        FBCustomizeComment_TabPage.UseVisualStyleBackColor = True
+        FBCustomizeCommentAssets_TabPage.Controls.Add(Label47)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(Label48)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(Label49)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentUploadWaitSeconds_NumericUpDown)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentDeselectAllAssetFolderListboxItems_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedTextFile_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentNewTextFileName_TextBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentMediaSelector_ListBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentTextFileSelector_ListBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentAssetFolder_ListBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentSaveTextFile_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentCreateNewTextFile_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedMedia_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentRevealMediaFoldesrInFileExplorer_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentDeleteSelectedAssetFolder_Button)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentAssetFolderName_TextBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentMediaPreviewer_PictureBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentTextFilePreviewer_RichTextBox)
+        FBCustomizeCommentAssets_TabPage.Controls.Add(FBCustomizeCommentCreateNewAssetFolder_Button)
+        FBCustomizeCommentAssets_TabPage.Location = New Point(4, 28)
+        FBCustomizeCommentAssets_TabPage.Name = "FBCustomizeCommentAssets_TabPage"
+        FBCustomizeCommentAssets_TabPage.Size = New Size(664, 467)
+        FBCustomizeCommentAssets_TabPage.TabIndex = 5
+        FBCustomizeCommentAssets_TabPage.Text = "自訂"
+        FBCustomizeCommentAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label47
         ' 
@@ -2723,34 +2747,34 @@ Partial Class Form1
         FBCustomizeCommentCreateNewAssetFolder_Button.Text = "建立"
         FBCustomizeCommentCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBRespondNotifications_TabPage
+        ' FBRespondNotificationsAssets_TabPage
         ' 
-        FBRespondNotifications_TabPage.Controls.Add(Label52)
-        FBRespondNotifications_TabPage.Controls.Add(Label53)
-        FBRespondNotifications_TabPage.Controls.Add(Label54)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseUploadWaitSeconds_NumericUpDown)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseSubmitWaitSeconds_NumericUpDown)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeselectAllAssetFolderListboxItems_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeleteSelectedTextFile_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseNewTextFileName_TextBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseMediaSelector_ListBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseTextFileSelector_ListBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseAssetFolder_ListBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseSaveTextFile_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseCreateNewTextFile_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeleteSelectedMedia_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseRevealMediaFoldesrInFileExplorer_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseDeleteSelectedAssetFolder_Button)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseAssetFolderName_TextBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseMediaPreviewer_PictureBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseTextFilePreviewer_RichTextBox)
-        FBRespondNotifications_TabPage.Controls.Add(FBResponseCreateNewAssetFolder_Button)
-        FBRespondNotifications_TabPage.Location = New Point(4, 28)
-        FBRespondNotifications_TabPage.Name = "FBRespondNotifications_TabPage"
-        FBRespondNotifications_TabPage.Size = New Size(664, 467)
-        FBRespondNotifications_TabPage.TabIndex = 6
-        FBRespondNotifications_TabPage.Text = "回應"
-        FBRespondNotifications_TabPage.UseVisualStyleBackColor = True
+        FBRespondNotificationsAssets_TabPage.Controls.Add(Label52)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(Label53)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(Label54)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseUploadWaitSeconds_NumericUpDown)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseSubmitWaitSeconds_NumericUpDown)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseDeselectAllAssetFolderListboxItems_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseDeleteSelectedTextFile_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseNewTextFileName_TextBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseMediaSelector_ListBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseTextFileSelector_ListBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseAssetFolder_ListBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseSaveTextFile_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseCreateNewTextFile_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseDeleteSelectedMedia_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseRevealMediaFoldesrInFileExplorer_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseDeleteSelectedAssetFolder_Button)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseAssetFolderName_TextBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseMediaPreviewer_PictureBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseTextFilePreviewer_RichTextBox)
+        FBRespondNotificationsAssets_TabPage.Controls.Add(FBResponseCreateNewAssetFolder_Button)
+        FBRespondNotificationsAssets_TabPage.Location = New Point(4, 28)
+        FBRespondNotificationsAssets_TabPage.Name = "FBRespondNotificationsAssets_TabPage"
+        FBRespondNotificationsAssets_TabPage.Size = New Size(664, 467)
+        FBRespondNotificationsAssets_TabPage.TabIndex = 6
+        FBRespondNotificationsAssets_TabPage.Text = "回應"
+        FBRespondNotificationsAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label52
         ' 
@@ -2929,15 +2953,212 @@ Partial Class Form1
         FBResponseCreateNewAssetFolder_Button.Text = "建立"
         FBResponseCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' TabPage3
+        ' FBMessengerAssets_TabPage
         ' 
-        TabPage3.Location = New Point(4, 28)
-        TabPage3.Name = "TabPage3"
-        TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(664, 467)
-        TabPage3.TabIndex = 1
-        TabPage3.Text = "測試項"
-        TabPage3.UseVisualStyleBackColor = True
+        FBMessengerAssets_TabPage.Controls.Add(Label58)
+        FBMessengerAssets_TabPage.Controls.Add(Label59)
+        FBMessengerAssets_TabPage.Controls.Add(Label60)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerUploadWaitSeconds_NumericUpDown)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerSubmitWaitSeconds_NumericUpDown)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerDeselectAllAssetFolderListboxItems_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerDeleteSelectedTextFile_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerNewTextFileName_TextBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerMediaSelector_ListBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerTextFileSelector_ListBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerAssetFolder_ListBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerSaveTextFile_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerCreateNewTextFile_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerDeleteSelectedMedia_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerRevealMediaFoldesrInFileExplorer_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerDeleteSelectedAssetFolder_Button)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerAssetFolderName_TextBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerMediaPreviewer_PictureBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerTextFilePreviewer_RichTextBox)
+        FBMessengerAssets_TabPage.Controls.Add(FBMessengerCreateNewAssetFolder_Button)
+        FBMessengerAssets_TabPage.Location = New Point(4, 28)
+        FBMessengerAssets_TabPage.Name = "FBMessengerAssets_TabPage"
+        FBMessengerAssets_TabPage.Padding = New Padding(3)
+        FBMessengerAssets_TabPage.Size = New Size(664, 467)
+        FBMessengerAssets_TabPage.TabIndex = 1
+        FBMessengerAssets_TabPage.Text = "訊息"
+        FBMessengerAssets_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Label58
+        ' 
+        Label58.AutoSize = True
+        Label58.Location = New Point(6, 364)
+        Label58.Name = "Label58"
+        Label58.Size = New Size(50, 19)
+        Label58.TabIndex = 104
+        Label58.Text = "名稱 : "
+        ' 
+        ' Label59
+        ' 
+        Label59.AutoSize = True
+        Label59.Location = New Point(334, 13)
+        Label59.Name = "Label59"
+        Label59.Size = New Size(80, 19)
+        Label59.TabIndex = 103
+        Label59.Text = "送出等待 : "
+        ' 
+        ' Label60
+        ' 
+        Label60.AutoSize = True
+        Label60.Location = New Point(183, 13)
+        Label60.Name = "Label60"
+        Label60.Size = New Size(80, 19)
+        Label60.TabIndex = 102
+        Label60.Text = "上載等待 : "
+        ' 
+        ' FBMessengerUploadWaitSeconds_NumericUpDown
+        ' 
+        FBMessengerUploadWaitSeconds_NumericUpDown.Location = New Point(267, 10)
+        FBMessengerUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBMessengerUploadWaitSeconds_NumericUpDown.Name = "FBMessengerUploadWaitSeconds_NumericUpDown"
+        FBMessengerUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBMessengerUploadWaitSeconds_NumericUpDown.TabIndex = 101
+        ' 
+        ' FBMessengerSubmitWaitSeconds_NumericUpDown
+        ' 
+        FBMessengerSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 10)
+        FBMessengerSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBMessengerSubmitWaitSeconds_NumericUpDown.Name = "FBMessengerSubmitWaitSeconds_NumericUpDown"
+        FBMessengerSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBMessengerSubmitWaitSeconds_NumericUpDown.TabIndex = 100
+        ' 
+        ' FBMessengerDeselectAllAssetFolderListboxItems_Button
+        ' 
+        FBMessengerDeselectAllAssetFolderListboxItems_Button.Location = New Point(6, 326)
+        FBMessengerDeselectAllAssetFolderListboxItems_Button.Name = "FBMessengerDeselectAllAssetFolderListboxItems_Button"
+        FBMessengerDeselectAllAssetFolderListboxItems_Button.Size = New Size(170, 29)
+        FBMessengerDeselectAllAssetFolderListboxItems_Button.TabIndex = 99
+        FBMessengerDeselectAllAssetFolderListboxItems_Button.Text = "取消選擇"
+        FBMessengerDeselectAllAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerDeleteSelectedTextFile_Button
+        ' 
+        FBMessengerDeleteSelectedTextFile_Button.Location = New Point(435, 189)
+        FBMessengerDeleteSelectedTextFile_Button.Name = "FBMessengerDeleteSelectedTextFile_Button"
+        FBMessengerDeleteSelectedTextFile_Button.Size = New Size(94, 29)
+        FBMessengerDeleteSelectedTextFile_Button.TabIndex = 98
+        FBMessengerDeleteSelectedTextFile_Button.Text = "刪除所選"
+        FBMessengerDeleteSelectedTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerNewTextFileName_TextBox
+        ' 
+        FBMessengerNewTextFileName_TextBox.Location = New Point(183, 189)
+        FBMessengerNewTextFileName_TextBox.Name = "FBMessengerNewTextFileName_TextBox"
+        FBMessengerNewTextFileName_TextBox.Size = New Size(145, 27)
+        FBMessengerNewTextFileName_TextBox.TabIndex = 97
+        ' 
+        ' FBMessengerMediaSelector_ListBox
+        ' 
+        FBMessengerMediaSelector_ListBox.FormattingEnabled = True
+        FBMessengerMediaSelector_ListBox.ItemHeight = 19
+        FBMessengerMediaSelector_ListBox.Location = New Point(183, 224)
+        FBMessengerMediaSelector_ListBox.Name = "FBMessengerMediaSelector_ListBox"
+        FBMessengerMediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBMessengerMediaSelector_ListBox.Size = New Size(145, 156)
+        FBMessengerMediaSelector_ListBox.TabIndex = 96
+        ' 
+        ' FBMessengerTextFileSelector_ListBox
+        ' 
+        FBMessengerTextFileSelector_ListBox.FormattingEnabled = True
+        FBMessengerTextFileSelector_ListBox.ItemHeight = 19
+        FBMessengerTextFileSelector_ListBox.Location = New Point(183, 46)
+        FBMessengerTextFileSelector_ListBox.Name = "FBMessengerTextFileSelector_ListBox"
+        FBMessengerTextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBMessengerTextFileSelector_ListBox.Size = New Size(145, 137)
+        FBMessengerTextFileSelector_ListBox.TabIndex = 95
+        ' 
+        ' FBMessengerAssetFolder_ListBox
+        ' 
+        FBMessengerAssetFolder_ListBox.FormattingEnabled = True
+        FBMessengerAssetFolder_ListBox.ItemHeight = 19
+        FBMessengerAssetFolder_ListBox.Location = New Point(6, 8)
+        FBMessengerAssetFolder_ListBox.Name = "FBMessengerAssetFolder_ListBox"
+        FBMessengerAssetFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBMessengerAssetFolder_ListBox.Size = New Size(170, 308)
+        FBMessengerAssetFolder_ListBox.TabIndex = 94
+        ' 
+        ' FBMessengerSaveTextFile_Button
+        ' 
+        FBMessengerSaveTextFile_Button.Location = New Point(534, 189)
+        FBMessengerSaveTextFile_Button.Name = "FBMessengerSaveTextFile_Button"
+        FBMessengerSaveTextFile_Button.Size = New Size(94, 29)
+        FBMessengerSaveTextFile_Button.TabIndex = 93
+        FBMessengerSaveTextFile_Button.Text = "儲存"
+        FBMessengerSaveTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerCreateNewTextFile_Button
+        ' 
+        FBMessengerCreateNewTextFile_Button.Location = New Point(334, 189)
+        FBMessengerCreateNewTextFile_Button.Name = "FBMessengerCreateNewTextFile_Button"
+        FBMessengerCreateNewTextFile_Button.Size = New Size(94, 29)
+        FBMessengerCreateNewTextFile_Button.TabIndex = 92
+        FBMessengerCreateNewTextFile_Button.Text = "新增文字檔"
+        FBMessengerCreateNewTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerDeleteSelectedMedia_Button
+        ' 
+        FBMessengerDeleteSelectedMedia_Button.Location = New Point(183, 429)
+        FBMessengerDeleteSelectedMedia_Button.Name = "FBMessengerDeleteSelectedMedia_Button"
+        FBMessengerDeleteSelectedMedia_Button.Size = New Size(147, 29)
+        FBMessengerDeleteSelectedMedia_Button.TabIndex = 91
+        FBMessengerDeleteSelectedMedia_Button.Text = "刪除所選"
+        FBMessengerDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerRevealMediaFoldesrInFileExplorer_Button
+        ' 
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 393)
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button.Name = "FBMessengerRevealMediaFoldesrInFileExplorer_Button"
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button.TabIndex = 90
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
+        FBMessengerRevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerDeleteSelectedAssetFolder_Button
+        ' 
+        FBMessengerDeleteSelectedAssetFolder_Button.Location = New Point(6, 429)
+        FBMessengerDeleteSelectedAssetFolder_Button.Name = "FBMessengerDeleteSelectedAssetFolder_Button"
+        FBMessengerDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        FBMessengerDeleteSelectedAssetFolder_Button.TabIndex = 89
+        FBMessengerDeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        FBMessengerDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMessengerAssetFolderName_TextBox
+        ' 
+        FBMessengerAssetFolderName_TextBox.Location = New Point(62, 360)
+        FBMessengerAssetFolderName_TextBox.Name = "FBMessengerAssetFolderName_TextBox"
+        FBMessengerAssetFolderName_TextBox.Size = New Size(115, 27)
+        FBMessengerAssetFolderName_TextBox.TabIndex = 88
+        ' 
+        ' FBMessengerMediaPreviewer_PictureBox
+        ' 
+        FBMessengerMediaPreviewer_PictureBox.Location = New Point(334, 224)
+        FBMessengerMediaPreviewer_PictureBox.Name = "FBMessengerMediaPreviewer_PictureBox"
+        FBMessengerMediaPreviewer_PictureBox.Size = New Size(325, 234)
+        FBMessengerMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBMessengerMediaPreviewer_PictureBox.TabIndex = 87
+        FBMessengerMediaPreviewer_PictureBox.TabStop = False
+        ' 
+        ' FBMessengerTextFilePreviewer_RichTextBox
+        ' 
+        FBMessengerTextFilePreviewer_RichTextBox.Location = New Point(334, 44)
+        FBMessengerTextFilePreviewer_RichTextBox.Name = "FBMessengerTextFilePreviewer_RichTextBox"
+        FBMessengerTextFilePreviewer_RichTextBox.Size = New Size(325, 140)
+        FBMessengerTextFilePreviewer_RichTextBox.TabIndex = 86
+        FBMessengerTextFilePreviewer_RichTextBox.Text = ""
+        FBMessengerTextFilePreviewer_RichTextBox.WordWrap = False
+        ' 
+        ' FBMessengerCreateNewAssetFolder_Button
+        ' 
+        FBMessengerCreateNewAssetFolder_Button.Location = New Point(6, 393)
+        FBMessengerCreateNewAssetFolder_Button.Name = "FBMessengerCreateNewAssetFolder_Button"
+        FBMessengerCreateNewAssetFolder_Button.Size = New Size(170, 29)
+        FBMessengerCreateNewAssetFolder_Button.TabIndex = 85
+        FBMessengerCreateNewAssetFolder_Button.Text = "建立"
+        FBMessengerCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
         ' ShowEmojiPicker_Button
         ' 
@@ -3501,47 +3722,52 @@ Partial Class Form1
         UserDataFoldListFilter_GroupBox.ResumeLayout(False)
         UserDataFoldListFilter_GroupBox.PerformLayout()
         FBUrlData_TabControl.ResumeLayout(False)
-        FBGroups_TabPage.ResumeLayout(False)
-        FBGroups_TabPage.PerformLayout()
-        FBActivityLogs_TabPage.ResumeLayout(False)
-        FBActivityLogs_TabPage.PerformLayout()
+        FBGroupsUrlData_TabPage.ResumeLayout(False)
+        FBGroupsUrlData_TabPage.PerformLayout()
+        FBActivityLogsUrlData_TabPage.ResumeLayout(False)
+        FBActivityLogsUrlData_TabPage.PerformLayout()
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        FBNotifications_TabPage.ResumeLayout(False)
-        FBNotifications_TabPage.PerformLayout()
-        FBMessenger_TabPage.ResumeLayout(False)
-        FBMessenger_TabPage.PerformLayout()
+        FBNotificationsUrlData_TabPage.ResumeLayout(False)
+        FBNotificationsUrlData_TabPage.PerformLayout()
+        FBMessengerUrlData_TabPage.ResumeLayout(False)
+        FBMessengerUrlData_TabPage.PerformLayout()
         Action_TabControl.ResumeLayout(False)
-        FBPost_TabPage.ResumeLayout(False)
-        FBPost_TabPage.PerformLayout()
+        FBPostAssets_TabPage.ResumeLayout(False)
+        FBPostAssets_TabPage.PerformLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBWritePostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(MediaPreview_PictureBox, ComponentModel.ISupportInitialize).EndInit()
-        FBMarketplace_TabPage.ResumeLayout(False)
-        FBMarketplace_TabPage.PerformLayout()
+        FBMarketplaceAssets_TabPage.ResumeLayout(False)
+        FBMarketplaceAssets_TabPage.PerformLayout()
         CType(FBMarketplaceShareGroupsCount_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         CType(FBMarketplaceProductPrice_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        FBPostShareURL_TabPage.ResumeLayout(False)
-        FBPostShareURL_TabPage.PerformLayout()
+        FBPostShareURLAssets_TabPage.ResumeLayout(False)
+        FBPostShareURLAssets_TabPage.PerformLayout()
         CType(FBPostShareURLUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPostShareURLSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        FBComment_TabPage.ResumeLayout(False)
-        FBComment_TabPage.PerformLayout()
+        FBCommentAssets_TabPage.ResumeLayout(False)
+        FBCommentAssets_TabPage.PerformLayout()
         CType(FBCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
-        FBCustomizeComment_TabPage.ResumeLayout(False)
-        FBCustomizeComment_TabPage.PerformLayout()
+        FBCustomizeCommentAssets_TabPage.ResumeLayout(False)
+        FBCustomizeCommentAssets_TabPage.PerformLayout()
         CType(FBCustomizeCommentUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCustomizeCommentSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBCustomizeCommentMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
-        FBRespondNotifications_TabPage.ResumeLayout(False)
-        FBRespondNotifications_TabPage.PerformLayout()
+        FBRespondNotificationsAssets_TabPage.ResumeLayout(False)
+        FBRespondNotificationsAssets_TabPage.PerformLayout()
         CType(FBResponseUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBResponseSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBResponseMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        FBMessengerAssets_TabPage.ResumeLayout(False)
+        FBMessengerAssets_TabPage.PerformLayout()
+        CType(FBMessengerUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMessengerSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBMessengerMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -3593,8 +3819,8 @@ Partial Class Form1
     Friend WithEvents RequestFriend_Button As Button
     Friend WithEvents GetCurrentUrl_Button As Button
     Friend WithEvents FBUrlData_TabControl As TabControl
-    Friend WithEvents FBGroups_TabPage As TabPage
-    Friend WithEvents FBActivityLogs_TabPage As TabPage
+    Friend WithEvents FBGroupsUrlData_TabPage As TabPage
+    Friend WithEvents FBActivityLogsUrlData_TabPage As TabPage
     Friend WithEvents FBGroups_ListView As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
@@ -3612,8 +3838,8 @@ Partial Class Form1
     Friend WithEvents GetJoinedGroupList_Button As Button
     Friend WithEvents ScriptQueue_ListView As ListView
     Friend WithEvents Action_TabControl As TabControl
-    Friend WithEvents FBPost_TabPage As TabPage
-    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents FBPostAssets_TabPage As TabPage
+    Friend WithEvents FBMessengerAssets_TabPage As TabPage
     Friend WithEvents MediaPreview_PictureBox As PictureBox
     Friend WithEvents PreviewTextFile_RichTextBox As RichTextBox
     Friend WithEvents CreateNewAssetFolder_Button As Button
@@ -3694,7 +3920,7 @@ Partial Class Form1
     Friend WithEvents ScheduledTimeSorting_DateTimePicker As DateTimePicker
     Friend WithEvents SyncTimeToDateTimePicker_Label As Label
     Friend WithEvents SortListviewItemByTime_Button As Button
-    Friend WithEvents FBMarketplace_TabPage As TabPage
+    Friend WithEvents FBMarketplaceAssets_TabPage As TabPage
     Friend WithEvents FBMarkplaceProducts_ListBox As ListBox
     Friend WithEvents Label8 As Label
     Friend WithEvents FBmarketplaceDeselectAllProductFolderListboxItems_Button As Button
@@ -3733,7 +3959,7 @@ Partial Class Form1
     Friend WithEvents RevealFBMarketplaceMediaFoldesrInFileExplorer_Button As Button
     Friend WithEvents FBMarketplaceShareGroupsBySequence_RadioButton As RadioButton
     Friend WithEvents FBMarketplaceShareGroupsByRandom_RadioButton As RadioButton
-    Friend WithEvents FBPostShareURL_TabPage As TabPage
+    Friend WithEvents FBPostShareURLAssets_TabPage As TabPage
     Friend WithEvents Label37 As Label
     Friend WithEvents FBPostShareURLDeselectAllAssetFolderListboxItems_Button As Button
     Friend WithEvents FBPostShareURLAssetFolder_ListBox As ListBox
@@ -3755,7 +3981,7 @@ Partial Class Form1
     Friend WithEvents FBPostShareURLGetCurrentURL_Button As Button
     Friend WithEvents FBPostShareURLNavigateToURL_Button As Button
     Friend WithEvents SelectScriptListviewItemsByUserDataButton As Button
-    Friend WithEvents FBComment_TabPage As TabPage
+    Friend WithEvents FBCommentAssets_TabPage As TabPage
     Friend WithEvents Label41 As Label
     Friend WithEvents Label42 As Label
     Friend WithEvents Label43 As Label
@@ -3793,7 +4019,7 @@ Partial Class Form1
     Friend WithEvents ColumnHeader17 As ColumnHeader
     Friend WithEvents Label46 As Label
     Friend WithEvents NavigateToActivityLogsPage_Button As Button
-    Friend WithEvents FBCustomizeComment_TabPage As TabPage
+    Friend WithEvents FBCustomizeCommentAssets_TabPage As TabPage
     Friend WithEvents Label47 As Label
     Friend WithEvents Label48 As Label
     Friend WithEvents Label49 As Label
@@ -3814,7 +4040,7 @@ Partial Class Form1
     Friend WithEvents FBCustomizeCommentMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBCustomizeCommentTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBCustomizeCommentCreateNewAssetFolder_Button As Button
-    Friend WithEvents FBNotifications_TabPage As TabPage
+    Friend WithEvents FBNotificationsUrlData_TabPage As TabPage
     Friend WithEvents DeleteSelectedFBNotificationsListviewItems_Button As Button
     Friend WithEvents SaveFBNotificationsListview_Button As Button
     Friend WithEvents ReadFBNotifications_Button As Button
@@ -3831,7 +4057,7 @@ Partial Class Form1
     Friend WithEvents ColumnHeader19 As ColumnHeader
     Friend WithEvents ReadFBNotifications_CheckBox As CheckBox
     Friend WithEvents UnreadFBNotifications_CheckBox As CheckBox
-    Friend WithEvents FBRespondNotifications_TabPage As TabPage
+    Friend WithEvents FBRespondNotificationsAssets_TabPage As TabPage
     Friend WithEvents Label52 As Label
     Friend WithEvents Label53 As Label
     Friend WithEvents Label54 As Label
@@ -3859,7 +4085,7 @@ Partial Class Form1
     Friend WithEvents DeselecteAllFBGroups_ListViewItems_Button As Button
     Friend WithEvents DeselectAllFBActivityLogs_ListViewItems_Button As Button
     Friend WithEvents DeselecteAllFBNotificationsData_ListviewItems_Button As Button
-    Friend WithEvents FBMessenger_TabPage As TabPage
+    Friend WithEvents FBMessengerUrlData_TabPage As TabPage
     Friend WithEvents FBMessengerMessageSource_ComboBox As ComboBox
     Friend WithEvents FBMessengerReadMessage_Button As Button
     Friend WithEvents DeselecteAllFBMessenger_ListviewItems_Button As Button
@@ -3879,5 +4105,25 @@ Partial Class Form1
     Friend WithEvents FBMessengerData_Listview As ListView
     Friend WithEvents ColumnHeader20 As ColumnHeader
     Friend WithEvents ColumnHeader21 As ColumnHeader
+    Friend WithEvents Label58 As Label
+    Friend WithEvents Label59 As Label
+    Friend WithEvents Label60 As Label
+    Friend WithEvents FBMessengerUploadWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBMessengerSubmitWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBMessengerDeselectAllAssetFolderListboxItems_Button As Button
+    Friend WithEvents FBMessengerDeleteSelectedTextFile_Button As Button
+    Friend WithEvents FBMessengerNewTextFileName_TextBox As TextBox
+    Friend WithEvents FBMessengerMediaSelector_ListBox As ListBox
+    Friend WithEvents FBMessengerTextFileSelector_ListBox As ListBox
+    Friend WithEvents FBMessengerAssetFolder_ListBox As ListBox
+    Friend WithEvents FBMessengerSaveTextFile_Button As Button
+    Friend WithEvents FBMessengerCreateNewTextFile_Button As Button
+    Friend WithEvents FBMessengerDeleteSelectedMedia_Button As Button
+    Friend WithEvents FBMessengerRevealMediaFoldesrInFileExplorer_Button As Button
+    Friend WithEvents FBMessengerDeleteSelectedAssetFolder_Button As Button
+    Friend WithEvents FBMessengerAssetFolderName_TextBox As TextBox
+    Friend WithEvents FBMessengerMediaPreviewer_PictureBox As PictureBox
+    Friend WithEvents FBMessengerTextFilePreviewer_RichTextBox As RichTextBox
+    Friend WithEvents FBMessengerCreateNewAssetFolder_Button As Button
 
 End Class

@@ -641,7 +641,7 @@ Module Webview2Controller
 
     Public Async Function ReadFBNotifications(read As Boolean, unread As Boolean) As Task(Of Boolean)
         Try
-            Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotifications_TabPage
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
             Dim items = Await Task.Run(Async Function()
                                            Dim itemList As New List(Of ListViewItem)()
                                            Try
@@ -730,6 +730,8 @@ Module Webview2Controller
 
     Public Async Function ReadFBMessenger(messageSource As String, read As Boolean, unread As Boolean) As Task(Of List(Of ListViewItem))
         'messageSource : 聊天室 | Marketplace | 陌生訊息
+        'FBMessenger_TabPage
+        Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
         Dim items As New List(Of ListViewItem)
         Try
             items = Await Task.Run(Async Function()

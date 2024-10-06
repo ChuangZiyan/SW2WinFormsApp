@@ -373,28 +373,28 @@ Public Class MainFormEventHandlers
             ' 設定tab 順便設定是執行動作用的asset listbox
             Select Case action
                 Case "發帖"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBPost_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBPostAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.MyAssetsFolder_ListBox
                 Case "拍賣"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBMarketplace_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBMarketplaceAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBMarkplaceProducts_ListBox
 
                 Case "分享"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBPostShareURL_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBPostShareURLAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBPostShareURLAssetFolder_ListBox
                 Case "留言"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBComment_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBCommentAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBCommentAssetFolder_ListBox
                 Case "自訂"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeComment_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeCommentAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBCustomizeCommentAssetFolder_ListBox
                 Case "測試項"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
+                    Form1.Action_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
             End Select
 
             ' 填入社團名稱跟網址，動作是留言的話，要填到留言的面板去
@@ -1186,26 +1186,30 @@ Public Class MainFormEventHandlers
 
     Public Sub FBUrlData_TabControl_SelectedIndexChanged(sender As Object, e As EventArgs)
 
-        If Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBNotifications_TabPage Then
-            Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotifications_TabPage
-        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBGroups_TabPage Then
-            Form1.Action_TabControl.SelectedTab = Form1.FBPost_TabPage
-        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBActivityLogs_TabPage Then
-            Form1.Action_TabControl.SelectedTab = Form1.FBComment_TabPage
+        If Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBNotificationsUrlData_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotificationsAssets_TabPage
+        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBGroupsUrlData_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBPostAssets_TabPage
+        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBActivityLogsUrlData_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBCommentAssets_TabPage
+        ElseIf Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBMessengerUrlData_TabPage Then
+            Form1.Action_TabControl.SelectedTab = Form1.FBMessengerAssets_TabPage
         End If
 
     End Sub
 
     Public Sub Action_TabControl_SelectedIndexChanged(sender As Object, e As EventArgs)
 
-        If Form1.Action_TabControl.SelectedTab Is Form1.FBRespondNotifications_TabPage Then
-            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotifications_TabPage
+        If Form1.Action_TabControl.SelectedTab Is Form1.FBRespondNotificationsAssets_TabPage Then
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
 
-        ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBComment_TabPage Or Form1.Action_TabControl.SelectedTab Is Form1.FBCustomizeComment_TabPage Then
+        ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBCommentAssets_TabPage Or Form1.Action_TabControl.SelectedTab Is Form1.FBCustomizeCommentAssets_TabPage Then
 
-            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogs_TabPage
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
+        ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBMessengerAssets_TabPage Then
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
         Else
-            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroups_TabPage
+            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
         End If
 
     End Sub

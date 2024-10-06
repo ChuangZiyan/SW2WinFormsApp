@@ -117,309 +117,254 @@ Public Class Form1
 
     ' 這個是主要執行腳本的功能區段，他會執行你傳入的ListviewItem
     Private Async Function ExecutionListviewScriptByItem(item As ListViewItem, Optional isAwaitingCompletion As Boolean = True) As Task
-        PAUSE = False
-        'For Each item As ListViewItem In ScriptQueue_ListView.Items
 
-        Dim userData As String = item.SubItems(0).Text
-        Dim executionTime As String = item.SubItems(1).Text
-        Dim myUrlName As String = item.SubItems(2).Text
-        Dim myUrl As String = item.SubItems(3).Text
-        Dim action As String = item.SubItems(4).Text
-        Dim content As String = item.SubItems(5).Text
-        Dim uploadWaitTime = item.SubItems(6).Text
-        Dim submitWaitTime = item.SubItems(7).Text
+        Try
+            PAUSE = False
+            'For Each item As ListViewItem In ScriptQueue_ListView.Items
 
-        Dim executionSuccessResultCount As String = item.SubItems(9).Text
-        Dim executionFailResultCount As String = item.SubItems(10).Text
-        Dim waitSecond As String = item.SubItems(11).Text
-        Dim remark As String = item.SubItems(12).Text
+            Dim userData As String = item.SubItems(0).Text
+            Dim executionTime As String = item.SubItems(1).Text
+            Dim myUrlName As String = item.SubItems(2).Text
+            Dim myUrl As String = item.SubItems(3).Text
+            Dim action As String = item.SubItems(4).Text
+            Dim content As String = item.SubItems(5).Text
+            Dim uploadWaitTime = item.SubItems(6).Text
+            Dim submitWaitTime = item.SubItems(7).Text
 
-        '先把之前的顏色變回來
-        MainFormController.ResetListviewItemsBackgroundColor(ScriptQueue_ListView)
+            Dim executionSuccessResultCount As String = item.SubItems(9).Text
+            Dim executionFailResultCount As String = item.SubItems(10).Text
+            Dim waitSecond As String = item.SubItems(11).Text
+            Dim remark As String = item.SubItems(12).Text
 
-        ' 執行的那行要變色
-        item.BackColor = Color.SteelBlue
-        item.ForeColor = Color.White
-        MainFormController.CenterSelectedItem(ScriptQueue_ListView, item)
+            '先把之前的顏色變回來
+            MainFormController.ResetListviewItemsBackgroundColor(ScriptQueue_ListView)
 
-        '用選的userData 初始化webview
-        Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
-        ' 初始化webivew
-        Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
+            ' 執行的那行要變色
+            item.BackColor = Color.SteelBlue
+            item.ForeColor = Color.White
+            MainFormController.CenterSelectedItem(ScriptQueue_ListView, item)
 
+            '用選的userData 初始化webview
+            Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
+            ' 初始化webivew
+            Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
-        '處理隨機網址
-        If myUrl.Contains("隨機") Then
-            Dim randomItem As JToken
-
-            If action = "留言" Then
-                randomItem = MainFormController.GetRandomFBActivityLogUrl(userDataFolderPath)
-            Else
-                randomItem = MainFormController.GetRandomGroupsUrl(userDataFolderPath)
-            End If
-            item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
-            item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()
-            myUrl = randomItem("Url").ToString()
-
-        End If
+            '選擇WebviewUserDataFolder_ListBox
+            WebviewUserDataFolder_ListBox.SelectedItem = userData
 
 
-        'Main Routing 主要路由在這
+            '處理隨機網址
+            If myUrl.Contains("隨機") Then
+                Dim randomItem As JToken
 
-        'Debug.WriteLine("#######")
-        '預設結果是失敗
-        Dim result = False
-        Await Delay_msec(1000)
-        Select Case action
-                '########################################################################### 發帖功能 ###############################################################################################
-            Case "發帖"
-                Try
-                    'Debug.WriteLine("發帖")
-                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPostAssetsDirectory)
-                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
-                    Dim FBWritePostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBWritePostWaitSecondsConfig.txt"))
-                    item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
-                    item.SubItems(8).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
-
-                    result = Await FBPostSeleniumScript.WritePostOnFacebook(myUrl, assetFolderPath)
-                    'result = False
-
-                    ' 如果流程都沒問題
-                    If result Then
-                        ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
-                        Next
-
-                        ' 如果你要發佈貼文就取消註解下面那行
-                        ' result = Await Webview2Controller.ClickByCssSelector_Task("div[aria-label$='發佈']")
-
-                        ' 發佈後等待
-                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(8).Text = seconds
-                        Next
-
-                        ' 執行完後復原執行內容
-                        'item.SubItems(5).Text = content
-
-                    End If
-
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-
-            Case "拍賣"
-                Try
-                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMarketPlaceAssetsDirectory)
-                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-                    Dim MarketplaceWaitSecondsConfig = File.ReadAllText(Path.Combine(assetFolderPath, "MarketplaceWaitSecondsConfig.txt"))
-                    item.SubItems(7).Text = Split(MarketplaceWaitSecondsConfig, ",")(0)
-                    item.SubItems(8).Text = Split(MarketplaceWaitSecondsConfig, ",")(1)
-                    result = Await FBMarketplaceSeleniumScript.SellSomething(myUrl, assetFolderPath)
-                    If result Then
-                        ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
-                        Next
-
-                        '將商品新增到其他社團後等待
-                        Await FBMarketplaceSeleniumScript.AddYourListingToOtherGroups(assetFolderPath)
-                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(8).Text = seconds
-                        Next
-
-                        '點發佈 你如果要實際發佈，就取消註解下面這行
-                        ' Webview2Controller.ClickByAriaLable("發佈")
-
-                    End If
-
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-            Case "分享"
-                Try
-
-                    Debug.WriteLine("分享")
-                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPostShareURLAssetsDirectory)
-                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
-                    Dim FBWritePostShareURLWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBPostShareURLWaitSecondsConfig.txt"))
-                    item.SubItems(7).Text = Split(FBWritePostShareURLWaitSecondsCfg, ",")(0)
-                    item.SubItems(8).Text = Split(FBWritePostShareURLWaitSecondsCfg, ",")(1)
-
-                    result = Await FBShareURLSeleniumScript.WritePostAndShareURLOnFacebook(myUrl, assetFolderPath)
-                    'result = False
-
-                    ' 如果流程都沒問題
-                    If result Then
-                        ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
-                        Next
-
-                        ' 如果你要發佈貼文就取消註解下面那行
-                        'result = Await Webview2Controller.ClickByCssSelector_Task("div[aria-label$='發佈']")
-
-                        ' 發佈後等待
-                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(8).Text = seconds
-                        Next
-
-
-                    End If
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-            Case "留言"
-                Try
-                    Debug.WriteLine("留言")
-                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCommentAssetsDirectory)
-                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
-                    Dim FBCommentWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBCommentWaitSecondsConfig.txt"))
-                    item.SubItems(7).Text = Split(FBCommentWaitSecondsCfg, ",")(0)
-                    item.SubItems(8).Text = Split(FBCommentWaitSecondsCfg, ",")(1)
-
-                    result = Await FBCommentSeleniumScript.CommentOnThePost(myUrl, assetFolderPath)
-                    'result = False
-
-                    ' 如果流程都沒問題
-                    If result Then
-                        ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
-                        Next
-
-                        ' 如果你要送出留言就取消註解下面那行
-                        ' result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
-
-                        ' 送出留言後等待
-                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(8).Text = seconds
-                        Next
-
-
-                    End If
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-                '########################################################################### 測試項功能 ###############################################################################################
-
-            Case "自訂"
-                Try
-                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCustomizeCommentAssetsDirectory)
-                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
-                    Dim FBCustomizeCommentWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBCustomizeCommentWaitSecondsConfig.txt"))
-                    item.SubItems(7).Text = Split(FBCustomizeCommentWaitSecondsCfg, ",")(0)
-                    item.SubItems(8).Text = Split(FBCustomizeCommentWaitSecondsCfg, ",")(1)
-
-                    result = Await FBCustomizeCommentSeleniumScript.CustomizeCommentOnThePost(myUrl, assetFolderPath)
-                    'result = False
-
-                    ' 如果流程都沒問題
-                    If result Then
-                        ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
-                        Next
-
-                        ' 如果你要送出留言就取消註解下面那行
-                        'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
-
-                        ' 送出留言後等待
-                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(8).Text = seconds
-                        Next
-
-
-                    End If
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-            Case "回應"
-                Try
-                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
-                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
-                    Dim FBResponseWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBResponseWaitSecondsConfig.txt"))
-                    item.SubItems(7).Text = Split(FBResponseWaitSecondsCfg, ",")(0)
-                    item.SubItems(8).Text = Split(FBResponseWaitSecondsCfg, ",")(1)
-
-                    result = Await FBResponseSeleniumScript.RespondThePost(myUrl, assetFolderPath)
-                    'result = False
-
-                    ' 如果流程都沒問題
-                    If result Then
-                        ' 這邊要等待上傳完成
-                        For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(7).Text = seconds
-                        Next
-
-                        ' 如果你要送出留言就取消註解下面那行
-                        'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
-
-                        ' 送出留言後等待
-                        For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
-                            Await Delay_msec(1000)
-                            item.SubItems(8).Text = seconds
-                        Next
-
-                    End If
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                    result = False
-                End Try
-
-            Case "讀取已讀通知"
-                result = Await Webview2Controller.ReadFBNotifications(True, False)
-            Case "讀取未讀通知"
-                result = Await Webview2Controller.ReadFBNotifications(False, True)
-            Case "已讀全部通知"
-                result = Await Webview2Controller.MarkAllFBNotificationsAsRead()
-            Case "順序回應通知"
-                Dim myListbox = WebviewUserDataFolder_ListBox
-                Dim index As Integer = myListbox.Items.IndexOf(userData)
-                If index <> -1 Then
-                    myListbox.SelectedIndex = index
+                If action = "留言" Then
+                    randomItem = MainFormController.GetRandomFBActivityLogUrl(userDataFolderPath)
                 Else
-                    myListbox.SelectedIndex = -1
+                    randomItem = MainFormController.GetRandomGroupsUrl(userDataFolderPath)
                 End If
-                Await Delay_msec(500)
-                Action_TabControl.SelectedTab = FBRespondNotifications_TabPage
+                item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
+                item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()
+                myUrl = randomItem("Url").ToString()
 
-                Dim FBNotificationItems = FBNotificationsData_Listview.Items
+            End If
 
-                For Each notificationItem As ListViewItem In FBNotificationItems
+            '### Main Routing 主要路由在這 ###
+            'Debug.WriteLine("#######")
+            '預設結果是失敗
+            Dim result = False
+            Await Delay_msec(1000)
+            Select Case action
+                    '########################################################################### 發帖功能 ###############################################################################################
+                Case "發帖"
                     Try
-                        notificationItem.BackColor = Color.SteelBlue
-                        notificationItem.ForeColor = Color.White
-                        MainFormController.CenterSelectedItem(FBNotificationsData_Listview, notificationItem)
+                        'Debug.WriteLine("發帖")
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPostAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
+                        Dim FBWritePostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBWritePostWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBWritePostWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBWritePostWaitSecondsCfg, ",")(1)
+
+                        result = Await FBPostSeleniumScript.WritePostOnFacebook(myUrl, assetFolderPath)
+                        'result = False
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要發佈貼文就取消註解下面那行
+                            ' result = Await Webview2Controller.ClickByCssSelector_Task("div[aria-label$='發佈']")
+
+                            ' 發佈後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                            ' 執行完後復原執行內容
+                            'item.SubItems(5).Text = content
+
+                        End If
+
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+
+                Case "拍賣"
+                    Try
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMarketPlaceAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+                        Dim MarketplaceWaitSecondsConfig = File.ReadAllText(Path.Combine(assetFolderPath, "MarketplaceWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(MarketplaceWaitSecondsConfig, ",")(0)
+                        item.SubItems(8).Text = Split(MarketplaceWaitSecondsConfig, ",")(1)
+                        result = Await FBMarketplaceSeleniumScript.SellSomething(myUrl, assetFolderPath)
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            '將商品新增到其他社團後等待
+                            Await FBMarketplaceSeleniumScript.AddYourListingToOtherGroups(assetFolderPath)
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                            '點發佈 你如果要實際發佈，就取消註解下面這行
+                            ' Webview2Controller.ClickByAriaLable("發佈")
+
+                        End If
+
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+                Case "分享"
+                    Try
+
+                        Debug.WriteLine("分享")
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPostShareURLAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBWritePostShareURLWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBPostShareURLWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBWritePostShareURLWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBWritePostShareURLWaitSecondsCfg, ",")(1)
+
+                        result = Await FBShareURLSeleniumScript.WritePostAndShareURLOnFacebook(myUrl, assetFolderPath)
+                        'result = False
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要發佈貼文就取消註解下面那行
+                            'result = Await Webview2Controller.ClickByCssSelector_Task("div[aria-label$='發佈']")
+
+                            ' 發佈後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+                Case "留言"
+                    Try
+                        Debug.WriteLine("留言")
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCommentAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBCommentWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBCommentWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBCommentWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBCommentWaitSecondsCfg, ",")(1)
+
+                        result = Await FBCommentSeleniumScript.CommentOnThePost(myUrl, assetFolderPath)
+                        'result = False
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要送出留言就取消註解下面那行
+                            ' result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+                    '########################################################################### 測試項功能 ###############################################################################################
+
+                Case "自訂"
+                    Try
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBCustomizeCommentAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBCustomizeCommentWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBCustomizeCommentWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBCustomizeCommentWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBCustomizeCommentWaitSecondsCfg, ",")(1)
+
+                        result = Await FBCustomizeCommentSeleniumScript.CustomizeCommentOnThePost(myUrl, assetFolderPath)
+                        'result = False
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要送出留言就取消註解下面那行
+                            'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+                Case "回應"
+                    Try
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
                         item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
                         Dim FBResponseWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBResponseWaitSecondsConfig.txt"))
                         item.SubItems(7).Text = Split(FBResponseWaitSecondsCfg, ",")(0)
                         item.SubItems(8).Text = Split(FBResponseWaitSecondsCfg, ",")(1)
-                        myUrl = notificationItem.SubItems(1).Text
+
                         result = Await FBResponseSeleniumScript.RespondThePost(myUrl, assetFolderPath)
                         'result = False
 
@@ -441,58 +386,205 @@ Public Class Form1
                             Next
 
                         End If
-
                     Catch ex As Exception
                         Debug.WriteLine(ex)
                         result = False
                     End Try
 
-                    ' 執行完後變回來
-                    notificationItem.BackColor = Color.White
-                    notificationItem.ForeColor = Color.Black
+                Case "讀取已讀通知"
+                    result = Await Webview2Controller.ReadFBNotifications(True, False)
+                Case "讀取未讀通知"
+                    result = Await Webview2Controller.ReadFBNotifications(False, True)
+                Case "已讀全部通知"
+                    result = Await Webview2Controller.MarkAllFBNotificationsAsRead()
+                Case "順序回應通知"
+                    Dim myListbox = WebviewUserDataFolder_ListBox
+                    Dim index As Integer = myListbox.Items.IndexOf(userData)
+                    If index <> -1 Then
+                        myListbox.SelectedIndex = index
+                    Else
+                        myListbox.SelectedIndex = -1
+                    End If
+                    Await Delay_msec(500)
+                    Action_TabControl.SelectedTab = FBRespondNotificationsAssets_TabPage
 
-                Next
+                    Dim FBNotificationItems = FBNotificationsData_Listview.Items
 
-        End Select
+                    For Each notificationItem As ListViewItem In FBNotificationItems
+                        Try
+                            notificationItem.BackColor = Color.SteelBlue
+                            notificationItem.ForeColor = Color.White
+                            MainFormController.CenterSelectedItem(FBNotificationsData_Listview, notificationItem)
 
-        ' 增加成功或者失敗的次數
-        If result Then
-            item.SubItems(9).Text = (CInt(item.SubItems(9).Text) + 1).ToString
-        ElseIf Not result Then
-            item.SubItems(10).Text = (CInt(item.SubItems(10).Text) + 1).ToString
-        End If
+                            Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBResponseAssetsDirectory)
+                            item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                            Dim FBResponseWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBResponseWaitSecondsConfig.txt"))
+                            item.SubItems(7).Text = Split(FBResponseWaitSecondsCfg, ",")(0)
+                            item.SubItems(8).Text = Split(FBResponseWaitSecondsCfg, ",")(1)
+                            myUrl = notificationItem.SubItems(1).Text
+                            result = Await FBResponseSeleniumScript.RespondThePost(myUrl, assetFolderPath)
+                            'result = False
+
+                            ' 如果流程都沒問題
+                            If result Then
+                                ' 這邊要等待上傳完成
+                                For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                    Await Delay_msec(1000)
+                                    item.SubItems(7).Text = seconds
+                                Next
+
+                                ' 如果你要送出留言就取消註解下面那行
+                                'result = Await Webview2Controller.ClickByCssSelector_Task("#focused-state-composer-submit > span > div")
+
+                                ' 送出留言後等待
+                                For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                    Await Delay_msec(1000)
+                                    item.SubItems(8).Text = seconds
+                                Next
+
+                            End If
+
+                        Catch ex As Exception
+                            Debug.WriteLine(ex)
+                            result = False
+                        End Try
+
+                        ' 執行完後變回來
+                        notificationItem.BackColor = Color.White
+                        notificationItem.ForeColor = Color.Black
+
+                    Next
+                Case "讀取未讀聊天室"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("聊天室", False, True)
+                        FBMessengerData_Listview.Items.Clear()
+                        For Each mgsItem In messengerItems
+                            FBMessengerData_Listview.Items.Add(mgsItem)
+                        Next
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+
+                Case "讀取己讀聊天室"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("聊天室", True, False)
+                        FBMessengerData_Listview.Items.Clear()
+                        For Each mgsItem In messengerItems
+                            FBMessengerData_Listview.Items.Add(mgsItem)
+                        Next
+                        result = False
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+
+                Case "讀取未讀Marketplace"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", False, True)
+                        FBMessengerData_Listview.Items.Clear()
+                        For Each mgsItem In messengerItems
+                            FBMessengerData_Listview.Items.Add(mgsItem)
+                        Next
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+                Case "讀取己讀Marketplace"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", True, False)
+                        FBMessengerData_Listview.Items.Clear()
+                        For Each mgsItem In messengerItems
+                            FBMessengerData_Listview.Items.Add(mgsItem)
+                        Next
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+                Case "讀取未讀陌生訊息"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", False, True)
+                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("Marketplace", False, True))
+
+                        FBMessengerData_Listview.Items.Clear()
+                        For Each mgsItem In messengerItems
+                            FBMessengerData_Listview.Items.Add(mgsItem)
+                        Next
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+                Case "讀取己讀陌生訊息"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", True, False)
+                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("Marketplace", True, False))
+
+                        FBMessengerData_Listview.Items.Clear()
+                        For Each mgsItem In messengerItems
+                            FBMessengerData_Listview.Items.Add(mgsItem)
+                        Next
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+            End Select
 
 
-        If isAwaitingCompletion Then
-            '如果是順序執行的話，跑完腳本後等待
-            Dim splitedWaitSecond = waitSecond.Split("±")
-            Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
-
-            If myWaitSecs > 0 Then
-                For i As Integer = myWaitSecs To 0 Step -1
-                    While PAUSE
-                        Await Delay_msec(1000)
-                    End While
-                    item.SubItems(11).Text = i.ToString()
-                    Await Delay_msec(1000)
-                Next
-            Else
-                item.SubItems(11).Text = "0"
+            ' 增加成功或者失敗的次數
+            If result Then
+                item.SubItems(9).Text = (CInt(item.SubItems(9).Text) + 1).ToString
+            ElseIf Not result Then
+                item.SubItems(10).Text = (CInt(item.SubItems(10).Text) + 1).ToString
             End If
 
-            While PAUSE
-                Await Delay_msec(1000)
-            End While
 
-        End If
+            If isAwaitingCompletion Then
+                '如果是順序執行的話，跑完腳本後等待
+                Dim splitedWaitSecond = waitSecond.Split("±")
+                Dim myWaitSecs = CInt(splitedWaitSecond(0)) + UtilsModule.GetRandomRangeValue(CInt(splitedWaitSecond(1)))
+
+                If myWaitSecs > 0 Then
+                    For i As Integer = myWaitSecs To 0 Step -1
+                        While PAUSE
+                            Await Delay_msec(1000)
+                        End While
+                        item.SubItems(11).Text = i.ToString()
+                        Await Delay_msec(1000)
+                    Next
+                Else
+                    item.SubItems(11).Text = "0"
+                End If
+
+                While PAUSE
+                    Await Delay_msec(1000)
+                End While
+
+            End If
 
 
-        ' 等待完後重設
-        item.SubItems(11).Text = waitSecond
-        'item.BackColor = Color.White
-        'item.ForeColor = Color.Black
+            ' 等待完後重設
+            item.SubItems(11).Text = waitSecond
+            'item.BackColor = Color.White
+            'item.ForeColor = Color.Black
 
-        'Next
+            'Next
+
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
 
     End Function
 
@@ -504,6 +596,7 @@ Public Class Form1
     Private FBCommentEventHandlers As New FBCommentEventHandlers()
     Private FBCustomizeCommentEventHandlers As New FBCustomizeCommentEventHandlers()
     Private FBResponseEventHandlers As New FBResponseEventHandlers()
+    Private FBMessengerEventHandlers As New FBMessengerEventHandlers()
 
 
 
@@ -715,6 +808,23 @@ Public Class Form1
         AddHandler FBResponseTextFileSelector_ListBox.DoubleClick, AddressOf FBResponseEventHandlers.FBResponseTextFileSelector_ListBox_DoubleClick
     End Sub
 
+    Private Sub RegisterFBMessegnerEventhandlers()
+        ' 回應通知的事件
+        AddHandler FBMessengerCreateNewAssetFolder_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerCreateNewAssetFolder_Button_Click
+        AddHandler FBMessengerDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBMessengerDeleteSelectedAssetFolder_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBMessengerCreateNewTextFile_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerCreateNewTextFile_Button_Click
+        AddHandler FBMessengerAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBMessengerEventHandlers.FBMessengerAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBMessengerTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBMessengerEventHandlers.FBMessengerTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBMessengerDeleteSelectedTextFile_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerDeleteSelectedTextFile_Button_Click
+        AddHandler FBMessengerSaveTextFile_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerSaveTextFile_Button_Click
+        AddHandler FBMessengerMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBMessengerEventHandlers.FBMessengerMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBMessengerRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBMessengerDeleteSelectedMedia_Button.Click, AddressOf FBMessengerEventHandlers.FBMessengerDeleteSelectedMedia_Button_Click
+        AddHandler FBMessengerAssetFolder_ListBox.DoubleClick, AddressOf FBMessengerEventHandlers.FBMessengerAssetFolder_ListBox_DoubleClick
+        AddHandler FBMessengerTextFileSelector_ListBox.DoubleClick, AddressOf FBMessengerEventHandlers.FBMessengerTextFileSelector_ListBox_DoubleClick
+    End Sub
+
 
 
     Private emojiPickerForm As EmojiPickerForm
@@ -736,6 +846,7 @@ Public Class Form1
         RegisterFBCommentEventHanders()
         RegisterFBCustomizeCommentEventhandlers()
         RegisterFBResponseEventhandlers()
+        RegisterFBMessegnerEventhandlers()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")
