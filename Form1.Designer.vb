@@ -3234,7 +3234,7 @@ Partial Class Form1
         CustomizeAction_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         CustomizeAction_ComboBox.Enabled = False
         CustomizeAction_ComboBox.FormattingEnabled = True
-        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "", "讀取未讀聊天室", "讀取己讀聊天室", "讀取未讀Marketplace", "讀取己讀Marketplace", "讀取未讀陌生訊息", "讀取己讀陌生訊息"})
+        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "", "讀取未讀聊天室", "讀取己讀聊天室", "讀取未讀Marketplace", "讀取己讀Marketplace", "讀取未讀陌生訊息", "讀取己讀陌生訊息", "", "聊天室訊息己讀封存", "聊天室訊息未讀封存", "Marketplace室訊息己讀封存", "Marketplace室訊息未讀封存"})
         CustomizeAction_ComboBox.Location = New Point(291, 21)
         CustomizeAction_ComboBox.Name = "CustomizeAction_ComboBox"
         CustomizeAction_ComboBox.Size = New Size(168, 27)

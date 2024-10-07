@@ -539,6 +539,43 @@ Public Class Form1
                     Catch ex As Exception
                         Debug.WriteLine(ex)
                     End Try
+                Case "聊天室訊息己讀封存"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Await Webview2Controller.ArchiveMessenger("聊天室", True, False)
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+                Case "聊天室訊息未讀封存"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Await Webview2Controller.ArchiveMessenger("聊天室", False, True)
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+                Case "Marketplace室訊息己讀封存"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Await Webview2Controller.ArchiveMessenger("Marketplace", True, False)
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+                Case "Marketplace室訊息己讀封存"
+                    Try
+                        Await Navigate_GoToUrl_Task("https://www.messenger.com/")
+                        Await Delay_msec(2000)
+                        Await Webview2Controller.ArchiveMessenger("Marketplace", False, True)
+                        result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
+
             End Select
 
 
