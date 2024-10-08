@@ -15,6 +15,7 @@ Imports OpenQA.Selenium.Support.Extensions
 Imports AngleSharp.Dom
 Imports System.IO
 Imports OpenQA.Selenium.Interactions
+Imports System.CodeDom.Compiler
 
 Module Webview2Controller
     Public edgeDriver As EdgeDriver
@@ -863,57 +864,34 @@ Module Webview2Controller
         Try
             Await Task.Run(Async Function()
                                Try
-
+                                   Dim actions As New Actions(edgeDriver)
 
                                    Dim msgsrcCss As String = Nothing
-                                   Dim messengerCssSelector = ".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x78zum5"
-                                   Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                   Dim messengerCssSelector As String = Nothing
+                                   Dim scrollDivCss As String = Nothing
                                    Select Case messageSource
                                        Case "聊天室"
                                            msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > a"
-                                           messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > a"
-
+                                           messengerCssSelector = "div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > .x1n2onr6 > .x78zum5.xdt5ytf"
+                                           scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
                                        Case "Marketplace"
                                            msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > a"
+                                           messengerCssSelector = "div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4 > div > div > div > div > div > div > div > div > div > div:nth-child(2) > .x1n2onr6> .x78zum5.xdt5ytf"
                                            scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
-                                                       'messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div > div:nth-child(2) > div > div"
-                                       Case "陌生訊息"
-                                           msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
-                                           scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
-                                       Case "垃圾訊息"
-                                           msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
-                                           scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
-
                                    End Select
 
                                    ClickByCssSelectorWaitUntil(msgsrcCss, 5)
 
-                                   If messageSource = "垃圾訊息" Then
-                                       Await Delay_msec(2000)
-                                       ClickByAriaLable("垃圾訊息")
-                                   End If
-
-
                                    Await Delay_msec(2000)
 
-
-                                   Dim scrolldivElement As IWebElement = edgeDriver.FindElement(By.CssSelector(scrollDivCss))
-                                   Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
-
-                                   Dim lastHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
-
-                                   Dim scrollCounter = 0
                                    While True
 
-                                       jsExecutor.ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", scrolldivElement)
-
-                                       Await Delay_msec(2000)
+                                       Dim read_chat_counter = 0
+                                       Dim unread_chat_counter = 0
 
                                        Dim elms = edgeDriver.FindElements(By.CssSelector(messengerCssSelector))
-
                                        For Each elm As IWebElement In elms
-
-
+                                           Debug.WriteLine("### elm")
                                            Dim unread_dot As Boolean = False
                                            Try
                                                elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
@@ -922,55 +900,105 @@ Module Webview2Controller
 
                                            End Try
 
+
                                            Try
 
-
-                                               If unread And unread_dot Then ' 未讀
-                                                   Dim actions As New Actions(edgeDriver)
-                                                   actions.MoveToElement(elm).Perform()
-                                                   Await Delay_msec(2000)
-                                                   edgeDriver.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
-                                                   Await Delay_msec(2000)
-                                                   edgeDriver.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
-                                                   Await Delay_msec(2000)
-
-                                               ElseIf read And Not unread_dot Then ' 已讀
-                                                   Dim actions As New Actions(edgeDriver)
-                                                   actions.MoveToElement(elm).Perform()
-                                                   Await Delay_msec(2000)
-                                                   edgeDriver.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
-                                                   Await Delay_msec(2000)
-                                                   edgeDriver.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
-                                                   Await Delay_msec(2000)
+                                               If unread_dot Then '未讀
+                                                   unread_chat_counter += 1
+                                               Else '已讀
+                                                   read_chat_counter += 1
                                                End If
 
                                            Catch ex As Exception
                                                Debug.WriteLine(ex)
                                            End Try
 
-
                                        Next
 
-                                       ' test
-                                       scrollCounter += 1
+                                       Debug.WriteLine("read_chat: " & read_chat_counter)
+                                       Debug.WriteLine("unread_chat: " & unread_chat_counter)
 
-                                       If scrollCounter > 3 Then
-                                           Exit While
+                                       If read Then
+                                           '處裡已讀
+                                           If read_chat_counter > 0 Then
+                                               For Each elm As IWebElement In elms
+                                                   Dim unread_dot As Boolean = False
+                                                   Try
+                                                       elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
+                                                       unread_dot = True
+                                                   Catch ex As NoSuchElementException
+
+                                                   End Try
+
+                                                   If Not unread_dot Then
+                                                       Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+                                                       jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
+
+                                                       actions.MoveToElement(elm).Perform()
+
+                                                       Await Delay_msec(2000)
+                                                       edgeDriver.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
+                                                       Await Delay_msec(2000)
+                                                       edgeDriver.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
+                                                       Await Delay_msec(2000)
+                                                       Exit For
+
+                                                   End If
+
+                                               Next
+                                           Else
+                                               '如果目前頁面沒有符合的元素，就往下滾
+                                               If Await UtilsModule.ScrollElement(scrollDivCss) Then
+                                                   '如果已經滾到底了，還是沒有符合元素，就結束
+                                                   Return True
+                                               End If
+                                           End If
+
+
+                                       ElseIf unread Then
+                                           '處裡未讀
+                                           If unread_chat_counter > 0 Then
+                                               For Each elm As IWebElement In elms
+                                                   Dim unread_dot As Boolean = False
+                                                   Try
+                                                       elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
+                                                       unread_dot = True
+                                                   Catch ex As NoSuchElementException
+
+                                                   End Try
+
+                                                   If unread_dot Then
+                                                       Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+                                                       jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
+                                                       Await Delay_msec(2000)
+                                                       actions.MoveToElement(elm).Perform()
+                                                       Await Delay_msec(2000)
+                                                       elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
+                                                       Await Delay_msec(2000)
+                                                       elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
+                                                       Await Delay_msec(2000)
+                                                       Exit For
+
+                                                   End If
+
+                                               Next
+                                           Else
+                                               '如果目前頁面沒有符合的元素，就往下滾
+                                               If Await UtilsModule.ScrollElement(scrollDivCss) Then
+                                                   '如果已經滾到底了，還是沒有符合元素，就結束
+                                                   Return True
+                                               End If
+                                           End If
                                        End If
 
 
-                                       Dim newHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
-                                       If newHeight = lastHeight Then
-                                           Exit While
-                                       End If
-
-                                       lastHeight = newHeight
                                    End While
+
 
                                Catch ex As Exception
                                    Debug.WriteLine(ex)
                                End Try
-
+                               Return True
                            End Function)
 
             Return True

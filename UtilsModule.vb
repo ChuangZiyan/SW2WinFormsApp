@@ -2,6 +2,7 @@
 Imports System.Net.NetworkInformation
 Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
+Imports OpenQA.Selenium
 Imports SkiaSharp
 
 Module UtilsModule
@@ -102,5 +103,32 @@ Module UtilsModule
         ' 使用正則表達式來去除 HTML 標籤
         Return Regex.Replace(input, "<.*?>", String.Empty)
     End Function
+
+
+    Public Async Function ScrollElement(elementCss As String) As Task(Of Boolean)
+        Try
+            Dim scrolldivElement As IWebElement = edgeDriver.FindElement(By.CssSelector(elementCss))
+            Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+
+            Dim lastHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
+
+            jsExecutor.ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", scrolldivElement)
+
+            Await Delay_msec(3000)
+
+            Dim newHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
+
+            If newHeight = lastHeight Then
+                Return True
+            End If
+        Catch ex As NoSuchElementException
+            Debug.WriteLine(ex.Message)
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+
+        Return False
+    End Function
+
 
 End Module
