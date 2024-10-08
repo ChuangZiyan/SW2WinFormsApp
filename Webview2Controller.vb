@@ -937,9 +937,9 @@ Module Webview2Controller
                                                        actions.MoveToElement(elm).Perform()
 
                                                        Await Delay_msec(2000)
-                                                       edgeDriver.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
+                                                       elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
                                                        Await Delay_msec(2000)
-                                                       edgeDriver.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
+                                                       elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
                                                        Await Delay_msec(2000)
                                                        Exit For
 
