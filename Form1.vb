@@ -155,17 +155,10 @@ Public Class Form1
 
             '處理隨機網址
             If myUrl.Contains("隨機") Then
-                Dim randomItem As JToken
-
-                If action = "留言" Then
-                    randomItem = MainFormController.GetRandomFBActivityLogUrl(userDataFolderPath)
-                Else
-                    randomItem = MainFormController.GetRandomGroupsUrl(userDataFolderPath)
-                End If
+                Dim randomItem As JToken = MainFormController.GetRandomFBUrlData(action, userDataFolderPath)
                 item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
                 item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()
                 myUrl = randomItem("Url").ToString()
-
             End If
 
             '### Main Routing 主要路由在這 ###
@@ -390,7 +383,39 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         result = False
                     End Try
+                Case "訊息"
+                    Try
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMessengerAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
+                        Dim FBMessengerWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBMessengerWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBMessengerWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBMessengerWaitSecondsCfg, ",")(1)
+
+                        result = Await FBMessengerSeleniumScript.SendMessageThroughMessenger(myUrl, assetFolderPath)
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要送出留言就取消註解下面那行
+                            'edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']")).SendKeys(Keys.Return)
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
                 Case "讀取已讀通知"
                     result = Await Webview2Controller.ReadFBNotifications(True, False)
                 Case "讀取未讀通知"

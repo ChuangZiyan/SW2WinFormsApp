@@ -9,6 +9,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
 Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports OpenQA.Selenium.Support.UI
 
 Module MainFormController
 
@@ -335,37 +336,19 @@ Module MainFormController
     End Function
 
 
-    Public Function GetRandomGroupsUrl(userDataFolderPath As String) As JToken
+    Public Function GetRandomFBUrlData(type As String, userDataFolderPath As String) As JToken
         Try
+            Dim fileName As String = Nothing
+            Select Case type
+                Case "發帖"
+                    fileName = "FBGroupList.json"
+                Case "留言"
+                    fileName = "FBActivityLogList.json"
+                Case "訊息"
+                    fileName = "FBMessengerList.json"
+            End Select
 
-            Dim filePath = Path.Combine(userDataFolderPath, "FBGroupList.json")
-
-            If File.Exists(filePath) Then
-                Dim jsonString As String = File.ReadAllText(filePath)
-                Dim jsonArray As JArray = JArray.Parse(jsonString)
-
-                Dim rnd As New Random()
-                Dim randomIndex As Integer = rnd.Next(0, jsonArray.Count)
-                Dim randomItem As JToken = jsonArray(randomIndex)
-
-                'Debug.WriteLine("Name : " & randomItem("Name").ToString)
-                'Debug.WriteLine("URL : " & randomItem("Url").ToString)
-
-                Return randomItem
-            End If
-
-            Return Nothing
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            Return Nothing
-        End Try
-
-    End Function
-
-    Public Function GetRandomFBActivityLogUrl(userDataFolderPath As String) As JToken
-        Try
-
-            Dim filePath = Path.Combine(userDataFolderPath, "FBActivityLogList.json")
+            Dim filePath = Path.Combine(userDataFolderPath, fileName)
 
             If File.Exists(filePath) Then
                 Dim jsonString As String = File.ReadAllText(filePath)

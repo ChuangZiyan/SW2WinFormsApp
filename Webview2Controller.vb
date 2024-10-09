@@ -884,14 +884,16 @@ Module Webview2Controller
 
                                    Await Delay_msec(2000)
 
+                                   Dim exe_count = 0
+
                                    While True
+                                       exe_count += 1
 
                                        Dim read_chat_counter = 0
                                        Dim unread_chat_counter = 0
 
                                        Dim elms = edgeDriver.FindElements(By.CssSelector(messengerCssSelector))
                                        For Each elm As IWebElement In elms
-                                           Debug.WriteLine("### elm")
                                            Dim unread_dot As Boolean = False
                                            Try
                                                elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
@@ -915,8 +917,8 @@ Module Webview2Controller
 
                                        Next
 
-                                       Debug.WriteLine("read_chat: " & read_chat_counter)
-                                       Debug.WriteLine("unread_chat: " & unread_chat_counter)
+                                       'Debug.WriteLine("read_chat: " & read_chat_counter)
+                                       'Debug.WriteLine("unread_chat: " & unread_chat_counter)
 
                                        If read Then
                                            '處裡已讀
@@ -931,17 +933,22 @@ Module Webview2Controller
                                                    End Try
 
                                                    If Not unread_dot Then
-                                                       Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
-                                                       jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
+                                                       Try
+                                                           Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+                                                           jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
 
-                                                       actions.MoveToElement(elm).Perform()
+                                                           actions.MoveToElement(elm).Perform()
 
-                                                       Await Delay_msec(2000)
-                                                       elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
-                                                       Await Delay_msec(2000)
-                                                       elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
-                                                       Await Delay_msec(2000)
-                                                       Exit For
+                                                           Await Delay_msec(1500)
+                                                           elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
+                                                           Await Delay_msec(1500)
+                                                           elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
+                                                           Await Delay_msec(1500)
+                                                           Exit For
+                                                       Catch ex As Exception
+
+                                                       End Try
+
 
                                                    End If
 
@@ -968,16 +975,20 @@ Module Webview2Controller
                                                    End Try
 
                                                    If unread_dot Then
-                                                       Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
-                                                       jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
-                                                       Await Delay_msec(2000)
-                                                       actions.MoveToElement(elm).Perform()
-                                                       Await Delay_msec(2000)
-                                                       elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
-                                                       Await Delay_msec(2000)
-                                                       elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
-                                                       Await Delay_msec(2000)
-                                                       Exit For
+                                                       Try
+                                                           Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
+                                                           jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
+                                                           Await Delay_msec(1500)
+                                                           actions.MoveToElement(elm).Perform()
+                                                           Await Delay_msec(1500)
+                                                           elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
+                                                           Await Delay_msec(1500)
+                                                           elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
+                                                           Await Delay_msec(1500)
+                                                           Exit For
+                                                       Catch ex As Exception
+
+                                                       End Try
 
                                                    End If
 
@@ -991,7 +1002,9 @@ Module Webview2Controller
                                            End If
                                        End If
 
-
+                                       If exe_count > 50 Then
+                                           Return True
+                                       End If
                                    End While
 
 

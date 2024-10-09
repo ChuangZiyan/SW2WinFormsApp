@@ -1515,6 +1515,16 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "訊息"
+                selectedGroupItems = Form1.FBMessengerData_Listview.SelectedItems
+                If Form1.FBMessengerAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBMessengerAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
             Case "順序回應通知"
                 selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
                 If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
