@@ -64,17 +64,16 @@ Module FBMessengerSeleniumScript
 
                                           Dim text_input As IWebElement = edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']"))
 
-                                          Dim lines As String() = myText.Split(New String() {vbCrLf, vbCr, vbLf}, StringSplitOptions.None)
-                                          For Each line As String In lines
-                                              'line = line.Replace(vbCr, "").Replace(vbLf, "").Replace(Environment.NewLine, "")
-                                              text_input.SendKeys(line)
-                                              Await Delay_msec(500)
-                                              text_input.SendKeys(Keys.LeftShift + Keys.Return)
-                                          Next
-
-
-                                          'Return True
-
+                                          ' 如果內容是空白就不要輸入
+                                          If myText.Trim() <> "" Then
+                                              Dim lines As String() = myText.Split(New String() {vbCrLf, vbCr, vbLf}, StringSplitOptions.None)
+                                              For Each line As String In lines
+                                                  'line = line.Replace(vbCr, "").Replace(vbLf, "").Replace(Environment.NewLine, "")
+                                                  text_input.SendKeys(line)
+                                                  Await Delay_msec(500)
+                                                  text_input.SendKeys(Keys.LeftShift + Keys.Return)
+                                              Next
+                                          End If
 
                                           Return True
                                       Catch ex As Exception

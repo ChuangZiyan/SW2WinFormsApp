@@ -601,6 +601,65 @@ Public Class Form1
                         Debug.WriteLine(ex)
                     End Try
 
+                Case "順序回覆訊息"
+                    Dim myListbox = WebviewUserDataFolder_ListBox
+                    Dim index As Integer = myListbox.Items.IndexOf(userData)
+                    If index <> -1 Then
+                        myListbox.SelectedIndex = index
+                    Else
+                        myListbox.SelectedIndex = -1
+                    End If
+                    Await Delay_msec(500)
+                    Action_TabControl.SelectedTab = FBMessengerAssets_TabPage
+                    FBUrlData_TabControl.SelectedTab = FBMessengerUrlData_TabPage
+
+                    Dim FBMessengerItems = FBMessengerData_Listview.Items
+
+                    For Each messengerItem As ListViewItem In FBMessengerItems
+                        Try
+                            messengerItem.BackColor = Color.SteelBlue
+                            messengerItem.ForeColor = Color.White
+                            MainFormController.CenterSelectedItem(FBMessengerData_Listview, messengerItem)
+
+                            Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMessengerAssetsDirectory)
+                            item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                            Dim FBMessengerWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBMessengerWaitSecondsConfig.txt"))
+                            item.SubItems(7).Text = Split(FBMessengerWaitSecondsCfg, ",")(0)
+                            item.SubItems(8).Text = Split(FBMessengerWaitSecondsCfg, ",")(1)
+                            myUrl = messengerItem.SubItems(1).Text
+                            result = Await FBMessengerSeleniumScript.SendMessageThroughMessenger(myUrl, assetFolderPath)
+                            'result = False
+
+                            ' 如果流程都沒問題
+                            If result Then
+                                ' 這邊要等待上傳完成
+                                For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                    Await Delay_msec(1000)
+                                    item.SubItems(7).Text = seconds
+                                Next
+
+                                ' 如果你要送出留言就取消註解下面那行
+                                ' edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']")).SendKeys(Keys.Return)
+
+                                ' 送出後等待
+                                For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                    Await Delay_msec(1000)
+                                    item.SubItems(8).Text = seconds
+                                Next
+
+                            End If
+
+                        Catch ex As Exception
+                            Debug.WriteLine(ex)
+                            result = False
+                        End Try
+
+                        ' 執行完後變回來
+                        messengerItem.BackColor = Color.White
+                        messengerItem.ForeColor = Color.Black
+                    Next
+
             End Select
 
 
