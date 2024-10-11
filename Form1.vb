@@ -1,13 +1,5 @@
-﻿Imports System.ComponentModel
-Imports System.IO
-Imports System.Security.Policy
-Imports System.Threading
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports ICSharpCode.SharpZipLib.Zip.ExtendedUnixData
-Imports Newtonsoft.Json
+﻿Imports System.IO
 Imports Newtonsoft.Json.Linq
-Imports OpenQA.Selenium
-Imports OpenQA.Selenium.DevTools.V125.Autofill
 
 Public Class Form1
 
@@ -18,7 +10,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
     Public PAUSE As Boolean = False
 
@@ -738,7 +729,6 @@ Public Class Form1
         AddHandler DeleteSelectedScriptListviewItem_Button.Click, AddressOf mainFormEventHandlers.DeleteSelectedScriptListviewItem_Button_Click
         AddHandler DeleteScriptListviewItemByUserData_Button.Click, AddressOf mainFormEventHandlers.DeleteScriptListviewItemByUserData_Button_Click
         AddHandler ModifySelectedScriptListviewWaitTime_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewWaitTime
-        AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
         AddHandler ResetScript_Button.Click, AddressOf mainFormEventHandlers.ResetScript_Button_Click
         AddHandler InsertSchedulerScriptToListview_Button.Click, AddressOf mainFormEventHandlers.InsertSchedulerScriptToListview_Button_Click
         AddHandler ModifyListviewScheduleTime_Button.Click, AddressOf mainFormEventHandlers.ModifyListviewScheduleTime_Button_Click
@@ -778,6 +768,8 @@ Public Class Form1
         AddHandler Action_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.Action_TabControl_SelectedIndexChanged
         AddHandler DeselecteAllFBGroups_ListViewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBGroups_ListViewItems_Button_Click
 
+        ' 修改資料夾
+        AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
 
         ' ### FB ActivityLogs
         AddHandler ReadActivityLogs_Button.Click, AddressOf mainFormEventHandlers.ReadActivityLogs_Button_Click
@@ -947,9 +939,7 @@ Public Class Form1
     End Sub
 
 
-
     Private emojiPickerForm As EmojiPickerForm
-
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()
@@ -977,7 +967,6 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
-
 
 
 End Class

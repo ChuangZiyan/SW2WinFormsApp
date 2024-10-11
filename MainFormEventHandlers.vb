@@ -90,6 +90,10 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
             Case "順序回應通知"
                 assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
+            Case "訊息"
+                assetFolderListBoxSelectedItems = Form1.FBMessengerAssetFolder_ListBox.SelectedItems
+            Case "順序回覆訊息"
+                assetFolderListBoxSelectedItems = Form1.FBMessengerAssetFolder_ListBox.SelectedItems
             Case Else
                 MsgBox("不支援此執行動作")
                 Exit Sub
@@ -118,6 +122,11 @@ Public Class MainFormEventHandlers
                     With item.SubItems
                         .Item(5).Text = content
                     End With
+                ElseIf item.SubItems(4).Text = "順序回覆訊息" And Form1.Action_TabControl.SelectedTab.Text = "訊息" Then
+                    With item.SubItems
+                        .Item(5).Text = content
+                    End With
+
                 End If
             Next
         End If
