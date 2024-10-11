@@ -709,6 +709,7 @@ Public Class Form1
     Private FBCustomizeCommentEventHandlers As New FBCustomizeCommentEventHandlers()
     Private FBResponseEventHandlers As New FBResponseEventHandlers()
     Private FBMessengerEventHandlers As New FBMessengerEventHandlers()
+    Private FBStoryEventHandlers As New FBStoryEventHandlers()
 
 
 
@@ -938,6 +939,23 @@ Public Class Form1
         AddHandler FBMessengerTextFileSelector_ListBox.DoubleClick, AddressOf FBMessengerEventHandlers.FBMessengerTextFileSelector_ListBox_DoubleClick
     End Sub
 
+    Private Sub RegisterFBStoryEventhandlers()
+        ' 限時動態的事件
+        AddHandler FBStoryCreateNewAssetFolder_Button.Click, AddressOf FBStoryEventHandlers.FBStoryCreateNewAssetFolder_Button_Click
+        AddHandler FBStoryDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBStoryEventHandlers.FBStoryDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBStoryDeleteSelectedAssetFolder_Button.Click, AddressOf FBStoryEventHandlers.FBStoryDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBStoryCreateNewTextFile_Button.Click, AddressOf FBStoryEventHandlers.FBStoryCreateNewTextFile_Button_Click
+        AddHandler FBStoryAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBStoryEventHandlers.FBStoryAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBStoryTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBStoryEventHandlers.FBStoryTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBStoryDeleteSelectedTextFile_Button.Click, AddressOf FBStoryEventHandlers.FBStoryDeleteSelectedTextFile_Button_Click
+        AddHandler FBStorySaveTextFile_Button.Click, AddressOf FBStoryEventHandlers.FBStorySaveTextFile_Button_Click
+        AddHandler FBStoryMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBStoryEventHandlers.FBStoryMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBStoryRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBStoryEventHandlers.FBStoryRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBStoryDeleteSelectedMedia_Button.Click, AddressOf FBStoryEventHandlers.FBStoryDeleteSelectedMedia_Button_Click
+        AddHandler FBStoryAssetFolder_ListBox.DoubleClick, AddressOf FBStoryEventHandlers.FBStoryAssetFolder_ListBox_DoubleClick
+        AddHandler FBStoryTextFileSelector_ListBox.DoubleClick, AddressOf FBStoryEventHandlers.FBStoryTextFileSelector_ListBox_DoubleClick
+    End Sub
+
 
     Private emojiPickerForm As EmojiPickerForm
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -958,6 +976,7 @@ Public Class Form1
         RegisterFBCustomizeCommentEventhandlers()
         RegisterFBResponseEventhandlers()
         RegisterFBMessegnerEventhandlers()
+        RegisterFBStoryEventhandlers()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")
