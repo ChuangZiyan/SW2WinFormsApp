@@ -402,8 +402,6 @@ Public Class MainFormEventHandlers
                     Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeCommentAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBCustomizeCommentAssetFolder_ListBox
-                Case "測試項"
-                    Form1.Action_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
             End Select
 
             ' 填入社團名稱跟網址，動作是留言的話，要填到留言的面板去
@@ -1217,8 +1215,8 @@ Public Class MainFormEventHandlers
             Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
         ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBMessengerAssets_TabPage Then
             Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
-        Else
-            Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
+            'Else
+            'Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
         End If
 
     End Sub
@@ -1534,6 +1532,15 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "限時"
+                If Form1.FBStoryAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBStoryAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
             Case "順序回應通知"
                 selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
                 If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
@@ -1572,8 +1579,9 @@ Public Class MainFormEventHandlers
                 AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
 
-
-                If selectedGroupItems.Count > 0 Then ' 有選超過一個網址項目
+                If selecteAction = "限時" Then
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
+                ElseIf selectedGroupItems.Count > 0 Then ' 有選超過一個網址項目
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems
                         executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
                         baseSeconds += Form1.SchedulerIntervalSeconds_NumericUpDown.Value
@@ -1589,7 +1597,10 @@ Public Class MainFormEventHandlers
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
                 AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
-                If selectedGroupItems.Count > 0 Then
+
+                If selecteAction = "限時" Then
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
+                ElseIf selectedGroupItems.Count > 0 Then
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems
                         AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)
                     Next

@@ -407,6 +407,40 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         result = False
                     End Try
+
+                Case "限時"
+                    Try
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBStoryAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBStoryWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBStoryWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBStoryWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBStoryWaitSecondsCfg, ",")(1)
+
+                        result = Await FBStorySeleniumScript.CreatePhotoStoryOnFacebook(myUrl, assetFolderPath)
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要送出留言就取消註解下面那行
+                            'Await Webview2Controller.ClickByCssSelector_Task("div[aria-label='分享到限時動態']")
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
                 Case "讀取已讀通知"
                     result = Await Webview2Controller.ReadFBNotifications(True, False)
                 Case "讀取未讀通知"
