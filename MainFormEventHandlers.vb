@@ -1436,7 +1436,6 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled
 
@@ -1541,6 +1540,15 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "個人發帖"
+                If Form1.FBPersonalPostAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBPersonalPostAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
             Case "順序回應通知"
                 selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
                 If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
@@ -1578,8 +1586,9 @@ Public Class MainFormEventHandlers
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
                 AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
-
-                If selecteAction = "限時" Then
+                If selecteAction = "個人發帖" Then
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "Facebook", "https://www.facebook.com/", content, selecteAction, executionWaitSeconds)
+                ElseIf selecteAction = "限時" Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
                 ElseIf selectedGroupItems.Count > 0 Then ' 有選超過一個網址項目
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems
@@ -1598,7 +1607,9 @@ Public Class MainFormEventHandlers
                 AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
 
-                If selecteAction = "限時" Then
+                If selecteAction = "個人發帖" Then
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "Facebook", "https://www.facebook.com/", content, selecteAction, executionWaitSeconds)
+                ElseIf selecteAction = "限時" Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
                 ElseIf selectedGroupItems.Count > 0 Then
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems

@@ -410,6 +410,8 @@ Public Class Form1
 
                 Case "限時"
                     Try
+                        ' 目前發限時動態會有按鈕顯示不出的bug，所以要先縮小
+                        Main_WebView2.ZoomFactor = 0.5
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBStoryAssetsDirectory)
                         item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
 
@@ -441,6 +443,41 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         result = False
                     End Try
+
+                Case "個人發帖"
+                    Try
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPersonalPostAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBPersonalPostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBPersonalPostWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBPersonalPostWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBPersonalPostWaitSecondsCfg, ",")(1)
+
+                        result = Await FBPersonalPostSeleniumScript.WritePersonalPostOnFacebook(myUrl, assetFolderPath)
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要發佈就取消註解下面那行
+                            'Await Webview2Controller.ClickByCssSelector_Task("div[aria-label='發佈']")
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+
                 Case "讀取已讀通知"
                     result = Await Webview2Controller.ReadFBNotifications(True, False)
                 Case "讀取未讀通知"
@@ -744,6 +781,7 @@ Public Class Form1
     Private FBResponseEventHandlers As New FBResponseEventHandlers()
     Private FBMessengerEventHandlers As New FBMessengerEventHandlers()
     Private FBStoryEventHandlers As New FBStoryEventHandlers()
+    Private FBPersonalPostEventHandlers As New FBPersonalPostEventHandlers()
 
 
 
@@ -802,6 +840,7 @@ Public Class Form1
         AddHandler FBUrlData_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBUrlData_TabControl_SelectedIndexChanged
         AddHandler Action_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.Action_TabControl_SelectedIndexChanged
         AddHandler DeselecteAllFBGroups_ListViewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBGroups_ListViewItems_Button_Click
+
 
         ' 修改資料夾
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
@@ -990,6 +1029,23 @@ Public Class Form1
         AddHandler FBStoryTextFileSelector_ListBox.DoubleClick, AddressOf FBStoryEventHandlers.FBStoryTextFileSelector_ListBox_DoubleClick
     End Sub
 
+    Private Sub RegisterFBPersonalPostEventhandlers()
+        ' 個人發帖的Assets事件
+        AddHandler FBPersonalPostCreateNewAssetFolder_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostCreateNewAssetFolder_Button_Click
+        AddHandler FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBPersonalPostDeleteSelectedAssetFolder_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBPersonalPostCreateNewTextFile_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostCreateNewTextFile_Button_Click
+        AddHandler FBPersonalPostAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBPersonalPostEventHandlers.FBPersonalPostAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBPersonalPostTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBPersonalPostEventHandlers.FBPersonalPostTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBPersonalPostDeleteSelectedTextFile_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostDeleteSelectedTextFile_Button_Click
+        AddHandler FBPersonalPostSaveTextFile_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostSaveTextFile_Button_Click
+        AddHandler FBPersonalPostMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBPersonalPostEventHandlers.FBPersonalPostMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBPersonalPostDeleteSelectedMedia_Button.Click, AddressOf FBPersonalPostEventHandlers.FBPersonalPostDeleteSelectedMedia_Button_Click
+        AddHandler FBPersonalPostAssetFolder_ListBox.DoubleClick, AddressOf FBPersonalPostEventHandlers.FBPersonalPostAssetFolder_ListBox_DoubleClick
+        AddHandler FBPersonalPostTextFileSelector_ListBox.DoubleClick, AddressOf FBPersonalPostEventHandlers.FBPersonalPostTextFileSelector_ListBox_DoubleClick
+    End Sub
+
 
     Private emojiPickerForm As EmojiPickerForm
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1011,6 +1067,7 @@ Public Class Form1
         RegisterFBResponseEventhandlers()
         RegisterFBMessegnerEventhandlers()
         RegisterFBStoryEventhandlers()
+        RegisterFBPersonalPostEventhandlers()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")

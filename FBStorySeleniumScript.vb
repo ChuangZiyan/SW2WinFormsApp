@@ -5,6 +5,26 @@ Module FBStorySeleniumScript
     Public Async Function CreatePhotoStoryOnFacebook(myUrl As String, myAssetFolderPath As String) As Task(Of Boolean)
         Try
 
+            'Debug.WriteLine("WritePostOnFacebook")
+            Dim myText As String = ""
+
+            Dim textFileFolderPath = Path.Combine(myAssetFolderPath, "textFiles")
+            Dim textFiles As String() = Directory.GetFiles(textFileFolderPath, "*.txt")
+
+            If textFiles.Length > 0 Then
+
+                If Directory.Exists(textFileFolderPath) Then
+                    Dim rand As New Random()
+                    Dim randomIndex As Integer = rand.Next(0, textFiles.Length)
+                    Dim randomTextFile As String = textFiles(randomIndex)
+                    myText = File.ReadAllText(randomTextFile)
+                End If
+
+            Else
+                Debug.WriteLine("資料夾內無文字檔")
+            End If
+
+
             ' Media Files
             Dim myMedia As String = Nothing
             Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
@@ -21,7 +41,8 @@ Module FBStorySeleniumScript
                 End If
 
             Else
-                Debug.WriteLine("資料夾內無文字檔")
+                Debug.WriteLine("資料夾內無圖片檔")
+                Return False
             End If
 
             Return Await Task.Run(Async Function() As Task(Of Boolean)
@@ -36,7 +57,17 @@ Module FBStorySeleniumScript
                                           End If
 
 
-                                          Await Delay_msec(3000)
+                                          Await Delay_msec(2000)
+
+
+                                          myText = ""
+                                          If myText <> "" Then
+                                              Webview2Controller.ClickByCssSelector("div.x9f619.x78zum5.x1r8uery.xdt5ytf.x1iyjqo2.xs83m0k.x1nhvcw1.x1swvt13.x1pi30zi.xh8yej3 > div > div")
+                                              Await Delay_msec(2000)
+                                              Dim text_input As IWebElement = edgeDriver.FindElement(By.CssSelector("input[aria-label$='開始輸入']"))
+                                              text_input.SendKeys(myText)
+                                          End If
+
 
                                           Return True
                                       Catch ex As Exception
