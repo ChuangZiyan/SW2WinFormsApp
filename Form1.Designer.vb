@@ -332,6 +332,27 @@ Partial Class Form1
         FBStoryMediaPreviewer_PictureBox = New PictureBox()
         FBStoryTextFilePreviewer_RichTextBox = New RichTextBox()
         FBStoryCreateNewAssetFolder_Button = New Button()
+        FBPersonalPostAssets_TabPage = New TabPage()
+        Label64 = New Label()
+        Label65 = New Label()
+        Label66 = New Label()
+        FBPersonalPostUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBPersonalPostSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button = New Button()
+        FBPersonalPostDeleteSelectedTextFile_Button = New Button()
+        FBPersonalPostNewTextFileName_TextBox = New TextBox()
+        FBPersonalPostMediaSelector_ListBox = New ListBox()
+        FBPersonalPostTextFileSelector_ListBox = New ListBox()
+        FBPersonalPostAssetFolder_ListBox = New ListBox()
+        FBPersonalPostSaveTextFile_Button = New Button()
+        FBPersonalPostCreateNewTextFile_Button = New Button()
+        FBPersonalPostDeleteSelectedMedia_Button = New Button()
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button = New Button()
+        FBPersonalPostDeleteSelectedAssetFolder_Button = New Button()
+        FBPersonalPostAssetFolderName_TextBox = New TextBox()
+        FBPersonalPostMediaPreviewer_PictureBox = New PictureBox()
+        FBPersonalPostTextFilePreviewer_RichTextBox = New RichTextBox()
+        FBPersonalPostCreateNewAssetFolder_Button = New Button()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
         Label55 = New Label()
@@ -385,27 +406,7 @@ Partial Class Form1
         DeleteSelectedScriptListviewItem_Button = New Button()
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
-        FBPersonalPost_TabPage = New TabPage()
-        Label64 = New Label()
-        Label65 = New Label()
-        Label66 = New Label()
-        FBPersonalPostUploadWaitSeconds_NumericUpDown = New NumericUpDown()
-        FBPersonalPostSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button = New Button()
-        FBPersonalPostDeleteSelectedTextFile_Button = New Button()
-        FBPersonalPostNewTextFileName_TextBox = New TextBox()
-        FBPersonalPostMediaSelector_ListBox = New ListBox()
-        FBPersonalPostTextFileSelector_ListBox = New ListBox()
-        FBPersonalPostAssetFolder_ListBox = New ListBox()
-        FBPersonalPostSaveTextFile_Button = New Button()
-        FBPersonalPostCreateNewTextFile_Button = New Button()
-        FBPersonalPostDeleteSelectedMedia_Button = New Button()
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button = New Button()
-        FBPersonalPostDeleteSelectedAssetFolder_Button = New Button()
-        FBPersonalPostAssetFolderName_TextBox = New TextBox()
-        FBPersonalPostMediaPreviewer_PictureBox = New PictureBox()
-        FBPersonalPostTextFilePreviewer_RichTextBox = New RichTextBox()
-        FBPersonalPostCreateNewAssetFolder_Button = New Button()
+        EditScriptFile_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -449,6 +450,10 @@ Partial Class Form1
         CType(FBStoryUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBStorySubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBStoryMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        FBPersonalPostAssets_TabPage.SuspendLayout()
+        CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -459,10 +464,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        FBPersonalPost_TabPage.SuspendLayout()
-        CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -1592,7 +1593,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBRespondNotificationsAssets_TabPage)
         Action_TabControl.Controls.Add(FBMessengerAssets_TabPage)
         Action_TabControl.Controls.Add(FBStoryAssets_TabPage)
-        Action_TabControl.Controls.Add(FBPersonalPost_TabPage)
+        Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
@@ -3418,6 +3419,212 @@ Partial Class Form1
         FBStoryCreateNewAssetFolder_Button.Text = "建立"
         FBStoryCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' FBPersonalPostAssets_TabPage
+        ' 
+        FBPersonalPostAssets_TabPage.Controls.Add(Label64)
+        FBPersonalPostAssets_TabPage.Controls.Add(Label65)
+        FBPersonalPostAssets_TabPage.Controls.Add(Label66)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostUploadWaitSeconds_NumericUpDown)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostSubmitWaitSeconds_NumericUpDown)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostDeselectAllAssetFolderListboxItems_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostDeleteSelectedTextFile_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostNewTextFileName_TextBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostMediaSelector_ListBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostTextFileSelector_ListBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostAssetFolder_ListBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostSaveTextFile_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostCreateNewTextFile_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostDeleteSelectedMedia_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostRevealMediaFoldesrInFileExplorer_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostDeleteSelectedAssetFolder_Button)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostAssetFolderName_TextBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostMediaPreviewer_PictureBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostTextFilePreviewer_RichTextBox)
+        FBPersonalPostAssets_TabPage.Controls.Add(FBPersonalPostCreateNewAssetFolder_Button)
+        FBPersonalPostAssets_TabPage.Location = New Point(4, 28)
+        FBPersonalPostAssets_TabPage.Name = "FBPersonalPostAssets_TabPage"
+        FBPersonalPostAssets_TabPage.Size = New Size(664, 467)
+        FBPersonalPostAssets_TabPage.TabIndex = 8
+        FBPersonalPostAssets_TabPage.Text = "個人發帖"
+        FBPersonalPostAssets_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Label64
+        ' 
+        Label64.AutoSize = True
+        Label64.Location = New Point(6, 364)
+        Label64.Name = "Label64"
+        Label64.Size = New Size(50, 19)
+        Label64.TabIndex = 144
+        Label64.Text = "名稱 : "
+        ' 
+        ' Label65
+        ' 
+        Label65.AutoSize = True
+        Label65.Location = New Point(334, 13)
+        Label65.Name = "Label65"
+        Label65.Size = New Size(80, 19)
+        Label65.TabIndex = 143
+        Label65.Text = "送出等待 : "
+        ' 
+        ' Label66
+        ' 
+        Label66.AutoSize = True
+        Label66.Location = New Point(183, 13)
+        Label66.Name = "Label66"
+        Label66.Size = New Size(80, 19)
+        Label66.TabIndex = 142
+        Label66.Text = "上載等待 : "
+        ' 
+        ' FBPersonalPostUploadWaitSeconds_NumericUpDown
+        ' 
+        FBPersonalPostUploadWaitSeconds_NumericUpDown.Location = New Point(267, 10)
+        FBPersonalPostUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBPersonalPostUploadWaitSeconds_NumericUpDown.Name = "FBPersonalPostUploadWaitSeconds_NumericUpDown"
+        FBPersonalPostUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBPersonalPostUploadWaitSeconds_NumericUpDown.TabIndex = 141
+        ' 
+        ' FBPersonalPostSubmitWaitSeconds_NumericUpDown
+        ' 
+        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 10)
+        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Name = "FBPersonalPostSubmitWaitSeconds_NumericUpDown"
+        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBPersonalPostSubmitWaitSeconds_NumericUpDown.TabIndex = 140
+        ' 
+        ' FBPersonalPostDeselectAllAssetFolderListboxItems_Button
+        ' 
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Location = New Point(6, 326)
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Name = "FBPersonalPostDeselectAllAssetFolderListboxItems_Button"
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Size = New Size(170, 29)
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.TabIndex = 139
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Text = "取消選擇"
+        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostDeleteSelectedTextFile_Button
+        ' 
+        FBPersonalPostDeleteSelectedTextFile_Button.Location = New Point(435, 189)
+        FBPersonalPostDeleteSelectedTextFile_Button.Name = "FBPersonalPostDeleteSelectedTextFile_Button"
+        FBPersonalPostDeleteSelectedTextFile_Button.Size = New Size(94, 29)
+        FBPersonalPostDeleteSelectedTextFile_Button.TabIndex = 138
+        FBPersonalPostDeleteSelectedTextFile_Button.Text = "刪除所選"
+        FBPersonalPostDeleteSelectedTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostNewTextFileName_TextBox
+        ' 
+        FBPersonalPostNewTextFileName_TextBox.Location = New Point(183, 189)
+        FBPersonalPostNewTextFileName_TextBox.Name = "FBPersonalPostNewTextFileName_TextBox"
+        FBPersonalPostNewTextFileName_TextBox.Size = New Size(145, 27)
+        FBPersonalPostNewTextFileName_TextBox.TabIndex = 137
+        ' 
+        ' FBPersonalPostMediaSelector_ListBox
+        ' 
+        FBPersonalPostMediaSelector_ListBox.FormattingEnabled = True
+        FBPersonalPostMediaSelector_ListBox.ItemHeight = 19
+        FBPersonalPostMediaSelector_ListBox.Location = New Point(183, 224)
+        FBPersonalPostMediaSelector_ListBox.Name = "FBPersonalPostMediaSelector_ListBox"
+        FBPersonalPostMediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBPersonalPostMediaSelector_ListBox.Size = New Size(145, 156)
+        FBPersonalPostMediaSelector_ListBox.TabIndex = 136
+        ' 
+        ' FBPersonalPostTextFileSelector_ListBox
+        ' 
+        FBPersonalPostTextFileSelector_ListBox.FormattingEnabled = True
+        FBPersonalPostTextFileSelector_ListBox.ItemHeight = 19
+        FBPersonalPostTextFileSelector_ListBox.Location = New Point(183, 46)
+        FBPersonalPostTextFileSelector_ListBox.Name = "FBPersonalPostTextFileSelector_ListBox"
+        FBPersonalPostTextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBPersonalPostTextFileSelector_ListBox.Size = New Size(145, 137)
+        FBPersonalPostTextFileSelector_ListBox.TabIndex = 135
+        ' 
+        ' FBPersonalPostAssetFolder_ListBox
+        ' 
+        FBPersonalPostAssetFolder_ListBox.FormattingEnabled = True
+        FBPersonalPostAssetFolder_ListBox.ItemHeight = 19
+        FBPersonalPostAssetFolder_ListBox.Location = New Point(6, 8)
+        FBPersonalPostAssetFolder_ListBox.Name = "FBPersonalPostAssetFolder_ListBox"
+        FBPersonalPostAssetFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBPersonalPostAssetFolder_ListBox.Size = New Size(170, 308)
+        FBPersonalPostAssetFolder_ListBox.TabIndex = 134
+        ' 
+        ' FBPersonalPostSaveTextFile_Button
+        ' 
+        FBPersonalPostSaveTextFile_Button.Location = New Point(534, 189)
+        FBPersonalPostSaveTextFile_Button.Name = "FBPersonalPostSaveTextFile_Button"
+        FBPersonalPostSaveTextFile_Button.Size = New Size(94, 29)
+        FBPersonalPostSaveTextFile_Button.TabIndex = 133
+        FBPersonalPostSaveTextFile_Button.Text = "儲存"
+        FBPersonalPostSaveTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostCreateNewTextFile_Button
+        ' 
+        FBPersonalPostCreateNewTextFile_Button.Location = New Point(334, 189)
+        FBPersonalPostCreateNewTextFile_Button.Name = "FBPersonalPostCreateNewTextFile_Button"
+        FBPersonalPostCreateNewTextFile_Button.Size = New Size(94, 29)
+        FBPersonalPostCreateNewTextFile_Button.TabIndex = 132
+        FBPersonalPostCreateNewTextFile_Button.Text = "新增文字檔"
+        FBPersonalPostCreateNewTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostDeleteSelectedMedia_Button
+        ' 
+        FBPersonalPostDeleteSelectedMedia_Button.Location = New Point(183, 429)
+        FBPersonalPostDeleteSelectedMedia_Button.Name = "FBPersonalPostDeleteSelectedMedia_Button"
+        FBPersonalPostDeleteSelectedMedia_Button.Size = New Size(147, 29)
+        FBPersonalPostDeleteSelectedMedia_Button.TabIndex = 131
+        FBPersonalPostDeleteSelectedMedia_Button.Text = "刪除所選"
+        FBPersonalPostDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostRevealMediaFoldesrInFileExplorer_Button
+        ' 
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 393)
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Name = "FBPersonalPostRevealMediaFoldesrInFileExplorer_Button"
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.TabIndex = 130
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
+        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostDeleteSelectedAssetFolder_Button
+        ' 
+        FBPersonalPostDeleteSelectedAssetFolder_Button.Location = New Point(6, 429)
+        FBPersonalPostDeleteSelectedAssetFolder_Button.Name = "FBPersonalPostDeleteSelectedAssetFolder_Button"
+        FBPersonalPostDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        FBPersonalPostDeleteSelectedAssetFolder_Button.TabIndex = 129
+        FBPersonalPostDeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        FBPersonalPostDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBPersonalPostAssetFolderName_TextBox
+        ' 
+        FBPersonalPostAssetFolderName_TextBox.Location = New Point(62, 360)
+        FBPersonalPostAssetFolderName_TextBox.Name = "FBPersonalPostAssetFolderName_TextBox"
+        FBPersonalPostAssetFolderName_TextBox.Size = New Size(115, 27)
+        FBPersonalPostAssetFolderName_TextBox.TabIndex = 128
+        ' 
+        ' FBPersonalPostMediaPreviewer_PictureBox
+        ' 
+        FBPersonalPostMediaPreviewer_PictureBox.Location = New Point(334, 224)
+        FBPersonalPostMediaPreviewer_PictureBox.Name = "FBPersonalPostMediaPreviewer_PictureBox"
+        FBPersonalPostMediaPreviewer_PictureBox.Size = New Size(325, 234)
+        FBPersonalPostMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBPersonalPostMediaPreviewer_PictureBox.TabIndex = 127
+        FBPersonalPostMediaPreviewer_PictureBox.TabStop = False
+        ' 
+        ' FBPersonalPostTextFilePreviewer_RichTextBox
+        ' 
+        FBPersonalPostTextFilePreviewer_RichTextBox.Location = New Point(334, 44)
+        FBPersonalPostTextFilePreviewer_RichTextBox.Name = "FBPersonalPostTextFilePreviewer_RichTextBox"
+        FBPersonalPostTextFilePreviewer_RichTextBox.Size = New Size(325, 140)
+        FBPersonalPostTextFilePreviewer_RichTextBox.TabIndex = 126
+        FBPersonalPostTextFilePreviewer_RichTextBox.Text = ""
+        FBPersonalPostTextFilePreviewer_RichTextBox.WordWrap = False
+        ' 
+        ' FBPersonalPostCreateNewAssetFolder_Button
+        ' 
+        FBPersonalPostCreateNewAssetFolder_Button.Location = New Point(6, 393)
+        FBPersonalPostCreateNewAssetFolder_Button.Name = "FBPersonalPostCreateNewAssetFolder_Button"
+        FBPersonalPostCreateNewAssetFolder_Button.Size = New Size(170, 29)
+        FBPersonalPostCreateNewAssetFolder_Button.TabIndex = 125
+        FBPersonalPostCreateNewAssetFolder_Button.Text = "建立"
+        FBPersonalPostCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
         ' ShowEmojiPicker_Button
         ' 
         ShowEmojiPicker_Button.Location = New Point(1824, 41)
@@ -3939,217 +4146,21 @@ Partial Class Form1
         SelectScriptListviewItemsByUserDataButton.Text = "選取"
         SelectScriptListviewItemsByUserDataButton.UseVisualStyleBackColor = True
         ' 
-        ' FBPersonalPost_TabPage
+        ' EditScriptFile_Button
         ' 
-        FBPersonalPost_TabPage.Controls.Add(Label64)
-        FBPersonalPost_TabPage.Controls.Add(Label65)
-        FBPersonalPost_TabPage.Controls.Add(Label66)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostUploadWaitSeconds_NumericUpDown)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostSubmitWaitSeconds_NumericUpDown)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostDeselectAllAssetFolderListboxItems_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostDeleteSelectedTextFile_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostNewTextFileName_TextBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostMediaSelector_ListBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostTextFileSelector_ListBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostAssetFolder_ListBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostSaveTextFile_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostCreateNewTextFile_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostDeleteSelectedMedia_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostRevealMediaFoldesrInFileExplorer_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostDeleteSelectedAssetFolder_Button)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostAssetFolderName_TextBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostMediaPreviewer_PictureBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostTextFilePreviewer_RichTextBox)
-        FBPersonalPost_TabPage.Controls.Add(FBPersonalPostCreateNewAssetFolder_Button)
-        FBPersonalPost_TabPage.Location = New Point(4, 28)
-        FBPersonalPost_TabPage.Name = "FBPersonalPost_TabPage"
-        FBPersonalPost_TabPage.Size = New Size(664, 467)
-        FBPersonalPost_TabPage.TabIndex = 8
-        FBPersonalPost_TabPage.Text = "個人發帖"
-        FBPersonalPost_TabPage.UseVisualStyleBackColor = True
-        ' 
-        ' Label64
-        ' 
-        Label64.AutoSize = True
-        Label64.Location = New Point(6, 364)
-        Label64.Name = "Label64"
-        Label64.Size = New Size(50, 19)
-        Label64.TabIndex = 144
-        Label64.Text = "名稱 : "
-        ' 
-        ' Label65
-        ' 
-        Label65.AutoSize = True
-        Label65.Location = New Point(334, 13)
-        Label65.Name = "Label65"
-        Label65.Size = New Size(80, 19)
-        Label65.TabIndex = 143
-        Label65.Text = "送出等待 : "
-        ' 
-        ' Label66
-        ' 
-        Label66.AutoSize = True
-        Label66.Location = New Point(183, 13)
-        Label66.Name = "Label66"
-        Label66.Size = New Size(80, 19)
-        Label66.TabIndex = 142
-        Label66.Text = "上載等待 : "
-        ' 
-        ' FBPersonalPostUploadWaitSeconds_NumericUpDown
-        ' 
-        FBPersonalPostUploadWaitSeconds_NumericUpDown.Location = New Point(267, 10)
-        FBPersonalPostUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        FBPersonalPostUploadWaitSeconds_NumericUpDown.Name = "FBPersonalPostUploadWaitSeconds_NumericUpDown"
-        FBPersonalPostUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
-        FBPersonalPostUploadWaitSeconds_NumericUpDown.TabIndex = 141
-        ' 
-        ' FBPersonalPostSubmitWaitSeconds_NumericUpDown
-        ' 
-        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 10)
-        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
-        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Name = "FBPersonalPostSubmitWaitSeconds_NumericUpDown"
-        FBPersonalPostSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
-        FBPersonalPostSubmitWaitSeconds_NumericUpDown.TabIndex = 140
-        ' 
-        ' FBPersonalPostDeselectAllAssetFolderListboxItems_Button
-        ' 
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Location = New Point(6, 326)
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Name = "FBPersonalPostDeselectAllAssetFolderListboxItems_Button"
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Size = New Size(170, 29)
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.TabIndex = 139
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.Text = "取消選擇"
-        FBPersonalPostDeselectAllAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostDeleteSelectedTextFile_Button
-        ' 
-        FBPersonalPostDeleteSelectedTextFile_Button.Location = New Point(435, 189)
-        FBPersonalPostDeleteSelectedTextFile_Button.Name = "FBPersonalPostDeleteSelectedTextFile_Button"
-        FBPersonalPostDeleteSelectedTextFile_Button.Size = New Size(94, 29)
-        FBPersonalPostDeleteSelectedTextFile_Button.TabIndex = 138
-        FBPersonalPostDeleteSelectedTextFile_Button.Text = "刪除所選"
-        FBPersonalPostDeleteSelectedTextFile_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostNewTextFileName_TextBox
-        ' 
-        FBPersonalPostNewTextFileName_TextBox.Location = New Point(183, 189)
-        FBPersonalPostNewTextFileName_TextBox.Name = "FBPersonalPostNewTextFileName_TextBox"
-        FBPersonalPostNewTextFileName_TextBox.Size = New Size(145, 27)
-        FBPersonalPostNewTextFileName_TextBox.TabIndex = 137
-        ' 
-        ' FBPersonalPostMediaSelector_ListBox
-        ' 
-        FBPersonalPostMediaSelector_ListBox.FormattingEnabled = True
-        FBPersonalPostMediaSelector_ListBox.ItemHeight = 19
-        FBPersonalPostMediaSelector_ListBox.Location = New Point(183, 224)
-        FBPersonalPostMediaSelector_ListBox.Name = "FBPersonalPostMediaSelector_ListBox"
-        FBPersonalPostMediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
-        FBPersonalPostMediaSelector_ListBox.Size = New Size(145, 156)
-        FBPersonalPostMediaSelector_ListBox.TabIndex = 136
-        ' 
-        ' FBPersonalPostTextFileSelector_ListBox
-        ' 
-        FBPersonalPostTextFileSelector_ListBox.FormattingEnabled = True
-        FBPersonalPostTextFileSelector_ListBox.ItemHeight = 19
-        FBPersonalPostTextFileSelector_ListBox.Location = New Point(183, 46)
-        FBPersonalPostTextFileSelector_ListBox.Name = "FBPersonalPostTextFileSelector_ListBox"
-        FBPersonalPostTextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
-        FBPersonalPostTextFileSelector_ListBox.Size = New Size(145, 137)
-        FBPersonalPostTextFileSelector_ListBox.TabIndex = 135
-        ' 
-        ' FBPersonalPostAssetFolder_ListBox
-        ' 
-        FBPersonalPostAssetFolder_ListBox.FormattingEnabled = True
-        FBPersonalPostAssetFolder_ListBox.ItemHeight = 19
-        FBPersonalPostAssetFolder_ListBox.Location = New Point(6, 8)
-        FBPersonalPostAssetFolder_ListBox.Name = "FBPersonalPostAssetFolder_ListBox"
-        FBPersonalPostAssetFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
-        FBPersonalPostAssetFolder_ListBox.Size = New Size(170, 308)
-        FBPersonalPostAssetFolder_ListBox.TabIndex = 134
-        ' 
-        ' FBPersonalPostSaveTextFile_Button
-        ' 
-        FBPersonalPostSaveTextFile_Button.Location = New Point(534, 189)
-        FBPersonalPostSaveTextFile_Button.Name = "FBPersonalPostSaveTextFile_Button"
-        FBPersonalPostSaveTextFile_Button.Size = New Size(94, 29)
-        FBPersonalPostSaveTextFile_Button.TabIndex = 133
-        FBPersonalPostSaveTextFile_Button.Text = "儲存"
-        FBPersonalPostSaveTextFile_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostCreateNewTextFile_Button
-        ' 
-        FBPersonalPostCreateNewTextFile_Button.Location = New Point(334, 189)
-        FBPersonalPostCreateNewTextFile_Button.Name = "FBPersonalPostCreateNewTextFile_Button"
-        FBPersonalPostCreateNewTextFile_Button.Size = New Size(94, 29)
-        FBPersonalPostCreateNewTextFile_Button.TabIndex = 132
-        FBPersonalPostCreateNewTextFile_Button.Text = "新增文字檔"
-        FBPersonalPostCreateNewTextFile_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostDeleteSelectedMedia_Button
-        ' 
-        FBPersonalPostDeleteSelectedMedia_Button.Location = New Point(183, 429)
-        FBPersonalPostDeleteSelectedMedia_Button.Name = "FBPersonalPostDeleteSelectedMedia_Button"
-        FBPersonalPostDeleteSelectedMedia_Button.Size = New Size(147, 29)
-        FBPersonalPostDeleteSelectedMedia_Button.TabIndex = 131
-        FBPersonalPostDeleteSelectedMedia_Button.Text = "刪除所選"
-        FBPersonalPostDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostRevealMediaFoldesrInFileExplorer_Button
-        ' 
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 393)
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Name = "FBPersonalPostRevealMediaFoldesrInFileExplorer_Button"
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.TabIndex = 130
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
-        FBPersonalPostRevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostDeleteSelectedAssetFolder_Button
-        ' 
-        FBPersonalPostDeleteSelectedAssetFolder_Button.Location = New Point(6, 429)
-        FBPersonalPostDeleteSelectedAssetFolder_Button.Name = "FBPersonalPostDeleteSelectedAssetFolder_Button"
-        FBPersonalPostDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
-        FBPersonalPostDeleteSelectedAssetFolder_Button.TabIndex = 129
-        FBPersonalPostDeleteSelectedAssetFolder_Button.Text = "刪除所選"
-        FBPersonalPostDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBPersonalPostAssetFolderName_TextBox
-        ' 
-        FBPersonalPostAssetFolderName_TextBox.Location = New Point(62, 360)
-        FBPersonalPostAssetFolderName_TextBox.Name = "FBPersonalPostAssetFolderName_TextBox"
-        FBPersonalPostAssetFolderName_TextBox.Size = New Size(115, 27)
-        FBPersonalPostAssetFolderName_TextBox.TabIndex = 128
-        ' 
-        ' FBPersonalPostMediaPreviewer_PictureBox
-        ' 
-        FBPersonalPostMediaPreviewer_PictureBox.Location = New Point(334, 224)
-        FBPersonalPostMediaPreviewer_PictureBox.Name = "FBPersonalPostMediaPreviewer_PictureBox"
-        FBPersonalPostMediaPreviewer_PictureBox.Size = New Size(325, 234)
-        FBPersonalPostMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
-        FBPersonalPostMediaPreviewer_PictureBox.TabIndex = 127
-        FBPersonalPostMediaPreviewer_PictureBox.TabStop = False
-        ' 
-        ' FBPersonalPostTextFilePreviewer_RichTextBox
-        ' 
-        FBPersonalPostTextFilePreviewer_RichTextBox.Location = New Point(334, 44)
-        FBPersonalPostTextFilePreviewer_RichTextBox.Name = "FBPersonalPostTextFilePreviewer_RichTextBox"
-        FBPersonalPostTextFilePreviewer_RichTextBox.Size = New Size(325, 140)
-        FBPersonalPostTextFilePreviewer_RichTextBox.TabIndex = 126
-        FBPersonalPostTextFilePreviewer_RichTextBox.Text = ""
-        FBPersonalPostTextFilePreviewer_RichTextBox.WordWrap = False
-        ' 
-        ' FBPersonalPostCreateNewAssetFolder_Button
-        ' 
-        FBPersonalPostCreateNewAssetFolder_Button.Location = New Point(6, 393)
-        FBPersonalPostCreateNewAssetFolder_Button.Name = "FBPersonalPostCreateNewAssetFolder_Button"
-        FBPersonalPostCreateNewAssetFolder_Button.Size = New Size(170, 29)
-        FBPersonalPostCreateNewAssetFolder_Button.TabIndex = 125
-        FBPersonalPostCreateNewAssetFolder_Button.Text = "建立"
-        FBPersonalPostCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
+        EditScriptFile_Button.Location = New Point(947, 1064)
+        EditScriptFile_Button.Name = "EditScriptFile_Button"
+        EditScriptFile_Button.Size = New Size(94, 29)
+        EditScriptFile_Button.TabIndex = 38
+        EditScriptFile_Button.Text = "開啟腳本"
+        EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1858, 1103)
+        Controls.Add(EditScriptFile_Button)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(DeleteScriptListviewItemByUserData_Button)
@@ -4237,6 +4248,11 @@ Partial Class Form1
         CType(FBStoryUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBStorySubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBStoryMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        FBPersonalPostAssets_TabPage.ResumeLayout(False)
+        FBPersonalPostAssets_TabPage.PerformLayout()
+        CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -4248,11 +4264,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        FBPersonalPost_TabPage.ResumeLayout(False)
-        FBPersonalPost_TabPage.PerformLayout()
-        CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -4620,7 +4631,7 @@ Partial Class Form1
     Friend WithEvents FBStoryMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBStoryTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBStoryCreateNewAssetFolder_Button As Button
-    Friend WithEvents FBPersonalPost_TabPage As TabPage
+    Friend WithEvents FBPersonalPostAssets_TabPage As TabPage
     Friend WithEvents Label64 As Label
     Friend WithEvents Label65 As Label
     Friend WithEvents Label66 As Label
@@ -4641,5 +4652,6 @@ Partial Class Form1
     Friend WithEvents FBPersonalPostMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBPersonalPostTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBPersonalPostCreateNewAssetFolder_Button As Button
+    Friend WithEvents EditScriptFile_Button As Button
 
 End Class

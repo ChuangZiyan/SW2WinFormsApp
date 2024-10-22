@@ -21,9 +21,7 @@ Public Class MainFormEventHandlers
         MainFormController.DisplayFBNotificationList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
         MainFormController.DisplayFBMessengerList(Form1.WebviewUserDataFolder_ListBox.SelectedItem)
 
-
     End Sub
-
 
 
     Public Async Sub DeleteUserDataFolders_Button_Click()
@@ -88,10 +86,14 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.FBCustomizeCommentAssetFolder_ListBox.SelectedItems
             Case "回應"
                 assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
-            Case "順序回應通知"
-                assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
             Case "訊息"
                 assetFolderListBoxSelectedItems = Form1.FBMessengerAssetFolder_ListBox.SelectedItems
+            Case "限時"
+                assetFolderListBoxSelectedItems = Form1.FBStoryAssetFolder_ListBox.SelectedItems
+            Case "個人發帖"
+                assetFolderListBoxSelectedItems = Form1.FBPersonalPostAssetFolder_ListBox.SelectedItems
+            Case "順序回應通知"
+                assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
             Case "順序回覆訊息"
                 assetFolderListBoxSelectedItems = Form1.FBMessengerAssetFolder_ListBox.SelectedItems
             Case Else
@@ -341,7 +343,7 @@ Public Class MainFormEventHandlers
     End Sub
 
 
-    Public Sub ScriptQueue_ListView_DoubleClick(sender As Object, e As EventArgs)
+    Public Sub ScriptQueue_ListView_Click(sender As Object, e As EventArgs)
         If Form1.ScriptQueue_ListView.SelectedItems.Count > 0 Then
 
             For Each item As ListViewItem In Form1.FBGroups_ListView.Items
@@ -367,13 +369,6 @@ Public Class MainFormEventHandlers
             ' 選取userData
             Form1.WebviewUserDataFolder_ListBox.SelectedItem = userData
 
-            ' 不是NULL的話設定執行時間
-            If scheduleTime <> "NULL" Then
-                Dim splitedScheduleTime() As String = Split(scheduleTime, ":")
-                Form1.ScheduledExecutionHours_NumericUpDown.Value = CInt(splitedScheduleTime(0))
-                Form1.ScheduledExecutionMinutes_NumericUpDown.Value = CInt(splitedScheduleTime(1))
-                Form1.ScheduledExecutionSeconds_NumericUpDown.Value = CInt(splitedScheduleTime(2))
-            End If
 
 
             '先宣告待會要用的asset listbox
@@ -389,7 +384,6 @@ Public Class MainFormEventHandlers
                     Form1.Action_TabControl.SelectedTab = Form1.FBMarketplaceAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBMarkplaceProducts_ListBox
-
                 Case "分享"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPostShareURLAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
@@ -402,7 +396,36 @@ Public Class MainFormEventHandlers
                     Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeCommentAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBCustomizeCommentAssetFolder_ListBox
+                Case "回應"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotificationsAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
+                    assetsFolder_ListBox = Form1.FBResponseAssetFolder_ListBox
+                Case "訊息"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBMessengerAssets_TabPage
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+                    assetsFolder_ListBox = Form1.FBMessengerAssetFolder_ListBox
+                Case "限時"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBStoryAssets_TabPage
+                    assetsFolder_ListBox = Form1.FBStoryAssetFolder_ListBox
+                Case "個人發帖"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBPersonalPostAssets_TabPage
+                    assetsFolder_ListBox = Form1.FBPersonalPostAssetFolder_ListBox
             End Select
+
+
+
+
+            ' 以下是自動填入各種參數，先保留
+            Exit Sub
+
+            ' 不是NULL的話設定執行時間
+            If scheduleTime <> "NULL" Then
+                Dim splitedScheduleTime() As String = Split(scheduleTime, ":")
+                Form1.ScheduledExecutionHours_NumericUpDown.Value = CInt(splitedScheduleTime(0))
+                Form1.ScheduledExecutionMinutes_NumericUpDown.Value = CInt(splitedScheduleTime(1))
+                Form1.ScheduledExecutionSeconds_NumericUpDown.Value = CInt(splitedScheduleTime(2))
+            End If
+
 
             ' 填入社團名稱跟網址，動作是留言的話，要填到留言的面板去
             If action = "留言" Then
@@ -438,6 +461,9 @@ Public Class MainFormEventHandlers
         End If
 
     End Sub
+
+
+
 
     Public Sub RevealFBPasswordText_Button_Click(sender As Object, e As EventArgs)
         If Form1.FBPassword_TextBox.PasswordChar = "*" Then
@@ -1433,6 +1459,69 @@ Public Class MainFormEventHandlers
 
         End Try
 
+    End Sub
+
+    Public Sub CustomizeAction_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+        ' Form1.CustomizeAction_ComboBox.Text
+        Dim selected_item_text As String = Form1.CustomizeAction_ComboBox.Text
+        Select Case True
+            Case selected_item_text.Contains("通知")
+                Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
+            Case selected_item_text.Contains("聊天室")
+                Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+            Case selected_item_text.Contains("Marketplace")
+                Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+            Case selected_item_text.Contains("訊息")
+                Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+        End Select
+
+    End Sub
+
+    Public Sub FBUrlData_TabControl_DoubleClick(sender As Object, e As EventArgs)
+        If Form1.WebviewUserDataFolder_ListBox.SelectedItems.Count <> 0 Then
+            Dim folderName = Form1.WebviewUserDataFolder_ListBox.SelectedItem
+            Dim fileName As String = ""
+            Select Case True
+                Case Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBGroupsUrlData_TabPage
+                    fileName = "FBGroupList.json"
+                Case Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBActivityLogsUrlData_TabPage
+                    fileName = "FBActivityLogList.json"
+                Case Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBNotificationsUrlData_TabPage
+                    fileName = "FBNotificationList.json"
+                Case Form1.FBUrlData_TabControl.SelectedTab Is Form1.FBMessengerUrlData_TabPage
+                    fileName = "FBMessengerList.json"
+
+            End Select
+
+            Try
+                Dim urlDataFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName, fileName)
+                If File.Exists(urlDataFilePath) Then
+                    Process.Start("Explorer", urlDataFilePath)
+                End If
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+            End Try
+
+        Else
+            MsgBox("未選擇userdata")
+        End If
+
+
+    End Sub
+
+
+
+    Public Sub EditScriptFile_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
+            If File.Exists(filePath) Then
+                Process.Start("Explorer", filePath)
+            Else
+                MsgBox("腳本檔案不存在")
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
     End Sub
 
 

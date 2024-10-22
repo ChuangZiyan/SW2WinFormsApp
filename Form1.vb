@@ -443,7 +443,7 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         result = False
                     End Try
-
+                    Main_WebView2.ZoomFactor = 0.7
                 Case "個人發帖"
                     Try
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPersonalPostAssetsDirectory)
@@ -463,8 +463,10 @@ Public Class Form1
                                 item.SubItems(7).Text = seconds
                             Next
 
-                            ' 如果你要發佈就取消註解下面那行
-                            'Await Webview2Controller.ClickByCssSelector_Task("div[aria-label='發佈']")
+                            ' 如果你要發佈就取消註解下面兩行
+                            ' Webview2Controller.ClickByCssSelectorWaitUntil("div[aria-label='繼續']", 2)
+                            ' Await Webview2Controller.ClickByCssSelector_Task("div[aria-label='發佈']")
+
 
                             ' 送出留言後等待
                             For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
@@ -784,8 +786,6 @@ Public Class Form1
     Private FBPersonalPostEventHandlers As New FBPersonalPostEventHandlers()
 
 
-
-
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
         AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
@@ -809,7 +809,7 @@ Public Class Form1
         AddHandler SchedulerTime_Label.Click, AddressOf mainFormEventHandlers.SchedulerTime_Label_Click
         AddHandler SyncTimeToDateTimePicker_Label.Click, AddressOf mainFormEventHandlers.SyncTimeToDateTimePicker_Label_Click
         AddHandler SortListviewItemByTime_Button.Click, AddressOf mainFormEventHandlers.SortListviewItemByTime_Button_Click
-        AddHandler ScriptQueue_ListView.DoubleClick, AddressOf mainFormEventHandlers.ScriptQueue_ListView_DoubleClick
+        AddHandler ScriptQueue_ListView.Click, AddressOf mainFormEventHandlers.ScriptQueue_ListView_Click
         AddHandler RevealFBPasswordText_Button.Click, AddressOf mainFormEventHandlers.RevealFBPasswordText_Button_Click
         AddHandler RevealEmailPasswordText_Button.Click, AddressOf mainFormEventHandlers.RevealEmailPasswordText_Button_Click
         AddHandler NavigateTo_Url_Button.Click, AddressOf mainFormEventHandlers.NavigateTo_Url_Button_Click
@@ -840,7 +840,10 @@ Public Class Form1
         AddHandler FBUrlData_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.FBUrlData_TabControl_SelectedIndexChanged
         AddHandler Action_TabControl.SelectedIndexChanged, AddressOf mainFormEventHandlers.Action_TabControl_SelectedIndexChanged
         AddHandler DeselecteAllFBGroups_ListViewItems_Button.Click, AddressOf mainFormEventHandlers.DeselecteAllFBGroups_ListViewItems_Button_Click
+        AddHandler CustomizeAction_ComboBox.SelectedIndexChanged, AddressOf mainFormEventHandlers.CustomizeAction_ComboBox_SelectedIndexChanged
+        AddHandler FBUrlData_TabControl.DoubleClick, AddressOf mainFormEventHandlers.FBUrlData_TabControl_DoubleClick
 
+        AddHandler EditScriptFile_Button.Click, AddressOf mainFormEventHandlers.EditScriptFile_Button_Click
 
         ' 修改資料夾
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
@@ -1077,6 +1080,5 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
-
 
 End Class
