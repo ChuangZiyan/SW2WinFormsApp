@@ -1236,7 +1236,7 @@ Public Class MainFormEventHandlers
         If Form1.Action_TabControl.SelectedTab Is Form1.FBRespondNotificationsAssets_TabPage Then
             Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
 
-        ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBCommentAssets_TabPage Or Form1.Action_TabControl.SelectedTab Is Form1.FBCustomizeCommentAssets_TabPage Then
+        ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBCommentAssets_TabPage Then
 
             Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
         ElseIf Form1.Action_TabControl.SelectedTab Is Form1.FBMessengerAssets_TabPage Then
@@ -1496,7 +1496,7 @@ Public Class MainFormEventHandlers
             Try
                 Dim urlDataFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, folderName, fileName)
                 If File.Exists(urlDataFilePath) Then
-                    Process.Start("Explorer", urlDataFilePath)
+                    Process.Start("notepad.exe", urlDataFilePath)
                 End If
             Catch ex As Exception
                 Debug.WriteLine(ex)
@@ -1515,7 +1515,7 @@ Public Class MainFormEventHandlers
         Try
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
             If File.Exists(filePath) Then
-                Process.Start("Explorer", filePath)
+                Process.Start("notepad.exe", filePath)
             Else
                 MsgBox("腳本檔案不存在")
             End If

@@ -465,7 +465,7 @@ Public Class Form1
 
                             ' 如果你要發佈就取消註解下面兩行
                             ' Webview2Controller.ClickByCssSelectorWaitUntil("div[aria-label='繼續']", 2)
-                            ' Await Webview2Controller.ClickByCssSelector_Task("div[aria-label='發佈']")
+                            ' Webview2Controller.ClickByCssSelectorWaitUntil("div[aria-label='發佈']", 5)
 
 
                             ' 送出留言後等待
