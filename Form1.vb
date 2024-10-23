@@ -785,6 +785,8 @@ Public Class Form1
     Private FBStoryEventHandlers As New FBStoryEventHandlers()
     Private FBPersonalPostEventHandlers As New FBPersonalPostEventHandlers()
 
+    Private FBReelsEventHandlers As New FBReelsEventHandlers()
+
 
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
@@ -1049,6 +1051,23 @@ Public Class Form1
         AddHandler FBPersonalPostTextFileSelector_ListBox.DoubleClick, AddressOf FBPersonalPostEventHandlers.FBPersonalPostTextFileSelector_ListBox_DoubleClick
     End Sub
 
+    Private Sub RegisterFBReelsEventhandlers()
+        ' 連續短片的Assets事件
+        AddHandler FBReelsCreateNewAssetFolder_Button.Click, AddressOf FBReelsEventHandlers.FBReelsCreateNewAssetFolder_Button_Click
+        AddHandler FBReelsDeselectAllAssetFolderListboxItems_Button.Click, AddressOf FBReelsEventHandlers.FBReelsDeselectAllAssetFolderListboxItems_Button_Click
+        AddHandler FBReelsDeleteSelectedAssetFolder_Button.Click, AddressOf FBReelsEventHandlers.FBReelsDeleteSelectedAssetFolder_Button_Click
+        AddHandler FBReelsCreateNewTextFile_Button.Click, AddressOf FBReelsEventHandlers.FBReelsCreateNewTextFile_Button_Click
+        AddHandler FBReelsAssetFolder_ListBox.SelectedIndexChanged, AddressOf FBReelsEventHandlers.FBReelsAssetFolder_ListBox_SelectedIndexChanged
+        AddHandler FBReelsTextFileSelector_ListBox.SelectedIndexChanged, AddressOf FBReelsEventHandlers.FBReelsTextFileSelector_ListBox_SelectedIndexChanged
+        AddHandler FBReelsDeleteSelectedTextFile_Button.Click, AddressOf FBReelsEventHandlers.FBReelsDeleteSelectedTextFile_Button_Click
+        AddHandler FBReelsSaveTextFile_Button.Click, AddressOf FBReelsEventHandlers.FBReelsSaveTextFile_Button_Click
+        AddHandler FBReelsMediaSelector_ListBox.SelectedIndexChanged, AddressOf FBReelsEventHandlers.FBReelsMediaSelector_ListBox_SelectedIndexChanged
+        AddHandler FBReelsRevealMediaFoldesrInFileExplorer_Button.Click, AddressOf FBReelsEventHandlers.FBReelsRevealMediaFoldesrInFileExplorer_Button_Click
+        AddHandler FBReelsDeleteSelectedMedia_Button.Click, AddressOf FBReelsEventHandlers.FBReelsDeleteSelectedMedia_Button_Click
+        AddHandler FBReelsAssetFolder_ListBox.DoubleClick, AddressOf FBReelsEventHandlers.FBReelsAssetFolder_ListBox_DoubleClick
+        AddHandler FBReelsTextFileSelector_ListBox.DoubleClick, AddressOf FBReelsEventHandlers.FBReelsTextFileSelector_ListBox_DoubleClick
+    End Sub
+
 
     Private emojiPickerForm As EmojiPickerForm
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1071,6 +1090,7 @@ Public Class Form1
         RegisterFBMessegnerEventhandlers()
         RegisterFBStoryEventhandlers()
         RegisterFBPersonalPostEventhandlers()
+        RegisterFBReelsEventhandlers()
 
         ' EOF
         MainFormController.SetForm1TitleStatus("完成")

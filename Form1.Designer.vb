@@ -353,6 +353,27 @@ Partial Class Form1
         FBPersonalPostMediaPreviewer_PictureBox = New PictureBox()
         FBPersonalPostTextFilePreviewer_RichTextBox = New RichTextBox()
         FBPersonalPostCreateNewAssetFolder_Button = New Button()
+        FBReels_TabPage = New TabPage()
+        Label67 = New Label()
+        Label68 = New Label()
+        Label69 = New Label()
+        FBReelsUploadWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBReelsSubmitWaitSeconds_NumericUpDown = New NumericUpDown()
+        FBReelsDeselectAllAssetFolderListboxItems_Button = New Button()
+        FBReelsDeleteSelectedTextFile_Button = New Button()
+        FBReelsNewTextFileName_TextBox = New TextBox()
+        FBReelsMediaSelector_ListBox = New ListBox()
+        FBReelsTextFileSelector_ListBox = New ListBox()
+        FBReelsAssetFolder_ListBox = New ListBox()
+        FBReelsSaveTextFile_Button = New Button()
+        FBReelsCreateNewTextFile_Button = New Button()
+        FBReelsDeleteSelectedMedia_Button = New Button()
+        FBReelsRevealMediaFoldesrInFileExplorer_Button = New Button()
+        FBReelsDeleteSelectedAssetFolder_Button = New Button()
+        FBReelsAssetFolderName_TextBox = New TextBox()
+        FBReelsMediaPreviewer_PictureBox = New PictureBox()
+        FBReelsTextFilePreviewer_RichTextBox = New RichTextBox()
+        FBReelsCreateNewAssetFolder_Button = New Button()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
         Label55 = New Label()
@@ -407,6 +428,17 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
+        CheckBox1 = New CheckBox()
+        CheckBox2 = New CheckBox()
+        CheckBox3 = New CheckBox()
+        Label70 = New Label()
+        Label71 = New Label()
+        Label72 = New Label()
+        NumericUpDown1 = New NumericUpDown()
+        NumericUpDown2 = New NumericUpDown()
+        NumericUpDown3 = New NumericUpDown()
+        Button1 = New Button()
+        Button2 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -454,6 +486,10 @@ Partial Class Form1
         CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        FBReels_TabPage.SuspendLayout()
+        CType(FBReelsUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBReelsSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(FBReelsMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -464,6 +500,9 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -1512,9 +1551,9 @@ Partial Class Form1
         ' 
         ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader5, ColumnHeader15, ColumnHeader8, ColumnHeader13, ColumnHeader14, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
         ScriptQueue_ListView.FullRowSelect = True
-        ScriptQueue_ListView.Location = New Point(12, 635)
+        ScriptQueue_ListView.Location = New Point(12, 641)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
-        ScriptQueue_ListView.Size = New Size(1129, 423)
+        ScriptQueue_ListView.Size = New Size(1129, 417)
         ScriptQueue_ListView.TabIndex = 24
         ScriptQueue_ListView.UseCompatibleStateImageBehavior = False
         ScriptQueue_ListView.View = View.Details
@@ -1594,6 +1633,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBMessengerAssets_TabPage)
         Action_TabControl.Controls.Add(FBStoryAssets_TabPage)
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
+        Action_TabControl.Controls.Add(FBReels_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
@@ -3625,6 +3665,212 @@ Partial Class Form1
         FBPersonalPostCreateNewAssetFolder_Button.Text = "建立"
         FBPersonalPostCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' FBReels_TabPage
+        ' 
+        FBReels_TabPage.Controls.Add(Label67)
+        FBReels_TabPage.Controls.Add(Label68)
+        FBReels_TabPage.Controls.Add(Label69)
+        FBReels_TabPage.Controls.Add(FBReelsUploadWaitSeconds_NumericUpDown)
+        FBReels_TabPage.Controls.Add(FBReelsSubmitWaitSeconds_NumericUpDown)
+        FBReels_TabPage.Controls.Add(FBReelsDeselectAllAssetFolderListboxItems_Button)
+        FBReels_TabPage.Controls.Add(FBReelsDeleteSelectedTextFile_Button)
+        FBReels_TabPage.Controls.Add(FBReelsNewTextFileName_TextBox)
+        FBReels_TabPage.Controls.Add(FBReelsMediaSelector_ListBox)
+        FBReels_TabPage.Controls.Add(FBReelsTextFileSelector_ListBox)
+        FBReels_TabPage.Controls.Add(FBReelsAssetFolder_ListBox)
+        FBReels_TabPage.Controls.Add(FBReelsSaveTextFile_Button)
+        FBReels_TabPage.Controls.Add(FBReelsCreateNewTextFile_Button)
+        FBReels_TabPage.Controls.Add(FBReelsDeleteSelectedMedia_Button)
+        FBReels_TabPage.Controls.Add(FBReelsRevealMediaFoldesrInFileExplorer_Button)
+        FBReels_TabPage.Controls.Add(FBReelsDeleteSelectedAssetFolder_Button)
+        FBReels_TabPage.Controls.Add(FBReelsAssetFolderName_TextBox)
+        FBReels_TabPage.Controls.Add(FBReelsMediaPreviewer_PictureBox)
+        FBReels_TabPage.Controls.Add(FBReelsTextFilePreviewer_RichTextBox)
+        FBReels_TabPage.Controls.Add(FBReelsCreateNewAssetFolder_Button)
+        FBReels_TabPage.Location = New Point(4, 28)
+        FBReels_TabPage.Name = "FBReels_TabPage"
+        FBReels_TabPage.Size = New Size(664, 467)
+        FBReels_TabPage.TabIndex = 9
+        FBReels_TabPage.Text = "連續短片"
+        FBReels_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Label67
+        ' 
+        Label67.AutoSize = True
+        Label67.Location = New Point(6, 364)
+        Label67.Name = "Label67"
+        Label67.Size = New Size(50, 19)
+        Label67.TabIndex = 164
+        Label67.Text = "名稱 : "
+        ' 
+        ' Label68
+        ' 
+        Label68.AutoSize = True
+        Label68.Location = New Point(334, 13)
+        Label68.Name = "Label68"
+        Label68.Size = New Size(80, 19)
+        Label68.TabIndex = 163
+        Label68.Text = "送出等待 : "
+        ' 
+        ' Label69
+        ' 
+        Label69.AutoSize = True
+        Label69.Location = New Point(183, 13)
+        Label69.Name = "Label69"
+        Label69.Size = New Size(80, 19)
+        Label69.TabIndex = 162
+        Label69.Text = "上載等待 : "
+        ' 
+        ' FBReelsUploadWaitSeconds_NumericUpDown
+        ' 
+        FBReelsUploadWaitSeconds_NumericUpDown.Location = New Point(267, 10)
+        FBReelsUploadWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBReelsUploadWaitSeconds_NumericUpDown.Name = "FBReelsUploadWaitSeconds_NumericUpDown"
+        FBReelsUploadWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBReelsUploadWaitSeconds_NumericUpDown.TabIndex = 161
+        ' 
+        ' FBReelsSubmitWaitSeconds_NumericUpDown
+        ' 
+        FBReelsSubmitWaitSeconds_NumericUpDown.Location = New Point(420, 10)
+        FBReelsSubmitWaitSeconds_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
+        FBReelsSubmitWaitSeconds_NumericUpDown.Name = "FBReelsSubmitWaitSeconds_NumericUpDown"
+        FBReelsSubmitWaitSeconds_NumericUpDown.Size = New Size(60, 27)
+        FBReelsSubmitWaitSeconds_NumericUpDown.TabIndex = 160
+        ' 
+        ' FBReelsDeselectAllAssetFolderListboxItems_Button
+        ' 
+        FBReelsDeselectAllAssetFolderListboxItems_Button.Location = New Point(6, 326)
+        FBReelsDeselectAllAssetFolderListboxItems_Button.Name = "FBReelsDeselectAllAssetFolderListboxItems_Button"
+        FBReelsDeselectAllAssetFolderListboxItems_Button.Size = New Size(170, 29)
+        FBReelsDeselectAllAssetFolderListboxItems_Button.TabIndex = 159
+        FBReelsDeselectAllAssetFolderListboxItems_Button.Text = "取消選擇"
+        FBReelsDeselectAllAssetFolderListboxItems_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsDeleteSelectedTextFile_Button
+        ' 
+        FBReelsDeleteSelectedTextFile_Button.Location = New Point(435, 189)
+        FBReelsDeleteSelectedTextFile_Button.Name = "FBReelsDeleteSelectedTextFile_Button"
+        FBReelsDeleteSelectedTextFile_Button.Size = New Size(94, 29)
+        FBReelsDeleteSelectedTextFile_Button.TabIndex = 158
+        FBReelsDeleteSelectedTextFile_Button.Text = "刪除所選"
+        FBReelsDeleteSelectedTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsNewTextFileName_TextBox
+        ' 
+        FBReelsNewTextFileName_TextBox.Location = New Point(183, 189)
+        FBReelsNewTextFileName_TextBox.Name = "FBReelsNewTextFileName_TextBox"
+        FBReelsNewTextFileName_TextBox.Size = New Size(145, 27)
+        FBReelsNewTextFileName_TextBox.TabIndex = 157
+        ' 
+        ' FBReelsMediaSelector_ListBox
+        ' 
+        FBReelsMediaSelector_ListBox.FormattingEnabled = True
+        FBReelsMediaSelector_ListBox.ItemHeight = 19
+        FBReelsMediaSelector_ListBox.Location = New Point(183, 224)
+        FBReelsMediaSelector_ListBox.Name = "FBReelsMediaSelector_ListBox"
+        FBReelsMediaSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBReelsMediaSelector_ListBox.Size = New Size(145, 156)
+        FBReelsMediaSelector_ListBox.TabIndex = 156
+        ' 
+        ' FBReelsTextFileSelector_ListBox
+        ' 
+        FBReelsTextFileSelector_ListBox.FormattingEnabled = True
+        FBReelsTextFileSelector_ListBox.ItemHeight = 19
+        FBReelsTextFileSelector_ListBox.Location = New Point(183, 46)
+        FBReelsTextFileSelector_ListBox.Name = "FBReelsTextFileSelector_ListBox"
+        FBReelsTextFileSelector_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBReelsTextFileSelector_ListBox.Size = New Size(145, 137)
+        FBReelsTextFileSelector_ListBox.TabIndex = 155
+        ' 
+        ' FBReelsAssetFolder_ListBox
+        ' 
+        FBReelsAssetFolder_ListBox.FormattingEnabled = True
+        FBReelsAssetFolder_ListBox.ItemHeight = 19
+        FBReelsAssetFolder_ListBox.Location = New Point(6, 8)
+        FBReelsAssetFolder_ListBox.Name = "FBReelsAssetFolder_ListBox"
+        FBReelsAssetFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
+        FBReelsAssetFolder_ListBox.Size = New Size(170, 308)
+        FBReelsAssetFolder_ListBox.TabIndex = 154
+        ' 
+        ' FBReelsSaveTextFile_Button
+        ' 
+        FBReelsSaveTextFile_Button.Location = New Point(534, 189)
+        FBReelsSaveTextFile_Button.Name = "FBReelsSaveTextFile_Button"
+        FBReelsSaveTextFile_Button.Size = New Size(94, 29)
+        FBReelsSaveTextFile_Button.TabIndex = 153
+        FBReelsSaveTextFile_Button.Text = "儲存"
+        FBReelsSaveTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsCreateNewTextFile_Button
+        ' 
+        FBReelsCreateNewTextFile_Button.Location = New Point(334, 189)
+        FBReelsCreateNewTextFile_Button.Name = "FBReelsCreateNewTextFile_Button"
+        FBReelsCreateNewTextFile_Button.Size = New Size(94, 29)
+        FBReelsCreateNewTextFile_Button.TabIndex = 152
+        FBReelsCreateNewTextFile_Button.Text = "新增文字檔"
+        FBReelsCreateNewTextFile_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsDeleteSelectedMedia_Button
+        ' 
+        FBReelsDeleteSelectedMedia_Button.Location = New Point(183, 429)
+        FBReelsDeleteSelectedMedia_Button.Name = "FBReelsDeleteSelectedMedia_Button"
+        FBReelsDeleteSelectedMedia_Button.Size = New Size(147, 29)
+        FBReelsDeleteSelectedMedia_Button.TabIndex = 151
+        FBReelsDeleteSelectedMedia_Button.Text = "刪除所選"
+        FBReelsDeleteSelectedMedia_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsRevealMediaFoldesrInFileExplorer_Button
+        ' 
+        FBReelsRevealMediaFoldesrInFileExplorer_Button.Location = New Point(183, 393)
+        FBReelsRevealMediaFoldesrInFileExplorer_Button.Name = "FBReelsRevealMediaFoldesrInFileExplorer_Button"
+        FBReelsRevealMediaFoldesrInFileExplorer_Button.Size = New Size(147, 29)
+        FBReelsRevealMediaFoldesrInFileExplorer_Button.TabIndex = 150
+        FBReelsRevealMediaFoldesrInFileExplorer_Button.Text = "開啟資料夾"
+        FBReelsRevealMediaFoldesrInFileExplorer_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsDeleteSelectedAssetFolder_Button
+        ' 
+        FBReelsDeleteSelectedAssetFolder_Button.Location = New Point(6, 429)
+        FBReelsDeleteSelectedAssetFolder_Button.Name = "FBReelsDeleteSelectedAssetFolder_Button"
+        FBReelsDeleteSelectedAssetFolder_Button.Size = New Size(170, 29)
+        FBReelsDeleteSelectedAssetFolder_Button.TabIndex = 149
+        FBReelsDeleteSelectedAssetFolder_Button.Text = "刪除所選"
+        FBReelsDeleteSelectedAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBReelsAssetFolderName_TextBox
+        ' 
+        FBReelsAssetFolderName_TextBox.Location = New Point(62, 360)
+        FBReelsAssetFolderName_TextBox.Name = "FBReelsAssetFolderName_TextBox"
+        FBReelsAssetFolderName_TextBox.Size = New Size(115, 27)
+        FBReelsAssetFolderName_TextBox.TabIndex = 148
+        ' 
+        ' FBReelsMediaPreviewer_PictureBox
+        ' 
+        FBReelsMediaPreviewer_PictureBox.Location = New Point(334, 224)
+        FBReelsMediaPreviewer_PictureBox.Name = "FBReelsMediaPreviewer_PictureBox"
+        FBReelsMediaPreviewer_PictureBox.Size = New Size(325, 234)
+        FBReelsMediaPreviewer_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        FBReelsMediaPreviewer_PictureBox.TabIndex = 147
+        FBReelsMediaPreviewer_PictureBox.TabStop = False
+        ' 
+        ' FBReelsTextFilePreviewer_RichTextBox
+        ' 
+        FBReelsTextFilePreviewer_RichTextBox.Location = New Point(334, 44)
+        FBReelsTextFilePreviewer_RichTextBox.Name = "FBReelsTextFilePreviewer_RichTextBox"
+        FBReelsTextFilePreviewer_RichTextBox.Size = New Size(325, 140)
+        FBReelsTextFilePreviewer_RichTextBox.TabIndex = 146
+        FBReelsTextFilePreviewer_RichTextBox.Text = ""
+        FBReelsTextFilePreviewer_RichTextBox.WordWrap = False
+        ' 
+        ' FBReelsCreateNewAssetFolder_Button
+        ' 
+        FBReelsCreateNewAssetFolder_Button.Location = New Point(6, 393)
+        FBReelsCreateNewAssetFolder_Button.Name = "FBReelsCreateNewAssetFolder_Button"
+        FBReelsCreateNewAssetFolder_Button.Size = New Size(170, 29)
+        FBReelsCreateNewAssetFolder_Button.TabIndex = 145
+        FBReelsCreateNewAssetFolder_Button.Text = "建立"
+        FBReelsCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
+        ' 
         ' ShowEmojiPicker_Button
         ' 
         ShowEmojiPicker_Button.Location = New Point(1824, 41)
@@ -3636,6 +3882,17 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(Button2)
+        ScriptTask_GroupBox.Controls.Add(Button1)
+        ScriptTask_GroupBox.Controls.Add(Label70)
+        ScriptTask_GroupBox.Controls.Add(Label71)
+        ScriptTask_GroupBox.Controls.Add(Label72)
+        ScriptTask_GroupBox.Controls.Add(NumericUpDown1)
+        ScriptTask_GroupBox.Controls.Add(NumericUpDown2)
+        ScriptTask_GroupBox.Controls.Add(NumericUpDown3)
+        ScriptTask_GroupBox.Controls.Add(CheckBox3)
+        ScriptTask_GroupBox.Controls.Add(CheckBox2)
+        ScriptTask_GroupBox.Controls.Add(CheckBox1)
         ScriptTask_GroupBox.Controls.Add(Label55)
         ScriptTask_GroupBox.Controls.Add(CustomizeAction_ComboBox)
         ScriptTask_GroupBox.Controls.Add(CustomizeScriptInsertion_RadioButton)
@@ -3652,7 +3909,6 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(ScheduledExecutionSeconds_NumericUpDown)
         ScriptTask_GroupBox.Controls.Add(ScheduledExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(ExecuteSelectedScriptListviewItem_Button)
-        ScriptTask_GroupBox.Controls.Add(ResetScript_Button)
         ScriptTask_GroupBox.Controls.Add(ModifySelectedScriptListviewAsset_Button)
         ScriptTask_GroupBox.Controls.Add(ContinueScriptExecution_Button)
         ScriptTask_GroupBox.Controls.Add(PauseScriptExecution_Button)
@@ -3680,7 +3936,7 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
         ScriptTask_GroupBox.Location = New Point(440, 403)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
-        ScriptTask_GroupBox.Size = New Size(701, 220)
+        ScriptTask_GroupBox.Size = New Size(701, 232)
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
@@ -3827,7 +4083,7 @@ Partial Class Form1
         ' 
         ' ExecuteSelectedScriptListviewItem_Button
         ' 
-        ExecuteSelectedScriptListviewItem_Button.Location = New Point(390, 168)
+        ExecuteSelectedScriptListviewItem_Button.Location = New Point(601, 160)
         ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
         ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
@@ -3836,7 +4092,7 @@ Partial Class Form1
         ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(600, 168)
+        ResetScript_Button.Location = New Point(112, 568)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -3854,7 +4110,7 @@ Partial Class Form1
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(546, 168)
+        ContinueScriptExecution_Button.Location = New Point(546, 162)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(50, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -3863,7 +4119,7 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(490, 168)
+        PauseScriptExecution_Button.Location = New Point(490, 162)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(50, 29)
         PauseScriptExecution_Button.TabIndex = 24
@@ -3882,7 +4138,7 @@ Partial Class Form1
         ' Label20
         ' 
         Label20.AutoSize = True
-        Label20.Location = New Point(151, 175)
+        Label20.Location = New Point(155, 167)
         Label20.Name = "Label20"
         Label20.Size = New Size(24, 19)
         Label20.TabIndex = 22
@@ -3890,7 +4146,7 @@ Partial Class Form1
         ' 
         ' ScriptExecutionCount_NumericUpDown
         ' 
-        ScriptExecutionCount_NumericUpDown.Location = New Point(96, 168)
+        ScriptExecutionCount_NumericUpDown.Location = New Point(100, 160)
         ScriptExecutionCount_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         ScriptExecutionCount_NumericUpDown.Name = "ScriptExecutionCount_NumericUpDown"
         ScriptExecutionCount_NumericUpDown.Size = New Size(50, 27)
@@ -3900,7 +4156,7 @@ Partial Class Form1
         ' Label19
         ' 
         Label19.AutoSize = True
-        Label19.Location = New Point(13, 173)
+        Label19.Location = New Point(17, 165)
         Label19.Name = "Label19"
         Label19.Size = New Size(76, 19)
         Label19.TabIndex = 20
@@ -3909,9 +4165,9 @@ Partial Class Form1
         ' ExecutionScriptQueue_Button
         ' 
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
-        ExecutionScriptQueue_Button.Location = New Point(180, 168)
+        ExecutionScriptQueue_Button.Location = New Point(185, 158)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
-        ExecutionScriptQueue_Button.Size = New Size(150, 29)
+        ExecutionScriptQueue_Button.Size = New Size(162, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
         ExecutionScriptQueue_Button.Text = "執行腳本"
         ExecutionScriptQueue_Button.UseVisualStyleBackColor = False
@@ -4155,6 +4411,104 @@ Partial Class Form1
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
+        ' CheckBox1
+        ' 
+        CheckBox1.AutoSize = True
+        CheckBox1.Location = New Point(17, 200)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(91, 23)
+        CheckBox1.TabIndex = 45
+        CheckBox1.Text = "關閉程式"
+        CheckBox1.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox2
+        ' 
+        CheckBox2.AutoSize = True
+        CheckBox2.Location = New Point(114, 198)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(91, 23)
+        CheckBox2.TabIndex = 46
+        CheckBox2.Text = "關閉電腦"
+        CheckBox2.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox3
+        ' 
+        CheckBox3.AutoSize = True
+        CheckBox3.Location = New Point(353, 163)
+        CheckBox3.Name = "CheckBox3"
+        CheckBox3.Size = New Size(91, 23)
+        CheckBox3.TabIndex = 47
+        CheckBox3.Text = "完成關閉"
+        CheckBox3.UseVisualStyleBackColor = True
+        ' 
+        ' Label70
+        ' 
+        Label70.AutoSize = True
+        Label70.Location = New Point(437, 203)
+        Label70.Name = "Label70"
+        Label70.Size = New Size(24, 19)
+        Label70.TabIndex = 53
+        Label70.Text = "秒"
+        ' 
+        ' Label71
+        ' 
+        Label71.AutoSize = True
+        Label71.Location = New Point(351, 203)
+        Label71.Name = "Label71"
+        Label71.Size = New Size(24, 19)
+        Label71.TabIndex = 52
+        Label71.Text = "分"
+        ' 
+        ' Label72
+        ' 
+        Label72.AutoSize = True
+        Label72.Location = New Point(265, 203)
+        Label72.Name = "Label72"
+        Label72.Size = New Size(24, 19)
+        Label72.TabIndex = 51
+        Label72.Text = "時"
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(294, 198)
+        NumericUpDown1.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(50, 27)
+        NumericUpDown1.TabIndex = 50
+        ' 
+        ' NumericUpDown2
+        ' 
+        NumericUpDown2.Location = New Point(210, 198)
+        NumericUpDown2.Name = "NumericUpDown2"
+        NumericUpDown2.Size = New Size(50, 27)
+        NumericUpDown2.TabIndex = 49
+        ' 
+        ' NumericUpDown3
+        ' 
+        NumericUpDown3.Location = New Point(381, 198)
+        NumericUpDown3.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        NumericUpDown3.Name = "NumericUpDown3"
+        NumericUpDown3.Size = New Size(50, 27)
+        NumericUpDown3.TabIndex = 48
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(467, 198)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 54
+        Button1.Text = "開始倒數"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(567, 198)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 55
+        Button2.Text = "暫停倒數"
+        Button2.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -4186,6 +4540,7 @@ Partial Class Form1
         Controls.Add(CreateUserDataFolderButton)
         Controls.Add(UserDataFolderName_TextBox)
         Controls.Add(UserInfo_GroupBox)
+        Controls.Add(ResetScript_Button)
         Controls.Add(NavigateTo_Url_Button)
         Controls.Add(Navigate_Url_TextBox)
         Controls.Add(Main_WebView2)
@@ -4253,6 +4608,11 @@ Partial Class Form1
         CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        FBReels_TabPage.ResumeLayout(False)
+        FBReels_TabPage.PerformLayout()
+        CType(FBReelsUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBReelsSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(FBReelsMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -4264,6 +4624,9 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown3, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -4653,5 +5016,37 @@ Partial Class Form1
     Friend WithEvents FBPersonalPostTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBPersonalPostCreateNewAssetFolder_Button As Button
     Friend WithEvents EditScriptFile_Button As Button
+    Friend WithEvents FBReels_TabPage As TabPage
+    Friend WithEvents Label67 As Label
+    Friend WithEvents Label68 As Label
+    Friend WithEvents Label69 As Label
+    Friend WithEvents FBReelsUploadWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBReelsSubmitWaitSeconds_NumericUpDown As NumericUpDown
+    Friend WithEvents FBReelsDeselectAllAssetFolderListboxItems_Button As Button
+    Friend WithEvents FBReelsDeleteSelectedTextFile_Button As Button
+    Friend WithEvents FBReelsNewTextFileName_TextBox As TextBox
+    Friend WithEvents FBReelsMediaSelector_ListBox As ListBox
+    Friend WithEvents FBReelsTextFileSelector_ListBox As ListBox
+    Friend WithEvents FBReelsAssetFolder_ListBox As ListBox
+    Friend WithEvents FBReelsSaveTextFile_Button As Button
+    Friend WithEvents FBReelsCreateNewTextFile_Button As Button
+    Friend WithEvents FBReelsDeleteSelectedMedia_Button As Button
+    Friend WithEvents FBReelsRevealMediaFoldesrInFileExplorer_Button As Button
+    Friend WithEvents FBReelsDeleteSelectedAssetFolder_Button As Button
+    Friend WithEvents FBReelsAssetFolderName_TextBox As TextBox
+    Friend WithEvents FBReelsMediaPreviewer_PictureBox As PictureBox
+    Friend WithEvents FBReelsTextFilePreviewer_RichTextBox As RichTextBox
+    Friend WithEvents FBReelsCreateNewAssetFolder_Button As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label70 As Label
+    Friend WithEvents Label71 As Label
+    Friend WithEvents Label72 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents NumericUpDown3 As NumericUpDown
+    Friend WithEvents Button2 As Button
 
 End Class
