@@ -153,7 +153,7 @@ Public Class FBReelsEventHandlers
             Form1.FBReelsMediaPreviewer_PictureBox.ImageLocation = Nothing
             Dim mediaFolder = Path.Combine(AppInitModule.FBReelsAssetsDirectory, folderName, "media")
             If Directory.Exists(mediaFolder) Then
-                Dim allowedExtension As String() = {".WEBP", ".webp", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG"}
+                Dim allowedExtension As String() = {".mp4", "mkv"}
                 Dim mediaFiles As String() = Directory.GetFiles(mediaFolder)
                 For Each file As String In mediaFiles
                     If allowedExtension.Contains(Path.GetExtension(file)) Then
@@ -284,14 +284,10 @@ Public Class FBReelsEventHandlers
             If selectedItem IsNot Nothing Then
                 Dim filePath = Path.Combine(AppInitModule.FBReelsAssetsDirectory, Form1.FBReelsAssetFolder_ListBox.SelectedItem, "media", selectedItem)
 
-                If {".webp", ".WEBP"}.Contains(Path.GetExtension(selectedItem)) Then
-                    Dim skBitmap As SKBitmap = SKBitmap.Decode(filePath)
-                    Dim bitmap As Bitmap = UtilsModule.SKBitmapToBitmap(skBitmap)
-                    Form1.FBReelsMediaPreviewer_PictureBox.Image = bitmap
-                Else
-                    Form1.FBReelsMediaPreviewer_PictureBox.ImageLocation = filePath
+                Dim allowedVideoExtension As String() = {".mp4", ".MP4", ".mkv"}
+                If allowedVideoExtension.Contains(Path.GetExtension(selectedItem)) Then
+                    Form1.FBReelsMediaPreviewer_PictureBox.Image = My.Resources.PlayVideo
                 End If
-
             End If
         Catch ex As Exception
             Debug.WriteLine(ex)
