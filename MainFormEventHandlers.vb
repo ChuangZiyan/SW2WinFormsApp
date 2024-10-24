@@ -1638,6 +1638,16 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "連續短片"
+                If Form1.FBReelsAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBReelsAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
+
             Case "順序回應通知"
                 selectedGroupItems = Form1.FBNotificationsData_Listview.SelectedItems
                 If Form1.FBResponseAssetFolder_ListBox.SelectedItems.Count > 0 Then
@@ -1679,6 +1689,8 @@ Public Class MainFormEventHandlers
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "Facebook", "https://www.facebook.com/", content, selecteAction, executionWaitSeconds)
                 ElseIf selecteAction = "限時" Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
+                ElseIf selecteAction = "連續短片" Then
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBReels", "https://www.facebook.com/reels/create", content, selecteAction, executionWaitSeconds)
                 ElseIf selectedGroupItems.Count > 0 Then ' 有選超過一個網址項目
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems
                         executionTime = UtilsModule.ConvertSecondsToTimeFormat(baseSeconds)
@@ -1700,6 +1712,8 @@ Public Class MainFormEventHandlers
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "Facebook", "https://www.facebook.com/", content, selecteAction, executionWaitSeconds)
                 ElseIf selecteAction = "限時" Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
+                ElseIf selecteAction = "連續短片" Then
+                    AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBReels", "https://www.facebook.com/reels/create", content, selecteAction, executionWaitSeconds)
                 ElseIf selectedGroupItems.Count > 0 Then
                     For Each selectedGroupItem As ListViewItem In selectedGroupItems
                         AddScriptQueueItem(selectedUserDataFolder, executionTime, selectedGroupItem.Text, selectedGroupItem.SubItems(1).Text, content, selecteAction, executionWaitSeconds)

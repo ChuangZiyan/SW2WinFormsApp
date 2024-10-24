@@ -444,6 +444,45 @@ Public Class Form1
                         result = False
                     End Try
                     Main_WebView2.ZoomFactor = 0.7
+                Case "連續短片"
+                    Try
+
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBReelsAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBReelsWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBReelsWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBReelsWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBReelsWaitSecondsCfg, ",")(1)
+
+                        result = Await FBReelsSeleniumScript.CreateReelsOnFacebook(myUrl, assetFolderPath)
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            Await Webview2Controller.ScrollToBottom()
+
+                            Await Delay_msec(3000)
+
+                            ' 如果你要發佈連續短片就取消註解下面那行
+                            ' Await Webview2Controller.ClickByCssSelector_Task("div[aria-label='發佈']")
+
+                            ' 送出後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+
                 Case "個人發帖"
                     Try
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPersonalPostAssetsDirectory)
