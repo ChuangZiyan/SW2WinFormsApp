@@ -433,7 +433,13 @@ Module MainFormController
                 ' 下載圖片到 images 資料夾
                 For Each imageUrl In imageUrls
                     Dim fileName = Path.Combine(AppInitModule.DownloadedImagesResourcesAssetsDirectory, "image_" & Guid.NewGuid().ToString() & ".jpg")
-                    downloadTasks.Add(DownloadFileAsync(httpClient, imageUrl, fileName))
+                    Dim isLargeEnough = Await IsFileLargerThan1KB(httpClient, imageUrl)
+                    If isLargeEnough Then
+                        downloadTasks.Add(DownloadFileAsync(httpClient, imageUrl, fileName))
+                    Else
+                        Console.WriteLine("圖片太小，跳過下載：" & imageUrl)
+                    End If
+
                 Next
 
                 ' 下載影片到 videos 資料夾
@@ -452,6 +458,20 @@ Module MainFormController
 
 
     End Function
+
+    Private Async Function IsFileLargerThan1KB(httpClient As HttpClient, url As String) As Task(Of Boolean)
+        Try
+            Dim request = New HttpRequestMessage(HttpMethod.Head, url)
+            Dim response = Await httpClient.SendAsync(request)
+            If response.IsSuccessStatusCode AndAlso response.Content.Headers.ContentLength.HasValue Then
+                Return response.Content.Headers.ContentLength.Value > 1024 ' 1 KB = 1024 Bytes
+            End If
+        Catch ex As Exception
+            Console.WriteLine("無法檢查大小：" & url & " 錯誤訊息：" & ex.Message)
+        End Try
+        Return False
+    End Function
+
 
 
 
