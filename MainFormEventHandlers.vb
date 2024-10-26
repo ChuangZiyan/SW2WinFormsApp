@@ -1,10 +1,13 @@
 ﻿Imports System.Diagnostics.Metrics
 Imports System.IO
+Imports System.Net
+Imports System.Net.Http
 Imports System.Reflection.Metadata
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
 Imports Microsoft.Web.WebView2.WinForms
 Imports Newtonsoft.Json
+Imports OpenQA.Selenium
 
 Public Class MainFormEventHandlers
 
@@ -92,10 +95,13 @@ Public Class MainFormEventHandlers
                 assetFolderListBoxSelectedItems = Form1.FBStoryAssetFolder_ListBox.SelectedItems
             Case "個人發帖"
                 assetFolderListBoxSelectedItems = Form1.FBPersonalPostAssetFolder_ListBox.SelectedItems
+            Case "連續短片"
+                assetFolderListBoxSelectedItems = Form1.FBReelsAssetFolder_ListBox.SelectedItems
             Case "順序回應通知"
                 assetFolderListBoxSelectedItems = Form1.FBResponseAssetFolder_ListBox.SelectedItems
             Case "順序回覆訊息"
                 assetFolderListBoxSelectedItems = Form1.FBMessengerAssetFolder_ListBox.SelectedItems
+
             Case Else
                 MsgBox("不支援此執行動作")
                 Exit Sub
@@ -1509,8 +1515,6 @@ Public Class MainFormEventHandlers
 
     End Sub
 
-
-
     Public Sub EditScriptFile_Button_Click(sender As Object, e As EventArgs)
         Try
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "scriptListviewData.txt")
@@ -1522,6 +1526,22 @@ Public Class MainFormEventHandlers
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
+    End Sub
+
+    Public Async Sub DownloadMediaResources_Button_Click(sender As Object, e As EventArgs)
+        Await DownloadAllMediaFromPageAsync()
+    End Sub
+
+    Public Sub RevealDownloadMediaFolder_Button_Click(sender As Object, e As EventArgs)
+
+        Try
+            Process.Start("Explorer", AppInitModule.DownloadedMediaResourcesAssetsDirectory)
+        Catch ex As Exception
+            MsgBox("無法開啟資料夾")
+            Debug.WriteLine(ex)
+        End Try
+
+
     End Sub
 
 

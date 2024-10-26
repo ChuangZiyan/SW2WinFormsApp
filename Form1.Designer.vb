@@ -392,7 +392,6 @@ Partial Class Form1
         ScheduledExecutionSeconds_NumericUpDown = New NumericUpDown()
         ScheduledExecutionScriptQueue_Button = New Button()
         ExecuteSelectedScriptListviewItem_Button = New Button()
-        ResetScript_Button = New Button()
         ModifySelectedScriptListviewAsset_Button = New Button()
         ContinueScriptExecution_Button = New Button()
         PauseScriptExecution_Button = New Button()
@@ -403,6 +402,7 @@ Partial Class Form1
         ExecutionScriptQueue_Button = New Button()
         Label18 = New Label()
         ExecutionWaitRandomSeconds_NumericUpDown = New NumericUpDown()
+        ResetScript_Button = New Button()
         Label17 = New Label()
         Label16 = New Label()
         Label15 = New Label()
@@ -428,17 +428,8 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
-        CheckBox1 = New CheckBox()
-        CheckBox2 = New CheckBox()
-        CheckBox3 = New CheckBox()
-        Label70 = New Label()
-        Label71 = New Label()
-        Label72 = New Label()
-        NumericUpDown1 = New NumericUpDown()
-        NumericUpDown2 = New NumericUpDown()
-        NumericUpDown3 = New NumericUpDown()
-        Button1 = New Button()
-        Button2 = New Button()
+        DownloadMediaResources_Button = New Button()
+        RevealDownloadMediaFolder_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -500,9 +491,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -520,14 +508,14 @@ Partial Class Form1
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(1147, 1064)
+        Navigate_Url_TextBox.Location = New Point(1147, 1065)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
-        Navigate_Url_TextBox.Size = New Size(473, 27)
+        Navigate_Url_TextBox.Size = New Size(272, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1626, 1064)
+        NavigateTo_Url_Button.Location = New Point(1425, 1065)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -829,7 +817,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1725, 1064)
+        GetCurrentUrl_Button.Location = New Point(1525, 1065)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -3882,17 +3870,6 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
-        ScriptTask_GroupBox.Controls.Add(Button2)
-        ScriptTask_GroupBox.Controls.Add(Button1)
-        ScriptTask_GroupBox.Controls.Add(Label70)
-        ScriptTask_GroupBox.Controls.Add(Label71)
-        ScriptTask_GroupBox.Controls.Add(Label72)
-        ScriptTask_GroupBox.Controls.Add(NumericUpDown1)
-        ScriptTask_GroupBox.Controls.Add(NumericUpDown2)
-        ScriptTask_GroupBox.Controls.Add(NumericUpDown3)
-        ScriptTask_GroupBox.Controls.Add(CheckBox3)
-        ScriptTask_GroupBox.Controls.Add(CheckBox2)
-        ScriptTask_GroupBox.Controls.Add(CheckBox1)
         ScriptTask_GroupBox.Controls.Add(Label55)
         ScriptTask_GroupBox.Controls.Add(CustomizeAction_ComboBox)
         ScriptTask_GroupBox.Controls.Add(CustomizeScriptInsertion_RadioButton)
@@ -3919,6 +3896,7 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(ExecutionScriptQueue_Button)
         ScriptTask_GroupBox.Controls.Add(Label18)
         ScriptTask_GroupBox.Controls.Add(ExecutionWaitRandomSeconds_NumericUpDown)
+        ScriptTask_GroupBox.Controls.Add(ResetScript_Button)
         ScriptTask_GroupBox.Controls.Add(Label17)
         ScriptTask_GroupBox.Controls.Add(Label16)
         ScriptTask_GroupBox.Controls.Add(Label15)
@@ -4083,21 +4061,12 @@ Partial Class Form1
         ' 
         ' ExecuteSelectedScriptListviewItem_Button
         ' 
-        ExecuteSelectedScriptListviewItem_Button.Location = New Point(601, 160)
+        ExecuteSelectedScriptListviewItem_Button.Location = New Point(435, 160)
         ExecuteSelectedScriptListviewItem_Button.Name = "ExecuteSelectedScriptListviewItem_Button"
         ExecuteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         ExecuteSelectedScriptListviewItem_Button.TabIndex = 28
         ExecuteSelectedScriptListviewItem_Button.Text = "執行所選"
         ExecuteSelectedScriptListviewItem_Button.UseVisualStyleBackColor = True
-        ' 
-        ' ResetScript_Button
-        ' 
-        ResetScript_Button.Location = New Point(112, 568)
-        ResetScript_Button.Name = "ResetScript_Button"
-        ResetScript_Button.Size = New Size(94, 29)
-        ResetScript_Button.TabIndex = 27
-        ResetScript_Button.Text = "重置程式"
-        ResetScript_Button.UseVisualStyleBackColor = True
         ' 
         ' ModifySelectedScriptListviewAsset_Button
         ' 
@@ -4110,7 +4079,7 @@ Partial Class Form1
         ' 
         ' ContinueScriptExecution_Button
         ' 
-        ContinueScriptExecution_Button.Location = New Point(546, 162)
+        ContinueScriptExecution_Button.Location = New Point(379, 160)
         ContinueScriptExecution_Button.Name = "ContinueScriptExecution_Button"
         ContinueScriptExecution_Button.Size = New Size(50, 29)
         ContinueScriptExecution_Button.TabIndex = 25
@@ -4119,7 +4088,7 @@ Partial Class Form1
         ' 
         ' PauseScriptExecution_Button
         ' 
-        PauseScriptExecution_Button.Location = New Point(490, 162)
+        PauseScriptExecution_Button.Location = New Point(323, 160)
         PauseScriptExecution_Button.Name = "PauseScriptExecution_Button"
         PauseScriptExecution_Button.Size = New Size(50, 29)
         PauseScriptExecution_Button.TabIndex = 24
@@ -4167,7 +4136,7 @@ Partial Class Form1
         ExecutionScriptQueue_Button.BackColor = SystemColors.GradientInactiveCaption
         ExecutionScriptQueue_Button.Location = New Point(185, 158)
         ExecutionScriptQueue_Button.Name = "ExecutionScriptQueue_Button"
-        ExecutionScriptQueue_Button.Size = New Size(162, 29)
+        ExecutionScriptQueue_Button.Size = New Size(132, 29)
         ExecutionScriptQueue_Button.TabIndex = 19
         ExecutionScriptQueue_Button.Text = "執行腳本"
         ExecutionScriptQueue_Button.UseVisualStyleBackColor = False
@@ -4188,6 +4157,15 @@ Partial Class Form1
         ExecutionWaitRandomSeconds_NumericUpDown.Name = "ExecutionWaitRandomSeconds_NumericUpDown"
         ExecutionWaitRandomSeconds_NumericUpDown.Size = New Size(54, 27)
         ExecutionWaitRandomSeconds_NumericUpDown.TabIndex = 17
+        ' 
+        ' ResetScript_Button
+        ' 
+        ResetScript_Button.Location = New Point(600, 160)
+        ResetScript_Button.Name = "ResetScript_Button"
+        ResetScript_Button.Size = New Size(94, 29)
+        ResetScript_Button.TabIndex = 27
+        ResetScript_Button.Text = "重置程式"
+        ResetScript_Button.UseVisualStyleBackColor = True
         ' 
         ' Label17
         ' 
@@ -4411,109 +4389,31 @@ Partial Class Form1
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox1
+        ' DownloadMediaResources_Button
         ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Location = New Point(17, 200)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(91, 23)
-        CheckBox1.TabIndex = 45
-        CheckBox1.Text = "關閉程式"
-        CheckBox1.UseVisualStyleBackColor = True
+        DownloadMediaResources_Button.Location = New Point(1625, 1064)
+        DownloadMediaResources_Button.Name = "DownloadMediaResources_Button"
+        DownloadMediaResources_Button.Size = New Size(94, 29)
+        DownloadMediaResources_Button.TabIndex = 39
+        DownloadMediaResources_Button.Text = "下載資源"
+        DownloadMediaResources_Button.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox2
+        ' RevealDownloadMediaFolder_Button
         ' 
-        CheckBox2.AutoSize = True
-        CheckBox2.Location = New Point(114, 198)
-        CheckBox2.Name = "CheckBox2"
-        CheckBox2.Size = New Size(91, 23)
-        CheckBox2.TabIndex = 46
-        CheckBox2.Text = "關閉電腦"
-        CheckBox2.UseVisualStyleBackColor = True
-        ' 
-        ' CheckBox3
-        ' 
-        CheckBox3.AutoSize = True
-        CheckBox3.Location = New Point(353, 163)
-        CheckBox3.Name = "CheckBox3"
-        CheckBox3.Size = New Size(91, 23)
-        CheckBox3.TabIndex = 47
-        CheckBox3.Text = "完成關閉"
-        CheckBox3.UseVisualStyleBackColor = True
-        ' 
-        ' Label70
-        ' 
-        Label70.AutoSize = True
-        Label70.Location = New Point(437, 203)
-        Label70.Name = "Label70"
-        Label70.Size = New Size(24, 19)
-        Label70.TabIndex = 53
-        Label70.Text = "秒"
-        ' 
-        ' Label71
-        ' 
-        Label71.AutoSize = True
-        Label71.Location = New Point(351, 203)
-        Label71.Name = "Label71"
-        Label71.Size = New Size(24, 19)
-        Label71.TabIndex = 52
-        Label71.Text = "分"
-        ' 
-        ' Label72
-        ' 
-        Label72.AutoSize = True
-        Label72.Location = New Point(265, 203)
-        Label72.Name = "Label72"
-        Label72.Size = New Size(24, 19)
-        Label72.TabIndex = 51
-        Label72.Text = "時"
-        ' 
-        ' NumericUpDown1
-        ' 
-        NumericUpDown1.Location = New Point(294, 198)
-        NumericUpDown1.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
-        NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(50, 27)
-        NumericUpDown1.TabIndex = 50
-        ' 
-        ' NumericUpDown2
-        ' 
-        NumericUpDown2.Location = New Point(210, 198)
-        NumericUpDown2.Name = "NumericUpDown2"
-        NumericUpDown2.Size = New Size(50, 27)
-        NumericUpDown2.TabIndex = 49
-        ' 
-        ' NumericUpDown3
-        ' 
-        NumericUpDown3.Location = New Point(381, 198)
-        NumericUpDown3.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
-        NumericUpDown3.Name = "NumericUpDown3"
-        NumericUpDown3.Size = New Size(50, 27)
-        NumericUpDown3.TabIndex = 48
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(467, 198)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 54
-        Button1.Text = "開始倒數"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(567, 198)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 55
-        Button2.Text = "暫停倒數"
-        Button2.UseVisualStyleBackColor = True
+        RevealDownloadMediaFolder_Button.Location = New Point(1725, 1064)
+        RevealDownloadMediaFolder_Button.Name = "RevealDownloadMediaFolder_Button"
+        RevealDownloadMediaFolder_Button.Size = New Size(94, 29)
+        RevealDownloadMediaFolder_Button.TabIndex = 40
+        RevealDownloadMediaFolder_Button.Text = "打開資料夾"
+        RevealDownloadMediaFolder_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1858, 1103)
+        Controls.Add(RevealDownloadMediaFolder_Button)
+        Controls.Add(DownloadMediaResources_Button)
         Controls.Add(EditScriptFile_Button)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
@@ -4540,7 +4440,6 @@ Partial Class Form1
         Controls.Add(CreateUserDataFolderButton)
         Controls.Add(UserDataFolderName_TextBox)
         Controls.Add(UserInfo_GroupBox)
-        Controls.Add(ResetScript_Button)
         Controls.Add(NavigateTo_Url_Button)
         Controls.Add(Navigate_Url_TextBox)
         Controls.Add(Main_WebView2)
@@ -4624,9 +4523,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown3, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -5037,16 +4933,7 @@ Partial Class Form1
     Friend WithEvents FBReelsMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBReelsTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBReelsCreateNewAssetFolder_Button As Button
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label70 As Label
-    Friend WithEvents Label71 As Label
-    Friend WithEvents Label72 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents NumericUpDown2 As NumericUpDown
-    Friend WithEvents NumericUpDown3 As NumericUpDown
-    Friend WithEvents Button2 As Button
+    Friend WithEvents DownloadMediaResources_Button As Button
+    Friend WithEvents RevealDownloadMediaFolder_Button As Button
 
 End Class

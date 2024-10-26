@@ -1,5 +1,7 @@
 ﻿Imports System.IO
+Imports System.Net
 Imports Newtonsoft.Json.Linq
+Imports OpenQA.Selenium
 
 Public Class Form1
 
@@ -826,7 +828,6 @@ Public Class Form1
 
     Private FBReelsEventHandlers As New FBReelsEventHandlers()
 
-
     Private Sub RegisterMainFormEventHanders()
         ' 這邊是用來註冊Form1的事件
         AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
@@ -885,6 +886,14 @@ Public Class Form1
         AddHandler FBUrlData_TabControl.DoubleClick, AddressOf mainFormEventHandlers.FBUrlData_TabControl_DoubleClick
 
         AddHandler EditScriptFile_Button.Click, AddressOf mainFormEventHandlers.EditScriptFile_Button_Click
+        AddHandler RevealDownloadMediaFolder_Button.Click, AddressOf mainFormEventHandlers.RevealDownloadMediaFolder_Button_Click
+
+
+
+
+
+        ' 下載網頁媒體功能
+        AddHandler DownloadMediaResources_Button.Click, AddressOf mainFormEventHandlers.DownloadMediaResources_Button_Click
 
         ' 修改資料夾
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
@@ -1139,5 +1148,6 @@ Public Class Form1
         }
         'emojiPickerForm.Show()
     End Sub
+
 
 End Class

@@ -24,6 +24,12 @@ Module AppInitModule
     Public ReadOnly FBPersonalPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPersonalPostAssets")
     Public ReadOnly FBReelsAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBReelsAssets")
 
+    ' download media resources
+    Public ReadOnly DownloadedMediaResourcesAssetsDirectory As String = Path.Combine(myAssetsDirectory, "DownloadedMediaResourcesAssets")
+    Public ReadOnly DownloadedImagesResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "images")
+    Public ReadOnly DownloadedVideosResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "videos")
+
+
     ' auto save script csv file path 
     ' Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
 
@@ -64,7 +70,10 @@ Module AppInitModule
                 FBResponseAssetsDirectory,
                 FBMessengerAssetsDirectory,
                 FBPersonalPostAssetsDirectory,
-                FBReelsAssetsDirectory
+                FBReelsAssetsDirectory,
+                DownloadedMediaResourcesAssetsDirectory,
+                DownloadedImagesResourcesAssetsDirectory,
+                DownloadedVideosResourcesAssetsDirectory
         }
 
         For Each myDir In myDirectories

@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Net.Http
 Imports System.Reflection.Metadata
 Imports System.Reflection.PortableExecutable
 Imports System.Security.Permissions
@@ -9,6 +10,8 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
 Imports Microsoft.Web.WebView2.Core
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports OpenQA.Selenium
+Imports OpenQA.Selenium.Chrome
 Imports OpenQA.Selenium.Support.UI
 
 Module MainFormController
@@ -399,6 +402,57 @@ Module MainFormController
         End Try
 
     End Sub
+
+    Public Async Function DownloadAllMediaFromPageAsync() As Task
+        Try
+
+            ' 抓取圖片的 src 屬性
+            Dim imageElements = edgeDriver.FindElements(By.TagName("img"))
+            Dim imageUrls As New List(Of String)
+            For Each imageElement In imageElements
+                Dim imageUrl = imageElement.GetAttribute("src")
+                If Not String.IsNullOrEmpty(imageUrl) Then
+                    imageUrls.Add(imageUrl)
+                End If
+            Next
+
+            ' 抓取影片的 src 屬性
+            Dim videoElements = edgeDriver.FindElements(By.TagName("video"))
+            Dim videoUrls As New List(Of String)
+            For Each videoElement In videoElements
+                Dim videoUrl = videoElement.GetAttribute("src")
+                If Not String.IsNullOrEmpty(videoUrl) Then
+                    videoUrls.Add(videoUrl)
+                End If
+            Next
+
+            ' 使用 HttpClient 下載圖片和影片
+            Dim downloadTasks As New List(Of Task)
+            Using httpClient As New HttpClient()
+
+                ' 下載圖片到 images 資料夾
+                For Each imageUrl In imageUrls
+                    Dim fileName = Path.Combine(AppInitModule.DownloadedImagesResourcesAssetsDirectory, "image_" & Guid.NewGuid().ToString() & ".jpg")
+                    downloadTasks.Add(DownloadFileAsync(httpClient, imageUrl, fileName))
+                Next
+
+                ' 下載影片到 videos 資料夾
+                For Each videoUrl In videoUrls
+                    Dim fileName = Path.Combine(AppInitModule.DownloadedVideosResourcesAssetsDirectory, "video_" & Guid.NewGuid().ToString() & ".mp4")
+                    downloadTasks.Add(DownloadFileAsync(httpClient, videoUrl, fileName))
+                Next
+
+                ' 等待所有下載完成
+                Await Task.WhenAll(downloadTasks)
+            End Using
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+
+
+    End Function
+
 
 
     Public Class GroupListviewDataStruct

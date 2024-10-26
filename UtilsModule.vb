@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Net.Http
 Imports System.Net.NetworkInformation
 Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
@@ -128,6 +129,16 @@ Module UtilsModule
         End Try
 
         Return False
+    End Function
+
+    Public Async Function DownloadFileAsync(httpClient As HttpClient, url As String, filePath As String) As Task
+        Try
+            Dim fileBytes = Await httpClient.GetByteArrayAsync(url)
+            Await File.WriteAllBytesAsync(filePath, fileBytes)
+            Console.WriteLine("已下載：" & filePath)
+        Catch ex As Exception
+            Console.WriteLine("下載失敗：" & url & " 錯誤訊息：" & ex.Message)
+        End Try
     End Function
 
 
