@@ -353,7 +353,7 @@ Partial Class Form1
         FBPersonalPostMediaPreviewer_PictureBox = New PictureBox()
         FBPersonalPostTextFilePreviewer_RichTextBox = New RichTextBox()
         FBPersonalPostCreateNewAssetFolder_Button = New Button()
-        FBReels_TabPage = New TabPage()
+        FBReelsAssets_TabPage = New TabPage()
         Label67 = New Label()
         Label68 = New Label()
         Label69 = New Label()
@@ -477,7 +477,7 @@ Partial Class Form1
         CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
-        FBReels_TabPage.SuspendLayout()
+        FBReelsAssets_TabPage.SuspendLayout()
         CType(FBReelsUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBReelsSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBReelsMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
@@ -1621,7 +1621,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBMessengerAssets_TabPage)
         Action_TabControl.Controls.Add(FBStoryAssets_TabPage)
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
-        Action_TabControl.Controls.Add(FBReels_TabPage)
+        Action_TabControl.Controls.Add(FBReelsAssets_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
@@ -3653,34 +3653,34 @@ Partial Class Form1
         FBPersonalPostCreateNewAssetFolder_Button.Text = "建立"
         FBPersonalPostCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBReels_TabPage
+        ' FBReelsAssets_TabPage
         ' 
-        FBReels_TabPage.Controls.Add(Label67)
-        FBReels_TabPage.Controls.Add(Label68)
-        FBReels_TabPage.Controls.Add(Label69)
-        FBReels_TabPage.Controls.Add(FBReelsUploadWaitSeconds_NumericUpDown)
-        FBReels_TabPage.Controls.Add(FBReelsSubmitWaitSeconds_NumericUpDown)
-        FBReels_TabPage.Controls.Add(FBReelsDeselectAllAssetFolderListboxItems_Button)
-        FBReels_TabPage.Controls.Add(FBReelsDeleteSelectedTextFile_Button)
-        FBReels_TabPage.Controls.Add(FBReelsNewTextFileName_TextBox)
-        FBReels_TabPage.Controls.Add(FBReelsMediaSelector_ListBox)
-        FBReels_TabPage.Controls.Add(FBReelsTextFileSelector_ListBox)
-        FBReels_TabPage.Controls.Add(FBReelsAssetFolder_ListBox)
-        FBReels_TabPage.Controls.Add(FBReelsSaveTextFile_Button)
-        FBReels_TabPage.Controls.Add(FBReelsCreateNewTextFile_Button)
-        FBReels_TabPage.Controls.Add(FBReelsDeleteSelectedMedia_Button)
-        FBReels_TabPage.Controls.Add(FBReelsRevealMediaFoldesrInFileExplorer_Button)
-        FBReels_TabPage.Controls.Add(FBReelsDeleteSelectedAssetFolder_Button)
-        FBReels_TabPage.Controls.Add(FBReelsAssetFolderName_TextBox)
-        FBReels_TabPage.Controls.Add(FBReelsMediaPreviewer_PictureBox)
-        FBReels_TabPage.Controls.Add(FBReelsTextFilePreviewer_RichTextBox)
-        FBReels_TabPage.Controls.Add(FBReelsCreateNewAssetFolder_Button)
-        FBReels_TabPage.Location = New Point(4, 28)
-        FBReels_TabPage.Name = "FBReels_TabPage"
-        FBReels_TabPage.Size = New Size(664, 467)
-        FBReels_TabPage.TabIndex = 9
-        FBReels_TabPage.Text = "連續短片"
-        FBReels_TabPage.UseVisualStyleBackColor = True
+        FBReelsAssets_TabPage.Controls.Add(Label67)
+        FBReelsAssets_TabPage.Controls.Add(Label68)
+        FBReelsAssets_TabPage.Controls.Add(Label69)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsUploadWaitSeconds_NumericUpDown)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsSubmitWaitSeconds_NumericUpDown)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsDeselectAllAssetFolderListboxItems_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsDeleteSelectedTextFile_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsNewTextFileName_TextBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsMediaSelector_ListBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsTextFileSelector_ListBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsAssetFolder_ListBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsSaveTextFile_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsCreateNewTextFile_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsDeleteSelectedMedia_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsRevealMediaFoldesrInFileExplorer_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsDeleteSelectedAssetFolder_Button)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsAssetFolderName_TextBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsMediaPreviewer_PictureBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsTextFilePreviewer_RichTextBox)
+        FBReelsAssets_TabPage.Controls.Add(FBReelsCreateNewAssetFolder_Button)
+        FBReelsAssets_TabPage.Location = New Point(4, 28)
+        FBReelsAssets_TabPage.Name = "FBReelsAssets_TabPage"
+        FBReelsAssets_TabPage.Size = New Size(664, 467)
+        FBReelsAssets_TabPage.TabIndex = 9
+        FBReelsAssets_TabPage.Text = "連續短片"
+        FBReelsAssets_TabPage.UseVisualStyleBackColor = True
         ' 
         ' Label67
         ' 
@@ -4507,8 +4507,8 @@ Partial Class Form1
         CType(FBPersonalPostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPersonalPostSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBPersonalPostMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
-        FBReels_TabPage.ResumeLayout(False)
-        FBReels_TabPage.PerformLayout()
+        FBReelsAssets_TabPage.ResumeLayout(False)
+        FBReelsAssets_TabPage.PerformLayout()
         CType(FBReelsUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBReelsSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBReelsMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
@@ -4912,7 +4912,7 @@ Partial Class Form1
     Friend WithEvents FBPersonalPostTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBPersonalPostCreateNewAssetFolder_Button As Button
     Friend WithEvents EditScriptFile_Button As Button
-    Friend WithEvents FBReels_TabPage As TabPage
+    Friend WithEvents FBReelsAssets_TabPage As TabPage
     Friend WithEvents Label67 As Label
     Friend WithEvents Label68 As Label
     Friend WithEvents Label69 As Label

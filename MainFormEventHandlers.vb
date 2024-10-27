@@ -375,8 +375,6 @@ Public Class MainFormEventHandlers
             ' 選取userData
             Form1.WebviewUserDataFolder_ListBox.SelectedItem = userData
 
-
-
             '先宣告待會要用的asset listbox
             Dim assetsFolder_ListBox = Nothing
 
@@ -400,7 +398,7 @@ Public Class MainFormEventHandlers
                     assetsFolder_ListBox = Form1.FBCommentAssetFolder_ListBox
                 Case "自訂"
                     Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeCommentAssets_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
+                    'Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBCustomizeCommentAssetFolder_ListBox
                 Case "回應"
                     Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotificationsAssets_TabPage
@@ -416,9 +414,10 @@ Public Class MainFormEventHandlers
                 Case "個人發帖"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPersonalPostAssets_TabPage
                     assetsFolder_ListBox = Form1.FBPersonalPostAssetFolder_ListBox
-
+                Case "連續短片"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBReelsAssets_TabPage
+                    assetsFolder_ListBox = Form1.FBReelsAssetFolder_ListBox
             End Select
-
 
             Select Case True
                 Case action.Contains("通知")
