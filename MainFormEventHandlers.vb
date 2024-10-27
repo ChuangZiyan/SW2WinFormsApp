@@ -416,9 +416,21 @@ Public Class MainFormEventHandlers
                 Case "個人發帖"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPersonalPostAssets_TabPage
                     assetsFolder_ListBox = Form1.FBPersonalPostAssetFolder_ListBox
+
             End Select
 
 
+            Select Case True
+                Case action.Contains("通知")
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
+                Case action.Contains("聊天室")
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+                Case action.Contains("Marketplace")
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+                Case action.Contains("訊息")
+                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+
+            End Select
 
 
             ' 以下是自動填入各種參數，先保留

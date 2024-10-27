@@ -851,7 +851,6 @@ Public Class Form1
         AddHandler SchedulerTime_Label.Click, AddressOf mainFormEventHandlers.SchedulerTime_Label_Click
         AddHandler SyncTimeToDateTimePicker_Label.Click, AddressOf mainFormEventHandlers.SyncTimeToDateTimePicker_Label_Click
         AddHandler SortListviewItemByTime_Button.Click, AddressOf mainFormEventHandlers.SortListviewItemByTime_Button_Click
-        AddHandler ScriptQueue_ListView.Click, AddressOf mainFormEventHandlers.ScriptQueue_ListView_Click
         AddHandler RevealFBPasswordText_Button.Click, AddressOf mainFormEventHandlers.RevealFBPasswordText_Button_Click
         AddHandler RevealEmailPasswordText_Button.Click, AddressOf mainFormEventHandlers.RevealEmailPasswordText_Button_Click
         AddHandler NavigateTo_Url_Button.Click, AddressOf mainFormEventHandlers.NavigateTo_Url_Button_Click
@@ -889,8 +888,8 @@ Public Class Form1
         AddHandler RevealDownloadMediaFolder_Button.Click, AddressOf mainFormEventHandlers.RevealDownloadMediaFolder_Button_Click
 
 
-
-
+        ' 點擊腳本列表自動填入
+        AddHandler ScriptQueue_ListView.Click, AddressOf mainFormEventHandlers.ScriptQueue_ListView_Click
 
         ' 下載網頁媒體功能
         AddHandler DownloadMediaResources_Button.Click, AddressOf mainFormEventHandlers.DownloadMediaResources_Button_Click

@@ -63,12 +63,27 @@
 
             Dim target_richTextbox As RichTextBox = Nothing
 
-
             Select Case Form1.Action_TabControl.SelectedTab.Name
-                Case "FBPost_TabPage"
+                Case "FBPostAssets_TabPage"
                     target_richTextbox = Form1.PreviewTextFile_RichTextBox
-                Case "FBMarketplace_TabPage"
+                Case "FBMarketplaceAssets_TabPage"
                     target_richTextbox = Form1.FBMarketplaceProductDescription_RichTextBox
+                Case "FBPostShareURLAssets_TabPage"
+                    target_richTextbox = Form1.FBPostShareURLTextFilePreviewer_RichTextBox
+                Case "FBCommentAssets_TabPage"
+                    target_richTextbox = Form1.FBCommentTextFilePreviewer_RichTextBox
+                Case "FBCustomizeCommentAssets_TabPage"
+                    target_richTextbox = Form1.FBCustomizeCommentTextFilePreviewer_RichTextBox
+                Case "FBRespondNotificationsAssets_TabPage"
+                    target_richTextbox = Form1.FBResponseTextFilePreviewer_RichTextBox
+                Case "FBMessengerAssets_TabPage"
+                    target_richTextbox = Form1.FBMessengerTextFilePreviewer_RichTextBox
+                Case "FBStoryAssets_TabPage"
+                    target_richTextbox = Form1.FBStoryTextFilePreviewer_RichTextBox
+                Case "FBPersonalPostAssets_TabPage"
+                    target_richTextbox = Form1.FBPersonalPostTextFilePreviewer_RichTextBox
+                Case "FBReels_TabPage"
+                    target_richTextbox = Form1.FBReelsTextFilePreviewer_RichTextBox
             End Select
 
 
@@ -81,7 +96,6 @@
                 myEmoji = clickedLabel.Text
                 target_richTextbox.SelectedText = myEmoji
             End If
-
 
         Catch ex As Exception
             Debug.WriteLine(ex)
