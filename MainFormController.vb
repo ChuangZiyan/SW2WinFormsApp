@@ -220,7 +220,7 @@ Module MainFormController
 
     Public Sub SetForm1TitleStatus(status As String)
         Dim myUserData = Webview2Controller.ActivedWebview2UserData
-        Form1.Text = "UserData: " & myUserData & "    Port: " & Webview2Controller.DebugPortInUse & "    |    " & status & "    - MainWebview2Form"
+        Form1.Text = "UserData: " & myUserData & "    Port: " & Webview2Controller.DebugPortInUse & "    |    " & status & "    - MainWebview2Form " & AppInitModule.appVersion
     End Sub
 
 

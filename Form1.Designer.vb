@@ -333,6 +333,7 @@ Partial Class Form1
         FBStoryTextFilePreviewer_RichTextBox = New RichTextBox()
         FBStoryCreateNewAssetFolder_Button = New Button()
         FBPersonalPostAssets_TabPage = New TabPage()
+        SingleMediaAllowed_CheckBox = New CheckBox()
         Label64 = New Label()
         Label65 = New Label()
         Label66 = New Label()
@@ -3449,6 +3450,7 @@ Partial Class Form1
         ' 
         ' FBPersonalPostAssets_TabPage
         ' 
+        FBPersonalPostAssets_TabPage.Controls.Add(SingleMediaAllowed_CheckBox)
         FBPersonalPostAssets_TabPage.Controls.Add(Label64)
         FBPersonalPostAssets_TabPage.Controls.Add(Label65)
         FBPersonalPostAssets_TabPage.Controls.Add(Label66)
@@ -3475,6 +3477,16 @@ Partial Class Form1
         FBPersonalPostAssets_TabPage.TabIndex = 8
         FBPersonalPostAssets_TabPage.Text = "個人發帖"
         FBPersonalPostAssets_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' SingleMediaAllowed_CheckBox
+        ' 
+        SingleMediaAllowed_CheckBox.AutoSize = True
+        SingleMediaAllowed_CheckBox.Location = New Point(534, 13)
+        SingleMediaAllowed_CheckBox.Name = "SingleMediaAllowed_CheckBox"
+        SingleMediaAllowed_CheckBox.Size = New Size(121, 23)
+        SingleMediaAllowed_CheckBox.TabIndex = 145
+        SingleMediaAllowed_CheckBox.Text = "只發單一圖像"
+        SingleMediaAllowed_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' Label64
         ' 
@@ -3933,7 +3945,7 @@ Partial Class Form1
         CustomizeAction_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         CustomizeAction_ComboBox.Enabled = False
         CustomizeAction_ComboBox.FormattingEnabled = True
-        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "", "讀取未讀聊天室", "讀取己讀聊天室", "讀取未讀Marketplace", "讀取己讀Marketplace", "讀取未讀陌生訊息", "讀取己讀陌生訊息", "", "聊天室訊息己讀封存", "聊天室訊息未讀封存", "Marketplace室訊息己讀封存", "Marketplace室訊息未讀封存", "順序回覆訊息"})
+        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "", "讀取未讀聊天室", "讀取己讀聊天室", "讀取未讀Marketplace", "讀取己讀Marketplace", "讀取未讀陌生訊息", "讀取己讀陌生訊息", "", "聊天室訊息己讀封存", "聊天室訊息未讀封存", "Marketplace室訊息己讀封存", "Marketplace室訊息未讀封存", "順序回覆訊息", "", "個人發帖單圖"})
         CustomizeAction_ComboBox.Location = New Point(291, 21)
         CustomizeAction_ComboBox.Name = "CustomizeAction_ComboBox"
         CustomizeAction_ComboBox.Size = New Size(264, 27)
@@ -4935,5 +4947,6 @@ Partial Class Form1
     Friend WithEvents FBReelsCreateNewAssetFolder_Button As Button
     Friend WithEvents DownloadMediaResources_Button As Button
     Friend WithEvents RevealDownloadMediaFolder_Button As Button
+    Friend WithEvents SingleMediaAllowed_CheckBox As CheckBox
 
 End Class

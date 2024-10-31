@@ -521,6 +521,42 @@ Public Class Form1
                         result = False
                     End Try
 
+                Case "個人發帖單圖"
+                    Try
+                        Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPersonalPostAssetsDirectory)
+                        item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                        Dim FBPersonalPostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBPersonalPostWaitSecondsConfig.txt"))
+                        item.SubItems(7).Text = Split(FBPersonalPostWaitSecondsCfg, ",")(0)
+                        item.SubItems(8).Text = Split(FBPersonalPostWaitSecondsCfg, ",")(1)
+
+                        result = Await FBPersonalPostSeleniumScript.WritePersonalPostOnFacebook(myUrl, assetFolderPath, True)
+
+                        ' 如果流程都沒問題
+                        If result Then
+                            ' 這邊要等待上傳完成
+                            For seconds = CInt(item.SubItems(7).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(7).Text = seconds
+                            Next
+
+                            ' 如果你要發佈就取消註解下面兩行
+                            ' Webview2Controller.ClickByCssSelectorWaitUntil("div[aria-label='繼續']", 2)
+                            ' Webview2Controller.ClickByCssSelectorWaitUntil("div[aria-label='發佈']", 5)
+
+
+                            ' 送出留言後等待
+                            For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
+                                Await Delay_msec(1000)
+                                item.SubItems(8).Text = seconds
+                            Next
+
+                        End If
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        result = False
+                    End Try
+
                 Case "讀取已讀通知"
                     result = Await Webview2Controller.ReadFBNotifications(True, False)
                 Case "讀取未讀通知"

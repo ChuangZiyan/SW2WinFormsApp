@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports Newtonsoft.Json
+Imports SW2WinFormsApp.FBMarketplaceEventHandlers
 
 Module AppInitModule
 
@@ -30,6 +32,9 @@ Module AppInitModule
     Public ReadOnly DownloadedVideosResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "videos")
 
 
+
+    Public ReadOnly appVersion As String = "v1.0.001"
+
     ' auto save script csv file path 
     ' Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
 
@@ -38,6 +43,7 @@ Module AppInitModule
 
 
     Public Sub InitializeMainApp()
+        InitProfile()
         InitializeDataDirectory()
         UpdateWebviewUserDataCheckListBox()
         FBPostEventHandlers.UpdateAssetsFolderListBox()
@@ -86,5 +92,24 @@ Module AppInitModule
 
 
 
+    Private Sub InitProfile()
+        Dim webview2AppProfile As New Webview2AppProfile() With {
+                    .Version = appVersion,
+                    .BuildDate = "2024-10-31"
+                }
+        Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
+        ' 指定檔案路徑
+        Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
+
+        ' 將 JSON 字串寫入檔案
+        File.WriteAllText(filePath, jsonString)
+
+    End Sub
+
+    Public Class Webview2AppProfile
+        Public Property Version As String
+        Public Property BuildDate As String
+
+    End Class
 
 End Module

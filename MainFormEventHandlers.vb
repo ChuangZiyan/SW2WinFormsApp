@@ -358,9 +358,9 @@ Public Class MainFormEventHandlers
 
             ' 先把原本Listbox選的清掉
             Form1.WebviewUserDataFolder_ListBox.ClearSelected()
-            Form1.MyAssetsFolder_ListBox.ClearSelected()
-            Form1.FBPostShareURLAssetFolder_ListBox.ClearSelected()
-            Form1.FBCommentAssetFolder_ListBox.ClearSelected()
+            'Form1.MyAssetsFolder_ListBox.ClearSelected()
+            'Form1.FBPostShareURLAssetFolder_ListBox.ClearSelected()
+            'Form1.FBCommentAssetFolder_ListBox.ClearSelected()
 
             Dim selectedItem As ListViewItem = Form1.ScriptQueue_ListView.SelectedItems(0)
 
@@ -390,7 +390,7 @@ Public Class MainFormEventHandlers
                     assetsFolder_ListBox = Form1.FBMarkplaceProducts_ListBox
                 Case "分享"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPostShareURLAssets_TabPage
-                    Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
+                    'Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
                     assetsFolder_ListBox = Form1.FBPostShareURLAssetFolder_ListBox
                 Case "留言"
                     Form1.Action_TabControl.SelectedTab = Form1.FBCommentAssets_TabPage
@@ -414,9 +414,13 @@ Public Class MainFormEventHandlers
                 Case "個人發帖"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPersonalPostAssets_TabPage
                     assetsFolder_ListBox = Form1.FBPersonalPostAssetFolder_ListBox
+                Case "個人發帖單圖"
+                    Form1.Action_TabControl.SelectedTab = Form1.FBPersonalPostAssets_TabPage
+                    assetsFolder_ListBox = Form1.FBPersonalPostAssetFolder_ListBox
                 Case "連續短片"
                     Form1.Action_TabControl.SelectedTab = Form1.FBReelsAssets_TabPage
                     assetsFolder_ListBox = Form1.FBReelsAssetFolder_ListBox
+
             End Select
 
             Select Case True
@@ -1490,6 +1494,9 @@ Public Class MainFormEventHandlers
                 Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
             Case selected_item_text.Contains("訊息")
                 Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+            Case selected_item_text = "個人發帖單圖"
+                Form1.Action_TabControl.SelectedTab = Form1.FBPersonalPostAssets_TabPage
+
         End Select
 
     End Sub
@@ -1669,6 +1676,11 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+
+                If Form1.SingleMediaAllowed_CheckBox.Checked Then
+                    selecteAction = "個人發帖單圖"
+                End If
+
             Case "連續短片"
                 If Form1.FBReelsAssetFolder_ListBox.SelectedItems.Count > 0 Then
                     For Each item In Form1.FBReelsAssetFolder_ListBox.SelectedItems
@@ -1716,7 +1728,7 @@ Public Class MainFormEventHandlers
             If Form1.CustomizeScriptInsertion_RadioButton.Checked Then ' 自訂功能
                 AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
-                If selecteAction = "個人發帖" Then
+                If selecteAction.Contains("個人發帖") Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "Facebook", "https://www.facebook.com/", content, selecteAction, executionWaitSeconds)
                 ElseIf selecteAction = "限時" Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)
@@ -1739,7 +1751,7 @@ Public Class MainFormEventHandlers
                 AddScriptQueueItem(selectedUserDataFolder, executionTime, "NULL", "NULL", content, selecteAction, executionWaitSeconds)
             Else ' 預設功能
 
-                If selecteAction = "個人發帖" Then
+                If selecteAction.Contains("個人發帖") Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "Facebook", "https://www.facebook.com/", content, selecteAction, executionWaitSeconds)
                 ElseIf selecteAction = "限時" Then
                     AddScriptQueueItem(selectedUserDataFolder, executionTime, "FBCreateStories", "https://www.facebook.com/stories/create", content, selecteAction, executionWaitSeconds)

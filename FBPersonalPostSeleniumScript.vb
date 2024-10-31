@@ -4,7 +4,7 @@ Imports System.IO
 Module FBPersonalPostSeleniumScript
 
 
-    Public Async Function WritePersonalPostOnFacebook(myUrl As String, myAssetFolderPath As String) As Task(Of Boolean)
+    Public Async Function WritePersonalPostOnFacebook(myUrl As String, myAssetFolderPath As String, Optional singleMedia As Boolean = False) As Task(Of Boolean)
         Try
             'Debug.WriteLine("WritePostOnFacebook")
             Dim myText As String = ""
@@ -52,6 +52,8 @@ Module FBPersonalPostSeleniumScript
                                           Dim mediaFileList As New List(Of String)
                                           Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
 
+
+
                                           Dim allowedExtension As String() = {".WEBP", ".webp", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
                                           Dim myFiles As String() = Directory.GetFiles(mediaFileFolderPath)
                                           For Each file As String In myFiles
@@ -69,7 +71,16 @@ Module FBPersonalPostSeleniumScript
                                           Await Delay_msec(2000)
 
                                           If mediaFileList.Count > 0 Then
-                                              media_input.SendKeys(String.Join(vbLf, mediaFileList))
+
+                                              If singleMedia Then
+                                                  Dim rand As New Random()
+                                                  Dim randomIndex As Integer = rand.Next(0, mediaFileList.Count)
+                                                  media_input.SendKeys(mediaFileList(randomIndex))
+                                              Else
+                                                  media_input.SendKeys(String.Join(vbLf, mediaFileList))
+                                              End If
+
+
                                           End If
 
 
