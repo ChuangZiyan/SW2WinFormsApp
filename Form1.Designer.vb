@@ -431,6 +431,20 @@ Partial Class Form1
         EditScriptFile_Button = New Button()
         DownloadMediaResources_Button = New Button()
         RevealDownloadMediaFolder_Button = New Button()
+        FBImageDownload_TabPage = New TabPage()
+        Label70 = New Label()
+        TextBox1 = New TextBox()
+        Button1 = New Button()
+        ListView1 = New ListView()
+        Button2 = New Button()
+        Button3 = New Button()
+        Button4 = New Button()
+        Label71 = New Label()
+        NumericUpDown1 = New NumericUpDown()
+        Button5 = New Button()
+        Button6 = New Button()
+        Button7 = New Button()
+        qwdddd_TabPage = New TabPage()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -492,6 +506,8 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
+        qwdddd_TabPage.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -831,6 +847,7 @@ Partial Class Form1
         FBUrlData_TabControl.Controls.Add(FBActivityLogsUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBNotificationsUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBMessengerUrlData_TabPage)
+        FBUrlData_TabControl.Controls.Add(qwdddd_TabPage)
         FBUrlData_TabControl.Location = New Point(440, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
@@ -1623,6 +1640,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBStoryAssets_TabPage)
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
         Action_TabControl.Controls.Add(FBReelsAssets_TabPage)
+        Action_TabControl.Controls.Add(FBImageDownload_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
@@ -4419,6 +4437,139 @@ Partial Class Form1
         RevealDownloadMediaFolder_Button.Text = "打開資料夾"
         RevealDownloadMediaFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' FBImageDownload_TabPage
+        ' 
+        FBImageDownload_TabPage.Location = New Point(4, 28)
+        FBImageDownload_TabPage.Name = "FBImageDownload_TabPage"
+        FBImageDownload_TabPage.Size = New Size(664, 467)
+        FBImageDownload_TabPage.TabIndex = 10
+        FBImageDownload_TabPage.Text = "圖片下載"
+        FBImageDownload_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' Label70
+        ' 
+        Label70.AutoSize = True
+        Label70.Location = New Point(9, 18)
+        Label70.Name = "Label70"
+        Label70.Size = New Size(50, 19)
+        Label70.TabIndex = 0
+        Label70.Text = "網址 : "
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(65, 13)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(417, 27)
+        TextBox1.TabIndex = 1
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(488, 13)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 2
+        Button1.Text = "前往"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' ListView1
+        ' 
+        ListView1.Location = New Point(9, 81)
+        ListView1.Name = "ListView1"
+        ListView1.Size = New Size(674, 228)
+        ListView1.TabIndex = 3
+        ListView1.UseCompatibleStateImageBehavior = False
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(588, 13)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 29)
+        Button2.TabIndex = 4
+        Button2.Text = "取得網址"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(489, 48)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(94, 29)
+        Button3.TabIndex = 5
+        Button3.Text = "下載圖片"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Location = New Point(589, 46)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(94, 29)
+        Button4.TabIndex = 6
+        Button4.Text = "打開資料夾"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Label71
+        ' 
+        Label71.AutoSize = True
+        Label71.Location = New Point(9, 320)
+        Label71.Name = "Label71"
+        Label71.Size = New Size(95, 19)
+        Label71.TabIndex = 7
+        Label71.Text = "下一頁次數 : "
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(110, 317)
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(73, 27)
+        NumericUpDown1.TabIndex = 8
+        ' 
+        ' Button5
+        ' 
+        Button5.Location = New Point(189, 315)
+        Button5.Name = "Button5"
+        Button5.Size = New Size(94, 29)
+        Button5.TabIndex = 9
+        Button5.Text = "獲取網址"
+        Button5.UseVisualStyleBackColor = True
+        ' 
+        ' Button6
+        ' 
+        Button6.Location = New Point(491, 314)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(94, 29)
+        Button6.TabIndex = 10
+        Button6.Text = "儲存"
+        Button6.UseVisualStyleBackColor = True
+        ' 
+        ' Button7
+        ' 
+        Button7.Location = New Point(591, 314)
+        Button7.Name = "Button7"
+        Button7.Size = New Size(94, 29)
+        Button7.TabIndex = 11
+        Button7.Text = "刪除"
+        Button7.UseVisualStyleBackColor = True
+        ' 
+        ' qwdddd_TabPage
+        ' 
+        qwdddd_TabPage.Controls.Add(Button7)
+        qwdddd_TabPage.Controls.Add(Label70)
+        qwdddd_TabPage.Controls.Add(Button6)
+        qwdddd_TabPage.Controls.Add(TextBox1)
+        qwdddd_TabPage.Controls.Add(Button5)
+        qwdddd_TabPage.Controls.Add(Button1)
+        qwdddd_TabPage.Controls.Add(NumericUpDown1)
+        qwdddd_TabPage.Controls.Add(ListView1)
+        qwdddd_TabPage.Controls.Add(Label71)
+        qwdddd_TabPage.Controls.Add(Button2)
+        qwdddd_TabPage.Controls.Add(Button4)
+        qwdddd_TabPage.Controls.Add(Button3)
+        qwdddd_TabPage.Location = New Point(4, 28)
+        qwdddd_TabPage.Name = "qwdddd_TabPage"
+        qwdddd_TabPage.Size = New Size(692, 351)
+        qwdddd_TabPage.TabIndex = 4
+        qwdddd_TabPage.Text = "圖片下載"
+        qwdddd_TabPage.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -4535,6 +4686,9 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
+        qwdddd_TabPage.ResumeLayout(False)
+        qwdddd_TabPage.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -4948,5 +5102,19 @@ Partial Class Form1
     Friend WithEvents DownloadMediaResources_Button As Button
     Friend WithEvents RevealDownloadMediaFolder_Button As Button
     Friend WithEvents SingleMediaAllowed_CheckBox As CheckBox
+    Friend WithEvents FBImageDownload_TabPage As TabPage
+    Friend WithEvents ListView1 As ListView
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label70 As Label
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents Label71 As Label
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents qwdddd_TabPage As TabPage
 
 End Class
