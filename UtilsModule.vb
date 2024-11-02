@@ -141,5 +141,25 @@ Module UtilsModule
         End Try
     End Function
 
+    Public Async Function DownloadUrlResource(resourceUrl) As Task
+        Try
+
+            ' 使用 HttpClient 下載圖片和影片
+            Dim downloadTasks As New List(Of Task)
+            Using httpClient As New HttpClient()
+
+
+                Dim fileName = Path.Combine(AppInitModule.DownloadedImagesResourcesAssetsDirectory, "image_" & Guid.NewGuid().ToString() & ".jpg")
+                Await DownloadFileAsync(httpClient, resourceUrl, fileName)
+
+                ' 等待所有下載完成
+                'Await Task.WhenAll(downloadTasks)
+            End Using
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Function
+
 
 End Module

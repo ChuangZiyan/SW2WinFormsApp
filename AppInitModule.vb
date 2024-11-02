@@ -43,8 +43,8 @@ Module AppInitModule
 
 
     Public Sub InitializeMainApp()
-        InitProfile()
         InitializeDataDirectory()
+        InitProfile()
         UpdateWebviewUserDataCheckListBox()
         FBPostEventHandlers.UpdateAssetsFolderListBox()
         FBMarketplaceEventHandlers.UpdateMarketplaceAssetsFolderListBox()

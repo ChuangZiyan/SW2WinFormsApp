@@ -132,6 +132,18 @@ Partial Class Form1
         FBMessengerData_Listview = New ListView()
         ColumnHeader20 = New ColumnHeader()
         ColumnHeader21 = New ColumnHeader()
+        FBMediaDownloader_TabPage = New TabPage()
+        FBMediaDownloaderDownloadMediaResources_Button = New Button()
+        FBMediaDownloaderRevealDownloadMediaFolder_Button = New Button()
+        Label70 = New Label()
+        FBImageDownloadUrl_TextBox = New TextBox()
+        FBImageDownloadGetMediaResourcesUrl_Button = New Button()
+        FBMediaDownloaderNavigateToUrl_Button = New Button()
+        FBMediaDownloaderNextMediaCount_NumericUpDown = New NumericUpDown()
+        FBMediaDownloaderUrls_ListView = New ListView()
+        MediaResourceUrl_ColumnHeader = New ColumnHeader()
+        Label71 = New Label()
+        FBMediaDownloaderGetUrl_Button = New Button()
         ScriptQueue_ListView = New ListView()
         ColumnHeader3 = New ColumnHeader()
         ColumnHeader4 = New ColumnHeader()
@@ -429,22 +441,6 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
-        DownloadMediaResources_Button = New Button()
-        RevealDownloadMediaFolder_Button = New Button()
-        FBImageDownload_TabPage = New TabPage()
-        Label70 = New Label()
-        TextBox1 = New TextBox()
-        Button1 = New Button()
-        ListView1 = New ListView()
-        Button2 = New Button()
-        Button3 = New Button()
-        Button4 = New Button()
-        Label71 = New Label()
-        NumericUpDown1 = New NumericUpDown()
-        Button5 = New Button()
-        Button6 = New Button()
-        Button7 = New Button()
-        qwdddd_TabPage = New TabPage()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -454,6 +450,8 @@ Partial Class Form1
         CType(NumberOfActivityLogsPageDropDown_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         FBNotificationsUrlData_TabPage.SuspendLayout()
         FBMessengerUrlData_TabPage.SuspendLayout()
+        FBMediaDownloader_TabPage.SuspendLayout()
+        CType(FBMediaDownloaderNextMediaCount_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         Action_TabControl.SuspendLayout()
         FBPostAssets_TabPage.SuspendLayout()
         CType(FBWritePostUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -506,8 +504,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
-        qwdddd_TabPage.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -847,7 +843,7 @@ Partial Class Form1
         FBUrlData_TabControl.Controls.Add(FBActivityLogsUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBNotificationsUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBMessengerUrlData_TabPage)
-        FBUrlData_TabControl.Controls.Add(qwdddd_TabPage)
+        FBUrlData_TabControl.Controls.Add(FBMediaDownloader_TabPage)
         FBUrlData_TabControl.Location = New Point(440, 11)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
@@ -1553,6 +1549,117 @@ Partial Class Form1
         ColumnHeader21.Text = "回應網址"
         ColumnHeader21.Width = 470
         ' 
+        ' FBMediaDownloader_TabPage
+        ' 
+        FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderDownloadMediaResources_Button)
+        FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderRevealDownloadMediaFolder_Button)
+        FBMediaDownloader_TabPage.Controls.Add(Label70)
+        FBMediaDownloader_TabPage.Controls.Add(FBImageDownloadUrl_TextBox)
+        FBMediaDownloader_TabPage.Controls.Add(FBImageDownloadGetMediaResourcesUrl_Button)
+        FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderNavigateToUrl_Button)
+        FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderNextMediaCount_NumericUpDown)
+        FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderUrls_ListView)
+        FBMediaDownloader_TabPage.Controls.Add(Label71)
+        FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderGetUrl_Button)
+        FBMediaDownloader_TabPage.Location = New Point(4, 28)
+        FBMediaDownloader_TabPage.Name = "FBMediaDownloader_TabPage"
+        FBMediaDownloader_TabPage.Size = New Size(692, 351)
+        FBMediaDownloader_TabPage.TabIndex = 4
+        FBMediaDownloader_TabPage.Text = "圖片下載"
+        FBMediaDownloader_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' FBMediaDownloaderDownloadMediaResources_Button
+        ' 
+        FBMediaDownloaderDownloadMediaResources_Button.Location = New Point(486, 317)
+        FBMediaDownloaderDownloadMediaResources_Button.Name = "FBMediaDownloaderDownloadMediaResources_Button"
+        FBMediaDownloaderDownloadMediaResources_Button.Size = New Size(94, 29)
+        FBMediaDownloaderDownloadMediaResources_Button.TabIndex = 39
+        FBMediaDownloaderDownloadMediaResources_Button.Text = "下載資源"
+        FBMediaDownloaderDownloadMediaResources_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMediaDownloaderRevealDownloadMediaFolder_Button
+        ' 
+        FBMediaDownloaderRevealDownloadMediaFolder_Button.Location = New Point(589, 317)
+        FBMediaDownloaderRevealDownloadMediaFolder_Button.Name = "FBMediaDownloaderRevealDownloadMediaFolder_Button"
+        FBMediaDownloaderRevealDownloadMediaFolder_Button.Size = New Size(94, 29)
+        FBMediaDownloaderRevealDownloadMediaFolder_Button.TabIndex = 40
+        FBMediaDownloaderRevealDownloadMediaFolder_Button.Text = "打開資料夾"
+        FBMediaDownloaderRevealDownloadMediaFolder_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label70
+        ' 
+        Label70.AutoSize = True
+        Label70.Location = New Point(9, 18)
+        Label70.Name = "Label70"
+        Label70.Size = New Size(50, 19)
+        Label70.TabIndex = 0
+        Label70.Text = "網址 : "
+        ' 
+        ' FBImageDownloadUrl_TextBox
+        ' 
+        FBImageDownloadUrl_TextBox.Location = New Point(65, 13)
+        FBImageDownloadUrl_TextBox.Name = "FBImageDownloadUrl_TextBox"
+        FBImageDownloadUrl_TextBox.Size = New Size(417, 27)
+        FBImageDownloadUrl_TextBox.TabIndex = 1
+        ' 
+        ' FBImageDownloadGetMediaResourcesUrl_Button
+        ' 
+        FBImageDownloadGetMediaResourcesUrl_Button.Location = New Point(186, 315)
+        FBImageDownloadGetMediaResourcesUrl_Button.Name = "FBImageDownloadGetMediaResourcesUrl_Button"
+        FBImageDownloadGetMediaResourcesUrl_Button.Size = New Size(124, 29)
+        FBImageDownloadGetMediaResourcesUrl_Button.TabIndex = 9
+        FBImageDownloadGetMediaResourcesUrl_Button.Text = "獲取資源網址"
+        FBImageDownloadGetMediaResourcesUrl_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMediaDownloaderNavigateToUrl_Button
+        ' 
+        FBMediaDownloaderNavigateToUrl_Button.Location = New Point(488, 13)
+        FBMediaDownloaderNavigateToUrl_Button.Name = "FBMediaDownloaderNavigateToUrl_Button"
+        FBMediaDownloaderNavigateToUrl_Button.Size = New Size(94, 29)
+        FBMediaDownloaderNavigateToUrl_Button.TabIndex = 2
+        FBMediaDownloaderNavigateToUrl_Button.Text = "前往"
+        FBMediaDownloaderNavigateToUrl_Button.UseVisualStyleBackColor = True
+        ' 
+        ' FBMediaDownloaderNextMediaCount_NumericUpDown
+        ' 
+        FBMediaDownloaderNextMediaCount_NumericUpDown.Location = New Point(110, 317)
+        FBMediaDownloaderNextMediaCount_NumericUpDown.Name = "FBMediaDownloaderNextMediaCount_NumericUpDown"
+        FBMediaDownloaderNextMediaCount_NumericUpDown.Size = New Size(70, 27)
+        FBMediaDownloaderNextMediaCount_NumericUpDown.TabIndex = 8
+        ' 
+        ' FBMediaDownloaderUrls_ListView
+        ' 
+        FBMediaDownloaderUrls_ListView.Columns.AddRange(New ColumnHeader() {MediaResourceUrl_ColumnHeader})
+        FBMediaDownloaderUrls_ListView.Location = New Point(8, 46)
+        FBMediaDownloaderUrls_ListView.Name = "FBMediaDownloaderUrls_ListView"
+        FBMediaDownloaderUrls_ListView.Size = New Size(674, 263)
+        FBMediaDownloaderUrls_ListView.TabIndex = 3
+        FBMediaDownloaderUrls_ListView.UseCompatibleStateImageBehavior = False
+        FBMediaDownloaderUrls_ListView.View = View.Details
+        ' 
+        ' MediaResourceUrl_ColumnHeader
+        ' 
+        MediaResourceUrl_ColumnHeader.Text = "資源網址"
+        MediaResourceUrl_ColumnHeader.Width = 670
+        ' 
+        ' Label71
+        ' 
+        Label71.AutoSize = True
+        Label71.Location = New Point(9, 320)
+        Label71.Name = "Label71"
+        Label71.Size = New Size(95, 19)
+        Label71.TabIndex = 7
+        Label71.Text = "下一頁次數 : "
+        ' 
+        ' FBMediaDownloaderGetUrl_Button
+        ' 
+        FBMediaDownloaderGetUrl_Button.Location = New Point(588, 13)
+        FBMediaDownloaderGetUrl_Button.Name = "FBMediaDownloaderGetUrl_Button"
+        FBMediaDownloaderGetUrl_Button.Size = New Size(94, 29)
+        FBMediaDownloaderGetUrl_Button.TabIndex = 4
+        FBMediaDownloaderGetUrl_Button.Text = "取得網址"
+        FBMediaDownloaderGetUrl_Button.UseVisualStyleBackColor = True
+        ' 
         ' ScriptQueue_ListView
         ' 
         ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader5, ColumnHeader15, ColumnHeader8, ColumnHeader13, ColumnHeader14, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
@@ -1640,7 +1747,6 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBStoryAssets_TabPage)
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
         Action_TabControl.Controls.Add(FBReelsAssets_TabPage)
-        Action_TabControl.Controls.Add(FBImageDownload_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
@@ -4419,164 +4525,11 @@ Partial Class Form1
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' DownloadMediaResources_Button
-        ' 
-        DownloadMediaResources_Button.Location = New Point(1625, 1064)
-        DownloadMediaResources_Button.Name = "DownloadMediaResources_Button"
-        DownloadMediaResources_Button.Size = New Size(94, 29)
-        DownloadMediaResources_Button.TabIndex = 39
-        DownloadMediaResources_Button.Text = "下載資源"
-        DownloadMediaResources_Button.UseVisualStyleBackColor = True
-        ' 
-        ' RevealDownloadMediaFolder_Button
-        ' 
-        RevealDownloadMediaFolder_Button.Location = New Point(1725, 1064)
-        RevealDownloadMediaFolder_Button.Name = "RevealDownloadMediaFolder_Button"
-        RevealDownloadMediaFolder_Button.Size = New Size(94, 29)
-        RevealDownloadMediaFolder_Button.TabIndex = 40
-        RevealDownloadMediaFolder_Button.Text = "打開資料夾"
-        RevealDownloadMediaFolder_Button.UseVisualStyleBackColor = True
-        ' 
-        ' FBImageDownload_TabPage
-        ' 
-        FBImageDownload_TabPage.Location = New Point(4, 28)
-        FBImageDownload_TabPage.Name = "FBImageDownload_TabPage"
-        FBImageDownload_TabPage.Size = New Size(664, 467)
-        FBImageDownload_TabPage.TabIndex = 10
-        FBImageDownload_TabPage.Text = "圖片下載"
-        FBImageDownload_TabPage.UseVisualStyleBackColor = True
-        ' 
-        ' Label70
-        ' 
-        Label70.AutoSize = True
-        Label70.Location = New Point(9, 18)
-        Label70.Name = "Label70"
-        Label70.Size = New Size(50, 19)
-        Label70.TabIndex = 0
-        Label70.Text = "網址 : "
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.Location = New Point(65, 13)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(417, 27)
-        TextBox1.TabIndex = 1
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(488, 13)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(94, 29)
-        Button1.TabIndex = 2
-        Button1.Text = "前往"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' ListView1
-        ' 
-        ListView1.Location = New Point(9, 81)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(674, 228)
-        ListView1.TabIndex = 3
-        ListView1.UseCompatibleStateImageBehavior = False
-        ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(588, 13)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 29)
-        Button2.TabIndex = 4
-        Button2.Text = "取得網址"
-        Button2.UseVisualStyleBackColor = True
-        ' 
-        ' Button3
-        ' 
-        Button3.Location = New Point(489, 48)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 5
-        Button3.Text = "下載圖片"
-        Button3.UseVisualStyleBackColor = True
-        ' 
-        ' Button4
-        ' 
-        Button4.Location = New Point(589, 46)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 6
-        Button4.Text = "打開資料夾"
-        Button4.UseVisualStyleBackColor = True
-        ' 
-        ' Label71
-        ' 
-        Label71.AutoSize = True
-        Label71.Location = New Point(9, 320)
-        Label71.Name = "Label71"
-        Label71.Size = New Size(95, 19)
-        Label71.TabIndex = 7
-        Label71.Text = "下一頁次數 : "
-        ' 
-        ' NumericUpDown1
-        ' 
-        NumericUpDown1.Location = New Point(110, 317)
-        NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(73, 27)
-        NumericUpDown1.TabIndex = 8
-        ' 
-        ' Button5
-        ' 
-        Button5.Location = New Point(189, 315)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(94, 29)
-        Button5.TabIndex = 9
-        Button5.Text = "獲取網址"
-        Button5.UseVisualStyleBackColor = True
-        ' 
-        ' Button6
-        ' 
-        Button6.Location = New Point(491, 314)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(94, 29)
-        Button6.TabIndex = 10
-        Button6.Text = "儲存"
-        Button6.UseVisualStyleBackColor = True
-        ' 
-        ' Button7
-        ' 
-        Button7.Location = New Point(591, 314)
-        Button7.Name = "Button7"
-        Button7.Size = New Size(94, 29)
-        Button7.TabIndex = 11
-        Button7.Text = "刪除"
-        Button7.UseVisualStyleBackColor = True
-        ' 
-        ' qwdddd_TabPage
-        ' 
-        qwdddd_TabPage.Controls.Add(Button7)
-        qwdddd_TabPage.Controls.Add(Label70)
-        qwdddd_TabPage.Controls.Add(Button6)
-        qwdddd_TabPage.Controls.Add(TextBox1)
-        qwdddd_TabPage.Controls.Add(Button5)
-        qwdddd_TabPage.Controls.Add(Button1)
-        qwdddd_TabPage.Controls.Add(NumericUpDown1)
-        qwdddd_TabPage.Controls.Add(ListView1)
-        qwdddd_TabPage.Controls.Add(Label71)
-        qwdddd_TabPage.Controls.Add(Button2)
-        qwdddd_TabPage.Controls.Add(Button4)
-        qwdddd_TabPage.Controls.Add(Button3)
-        qwdddd_TabPage.Location = New Point(4, 28)
-        qwdddd_TabPage.Name = "qwdddd_TabPage"
-        qwdddd_TabPage.Size = New Size(692, 351)
-        qwdddd_TabPage.TabIndex = 4
-        qwdddd_TabPage.Text = "圖片下載"
-        qwdddd_TabPage.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1858, 1103)
-        Controls.Add(RevealDownloadMediaFolder_Button)
-        Controls.Add(DownloadMediaResources_Button)
         Controls.Add(EditScriptFile_Button)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
@@ -4607,6 +4560,7 @@ Partial Class Form1
         Controls.Add(Navigate_Url_TextBox)
         Controls.Add(Main_WebView2)
         Name = "Form1"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
         CType(Main_WebView2, ComponentModel.ISupportInitialize).EndInit()
         UserInfo_GroupBox.ResumeLayout(False)
@@ -4623,6 +4577,9 @@ Partial Class Form1
         FBNotificationsUrlData_TabPage.PerformLayout()
         FBMessengerUrlData_TabPage.ResumeLayout(False)
         FBMessengerUrlData_TabPage.PerformLayout()
+        FBMediaDownloader_TabPage.ResumeLayout(False)
+        FBMediaDownloader_TabPage.PerformLayout()
+        CType(FBMediaDownloaderNextMediaCount_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         Action_TabControl.ResumeLayout(False)
         FBPostAssets_TabPage.ResumeLayout(False)
         FBPostAssets_TabPage.PerformLayout()
@@ -4686,9 +4643,6 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
-        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
-        qwdddd_TabPage.ResumeLayout(False)
-        qwdddd_TabPage.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -5099,22 +5053,18 @@ Partial Class Form1
     Friend WithEvents FBReelsMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBReelsTextFilePreviewer_RichTextBox As RichTextBox
     Friend WithEvents FBReelsCreateNewAssetFolder_Button As Button
-    Friend WithEvents DownloadMediaResources_Button As Button
-    Friend WithEvents RevealDownloadMediaFolder_Button As Button
+    Friend WithEvents FBMediaDownloaderDownloadMediaResources_Button As Button
+    Friend WithEvents FBMediaDownloaderRevealDownloadMediaFolder_Button As Button
     Friend WithEvents SingleMediaAllowed_CheckBox As CheckBox
-    Friend WithEvents FBImageDownload_TabPage As TabPage
-    Friend WithEvents ListView1 As ListView
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents FBMediaDownloaderUrls_ListView As ListView
+    Friend WithEvents FBMediaDownloaderNavigateToUrl_Button As Button
+    Friend WithEvents FBImageDownloadUrl_TextBox As TextBox
     Friend WithEvents Label70 As Label
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents FBImageDownloadGetMediaResourcesUrl_Button As Button
+    Friend WithEvents FBMediaDownloaderNextMediaCount_NumericUpDown As NumericUpDown
     Friend WithEvents Label71 As Label
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents qwdddd_TabPage As TabPage
+    Friend WithEvents FBMediaDownloaderGetUrl_Button As Button
+    Friend WithEvents FBMediaDownloader_TabPage As TabPage
+    Friend WithEvents MediaResourceUrl_ColumnHeader As ColumnHeader
 
 End Class

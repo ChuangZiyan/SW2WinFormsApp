@@ -1546,9 +1546,6 @@ Public Class MainFormEventHandlers
         End Try
     End Sub
 
-    Public Async Sub DownloadMediaResources_Button_Click(sender As Object, e As EventArgs)
-        Await DownloadAllMediaFromPageAsync()
-    End Sub
 
     Public Sub RevealDownloadMediaFolder_Button_Click(sender As Object, e As EventArgs)
 
@@ -1559,6 +1556,72 @@ Public Class MainFormEventHandlers
             Debug.WriteLine(ex)
         End Try
 
+    End Sub
+
+    Public Async Sub FBMediaDownloaderNavigateToUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Await Webview2Controller.Navigate_GoToUrl_Task(Form1.FBImageDownloadUrl_TextBox.Text)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("未偵測到edgedriver")
+        End Try
+    End Sub
+
+    Public Sub FBMediaDownloaderGetUrl_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Form1.FBImageDownloadUrl_TextBox.Text = edgeDriver.Url
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("未偵測到edgedriver")
+        End Try
+    End Sub
+
+
+    Public Async Sub FBImageDownloadGetMediaResourcesUrl_Button_Click(sender As Object, e As EventArgs)
+
+        Form1.FBImageDownloadGetMediaResourcesUrl_Button.Enabled = False
+        Form1.FBImageDownloadGetMediaResourcesUrl_Button.Text = "獲取中..."
+
+        Form1.FBMediaDownloaderUrls_ListView.Items.Clear()
+        Dim nextPhotoCount As Integer = Form1.FBMediaDownloaderNextMediaCount_NumericUpDown.Value
+
+        For i = 0 To nextPhotoCount
+            Try
+                Debug.WriteLine(i)
+                Dim resourceUrl = edgeDriver.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x1n2onr6 > div > div > div > img")).GetAttribute("src")
+                Form1.FBMediaDownloaderUrls_ListView.Items.Add(resourceUrl)
+                Await Delay_msec(1000)
+                If i < nextPhotoCount Then
+                    Webview2Controller.ClickByAriaLable("下一張相片")
+                    Await Delay_msec(500)
+                End If
+
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+            End Try
+
+        Next
+
+        Form1.FBImageDownloadGetMediaResourcesUrl_Button.Enabled = True
+        Form1.FBImageDownloadGetMediaResourcesUrl_Button.Text = "獲取資源網址"
+
+    End Sub
+
+    Public Async Sub DownloadMediaResources_Button_Click(sender As Object, e As EventArgs)
+        Try
+            Form1.FBMediaDownloaderDownloadMediaResources_Button.Enabled = False
+            Form1.FBMediaDownloaderDownloadMediaResources_Button.Text = "下載中..."
+
+            For Each item As ListViewItem In Form1.FBMediaDownloaderUrls_ListView.Items
+                Await UtilsModule.DownloadUrlResource(item.Text)
+                Await Delay_msec(300)
+            Next
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        Finally
+            Form1.FBMediaDownloaderDownloadMediaResources_Button.Enabled = True
+            Form1.FBMediaDownloaderDownloadMediaResources_Button.Text = "下載資源"
+        End Try
 
     End Sub
 

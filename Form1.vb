@@ -865,6 +865,11 @@ Public Class Form1
     Private FBReelsEventHandlers As New FBReelsEventHandlers()
 
     Private Sub RegisterMainFormEventHanders()
+
+        ' emoji panel
+        AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
+        AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
+
         ' 這邊是用來註冊Form1的事件
         AddHandler DeleteSelectedUserDataFolderButton.Click, AddressOf mainFormEventHandlers.DeleteUserDataFolders_Button_Click
         AddHandler FilterAvailableUserData_CheckBox.Click, AddressOf mainFormEventHandlers.UpdateWebviewUserDataCheckListBox_CheckBox_Click
@@ -921,14 +926,12 @@ Public Class Form1
         AddHandler FBUrlData_TabControl.DoubleClick, AddressOf mainFormEventHandlers.FBUrlData_TabControl_DoubleClick
 
         AddHandler EditScriptFile_Button.Click, AddressOf mainFormEventHandlers.EditScriptFile_Button_Click
-        AddHandler RevealDownloadMediaFolder_Button.Click, AddressOf mainFormEventHandlers.RevealDownloadMediaFolder_Button_Click
+
 
 
         ' 點擊腳本列表自動填入
         AddHandler ScriptQueue_ListView.Click, AddressOf mainFormEventHandlers.ScriptQueue_ListView_Click
 
-        ' 下載網頁媒體功能
-        AddHandler DownloadMediaResources_Button.Click, AddressOf mainFormEventHandlers.DownloadMediaResources_Button_Click
 
         ' 修改資料夾
         AddHandler ModifySelectedScriptListviewAsset_Button.Click, AddressOf mainFormEventHandlers.ModifySelectedScriptListviewAsset_Button_Click
@@ -973,10 +976,18 @@ Public Class Form1
         AddHandler FBMessengerNavigateToMessenger_Button.Click, AddressOf mainFormEventHandlers.FBMessengerNavigateToMessenger_Button_Click
         AddHandler FBMessengerReadMessage_Button.Click, AddressOf mainFormEventHandlers.FBMessengerReadMessage_Button_Click
 
-        AddHandler MyBase.Move, AddressOf mainFormEventHandlers.Form1_Move
-        AddHandler MyBase.Resize, AddressOf mainFormEventHandlers.Form1_Resize
+        ' ### FB Images Download
+        AddHandler FBMediaDownloaderRevealDownloadMediaFolder_Button.Click, AddressOf mainFormEventHandlers.RevealDownloadMediaFolder_Button_Click
+        AddHandler FBMediaDownloaderDownloadMediaResources_Button.Click, AddressOf mainFormEventHandlers.DownloadMediaResources_Button_Click
+
+        AddHandler FBMediaDownloaderNavigateToUrl_Button.Click, AddressOf mainFormEventHandlers.FBMediaDownloaderNavigateToUrl_Button_Click
+        AddHandler FBMediaDownloaderGetUrl_Button.Click, AddressOf mainFormEventHandlers.FBMediaDownloaderGetUrl_Button_Click
+        AddHandler FBImageDownloadGetMediaResourcesUrl_Button.Click, AddressOf mainFormEventHandlers.FBImageDownloadGetMediaResourcesUrl_Button_Click
+
 
     End Sub
+
+
 
 
     Private Sub RegisterFBPostEventHanders()
