@@ -1550,7 +1550,8 @@ Public Class MainFormEventHandlers
     Public Sub RevealDownloadMediaFolder_Button_Click(sender As Object, e As EventArgs)
 
         Try
-            Process.Start("Explorer", AppInitModule.DownloadedMediaResourcesAssetsDirectory)
+            Dim folderPath As String = Path.Combine(AppInitModule.DownloadedMediaResourcesAssetsDirectory, "images")
+            Process.Start("Explorer", folderPath)
         Catch ex As Exception
             MsgBox("無法開啟資料夾")
             Debug.WriteLine(ex)

@@ -33,7 +33,8 @@ Module AppInitModule
 
 
 
-    Public ReadOnly appVersion As String = "v1.0.001"
+    ' app configs
+    Public ReadOnly appVersion As String = "v1.0.002"
 
     ' auto save script csv file path 
     ' Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
@@ -45,6 +46,7 @@ Module AppInitModule
     Public Sub InitializeMainApp()
         InitializeDataDirectory()
         InitProfile()
+        InitAppConfigsFile()
         UpdateWebviewUserDataCheckListBox()
         FBPostEventHandlers.UpdateAssetsFolderListBox()
         FBMarketplaceEventHandlers.UpdateMarketplaceAssetsFolderListBox()
@@ -91,20 +93,54 @@ Module AppInitModule
     End Sub
 
 
-
     Private Sub InitProfile()
-        Dim webview2AppProfile As New Webview2AppProfile() With {
-                    .Version = appVersion,
-                    .BuildDate = "2024-10-31"
-                }
-        Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
-        ' 指定檔案路徑
-        Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
+        Try
+            Dim webview2AppProfile As New Webview2AppProfile() With {
+            .Version = appVersion,
+            .BuildDate = "2024-11-3"
+        }
+            Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
+            ' 指定檔案路徑
+            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
 
-        ' 將 JSON 字串寫入檔案
-        File.WriteAllText(filePath, jsonString)
+            ' 將 JSON 字串寫入檔案
+            File.WriteAllText(filePath, jsonString)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("寫入Profile檔錯誤")
+        End Try
 
     End Sub
+
+    Private Sub InitAppConfigsFile()
+
+        Try
+            ' 指定檔案路徑
+            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "appConfigs.json")
+            If Not File.Exists(filePath) Then
+                Dim appConfigs As New AppConfigs() With {
+                    .AutoRun = False,
+                    .AutoRunDelaySeconds = 15,
+                    .ScheduledRun = False
+                }
+                Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                File.WriteAllText(filePath, jsonString)
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("寫入appConfigs檔案錯誤")
+        End Try
+
+    End Sub
+
+
+    Public Class AppConfigs
+        Public Property AutoRun As Boolean
+        Public Property AutoRunDelaySeconds As Integer
+        Public Property ScheduledRun As Boolean
+
+    End Class
 
     Public Class Webview2AppProfile
         Public Property Version As String

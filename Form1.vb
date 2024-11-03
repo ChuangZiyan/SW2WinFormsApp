@@ -979,7 +979,6 @@ Public Class Form1
         ' ### FB Images Download
         AddHandler FBMediaDownloaderRevealDownloadMediaFolder_Button.Click, AddressOf mainFormEventHandlers.RevealDownloadMediaFolder_Button_Click
         AddHandler FBMediaDownloaderDownloadMediaResources_Button.Click, AddressOf mainFormEventHandlers.DownloadMediaResources_Button_Click
-
         AddHandler FBMediaDownloaderNavigateToUrl_Button.Click, AddressOf mainFormEventHandlers.FBMediaDownloaderNavigateToUrl_Button_Click
         AddHandler FBMediaDownloaderGetUrl_Button.Click, AddressOf mainFormEventHandlers.FBMediaDownloaderGetUrl_Button_Click
         AddHandler FBImageDownloadGetMediaResourcesUrl_Button.Click, AddressOf mainFormEventHandlers.FBImageDownloadGetMediaResourcesUrl_Button_Click
