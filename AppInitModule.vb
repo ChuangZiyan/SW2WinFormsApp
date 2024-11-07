@@ -34,7 +34,10 @@ Module AppInitModule
 
 
     ' app configs
-    Public ReadOnly appVersion As String = "v1.0.002"
+    Public ReadOnly versionNumber As String = "v1.003"
+    ReadOnly currentDate As DateTime = DateTime.Today
+    Public ReadOnly appVersion As String = currentDate.ToString("yyyyMMdd.") & versionNumber
+
 
     ' auto save script csv file path 
     ' Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
@@ -44,6 +47,8 @@ Module AppInitModule
 
 
     Public Sub InitializeMainApp()
+
+        Debug.WriteLine(appVersion)
         InitializeDataDirectory()
         InitProfile()
         InitAppConfigsFile()
