@@ -930,7 +930,7 @@ Public Class Form1
 
 
         ' 點擊腳本列表自動填入
-        AddHandler ScriptQueue_ListView.Click, AddressOf mainFormEventHandlers.ScriptQueue_ListView_Click
+        AddHandler ScriptQueue_ListView.DoubleClick, AddressOf mainFormEventHandlers.ScriptQueue_ListView_Click
 
 
         ' 修改資料夾
