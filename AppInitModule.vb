@@ -34,7 +34,7 @@ Module AppInitModule
 
 
     ' app configs
-    Public ReadOnly versionNumber As String = "v1.003"
+    Public ReadOnly versionNumber As String = "v1.005"
     ReadOnly currentDate As DateTime = DateTime.Today
     Public ReadOnly appVersion As String = currentDate.ToString("yyyyMMdd.") & versionNumber
 
@@ -48,7 +48,7 @@ Module AppInitModule
 
     Public Sub InitializeMainApp()
 
-        Debug.WriteLine(appVersion)
+        'Debug.WriteLine(appVersion)
         InitializeDataDirectory()
         InitProfile()
         InitAppConfigsFile()
@@ -100,16 +100,19 @@ Module AppInitModule
 
     Private Sub InitProfile()
         Try
-            Dim webview2AppProfile As New Webview2AppProfile() With {
-            .Version = appVersion,
-            .BuildDate = "2024-11-3"
-        }
-            Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
-            ' 指定檔案路徑
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
+            If Not File.Exists(filePath) Then
+                Dim webview2AppProfile As New Webview2AppProfile() With {
+                    .Version = appVersion,
+                    .BuildDate = currentDate.ToString("yyyy-MM-dd")
+                }
+                Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
+                ' 指定檔案路徑
+                ' 將 JSON 字串寫入檔案
+                File.WriteAllText(filePath, jsonString)
+            End If
 
-            ' 將 JSON 字串寫入檔案
-            File.WriteAllText(filePath, jsonString)
+
         Catch ex As Exception
             Debug.WriteLine(ex)
             MsgBox("寫入Profile檔錯誤")
