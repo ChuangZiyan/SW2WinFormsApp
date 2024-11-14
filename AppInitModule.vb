@@ -34,7 +34,7 @@ Module AppInitModule
 
 
     ' app configs
-    Public ReadOnly versionNumber As String = "v1.005"
+    Public ReadOnly versionNumber As String = "v1.006"
     ReadOnly currentDate As DateTime = DateTime.Today
     Public ReadOnly appVersion As String = currentDate.ToString("yyyyMMdd.") & versionNumber
 
@@ -101,8 +101,8 @@ Module AppInitModule
     Private Sub InitProfile()
         Try
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
-            If Not File.Exists(filePath) Then
-                Dim webview2AppProfile As New Webview2AppProfile() With {
+            'If Not File.Exists(filePath) Then
+            Dim webview2AppProfile As New Webview2AppProfile() With {
                     .Version = appVersion,
                     .BuildDate = currentDate.ToString("yyyy-MM-dd")
                 }
@@ -110,7 +110,7 @@ Module AppInitModule
                 ' 指定檔案路徑
                 ' 將 JSON 字串寫入檔案
                 File.WriteAllText(filePath, jsonString)
-            End If
+            'End If
 
 
         Catch ex As Exception
