@@ -63,6 +63,7 @@ Module AppInitModule
         FBStoryEventHandlers.UpdateAssetsFolderListBox()
         FBPersonalPostEventHandlers.UpdateAssetsFolderListBox()
         FBReelsEventHandlers.UpdateAssetsFolderListBox()
+
     End Sub
 
 
@@ -141,6 +142,33 @@ Module AppInitModule
         End Try
 
     End Sub
+
+    Public Function GetAppConfigs()
+        Try
+            Dim appConfigs As New AppConfigs With {
+                .AutoRun = False,
+                .AutoRunDelaySeconds = 15,
+                .ScheduledRun = False
+            }
+
+            Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "appConfigs.json")
+            ' Debug.WriteLine(filePath)
+            ' 如果 profile.json 檔案存在，就讀取檔案並反序列化
+            If File.Exists(filePath) Then
+                Dim jsonString As String = File.ReadAllText(filePath)
+                appConfigs = JsonConvert.DeserializeObject(Of AppConfigs)(jsonString)
+            Else
+                Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
+                File.WriteAllText(filePath, jsonString)
+            End If
+
+            Return appConfigs
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+            Return Nothing
+        End Try
+
+    End Function
 
 
     Public Class AppConfigs
