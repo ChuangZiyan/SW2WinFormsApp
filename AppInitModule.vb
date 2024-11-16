@@ -104,8 +104,8 @@ Module AppInitModule
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
             'If Not File.Exists(filePath) Then
             Dim webview2AppProfile As New Webview2AppProfile() With {
-                    .Version = "20241115.v1.007",
-                    .BuildDate = "2024-11-15"
+                    .Version = "20241116.v1.01",
+                    .BuildDate = "2024-11-16"
                 }
             Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
                 ' 指定檔案路徑

@@ -143,7 +143,7 @@ Public Class Form1
             Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
             '選擇WebviewUserDataFolder_ListBox
-            WebviewUserDataFolder_ListBox.SelectedItem = userData
+            ' WebviewUserDataFolder_ListBox.SelectedItem = userData
 
 
             '處理隨機網址

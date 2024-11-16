@@ -71,7 +71,7 @@ Module FBPostSeleniumScript
                                           Dim text_input As IWebElement
 
                                           ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
-                                          Await Delay_msec(3000)
+                                          Await Delay_msec(5000)
 
 
                                           If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
