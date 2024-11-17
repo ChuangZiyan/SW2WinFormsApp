@@ -1197,12 +1197,13 @@ Public Class Form1
         ' auto run when start app
         Dim appConfig As AppInitModule.AppConfigs = GetAppConfigs()
 
-        Debug.WriteLine($"AutoRun : {appConfig.AutoRun}")
-        Debug.WriteLine($"AutoRunDelaySeconds : {appConfig.AutoRunDelaySeconds}")
-        Debug.WriteLine($"ScheduledRun : {appConfig.ScheduledRun}")
+        'Debug.WriteLine($"AutoRun : {appConfig.AutoRun}")
+        'Debug.WriteLine($"AutoRunDelaySeconds : {appConfig.AutoRunDelaySeconds}")
+        'Debug.WriteLine($"ScheduledRun : {appConfig.ScheduledRun}")
 
         If appConfig.AutoRun Then
             Debug.WriteLine("### autoRun ###")
+            ScriptExecutionCount_NumericUpDown.Value = appConfig.NumberOfRuns
             Await Delay_msec(1000 + appConfig.AutoRunDelaySeconds * 1000)
             If appConfig.ScheduledRun Then ' 定時執行
                 ScheduledExecutionScriptQueue_Button_Click(Nothing, EventArgs.Empty)

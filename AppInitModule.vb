@@ -104,8 +104,8 @@ Module AppInitModule
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
             'If Not File.Exists(filePath) Then
             Dim webview2AppProfile As New Webview2AppProfile() With {
-                    .Version = "20241116.v1.01",
-                    .BuildDate = "2024-11-16"
+                    .Version = "20241117.v1.02",
+                    .BuildDate = "2024-11-17"
                 }
             Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
                 ' 指定檔案路徑
@@ -130,7 +130,8 @@ Module AppInitModule
                 Dim appConfigs As New AppConfigs() With {
                     .AutoRun = False,
                     .AutoRunDelaySeconds = 15,
-                    .ScheduledRun = False
+                    .ScheduledRun = False,
+                    .NumberOfRuns = 1
                 }
                 Dim jsonString As String = JsonConvert.SerializeObject(appConfigs, Formatting.Indented)
                 File.WriteAllText(filePath, jsonString)
@@ -148,7 +149,8 @@ Module AppInitModule
             Dim appConfigs As New AppConfigs With {
                 .AutoRun = False,
                 .AutoRunDelaySeconds = 15,
-                .ScheduledRun = False
+                .ScheduledRun = False,
+                .NumberOfRuns = 1
             }
 
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "appConfigs.json")
@@ -175,6 +177,7 @@ Module AppInitModule
         Public Property AutoRun As Boolean
         Public Property AutoRunDelaySeconds As Integer
         Public Property ScheduledRun As Boolean
+        Public Property NumberOfRuns As Integer
 
     End Class
 
