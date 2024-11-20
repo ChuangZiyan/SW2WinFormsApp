@@ -861,8 +861,9 @@ Public Class Form1
     Private FBMessengerEventHandlers As New FBMessengerEventHandlers()
     Private FBStoryEventHandlers As New FBStoryEventHandlers()
     Private FBPersonalPostEventHandlers As New FBPersonalPostEventHandlers()
-
     Private FBReelsEventHandlers As New FBReelsEventHandlers()
+    Private DevToolEventHandlers As New DevToolEventHandlers()
+
 
     Private Sub RegisterMainFormEventHanders()
 
@@ -984,7 +985,15 @@ Public Class Form1
         AddHandler FBImageDownloadGetMediaResourcesUrl_Button.Click, AddressOf mainFormEventHandlers.FBImageDownloadGetMediaResourcesUrl_Button_Click
 
 
+
+        ' ### DevTool
+        AddHandler DevTool_FindElementByCssSelector_Button.Click, AddressOf DevToolEventHandlers.DevTool_FindElementByCssSelector_Button_Click
+        AddHandler DevTool_ClearOutputRichTextBox_Button.Click, AddressOf DevToolEventHandlers.DevTool_ClearOutputRichTextBox_Button_Click
+        AddHandler DevTool_ClickElementByCssSelector_Button.Click, AddressOf DevToolEventHandlers.DevTool_ClickElementByCssSelector_Button_Click
+
     End Sub
+
+
 
 
 

@@ -387,6 +387,14 @@ Partial Class Form1
         FBReelsMediaPreviewer_PictureBox = New PictureBox()
         FBReelsTextFilePreviewer_RichTextBox = New RichTextBox()
         FBReelsCreateNewAssetFolder_Button = New Button()
+        DevTool_TabPage = New TabPage()
+        DevTool_ClearOutputRichTextBox_Button = New Button()
+        Label73 = New Label()
+        DevTool_ClickElementByCssSelector_Button = New Button()
+        DevTool_ResultOutput_RichTextBox = New RichTextBox()
+        DevTool_FindElementByCssSelector_Button = New Button()
+        Label72 = New Label()
+        DevTool_CssSelectorInput_TextBox = New TextBox()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
         Label55 = New Label()
@@ -494,6 +502,7 @@ Partial Class Form1
         CType(FBReelsUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBReelsSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(FBReelsMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        DevTool_TabPage.SuspendLayout()
         ScriptTask_GroupBox.SuspendLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScheduledExecutionHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -1747,6 +1756,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBStoryAssets_TabPage)
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
         Action_TabControl.Controls.Add(FBReelsAssets_TabPage)
+        Action_TabControl.Controls.Add(DevTool_TabPage)
         Action_TabControl.Location = New Point(1147, 11)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
@@ -3995,6 +4005,82 @@ Partial Class Form1
         FBReelsCreateNewAssetFolder_Button.Text = "建立"
         FBReelsCreateNewAssetFolder_Button.UseVisualStyleBackColor = True
         ' 
+        ' DevTool_TabPage
+        ' 
+        DevTool_TabPage.Controls.Add(DevTool_ClearOutputRichTextBox_Button)
+        DevTool_TabPage.Controls.Add(Label73)
+        DevTool_TabPage.Controls.Add(DevTool_ClickElementByCssSelector_Button)
+        DevTool_TabPage.Controls.Add(DevTool_ResultOutput_RichTextBox)
+        DevTool_TabPage.Controls.Add(DevTool_FindElementByCssSelector_Button)
+        DevTool_TabPage.Controls.Add(Label72)
+        DevTool_TabPage.Controls.Add(DevTool_CssSelectorInput_TextBox)
+        DevTool_TabPage.Location = New Point(4, 28)
+        DevTool_TabPage.Name = "DevTool_TabPage"
+        DevTool_TabPage.Size = New Size(664, 467)
+        DevTool_TabPage.TabIndex = 10
+        DevTool_TabPage.Text = "開發工具"
+        DevTool_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' DevTool_ClearOutputRichTextBox_Button
+        ' 
+        DevTool_ClearOutputRichTextBox_Button.Location = New Point(556, 138)
+        DevTool_ClearOutputRichTextBox_Button.Name = "DevTool_ClearOutputRichTextBox_Button"
+        DevTool_ClearOutputRichTextBox_Button.Size = New Size(94, 29)
+        DevTool_ClearOutputRichTextBox_Button.TabIndex = 6
+        DevTool_ClearOutputRichTextBox_Button.Text = "Clear"
+        DevTool_ClearOutputRichTextBox_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label73
+        ' 
+        Label73.AutoSize = True
+        Label73.Location = New Point(13, 151)
+        Label73.Name = "Label73"
+        Label73.Size = New Size(69, 19)
+        Label73.TabIndex = 5
+        Label73.Text = "Output : "
+        ' 
+        ' DevTool_ClickElementByCssSelector_Button
+        ' 
+        DevTool_ClickElementByCssSelector_Button.Location = New Point(219, 67)
+        DevTool_ClickElementByCssSelector_Button.Name = "DevTool_ClickElementByCssSelector_Button"
+        DevTool_ClickElementByCssSelector_Button.Size = New Size(94, 29)
+        DevTool_ClickElementByCssSelector_Button.TabIndex = 4
+        DevTool_ClickElementByCssSelector_Button.Text = "Click"
+        DevTool_ClickElementByCssSelector_Button.UseVisualStyleBackColor = True
+        ' 
+        ' DevTool_ResultOutput_RichTextBox
+        ' 
+        DevTool_ResultOutput_RichTextBox.Location = New Point(13, 173)
+        DevTool_ResultOutput_RichTextBox.Name = "DevTool_ResultOutput_RichTextBox"
+        DevTool_ResultOutput_RichTextBox.Size = New Size(637, 281)
+        DevTool_ResultOutput_RichTextBox.TabIndex = 3
+        DevTool_ResultOutput_RichTextBox.Text = ""
+        ' 
+        ' DevTool_FindElementByCssSelector_Button
+        ' 
+        DevTool_FindElementByCssSelector_Button.Location = New Point(119, 67)
+        DevTool_FindElementByCssSelector_Button.Name = "DevTool_FindElementByCssSelector_Button"
+        DevTool_FindElementByCssSelector_Button.Size = New Size(94, 29)
+        DevTool_FindElementByCssSelector_Button.TabIndex = 2
+        DevTool_FindElementByCssSelector_Button.Text = "Find"
+        DevTool_FindElementByCssSelector_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label72
+        ' 
+        Label72.AutoSize = True
+        Label72.Location = New Point(13, 39)
+        Label72.Name = "Label72"
+        Label72.Size = New Size(100, 19)
+        Label72.TabIndex = 1
+        Label72.Text = "CssSelector : "
+        ' 
+        ' DevTool_CssSelectorInput_TextBox
+        ' 
+        DevTool_CssSelectorInput_TextBox.Location = New Point(119, 34)
+        DevTool_CssSelectorInput_TextBox.Name = "DevTool_CssSelectorInput_TextBox"
+        DevTool_CssSelectorInput_TextBox.Size = New Size(531, 27)
+        DevTool_CssSelectorInput_TextBox.TabIndex = 0
+        ' 
         ' ShowEmojiPicker_Button
         ' 
         ShowEmojiPicker_Button.Location = New Point(1824, 41)
@@ -4632,6 +4718,8 @@ Partial Class Form1
         CType(FBReelsUploadWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBReelsSubmitWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(FBReelsMediaPreviewer_PictureBox, ComponentModel.ISupportInitialize).EndInit()
+        DevTool_TabPage.ResumeLayout(False)
+        DevTool_TabPage.PerformLayout()
         ScriptTask_GroupBox.ResumeLayout(False)
         ScriptTask_GroupBox.PerformLayout()
         CType(ScheduledExecutionMinutes_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -5066,5 +5154,13 @@ Partial Class Form1
     Friend WithEvents FBMediaDownloaderGetUrl_Button As Button
     Friend WithEvents FBMediaDownloader_TabPage As TabPage
     Friend WithEvents MediaResourceUrl_ColumnHeader As ColumnHeader
+    Friend WithEvents DevTool_TabPage As TabPage
+    Friend WithEvents Label72 As Label
+    Friend WithEvents DevTool_CssSelectorInput_TextBox As TextBox
+    Friend WithEvents DevTool_ClickElementByCssSelector_Button As Button
+    Friend WithEvents DevTool_ResultOutput_RichTextBox As RichTextBox
+    Friend WithEvents DevTool_FindElementByCssSelector_Button As Button
+    Friend WithEvents Label73 As Label
+    Friend WithEvents DevTool_ClearOutputRichTextBox_Button As Button
 
 End Class
