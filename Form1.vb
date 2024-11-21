@@ -928,6 +928,8 @@ Public Class Form1
 
         AddHandler EditScriptFile_Button.Click, AddressOf mainFormEventHandlers.EditScriptFile_Button_Click
 
+        AddHandler SwapScriptQueueListViewItems_Button.Click, AddressOf mainFormEventHandlers.SwapScriptQueueListViewItems_Button_Click
+
 
 
         ' 點擊腳本列表自動填入
@@ -992,10 +994,6 @@ Public Class Form1
         AddHandler DevTool_ClickElementByCssSelector_Button.Click, AddressOf DevToolEventHandlers.DevTool_ClickElementByCssSelector_Button_Click
 
     End Sub
-
-
-
-
 
 
     Private Sub RegisterFBPostEventHanders()

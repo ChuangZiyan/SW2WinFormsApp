@@ -1627,6 +1627,56 @@ Public Class MainFormEventHandlers
     End Sub
 
 
+    Public Sub SwapScriptQueueListViewItems_Button_Click(sender As Object, e As EventArgs)
+        Dim selectedItems = Form1.ScriptQueue_ListView.SelectedItems
+
+        If selectedItems.Count < 2 Then
+            '少於兩個就不做任何事
+            Return
+        End If
+
+        ' 如果只選了兩個
+        If selectedItems.Count = 2 Then
+            Dim index1 As Integer = selectedItems(0).Index
+            Dim index2 As Integer = selectedItems(1).Index
+            SwapListViewItems(index1, index2)
+        Else
+            ' 選超過兩個
+            Dim random As New Random()
+            Dim indices = selectedItems.Cast(Of ListViewItem).Select(Function(item) item.Index).ToList()
+            Dim index1 As Integer = indices(random.Next(indices.Count))
+            Dim index2 As Integer = indices(random.Next(indices.Count))
+            While index1 = index2
+                index2 = indices(random.Next(indices.Count))
+            End While
+            SwapListViewItems(index1, index2)
+        End If
+    End Sub
+
+    Private Shared Sub SwapListViewItems(index1 As Integer, index2 As Integer)
+
+        Dim item1 = Form1.ScriptQueue_ListView.Items(index1)
+        Dim item2 = Form1.ScriptQueue_ListView.Items(index2)
+
+        Dim newItem1 As ListViewItem = CType(item1.Clone(), ListViewItem)
+        Dim newItem2 As ListViewItem = CType(item2.Clone(), ListViewItem)
+
+        If index1 > index2 Then
+            Form1.ScriptQueue_ListView.Items.RemoveAt(index1)
+            Form1.ScriptQueue_ListView.Items.RemoveAt(index2)
+        Else
+            Form1.ScriptQueue_ListView.Items.RemoveAt(index2)
+            Form1.ScriptQueue_ListView.Items.RemoveAt(index1)
+        End If
+
+        Form1.ScriptQueue_ListView.Items.Insert(index1, newItem2)
+        Form1.ScriptQueue_ListView.Items.Insert(index2, newItem1)
+
+        newItem1.Selected = True
+        newItem2.Selected = True
+    End Sub
+
+
     Public Sub InserScriptItemToListview(Optional scheduled As Boolean = False)
         ' sequence | scheduled
 

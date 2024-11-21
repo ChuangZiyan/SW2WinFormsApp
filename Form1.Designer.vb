@@ -449,6 +449,7 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
+        SwapScriptQueueListViewItems_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -4611,11 +4612,21 @@ Partial Class Form1
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
+        ' SwapScriptQueueListViewItems_Button
+        ' 
+        SwapScriptQueueListViewItems_Button.Location = New Point(12, 606)
+        SwapScriptQueueListViewItems_Button.Name = "SwapScriptQueueListViewItems_Button"
+        SwapScriptQueueListViewItems_Button.Size = New Size(94, 29)
+        SwapScriptQueueListViewItems_Button.TabIndex = 39
+        SwapScriptQueueListViewItems_Button.Text = "對調"
+        SwapScriptQueueListViewItems_Button.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1858, 1103)
+        Controls.Add(SwapScriptQueueListViewItems_Button)
         Controls.Add(EditScriptFile_Button)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
@@ -5162,5 +5173,6 @@ Partial Class Form1
     Friend WithEvents DevTool_FindElementByCssSelector_Button As Button
     Friend WithEvents Label73 As Label
     Friend WithEvents DevTool_ClearOutputRichTextBox_Button As Button
+    Friend WithEvents SwapScriptQueueListViewItems_Button As Button
 
 End Class
