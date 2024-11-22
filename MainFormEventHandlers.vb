@@ -1651,6 +1651,8 @@ Public Class MainFormEventHandlers
             End While
             SwapListViewItems(index1, index2)
         End If
+
+        Form1.ScriptQueue_ListView.SelectedIndices.Clear()
     End Sub
 
     Private Shared Sub SwapListViewItems(index1 As Integer, index2 As Integer)
@@ -1673,10 +1675,7 @@ Public Class MainFormEventHandlers
         Form1.ScriptQueue_ListView.Items.Insert(index2, newItem1)
 
 
-        Form1.ScriptQueue_ListView.SelectedIndices.Clear()
 
-        'newItem1.Selected = True
-        'newItem2.Selected = True
     End Sub
 
 
