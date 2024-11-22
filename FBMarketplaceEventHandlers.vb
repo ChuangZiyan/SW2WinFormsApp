@@ -369,6 +369,16 @@ Public Class FBMarketplaceEventHandlers
         End Try
     End Sub
 
+
+    Public Sub FBMarketplaceProducts_emojiSwitch_Button_Click(sender As Object, e As EventArgs)
+
+        Dim btnName = Form1.FBMarketplaceProducts_emojiSwitch_Button.Text
+        If btnName = "名稱" Then
+            Form1.FBMarketplaceProducts_emojiSwitch_Button.Text = "介紹"
+        ElseIf btnName = "介紹" Then
+            Form1.FBMarketplaceProducts_emojiSwitch_Button.Text = "名稱"
+        End If
+    End Sub
     Public Class FBMarketPlaceProduct
         Public Property Name As String
         Public Property Price As Integer

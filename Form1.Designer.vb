@@ -397,6 +397,7 @@ Partial Class Form1
         DevTool_CssSelectorInput_TextBox = New TextBox()
         ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
+        SwapScriptQueueListViewItems_Button = New Button()
         Label55 = New Label()
         CustomizeAction_ComboBox = New ComboBox()
         CustomizeScriptInsertion_RadioButton = New RadioButton()
@@ -449,7 +450,7 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
-        SwapScriptQueueListViewItems_Button = New Button()
+        FBMarketplaceProducts_emojiSwitch_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -1973,6 +1974,7 @@ Partial Class Form1
         ' 
         ' FBMarketplaceAssets_TabPage
         ' 
+        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProducts_emojiSwitch_Button)
         FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsByRandom_RadioButton)
         FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsBySequence_RadioButton)
         FBMarketplaceAssets_TabPage.Controls.Add(RevealFBMarketplaceMediaFoldesrInFileExplorer_Button)
@@ -4093,6 +4095,7 @@ Partial Class Form1
         ' 
         ' ScriptTask_GroupBox
         ' 
+        ScriptTask_GroupBox.Controls.Add(SwapScriptQueueListViewItems_Button)
         ScriptTask_GroupBox.Controls.Add(Label55)
         ScriptTask_GroupBox.Controls.Add(CustomizeAction_ComboBox)
         ScriptTask_GroupBox.Controls.Add(CustomizeScriptInsertion_RadioButton)
@@ -4141,6 +4144,15 @@ Partial Class Form1
         ScriptTask_GroupBox.TabIndex = 26
         ScriptTask_GroupBox.TabStop = False
         ScriptTask_GroupBox.Text = "腳本任務"
+        ' 
+        ' SwapScriptQueueListViewItems_Button
+        ' 
+        SwapScriptQueueListViewItems_Button.Location = New Point(600, 158)
+        SwapScriptQueueListViewItems_Button.Name = "SwapScriptQueueListViewItems_Button"
+        SwapScriptQueueListViewItems_Button.Size = New Size(94, 29)
+        SwapScriptQueueListViewItems_Button.TabIndex = 39
+        SwapScriptQueueListViewItems_Button.Text = "對調"
+        SwapScriptQueueListViewItems_Button.UseVisualStyleBackColor = True
         ' 
         ' Label55
         ' 
@@ -4383,7 +4395,7 @@ Partial Class Form1
         ' 
         ' ResetScript_Button
         ' 
-        ResetScript_Button.Location = New Point(600, 160)
+        ResetScript_Button.Location = New Point(600, 193)
         ResetScript_Button.Name = "ResetScript_Button"
         ResetScript_Button.Size = New Size(94, 29)
         ResetScript_Button.TabIndex = 27
@@ -4612,21 +4624,20 @@ Partial Class Form1
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' SwapScriptQueueListViewItems_Button
+        ' FBMarketplaceProducts_emojiSwitch_Button
         ' 
-        SwapScriptQueueListViewItems_Button.Location = New Point(12, 606)
-        SwapScriptQueueListViewItems_Button.Name = "SwapScriptQueueListViewItems_Button"
-        SwapScriptQueueListViewItems_Button.Size = New Size(94, 29)
-        SwapScriptQueueListViewItems_Button.TabIndex = 39
-        SwapScriptQueueListViewItems_Button.Text = "對調"
-        SwapScriptQueueListViewItems_Button.UseVisualStyleBackColor = True
+        FBMarketplaceProducts_emojiSwitch_Button.Location = New Point(594, 4)
+        FBMarketplaceProducts_emojiSwitch_Button.Name = "FBMarketplaceProducts_emojiSwitch_Button"
+        FBMarketplaceProducts_emojiSwitch_Button.Size = New Size(61, 29)
+        FBMarketplaceProducts_emojiSwitch_Button.TabIndex = 71
+        FBMarketplaceProducts_emojiSwitch_Button.Text = "介紹"
+        FBMarketplaceProducts_emojiSwitch_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1858, 1103)
-        Controls.Add(SwapScriptQueueListViewItems_Button)
         Controls.Add(EditScriptFile_Button)
         Controls.Add(SelectScriptListviewItemsByUserDataButton)
         Controls.Add(ShowEmojiPicker_Button)
@@ -5174,5 +5185,6 @@ Partial Class Form1
     Friend WithEvents Label73 As Label
     Friend WithEvents DevTool_ClearOutputRichTextBox_Button As Button
     Friend WithEvents SwapScriptQueueListViewItems_Button As Button
+    Friend WithEvents FBMarketplaceProducts_emojiSwitch_Button As Button
 
 End Class

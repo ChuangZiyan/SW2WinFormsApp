@@ -1672,8 +1672,11 @@ Public Class MainFormEventHandlers
         Form1.ScriptQueue_ListView.Items.Insert(index1, newItem2)
         Form1.ScriptQueue_ListView.Items.Insert(index2, newItem1)
 
-        newItem1.Selected = True
-        newItem2.Selected = True
+
+        Form1.ScriptQueue_ListView.SelectedIndices.Clear()
+
+        'newItem1.Selected = True
+        'newItem2.Selected = True
     End Sub
 
 

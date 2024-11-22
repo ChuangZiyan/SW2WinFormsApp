@@ -1028,7 +1028,11 @@ Public Class Form1
         AddHandler FBMarketplaceDeleteSelectedAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedAssetFolder_Button_Click
         AddHandler FBMarketplaceDeleteSelectedMedia_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedMedia_Button_Click
         AddHandler FBMarkplaceProducts_ListBox.DoubleClick, AddressOf FBMarketplaceEventHandlers.FBMarkplaceProducts_ListBox_DoubleClick
+        AddHandler FBMarketplaceProducts_emojiSwitch_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceProducts_emojiSwitch_Button_Click
     End Sub
+
+
+
 
     Private Sub RegisterFBPostShareURLEventHanders()
         ' 這邊是用來發帖分享網址相關的事件

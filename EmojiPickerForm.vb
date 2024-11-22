@@ -67,7 +67,23 @@
                 Case "FBPostAssets_TabPage"
                     target_richTextbox = Form1.PreviewTextFile_RichTextBox
                 Case "FBMarketplaceAssets_TabPage"
-                    target_richTextbox = Form1.FBMarketplaceProductDescription_RichTextBox
+                    Dim btnName = Form1.FBMarketplaceProducts_emojiSwitch_Button.Text
+                    If btnName = "介紹" Then
+                        target_richTextbox = Form1.FBMarketplaceProductDescription_RichTextBox
+                    ElseIf btnName = "名稱" Then
+                        ' 如果點的在轉換清單內，就轉換成文字
+                        If emojiIndex < emojisStr.Count Then
+                            myEmoji = emojisStr(emojiIndex)
+                            Form1.FBMarketplaceProductName_TextBox.SelectedText = myEmoji & " "
+                        Else
+                            '不轉換，用原本的表情插入
+                            myEmoji = clickedLabel.Text
+                            Form1.FBMarketplaceProductName_TextBox.SelectedText = myEmoji
+                        End If
+                        Exit Sub
+                    End If
+
+
                 Case "FBPostShareURLAssets_TabPage"
                     target_richTextbox = Form1.FBPostShareURLTextFilePreviewer_RichTextBox
                 Case "FBCommentAssets_TabPage"
