@@ -1641,15 +1641,7 @@ Public Class MainFormEventHandlers
             Dim index2 As Integer = selectedItems(1).Index
             SwapListViewItems(index1, index2)
         Else
-            ' 選超過兩個
-            Dim random As New Random()
-            Dim indices = selectedItems.Cast(Of ListViewItem).Select(Function(item) item.Index).ToList()
-            Dim index1 As Integer = indices(random.Next(indices.Count))
-            Dim index2 As Integer = indices(random.Next(indices.Count))
-            While index1 = index2
-                index2 = indices(random.Next(indices.Count))
-            End While
-            SwapListViewItems(index1, index2)
+            Debug.WriteLine("TBD")
         End If
 
         Form1.ScriptQueue_ListView.SelectedIndices.Clear()
