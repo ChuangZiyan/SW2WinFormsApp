@@ -1028,8 +1028,11 @@ Public Class Form1
         AddHandler FBMarketplaceDeleteSelectedAssetFolder_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedAssetFolder_Button_Click
         AddHandler FBMarketplaceDeleteSelectedMedia_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceDeleteSelectedMedia_Button_Click
         AddHandler FBMarkplaceProducts_ListBox.DoubleClick, AddressOf FBMarketplaceEventHandlers.FBMarkplaceProducts_ListBox_DoubleClick
-        AddHandler FBMarketplaceProducts_emojiSwitch_Button.Click, AddressOf FBMarketplaceEventHandlers.FBMarketplaceProducts_emojiSwitch_Button_Click
+
+        AddHandler FBMarketplaceProductName_TextBox.MouseClick, AddressOf FBMarketplaceEventHandlers.FBMarketplaceProductName_TextBox_MouseClick
+        AddHandler FBMarketplaceProductDescription_RichTextBox.MouseClick, AddressOf FBMarketplaceEventHandlers.FBMarketplaceProductDescription_RichTextBox_MouseClick
     End Sub
+
 
 
 
@@ -1174,6 +1177,8 @@ Public Class Form1
 
 
     Private emojiPickerForm As EmojiPickerForm
+
+
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Main_WebView2.Source = New Uri("about:blank")
         AppInitModule.InitializeMainApp()

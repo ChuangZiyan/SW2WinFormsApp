@@ -370,15 +370,18 @@ Public Class FBMarketplaceEventHandlers
     End Sub
 
 
-    Public Sub FBMarketplaceProducts_emojiSwitch_Button_Click(sender As Object, e As EventArgs)
 
-        Dim btnName = Form1.FBMarketplaceProducts_emojiSwitch_Button.Text
-        If btnName = "名稱" Then
-            Form1.FBMarketplaceProducts_emojiSwitch_Button.Text = "介紹"
-        ElseIf btnName = "介紹" Then
-            Form1.FBMarketplaceProducts_emojiSwitch_Button.Text = "名稱"
-        End If
+    Public Shared Property MouseFocusItem As String = "ProductDescription_RichTextBox"
+
+    Public Sub FBMarketplaceProductName_TextBox_MouseClick(sender As Object, e As MouseEventArgs)
+        MouseFocusItem = "ProductName_TextBox"
     End Sub
+
+    Public Sub FBMarketplaceProductDescription_RichTextBox_MouseClick(sender As Object, e As MouseEventArgs)
+        MouseFocusItem = "ProductDescription_RichTextBox"
+    End Sub
+
+
     Public Class FBMarketPlaceProduct
         Public Property Name As String
         Public Property Price As Integer

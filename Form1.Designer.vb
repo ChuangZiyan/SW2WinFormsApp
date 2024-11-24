@@ -450,7 +450,6 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
-        FBMarketplaceProducts_emojiSwitch_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -1974,7 +1973,6 @@ Partial Class Form1
         ' 
         ' FBMarketplaceAssets_TabPage
         ' 
-        FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceProducts_emojiSwitch_Button)
         FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsByRandom_RadioButton)
         FBMarketplaceAssets_TabPage.Controls.Add(FBMarketplaceShareGroupsBySequence_RadioButton)
         FBMarketplaceAssets_TabPage.Controls.Add(RevealFBMarketplaceMediaFoldesrInFileExplorer_Button)
@@ -4624,15 +4622,6 @@ Partial Class Form1
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
-        ' FBMarketplaceProducts_emojiSwitch_Button
-        ' 
-        FBMarketplaceProducts_emojiSwitch_Button.Location = New Point(594, 4)
-        FBMarketplaceProducts_emojiSwitch_Button.Name = "FBMarketplaceProducts_emojiSwitch_Button"
-        FBMarketplaceProducts_emojiSwitch_Button.Size = New Size(61, 29)
-        FBMarketplaceProducts_emojiSwitch_Button.TabIndex = 71
-        FBMarketplaceProducts_emojiSwitch_Button.Text = "介紹"
-        FBMarketplaceProducts_emojiSwitch_Button.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -5185,6 +5174,5 @@ Partial Class Form1
     Friend WithEvents Label73 As Label
     Friend WithEvents DevTool_ClearOutputRichTextBox_Button As Button
     Friend WithEvents SwapScriptQueueListViewItems_Button As Button
-    Friend WithEvents FBMarketplaceProducts_emojiSwitch_Button As Button
 
 End Class
