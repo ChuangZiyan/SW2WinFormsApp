@@ -75,10 +75,12 @@
                         If emojiIndex < emojisStr.Count Then
                             myEmoji = emojisStr(emojiIndex)
                             Form1.FBMarketplaceProductName_TextBox.SelectedText = myEmoji & " "
+                            Form1.FBMarketplaceProductName_TextBox.Focus()
                         Else
                             '不轉換，用原本的表情插入
                             myEmoji = clickedLabel.Text
                             Form1.FBMarketplaceProductName_TextBox.SelectedText = myEmoji
+                            Form1.FBMarketplaceProductName_TextBox.Focus()
                         End If
                         Exit Sub
                     End If
@@ -112,6 +114,8 @@
                 myEmoji = clickedLabel.Text
                 target_richTextbox.SelectedText = myEmoji
             End If
+
+            target_richTextbox.Focus()
 
         Catch ex As Exception
             Debug.WriteLine(ex)
