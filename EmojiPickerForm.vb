@@ -100,8 +100,11 @@
                     target_richTextbox = Form1.FBStoryTextFilePreviewer_RichTextBox
                 Case "FBPersonalPostAssets_TabPage"
                     target_richTextbox = Form1.FBPersonalPostTextFilePreviewer_RichTextBox
-                Case "FBReels_TabPage"
+                Case "FBReelsAssets_TabPage"
                     target_richTextbox = Form1.FBReelsTextFilePreviewer_RichTextBox
+                Case Else
+                    Exit Sub
+
             End Select
 
 
