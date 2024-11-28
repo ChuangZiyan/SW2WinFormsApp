@@ -395,7 +395,6 @@ Partial Class Form1
         DevTool_FindElementByCssSelector_Button = New Button()
         Label72 = New Label()
         DevTool_CssSelectorInput_TextBox = New TextBox()
-        ShowEmojiPicker_Button = New Button()
         ScriptTask_GroupBox = New GroupBox()
         SwapScriptQueueListViewItems_Button = New Button()
         Label55 = New Label()
@@ -450,6 +449,11 @@ Partial Class Form1
         DeleteScriptListviewItemByUserData_Button = New Button()
         SelectScriptListviewItemsByUserDataButton = New Button()
         EditScriptFile_Button = New Button()
+        Main_WebView2_Panel = New Panel()
+        UserDataManager_Panel = New Panel()
+        ScriptQueueManager_Panel = New Panel()
+        ShowEmojiPicker_Button = New Button()
+        Button1 = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -514,6 +518,9 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        Main_WebView2_Panel.SuspendLayout()
+        UserDataManager_Panel.SuspendLayout()
+        ScriptQueueManager_Panel.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -523,7 +530,7 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(1147, 517)
+        Main_WebView2.Location = New Point(3, 4)
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(672, 541)
         Main_WebView2.TabIndex = 0
@@ -531,14 +538,14 @@ Partial Class Form1
         ' 
         ' Navigate_Url_TextBox
         ' 
-        Navigate_Url_TextBox.Location = New Point(1147, 1065)
+        Navigate_Url_TextBox.Location = New Point(3, 552)
         Navigate_Url_TextBox.Name = "Navigate_Url_TextBox"
         Navigate_Url_TextBox.Size = New Size(272, 27)
         Navigate_Url_TextBox.TabIndex = 5
         ' 
         ' NavigateTo_Url_Button
         ' 
-        NavigateTo_Url_Button.Location = New Point(1425, 1065)
+        NavigateTo_Url_Button.Location = New Point(281, 552)
         NavigateTo_Url_Button.Name = "NavigateTo_Url_Button"
         NavigateTo_Url_Button.Size = New Size(94, 29)
         NavigateTo_Url_Button.TabIndex = 6
@@ -566,7 +573,7 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label2)
         UserInfo_GroupBox.Controls.Add(FBAccount_TextBox)
         UserInfo_GroupBox.Controls.Add(Label1)
-        UserInfo_GroupBox.Location = New Point(212, 11)
+        UserInfo_GroupBox.Location = New Point(203, 3)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
         UserInfo_GroupBox.Size = New Size(222, 589)
         UserInfo_GroupBox.TabIndex = 7
@@ -736,14 +743,14 @@ Partial Class Form1
         ' 
         ' UserDataFolderName_TextBox
         ' 
-        UserDataFolderName_TextBox.Location = New Point(12, 464)
+        UserDataFolderName_TextBox.Location = New Point(3, 456)
         UserDataFolderName_TextBox.Name = "UserDataFolderName_TextBox"
         UserDataFolderName_TextBox.Size = New Size(94, 27)
         UserDataFolderName_TextBox.TabIndex = 9
         ' 
         ' CreateUserDataFolderButton
         ' 
-        CreateUserDataFolderButton.Location = New Point(112, 464)
+        CreateUserDataFolderButton.Location = New Point(103, 456)
         CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
         CreateUserDataFolderButton.Size = New Size(94, 29)
         CreateUserDataFolderButton.TabIndex = 10
@@ -752,7 +759,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedUserDataFolderButton
         ' 
-        DeleteSelectedUserDataFolderButton.Location = New Point(112, 498)
+        DeleteSelectedUserDataFolderButton.Location = New Point(103, 490)
         DeleteSelectedUserDataFolderButton.Name = "DeleteSelectedUserDataFolderButton"
         DeleteSelectedUserDataFolderButton.Size = New Size(94, 29)
         DeleteSelectedUserDataFolderButton.TabIndex = 11
@@ -763,7 +770,7 @@ Partial Class Form1
         ' 
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterUnavailableUserData_CheckBox)
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterAvailableUserData_CheckBox)
-        UserDataFoldListFilter_GroupBox.Location = New Point(12, 364)
+        UserDataFoldListFilter_GroupBox.Location = New Point(3, 356)
         UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
         UserDataFoldListFilter_GroupBox.Size = New Size(194, 92)
         UserDataFoldListFilter_GroupBox.TabIndex = 13
@@ -794,7 +801,7 @@ Partial Class Form1
         ' 
         ' Move_UserDataFolder_Button
         ' 
-        Move_UserDataFolder_Button.Location = New Point(12, 497)
+        Move_UserDataFolder_Button.Location = New Point(3, 489)
         Move_UserDataFolder_Button.Name = "Move_UserDataFolder_Button"
         Move_UserDataFolder_Button.Size = New Size(94, 29)
         Move_UserDataFolder_Button.TabIndex = 14
@@ -803,7 +810,7 @@ Partial Class Form1
         ' 
         ' SetSeletedFBLanguageTo_zhTW_Button
         ' 
-        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(12, 531)
+        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(3, 523)
         SetSeletedFBLanguageTo_zhTW_Button.Name = "SetSeletedFBLanguageTo_zhTW_Button"
         SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(94, 29)
         SetSeletedFBLanguageTo_zhTW_Button.TabIndex = 15
@@ -812,7 +819,7 @@ Partial Class Form1
         ' 
         ' TurnOnSetSeleteKeyboardShortcuts_Button
         ' 
-        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(112, 533)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(103, 525)
         TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
         TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(94, 29)
         TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
@@ -823,7 +830,7 @@ Partial Class Form1
         ' 
         WebviewUserDataFolder_ListBox.FormattingEnabled = True
         WebviewUserDataFolder_ListBox.ItemHeight = 19
-        WebviewUserDataFolder_ListBox.Location = New Point(12, 11)
+        WebviewUserDataFolder_ListBox.Location = New Point(3, 3)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
         WebviewUserDataFolder_ListBox.Size = New Size(194, 346)
@@ -831,7 +838,7 @@ Partial Class Form1
         ' 
         ' RequestFriend_Button
         ' 
-        RequestFriend_Button.Location = New Point(12, 566)
+        RequestFriend_Button.Location = New Point(3, 558)
         RequestFriend_Button.Name = "RequestFriend_Button"
         RequestFriend_Button.Size = New Size(94, 29)
         RequestFriend_Button.TabIndex = 19
@@ -840,7 +847,7 @@ Partial Class Form1
         ' 
         ' GetCurrentUrl_Button
         ' 
-        GetCurrentUrl_Button.Location = New Point(1525, 1065)
+        GetCurrentUrl_Button.Location = New Point(381, 552)
         GetCurrentUrl_Button.Name = "GetCurrentUrl_Button"
         GetCurrentUrl_Button.Size = New Size(94, 29)
         GetCurrentUrl_Button.TabIndex = 20
@@ -854,10 +861,10 @@ Partial Class Form1
         FBUrlData_TabControl.Controls.Add(FBNotificationsUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBMessengerUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBMediaDownloader_TabPage)
-        FBUrlData_TabControl.Location = New Point(440, 11)
+        FBUrlData_TabControl.Location = New Point(451, 12)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
-        FBUrlData_TabControl.Size = New Size(700, 383)
+        FBUrlData_TabControl.Size = New Size(701, 383)
         FBUrlData_TabControl.TabIndex = 23
         ' 
         ' FBGroupsUrlData_TabPage
@@ -879,7 +886,7 @@ Partial Class Form1
         FBGroupsUrlData_TabPage.Location = New Point(4, 28)
         FBGroupsUrlData_TabPage.Name = "FBGroupsUrlData_TabPage"
         FBGroupsUrlData_TabPage.Padding = New Padding(3)
-        FBGroupsUrlData_TabPage.Size = New Size(692, 351)
+        FBGroupsUrlData_TabPage.Size = New Size(693, 351)
         FBGroupsUrlData_TabPage.TabIndex = 0
         FBGroupsUrlData_TabPage.Text = "社團"
         FBGroupsUrlData_TabPage.UseVisualStyleBackColor = True
@@ -1039,7 +1046,7 @@ Partial Class Form1
         FBActivityLogsUrlData_TabPage.Location = New Point(4, 28)
         FBActivityLogsUrlData_TabPage.Name = "FBActivityLogsUrlData_TabPage"
         FBActivityLogsUrlData_TabPage.Padding = New Padding(3)
-        FBActivityLogsUrlData_TabPage.Size = New Size(692, 351)
+        FBActivityLogsUrlData_TabPage.Size = New Size(693, 351)
         FBActivityLogsUrlData_TabPage.TabIndex = 1
         FBActivityLogsUrlData_TabPage.Text = "留言"
         FBActivityLogsUrlData_TabPage.UseVisualStyleBackColor = True
@@ -1215,7 +1222,7 @@ Partial Class Form1
         FBNotificationsUrlData_TabPage.Controls.Add(FBNotificationsData_Listview)
         FBNotificationsUrlData_TabPage.Location = New Point(4, 28)
         FBNotificationsUrlData_TabPage.Name = "FBNotificationsUrlData_TabPage"
-        FBNotificationsUrlData_TabPage.Size = New Size(692, 351)
+        FBNotificationsUrlData_TabPage.Size = New Size(693, 351)
         FBNotificationsUrlData_TabPage.TabIndex = 2
         FBNotificationsUrlData_TabPage.Text = "通知"
         FBNotificationsUrlData_TabPage.UseVisualStyleBackColor = True
@@ -1388,7 +1395,7 @@ Partial Class Form1
         FBMessengerUrlData_TabPage.Controls.Add(FBMessengerData_Listview)
         FBMessengerUrlData_TabPage.Location = New Point(4, 28)
         FBMessengerUrlData_TabPage.Name = "FBMessengerUrlData_TabPage"
-        FBMessengerUrlData_TabPage.Size = New Size(692, 351)
+        FBMessengerUrlData_TabPage.Size = New Size(693, 351)
         FBMessengerUrlData_TabPage.TabIndex = 3
         FBMessengerUrlData_TabPage.Text = "聊天室"
         FBMessengerUrlData_TabPage.UseVisualStyleBackColor = True
@@ -1573,7 +1580,7 @@ Partial Class Form1
         FBMediaDownloader_TabPage.Controls.Add(FBMediaDownloaderGetUrl_Button)
         FBMediaDownloader_TabPage.Location = New Point(4, 28)
         FBMediaDownloader_TabPage.Name = "FBMediaDownloader_TabPage"
-        FBMediaDownloader_TabPage.Size = New Size(692, 351)
+        FBMediaDownloader_TabPage.Size = New Size(693, 351)
         FBMediaDownloader_TabPage.TabIndex = 4
         FBMediaDownloader_TabPage.Text = "圖片下載"
         FBMediaDownloader_TabPage.UseVisualStyleBackColor = True
@@ -1674,7 +1681,7 @@ Partial Class Form1
         ' 
         ScriptQueue_ListView.Columns.AddRange(New ColumnHeader() {ColumnHeader3, ColumnHeader4, ColumnHeader7, ColumnHeader6, ColumnHeader5, ColumnHeader15, ColumnHeader8, ColumnHeader13, ColumnHeader14, ColumnHeader9, ColumnHeader11, ColumnHeader10, ColumnHeader12})
         ScriptQueue_ListView.FullRowSelect = True
-        ScriptQueue_ListView.Location = New Point(12, 641)
+        ScriptQueue_ListView.Location = New Point(3, 3)
         ScriptQueue_ListView.Name = "ScriptQueue_ListView"
         ScriptQueue_ListView.Size = New Size(1129, 417)
         ScriptQueue_ListView.TabIndex = 24
@@ -1758,7 +1765,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
         Action_TabControl.Controls.Add(FBReelsAssets_TabPage)
         Action_TabControl.Controls.Add(DevTool_TabPage)
-        Action_TabControl.Location = New Point(1147, 11)
+        Action_TabControl.Location = New Point(1158, 12)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
         Action_TabControl.Size = New Size(672, 499)
@@ -4082,15 +4089,6 @@ Partial Class Form1
         DevTool_CssSelectorInput_TextBox.Size = New Size(531, 27)
         DevTool_CssSelectorInput_TextBox.TabIndex = 0
         ' 
-        ' ShowEmojiPicker_Button
-        ' 
-        ShowEmojiPicker_Button.Location = New Point(1824, 41)
-        ShowEmojiPicker_Button.Name = "ShowEmojiPicker_Button"
-        ShowEmojiPicker_Button.Size = New Size(24, 71)
-        ShowEmojiPicker_Button.TabIndex = 26
-        ShowEmojiPicker_Button.Text = "😀"
-        ShowEmojiPicker_Button.UseVisualStyleBackColor = True
-        ' 
         ' ScriptTask_GroupBox
         ' 
         ScriptTask_GroupBox.Controls.Add(SwapScriptQueueListViewItems_Button)
@@ -4136,7 +4134,7 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
         ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
-        ScriptTask_GroupBox.Location = New Point(440, 403)
+        ScriptTask_GroupBox.Location = New Point(451, 401)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
         ScriptTask_GroupBox.Size = New Size(701, 232)
         ScriptTask_GroupBox.TabIndex = 26
@@ -4535,14 +4533,14 @@ Partial Class Form1
         ' userData_ComboBox
         ' 
         userData_ComboBox.FormattingEnabled = True
-        userData_ComboBox.Location = New Point(12, 1064)
+        userData_ComboBox.Location = New Point(3, 426)
         userData_ComboBox.Name = "userData_ComboBox"
         userData_ComboBox.Size = New Size(162, 27)
         userData_ComboBox.TabIndex = 27
         ' 
         ' MarkUserDataToSkip_Button
         ' 
-        MarkUserDataToSkip_Button.Location = New Point(180, 1064)
+        MarkUserDataToSkip_Button.Location = New Point(171, 426)
         MarkUserDataToSkip_Button.Name = "MarkUserDataToSkip_Button"
         MarkUserDataToSkip_Button.Size = New Size(94, 29)
         MarkUserDataToSkip_Button.TabIndex = 28
@@ -4551,7 +4549,7 @@ Partial Class Form1
         ' 
         ' UnmarkUserDataToSkip_Button_Button
         ' 
-        UnmarkUserDataToSkip_Button_Button.Location = New Point(280, 1064)
+        UnmarkUserDataToSkip_Button_Button.Location = New Point(271, 426)
         UnmarkUserDataToSkip_Button_Button.Name = "UnmarkUserDataToSkip_Button_Button"
         UnmarkUserDataToSkip_Button_Button.Size = New Size(94, 29)
         UnmarkUserDataToSkip_Button_Button.TabIndex = 29
@@ -4560,7 +4558,7 @@ Partial Class Form1
         ' 
         ' SaveScriptListViewToCSVFile_Button
         ' 
-        SaveScriptListViewToCSVFile_Button.Location = New Point(1047, 1064)
+        SaveScriptListViewToCSVFile_Button.Location = New Point(1040, 426)
         SaveScriptListViewToCSVFile_Button.Name = "SaveScriptListViewToCSVFile_Button"
         SaveScriptListViewToCSVFile_Button.Size = New Size(94, 29)
         SaveScriptListViewToCSVFile_Button.TabIndex = 30
@@ -4569,7 +4567,7 @@ Partial Class Form1
         ' 
         ' MarkSelectedScriptListviewItem_Button
         ' 
-        MarkSelectedScriptListviewItem_Button.Location = New Point(582, 1065)
+        MarkSelectedScriptListviewItem_Button.Location = New Point(574, 426)
         MarkSelectedScriptListviewItem_Button.Name = "MarkSelectedScriptListviewItem_Button"
         MarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         MarkSelectedScriptListviewItem_Button.TabIndex = 31
@@ -4578,7 +4576,7 @@ Partial Class Form1
         ' 
         ' UnmarkSelectedScriptListviewItem_Button
         ' 
-        UnmarkSelectedScriptListviewItem_Button.Location = New Point(681, 1065)
+        UnmarkSelectedScriptListviewItem_Button.Location = New Point(674, 427)
         UnmarkSelectedScriptListviewItem_Button.Name = "UnmarkSelectedScriptListviewItem_Button"
         UnmarkSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         UnmarkSelectedScriptListviewItem_Button.TabIndex = 32
@@ -4587,7 +4585,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedScriptListviewItem_Button
         ' 
-        DeleteSelectedScriptListviewItem_Button.Location = New Point(782, 1065)
+        DeleteSelectedScriptListviewItem_Button.Location = New Point(775, 427)
         DeleteSelectedScriptListviewItem_Button.Name = "DeleteSelectedScriptListviewItem_Button"
         DeleteSelectedScriptListviewItem_Button.Size = New Size(94, 29)
         DeleteSelectedScriptListviewItem_Button.TabIndex = 34
@@ -4596,7 +4594,7 @@ Partial Class Form1
         ' 
         ' DeleteScriptListviewItemByUserData_Button
         ' 
-        DeleteScriptListviewItemByUserData_Button.Location = New Point(483, 1064)
+        DeleteScriptListviewItemByUserData_Button.Location = New Point(475, 426)
         DeleteScriptListviewItemByUserData_Button.Name = "DeleteScriptListviewItemByUserData_Button"
         DeleteScriptListviewItemByUserData_Button.Size = New Size(94, 29)
         DeleteScriptListviewItemByUserData_Button.TabIndex = 35
@@ -4605,7 +4603,7 @@ Partial Class Form1
         ' 
         ' SelectScriptListviewItemsByUserDataButton
         ' 
-        SelectScriptListviewItemsByUserDataButton.Location = New Point(381, 1064)
+        SelectScriptListviewItemsByUserDataButton.Location = New Point(372, 426)
         SelectScriptListviewItemsByUserDataButton.Margin = New Padding(4)
         SelectScriptListviewItemsByUserDataButton.Name = "SelectScriptListviewItemsByUserDataButton"
         SelectScriptListviewItemsByUserDataButton.Size = New Size(96, 29)
@@ -4615,47 +4613,90 @@ Partial Class Form1
         ' 
         ' EditScriptFile_Button
         ' 
-        EditScriptFile_Button.Location = New Point(947, 1064)
+        EditScriptFile_Button.Location = New Point(940, 426)
         EditScriptFile_Button.Name = "EditScriptFile_Button"
         EditScriptFile_Button.Size = New Size(94, 29)
         EditScriptFile_Button.TabIndex = 38
         EditScriptFile_Button.Text = "開啟腳本"
         EditScriptFile_Button.UseVisualStyleBackColor = True
         ' 
+        ' Main_WebView2_Panel
+        ' 
+        Main_WebView2_Panel.Controls.Add(Main_WebView2)
+        Main_WebView2_Panel.Controls.Add(Navigate_Url_TextBox)
+        Main_WebView2_Panel.Controls.Add(NavigateTo_Url_Button)
+        Main_WebView2_Panel.Controls.Add(GetCurrentUrl_Button)
+        Main_WebView2_Panel.Location = New Point(1158, 517)
+        Main_WebView2_Panel.Name = "Main_WebView2_Panel"
+        Main_WebView2_Panel.Size = New Size(684, 585)
+        Main_WebView2_Panel.TabIndex = 40
+        ' 
+        ' UserDataManager_Panel
+        ' 
+        UserDataManager_Panel.Controls.Add(WebviewUserDataFolder_ListBox)
+        UserDataManager_Panel.Controls.Add(UserInfo_GroupBox)
+        UserDataManager_Panel.Controls.Add(UserDataFolderName_TextBox)
+        UserDataManager_Panel.Controls.Add(CreateUserDataFolderButton)
+        UserDataManager_Panel.Controls.Add(DeleteSelectedUserDataFolderButton)
+        UserDataManager_Panel.Controls.Add(UserDataFoldListFilter_GroupBox)
+        UserDataManager_Panel.Controls.Add(Move_UserDataFolder_Button)
+        UserDataManager_Panel.Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
+        UserDataManager_Panel.Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
+        UserDataManager_Panel.Controls.Add(RequestFriend_Button)
+        UserDataManager_Panel.Location = New Point(12, 12)
+        UserDataManager_Panel.Name = "UserDataManager_Panel"
+        UserDataManager_Panel.Size = New Size(433, 621)
+        UserDataManager_Panel.TabIndex = 41
+        ' 
+        ' ScriptQueueManager_Panel
+        ' 
+        ScriptQueueManager_Panel.Controls.Add(ScriptQueue_ListView)
+        ScriptQueueManager_Panel.Controls.Add(userData_ComboBox)
+        ScriptQueueManager_Panel.Controls.Add(MarkUserDataToSkip_Button)
+        ScriptQueueManager_Panel.Controls.Add(UnmarkUserDataToSkip_Button_Button)
+        ScriptQueueManager_Panel.Controls.Add(EditScriptFile_Button)
+        ScriptQueueManager_Panel.Controls.Add(SaveScriptListViewToCSVFile_Button)
+        ScriptQueueManager_Panel.Controls.Add(SelectScriptListviewItemsByUserDataButton)
+        ScriptQueueManager_Panel.Controls.Add(MarkSelectedScriptListviewItem_Button)
+        ScriptQueueManager_Panel.Controls.Add(DeleteScriptListviewItemByUserData_Button)
+        ScriptQueueManager_Panel.Controls.Add(UnmarkSelectedScriptListviewItem_Button)
+        ScriptQueueManager_Panel.Controls.Add(DeleteSelectedScriptListviewItem_Button)
+        ScriptQueueManager_Panel.Location = New Point(12, 641)
+        ScriptQueueManager_Panel.Name = "ScriptQueueManager_Panel"
+        ScriptQueueManager_Panel.Size = New Size(1140, 460)
+        ScriptQueueManager_Panel.TabIndex = 42
+        ' 
+        ' ShowEmojiPicker_Button
+        ' 
+        ShowEmojiPicker_Button.Location = New Point(1832, 40)
+        ShowEmojiPicker_Button.Name = "ShowEmojiPicker_Button"
+        ShowEmojiPicker_Button.Size = New Size(24, 71)
+        ShowEmojiPicker_Button.TabIndex = 26
+        ShowEmojiPicker_Button.Text = "😀"
+        ShowEmojiPicker_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(1832, 117)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(23, 82)
+        Button1.TabIndex = 43
+        Button1.Text = "縮小"
+        Button1.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1858, 1103)
-        Controls.Add(EditScriptFile_Button)
-        Controls.Add(SelectScriptListviewItemsByUserDataButton)
+        ClientSize = New Size(1862, 1113)
+        Controls.Add(Button1)
         Controls.Add(ShowEmojiPicker_Button)
-        Controls.Add(DeleteScriptListviewItemByUserData_Button)
-        Controls.Add(DeleteSelectedScriptListviewItem_Button)
-        Controls.Add(UnmarkSelectedScriptListviewItem_Button)
-        Controls.Add(MarkSelectedScriptListviewItem_Button)
-        Controls.Add(SaveScriptListViewToCSVFile_Button)
-        Controls.Add(UnmarkUserDataToSkip_Button_Button)
-        Controls.Add(MarkUserDataToSkip_Button)
-        Controls.Add(userData_ComboBox)
-        Controls.Add(ScriptTask_GroupBox)
         Controls.Add(Action_TabControl)
-        Controls.Add(ScriptQueue_ListView)
+        Controls.Add(ScriptQueueManager_Panel)
+        Controls.Add(UserDataManager_Panel)
+        Controls.Add(Main_WebView2_Panel)
+        Controls.Add(ScriptTask_GroupBox)
         Controls.Add(FBUrlData_TabControl)
-        Controls.Add(GetCurrentUrl_Button)
-        Controls.Add(RequestFriend_Button)
-        Controls.Add(WebviewUserDataFolder_ListBox)
-        Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
-        Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
-        Controls.Add(Move_UserDataFolder_Button)
-        Controls.Add(UserDataFoldListFilter_GroupBox)
-        Controls.Add(DeleteSelectedUserDataFolderButton)
-        Controls.Add(CreateUserDataFolderButton)
-        Controls.Add(UserDataFolderName_TextBox)
-        Controls.Add(UserInfo_GroupBox)
-        Controls.Add(NavigateTo_Url_Button)
-        Controls.Add(Navigate_Url_TextBox)
-        Controls.Add(Main_WebView2)
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
@@ -4742,8 +4783,12 @@ Partial Class Form1
         CType(ExecutionWaitHours_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(ExecutionWaitSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(SchedulerIntervalSeconds_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        Main_WebView2_Panel.ResumeLayout(False)
+        Main_WebView2_Panel.PerformLayout()
+        UserDataManager_Panel.ResumeLayout(False)
+        UserDataManager_Panel.PerformLayout()
+        ScriptQueueManager_Panel.ResumeLayout(False)
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents Main_WebView2 As Microsoft.Web.WebView2.WinForms.WebView2
@@ -4906,7 +4951,6 @@ Partial Class Form1
     Friend WithEvents FBMarketplaceMediaPreviewer_PictureBox As PictureBox
     Friend WithEvents FBMarketplaceMediaSelector_ListBox As ListBox
     Friend WithEvents FBMarketplaceDeleteSelectedMedia_Button As Button
-    Friend WithEvents ShowEmojiPicker_Button As Button
     Friend WithEvents FBMarketplaceProductTag_TextBox As TextBox
     Friend WithEvents Label33 As Label
     Friend WithEvents FBMarketplaceHomeDelivery_CheckBox As CheckBox
@@ -5174,5 +5218,10 @@ Partial Class Form1
     Friend WithEvents Label73 As Label
     Friend WithEvents DevTool_ClearOutputRichTextBox_Button As Button
     Friend WithEvents SwapScriptQueueListViewItems_Button As Button
+    Friend WithEvents Main_WebView2_Panel As Panel
+    Friend WithEvents UserDataManager_Panel As Panel
+    Friend WithEvents ScriptQueueManager_Panel As Panel
+    Friend WithEvents ShowEmojiPicker_Button As Button
+    Friend WithEvents Button1 As Button
 
 End Class

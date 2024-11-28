@@ -419,6 +419,23 @@ Module MainFormController
     End Function
 
 
+    Public Sub SetLiteMode(mode As String)
+
+        Form1.UserDataManager_Panel.Visible = False
+        Form1.FBUrlData_TabControl.Visible = False
+        Form1.ScriptTask_GroupBox.Visible = False
+        Form1.ScriptQueueManager_Panel.Visible = False
+        Form1.Action_TabControl.Visible = False
+        Form1.ShowEmojiPicker_Button.Visible = False
+
+        If mode = "webview" Then
+            Form1.Main_WebView2_Panel.Location = New Point(10, 10)
+            Form1.Size = New Size(720, 620)
+        End If
+
+
+    End Sub
+
 
 
     Public Class GroupListviewDataStruct

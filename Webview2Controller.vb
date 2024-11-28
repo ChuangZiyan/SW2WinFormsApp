@@ -141,7 +141,7 @@ Module Webview2Controller
                 .Location = webViewLocation,
                 .Size = webViewSize
             }
-            Form1.Controls.Add(Form1.Main_WebView2)
+            Form1.Main_WebView2_Panel.Controls.Add(Form1.Main_WebView2)
             ActivedWebview2UserData = "N/A"
             ActivedUserDataFolderPath = Nothing
             DebugPortInUse = 0
