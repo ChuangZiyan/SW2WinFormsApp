@@ -453,7 +453,10 @@ Partial Class Form1
         UserDataManager_Panel = New Panel()
         ScriptQueueManager_Panel = New Panel()
         ShowEmojiPicker_Button = New Button()
-        Button1 = New Button()
+        SetWebviewLiteMode_Button = New Button()
+        LiteMode_GroupBox = New GroupBox()
+        SetNormalMode_Button = New Button()
+        SetScriptQueueListViewLiteMode_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -521,6 +524,7 @@ Partial Class Form1
         Main_WebView2_Panel.SuspendLayout()
         UserDataManager_Panel.SuspendLayout()
         ScriptQueueManager_Panel.SuspendLayout()
+        LiteMode_GroupBox.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -4675,21 +4679,52 @@ Partial Class Form1
         ShowEmojiPicker_Button.Text = "😀"
         ShowEmojiPicker_Button.UseVisualStyleBackColor = True
         ' 
-        ' Button1
+        ' SetWebviewLiteMode_Button
         ' 
-        Button1.Location = New Point(1832, 117)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(23, 82)
-        Button1.TabIndex = 43
-        Button1.Text = "縮小"
-        Button1.UseVisualStyleBackColor = True
+        SetWebviewLiteMode_Button.Location = New Point(6, 138)
+        SetWebviewLiteMode_Button.Name = "SetWebviewLiteMode_Button"
+        SetWebviewLiteMode_Button.Size = New Size(27, 70)
+        SetWebviewLiteMode_Button.TabIndex = 43
+        SetWebviewLiteMode_Button.Text = "網頁"
+        SetWebviewLiteMode_Button.UseVisualStyleBackColor = True
+        ' 
+        ' LiteMode_GroupBox
+        ' 
+        LiteMode_GroupBox.Controls.Add(SetNormalMode_Button)
+        LiteMode_GroupBox.Controls.Add(SetScriptQueueListViewLiteMode_Button)
+        LiteMode_GroupBox.Controls.Add(SetWebviewLiteMode_Button)
+        LiteMode_GroupBox.Location = New Point(1832, 221)
+        LiteMode_GroupBox.Name = "LiteMode_GroupBox"
+        LiteMode_GroupBox.Size = New Size(40, 290)
+        LiteMode_GroupBox.TabIndex = 44
+        LiteMode_GroupBox.TabStop = False
+        LiteMode_GroupBox.Text = "模式"
+        ' 
+        ' SetNormalMode_Button
+        ' 
+        SetNormalMode_Button.Enabled = False
+        SetNormalMode_Button.Location = New Point(6, 62)
+        SetNormalMode_Button.Name = "SetNormalMode_Button"
+        SetNormalMode_Button.Size = New Size(27, 70)
+        SetNormalMode_Button.TabIndex = 44
+        SetNormalMode_Button.Text = "一般"
+        SetNormalMode_Button.UseVisualStyleBackColor = True
+        ' 
+        ' SetScriptQueueListViewLiteMode_Button
+        ' 
+        SetScriptQueueListViewLiteMode_Button.Location = New Point(6, 214)
+        SetScriptQueueListViewLiteMode_Button.Name = "SetScriptQueueListViewLiteMode_Button"
+        SetScriptQueueListViewLiteMode_Button.Size = New Size(27, 70)
+        SetScriptQueueListViewLiteMode_Button.TabIndex = 25
+        SetScriptQueueListViewLiteMode_Button.Text = "腳本"
+        SetScriptQueueListViewLiteMode_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1862, 1113)
-        Controls.Add(Button1)
+        ClientSize = New Size(1882, 1113)
+        Controls.Add(LiteMode_GroupBox)
         Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueueManager_Panel)
@@ -4697,6 +4732,7 @@ Partial Class Form1
         Controls.Add(Main_WebView2_Panel)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(FBUrlData_TabControl)
+        MaximumSize = New Size(1920, 1160)
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
@@ -4788,6 +4824,7 @@ Partial Class Form1
         UserDataManager_Panel.ResumeLayout(False)
         UserDataManager_Panel.PerformLayout()
         ScriptQueueManager_Panel.ResumeLayout(False)
+        LiteMode_GroupBox.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
@@ -5222,6 +5259,9 @@ Partial Class Form1
     Friend WithEvents UserDataManager_Panel As Panel
     Friend WithEvents ScriptQueueManager_Panel As Panel
     Friend WithEvents ShowEmojiPicker_Button As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents SetWebviewLiteMode_Button As Button
+    Friend WithEvents LiteMode_GroupBox As GroupBox
+    Friend WithEvents SetScriptQueueListViewLiteMode_Button As Button
+    Friend WithEvents SetNormalMode_Button As Button
 
 End Class

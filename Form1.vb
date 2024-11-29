@@ -1232,9 +1232,15 @@ Public Class Form1
         Debug.WriteLine("FormLoad End")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub SetWebviewLiteMode_Button_Click(sender As Object, e As EventArgs) Handles SetWebviewLiteMode_Button.Click
         MainFormController.SetLiteMode("webview")
-
     End Sub
 
+    Private Sub SetScriptQueueListViewLiteMode_Button_Click(sender As Object, e As EventArgs) Handles SetScriptQueueListViewLiteMode_Button.Click
+        MainFormController.SetLiteMode("script_queue_listview")
+    End Sub
+
+    Private Sub SetNormalMode_Button_Click(sender As Object, e As EventArgs) Handles SetNormalMode_Button.Click
+        MainFormController.SetLiteMode("normal")
+    End Sub
 End Class
