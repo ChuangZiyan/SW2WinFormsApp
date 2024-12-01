@@ -1250,6 +1250,12 @@ Public Class Form1
         Try
             Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
+
+            If Not File.Exists(filePath) Then
+                MainFormController.ReadLiteModeComponentsJson()
+            End If
+
+
             Process.Start("notepad.exe", filePath)
         Catch ex As Exception
             Debug.WriteLine(ex)
