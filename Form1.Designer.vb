@@ -457,6 +457,7 @@ Partial Class Form1
         SetNormalMode_ToolStripMenuItem = New ToolStripMenuItem()
         SetWebviewMode_ToolStripMenuItem = New ToolStripMenuItem()
         SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
+        LiteModeComponentSizeConfigs_ToolStripMenuItem = New ToolStripMenuItem()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -4682,7 +4683,7 @@ Partial Class Form1
         ' MainForm_MenuStrip
         ' 
         MainForm_MenuStrip.ImageScalingSize = New Size(20, 20)
-        MainForm_MenuStrip.Items.AddRange(New ToolStripItem() {SetNormalMode_ToolStripMenuItem, SetWebviewMode_ToolStripMenuItem, SetScriptListViewMode_ToolStripMenuItem})
+        MainForm_MenuStrip.Items.AddRange(New ToolStripItem() {SetNormalMode_ToolStripMenuItem, SetWebviewMode_ToolStripMenuItem, SetScriptListViewMode_ToolStripMenuItem, LiteModeComponentSizeConfigs_ToolStripMenuItem})
         MainForm_MenuStrip.Location = New Point(0, 0)
         MainForm_MenuStrip.Name = "MainForm_MenuStrip"
         MainForm_MenuStrip.Size = New Size(1882, 28)
@@ -4708,6 +4709,12 @@ Partial Class Form1
         SetScriptListViewMode_ToolStripMenuItem.Name = "SetScriptListViewMode_ToolStripMenuItem"
         SetScriptListViewMode_ToolStripMenuItem.Size = New Size(83, 24)
         SetScriptListViewMode_ToolStripMenuItem.Text = "腳本模式"
+        ' 
+        ' LiteModeComponentSizeConfigs_ToolStripMenuItem
+        ' 
+        LiteModeComponentSizeConfigs_ToolStripMenuItem.Name = "LiteModeComponentSizeConfigs_ToolStripMenuItem"
+        LiteModeComponentSizeConfigs_ToolStripMenuItem.Size = New Size(83, 24)
+        LiteModeComponentSizeConfigs_ToolStripMenuItem.Text = "視窗設定"
         ' 
         ' Form1
         ' 
@@ -5257,5 +5264,6 @@ Partial Class Form1
     Friend WithEvents SetNormalMode_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetWebviewMode_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetScriptListViewMode_ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LiteModeComponentSizeConfigs_ToolStripMenuItem As ToolStripMenuItem
 
 End Class

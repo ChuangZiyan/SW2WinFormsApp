@@ -1244,4 +1244,18 @@ Public Class Form1
     Private Sub SetScriptListViewMode_ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetScriptListViewMode_ToolStripMenuItem.Click
         MainFormController.SetLiteMode("script_queue_listview")
     End Sub
+
+    Private Sub LiteModeComponentSizeConfigs_ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiteModeComponentSizeConfigs_ToolStripMenuItem.Click
+
+        Try
+            Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
+            Process.Start("notepad.exe", filePath)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
 End Class

@@ -1,8 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Net.Http
 Imports System.Reflection.Metadata
 Imports System.Reflection.PortableExecutable
 Imports System.Security.Permissions
+Imports System.Text.Json.Serialization
 Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Header
@@ -13,6 +15,7 @@ Imports Newtonsoft.Json.Linq
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Chrome
 Imports OpenQA.Selenium.Support.UI
+Imports SW2WinFormsApp.FBMarketplaceEventHandlers
 
 Module MainFormController
 
@@ -420,72 +423,140 @@ Module MainFormController
 
 
     Public Sub SetLiteMode(mode As String)
+        Try
+            Dim LiteModeComponentsSize As LiteModeComponents = ReadLiteModeComponentsJson()
 
-        ' 隱藏所有元件
-        Form1.UserDataManager_Panel.Visible = False
-        Form1.FBUrlData_TabControl.Visible = False
-        Form1.ScriptTask_GroupBox.Visible = False
-        Form1.ScriptQueueManager_Panel.Visible = False
-        Form1.Action_TabControl.Visible = False
-        Form1.ShowEmojiPicker_Button.Visible = False
-        Form1.Main_WebView2_Panel.Visible = False
+            ' 隱藏所有元件
+            Form1.UserDataManager_Panel.Visible = False
+            Form1.FBUrlData_TabControl.Visible = False
+            Form1.ScriptTask_GroupBox.Visible = False
+            Form1.ScriptQueueManager_Panel.Visible = False
+            Form1.Action_TabControl.Visible = False
+            Form1.ShowEmojiPicker_Button.Visible = False
+            Form1.Main_WebView2_Panel.Visible = False
 
-        If mode = "normal" Then
-            ' 設定回原來大小
-            Form1.Size = New Size(1900, 1180)
+            If mode = "normal" Then
+                ' 設定回原來大小
+                Form1.Size = New Size(LiteModeComponentsSize.NormalModeSize.Width, LiteModeComponentsSize.NormalModeSize.Height)
 
-            ' 把webivew搬回原來位子然後
-            Form1.Main_WebView2_Panel.Location = New Point(1158, 531)
+                ' 把webivew搬回原來位子然後
+                Form1.Main_WebView2_Panel.Location = New Point(1158, 531)
 
-            ' 把script listview 搬回原來位子
-            Form1.ScriptQueueManager_Panel.Location = New Point(12, 663)
-
-
-            ' 顯示所有元件
-            Form1.UserDataManager_Panel.Visible = True
-            Form1.FBUrlData_TabControl.Visible = True
-            Form1.ScriptTask_GroupBox.Visible = True
-            Form1.ScriptQueueManager_Panel.Visible = True
-            Form1.Action_TabControl.Visible = True
-            Form1.ShowEmojiPicker_Button.Visible = True
-            Form1.Main_WebView2_Panel.Visible = True
+                ' 把script listview 搬回原來位子
+                Form1.ScriptQueueManager_Panel.Location = New Point(12, 663)
 
 
-            ' Menu防呆
-            Form1.SetNormalMode_ToolStripMenuItem.Enabled = False
-            Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
-            Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
+                ' 顯示所有元件
+                Form1.UserDataManager_Panel.Visible = True
+                Form1.FBUrlData_TabControl.Visible = True
+                Form1.ScriptTask_GroupBox.Visible = True
+                Form1.ScriptQueueManager_Panel.Visible = True
+                Form1.Action_TabControl.Visible = True
+                Form1.ShowEmojiPicker_Button.Visible = True
+                Form1.Main_WebView2_Panel.Visible = True
+
+
+                ' Menu防呆
+                'Form1.SetNormalMode_ToolStripMenuItem.Enabled = False
+                'Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
+                'Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
 
 
 
-        ElseIf mode = "webview" Then
-            ' 把webview搬到左上角然後顯示出來
-            Form1.Main_WebView2_Panel.Location = New Point(10, 25)
-            Form1.Size = New Size(725, 670)
-            Form1.Main_WebView2_Panel.Visible = True
+            ElseIf mode = "webview" Then
+                ' 把webview搬到左上角然後顯示出來
+                Form1.Main_WebView2_Panel.Location = New Point(10, 25)
+                'Form1.Size = New Size(725, 670)
+                Form1.Size = New Size(LiteModeComponentsSize.WebviewLiteModeSize.Width, LiteModeComponentsSize.WebviewLiteModeSize.Height)
+                Form1.Main_WebView2_Panel.Visible = True
 
-            ' Menu防呆
-            Form1.SetNormalMode_ToolStripMenuItem.Enabled = True
-            Form1.SetWebviewMode_ToolStripMenuItem.Enabled = False
-            Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
+                ' Menu防呆
+                'Form1.SetNormalMode_ToolStripMenuItem.Enabled = True 
+                'Form1.SetWebviewMode_ToolStripMenuItem.Enabled = False
+                'Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
 
-        ElseIf mode = "script_queue_listview" Then
+            ElseIf mode = "script_queue_listview" Then
 
-            ' 把script listview搬到左上角
-            Form1.ScriptQueueManager_Panel.Location = New Point(10, 25)
-            Form1.Size = New Size(1180, 540)
-            Form1.ScriptQueueManager_Panel.Visible = True
+                ' 把script listview搬到左上角
+                Form1.ScriptQueueManager_Panel.Location = New Point(10, 25)
+                'Form1.Size = New Size(1180, 540)
+                Form1.Size = New Size(LiteModeComponentsSize.ScriptListViewLiteModeSize.Width, LiteModeComponentsSize.ScriptListViewLiteModeSize.Height)
+                Form1.ScriptQueueManager_Panel.Visible = True
 
-            ' Menu防呆
-            Form1.SetNormalMode_ToolStripMenuItem.Enabled = True
-            Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
-            Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = False
+                ' Menu防呆
+                'Form1.SetNormalMode_ToolStripMenuItem.Enabled = True
+                'Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
+                'Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = False
 
-        End If
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("發生錯誤，可能是設定檔格式不正確，建議刪除設定檔後重試一次")
+
+        End Try
+
+
 
 
     End Sub
 
+
+
+    Function ReadLiteModeComponentsJson() As LiteModeComponents
+        Try
+            Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
+            Debug.WriteLine(filePath)
+
+            If Not File.Exists(filePath) Then
+                ' 檔案不存在就寫入一個預設的
+                Dim liteModeComponents As New LiteModeComponents() With {
+                    .NormalModeSize = New LiteModeComponentSize With {
+                         .Width = 1180,
+                        .Height = 1900
+                    },
+                    .WebviewLiteModeSize = New LiteModeComponentSize With {
+                       .Width = 725,
+                        .Height = 670
+                    },
+                    .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
+                        .Width = 1180,
+                        .Height = 540
+                    }
+                }
+
+                Dim jsonString As String = JsonConvert.SerializeObject(liteModeComponents, Formatting.Indented)
+                ' 將 JSON 字串寫入檔案
+                File.WriteAllText(filePath, jsonString)
+
+
+            End If
+
+            Dim jsonContent As String = File.ReadAllText(filePath)
+            Return JsonConvert.DeserializeObject(Of LiteModeComponents)(jsonContent)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+        Return Nothing
+    End Function
+
+
+
+    Public Class LiteModeComponents
+        Public Property NormalModeSize As LiteModeComponentSize
+        Public Property WebviewLiteModeSize As LiteModeComponentSize
+        Public Property ScriptListViewLiteModeSize As LiteModeComponentSize
+    End Class
+
+
+    Public Class LiteModeComponentSize
+
+        Public Property Width As Integer
+        Public Property Height As Integer
+
+    End Class
 
 
     Public Class GroupListviewDataStruct
