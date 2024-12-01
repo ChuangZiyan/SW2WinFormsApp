@@ -453,10 +453,10 @@ Partial Class Form1
         UserDataManager_Panel = New Panel()
         ScriptQueueManager_Panel = New Panel()
         ShowEmojiPicker_Button = New Button()
-        SetWebviewLiteMode_Button = New Button()
-        LiteMode_GroupBox = New GroupBox()
-        SetNormalMode_Button = New Button()
-        SetScriptQueueListViewLiteMode_Button = New Button()
+        MainForm_MenuStrip = New MenuStrip()
+        SetNormalMode_ToolStripMenuItem = New ToolStripMenuItem()
+        SetWebviewMode_ToolStripMenuItem = New ToolStripMenuItem()
+        SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -524,7 +524,7 @@ Partial Class Form1
         Main_WebView2_Panel.SuspendLayout()
         UserDataManager_Panel.SuspendLayout()
         ScriptQueueManager_Panel.SuspendLayout()
-        LiteMode_GroupBox.SuspendLayout()
+        MainForm_MenuStrip.SuspendLayout()
         SuspendLayout()
         ' 
         ' Main_WebView2
@@ -534,7 +534,7 @@ Partial Class Form1
         Main_WebView2.CreationProperties = Nothing
         Main_WebView2.DefaultBackgroundColor = Color.White
         Main_WebView2.ForeColor = Color.Black
-        Main_WebView2.Location = New Point(3, 4)
+        Main_WebView2.Location = New Point(10, 7)
         Main_WebView2.Name = "Main_WebView2"
         Main_WebView2.Size = New Size(672, 541)
         Main_WebView2.TabIndex = 0
@@ -865,7 +865,7 @@ Partial Class Form1
         FBUrlData_TabControl.Controls.Add(FBNotificationsUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBMessengerUrlData_TabPage)
         FBUrlData_TabControl.Controls.Add(FBMediaDownloader_TabPage)
-        FBUrlData_TabControl.Location = New Point(451, 12)
+        FBUrlData_TabControl.Location = New Point(451, 30)
         FBUrlData_TabControl.Name = "FBUrlData_TabControl"
         FBUrlData_TabControl.SelectedIndex = 0
         FBUrlData_TabControl.Size = New Size(701, 383)
@@ -1769,7 +1769,7 @@ Partial Class Form1
         Action_TabControl.Controls.Add(FBPersonalPostAssets_TabPage)
         Action_TabControl.Controls.Add(FBReelsAssets_TabPage)
         Action_TabControl.Controls.Add(DevTool_TabPage)
-        Action_TabControl.Location = New Point(1158, 12)
+        Action_TabControl.Location = New Point(1158, 30)
         Action_TabControl.Name = "Action_TabControl"
         Action_TabControl.SelectedIndex = 0
         Action_TabControl.Size = New Size(672, 499)
@@ -4138,7 +4138,7 @@ Partial Class Form1
         ScriptTask_GroupBox.Controls.Add(Label12)
         ScriptTask_GroupBox.Controls.Add(Label11)
         ScriptTask_GroupBox.Controls.Add(SchedulerTime_Label)
-        ScriptTask_GroupBox.Location = New Point(451, 401)
+        ScriptTask_GroupBox.Location = New Point(451, 423)
         ScriptTask_GroupBox.Name = "ScriptTask_GroupBox"
         ScriptTask_GroupBox.Size = New Size(701, 232)
         ScriptTask_GroupBox.TabIndex = 26
@@ -4630,7 +4630,7 @@ Partial Class Form1
         Main_WebView2_Panel.Controls.Add(Navigate_Url_TextBox)
         Main_WebView2_Panel.Controls.Add(NavigateTo_Url_Button)
         Main_WebView2_Panel.Controls.Add(GetCurrentUrl_Button)
-        Main_WebView2_Panel.Location = New Point(1158, 517)
+        Main_WebView2_Panel.Location = New Point(1158, 531)
         Main_WebView2_Panel.Name = "Main_WebView2_Panel"
         Main_WebView2_Panel.Size = New Size(684, 585)
         Main_WebView2_Panel.TabIndex = 40
@@ -4647,7 +4647,7 @@ Partial Class Form1
         UserDataManager_Panel.Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
         UserDataManager_Panel.Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
         UserDataManager_Panel.Controls.Add(RequestFriend_Button)
-        UserDataManager_Panel.Location = New Point(12, 12)
+        UserDataManager_Panel.Location = New Point(12, 30)
         UserDataManager_Panel.Name = "UserDataManager_Panel"
         UserDataManager_Panel.Size = New Size(433, 621)
         UserDataManager_Panel.TabIndex = 41
@@ -4665,66 +4665,56 @@ Partial Class Form1
         ScriptQueueManager_Panel.Controls.Add(DeleteScriptListviewItemByUserData_Button)
         ScriptQueueManager_Panel.Controls.Add(UnmarkSelectedScriptListviewItem_Button)
         ScriptQueueManager_Panel.Controls.Add(DeleteSelectedScriptListviewItem_Button)
-        ScriptQueueManager_Panel.Location = New Point(12, 641)
+        ScriptQueueManager_Panel.Location = New Point(12, 663)
         ScriptQueueManager_Panel.Name = "ScriptQueueManager_Panel"
         ScriptQueueManager_Panel.Size = New Size(1140, 460)
         ScriptQueueManager_Panel.TabIndex = 42
         ' 
         ' ShowEmojiPicker_Button
         ' 
-        ShowEmojiPicker_Button.Location = New Point(1832, 40)
+        ShowEmojiPicker_Button.Location = New Point(1832, 58)
         ShowEmojiPicker_Button.Name = "ShowEmojiPicker_Button"
         ShowEmojiPicker_Button.Size = New Size(24, 71)
         ShowEmojiPicker_Button.TabIndex = 26
         ShowEmojiPicker_Button.Text = "😀"
         ShowEmojiPicker_Button.UseVisualStyleBackColor = True
         ' 
-        ' SetWebviewLiteMode_Button
+        ' MainForm_MenuStrip
         ' 
-        SetWebviewLiteMode_Button.Location = New Point(6, 138)
-        SetWebviewLiteMode_Button.Name = "SetWebviewLiteMode_Button"
-        SetWebviewLiteMode_Button.Size = New Size(27, 70)
-        SetWebviewLiteMode_Button.TabIndex = 43
-        SetWebviewLiteMode_Button.Text = "網頁"
-        SetWebviewLiteMode_Button.UseVisualStyleBackColor = True
+        MainForm_MenuStrip.ImageScalingSize = New Size(20, 20)
+        MainForm_MenuStrip.Items.AddRange(New ToolStripItem() {SetNormalMode_ToolStripMenuItem, SetWebviewMode_ToolStripMenuItem, SetScriptListViewMode_ToolStripMenuItem})
+        MainForm_MenuStrip.Location = New Point(0, 0)
+        MainForm_MenuStrip.Name = "MainForm_MenuStrip"
+        MainForm_MenuStrip.Size = New Size(1882, 28)
+        MainForm_MenuStrip.Stretch = False
+        MainForm_MenuStrip.TabIndex = 45
+        MainForm_MenuStrip.Text = "LliteMode_MenuStrip"
         ' 
-        ' LiteMode_GroupBox
+        ' SetNormalMode_ToolStripMenuItem
         ' 
-        LiteMode_GroupBox.Controls.Add(SetNormalMode_Button)
-        LiteMode_GroupBox.Controls.Add(SetScriptQueueListViewLiteMode_Button)
-        LiteMode_GroupBox.Controls.Add(SetWebviewLiteMode_Button)
-        LiteMode_GroupBox.Location = New Point(1832, 221)
-        LiteMode_GroupBox.Name = "LiteMode_GroupBox"
-        LiteMode_GroupBox.Size = New Size(40, 290)
-        LiteMode_GroupBox.TabIndex = 44
-        LiteMode_GroupBox.TabStop = False
-        LiteMode_GroupBox.Text = "模式"
+        SetNormalMode_ToolStripMenuItem.Enabled = False
+        SetNormalMode_ToolStripMenuItem.Name = "SetNormalMode_ToolStripMenuItem"
+        SetNormalMode_ToolStripMenuItem.Size = New Size(83, 24)
+        SetNormalMode_ToolStripMenuItem.Text = "一般模式"
         ' 
-        ' SetNormalMode_Button
+        ' SetWebviewMode_ToolStripMenuItem
         ' 
-        SetNormalMode_Button.Enabled = False
-        SetNormalMode_Button.Location = New Point(6, 62)
-        SetNormalMode_Button.Name = "SetNormalMode_Button"
-        SetNormalMode_Button.Size = New Size(27, 70)
-        SetNormalMode_Button.TabIndex = 44
-        SetNormalMode_Button.Text = "一般"
-        SetNormalMode_Button.UseVisualStyleBackColor = True
+        SetWebviewMode_ToolStripMenuItem.Name = "SetWebviewMode_ToolStripMenuItem"
+        SetWebviewMode_ToolStripMenuItem.Size = New Size(83, 24)
+        SetWebviewMode_ToolStripMenuItem.Text = "網頁模式"
         ' 
-        ' SetScriptQueueListViewLiteMode_Button
+        ' SetScriptListViewMode_ToolStripMenuItem
         ' 
-        SetScriptQueueListViewLiteMode_Button.Location = New Point(6, 214)
-        SetScriptQueueListViewLiteMode_Button.Name = "SetScriptQueueListViewLiteMode_Button"
-        SetScriptQueueListViewLiteMode_Button.Size = New Size(27, 70)
-        SetScriptQueueListViewLiteMode_Button.TabIndex = 25
-        SetScriptQueueListViewLiteMode_Button.Text = "腳本"
-        SetScriptQueueListViewLiteMode_Button.UseVisualStyleBackColor = True
+        SetScriptListViewMode_ToolStripMenuItem.Name = "SetScriptListViewMode_ToolStripMenuItem"
+        SetScriptListViewMode_ToolStripMenuItem.Size = New Size(83, 24)
+        SetScriptListViewMode_ToolStripMenuItem.Text = "腳本模式"
         ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1882, 1113)
-        Controls.Add(LiteMode_GroupBox)
+        AutoScroll = True
+        ClientSize = New Size(1882, 1133)
         Controls.Add(ShowEmojiPicker_Button)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueueManager_Panel)
@@ -4732,7 +4722,9 @@ Partial Class Form1
         Controls.Add(Main_WebView2_Panel)
         Controls.Add(ScriptTask_GroupBox)
         Controls.Add(FBUrlData_TabControl)
-        MaximumSize = New Size(1920, 1160)
+        Controls.Add(MainForm_MenuStrip)
+        MainMenuStrip = MainForm_MenuStrip
+        MaximumSize = New Size(1920, 1180)
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
@@ -4824,8 +4816,10 @@ Partial Class Form1
         UserDataManager_Panel.ResumeLayout(False)
         UserDataManager_Panel.PerformLayout()
         ScriptQueueManager_Panel.ResumeLayout(False)
-        LiteMode_GroupBox.ResumeLayout(False)
+        MainForm_MenuStrip.ResumeLayout(False)
+        MainForm_MenuStrip.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents Main_WebView2 As Microsoft.Web.WebView2.WinForms.WebView2
@@ -5259,9 +5253,9 @@ Partial Class Form1
     Friend WithEvents UserDataManager_Panel As Panel
     Friend WithEvents ScriptQueueManager_Panel As Panel
     Friend WithEvents ShowEmojiPicker_Button As Button
-    Friend WithEvents SetWebviewLiteMode_Button As Button
-    Friend WithEvents LiteMode_GroupBox As GroupBox
-    Friend WithEvents SetScriptQueueListViewLiteMode_Button As Button
-    Friend WithEvents SetNormalMode_Button As Button
+    Friend WithEvents MainForm_MenuStrip As MenuStrip
+    Friend WithEvents SetNormalMode_ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetWebviewMode_ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetScriptListViewMode_ToolStripMenuItem As ToolStripMenuItem
 
 End Class

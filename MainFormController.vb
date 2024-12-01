@@ -432,17 +432,13 @@ Module MainFormController
 
         If mode = "normal" Then
             ' 設定回原來大小
-            Form1.Size = New Size(1900, 1160)
+            Form1.Size = New Size(1900, 1180)
 
             ' 把webivew搬回原來位子然後
-            Form1.Main_WebView2_Panel.Location = New Point(1158, 517)
+            Form1.Main_WebView2_Panel.Location = New Point(1158, 531)
 
             ' 把script listview 搬回原來位子
-            Form1.ScriptQueueManager_Panel.Location = New Point(12, 641)
-
-
-            ' 把設定模式的GroupBox搬回原來位子
-            Form1.LiteMode_GroupBox.Location = New Point(1832, 221)
+            Form1.ScriptQueueManager_Panel.Location = New Point(12, 663)
 
 
             ' 顯示所有元件
@@ -455,41 +451,35 @@ Module MainFormController
             Form1.Main_WebView2_Panel.Visible = True
 
 
-            ' 按鈕防呆
-            Form1.SetNormalMode_Button.Enabled = False
-            Form1.SetWebviewLiteMode_Button.Enabled = True
-            Form1.SetScriptQueueListViewLiteMode_Button.Enabled = True
+            ' Menu防呆
+            Form1.SetNormalMode_ToolStripMenuItem.Enabled = False
+            Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
+            Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
+
+
 
         ElseIf mode = "webview" Then
             ' 把webview搬到左上角然後顯示出來
-            Form1.Main_WebView2_Panel.Location = New Point(10, 10)
-            Form1.Size = New Size(760, 650)
+            Form1.Main_WebView2_Panel.Location = New Point(10, 25)
+            Form1.Size = New Size(725, 670)
             Form1.Main_WebView2_Panel.Visible = True
 
-            ' 把控制模式的GroupBox搬到旁邊
-            Form1.LiteMode_GroupBox.Location = New Point(690, 10)
-
-            ' 按鈕防呆
-            Form1.SetWebviewLiteMode_Button.Enabled = False
-            Form1.SetScriptQueueListViewLiteMode_Button.Enabled = True
-            Form1.SetNormalMode_Button.Enabled = True
+            ' Menu防呆
+            Form1.SetNormalMode_ToolStripMenuItem.Enabled = True
+            Form1.SetWebviewMode_ToolStripMenuItem.Enabled = False
+            Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
 
         ElseIf mode = "script_queue_listview" Then
 
             ' 把script listview搬到左上角
-            Form1.ScriptQueueManager_Panel.Location = New Point(10, 10)
-            Form1.Size = New Size(1215, 520)
+            Form1.ScriptQueueManager_Panel.Location = New Point(10, 25)
+            Form1.Size = New Size(1180, 540)
             Form1.ScriptQueueManager_Panel.Visible = True
 
-            ' 把控制模式的GroupBox搬到旁邊
-            Form1.LiteMode_GroupBox.Location = New Point(1150, 10)
-
-
-
-            ' 按鈕防呆
-            Form1.SetScriptQueueListViewLiteMode_Button.Enabled = False
-            Form1.SetWebviewLiteMode_Button.Enabled = True
-            Form1.SetNormalMode_Button.Enabled = True
+            ' Menu防呆
+            Form1.SetNormalMode_ToolStripMenuItem.Enabled = True
+            Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
+            Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = False
 
         End If
 
