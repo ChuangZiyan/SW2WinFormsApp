@@ -4693,7 +4693,6 @@ Partial Class Form1
         ' 
         ' SetNormalMode_ToolStripMenuItem
         ' 
-        SetNormalMode_ToolStripMenuItem.Enabled = False
         SetNormalMode_ToolStripMenuItem.Name = "SetNormalMode_ToolStripMenuItem"
         SetNormalMode_ToolStripMenuItem.Size = New Size(83, 24)
         SetNormalMode_ToolStripMenuItem.Text = "一般模式"
