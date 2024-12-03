@@ -532,8 +532,8 @@ Module MainFormController
             Dim offset = 80
             Dim liteModeComponents As New LiteModeComponents() With {
                 .NormalModeSize = New LiteModeComponentSize With {
-                    .Width = Form1.Width,
-                    .Height = Form1.Height,
+                    .Width = 1900,
+                    .Height = 1180,
                     .PositionX = 0,
                     .PositionY = 0
                 },
@@ -544,8 +544,8 @@ Module MainFormController
                     .PositionY = 9999
                 },
                 .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
-                    .Width = 1900,
-                    .Height = 1180,
+                    .Width = Form1.ScriptQueueManager_Panel.Width + offset,
+                    .Height = Form1.ScriptQueueManager_Panel.Height + offset,
                     .PositionX = 0,
                     .PositionY = 9999
                 }
