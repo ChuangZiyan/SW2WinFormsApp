@@ -498,8 +498,6 @@ Module MainFormController
         End Try
 
 
-
-
     End Sub
 
 
@@ -512,31 +510,7 @@ Module MainFormController
 
             If Not File.Exists(filePath) Then
                 ' 檔案不存在就寫入一個預設的
-                Dim liteModeComponents As New LiteModeComponents() With {
-                    .NormalModeSize = New LiteModeComponentSize With {
-                         .Width = 1900,
-                        .Height = 1180,
-                        .PositionX = 0,
-                        .PositionY = 0
-                    },
-                    .WebviewLiteModeSize = New LiteModeComponentSize With {
-                       .Width = 725,
-                        .Height = 670,
-                        .PositionX = 1156,
-                        .PositionY = 521
-                    },
-                    .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
-                        .Width = 1180,
-                        .Height = 540,
-                        .PositionX = 0,
-                        .PositionY = 651
-                    }
-                }
-
-                Dim jsonString As String = JsonConvert.SerializeObject(liteModeComponents, Formatting.Indented)
-                ' 將 JSON 字串寫入檔案
-                File.WriteAllText(filePath, jsonString)
-
+                WriteDefaultLiteModeComponentsJson()
 
             End If
 
@@ -550,18 +524,47 @@ Module MainFormController
     End Function
 
 
+    Public Sub WriteDefaultLiteModeComponentsJson()
+
+        Try
+            Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
+            Dim offset = 80
+            Dim liteModeComponents As New LiteModeComponents() With {
+                .NormalModeSize = New LiteModeComponentSize With {
+                    .Width = Form1.Width,
+                    .Height = Form1.Height,
+                    .PositionX = 0,
+                    .PositionY = 0
+                },
+                .WebviewLiteModeSize = New LiteModeComponentSize With {
+                    .Width = Form1.Main_WebView2_Panel.Width + offset,
+                    .Height = Form1.Main_WebView2_Panel.Height + offset,
+                    .PositionX = 9999,
+                    .PositionY = 9999
+                },
+                .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
+                    .Width = Form1.ScriptQueueManager_Panel.Width + offset,
+                    .Height = Form1.ScriptQueueManager_Panel.Height + offset,
+                    .PositionX = 0,
+                    .PositionY = 9999
+                }
+            }
+
+            Dim jsonString As String = JsonConvert.SerializeObject(liteModeComponents, Formatting.Indented)
+            ' 將 JSON 字串寫入檔案
+            File.WriteAllText(filePath, jsonString)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
     Private Sub SetForm1ScrollPosition(x As Integer, y As Integer)
         ' 設定卷軸位置
-        Debug.WriteLine($"set pos {x},{y} ")
         Form1.AutoScrollPosition = New Point(x, y)
     End Sub
-
-    Public Sub GetScrollPosition()
-        Dim scrollPos As Point = Form1.AutoScrollPosition
-
-        Debug.WriteLine($"目前卷軸位置：X = {scrollPos.X}, Y = {scrollPos.Y}", "卷軸位置")
-    End Sub
-
 
     Public Class LiteModeComponents
         Public Property NormalModeSize As LiteModeComponentSize

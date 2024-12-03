@@ -39,6 +39,7 @@ Module AppInitModule
     Public ReadOnly appVersion As String = currentDate.ToString("yyyyMMdd.") & versionNumber
 
 
+
     ' auto save script csv file path 
     ' Public ReadOnly AutoSaveScriptCSVFilePath As String = Path.Combine()
 
