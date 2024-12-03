@@ -544,8 +544,8 @@ Module MainFormController
                     .PositionY = 9999
                 },
                 .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
-                    .Width = Form1.ScriptQueueManager_Panel.Width + offset,
-                    .Height = Form1.ScriptQueueManager_Panel.Height + offset,
+                    .Width = 1900,
+                    .Height = 1180,
                     .PositionX = 0,
                     .PositionY = 9999
                 }
