@@ -4686,7 +4686,7 @@ Partial Class Form1
         MainForm_MenuStrip.Items.AddRange(New ToolStripItem() {SetNormalMode_ToolStripMenuItem, SetWebviewMode_ToolStripMenuItem, SetScriptListViewMode_ToolStripMenuItem, LiteModeComponentSizeConfigs_ToolStripMenuItem})
         MainForm_MenuStrip.Location = New Point(0, 0)
         MainForm_MenuStrip.Name = "MainForm_MenuStrip"
-        MainForm_MenuStrip.Size = New Size(1882, 28)
+        MainForm_MenuStrip.Size = New Size(1882, 27)
         MainForm_MenuStrip.Stretch = False
         MainForm_MenuStrip.TabIndex = 45
         MainForm_MenuStrip.Text = "LliteMode_MenuStrip"
@@ -4694,25 +4694,25 @@ Partial Class Form1
         ' SetNormalMode_ToolStripMenuItem
         ' 
         SetNormalMode_ToolStripMenuItem.Name = "SetNormalMode_ToolStripMenuItem"
-        SetNormalMode_ToolStripMenuItem.Size = New Size(83, 24)
+        SetNormalMode_ToolStripMenuItem.Size = New Size(83, 23)
         SetNormalMode_ToolStripMenuItem.Text = "一般模式"
         ' 
         ' SetWebviewMode_ToolStripMenuItem
         ' 
         SetWebviewMode_ToolStripMenuItem.Name = "SetWebviewMode_ToolStripMenuItem"
-        SetWebviewMode_ToolStripMenuItem.Size = New Size(83, 24)
+        SetWebviewMode_ToolStripMenuItem.Size = New Size(83, 23)
         SetWebviewMode_ToolStripMenuItem.Text = "網頁模式"
         ' 
         ' SetScriptListViewMode_ToolStripMenuItem
         ' 
         SetScriptListViewMode_ToolStripMenuItem.Name = "SetScriptListViewMode_ToolStripMenuItem"
-        SetScriptListViewMode_ToolStripMenuItem.Size = New Size(83, 24)
+        SetScriptListViewMode_ToolStripMenuItem.Size = New Size(83, 23)
         SetScriptListViewMode_ToolStripMenuItem.Text = "腳本模式"
         ' 
         ' LiteModeComponentSizeConfigs_ToolStripMenuItem
         ' 
         LiteModeComponentSizeConfigs_ToolStripMenuItem.Name = "LiteModeComponentSizeConfigs_ToolStripMenuItem"
-        LiteModeComponentSizeConfigs_ToolStripMenuItem.Size = New Size(83, 24)
+        LiteModeComponentSizeConfigs_ToolStripMenuItem.Size = New Size(83, 23)
         LiteModeComponentSizeConfigs_ToolStripMenuItem.Text = "視窗設定"
         ' 
         ' Form1

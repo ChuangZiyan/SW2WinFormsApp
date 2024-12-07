@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.IO.Pipes
 Imports System.Net.Http
 Imports System.Net.NetworkInformation
 Imports System.Text.RegularExpressions
@@ -160,6 +161,100 @@ Module UtilsModule
         End Try
 
     End Function
+
+
+    Public Sub StartPipeServer_bk(pipeName As String)
+        Task.Run(Async Function()
+                     Debug.WriteLine($"pipe {pipeName} waiting...")
+                     While True
+                         Using pipeServer As New NamedPipeServerStream(pipeName, PipeDirection.In, NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Message, PipeOptions.Asynchronous)
+                             Try
+                                 Await pipeServer.WaitForConnectionAsync()
+                                 Debug.WriteLine("mgr pipe connected")
+                                 ' 讀取指令了
+                                 Using reader As New StreamReader(pipeServer)
+                                     While Not reader.EndOfStream
+                                         Dim command As String = Await reader.ReadLineAsync()
+                                         If Not String.IsNullOrWhiteSpace(command) Then
+                                             Debug.WriteLine("cmd received: " & command)
+                                             ' 這邊處理收到的指令...
+                                             Select Case command
+                                                 Case "test"
+                                                     MsgBox("test")
+
+                                                 Case "setOpacity"
+                                                     Debug.WriteLine("setop")
+                                                     Form1.Opacity = 0.5
+                                                 Case "setFocus"
+                                                     Form1.Focus()
+                                                 Case "setLiteModeNormal"
+                                                     MainFormController.SetLiteMode("normal")
+                                                 Case "setLiteModeWebview"
+                                                     Debug.WriteLine("set lie")
+                                                     MainFormController.SetLiteMode("webview")
+                                                 Case "setLiteModeScriptListView"
+                                                     MainFormController.SetLiteMode("script_queue_listview")
+                                             End Select
+
+                                         End If
+                                     End While
+                                 End Using
+                             Catch ex As Exception
+                                 ' 這邊就是搞砸了，要做錯誤處理
+                                 Debug.WriteLine("handle pipe error " & ex.Message)
+                             End Try
+                         End Using
+                     End While
+                 End Function)
+    End Sub
+
+
+
+    Public Sub StartPipeServer(pipeName As String, targetForm As Form)
+        Task.Run(Async Function()
+                     Debug.WriteLine($"pipe {pipeName} waiting...")
+                     While True
+                         Using pipeServer As New NamedPipeServerStream(pipeName, PipeDirection.In, NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Message, PipeOptions.Asynchronous)
+                             Try
+                                 Await pipeServer.WaitForConnectionAsync()
+                                 Debug.WriteLine("mgr pipe connected")
+
+                                 Using reader As New StreamReader(pipeServer)
+                                     While Not reader.EndOfStream
+                                         Dim command As String = Await reader.ReadLineAsync()
+                                         If Not String.IsNullOrWhiteSpace(command) Then
+                                             Debug.WriteLine("cmd received: " & command)
+
+                                             targetForm.Invoke(Sub()
+                                                                   Select Case True
+                                                                       Case command = "test"
+                                                                           MsgBox("test")
+
+                                                                       Case command.Contains("setOpacity")
+                                                                           Dim OpacifyVal As Double = Convert.ToDouble(Split(command, ":")(1))
+                                                                           Debug.WriteLine(OpacifyVal)
+                                                                           Form1.Opacity = OpacifyVal
+                                                                       Case command = "setFocus"
+                                                                           Form1.Focus()
+                                                                       Case command = "setLiteModeNormal"
+                                                                           MainFormController.SetLiteMode("normal")
+                                                                       Case command = "setLiteModeWebview"
+                                                                           MainFormController.SetLiteMode("webview")
+                                                                       Case command = "setLiteModeScriptListView"
+                                                                           MainFormController.SetLiteMode("script_queue_listview")
+                                                                   End Select
+                                                               End Sub)
+                                         End If
+                                     End While
+                                 End Using
+                             Catch ex As Exception
+                                 Debug.WriteLine("handle pipe error " & ex.Message)
+                             End Try
+                         End Using
+                     End While
+                 End Function)
+    End Sub
+
 
 
 End Module

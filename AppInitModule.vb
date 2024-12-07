@@ -37,6 +37,8 @@ Module AppInitModule
     Public ReadOnly versionNumber As String = "v1.008"
     ReadOnly currentDate As DateTime = DateTime.Today
     Public ReadOnly appVersion As String = currentDate.ToString("yyyyMMdd.") & versionNumber
+    Public ReadOnly appUUID As String = Guid.NewGuid().ToString()
+
 
 
     ' auto save script csv file path 
@@ -63,6 +65,9 @@ Module AppInitModule
         FBStoryEventHandlers.UpdateAssetsFolderListBox()
         FBPersonalPostEventHandlers.UpdateAssetsFolderListBox()
         FBReelsEventHandlers.UpdateAssetsFolderListBox()
+
+
+        UtilsModule.StartPipeServer(appUUID, Form1)
 
     End Sub
 
@@ -104,8 +109,9 @@ Module AppInitModule
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
             'If Not File.Exists(filePath) Then
             Dim webview2AppProfile As New Webview2AppProfile() With {
-                    .Version = "20241126.v1.08",
-                    .BuildDate = "2024-11-26"
+                    .Version = "20241207.v1.10",
+                    .BuildDate = "2024-12-07",
+                    .UUID = appUUID
                 }
             Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
                 ' 指定檔案路徑
@@ -184,6 +190,7 @@ Module AppInitModule
     Public Class Webview2AppProfile
         Public Property Version As String
         Public Property BuildDate As String
+        Public Property UUID As String
 
     End Class
 

@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.IO.Pipes
 Imports System.Net
 Imports Newtonsoft.Json.Linq
 Imports OpenQA.Selenium
@@ -1262,6 +1263,5 @@ Public Class Form1
         End Try
 
     End Sub
-
 
 End Class

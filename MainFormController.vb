@@ -424,6 +424,8 @@ Module MainFormController
 
     Public Sub SetLiteMode(mode As String)
         Try
+            Debug.WriteLine($"set LiteMode {mode}")
+
             Dim LiteModeComponentsSize As LiteModeComponents = ReadLiteModeComponentsJson()
 
             ' 隱藏所有元件
