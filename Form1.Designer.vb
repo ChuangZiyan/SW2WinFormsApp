@@ -458,6 +458,7 @@ Partial Class Form1
         SetWebviewMode_ToolStripMenuItem = New ToolStripMenuItem()
         SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
         LiteModeComponentSizeConfigs_ToolStripMenuItem = New ToolStripMenuItem()
+        RestoreLiteModeConfigsToDefault_ToolStripMenuItem = New ToolStripMenuItem()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -4683,7 +4684,7 @@ Partial Class Form1
         ' MainForm_MenuStrip
         ' 
         MainForm_MenuStrip.ImageScalingSize = New Size(20, 20)
-        MainForm_MenuStrip.Items.AddRange(New ToolStripItem() {SetNormalMode_ToolStripMenuItem, SetWebviewMode_ToolStripMenuItem, SetScriptListViewMode_ToolStripMenuItem, LiteModeComponentSizeConfigs_ToolStripMenuItem})
+        MainForm_MenuStrip.Items.AddRange(New ToolStripItem() {SetNormalMode_ToolStripMenuItem, SetWebviewMode_ToolStripMenuItem, SetScriptListViewMode_ToolStripMenuItem, LiteModeComponentSizeConfigs_ToolStripMenuItem, RestoreLiteModeConfigsToDefault_ToolStripMenuItem})
         MainForm_MenuStrip.Location = New Point(0, 0)
         MainForm_MenuStrip.Name = "MainForm_MenuStrip"
         MainForm_MenuStrip.Size = New Size(1882, 27)
@@ -4714,6 +4715,12 @@ Partial Class Form1
         LiteModeComponentSizeConfigs_ToolStripMenuItem.Name = "LiteModeComponentSizeConfigs_ToolStripMenuItem"
         LiteModeComponentSizeConfigs_ToolStripMenuItem.Size = New Size(83, 23)
         LiteModeComponentSizeConfigs_ToolStripMenuItem.Text = "視窗設定"
+        ' 
+        ' RestoreLiteModeConfigsToDefault_ToolStripMenuItem
+        ' 
+        RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Name = "RestoreLiteModeConfigsToDefault_ToolStripMenuItem"
+        RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Size = New Size(83, 24)
+        RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Text = "設為預設"
         ' 
         ' Form1
         ' 
@@ -5264,5 +5271,6 @@ Partial Class Form1
     Friend WithEvents SetWebviewMode_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetScriptListViewMode_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiteModeComponentSizeConfigs_ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RestoreLiteModeConfigsToDefault_ToolStripMenuItem As ToolStripMenuItem
 
 End Class

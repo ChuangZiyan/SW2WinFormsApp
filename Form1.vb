@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-Imports System.IO.Pipes
 Imports System.Net
 Imports Newtonsoft.Json.Linq
 Imports OpenQA.Selenium
@@ -1264,4 +1263,7 @@ Public Class Form1
 
     End Sub
 
+    Private Sub RestoreLiteModeConfigsToDefault_ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Click
+        MainFormController.WriteDefaultLiteModeComponentsJson()
+    End Sub
 End Class

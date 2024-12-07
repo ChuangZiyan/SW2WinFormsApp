@@ -429,33 +429,34 @@ Module MainFormController
             Dim LiteModeComponentsSize As LiteModeComponents = ReadLiteModeComponentsJson()
 
             ' 隱藏所有元件
-            Form1.UserDataManager_Panel.Visible = False
-            Form1.FBUrlData_TabControl.Visible = False
-            Form1.ScriptTask_GroupBox.Visible = False
-            Form1.ScriptQueueManager_Panel.Visible = False
-            Form1.Action_TabControl.Visible = False
-            Form1.ShowEmojiPicker_Button.Visible = False
-            Form1.Main_WebView2_Panel.Visible = False
+            'Form1.UserDataManager_Panel.Visible = False
+            'Form1.FBUrlData_TabControl.Visible = False
+            'Form1.ScriptTask_GroupBox.Visible = False
+            'Form1.ScriptQueueManager_Panel.Visible = False
+            'Form1.Action_TabControl.Visible = False
+            'Form1.ShowEmojiPicker_Button.Visible = False
+            'Form1.Main_WebView2_Panel.Visible = False
 
             If mode = "normal" Then
                 ' 設定回原來大小
                 Form1.Size = New Size(LiteModeComponentsSize.NormalModeSize.Width, LiteModeComponentsSize.NormalModeSize.Height)
+                SetForm1ScrollPosition(LiteModeComponentsSize.NormalModeSize.PositionX, LiteModeComponentsSize.NormalModeSize.PositionY)
 
                 ' 把webivew搬回原來位子然後
-                Form1.Main_WebView2_Panel.Location = New Point(1158, 531)
+                'Form1.Main_WebView2_Panel.Location = New Point(1158, 531)
 
                 ' 把script listview 搬回原來位子
-                Form1.ScriptQueueManager_Panel.Location = New Point(12, 663)
+                'Form1.ScriptQueueManager_Panel.Location = New Point(12, 663)
 
 
                 ' 顯示所有元件
-                Form1.UserDataManager_Panel.Visible = True
-                Form1.FBUrlData_TabControl.Visible = True
-                Form1.ScriptTask_GroupBox.Visible = True
-                Form1.ScriptQueueManager_Panel.Visible = True
-                Form1.Action_TabControl.Visible = True
-                Form1.ShowEmojiPicker_Button.Visible = True
-                Form1.Main_WebView2_Panel.Visible = True
+                'Form1.UserDataManager_Panel.Visible = True
+                'Form1.FBUrlData_TabControl.Visible = True
+                'Form1.ScriptTask_GroupBox.Visible = True
+                'Form1.ScriptQueueManager_Panel.Visible = True
+                'Form1.Action_TabControl.Visible = True
+                'Form1.ShowEmojiPicker_Button.Visible = True
+                'Form1.Main_WebView2_Panel.Visible = True
 
 
                 ' Menu防呆
@@ -463,14 +464,13 @@ Module MainFormController
                 'Form1.SetWebviewMode_ToolStripMenuItem.Enabled = True
                 'Form1.SetScriptListViewMode_ToolStripMenuItem.Enabled = True
 
-
-
             ElseIf mode = "webview" Then
                 ' 把webview搬到左上角然後顯示出來
-                Form1.Main_WebView2_Panel.Location = New Point(10, 25)
+                'Form1.Main_WebView2_Panel.Location = New Point(10, 25)
                 'Form1.Size = New Size(725, 670)
                 Form1.Size = New Size(LiteModeComponentsSize.WebviewLiteModeSize.Width, LiteModeComponentsSize.WebviewLiteModeSize.Height)
-                Form1.Main_WebView2_Panel.Visible = True
+                SetForm1ScrollPosition(LiteModeComponentsSize.WebviewLiteModeSize.PositionX, LiteModeComponentsSize.WebviewLiteModeSize.PositionY)
+                'Form1.Main_WebView2_Panel.Visible = True
 
                 ' Menu防呆
                 'Form1.SetNormalMode_ToolStripMenuItem.Enabled = True 
@@ -480,10 +480,11 @@ Module MainFormController
             ElseIf mode = "script_queue_listview" Then
 
                 ' 把script listview搬到左上角
-                Form1.ScriptQueueManager_Panel.Location = New Point(10, 25)
+                'Form1.ScriptQueueManager_Panel.Location = New Point(10, 25)
                 'Form1.Size = New Size(1180, 540)
                 Form1.Size = New Size(LiteModeComponentsSize.ScriptListViewLiteModeSize.Width, LiteModeComponentsSize.ScriptListViewLiteModeSize.Height)
-                Form1.ScriptQueueManager_Panel.Visible = True
+                SetForm1ScrollPosition(LiteModeComponentsSize.ScriptListViewLiteModeSize.PositionX, LiteModeComponentsSize.ScriptListViewLiteModeSize.PositionY)
+                'Form1.ScriptQueueManager_Panel.Visible = True
 
                 ' Menu防呆
                 'Form1.SetNormalMode_ToolStripMenuItem.Enabled = True
@@ -499,8 +500,6 @@ Module MainFormController
         End Try
 
 
-
-
     End Sub
 
 
@@ -513,25 +512,7 @@ Module MainFormController
 
             If Not File.Exists(filePath) Then
                 ' 檔案不存在就寫入一個預設的
-                Dim liteModeComponents As New LiteModeComponents() With {
-                    .NormalModeSize = New LiteModeComponentSize With {
-                         .Width = 1180,
-                        .Height = 1900
-                    },
-                    .WebviewLiteModeSize = New LiteModeComponentSize With {
-                       .Width = 725,
-                        .Height = 670
-                    },
-                    .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
-                        .Width = 1180,
-                        .Height = 540
-                    }
-                }
-
-                Dim jsonString As String = JsonConvert.SerializeObject(liteModeComponents, Formatting.Indented)
-                ' 將 JSON 字串寫入檔案
-                File.WriteAllText(filePath, jsonString)
-
+                WriteDefaultLiteModeComponentsJson()
 
             End If
 
@@ -545,6 +526,47 @@ Module MainFormController
     End Function
 
 
+    Public Sub WriteDefaultLiteModeComponentsJson()
+
+        Try
+            Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
+            Dim offset = 80
+            Dim liteModeComponents As New LiteModeComponents() With {
+                .NormalModeSize = New LiteModeComponentSize With {
+                    .Width = 1900,
+                    .Height = 1180,
+                    .PositionX = 0,
+                    .PositionY = 0
+                },
+                .WebviewLiteModeSize = New LiteModeComponentSize With {
+                    .Width = Form1.Main_WebView2_Panel.Width + offset,
+                    .Height = Form1.Main_WebView2_Panel.Height + offset,
+                    .PositionX = 9999,
+                    .PositionY = 9999
+                },
+                .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
+                    .Width = Form1.ScriptQueueManager_Panel.Width + offset,
+                    .Height = Form1.ScriptQueueManager_Panel.Height + offset,
+                    .PositionX = 0,
+                    .PositionY = 9999
+                }
+            }
+
+            Dim jsonString As String = JsonConvert.SerializeObject(liteModeComponents, Formatting.Indented)
+            ' 將 JSON 字串寫入檔案
+            File.WriteAllText(filePath, jsonString)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
+    Private Sub SetForm1ScrollPosition(x As Integer, y As Integer)
+        ' 設定卷軸位置
+        Form1.AutoScrollPosition = New Point(x, y)
+    End Sub
 
     Public Class LiteModeComponents
         Public Property NormalModeSize As LiteModeComponentSize
@@ -557,6 +579,9 @@ Module MainFormController
 
         Public Property Width As Integer
         Public Property Height As Integer
+
+        Public Property PositionX As Integer
+        Public Property PositionY As Integer
 
     End Class
 
