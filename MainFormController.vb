@@ -264,9 +264,17 @@ Module MainFormController
                 Next
                 Dim line As String = String.Join("&nbsp;", subItemTexts)
                 'Dim line As String = String.Join("&nbsp;", item.SubItems.Cast(Of ListViewItem.ListViewSubItem).Select(Function(subItem) subItem.Text))
+                line = line.Replace(vbCr, "").Replace(vbLf, "")
                 writer.WriteLine(line)
             Next
         End Using
+
+        For Each item As ListViewItem In Form1.ScriptQueue_ListView.Items
+            If item.SubItems(12).Text = "略過" Then
+                item.ForeColor = Color.LightGray
+            End If
+        Next
+
     End Sub
 
     Public Sub LoadFileToScriptListview()
