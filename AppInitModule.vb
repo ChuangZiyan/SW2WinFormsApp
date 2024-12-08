@@ -68,7 +68,7 @@ Module AppInitModule
         FBReelsEventHandlers.UpdateAssetsFolderListBox()
 
 
-        UtilsModule.StartPipeServer(appUUID, Form1)
+        PipeServerModule.StartPipeServer(appUUID, Form1)
 
     End Sub
 
