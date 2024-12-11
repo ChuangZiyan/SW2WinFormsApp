@@ -48,14 +48,21 @@ Module PipeServerModule
                 Dim OpacifyVal As Double = Convert.ToDouble(Split(cmd, ":")(1))
                 Debug.WriteLine(OpacifyVal)
                 Form1.Opacity = OpacifyVal
-            Case cmd = "setFocus"
-                Form1.Focus()
+            Case cmd = "setForegroundWindow"
+                Debug.WriteLine("#setForegroundWindow")
+                UtilsModule.SetForegroundWindow(Form1.Handle)
             Case cmd = "setLiteModeNormal"
                 MainFormController.SetLiteMode("normal")
             Case cmd = "setLiteModeWebview"
                 MainFormController.SetLiteMode("webview")
             Case cmd = "setLiteModeScriptListView"
                 MainFormController.SetLiteMode("script_queue_listview")
+            Case cmd = "enableAutoScroll"
+                Debug.WriteLine("#enableAutoScroll")
+                Form1.AutoScroll = True
+            Case cmd = "disableAutoScroll"
+                Debug.WriteLine("#disableAutoScroll")
+                Form1.AutoScroll = False
         End Select
     End Sub
 

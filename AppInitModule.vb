@@ -32,7 +32,6 @@ Module AppInitModule
     Public ReadOnly DownloadedVideosResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "videos")
 
 
-
     ' app configs
     Public ReadOnly versionNumber As String = "v1.008"
     ReadOnly currentDate As DateTime = DateTime.Today
@@ -110,14 +109,14 @@ Module AppInitModule
             Dim filePath As String = Path.Combine(AppInitModule.appConfigsDirectory, "profile.json")
             'If Not File.Exists(filePath) Then
             Dim webview2AppProfile As New Webview2AppProfile() With {
-                    .Version = "20241207.v1.10",
-                    .BuildDate = "2024-12-07",
+                    .Version = "20241211.v1.11",
+                    .BuildDate = "2024-12-11",
                     .UUID = appUUID
                 }
             Dim jsonString As String = JsonConvert.SerializeObject(webview2AppProfile, Formatting.Indented)
-                ' 指定檔案路徑
-                ' 將 JSON 字串寫入檔案
-                File.WriteAllText(filePath, jsonString)
+            ' 指定檔案路徑
+            ' 將 JSON 字串寫入檔案
+            File.WriteAllText(filePath, jsonString)
             'End If
 
 

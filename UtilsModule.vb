@@ -2,6 +2,7 @@
 Imports System.IO.Pipes
 Imports System.Net.Http
 Imports System.Net.NetworkInformation
+Imports System.Runtime.InteropServices
 Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar
 Imports OpenQA.Selenium
@@ -163,4 +164,14 @@ Module UtilsModule
     End Function
 
 
+    ' 匯入 SetForegroundWindow 函數
+    <DllImport("user32.dll", SetLastError:=True)>
+    Public Function SetForegroundWindow(hWnd As IntPtr) As Boolean
+    End Function
+
+    <DllImport("user32.dll", SetLastError:=True)>
+    Public Function BringWindowToTop(hWnd As IntPtr) As Boolean
+    End Function
+
 End Module
+
