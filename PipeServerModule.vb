@@ -64,12 +64,6 @@ Module PipeServerModule
                     MainFormController.SetLiteMode("webview")
                 Case cmd = "setLiteModeScriptListView"
                     MainFormController.SetLiteMode("script_queue_listview")
-                Case cmd = "enableAutoScroll"
-                    Debug.WriteLine("#enableAutoScroll")
-                    Form1.AutoScroll = True
-                Case cmd = "disableAutoScroll"
-                    Debug.WriteLine("#disableAutoScroll")
-                    Form1.AutoScroll = False
             End Select
         Catch ex As Exception
             Debug.WriteLine("Pipe command parse failed")
