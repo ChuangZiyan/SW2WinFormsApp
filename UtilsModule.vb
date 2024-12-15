@@ -164,6 +164,20 @@ Module UtilsModule
     End Function
 
 
+
+    Public Function GetMonitorScale()
+        Using g As Graphics = Graphics.FromHwnd(IntPtr.Zero)
+            Dim dpiX As Single = g.DpiX
+            Dim dpiY As Single = g.DpiY
+
+            Dim scaleX As Double = dpiX / 96.0 * 100
+            Dim scaleY As Double = dpiY / 96.0 * 100
+
+            Return scaleX
+        End Using
+    End Function
+
+
     ' 匯入 SetForegroundWindow 函數
     <DllImport("user32.dll", SetLastError:=True)>
     Public Function SetForegroundWindow(hWnd As IntPtr) As Boolean

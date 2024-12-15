@@ -539,7 +539,12 @@ Module MainFormController
         Try
             Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
-            Dim offset = 80
+
+            ' 這個是偏移量，可以寫0
+            Dim offset = 0
+
+
+            ' 預設值
             Dim liteModeComponents As New LiteModeComponents() With {
                 .NormalModeSize = New LiteModeComponentSize With {
                     .Width = 1900,
@@ -560,6 +565,81 @@ Module MainFormController
                     .PositionY = 9999
                 }
             }
+
+
+            ' 這個是抓螢幕放大比例
+            Dim scaleVal = GetMonitorScale()
+
+
+            ' 根據放大比例寫預設的大小跟滾動距離
+            Select Case scaleVal
+                ' 放大比例100%要用的數據，下面以此類推
+                Case 100
+                    liteModeComponents = New LiteModeComponents() With {
+                        .NormalModeSize = New LiteModeComponentSize With {
+                            .Width = 1900,
+                            .Height = 1180,
+                            .PositionX = 0,
+                            .PositionY = 0
+                        },
+                        .WebviewLiteModeSize = New LiteModeComponentSize With {
+                            .Width = Form1.Main_WebView2_Panel.Width + offset,
+                            .Height = Form1.Main_WebView2_Panel.Height + offset,
+                            .PositionX = 9999,
+                            .PositionY = 9999
+                        },
+                        .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
+                            .Width = Form1.ScriptQueueManager_Panel.Width + offset,
+                            .Height = Form1.ScriptQueueManager_Panel.Height + offset,
+                            .PositionX = 0,
+                            .PositionY = 9999
+                        }
+                    }
+                Case 125
+                    liteModeComponents = New LiteModeComponents() With {
+                        .NormalModeSize = New LiteModeComponentSize With {
+                            .Width = 1900,
+                            .Height = 1180,
+                            .PositionX = 0,
+                            .PositionY = 0
+                        },
+                        .WebviewLiteModeSize = New LiteModeComponentSize With {
+                            .Width = Form1.Main_WebView2_Panel.Width + offset,
+                            .Height = Form1.Main_WebView2_Panel.Height + offset,
+                            .PositionX = 9999,
+                            .PositionY = 9999
+                        },
+                        .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
+                            .Width = Form1.ScriptQueueManager_Panel.Width + offset,
+                            .Height = Form1.ScriptQueueManager_Panel.Height + offset,
+                            .PositionX = 0,
+                            .PositionY = 9999
+                        }
+                    }
+                Case 150
+                    liteModeComponents = New LiteModeComponents() With {
+                        .NormalModeSize = New LiteModeComponentSize With {
+                            .Width = 1900,
+                            .Height = 1180,
+                            .PositionX = 0,
+                            .PositionY = 0
+                        },
+                        .WebviewLiteModeSize = New LiteModeComponentSize With {
+                            .Width = Form1.Main_WebView2_Panel.Width + offset,
+                            .Height = Form1.Main_WebView2_Panel.Height + offset,
+                            .PositionX = 9999,
+                            .PositionY = 9999
+                        },
+                        .ScriptListViewLiteModeSize = New LiteModeComponentSize With {
+                            .Width = Form1.ScriptQueueManager_Panel.Width + offset,
+                            .Height = Form1.ScriptQueueManager_Panel.Height + offset,
+                            .PositionX = 0,
+                            .PositionY = 9999
+                        }
+                    }
+
+            End Select
+
 
             Dim jsonString As String = JsonConvert.SerializeObject(liteModeComponents, Formatting.Indented)
             ' 將 JSON 字串寫入檔案

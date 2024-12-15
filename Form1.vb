@@ -1247,6 +1247,7 @@ Public Class Form1
 
     Private Sub LiteModeComponentSizeConfigs_ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiteModeComponentSizeConfigs_ToolStripMenuItem.Click
 
+
         Try
             Dim documentsPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             Dim filePath = Path.Combine(documentsPath, "LiteModeComponents.json")
