@@ -24,7 +24,7 @@ Module PipeServerModule
 
                                              ' 這邊要切回Form1的線程，不然UI不會有效果
                                              targetForm.Invoke(Sub()
-                                                                   PipiTaskHandler(command)
+                                                                   PipeTaskHandler(command)
                                                                End Sub)
                                          End If
                                      End While
@@ -39,31 +39,38 @@ Module PipeServerModule
 
 
 
-    Private Sub PipiTaskHandler(cmd As String)
+    Private Sub PipeTaskHandler(cmd As String)
+        Try
+            Select Case True
+                Case cmd.Contains("setOpacity")
+                    Dim OpacifyVal As Double = Convert.ToDouble(Split(cmd, ":")(1))
+                    Debug.WriteLine(OpacifyVal)
+                    Form1.Opacity = OpacifyVal
+                Case cmd = "setForegroundWindow"
+                    Debug.WriteLine("#setForegroundWindow")
+                    UtilsModule.SetForegroundWindow(Form1.Handle)
 
-        Select Case True
-            Case cmd = "test"
-                MsgBox("test")
-            Case cmd.Contains("setOpacity")
-                Dim OpacifyVal As Double = Convert.ToDouble(Split(cmd, ":")(1))
-                Debug.WriteLine(OpacifyVal)
-                Form1.Opacity = OpacifyVal
-            Case cmd = "setForegroundWindow"
-                Debug.WriteLine("#setForegroundWindow")
-                UtilsModule.SetForegroundWindow(Form1.Handle)
-            Case cmd = "setLiteModeNormal"
-                MainFormController.SetLiteMode("normal")
-            Case cmd = "setLiteModeWebview"
-                MainFormController.SetLiteMode("webview")
-            Case cmd = "setLiteModeScriptListView"
-                MainFormController.SetLiteMode("script_queue_listview")
-            Case cmd = "enableAutoScroll"
-                Debug.WriteLine("#enableAutoScroll")
-                Form1.AutoScroll = True
-            Case cmd = "disableAutoScroll"
-                Debug.WriteLine("#disableAutoScroll")
-                Form1.AutoScroll = False
-        End Select
+                Case cmd.Contains("setLocation")
+                    Debug.WriteLine("#setLocation")
+                    Dim locationVal As String = Split(cmd, ":")(1)
+                    Dim location_x = CInt(Split(locationVal, ",")(0))
+                    Dim location_y = CInt(Split(locationVal, ",")(1))
+                    Debug.WriteLine($"setLocation: {location_x},{location_y} ")
+                    Form1.Location = New Point(location_x, location_y)
+
+                Case cmd = "setLiteModeNormal"
+                    MainFormController.SetLiteMode("normal")
+                Case cmd = "setLiteModeWebview"
+                    MainFormController.SetLiteMode("webview")
+                Case cmd = "setLiteModeScriptListView"
+                    MainFormController.SetLiteMode("script_queue_listview")
+            End Select
+        Catch ex As Exception
+            Debug.WriteLine("Pipe command parse failed")
+            Debug.WriteLine(ex)
+        End Try
+
+
     End Sub
 
 
