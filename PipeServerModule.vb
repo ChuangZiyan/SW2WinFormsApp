@@ -44,18 +44,18 @@ Module PipeServerModule
             Select Case True
                 Case cmd.Contains("setOpacity")
                     Dim OpacifyVal As Double = Convert.ToDouble(Split(cmd, ":")(1))
-                    Debug.WriteLine(OpacifyVal)
+                    'Debug.WriteLine(OpacifyVal)
                     Form1.Opacity = OpacifyVal
                 Case cmd = "setForegroundWindow"
-                    Debug.WriteLine("#setForegroundWindow")
+                    'Debug.WriteLine("#setForegroundWindow")
                     UtilsModule.SetForegroundWindow(Form1.Handle)
 
                 Case cmd.Contains("setLocation")
-                    Debug.WriteLine("#setLocation")
+                    'Debug.WriteLine("#setLocation")
                     Dim locationVal As String = Split(cmd, ":")(1)
                     Dim location_x = CInt(Split(locationVal, ",")(0))
                     Dim location_y = CInt(Split(locationVal, ",")(1))
-                    Debug.WriteLine($"setLocation: {location_x},{location_y} ")
+                    'Debug.WriteLine($"setLocation: {location_x},{location_y} ")
                     Form1.Location = New Point(location_x, location_y)
 
                 Case cmd = "setLiteModeNormal"
@@ -64,6 +64,12 @@ Module PipeServerModule
                     MainFormController.SetLiteMode("webview")
                 Case cmd = "setLiteModeScriptListView"
                     MainFormController.SetLiteMode("script_queue_listview")
+                Case cmd = "closeApp"
+                    MainFormController.SetForm1TitleStatus("關閉中...")
+                    If Webview2Controller.edgeDriver IsNot Nothing Then
+                        Webview2Controller.edgeDriver.Quit()
+                    End If
+                    Form1.Close()
             End Select
         Catch ex As Exception
             Debug.WriteLine("Pipe command parse failed")
