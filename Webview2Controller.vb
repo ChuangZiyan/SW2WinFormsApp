@@ -616,12 +616,20 @@ Module Webview2Controller
                                                Dim elmSpanInnerHTML = elmSpan.GetAttribute("innerHTML")
 
                                                If elmSpanInnerHTML.Contains("社團發佈了貼文") Then
-                                                   Debug.WriteLine(elmSpanInnerHTML)
-                                                   Dim url = elm.GetAttribute("href")
-                                                   Dim groupName As String = elm.FindElement(By.CssSelector("div > strong:nth-child(2) > object > a")).GetAttribute("innerHTML")
-                                                   Dim item As New ListViewItem(groupName)
-                                                   item.SubItems.Add(url)
-                                                   itemList.Add(item)
+                                                   'Debug.WriteLine(elmSpanInnerHTML)
+                                                   Try
+                                                       ' 如果判斷有貼文內容就抓，不然就直接跳到例外跳過
+                                                       Dim post_content = elm.FindElement(By.CssSelector("div.x6s0dn4.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.xeuugli.x18d9i69.x1sxyh0.xurb0ha.xexx8yu.x1n2onr6.x1ja2u2z.x1gg8mnh > div.x6s0dn4.xkh2ocl.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x18d9i69.x4uap5.xkhd6sd.xexx8yu.x1n2onr6.x1ja2u2z > div > div > div > div:nth-child(2) > span > span")).GetAttribute("innerHTML")
+
+                                                       ' 抓取網址跟名稱
+                                                       Dim url = elm.GetAttribute("href")
+                                                       Dim groupName As String = elm.FindElement(By.CssSelector("div > strong:nth-child(2) > object > a")).GetAttribute("innerHTML")
+                                                       Dim item As New ListViewItem(groupName)
+                                                       item.SubItems.Add(url)
+                                                       itemList.Add(item)
+                                                   Catch ex As Exception
+
+                                                   End Try
 
                                                    'Exit For
                                                End If
