@@ -383,6 +383,8 @@ Public Class MainFormEventHandlers
                 Case "發帖"
                     Form1.Action_TabControl.SelectedTab = Form1.FBPostAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBGroupsUrlData_TabPage
+                    Form1.FBGroupName_TextBox.Text = urlName
+                    Form1.FBGroupUrl_TextBox.Text = url
                     assetsFolder_ListBox = Form1.MyAssetsFolder_ListBox
                 Case "拍賣"
                     Form1.Action_TabControl.SelectedTab = Form1.FBMarketplaceAssets_TabPage
@@ -395,6 +397,8 @@ Public Class MainFormEventHandlers
                 Case "留言"
                     Form1.Action_TabControl.SelectedTab = Form1.FBCommentAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBActivityLogsUrlData_TabPage
+                    Form1.FBActivityLogsGroupName_TextBox.Text = urlName
+                    Form1.FBActivityLogsGroupURL_TextBox.Text = url
                     assetsFolder_ListBox = Form1.FBCommentAssetFolder_ListBox
                 Case "自訂"
                     Form1.Action_TabControl.SelectedTab = Form1.FBCustomizeCommentAssets_TabPage
@@ -403,10 +407,14 @@ Public Class MainFormEventHandlers
                 Case "回應"
                     Form1.Action_TabControl.SelectedTab = Form1.FBRespondNotificationsAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBNotificationsUrlData_TabPage
+                    Form1.FBNotificationsName_TextBox.Text = urlName
+                    Form1.FBNotificationsUrl_TextBox.Text = url
                     assetsFolder_ListBox = Form1.FBResponseAssetFolder_ListBox
                 Case "訊息"
                     Form1.Action_TabControl.SelectedTab = Form1.FBMessengerAssets_TabPage
                     Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
+                    Form1.FBMessengerName_TextBox.Text = urlName
+                    Form1.FBMessengerUrl_TextBox.Text = url
                     assetsFolder_ListBox = Form1.FBMessengerAssetFolder_ListBox
                 Case "限時"
                     Form1.Action_TabControl.SelectedTab = Form1.FBStoryAssets_TabPage

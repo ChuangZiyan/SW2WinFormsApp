@@ -459,6 +459,7 @@ Partial Class Form1
         SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
         LiteModeComponentSizeConfigs_ToolStripMenuItem = New ToolStripMenuItem()
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem = New ToolStripMenuItem()
+        ReadActivityLogsWithContent_CheckBox = New CheckBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -1033,6 +1034,7 @@ Partial Class Form1
         ' 
         ' FBActivityLogsUrlData_TabPage
         ' 
+        FBActivityLogsUrlData_TabPage.Controls.Add(ReadActivityLogsWithContent_CheckBox)
         FBActivityLogsUrlData_TabPage.Controls.Add(DeselectAllFBActivityLogs_ListViewItems_Button)
         FBActivityLogsUrlData_TabPage.Controls.Add(NavigateToActivityLogsPage_Button)
         FBActivityLogsUrlData_TabPage.Controls.Add(Label46)
@@ -1078,7 +1080,7 @@ Partial Class Form1
         ' Label46
         ' 
         Label46.AutoSize = True
-        Label46.Location = New Point(121, 315)
+        Label46.Location = New Point(121, 317)
         Label46.Name = "Label46"
         Label46.Size = New Size(80, 19)
         Label46.TabIndex = 27
@@ -1086,16 +1088,16 @@ Partial Class Form1
         ' 
         ' NumberOfActivityLogsPageDropDown_NumericUpDown
         ' 
-        NumberOfActivityLogsPageDropDown_NumericUpDown.Location = New Point(207, 312)
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Location = New Point(206, 313)
         NumberOfActivityLogsPageDropDown_NumericUpDown.Maximum = New Decimal(New Integer() {9999, 0, 0, 0})
         NumberOfActivityLogsPageDropDown_NumericUpDown.Name = "NumberOfActivityLogsPageDropDown_NumericUpDown"
-        NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(62, 27)
+        NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(50, 27)
         NumberOfActivityLogsPageDropDown_NumericUpDown.TabIndex = 26
         NumberOfActivityLogsPageDropDown_NumericUpDown.Value = New Decimal(New Integer() {10, 0, 0, 0})
         ' 
         ' ReadActivityLogs_Button
         ' 
-        ReadActivityLogs_Button.Location = New Point(275, 310)
+        ReadActivityLogs_Button.Location = New Point(262, 313)
         ReadActivityLogs_Button.Name = "ReadActivityLogs_Button"
         ReadActivityLogs_Button.Size = New Size(110, 29)
         ReadActivityLogs_Button.TabIndex = 25
@@ -4719,8 +4721,18 @@ Partial Class Form1
         ' RestoreLiteModeConfigsToDefault_ToolStripMenuItem
         ' 
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Name = "RestoreLiteModeConfigsToDefault_ToolStripMenuItem"
-        RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Size = New Size(83, 24)
+        RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Size = New Size(83, 23)
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Text = "設為預設"
+        ' 
+        ' ReadActivityLogsWithContent_CheckBox
+        ' 
+        ReadActivityLogsWithContent_CheckBox.AutoSize = True
+        ReadActivityLogsWithContent_CheckBox.Location = New Point(378, 316)
+        ReadActivityLogsWithContent_CheckBox.Name = "ReadActivityLogsWithContent_CheckBox"
+        ReadActivityLogsWithContent_CheckBox.Size = New Size(106, 23)
+        ReadActivityLogsWithContent_CheckBox.TabIndex = 30
+        ReadActivityLogsWithContent_CheckBox.Text = "只讀有內容"
+        ReadActivityLogsWithContent_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -5272,5 +5284,6 @@ Partial Class Form1
     Friend WithEvents SetScriptListViewMode_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiteModeComponentSizeConfigs_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RestoreLiteModeConfigsToDefault_ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReadActivityLogsWithContent_CheckBox As CheckBox
 
 End Class
