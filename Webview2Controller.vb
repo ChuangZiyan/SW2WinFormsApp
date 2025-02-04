@@ -589,6 +589,7 @@ Module Webview2Controller
         End If
 
         Dim onlyReadWithContent = Form1.ReadActivityLogsWithContent_CheckBox.Checked
+        onlyReadWithContent = True
 
         Dim items = Await Task.Run(Async Function()
                                        Dim itemList As New List(Of ListViewItem)()
@@ -610,12 +611,12 @@ Module Webview2Controller
                                                Next
                                            End If
 
-                                           Dim pageItemElements = edgeDriver.FindElements(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div"))
+                                           Dim pageItemElements = edgeDriver.FindElements(By.CssSelector(".x78zum5.x1q0g3np.x1emribx.xh8yej3"))
 
                                            For Each elm In pageItemElements
 
-                                               ' Dim elmSpan As IWebElement = elm.FindElement(By.CssSelector("div.x6s0dn4.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.xeuugli.x18d9i69.x1sxyh0.xurb0ha.xexx8yu.x1n2onr6.x1ja2u2z.x1gg8mnh > div.x6s0dn4.xkh2ocl.x1q0q8m5.x1qhh985.xu3j5b3.xcfux6l.x26u7qi.xm0m39n.x13fuv20.x972fbf.x9f619.x78zum5.x1q0g3np.x1iyjqo2.xs83m0k.x1qughib.xat24cr.x11i5rnm.x1mh8g0r.xdj266r.x2lwn1j.xeuugli.x18d9i69.x4uap5.xkhd6sd.xexx8yu.x1n2onr6.x1ja2u2z > div > div > div > div:nth-child(1) > span  > span > span"))
-                                               Dim elmSpanInnerHTML = elm.GetAttribute("innerHTML")
+                                               Dim elmSpan As IWebElement = elm.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
+                                               Dim elmSpanInnerHTML = elmSpan.GetAttribute("innerHTML")
 
                                                If elmSpanInnerHTML.Contains("社團發佈了貼文") Then
                                                    Debug.WriteLine(elmSpanInnerHTML)
@@ -629,7 +630,7 @@ Module Webview2Controller
 
                                                        ' 抓取網址跟名稱
                                                        Dim group_elm = elm.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span > div > strong:nth-child(2) > a"))
-                                                       Dim url = group_elm.GetAttribute("href")
+                                                       Dim url = elm.FindElement(By.CssSelector("div.x78zum5.xds687c.x1q0g3np.xurb0ha.x1n2onr6.x1dfx0jo > div:nth-child(1) > a")).GetAttribute("href")
                                                        Dim groupName As String = group_elm.GetAttribute("innerHTML")
                                                        Dim item As New ListViewItem(groupName)
                                                        item.SubItems.Add(url)
