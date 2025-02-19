@@ -148,6 +148,9 @@ Public Class Form1
 
             '處理隨機網址
             If myUrl.Contains("隨機") Then
+                Debug.WriteLine("contain 隨機")
+                Debug.WriteLine("action" & action)
+                Debug.WriteLine("userdata" & userDataFolderPath)
                 Dim randomItem As JToken = MainFormController.GetRandomFBUrlData(action, userDataFolderPath)
                 item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
                 item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()

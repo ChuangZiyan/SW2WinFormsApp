@@ -360,6 +360,8 @@ Module MainFormController
                     fileName = "FBActivityLogList.json"
                 Case "訊息"
                     fileName = "FBMessengerList.json"
+                Case "自訂"
+                    fileName = "FBGroupList.json"
             End Select
 
             Dim filePath = Path.Combine(userDataFolderPath, fileName)
