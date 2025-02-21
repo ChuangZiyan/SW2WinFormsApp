@@ -647,7 +647,7 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
-                        result = False
+                        result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
                     End Try

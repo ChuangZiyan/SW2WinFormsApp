@@ -763,18 +763,19 @@ Module Webview2Controller
                                            Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
                                            Select Case messageSource
                                                Case "聊天室"
-                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > a"
-                                                   messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > a"
+                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > div > a"
+                                                   ' messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > a"
+                                                   messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > a"
 
                                                Case "Marketplace"
-                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > a"
+                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
                                                        'messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div > div:nth-child(2) > div > div"
                                                Case "陌生訊息"
-                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
+                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
                                                Case "垃圾訊息"
-                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > a"
+                                                   msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
 
                                            End Select
@@ -888,11 +889,11 @@ Module Webview2Controller
                                    Dim scrollDivCss As String = Nothing
                                    Select Case messageSource
                                        Case "聊天室"
-                                           msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > a"
+                                           msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > div > a"
                                            messengerCssSelector = "div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > .x1n2onr6 > .x78zum5.xdt5ytf"
                                            scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
                                        Case "Marketplace"
-                                           msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > a"
+                                           msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > div > a"
                                            messengerCssSelector = "div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4 > div > div > div > div > div > div > div > div > div > div:nth-child(2) > .x1n2onr6> .x78zum5.xdt5ytf"
                                            scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
                                    End Select
