@@ -683,7 +683,7 @@ Public Class Form1
                         Await Navigate_GoToUrl_Task("https://www.messenger.com/")
                         Await Delay_msec(5000)
                         Dim messengerItems = Await Webview2Controller.ReadFBMessenger("陌生訊息", False, True)
-                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("陌生訊息", False, True))
+                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("垃圾訊息", False, True))
 
                         FBMessengerData_Listview.Items.Clear()
                         For Each mgsItem In messengerItems
@@ -698,7 +698,7 @@ Public Class Form1
                         Await Navigate_GoToUrl_Task("https://www.messenger.com/")
                         Await Delay_msec(5000)
                         Dim messengerItems = Await Webview2Controller.ReadFBMessenger("陌生訊息", True, False)
-                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("陌生訊息", True, False))
+                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("垃圾訊息", True, False))
 
                         FBMessengerData_Listview.Items.Clear()
                         For Each mgsItem In messengerItems
