@@ -668,7 +668,7 @@ Public Class Form1
                 Case "讀取己讀Marketplace"
                     Try
                         Await Navigate_GoToUrl_Task("https://www.messenger.com/")
-                        Await Delay_msec(2000)
+                        Await Delay_msec(5000)
                         Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", True, False)
                         FBMessengerData_Listview.Items.Clear()
                         For Each mgsItem In messengerItems
@@ -681,9 +681,9 @@ Public Class Form1
                 Case "讀取未讀陌生訊息"
                     Try
                         Await Navigate_GoToUrl_Task("https://www.messenger.com/")
-                        Await Delay_msec(2000)
-                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", False, True)
-                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("Marketplace", False, True))
+                        Await Delay_msec(5000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("陌生訊息", False, True)
+                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("陌生訊息", False, True))
 
                         FBMessengerData_Listview.Items.Clear()
                         For Each mgsItem In messengerItems
@@ -696,9 +696,9 @@ Public Class Form1
                 Case "讀取己讀陌生訊息"
                     Try
                         Await Navigate_GoToUrl_Task("https://www.messenger.com/")
-                        Await Delay_msec(2000)
-                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("Marketplace", True, False)
-                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("Marketplace", True, False))
+                        Await Delay_msec(5000)
+                        Dim messengerItems = Await Webview2Controller.ReadFBMessenger("陌生訊息", True, False)
+                        messengerItems.AddRange(Await Webview2Controller.ReadFBMessenger("陌生訊息", True, False))
 
                         FBMessengerData_Listview.Items.Clear()
                         For Each mgsItem In messengerItems
@@ -784,7 +784,7 @@ Public Class Form1
                                 Next
 
                                 ' 如果你要送出留言就取消註解下面那行
-                                ' edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']")).SendKeys(Keys.Return)
+                                edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']")).SendKeys(Keys.Return)
 
                                 ' 送出後等待
                                 For seconds = CInt(item.SubItems(8).Text) To 0 Step -1

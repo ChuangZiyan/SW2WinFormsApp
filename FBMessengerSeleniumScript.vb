@@ -50,7 +50,7 @@ Module FBMessengerSeleniumScript
                                           Await Navigate_GoToUrl(myUrl)
 
 
-                                          Await Delay_msec(2000)
+                                          Await Delay_msec(5000)
 
 
                                           If myMedia <> Nothing Then

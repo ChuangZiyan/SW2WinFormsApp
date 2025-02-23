@@ -16,6 +16,7 @@ Imports AngleSharp.Dom
 Imports System.IO
 Imports OpenQA.Selenium.Interactions
 Imports System.CodeDom.Compiler
+Imports System.Threading
 
 Module Webview2Controller
     Public edgeDriver As EdgeDriver
@@ -750,6 +751,7 @@ Module Webview2Controller
     Public Async Function ReadFBMessenger(messageSource As String, read As Boolean, unread As Boolean) As Task(Of List(Of ListViewItem))
         'messageSource : 聊天室 | Marketplace | 陌生訊息
         'FBMessenger_TabPage
+        Form1.Main_WebView2.ZoomFactor = 0.65
         Form1.FBUrlData_TabControl.SelectedTab = Form1.FBMessengerUrlData_TabPage
         Dim items As New List(Of ListViewItem)
         Try
@@ -773,6 +775,7 @@ Module Webview2Controller
                                                Case "陌生訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
+                                                   messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div > div> div > div > div > div > div > div > div:nth-child(1) > div > a"
                                                Case "垃圾訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
@@ -866,7 +869,7 @@ Module Webview2Controller
                                        End Try
                                        Return itemList
                                    End Function)
-
+            Form1.Main_WebView2.ZoomFactor = 0.7
             Return items
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -883,23 +886,25 @@ Module Webview2Controller
                                Try
                                    Dim actions As New Actions(edgeDriver)
 
+                                   Dim unread_dot_CssSelector = "a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x1es9f29.xn45owk.x1vu7fv8.x1rcwl9y.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div.x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1o1ewxj.x3x9cwd.x1e5q0jg.x13rtm0m.x1q0g3np.x87ps6o.x1lku1pv.x78zum5.x1a2a7pz > span"
+
                                    Dim msgsrcCss As String = Nothing
-                                   Dim messengerCssSelector As String = Nothing
-                                   Dim scrollDivCss As String = Nothing
+                                   Dim messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div.x78zum5.xdt5ytf"
+                                   Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
                                    Select Case messageSource
                                        Case "聊天室"
                                            msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > div > a"
-                                           messengerCssSelector = "div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > .x1n2onr6 > .x78zum5.xdt5ytf"
-                                           scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                           ' messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > a"
+                                           messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div.x78zum5.xdt5ytf"
                                        Case "Marketplace"
                                            msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > div > a"
-                                           messengerCssSelector = "div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6.x1ja2u2z.x10cihs4 > div > div > div > div > div > div > div > div > div > div:nth-child(2) > .x1n2onr6> .x78zum5.xdt5ytf"
                                            scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
+                                           'messengerCssSelector = "div.x9f619.x1n2
                                    End Select
 
                                    ClickByCssSelectorWaitUntil(msgsrcCss, 5)
 
-                                   Await Delay_msec(2000)
+                                   Await Delay_msec(5000)
 
                                    Dim exe_count = 0
 
@@ -913,7 +918,7 @@ Module Webview2Controller
                                        For Each elm As IWebElement In elms
                                            Dim unread_dot As Boolean = False
                                            Try
-                                               elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
+                                               elm.FindElement(By.CssSelector(unread_dot_CssSelector))
                                                unread_dot = True
                                            Catch ex As NoSuchElementException
 
@@ -943,7 +948,7 @@ Module Webview2Controller
                                                For Each elm As IWebElement In elms
                                                    Dim unread_dot As Boolean = False
                                                    Try
-                                                       elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
+                                                       elm.FindElement(By.CssSelector(unread_dot_CssSelector))
                                                        unread_dot = True
                                                    Catch ex As NoSuchElementException
 
@@ -953,9 +958,7 @@ Module Webview2Controller
                                                        Try
                                                            Dim jsExecutor As IJavaScriptExecutor = CType(edgeDriver, IJavaScriptExecutor)
                                                            jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
-
                                                            actions.MoveToElement(elm).Perform()
-
                                                            Await Delay_msec(1500)
                                                            elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
                                                            Await Delay_msec(1500)
@@ -985,7 +988,7 @@ Module Webview2Controller
                                                For Each elm As IWebElement In elms
                                                    Dim unread_dot As Boolean = False
                                                    Try
-                                                       elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div > span"))
+                                                       elm.FindElement(By.CssSelector(unread_dot_CssSelector))
                                                        unread_dot = True
                                                    Catch ex As NoSuchElementException
 
@@ -997,11 +1000,13 @@ Module Webview2Controller
                                                            jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", elm)
                                                            Await Delay_msec(1500)
                                                            actions.MoveToElement(elm).Perform()
-                                                           Await Delay_msec(1500)
+                                                           Await Delay_msec(3000)
+                                                           Debug.WriteLine(elm.GetAttribute("innerHTML"))
                                                            elm.FindElement(By.CssSelector("div[aria-label='功能表']")).Click()
                                                            Await Delay_msec(1500)
                                                            elm.FindElement(By.XPath("//div[@class='x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xdj266r xat24cr xnqzcj9 x1gh759c x1344otq x1de53dj x1n2onr6 x16tdsg8 x1ja2u2z x1y1aw1k xwib8y2']//span[text()='封存聊天室']")).Click()
                                                            Await Delay_msec(1500)
+
                                                            Exit For
                                                        Catch ex As Exception
 
@@ -1038,6 +1043,7 @@ Module Webview2Controller
         End Try
 
     End Function
+
 
     Public Class MyCookie
         Public Property Domain As String
