@@ -870,6 +870,8 @@ Module Webview2Controller
                                        Return itemList
                                    End Function)
             Form1.Main_WebView2.ZoomFactor = 0.7
+
+
             Return items
         Catch ex As Exception
             Debug.WriteLine(ex)

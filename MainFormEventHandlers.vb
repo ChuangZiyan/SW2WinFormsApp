@@ -1326,6 +1326,24 @@ Public Class MainFormEventHandlers
                 Exit Sub
             End If
 
+            If SaveFBMessengerListview() = True Then
+                MsgBox("儲存成功")
+            Else
+                MsgBox("儲存失敗")
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗")
+        End Try
+    End Sub
+
+    Public Function SaveFBMessengerListview()
+        Try
+            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+                Return False
+            End If
+
             Dim items As New List(Of GroupListviewDataStruct)()
             For Each item As ListViewItem In Form1.FBMessengerData_Listview.Items
 
@@ -1339,12 +1357,13 @@ Public Class MainFormEventHandlers
             Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
             Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBMessengerList.json")
             File.WriteAllText(filePath, jsonStr)
-            MsgBox("儲存成功")
+            Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
-            MsgBox("儲存失敗")
+            Return False
         End Try
-    End Sub
+
+    End Function
 
 
     Public Sub FBMessengerData_Listview_SelectedIndexChanged(sender As Object, e As EventArgs)

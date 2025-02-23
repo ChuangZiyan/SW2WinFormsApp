@@ -633,6 +633,8 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
+                        '讀取完自動儲存
+                        mainFormEventHandlers.SaveFBMessengerListview()
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -647,6 +649,8 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
+                        '讀取完自動儲存
+                        mainFormEventHandlers.SaveFBMessengerListview()
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -661,6 +665,8 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
+                        '讀取完自動儲存
+                        mainFormEventHandlers.SaveFBMessengerListview()
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -674,6 +680,8 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
+                        '讀取完自動儲存
+                        mainFormEventHandlers.SaveFBMessengerListview()
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -689,6 +697,8 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
+                        '讀取完自動儲存
+                        mainFormEventHandlers.SaveFBMessengerListview()
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -704,6 +714,9 @@ Public Class Form1
                         For Each mgsItem In messengerItems
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
+                        '讀取完自動儲存
+                        mainFormEventHandlers.SaveFBMessengerListview()
+
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -784,7 +797,7 @@ Public Class Form1
                                 Next
 
                                 ' 如果你要送出留言就取消註解下面那行
-                                edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']")).SendKeys(Keys.Return)
+                                ' edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']")).SendKeys(Keys.Return)
 
                                 ' 送出後等待
                                 For seconds = CInt(item.SubItems(8).Text) To 0 Step -1
