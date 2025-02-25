@@ -227,13 +227,18 @@ Module MainFormController
     End Sub
 
 
-
-
     Public Sub ResetListviewItemsBackgroundColor(lv)
 
         For Each item As ListViewItem In lv.Items
-            item.BackColor = Color.White
-            item.ForeColor = Color.Black
+
+            If item.SubItems(12).Text = "略過" Then
+                item.ForeColor = Color.LightGray
+            Else
+
+                item.BackColor = Color.White
+                item.ForeColor = Color.Black
+            End If
+
         Next
 
     End Sub

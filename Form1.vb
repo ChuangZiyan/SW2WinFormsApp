@@ -137,6 +137,10 @@ Public Class Form1
             item.ForeColor = Color.White
             MainFormController.CenterSelectedItem(ScriptQueue_ListView, item)
 
+            '重置WebviewUserDataFolder_ListBox選擇的item
+            WebviewUserDataFolder_ListBox.ClearSelected()
+
+
             '用選的userData 初始化webview
             Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
             ' 初始化webivew
