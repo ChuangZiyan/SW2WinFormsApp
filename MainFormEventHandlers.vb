@@ -1326,7 +1326,7 @@ Public Class MainFormEventHandlers
                 Exit Sub
             End If
 
-            If SaveFBMessengerListview() = True Then
+            If SaveFBMessengerListview(Form1.WebviewUserDataFolder_ListBox.SelectedItem) = True Then
                 MsgBox("儲存成功")
             Else
                 MsgBox("儲存失敗")
@@ -1338,9 +1338,9 @@ Public Class MainFormEventHandlers
         End Try
     End Sub
 
-    Public Function SaveFBMessengerListview()
+    Public Function SaveFBMessengerListview(userData)
         Try
-            If Form1.WebviewUserDataFolder_ListBox.SelectedItem Is Nothing Then
+            If userData Is Nothing Then
                 Return False
             End If
 
@@ -1355,7 +1355,7 @@ Public Class MainFormEventHandlers
             Next
 
             Dim jsonStr As String = JsonConvert.SerializeObject(items, Formatting.Indented)
-            Dim filePath As String = Path.Combine(webivewUserDataDirectory, Form1.WebviewUserDataFolder_ListBox.SelectedItem, "FBMessengerList.json")
+            Dim filePath As String = Path.Combine(webivewUserDataDirectory, userData, "FBMessengerList.json")
             File.WriteAllText(filePath, jsonStr)
             Return True
         Catch ex As Exception

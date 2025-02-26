@@ -638,7 +638,7 @@ Public Class Form1
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
                         '讀取完自動儲存
-                        mainFormEventHandlers.SaveFBMessengerListview()
+                        mainFormEventHandlers.SaveFBMessengerListview(userData)
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -654,7 +654,7 @@ Public Class Form1
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
                         '讀取完自動儲存
-                        mainFormEventHandlers.SaveFBMessengerListview()
+                        mainFormEventHandlers.SaveFBMessengerListview(userData)
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -670,7 +670,7 @@ Public Class Form1
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
                         '讀取完自動儲存
-                        mainFormEventHandlers.SaveFBMessengerListview()
+                        mainFormEventHandlers.SaveFBMessengerListview(userData)
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -685,7 +685,7 @@ Public Class Form1
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
                         '讀取完自動儲存
-                        mainFormEventHandlers.SaveFBMessengerListview()
+                        mainFormEventHandlers.SaveFBMessengerListview(userData)
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -702,7 +702,7 @@ Public Class Form1
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
                         '讀取完自動儲存
-                        mainFormEventHandlers.SaveFBMessengerListview()
+                        mainFormEventHandlers.SaveFBMessengerListview(userData)
                         result = True
                     Catch ex As Exception
                         Debug.WriteLine(ex)
@@ -719,7 +719,7 @@ Public Class Form1
                             FBMessengerData_Listview.Items.Add(mgsItem)
                         Next
                         '讀取完自動儲存
-                        mainFormEventHandlers.SaveFBMessengerListview()
+                        mainFormEventHandlers.SaveFBMessengerListview(userData)
 
                         result = True
                     Catch ex As Exception
