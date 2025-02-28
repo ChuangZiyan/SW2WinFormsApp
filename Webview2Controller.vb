@@ -799,9 +799,15 @@ Module Webview2Controller
                                            Dim lastHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
 
                                            Dim scrollCounter = 0
+
+                                           Dim isFirstWhile = True
+
                                            While True
 
-                                               jsExecutor.ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", scrolldivElement)
+                                               ' 如果是第一次就不要滾動
+                                               If Not isFirstWhile Then
+                                                   jsExecutor.ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", scrolldivElement)
+                                               End If
 
                                                Await Delay_msec(2000)
 
@@ -836,7 +842,7 @@ Module Webview2Controller
                                                    Dim exists As Boolean = itemList.Any(Function(itm) itm.SubItems(1).Text = url)
                                                    If exists Then
 
-                                                       Debug.WriteLine("continue")
+                                                       'Debug.WriteLine("continue")
                                                        Continue For
                                                    End If
 
@@ -855,8 +861,13 @@ Module Webview2Controller
                                                    Exit While
                                                End If
 
-
                                                Dim newHeight As Long = CLng(jsExecutor.ExecuteScript("return arguments[0].scrollHeight;", scrolldivElement))
+                                               If isFirstWhile Then
+                                                   ' 用一個假的數據讓他滾
+                                                   newHeight = "99999"
+                                                   isFirstWhile = False
+                                               End If
+
                                                If newHeight = lastHeight Then
                                                    Exit While
                                                End If
