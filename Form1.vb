@@ -820,6 +820,16 @@ Public Class Form1
                         messengerItem.BackColor = Color.White
                         messengerItem.ForeColor = Color.Black
                     Next
+                Case "依序回覆陌生訊息"
+
+                    Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBMessengerAssetsDirectory)
+                    item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
+
+                    Dim FBMessengerWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBMessengerWaitSecondsConfig.txt"))
+                    item.SubItems(7).Text = Split(FBMessengerWaitSecondsCfg, ",")(0)
+                    item.SubItems(8).Text = Split(FBMessengerWaitSecondsCfg, ",")(1)
+                    result = Await ReplyRequestMessage(assetFolderPath)
+
 
             End Select
 

@@ -1846,6 +1846,16 @@ Public Class MainFormEventHandlers
                 Else
                     content = "隨機"
                 End If
+            Case "依序回覆陌生訊息"
+                selectedGroupItems = Form1.FBMessengerData_Listview.SelectedItems
+                If Form1.FBMessengerAssetFolder_ListBox.SelectedItems.Count > 0 Then
+                    For Each item In Form1.FBMessengerAssetFolder_ListBox.SelectedItems
+                        content += item + "&"
+                    Next
+                    content = content.TrimEnd("&")
+                Else
+                    content = "隨機"
+                End If
         End Select
 
         Dim selectedUserDataFolder = "NULL"

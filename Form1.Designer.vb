@@ -76,6 +76,7 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         ColumnHeader2 = New ColumnHeader()
         FBActivityLogsUrlData_TabPage = New TabPage()
+        ReadActivityLogsWithContent_CheckBox = New CheckBox()
         DeselectAllFBActivityLogs_ListViewItems_Button = New Button()
         NavigateToActivityLogsPage_Button = New Button()
         Label46 = New Label()
@@ -459,7 +460,6 @@ Partial Class Form1
         SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
         LiteModeComponentSizeConfigs_ToolStripMenuItem = New ToolStripMenuItem()
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem = New ToolStripMenuItem()
-        ReadActivityLogsWithContent_CheckBox = New CheckBox()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -1058,6 +1058,16 @@ Partial Class Form1
         FBActivityLogsUrlData_TabPage.TabIndex = 1
         FBActivityLogsUrlData_TabPage.Text = "留言"
         FBActivityLogsUrlData_TabPage.UseVisualStyleBackColor = True
+        ' 
+        ' ReadActivityLogsWithContent_CheckBox
+        ' 
+        ReadActivityLogsWithContent_CheckBox.AutoSize = True
+        ReadActivityLogsWithContent_CheckBox.Location = New Point(378, 316)
+        ReadActivityLogsWithContent_CheckBox.Name = "ReadActivityLogsWithContent_CheckBox"
+        ReadActivityLogsWithContent_CheckBox.Size = New Size(106, 23)
+        ReadActivityLogsWithContent_CheckBox.TabIndex = 30
+        ReadActivityLogsWithContent_CheckBox.Text = "只讀有內容"
+        ReadActivityLogsWithContent_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' DeselectAllFBActivityLogs_ListViewItems_Button
         ' 
@@ -4172,7 +4182,7 @@ Partial Class Form1
         CustomizeAction_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         CustomizeAction_ComboBox.Enabled = False
         CustomizeAction_ComboBox.FormattingEnabled = True
-        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "", "讀取未讀聊天室", "讀取己讀聊天室", "讀取未讀Marketplace", "讀取己讀Marketplace", "讀取未讀陌生訊息", "讀取己讀陌生訊息", "", "聊天室訊息己讀封存", "聊天室訊息未讀封存", "Marketplace室訊息己讀封存", "Marketplace室訊息未讀封存", "順序回覆訊息", "", "個人發帖單圖"})
+        CustomizeAction_ComboBox.Items.AddRange(New Object() {"讀取已讀通知", "讀取未讀通知", "已讀全部通知", "順序回應通知", "", "讀取未讀聊天室", "讀取己讀聊天室", "讀取未讀Marketplace", "讀取己讀Marketplace", "讀取未讀陌生訊息", "讀取己讀陌生訊息", "", "聊天室訊息己讀封存", "聊天室訊息未讀封存", "Marketplace室訊息己讀封存", "Marketplace室訊息未讀封存", "順序回覆訊息", "依序回覆陌生訊息", "", "個人發帖單圖"})
         CustomizeAction_ComboBox.Location = New Point(291, 21)
         CustomizeAction_ComboBox.Name = "CustomizeAction_ComboBox"
         CustomizeAction_ComboBox.Size = New Size(264, 27)
@@ -4723,16 +4733,6 @@ Partial Class Form1
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Name = "RestoreLiteModeConfigsToDefault_ToolStripMenuItem"
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Size = New Size(83, 23)
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Text = "設為預設"
-        ' 
-        ' ReadActivityLogsWithContent_CheckBox
-        ' 
-        ReadActivityLogsWithContent_CheckBox.AutoSize = True
-        ReadActivityLogsWithContent_CheckBox.Location = New Point(378, 316)
-        ReadActivityLogsWithContent_CheckBox.Name = "ReadActivityLogsWithContent_CheckBox"
-        ReadActivityLogsWithContent_CheckBox.Size = New Size(106, 23)
-        ReadActivityLogsWithContent_CheckBox.TabIndex = 30
-        ReadActivityLogsWithContent_CheckBox.Text = "只讀有內容"
-        ReadActivityLogsWithContent_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
