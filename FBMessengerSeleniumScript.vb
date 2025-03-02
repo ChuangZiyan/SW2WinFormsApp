@@ -165,12 +165,33 @@ Module FBMessengerSeleniumScript
                                                   Try
                                                       elm.Click()
                                                       Await Delay_msec(3000)
+                                                      If myMedia <> Nothing Then
+                                                          Dim media_input As IWebElement = edgeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1ey2m1c.x78zum5.xl56j7k.x10l6tqk.x1vjfegm.xat24cr.x3oybdh.x1g2r6go.x11xpdln.x1th4bbo > input"))
+                                                          'Debug.WriteLine("Media File : " & myMedia)
+                                                          media_input.SendKeys(myMedia)
+                                                      End If
+
+                                                      Await Delay_msec(3000)
+
+
                                                       Dim text_input As IWebElement = edgeDriver.FindElement(By.CssSelector("div[aria-label='訊息']"))
                                                       Await Delay_msec(1000)
-                                                      text_input.SendKeys(myText)
+                                                      ' 如果內容是空白就不要輸入
+                                                      If myText.Trim() <> "" Then
+                                                          Dim lines As String() = myText.Split(New String() {vbCrLf, vbCr, vbLf}, StringSplitOptions.None)
+                                                          For Each line As String In lines
+                                                              'line = line.Replace(vbCr, "").Replace(vbLf, "").Replace(Environment.NewLine, "")
+                                                              text_input.SendKeys(line)
+                                                              Await Delay_msec(500)
+                                                              text_input.SendKeys(Keys.LeftShift + Keys.Return)
+                                                          Next
+                                                      End If
+
                                                       Await Delay_msec(3000)
                                                       text_input.SendKeys(Keys.Enter)
                                                       Await Delay_msec(1000)
+
+
                                                       Exit For
                                                   Catch ex As Exception
                                                       Continue For
