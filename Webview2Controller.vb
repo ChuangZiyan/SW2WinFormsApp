@@ -763,15 +763,17 @@ Module Webview2Controller
                                            Dim msgsrcCss As String = Nothing
                                            Dim messengerCssSelector = ".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x78zum5"
                                            Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+
+                                           Dim contentSpanCssSelector = Nothing
+
                                            Select Case messageSource
                                                Case "聊天室"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > div > a"
-                                                   ' messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > a"
                                                    messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > div > div > a"
+                                                   contentSpanCssSelector = "span.html-span.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x18d9i69.xkhd6sd.x1hl2dhg.x16tdsg8.x1vvkbs.x6s0dn4.x9f619.x78zum5.x193iq5w.xg83lxy.xeuugli > span > span"
                                                Case "Marketplace"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
-                                                       'messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div > div:nth-child(2) > div > div"
                                                Case "陌生訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
@@ -849,14 +851,27 @@ Module Webview2Controller
                                                    If unread And unread_dot Then ' 未讀
                                                        itemList.Add(item)
                                                    ElseIf read And Not unread_dot Then ' 已讀
-                                                       itemList.Add(item)
+                                                       ' 這邊是判斷聊天室的內容是否有"你:"
+                                                       If contentSpanCssSelector <> Nothing Then
+                                                           Dim span_content = elm.FindElement(By.CssSelector(contentSpanCssSelector)).GetAttribute("innerHTML")
+                                                           'Debug.WriteLine("## span_content")
+                                                           ' 如果是開頭"你:" 就不要加進去
+                                                           If Not span_content.StartsWith("你:") Then
+                                                               itemList.Add(item)
+                                                           End If
+
+                                                       Else
+                                                           '不是聊天室就會跑這
+                                                           itemList.Add(item)
+                                                       End If
+
+
                                                    End If
 
                                                Next
 
-                                               ' test
-                                               scrollCounter += 1
-
+                                               ' 測試最多往下滾動3次
+                                               scrollCounter += 1 ' 這行註解掉就會一直往下滾
                                                If scrollCounter > 3 Then
                                                    Exit While
                                                End If

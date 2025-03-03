@@ -830,7 +830,6 @@ Public Class Form1
                     item.SubItems(8).Text = Split(FBMessengerWaitSecondsCfg, ",")(1)
                     result = Await ReplyRequestMessage(assetFolderPath)
 
-
             End Select
 
 
