@@ -146,6 +146,18 @@ Public Class Form1
             ' 初始化webivew
             Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
+
+            ' 如果沒登入的話點一下頭像登入
+            Try
+                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
+                Await Delay_msec(5000)
+                Webview2Controller.ClickByCssSelectorWaitUntil("#content > div > div > div > div > div > div.removableItem > div > div > a:nth-child(1)", 3)
+            Catch ex As Exception
+
+            End Try
+
+            Await Delay_msec(2000)
+
             '選擇WebviewUserDataFolder_ListBox
             ' WebviewUserDataFolder_ListBox.SelectedItem = userData
 
