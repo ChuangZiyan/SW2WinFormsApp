@@ -51,6 +51,25 @@ Module MainFormController
 
 
 
+    Public Function ReadUserData(FolderName) As Object
+        Try
+            Debug.WriteLine("folderName " & FolderName)
+            Dim userDataJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "myUserData.json")
+
+            If File.Exists(userDataJsonFilePath) Then
+                Dim jsonString As String = File.ReadAllText(userDataJsonFilePath)
+                Dim userDataJson As UserDataStruct = JsonConvert.DeserializeObject(Of UserDataStruct)(jsonString)
+                Return userDataJson
+            End If
+        Catch ex As Exception
+            ' 可加上錯誤處理，例如記錄錯誤日誌
+        End Try
+
+        Return False
+    End Function
+
+
+
     Public Sub DisplayUserData(FolderName)
         If FolderName = "" Then
             Exit Sub

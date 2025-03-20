@@ -1073,6 +1073,36 @@ Module Webview2Controller
     End Function
 
 
+    Public Async Function ClickLoginAvatar_Task(password As String) As Task(Of Boolean)
+        Try
+            Return Await Task.Run(Async Function() As Task(Of Boolean)
+                                      Try
+                                          'Debug.WriteLine("passwd: " & password)
+                                          Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
+                                          Await Delay_msec(5000)
+                                          Webview2Controller.ClickByCssSelectorWaitUntil("#content > div > div > div > div > div > div.removableItem > div > div > a:nth-child(1)", 3)
+                                          Await Delay_msec(2000)
+                                          Dim password_input = edgeDriver.FindElements(By.CssSelector("input[aria-label$='密碼']"))
+                                          password_input(1).SendKeys(password)
+                                          Await Delay_msec(3000)
+
+                                          Dim login_button = edgeDriver.FindElements(By.CssSelector("button[name='login']"))
+                                          login_button(1).Click()
+                                          Await Delay_msec(3000)
+
+                                          Return True
+                                      Catch ex As Exception
+                                          Debug.WriteLine(ex)
+                                          Return False
+                                      End Try
+                                  End Function)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+
     Public Class MyCookie
         Public Property Domain As String
         Public Property Name As String

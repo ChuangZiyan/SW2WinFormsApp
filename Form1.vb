@@ -140,6 +140,9 @@ Public Class Form1
             '重置WebviewUserDataFolder_ListBox選擇的item
             WebviewUserDataFolder_ListBox.ClearSelected()
 
+            ' 這裡是取得要使用的userData(帳號 密碼 等等...)
+            Dim myUserObj As MainFormController.UserDataStruct = MainFormController.ReadUserData(userData)
+            'Debug.WriteLine(myUserObj.FBPassword)
 
             '用選的userData 初始化webview
             Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
@@ -148,15 +151,8 @@ Public Class Form1
 
 
             ' 如果沒登入的話點一下頭像登入
-            Try
-                Await Webview2Controller.Navigate_GoToUrl_Task("https://www.facebook.com/")
-                Await Delay_msec(5000)
-                Webview2Controller.ClickByCssSelectorWaitUntil("#content > div > div > div > div > div > div.removableItem > div > div > a:nth-child(1)", 3)
-            Catch ex As Exception
+            Await Webview2Controller.ClickLoginAvatar_Task(myUserObj.FBPassword)
 
-            End Try
-
-            Await Delay_msec(2000)
 
             '選擇WebviewUserDataFolder_ListBox
             ' WebviewUserDataFolder_ListBox.SelectedItem = userData
@@ -164,9 +160,9 @@ Public Class Form1
 
             '處理隨機網址
             If myUrl.Contains("隨機") Then
-                Debug.WriteLine("contain 隨機")
-                Debug.WriteLine("action" & action)
-                Debug.WriteLine("userdata" & userDataFolderPath)
+                'Debug.WriteLine("contain 隨機")
+                'Debug.WriteLine("action" & action)
+                'Debug.WriteLine("userdata" & userDataFolderPath)
                 Dim randomItem As JToken = MainFormController.GetRandomFBUrlData(action, userDataFolderPath)
                 item.SubItems(2).Text = "隨機->" & randomItem("Name").ToString()
                 item.SubItems(3).Text = "隨機->" & randomItem("Url").ToString()
