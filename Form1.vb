@@ -146,6 +146,12 @@ Public Class Form1
 
             '用選的userData 初始化webview
             Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
+
+
+            If UseCustomizeUserDataPath Then
+                userDataFolderPath = CustomizeWebviewUserDataPath_Textbox.Text
+            End If
+
             ' 初始化webivew
             Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
@@ -1304,4 +1310,25 @@ Public Class Form1
     Private Sub RestoreLiteModeConfigsToDefault_ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Click
         MainFormController.WriteDefaultLiteModeComponentsJson()
     End Sub
+
+    Public UseCustomizeUserDataPath As Boolean = False
+
+    Private Sub Apply_CustomizeUserDataPath_Button_Click(sender As Object, e As EventArgs) Handles Apply_CustomizeUserDataPath_Button.Click
+        Try
+            If UseCustomizeUserDataPath Then
+                UseCustomizeUserDataPath = False
+                Apply_CustomizeUserDataPath_Button.Text = "套用"
+                CustomizeWebviewUserDataPath_Textbox.Enabled = True
+
+            Else
+                UseCustomizeUserDataPath = True
+                Apply_CustomizeUserDataPath_Button.Text = "取消"
+                CustomizeWebviewUserDataPath_Textbox.Enabled = False
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
 End Class

@@ -460,6 +460,9 @@ Partial Class Form1
         SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
         LiteModeComponentSizeConfigs_ToolStripMenuItem = New ToolStripMenuItem()
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem = New ToolStripMenuItem()
+        CustomizeWebviewUserDataPath_Textbox = New TextBox()
+        Label74 = New Label()
+        Apply_CustomizeUserDataPath_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -580,16 +583,16 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label2)
         UserInfo_GroupBox.Controls.Add(FBAccount_TextBox)
         UserInfo_GroupBox.Controls.Add(Label1)
-        UserInfo_GroupBox.Location = New Point(203, 3)
+        UserInfo_GroupBox.Location = New Point(203, 42)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(222, 589)
+        UserInfo_GroupBox.Size = New Size(222, 573)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
         ' 
         ' SaveUserData_Button
         ' 
-        SaveUserData_Button.Location = New Point(6, 554)
+        SaveUserData_Button.Location = New Point(6, 538)
         SaveUserData_Button.Name = "SaveUserData_Button"
         SaveUserData_Button.Size = New Size(206, 29)
         SaveUserData_Button.TabIndex = 18
@@ -598,9 +601,9 @@ Partial Class Form1
         ' 
         ' Remark_RichTextBox
         ' 
-        Remark_RichTextBox.Location = New Point(6, 429)
+        Remark_RichTextBox.Location = New Point(6, 426)
         Remark_RichTextBox.Name = "Remark_RichTextBox"
-        Remark_RichTextBox.Size = New Size(206, 119)
+        Remark_RichTextBox.Size = New Size(206, 106)
         Remark_RichTextBox.TabIndex = 17
         Remark_RichTextBox.Text = ""
         ' 
@@ -625,7 +628,7 @@ Partial Class Form1
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(6, 407)
+        Label7.Location = New Point(6, 404)
         Label7.Name = "Label7"
         Label7.Size = New Size(39, 19)
         Label7.TabIndex = 14
@@ -837,10 +840,10 @@ Partial Class Form1
         ' 
         WebviewUserDataFolder_ListBox.FormattingEnabled = True
         WebviewUserDataFolder_ListBox.ItemHeight = 19
-        WebviewUserDataFolder_ListBox.Location = New Point(3, 3)
+        WebviewUserDataFolder_ListBox.Location = New Point(3, 41)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
-        WebviewUserDataFolder_ListBox.Size = New Size(194, 346)
+        WebviewUserDataFolder_ListBox.Size = New Size(194, 308)
         WebviewUserDataFolder_ListBox.TabIndex = 18
         ' 
         ' RequestFriend_Button
@@ -4651,6 +4654,9 @@ Partial Class Form1
         ' 
         ' UserDataManager_Panel
         ' 
+        UserDataManager_Panel.Controls.Add(Apply_CustomizeUserDataPath_Button)
+        UserDataManager_Panel.Controls.Add(Label74)
+        UserDataManager_Panel.Controls.Add(CustomizeWebviewUserDataPath_Textbox)
         UserDataManager_Panel.Controls.Add(WebviewUserDataFolder_ListBox)
         UserDataManager_Panel.Controls.Add(UserInfo_GroupBox)
         UserDataManager_Panel.Controls.Add(UserDataFolderName_TextBox)
@@ -4663,7 +4669,7 @@ Partial Class Form1
         UserDataManager_Panel.Controls.Add(RequestFriend_Button)
         UserDataManager_Panel.Location = New Point(12, 30)
         UserDataManager_Panel.Name = "UserDataManager_Panel"
-        UserDataManager_Panel.Size = New Size(433, 621)
+        UserDataManager_Panel.Size = New Size(433, 627)
         UserDataManager_Panel.TabIndex = 41
         ' 
         ' ScriptQueueManager_Panel
@@ -4733,6 +4739,31 @@ Partial Class Form1
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Name = "RestoreLiteModeConfigsToDefault_ToolStripMenuItem"
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Size = New Size(83, 23)
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Text = "設為預設"
+        ' 
+        ' CustomizeWebviewUserDataPath_Textbox
+        ' 
+        CustomizeWebviewUserDataPath_Textbox.Location = New Point(85, 9)
+        CustomizeWebviewUserDataPath_Textbox.Name = "CustomizeWebviewUserDataPath_Textbox"
+        CustomizeWebviewUserDataPath_Textbox.Size = New Size(281, 27)
+        CustomizeWebviewUserDataPath_Textbox.TabIndex = 20
+        ' 
+        ' Label74
+        ' 
+        Label74.AutoSize = True
+        Label74.Location = New Point(3, 12)
+        Label74.Name = "Label74"
+        Label74.Size = New Size(76, 19)
+        Label74.TabIndex = 21
+        Label74.Text = "自訂路徑 :"
+        ' 
+        ' Apply_CustomizeUserDataPath_Button
+        ' 
+        Apply_CustomizeUserDataPath_Button.Location = New Point(372, 9)
+        Apply_CustomizeUserDataPath_Button.Name = "Apply_CustomizeUserDataPath_Button"
+        Apply_CustomizeUserDataPath_Button.Size = New Size(53, 29)
+        Apply_CustomizeUserDataPath_Button.TabIndex = 22
+        Apply_CustomizeUserDataPath_Button.Text = "套用"
+        Apply_CustomizeUserDataPath_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -5285,5 +5316,8 @@ Partial Class Form1
     Friend WithEvents LiteModeComponentSizeConfigs_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RestoreLiteModeConfigsToDefault_ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReadActivityLogsWithContent_CheckBox As CheckBox
+    Friend WithEvents Apply_CustomizeUserDataPath_Button As Button
+    Friend WithEvents Label74 As Label
+    Friend WithEvents CustomizeWebviewUserDataPath_Textbox As TextBox
 
 End Class
