@@ -148,10 +148,6 @@ Public Class Form1
             Dim userDataFolderPath = Path.Combine(AppInitModule.webivewUserDataDirectory, userData)
 
 
-            If UseCustomizeUserDataPath Then
-                userDataFolderPath = CustomizeWebviewUserDataPath_Textbox.Text
-            End If
-
             ' 初始化webivew
             Await Webview2Controller.RestartMainWebView2(userDataFolderPath)
 
@@ -1311,24 +1307,97 @@ Public Class Form1
         MainFormController.WriteDefaultLiteModeComponentsJson()
     End Sub
 
-    Public UseCustomizeUserDataPath As Boolean = False
 
     Private Sub Apply_CustomizeUserDataPath_Button_Click(sender As Object, e As EventArgs) Handles Apply_CustomizeUserDataPath_Button.Click
         Try
-            If UseCustomizeUserDataPath Then
-                UseCustomizeUserDataPath = False
+            If Apply_CustomizeUserDataPath_Button.Text = "取消" Then
                 Apply_CustomizeUserDataPath_Button.Text = "套用"
                 CustomizeWebviewUserDataPath_Textbox.Enabled = True
 
+                ' 設定回預設
+                webivewUserDataDirectory = Path.Combine(appBaseDirectory, "WebviewUserData")
+
             Else
-                UseCustomizeUserDataPath = True
                 Apply_CustomizeUserDataPath_Button.Text = "取消"
                 CustomizeWebviewUserDataPath_Textbox.Enabled = False
+
+                ' 這邊把本地路徑都設定成指定路徑
+                webivewUserDataDirectory = Path.Combine(CustomizeWebviewUserDataPath_Textbox.Text)
+
             End If
+
+            Try
+
+                availableUserDataDirectory = Path.Combine(webivewUserDataDirectory, "available")
+                unavailableUserDataDirectory = Path.Combine(webivewUserDataDirectory, "unavailable")
+                ' 更新渲染
+                UpdateWebviewUserDataCheckListBox()
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+                MsgBox("指定路徑發生錯誤")
+            End Try
+
         Catch ex As Exception
             Debug.WriteLine(ex)
         End Try
 
     End Sub
+
+    Private Sub Apply_CustomizeAssetsFolderDataPath_Button_Click(sender As Object, e As EventArgs) Handles Apply_CustomizeAssetsFolderDataPath_Button.Click
+        Try
+            If Apply_CustomizeAssetsFolderDataPath_Button.Text = "取消" Then
+                Apply_CustomizeAssetsFolderDataPath_Button.Text = "套用"
+                CustomizeAssetsDataFolderPath_Textbox.Enabled = True
+
+                '設回預設
+                myAssetsDirectory = Path.Combine(appBaseDirectory, "myAssets")
+
+
+            Else
+                Apply_CustomizeAssetsFolderDataPath_Button.Text = "取消"
+                CustomizeAssetsDataFolderPath_Textbox.Enabled = False
+
+                ' 設定成指定路徑
+                myAssetsDirectory = CustomizeAssetsDataFolderPath_Textbox.Text
+
+            End If
+
+
+            Try
+                FBPostAssetsDirectory = Path.Combine(myAssetsDirectory, "FBPostAssets")
+                FBMarketPlaceAssetsDirectory = Path.Combine(myAssetsDirectory, "FBMarketplaceAssets")
+                FBPostShareURLAssetsDirectory = Path.Combine(myAssetsDirectory, "FBPostShareURLAssets")
+                FBCommentAssetsDirectory = Path.Combine(myAssetsDirectory, "FBCommentAssets")
+                FBCustomizeCommentAssetsDirectory = Path.Combine(myAssetsDirectory, "FBCustomizeCommentAssets")
+                FBResponseAssetsDirectory = Path.Combine(myAssetsDirectory, "FBResponseAssets")
+                FBMessengerAssetsDirectory = Path.Combine(myAssetsDirectory, "FBMessengerAssets")
+                FBStoryAssetsDirectory = Path.Combine(myAssetsDirectory, "FBStoryAssets")
+                FBPersonalPostAssetsDirectory = Path.Combine(myAssetsDirectory, "FBPersonalPostAssets")
+                FBReelsAssetsDirectory = Path.Combine(myAssetsDirectory, "FBReelsAssets")
+
+                FBPostEventHandlers.UpdateAssetsFolderListBox()
+                FBMarketplaceEventHandlers.UpdateMarketplaceAssetsFolderListBox()
+                FBPostShareURLEventHandlers.UpdatePostShareURLAssetsFolderListBox()
+                FBCommentEventHandlers.UpdateAssetsFolderListBox()
+                FBCustomizeCommentEventHandlers.UpdateAssetsFolderListBox()
+                FBResponseEventHandlers.UpdateAssetsFolderListBox()
+                FBMessengerEventHandlers.UpdateAssetsFolderListBox()
+                FBStoryEventHandlers.UpdateAssetsFolderListBox()
+                FBPersonalPostEventHandlers.UpdateAssetsFolderListBox()
+                FBReelsEventHandlers.UpdateAssetsFolderListBox()
+
+
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+                MsgBox("指定路徑發生錯誤")
+            End Try
+
+
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
 
 End Class

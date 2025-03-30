@@ -452,6 +452,9 @@ Partial Class Form1
         EditScriptFile_Button = New Button()
         Main_WebView2_Panel = New Panel()
         UserDataManager_Panel = New Panel()
+        Apply_CustomizeUserDataPath_Button = New Button()
+        Label74 = New Label()
+        CustomizeWebviewUserDataPath_Textbox = New TextBox()
         ScriptQueueManager_Panel = New Panel()
         ShowEmojiPicker_Button = New Button()
         MainForm_MenuStrip = New MenuStrip()
@@ -460,9 +463,9 @@ Partial Class Form1
         SetScriptListViewMode_ToolStripMenuItem = New ToolStripMenuItem()
         LiteModeComponentSizeConfigs_ToolStripMenuItem = New ToolStripMenuItem()
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem = New ToolStripMenuItem()
-        CustomizeWebviewUserDataPath_Textbox = New TextBox()
-        Label74 = New Label()
-        Apply_CustomizeUserDataPath_Button = New Button()
+        Label75 = New Label()
+        CustomizeAssetsDataFolderPath_Textbox = New TextBox()
+        Apply_CustomizeAssetsFolderDataPath_Button = New Button()
         CType(Main_WebView2, ComponentModel.ISupportInitialize).BeginInit()
         UserInfo_GroupBox.SuspendLayout()
         UserDataFoldListFilter_GroupBox.SuspendLayout()
@@ -583,16 +586,16 @@ Partial Class Form1
         UserInfo_GroupBox.Controls.Add(Label2)
         UserInfo_GroupBox.Controls.Add(FBAccount_TextBox)
         UserInfo_GroupBox.Controls.Add(Label1)
-        UserInfo_GroupBox.Location = New Point(203, 42)
+        UserInfo_GroupBox.Location = New Point(211, 3)
         UserInfo_GroupBox.Name = "UserInfo_GroupBox"
-        UserInfo_GroupBox.Size = New Size(222, 573)
+        UserInfo_GroupBox.Size = New Size(222, 550)
         UserInfo_GroupBox.TabIndex = 7
         UserInfo_GroupBox.TabStop = False
         UserInfo_GroupBox.Text = "使用者紀錄"
         ' 
         ' SaveUserData_Button
         ' 
-        SaveUserData_Button.Location = New Point(6, 538)
+        SaveUserData_Button.Location = New Point(6, 508)
         SaveUserData_Button.Name = "SaveUserData_Button"
         SaveUserData_Button.Size = New Size(206, 29)
         SaveUserData_Button.TabIndex = 18
@@ -603,7 +606,7 @@ Partial Class Form1
         ' 
         Remark_RichTextBox.Location = New Point(6, 426)
         Remark_RichTextBox.Name = "Remark_RichTextBox"
-        Remark_RichTextBox.Size = New Size(206, 106)
+        Remark_RichTextBox.Size = New Size(206, 76)
         Remark_RichTextBox.TabIndex = 17
         Remark_RichTextBox.Text = ""
         ' 
@@ -753,14 +756,14 @@ Partial Class Form1
         ' 
         ' UserDataFolderName_TextBox
         ' 
-        UserDataFolderName_TextBox.Location = New Point(3, 456)
+        UserDataFolderName_TextBox.Location = New Point(3, 418)
         UserDataFolderName_TextBox.Name = "UserDataFolderName_TextBox"
         UserDataFolderName_TextBox.Size = New Size(94, 27)
         UserDataFolderName_TextBox.TabIndex = 9
         ' 
         ' CreateUserDataFolderButton
         ' 
-        CreateUserDataFolderButton.Location = New Point(103, 456)
+        CreateUserDataFolderButton.Location = New Point(103, 418)
         CreateUserDataFolderButton.Name = "CreateUserDataFolderButton"
         CreateUserDataFolderButton.Size = New Size(94, 29)
         CreateUserDataFolderButton.TabIndex = 10
@@ -769,7 +772,7 @@ Partial Class Form1
         ' 
         ' DeleteSelectedUserDataFolderButton
         ' 
-        DeleteSelectedUserDataFolderButton.Location = New Point(103, 490)
+        DeleteSelectedUserDataFolderButton.Location = New Point(103, 452)
         DeleteSelectedUserDataFolderButton.Name = "DeleteSelectedUserDataFolderButton"
         DeleteSelectedUserDataFolderButton.Size = New Size(94, 29)
         DeleteSelectedUserDataFolderButton.TabIndex = 11
@@ -780,7 +783,7 @@ Partial Class Form1
         ' 
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterUnavailableUserData_CheckBox)
         UserDataFoldListFilter_GroupBox.Controls.Add(FilterAvailableUserData_CheckBox)
-        UserDataFoldListFilter_GroupBox.Location = New Point(3, 356)
+        UserDataFoldListFilter_GroupBox.Location = New Point(3, 318)
         UserDataFoldListFilter_GroupBox.Name = "UserDataFoldListFilter_GroupBox"
         UserDataFoldListFilter_GroupBox.Size = New Size(194, 92)
         UserDataFoldListFilter_GroupBox.TabIndex = 13
@@ -811,7 +814,7 @@ Partial Class Form1
         ' 
         ' Move_UserDataFolder_Button
         ' 
-        Move_UserDataFolder_Button.Location = New Point(3, 489)
+        Move_UserDataFolder_Button.Location = New Point(3, 451)
         Move_UserDataFolder_Button.Name = "Move_UserDataFolder_Button"
         Move_UserDataFolder_Button.Size = New Size(94, 29)
         Move_UserDataFolder_Button.TabIndex = 14
@@ -820,7 +823,7 @@ Partial Class Form1
         ' 
         ' SetSeletedFBLanguageTo_zhTW_Button
         ' 
-        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(3, 523)
+        SetSeletedFBLanguageTo_zhTW_Button.Location = New Point(3, 485)
         SetSeletedFBLanguageTo_zhTW_Button.Name = "SetSeletedFBLanguageTo_zhTW_Button"
         SetSeletedFBLanguageTo_zhTW_Button.Size = New Size(94, 29)
         SetSeletedFBLanguageTo_zhTW_Button.TabIndex = 15
@@ -829,7 +832,7 @@ Partial Class Form1
         ' 
         ' TurnOnSetSeleteKeyboardShortcuts_Button
         ' 
-        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(103, 525)
+        TurnOnSetSeleteKeyboardShortcuts_Button.Location = New Point(103, 487)
         TurnOnSetSeleteKeyboardShortcuts_Button.Name = "TurnOnSetSeleteKeyboardShortcuts_Button"
         TurnOnSetSeleteKeyboardShortcuts_Button.Size = New Size(94, 29)
         TurnOnSetSeleteKeyboardShortcuts_Button.TabIndex = 17
@@ -840,7 +843,7 @@ Partial Class Form1
         ' 
         WebviewUserDataFolder_ListBox.FormattingEnabled = True
         WebviewUserDataFolder_ListBox.ItemHeight = 19
-        WebviewUserDataFolder_ListBox.Location = New Point(3, 41)
+        WebviewUserDataFolder_ListBox.Location = New Point(3, 3)
         WebviewUserDataFolder_ListBox.Name = "WebviewUserDataFolder_ListBox"
         WebviewUserDataFolder_ListBox.SelectionMode = SelectionMode.MultiExtended
         WebviewUserDataFolder_ListBox.Size = New Size(194, 308)
@@ -848,7 +851,7 @@ Partial Class Form1
         ' 
         ' RequestFriend_Button
         ' 
-        RequestFriend_Button.Location = New Point(3, 558)
+        RequestFriend_Button.Location = New Point(3, 520)
         RequestFriend_Button.Name = "RequestFriend_Button"
         RequestFriend_Button.Size = New Size(94, 29)
         RequestFriend_Button.TabIndex = 19
@@ -4654,9 +4657,6 @@ Partial Class Form1
         ' 
         ' UserDataManager_Panel
         ' 
-        UserDataManager_Panel.Controls.Add(Apply_CustomizeUserDataPath_Button)
-        UserDataManager_Panel.Controls.Add(Label74)
-        UserDataManager_Panel.Controls.Add(CustomizeWebviewUserDataPath_Textbox)
         UserDataManager_Panel.Controls.Add(WebviewUserDataFolder_ListBox)
         UserDataManager_Panel.Controls.Add(UserInfo_GroupBox)
         UserDataManager_Panel.Controls.Add(UserDataFolderName_TextBox)
@@ -4667,10 +4667,35 @@ Partial Class Form1
         UserDataManager_Panel.Controls.Add(SetSeletedFBLanguageTo_zhTW_Button)
         UserDataManager_Panel.Controls.Add(TurnOnSetSeleteKeyboardShortcuts_Button)
         UserDataManager_Panel.Controls.Add(RequestFriend_Button)
-        UserDataManager_Panel.Location = New Point(12, 30)
+        UserDataManager_Panel.Location = New Point(12, 97)
         UserDataManager_Panel.Name = "UserDataManager_Panel"
-        UserDataManager_Panel.Size = New Size(433, 627)
+        UserDataManager_Panel.Size = New Size(433, 560)
         UserDataManager_Panel.TabIndex = 41
+        ' 
+        ' Apply_CustomizeUserDataPath_Button
+        ' 
+        Apply_CustomizeUserDataPath_Button.Location = New Point(392, 25)
+        Apply_CustomizeUserDataPath_Button.Name = "Apply_CustomizeUserDataPath_Button"
+        Apply_CustomizeUserDataPath_Button.Size = New Size(53, 29)
+        Apply_CustomizeUserDataPath_Button.TabIndex = 22
+        Apply_CustomizeUserDataPath_Button.Text = "套用"
+        Apply_CustomizeUserDataPath_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Label74
+        ' 
+        Label74.AutoSize = True
+        Label74.Location = New Point(12, 30)
+        Label74.Name = "Label74"
+        Label74.Size = New Size(91, 19)
+        Label74.TabIndex = 21
+        Label74.Text = "使用者路徑 :"
+        ' 
+        ' CustomizeWebviewUserDataPath_Textbox
+        ' 
+        CustomizeWebviewUserDataPath_Textbox.Location = New Point(109, 27)
+        CustomizeWebviewUserDataPath_Textbox.Name = "CustomizeWebviewUserDataPath_Textbox"
+        CustomizeWebviewUserDataPath_Textbox.Size = New Size(277, 27)
+        CustomizeWebviewUserDataPath_Textbox.TabIndex = 20
         ' 
         ' ScriptQueueManager_Panel
         ' 
@@ -4740,30 +4765,30 @@ Partial Class Form1
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Size = New Size(83, 23)
         RestoreLiteModeConfigsToDefault_ToolStripMenuItem.Text = "設為預設"
         ' 
-        ' CustomizeWebviewUserDataPath_Textbox
+        ' Label75
         ' 
-        CustomizeWebviewUserDataPath_Textbox.Location = New Point(85, 9)
-        CustomizeWebviewUserDataPath_Textbox.Name = "CustomizeWebviewUserDataPath_Textbox"
-        CustomizeWebviewUserDataPath_Textbox.Size = New Size(281, 27)
-        CustomizeWebviewUserDataPath_Textbox.TabIndex = 20
+        Label75.AutoSize = True
+        Label75.Location = New Point(12, 63)
+        Label75.Name = "Label75"
+        Label75.Size = New Size(80, 19)
+        Label75.TabIndex = 46
+        Label75.Text = "庫存路徑 : "
         ' 
-        ' Label74
+        ' CustomizeAssetsDataFolderPath_Textbox
         ' 
-        Label74.AutoSize = True
-        Label74.Location = New Point(3, 12)
-        Label74.Name = "Label74"
-        Label74.Size = New Size(76, 19)
-        Label74.TabIndex = 21
-        Label74.Text = "自訂路徑 :"
+        CustomizeAssetsDataFolderPath_Textbox.Location = New Point(110, 60)
+        CustomizeAssetsDataFolderPath_Textbox.Name = "CustomizeAssetsDataFolderPath_Textbox"
+        CustomizeAssetsDataFolderPath_Textbox.Size = New Size(276, 27)
+        CustomizeAssetsDataFolderPath_Textbox.TabIndex = 47
         ' 
-        ' Apply_CustomizeUserDataPath_Button
+        ' Apply_CustomizeAssetsFolderDataPath_Button
         ' 
-        Apply_CustomizeUserDataPath_Button.Location = New Point(372, 9)
-        Apply_CustomizeUserDataPath_Button.Name = "Apply_CustomizeUserDataPath_Button"
-        Apply_CustomizeUserDataPath_Button.Size = New Size(53, 29)
-        Apply_CustomizeUserDataPath_Button.TabIndex = 22
-        Apply_CustomizeUserDataPath_Button.Text = "套用"
-        Apply_CustomizeUserDataPath_Button.UseVisualStyleBackColor = True
+        Apply_CustomizeAssetsFolderDataPath_Button.Location = New Point(392, 60)
+        Apply_CustomizeAssetsFolderDataPath_Button.Name = "Apply_CustomizeAssetsFolderDataPath_Button"
+        Apply_CustomizeAssetsFolderDataPath_Button.Size = New Size(53, 29)
+        Apply_CustomizeAssetsFolderDataPath_Button.TabIndex = 48
+        Apply_CustomizeAssetsFolderDataPath_Button.Text = "套用"
+        Apply_CustomizeAssetsFolderDataPath_Button.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -4771,7 +4796,13 @@ Partial Class Form1
         AutoScaleMode = AutoScaleMode.Font
         AutoScroll = True
         ClientSize = New Size(1882, 1133)
+        Controls.Add(Apply_CustomizeAssetsFolderDataPath_Button)
+        Controls.Add(CustomizeAssetsDataFolderPath_Textbox)
+        Controls.Add(Label75)
+        Controls.Add(Apply_CustomizeUserDataPath_Button)
         Controls.Add(ShowEmojiPicker_Button)
+        Controls.Add(CustomizeWebviewUserDataPath_Textbox)
+        Controls.Add(Label74)
         Controls.Add(Action_TabControl)
         Controls.Add(ScriptQueueManager_Panel)
         Controls.Add(UserDataManager_Panel)
@@ -5319,5 +5350,8 @@ Partial Class Form1
     Friend WithEvents Apply_CustomizeUserDataPath_Button As Button
     Friend WithEvents Label74 As Label
     Friend WithEvents CustomizeWebviewUserDataPath_Textbox As TextBox
+    Friend WithEvents Label75 As Label
+    Friend WithEvents CustomizeAssetsDataFolderPath_Textbox As TextBox
+    Friend WithEvents Apply_CustomizeAssetsFolderDataPath_Button As Button
 
 End Class

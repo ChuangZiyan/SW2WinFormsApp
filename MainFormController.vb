@@ -57,11 +57,6 @@ Module MainFormController
 
             Dim userDataJsonFilePath As String = Path.Combine(AppInitModule.webivewUserDataDirectory, FolderName, "myUserData.json")
 
-            ' 如果有使用自訂使用者路徑
-            If Form1.UseCustomizeUserDataPath Then
-                userDataJsonFilePath = Path.Combine(Form1.CustomizeWebviewUserDataPath_Textbox.Text, "myUserData.json")
-            End If
-
             If File.Exists(userDataJsonFilePath) Then
                 Dim jsonString As String = File.ReadAllText(userDataJsonFilePath)
                 Dim userDataJson As UserDataStruct = JsonConvert.DeserializeObject(Of UserDataStruct)(jsonString)

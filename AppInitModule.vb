@@ -9,31 +9,31 @@ Module AppInitModule
     Public ReadOnly appConfigsDirectory As String = Path.Combine(appBaseDirectory, "appConfigs")
 
     ' UserData
-    Public ReadOnly webivewUserDataDirectory As String = Path.Combine(appBaseDirectory, "WebviewUserData")
-    Public ReadOnly availableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "available")
-    Public ReadOnly unavailableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "unavailable")
+    Public webivewUserDataDirectory As String = Path.Combine(appBaseDirectory, "WebviewUserData")
+    Public availableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "available")
+    Public unavailableUserDataDirectory As String = Path.Combine(webivewUserDataDirectory, "unavailable")
 
     ' Assets
-    Public ReadOnly myAssetsDirectory As String = Path.Combine(appBaseDirectory, "myAssets")
-    Public ReadOnly FBPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostAssets")
-    Public ReadOnly FBMarketPlaceAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBMarketplaceAssets")
-    Public ReadOnly FBPostShareURLAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostShareURLAssets")
-    Public ReadOnly FBCommentAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBCommentAssets")
-    Public ReadOnly FBCustomizeCommentAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBCustomizeCommentAssets")
-    Public ReadOnly FBResponseAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBResponseAssets")
-    Public ReadOnly FBMessengerAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBMessengerAssets")
-    Public ReadOnly FBStoryAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBStoryAssets")
-    Public ReadOnly FBPersonalPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPersonalPostAssets")
-    Public ReadOnly FBReelsAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBReelsAssets")
+    Public myAssetsDirectory As String = Path.Combine(appBaseDirectory, "myAssets")
+    Public FBPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostAssets")
+    Public FBMarketPlaceAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBMarketplaceAssets")
+    Public FBPostShareURLAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPostShareURLAssets")
+    Public FBCommentAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBCommentAssets")
+    Public FBCustomizeCommentAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBCustomizeCommentAssets")
+    Public FBResponseAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBResponseAssets")
+    Public FBMessengerAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBMessengerAssets")
+    Public FBStoryAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBStoryAssets")
+    Public FBPersonalPostAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBPersonalPostAssets")
+    Public FBReelsAssetsDirectory As String = Path.Combine(myAssetsDirectory, "FBReelsAssets")
 
     ' download media resources
-    Public ReadOnly DownloadedMediaResourcesAssetsDirectory As String = Path.Combine(myAssetsDirectory, "DownloadedMediaResourcesAssets")
-    Public ReadOnly DownloadedImagesResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "images")
-    Public ReadOnly DownloadedVideosResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "videos")
+    Public DownloadedMediaResourcesAssetsDirectory As String = Path.Combine(myAssetsDirectory, "DownloadedMediaResourcesAssets")
+    Public DownloadedImagesResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "images")
+    Public DownloadedVideosResourcesAssetsDirectory As String = Path.Combine(DownloadedMediaResourcesAssetsDirectory, "videos")
 
 
     ' app configs
-    Public ReadOnly versionNumber As String = "v1.008"
+    Public ReadOnly versionNumber As String = "v1.1"
     ReadOnly currentDate As DateTime = DateTime.Today
     Public ReadOnly appVersion As String = currentDate.ToString("yyyyMMdd.") & versionNumber
     Public ReadOnly appUUID As String = Guid.NewGuid().ToString()
