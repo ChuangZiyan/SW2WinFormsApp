@@ -1114,7 +1114,6 @@ Partial Class Form1
         NumberOfActivityLogsPageDropDown_NumericUpDown.Name = "NumberOfActivityLogsPageDropDown_NumericUpDown"
         NumberOfActivityLogsPageDropDown_NumericUpDown.Size = New Size(50, 27)
         NumberOfActivityLogsPageDropDown_NumericUpDown.TabIndex = 26
-        NumberOfActivityLogsPageDropDown_NumericUpDown.Value = New Decimal(New Integer() {10, 0, 0, 0})
         ' 
         ' ReadActivityLogs_Button
         ' 

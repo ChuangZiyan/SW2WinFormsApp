@@ -66,7 +66,7 @@ Module MainFormController
             ' 可加上錯誤處理，例如記錄錯誤日誌
         End Try
 
-        Return False
+        Return New UserDataStruct()
     End Function
 
 

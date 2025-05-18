@@ -1109,10 +1109,7 @@ Module Webview2Controller
                                       Try
                                           Await Delay_msec(1000)
                                           Await Navigate_GoToUrl(post_url)
-                                          Await Delay_msec(1000)
-                                          edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
-                                          Await Delay_msec(1000)
-                                          ClickByAriaLable("可對此貼文採取的動作")
+                                          edgeDriver.FindElements(By.CssSelector("div[aria-label$='可對此貼文採取的動作']")).Last().Click()
                                           Await Delay_msec(3000)
                                           edgeDriver.FindElement(By.XPath("//span[contains(text(),'刪除貼文')]")).Click()
                                           Await Delay_msec(2000)
