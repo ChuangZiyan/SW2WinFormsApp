@@ -887,6 +887,30 @@ Public Class MainFormEventHandlers
         End Try
     End Sub
 
+    Public Async Sub DeleteSelectedPost_Button_Click()
+        Try
+            Dim selectedItems = Form1.FBActivityLogs_ListView.SelectedItems
+            If selectedItems.Count > 0 Then
+                For Each item As ListViewItem In selectedItems
+                    ' Debug.WriteLine(item.SubItems(1).Text)
+                    Await Webview2Controller.DeleteURLPost(item.SubItems(1).Text)
+
+                Next
+
+            Else
+                Debug.WriteLine("ELSA")
+                For Each item As ListViewItem In Form1.FBActivityLogs_ListView.Items
+                    Await Webview2Controller.DeleteURLPost(item.SubItems(1).Text)
+                Next
+
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+
     Public Async Sub WebviewUserDataFolder_ListBox_DoubleClick(sender As Object, e As EventArgs)
         Try
             'Debug.WriteLine("IsWebview2Lock" & IsWebview2Lock)

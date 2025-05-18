@@ -583,10 +583,10 @@ Module Webview2Controller
 
 
 
-    Public Async Sub ReadActivityLogs(NumberOfActivityLogs As Integer)
+    Public Async Function ReadActivityLogs(NumberOfActivityLogs As Integer) As Task(Of Boolean)
         If ActivedUserDataFolderPath Is Nothing Then
             MsgBox("未偵測到啟用的edgedriver")
-            Exit Sub
+            Return True
         End If
 
         Dim onlyReadWithContent = Form1.ReadActivityLogsWithContent_CheckBox.Checked
@@ -620,13 +620,13 @@ Module Webview2Controller
                                                Dim elmSpanInnerHTML = elmSpan.GetAttribute("innerHTML")
 
                                                If elmSpanInnerHTML.Contains("社團發佈了貼文") Then
-                                                   Debug.WriteLine(elmSpanInnerHTML)
+                                                   'Debug.WriteLine(elmSpanInnerHTML)
                                                    Try
                                                        ' 如果判斷有貼文內容就抓，不然就直接跳到例外跳過
 
                                                        If onlyReadWithContent Then
                                                            Dim post_content = elm.FindElement(By.CssSelector("div:nth-child(2) > span > span")).GetAttribute("innerHTML")
-                                                           Debug.WriteLine(post_content)
+                                                           ' Debug.WriteLine(post_content)
                                                        End If
 
                                                        ' 抓取網址跟名稱
@@ -657,7 +657,8 @@ Module Webview2Controller
         For Each item In items
             Form1.FBActivityLogs_ListView.Items.Add(item)
         Next
-    End Sub
+        Return True
+    End Function
 
     Public Async Function ReadFBNotifications(read As Boolean, unread As Boolean) As Task(Of Boolean)
         Try
@@ -1101,6 +1102,35 @@ Module Webview2Controller
             Return False
         End Try
     End Function
+
+    Public Async Function DeleteURLPost(post_url As String) As Task(Of Boolean)
+        Try
+            Return Await Task.Run(Async Function() As Task(Of Boolean)
+                                      Try
+                                          Await Delay_msec(1000)
+                                          Await Navigate_GoToUrl(post_url)
+                                          Await Delay_msec(1000)
+                                          edgeDriver.ExecuteScript("window.scrollTo(0, 300);")
+                                          Await Delay_msec(1000)
+                                          ClickByAriaLable("可對此貼文採取的動作")
+                                          Await Delay_msec(3000)
+                                          edgeDriver.FindElement(By.XPath("//span[contains(text(),'刪除貼文')]")).Click()
+                                          Await Delay_msec(2000)
+                                          edgeDriver.FindElement(By.CssSelector("div[aria-label$='刪除']")).Click()
+                                          Await Delay_msec(5000)
+
+                                          Return True
+                                      Catch ex As Exception
+                                          Debug.WriteLine(ex)
+                                          Return False
+                                      End Try
+                                  End Function)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
 
 
     Public Class MyCookie
