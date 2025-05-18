@@ -898,8 +898,10 @@ Public Class MainFormEventHandlers
                 Next
 
             Else
-                Debug.WriteLine("ELSA")
+                ' Debug.WriteLine("ELSA")
                 For Each item As ListViewItem In Form1.FBActivityLogs_ListView.Items
+                    item.BackColor = Color.SteelBlue
+                    item.ForeColor = Color.White
                     Await Webview2Controller.DeleteURLPost(item.SubItems(1).Text)
                 Next
 
