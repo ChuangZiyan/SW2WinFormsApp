@@ -155,8 +155,9 @@ Module FBMarketplaceSeleniumScript
 
             Return Await Task.Run(Async Function() As Task(Of Boolean)
                                       '然後點下一步
-                                      'ClickByAriaLable("下一步")
-                                      ClickByCssSelectorWaitUntil("div.x8cjs6t.x13fuv20.x178xt8z.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div", 5)
+                                      ClickByAriaLable("繼續")
+                                      ' ClickByCssSelectorWaitUntil("div.x8cjs6t.x13fuv20.x178xt8z.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div", 5)
+
                                       Await Delay_msec(3000)
 
                                       If product.OnMarketplace Then
