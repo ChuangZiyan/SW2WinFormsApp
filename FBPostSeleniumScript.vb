@@ -70,23 +70,29 @@ Module FBPostSeleniumScript
                                           Dim media_input As IWebElement
                                           Dim text_input As IWebElement
 
-                                          ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
+
+                                          Dim myeles = edgeDriver.FindElements(By.XPath("//span[contains(text(), '留個言')]"))
+                                          myeles(0).Click()
+
+                                          'Return True
+
+                                          ' ClickByCssSelectorWaitUntil("div.x6s0dn4.x78zum5.x1l90r2v.x1pi30zi.x1swvt13.xz9dl7a > div", 5)
                                           Await Delay_msec(5000)
 
 
-                                          If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
+                                          'If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
 
-                                              media_input = edgeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
-                                              text_input = edgeDriver.FindElement(By.CssSelector("div > div > div > div > div._5rpb > div"))
-                                          Else
-                                              ClickByAriaLable("相片／影片")
-                                              Await Delay_msec(2500)
-                                              media_input = edgeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1y1aw1k.xwib8y2 > div > div:nth-child(1) > input"))
-                                              text_input = edgeDriver.FindElement(By.CssSelector("div > div > div > div > div._5rpb > div"))
-                                          End If
+                                          'media_input = edgeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x1ch86jh.x80vd3b.xckqwgs.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x178xt8z.xm81vs4.xso031l.xy80clv.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
+                                          'text_input = edgeDriver.FindElement(By.CssSelector("div > div > div > div > div._5rpb > div"))
+                                          'Else
+                                          'ClickByAriaLable("相片／影片")
+                                          'Await Delay_msec(2500)
+                                          media_input = edgeDriver.FindElement(By.CssSelector("div.x1l90r2v.xyamay9.x1n2onr6 > div.x6s0dn4.x1jx94hy.x8cjs6t.x3sou0m.x80vd3b.x12u81az.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.x18b5jzi.x1q0q8m5.x1t7ytsu.x178xt8z.x1lun4ml.xso031l.xpilrb4.xev17xk.x9f619.x78zum5.x1qughib.x1ys307a.xyqm7xq.x1y1aw1k.xf159sx.xwib8y2.xmzvs34 > div.x78zum5 > div:nth-child(1) > input"))
+                                              text_input = edgeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x9f619.x1lliihq.x5yr21d.xh8yej3.notranslate"))
+                                              'End If
 
-                                          ' upload media files
-                                          Dim mediaFileList As New List(Of String)
+                                              ' upload media files
+                                              Dim mediaFileList As New List(Of String)
                                           Dim mediaFileFolderPath = Path.Combine(myAssetFolderPath, "media")
 
                                           Dim allowedExtension As String() = {".WEBP", ".webp", ".bmp", ".BMP", ".jpe", ".JPE", ".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG", ".mp4", ".MP4"}
