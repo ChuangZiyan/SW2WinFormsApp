@@ -42,14 +42,14 @@ Module FBMarketplaceSeleniumScript
 
                                           Await Delay_msec(2000)
 
-                                          ClickByCssSelectorWaitUntil("div.xamitd3.x78zum5.x1q0g3np.x1a02dak.x1e56ztr.xw3qccf.x1sliqq.x14vqqas.xh8yej3.x1ni0lre.xlqeb66 > div:nth-child(1) > div > span > div > div", 5)
+                                          ClickByCssSelectorWaitUntil("div.xamitd3.x78zum5.x1q0g3np.x1a02dak.x1e56ztr.x2fvf9.xnkmj2t.x14vqqas.xh8yej3.x1ni0lre.x1pz0773 > div:nth-child(1) > div > span > div > div", 5)
 
                                           ' 開很慢，要等久一點
                                           Await Delay_msec(5000)
 
                                           ' 上傳圖片
                                           Dim media_input As IWebElement
-                                          media_input = edgeDriver.FindElement(By.CssSelector("div.x1gslohp.x1swvt13.x1pi30zi > label:nth-child(2) > input"))
+                                          media_input = edgeDriver.FindElement(By.CssSelector("div.x1gslohp.xf7dkkf.xv54qhq > label:nth-child(2) > input"))
 
                                           ' upload media files
                                           Dim mediaFileList As New List(Of String)
@@ -94,7 +94,7 @@ Module FBMarketplaceSeleniumScript
                                           Await Delay_msec(1000)
 
                                           '輸入商品標籤
-                                          Dim productTagsInput = edgeDriver.FindElement(By.CssSelector("div.x78zum5.x1ye3gou.xn6708d.xtt52l0 > div > textarea"))
+                                          Dim productTagsInput = edgeDriver.FindElement(By.CssSelector("div.x78zum5.x1g0dm76.xpdmqnj.xtt52l0 > div > textarea"))
                                           For Each tag In product.Tags
                                               productTagsInput.SendKeys(tag)
                                               Await Delay_msec(500)
@@ -111,8 +111,7 @@ Module FBMarketplaceSeleniumScript
                                           productLocationInput.SendKeys(product.Location)
                                           Await Delay_msec(3000)
                                           '搜尋地點後 點第一個符合的
-                                          'Dim productLocationOption = edgeDriver.FindElements(By.CssSelector("div.x1jx94hy.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c.xh8yej3 > div > ul > li"))
-                                          Dim productLocationOption = edgeDriver.FindElements(By.CssSelector("div.x1jx94hy.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c.xh8yej3 > div > ul > li:nth-child(1)"))
+                                          Dim productLocationOption = edgeDriver.FindElements(By.CssSelector("div.x1jx94hy.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c > div > ul > li:nth-child(1)"))
                                           productLocationOption.ElementAt(0).Click()
 
                                           ' 交貨方式
