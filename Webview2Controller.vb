@@ -762,26 +762,26 @@ Module Webview2Controller
 
 
                                            Dim msgsrcCss As String = Nothing
-                                           Dim messengerCssSelector = ".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x78zum5"
-                                           Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                           Dim messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > a"
+                                           Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
 
                                            Dim contentSpanCssSelector = Nothing
 
                                            Select Case messageSource
                                                Case "聊天室"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(1) > div > a"
-                                                   messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div:nth-child(2) > div > div > div > div > div > div > div > div > a"
-                                                   contentSpanCssSelector = "span.html-span.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x18d9i69.xkhd6sd.x1hl2dhg.x16tdsg8.x1vvkbs.x6s0dn4.x9f619.x78zum5.x193iq5w.xg83lxy.xeuugli > span > span"
+                                                   messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > a"
+                                                   contentSpanCssSelector = "span.html-span.xdj266r.x14z9mp.xat24cr.x1lziwak.xexx8yu.x18d9i69.x1c1uobl.x1hl2dhg.x16tdsg8.x1vvkbs.x6s0dn4.x9f619.x78zum5.x193iq5w.x14vy60q.xeuugli > span > span"
                                                Case "Marketplace"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(2) > div > a"
-                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div > div > div > div > div > div"
+                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div > div > div > div"
                                                Case "陌生訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
-                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
-                                                   messengerCssSelector = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div > div> div > div > div > div > div > div > div:nth-child(1) > div > a"
+                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                                   messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > a"
                                                Case "垃圾訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
-                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.xm0m39n.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.xdhzj85.x1bc3s5a > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1k70j0n.xat24cr > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1xmf6yo.xat24cr > div > div > div > div > div > div"
+                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
 
                                            End Select
 
@@ -829,10 +829,9 @@ Module Webview2Controller
                                                        Continue For
                                                    End Try
 
-                                                   '                                                            div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > span > span
                                                    Dim unread_dot As Boolean = False
                                                    Try
-                                                       elm.FindElement(By.CssSelector("a > div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x1es9f29.xn45owk.x1vu7fv8.x1rcwl9y.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div.x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1o1ewxj.x3x9cwd.x1e5q0jg.x13rtm0m.x1q0g3np.x87ps6o.x1lku1pv.x78zum5.x1a2a7pz > span"))
+                                                       elm.FindElement(By.CssSelector("div.x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xc5r6h4.xqeqjp1.x1phubyo.x13fuv20.x18b5jzi.x1q0q8m5.x1t7ytsu.x972fbf.x10w94by.x1qhh985.x14e42zd.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x14z9mp.xat24cr.x1lziwak.x2lwn1j.xeuugli.xexx8yu.xyri2b.x18d9i69.x1c1uobl.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1o1ewxj.x3x9cwd.x1e5q0jg.x13rtm0m.x1q0g3np.x87ps6o.x1lku1pv.x78zum5.x1a2a7pz > span"))
                                                        unread_dot = True
                                                    Catch ex As NoSuchElementException
 
