@@ -542,13 +542,11 @@ Public Class Form1
                     Try
                         Dim assetFolderPath = GetRandomAssetFolder(content, AppInitModule.FBPersonalPostAssetsDirectory)
                         item.SubItems(6).Text = Path.GetFileName(assetFolderPath)
-
                         Dim FBPersonalPostWaitSecondsCfg = File.ReadAllText(Path.Combine(assetFolderPath, "FBPersonalPostWaitSecondsConfig.txt"))
                         item.SubItems(7).Text = Split(FBPersonalPostWaitSecondsCfg, ",")(0)
                         item.SubItems(8).Text = Split(FBPersonalPostWaitSecondsCfg, ",")(1)
 
                         result = Await FBPersonalPostSeleniumScript.WritePersonalPostOnFacebook(myUrl, assetFolderPath, True)
-
                         ' 如果流程都沒問題
                         If result Then
                             ' 這邊要等待上傳完成

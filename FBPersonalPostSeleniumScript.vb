@@ -38,15 +38,17 @@ Module FBPersonalPostSeleniumScript
                                           Dim bodyElement As IWebElement = edgeDriver.FindElement(By.TagName("body"))
                                           bodyElement.SendKeys(Keys.Escape)
 
+                                          Debug.WriteLine("####!!!!")
                                           Await Delay_msec(1000)
                                           '點發帖
-                                          Webview2Controller.ClickByCssSelector("div.xqmpxtq.x13fuv20.x178xt8z.x78zum5.x1a02dak.x1vqgdyp.x1l1ennw.x14vqqas.x6ikm8r.x10wlt62.x1y1aw1k.xh8yej3 > div:nth-child(2)")
+                                          Webview2Controller.ClickByCssSelector("div.x1cy8zhl.x78zum5.x1iyjqo2.xs83m0k.xh8yej3 > div")
                                           Await Delay_msec(2000)
 
                                           Dim text_input = edgeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x9f619.x1lliihq.x5yr21d.xh8yej3.notranslate"))
+
                                           'text_input.SendKeys(myText)
 
-                                          Dim media_input = edgeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.x1y1aw1k.xwib8y2 > div > div:nth-child(1) > input"))
+                                          Dim media_input = edgeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x8cjs6t.x3sou0m.x80vd3b.x12u81az.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x13fuv20.x18b5jzi.x1q0q8m5.x1t7ytsu.x178xt8z.x1lun4ml.xso031l.xpilrb4.xev17xk.x9f619.x78zum5.x1qughib.x1ys307a.xyqm7xq.x1y1aw1k.xf159sx.xwib8y2.xmzvs34 > div:nth-child(2) > div > div:nth-child(1) > input"))
 
                                           ' upload media files
                                           Dim mediaFileList As New List(Of String)
