@@ -763,7 +763,7 @@ Module Webview2Controller
 
                                            Dim msgsrcCss As String = Nothing
                                            Dim messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > a"
-                                           Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                           Dim scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.x6zc37e.xyjqprf.x1tynv8c.xgu6akr.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
 
                                            Dim contentSpanCssSelector = Nothing
 
@@ -777,11 +777,11 @@ Module Webview2Controller
                                                    scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div > div > div > div"
                                                Case "陌生訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
-                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.x6zc37e.xyjqprf.x1tynv8c.xgu6akr.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
                                                    messengerCssSelector = "div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > a"
                                                Case "垃圾訊息"
                                                    msgsrcCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xdj266r > div > span:nth-child(3) > div > a"
-                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.xzhurro.x6gs93r.xpyiiip.x88v6c3.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
+                                                   scrollDivCss = "div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xeuugli.x8mqhxd.x6ikm8r.x10wlt62.x1lcqyv9.xcrg951.x14e42zd.x6zc37e.xyjqprf.x1tynv8c.xgu6akr.x1qpj6lr.x1105k1t.x1bc3s5a > div > div.x78zum5.xdt5ytf.x1iyjqo2.x6ikm8r.x10wlt62 > div > div > div > div > div"
 
                                            End Select
 
