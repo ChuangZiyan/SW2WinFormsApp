@@ -53,7 +53,7 @@ Module FBPostSeleniumScript
 
                                           Await Delay_msec(1000)
 
-                                          Dim discussion_spanElements = edgeDriver.FindElements(By.CssSelector("div.x1ey2m1c.x9f619.xds687c.x10l6tqk.x17qophe.x13vifvy > a"))
+                                          Dim discussion_spanElements = edgeDriver.FindElements(By.CssSelector("div.x1ey2m1c.x9f619.xtijo5x.x1o0tod.x10l6tqk.x13vifvy > a"))
                                           For Each elm In discussion_spanElements
                                               'Debug.WriteLine("#################")
                                               Dim span_innerHTML = elm.FindElement(By.CssSelector("span")).GetAttribute("innerHTML")

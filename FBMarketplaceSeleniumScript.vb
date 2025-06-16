@@ -73,15 +73,15 @@ Module FBMarketplaceSeleniumScript
                                           'ClickByAriaLable("標題")
                                           '輸入商品名稱
                                           Await Delay_msec(1000)
-                                          edgeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x17qophe.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(3) > div > div > div > label > div > input")).SendKeys(product.Name)
+                                          edgeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x1o0tod.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(3) > div > div > div > label > div > input")).SendKeys(product.Name)
 
                                           '輸入商品價格
                                           Await Delay_msec(1000)
-                                          edgeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x17qophe.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(4) > div > div > div > label > div > input")).SendKeys(product.Price)
+                                          edgeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x1o0tod.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(4) > div > div > div > label > div > input")).SendKeys(product.Price)
 
                                           '輸入商品狀況
                                           Await Delay_msec(1000)
-                                          ClickByCssSelectorWaitUntil("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x17qophe.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(5) > div > div > div > div > label", 5)
+                                          ClickByCssSelectorWaitUntil("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x1o0tod.x10l6tqk.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(5) > div > div > div > div > label", 5)
                                           Await Delay_msec(2000)
                                           edgeDriver.FindElement(By.XPath("//span[text()='" & product.Status & "']")).Click()
 
@@ -111,7 +111,7 @@ Module FBMarketplaceSeleniumScript
                                           productLocationInput.SendKeys(product.Location)
                                           Await Delay_msec(3000)
                                           '搜尋地點後 點第一個符合的
-                                          Dim productLocationOption = edgeDriver.FindElements(By.CssSelector("div.x1jx94hy.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c > div > ul > li:nth-child(1)"))
+                                          Dim productLocationOption = edgeDriver.FindElements(By.CssSelector("div.x1jx94hy.x1obq294.x5a5i1n.xde0f50.x15x8krk.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c > div > ul > li:nth-child(1)"))
                                           productLocationOption.ElementAt(0).Click()
 
                                           ' 交貨方式
