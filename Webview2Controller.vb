@@ -590,7 +590,7 @@ Module Webview2Controller
         End If
 
         Dim onlyReadWithContent = Form1.ReadActivityLogsWithContent_CheckBox.Checked
-        onlyReadWithContent = True
+        'onlyReadWithContent = True
 
         Dim items = Await Task.Run(Async Function()
                                        Dim itemList As New List(Of ListViewItem)()
@@ -612,27 +612,29 @@ Module Webview2Controller
                                                Next
                                            End If
 
-                                           Dim pageItemElements = edgeDriver.FindElements(By.CssSelector(".x78zum5.x1q0g3np.x1emribx.xh8yej3"))
+                                           Dim pageItemElements = edgeDriver.FindElements(By.CssSelector(".x78zum5.x1q0g3np.x1xegmmw.xh8yej3"))
 
                                            For Each elm In pageItemElements
-
-                                               Dim elmSpan As IWebElement = elm.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
+                                               'Debug.WriteLine("##")
+                                               'Debug.WriteLine(elm)
+                                               Dim elmSpan As IWebElement = elm.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span"))
                                                Dim elmSpanInnerHTML = elmSpan.GetAttribute("innerHTML")
 
                                                If elmSpanInnerHTML.Contains("社團發佈了貼文") Then
-                                                   'Debug.WriteLine(elmSpanInnerHTML)
+                                                   Debug.WriteLine(elmSpanInnerHTML)
                                                    Try
                                                        ' 如果判斷有貼文內容就抓，不然就直接跳到例外跳過
-
+                                                       Debug.WriteLine("#####")
                                                        If onlyReadWithContent Then
                                                            Dim post_content = elm.FindElement(By.CssSelector("div:nth-child(2) > span > span")).GetAttribute("innerHTML")
                                                            ' Debug.WriteLine(post_content)
                                                        End If
 
                                                        ' 抓取網址跟名稱
-                                                       Dim group_elm = elm.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x78zum5.x1n2onr6.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span > div > strong:nth-child(2) > a"))
-                                                       Dim url = elm.FindElement(By.CssSelector("div.x78zum5.xds687c.x1q0g3np.xurb0ha.x1n2onr6.x1dfx0jo > div:nth-child(1) > a")).GetAttribute("href")
-                                                       Dim groupName As String = group_elm.GetAttribute("innerHTML")
+                                                       Debug.WriteLine("get name")
+                                                       Dim group_elm = elm.FindElement(By.CssSelector("div > strong:nth-child(2) > a"))
+                                                       Dim url = group_elm.GetAttribute("href")
+                                                       Dim groupName = group_elm.GetAttribute("innerHTML")
                                                        Dim item As New ListViewItem(groupName)
                                                        item.SubItems.Add(url)
                                                        itemList.Add(item)
