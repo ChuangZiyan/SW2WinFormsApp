@@ -633,8 +633,9 @@ Module Webview2Controller
                                                        ' 抓取網址跟名稱
                                                        Debug.WriteLine("get name")
                                                        Dim group_elm = elm.FindElement(By.CssSelector("div > strong:nth-child(2) > a"))
-                                                       Dim url = group_elm.GetAttribute("href")
                                                        Dim groupName = group_elm.GetAttribute("innerHTML")
+                                                       Dim url = elm.FindElement(By.CssSelector("div.x78zum5.xtijo5x.x1q0g3np.xmzvs34.x1n2onr6.x1dfx0jo > div:nth-child(1) > a")).GetAttribute("href")
+
                                                        Dim item As New ListViewItem(groupName)
                                                        item.SubItems.Add(url)
                                                        itemList.Add(item)
